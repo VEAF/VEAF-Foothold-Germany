@@ -35,7 +35,6 @@ local bases = world.getAirbases()
 for _, base in pairs(bases) do
     if base:getDesc() then
         if base:getDesc().category == Airbase.Category.AIRDROME then
-            veaf.loggers.get(veaf.Id):info("silencing ATC at base %s", veaf.p(base:getDesc().displayName))
             base:setRadioSilentMode(true)
         end
     end

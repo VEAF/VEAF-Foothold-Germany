@@ -14,3 +14,4 @@ They are protected for veaf Members Only
 
 - [x] silence all ATC
 - [ ] add VEAF radio presets
+- [ ] make points personal to each pilot - which can then donate them to the side
