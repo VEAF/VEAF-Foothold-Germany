@@ -211,7 +211,6 @@ function ewrs.buildThreatTable(activePlayer,bogeyDope)
         end
         local j=#threatTable+1
         threatTable[j]={}
-        --threatTable[j].unitType="Friendly "..name.." ("..label..")"
         threatTable[j].unitType=name
         threatTable[j].isFriendly=true
         threatTable[j].bearing=bearing
@@ -225,10 +224,62 @@ function ewrs.buildThreatTable(activePlayer,bogeyDope)
     addTanker("Arco","Drouge")
     addTanker("Texaco","Boom")
   end
+  if ewrs.groupSettings[tostring(activePlayer.groupID)].showFriendlies and not bogeyDope then
+    local friendCoal=activePlayer.side
+    local groups=coalition.getGroups(friendCoal) or{}
+    for _,grp in ipairs(groups) do
+      local gname=grp:getName()
+      if gname~="Arco" and gname~="Texaco" then
+        local units=grp:getUnits() or{}
+        for _,u in ipairs(units) do
+          if u and u:isExist() and u:isActive() and u:inAir() and u:getLife()>0 then
+            if u:getName()~=activePlayer.unitname then
+              local tp=u:getPosition()
+              local vel=u:getVelocity()
+              local bearing=(math.floor((ewrs.getBearing(referenceX,referenceZ,tp.p.x,tp.p.z)+2.5)/5)*5)%360
+              if bearing==0 then bearing=360 end
+              local heading=ewrs.getHeading(vel)
+              local aspect=ewrs.getAspect(bearing,heading)
+              local range=ewrs.getDistance(referenceX,referenceZ,tp.p.x,tp.p.z)
+              local altitude=tp.p.y
+              local speed=ewrs.getSpeed(vel)
+              if ewrs.groupSettings[tostring(activePlayer.groupID)].measurements=="metric" then
+                local km=range/1000
+                if km>=60 then range=UTILS.Round(km,-1) elseif km>=20 then range=UTILS.Round(km/5,0)*5 else range=UTILS.Round(km,0) end
+                speed=UTILS.Round(UTILS.MpsToKmph(speed),-1)
+                altitude=UTILS.Round(altitude,-1)
+              else
+                local nm=UTILS.MetersToNM(range)
+                if nm>=60 then range=UTILS.Round(nm,-1) elseif nm>=20 then range=UTILS.Round(nm/5,0)*5 else range=UTILS.Round(nm,0) end
+                speed=UTILS.Round(UTILS.MpsToKnots(speed),-1)
+                altitude=UTILS.Round(UTILS.MetersToFeet(altitude),-3)
+              end
+              local lim=ewrs.groupSettings[tostring(activePlayer.groupID)].rangeLimit
+              if lim==0 or range<=lim then
+                local unit=UNIT:Find(u)
+                local bogeyType=nil
+                if unit then bogeyType=unit:GetNatoReportingName() end
+                if not bogeyType then bogeyType="Unknown" end
+                local j=#threatTable+1
+                threatTable[j]={}
+                threatTable[j].unitType=bogeyType
+                threatTable[j].isFriendly=true
+                threatTable[j].bearing=bearing
+                threatTable[j].range=range
+                threatTable[j].altitude=altitude
+                threatTable[j].speed=speed
+                threatTable[j].heading=heading
+                threatTable[j].aspect=aspect
+              end
+            end
+          end
+        end
+      end
+    end
+  end
   table.sort(threatTable,sortRanges)
   return threatTable
 end
-
 
 
 function ewrs.outText(activePlayer, threatTable, bogeyDope, greeting)
@@ -490,8 +541,10 @@ function ewrs.addPlayer(playerName, groupID, unit)
   if not playerName or not groupID or not unit then return end
 
   local isHelo = unit:hasAttribute("Helicopters")
+  local unitType = unit:getTypeName()
+  local autoShowFriendlies = not isHelo and (unitType=="F-4E-45MC" or unitType=="MiG-29 Fulcrum" or unitType=="F-5E-3_FC" or unitType=="C-130J-30")
     if ewrs.groupSettings[tostring(groupID)]==nil then
-    ewrs.addGroupSettings(tostring(groupID),isHelo)
+    ewrs.addGroupSettings(tostring(groupID),isHelo,autoShowFriendlies)
     end
   local status, result = pcall(function()
     local i = #ewrs.activePlayers + 1
@@ -564,12 +617,19 @@ function ewrs.findRadarUnits()
   end
 end
 
-function ewrs.addGroupSettings(groupID,isHelo)
+function ewrs.addGroupSettings(groupID,isHelo,showFriendlies)
   ewrs.groupSettings[groupID]={}
   ewrs.groupSettings[groupID].reference=ewrs.defaultReference
   ewrs.groupSettings[groupID].measurements=ewrs.defaultMeasurements
   ewrs.groupSettings[groupID].messages=true
   ewrs.groupSettings[groupID].rangeLimit=isHelo and 5 or 60
+  ewrs.groupSettings[groupID].showFriendlies=showFriendlies and true or false
+end
+function ewrs.setGroupShowFriendlies(args)
+  local groupID=args[1]
+  ewrs.groupSettings[tostring(groupID)].showFriendlies=args[2]
+  local onOff=args[2] and "on" or "off"
+  trigger.action.outTextForGroup(groupID,"Friendly contacts in picture turned "..onOff,ewrs.messageDisplayTime)
 end
 
 function ewrs.setGroupReference(args)
@@ -642,6 +702,10 @@ function ewrs.buildF10Menu()
         missionCommands.addCommandForGroup(groupID, "Set to Imperial (feet, knts)",measurementsSetPath,ewrs.setGroupMeasurements,{groupID, "imperial"})
         missionCommands.addCommandForGroup(groupID, "Set to Metric (meters, km/h)",measurementsSetPath,ewrs.setGroupMeasurements,{groupID, "metric"})
 
+        local showFriendliesPath=missionCommands.addSubMenuForGroup(groupID,"Show friendlies in Picture",rootPath)
+        missionCommands.addCommandForGroup(groupID,"Show Friendlies ON",showFriendliesPath,ewrs.setGroupShowFriendlies,{groupID,true})
+        missionCommands.addCommandForGroup(groupID,"Show Friendlies OFF",showFriendliesPath,ewrs.setGroupShowFriendlies,{groupID,false})
+
         if not ewrs.onDemand then
           local messageOnOffPath = missionCommands.addSubMenuForGroup(groupID, "Turn Picture Report On/Off",rootPath)
           missionCommands.addCommandForGroup(groupID, "Message ON", messageOnOffPath, ewrs.setGroupMessages, {groupID, true})
@@ -657,6 +721,7 @@ function ewrs.buildF10Menu()
     env.error(string.format("EWRS buildF10Menu Error: %s", result))
   end
 end
+
 
 
 --SCRIPT INIT

@@ -1,10 +1,10 @@
-# VEAF Foothold Germany v3.86
+# VEAF Foothold Germany v3.90
 
 ## Presentation
 
 This is a modification of the original Foothold Germany mission by Leka, that I adapted to make it load all the script files and config directly from the server.
 
-**Done using the latest version updated on 2025.11.29.**
+**Done using the latest version updated on 2025.12.06.**
 
 ## Update
 
@@ -30,7 +30,16 @@ env.info("DYNAMIC LOADING")
 assert(loadfile(FOOTHOLD_DYNAMIC_PATH .. "VEAF_loader.lua")) ()
 ```
 
+### Code
+
+Merge code in zoneCommander.lua (BattleCommander:getStateTable()) :
+```lua
+			hidden            = v.isHidden or false,
+```
+
+
 ## Things to do
 
 - [x] prepare mission
 - [x] prepare presets
+

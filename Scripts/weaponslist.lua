@@ -1527,8 +1527,6 @@ local restrictedWeapons = {
     "weapons.missiles.AIM_120C",
     "weapons.missiles.AIM_120",
     "weapons.missiles.AGM_154",
-    "weapons.missiles.AIM_54C_Mk47",
-    "weapons.missiles.AIM_54C_Mk60",
     "weapons.missiles.AIM_9X",
     "weapons.bombs.GBU_31_V_4B",
     --"weapons.missiles.AGM_65F",
@@ -1548,7 +1546,6 @@ local restrictedWeapons = {
     "weapons.bombs.KAB_1500T",
     "weapons.bombs.LS_6_100",
     "weapons.bombs.GBU-43/B(MOAB)",
-    "weapons.missiles.ADM_141A",
     "weapons.missiles.ADM_141B",
     "weapons.missiles.AGM_119",
     "weapons.missiles.AGM_130",
@@ -1562,7 +1559,6 @@ local restrictedWeapons = {
     "weapons.missiles.AGM_84H",
     "weapons.missiles.AGM_86C",
     "weapons.missiles.ALARM",
-    "weapons.missiles.Ataka_9M120",
     "weapons.missiles.Ataka_9M120F",
     "weapons.missiles.Ataka_9M220",
     "weapons.missiles.Vikhr_M",
@@ -1608,8 +1604,9 @@ local restrictedWeapons = {
     "weapons.containers.ALQ-184",
     "weapons.containers.alq-184long",
     --"weapons.containers.AN_ASQ_228",
-     "weapons.missiles.AGM_114",
-     "weapons.missiles.AGM_114K",
+    "weapons.missiles.AGM_114L",
+    "weapons.missiles.AGM_114",
+     --"weapons.missiles.AGM_114K",
 }
 
 local restrictedWeaponSet = {}
@@ -1619,16 +1616,14 @@ end
 
 local allowedPlanes = {
   "L-39ZA","MiG-19P","I-16","Su-17M4","Mirage-F1AD","F/A-18A","C5_Galaxy","Su-24MR","F-4E-45MC","MiG-23MLD","P-47D-40","Mirage-F1CR","SA342Mistral",
-  "Mi-24V","F-15E","F-117A","SH-60B","AJS37","Tornado IDS","UH-1H","A-20G","UH-60L","MiG-25RBT","SH-3W","MB-339A","RQ-1A Predator","MiG-25PD","F-14A-135-GR",
+  "Mi-24V","F-15E","F-117A","SH-60B","AJS37","Tornado IDS","UH-1H","A-20G","UH-60L","MiG-25RBT","SH-3W","MB-339A","RQ-1A Predator","MiG-25PD","F-14A-135-GR","F-14A-135-GR-Early",
   "C-101EB","F-15C","F-16A MLU","Mirage-F1BD","P3C_Orion","Mirage-F1M-EE","An-30M","AH-64A","MQ-9 Reaper","F-5E-3_FC","Mirage-F1EQ","A-10A","FW-190D9",
   "Mirage-F1M-CE","Mirage-F1ED","C-17A","Tornado GR3","Ka-27","E-2C","UH-60A","Mirage-F1C","Mirage-F1CE","AH-1W","MiG-21Bis","A400M_Atlas","Mirage-F1BE",
   "MB-339APAN","An-26B","Hercules","Su-25","Falcon_Gyrocopter","CH-47D","SA342M","Mirage-F1EDA","WingLoong-I","OH58D","MiG-15bis_FC","Mirage-F1CZ",
   "Mirage-F1BQ","Mirage-F1B","Yak-52","Mirage-F1C-200","Mirage-F1DDA","MiG-15bis","CH-53E","Mirage-F1CJ","FW-190A8","Mirage-F1CK","Mirage-F1AZ",
   "P-47D-30","Mirage-F1CT","A-10C","TF-51D","Hawk","P-51D","M-2000C","Mirage-F1EH","Mirage-F1CH","MosquitoFBMkVI","SA342Minigun","MiG-29A",
   "Mirage-F1CG","C-130","F-5E-3","E-3A","F-86F Sabre","Christen Eagle II","F-14A","SpitfireLFMkIX","KJ-2000","L-39C","C-101CC","SA342L","C2A_Greyhound",
-  "Mi-8MT","Yak-40","P-51D-30-NA","SpitfireLFMkIXCW","Bf-109K-4","Mirage-F1EE","Mi-28N","MiG-27K","Mi-26","Mi-24P","CH-47Fbl1","FA-18C_hornet","F-16C_50", "MiG-29 Fulcrum","UH-60L_DAP","AH-64D_BLK_II",
-  "C-130J-30"
-} 
+  "Mi-8MT","Yak-40","P-51D-30-NA","SpitfireLFMkIXCW","Bf-109K-4","Mirage-F1EE","Mi-28N","MiG-27K","Mi-26","Mi-24P","CH-47Fbl1","FA-18C_hornet","F-16C_50", "MiG-29 Fulcrum","UH-60L_DAP","C-130J-30","F-14B","AH-64D_BLK_II"}
 
 local allowedItems = {
     "weapons.droptanks.PTB_1500_MIG29A"
@@ -1647,7 +1642,7 @@ function checkWeaponsList(airbase)
 				local unlimitedDetected = false
 				for _,weapon in ipairs(restrictedWeapons) do
 					local amt = storage:GetItemAmount(weapon)
-					if amt ~= 0 then unlimitedDetected = true end
+					if amt > 10000000 then unlimitedDetected = true end
 					if amt > 0 then
 						storage:RemoveItem(weapon,amt)
 					end
@@ -1661,6 +1656,7 @@ function checkWeaponsList(airbase)
 					end
 				end
 				for name,_ in pairs(ac) do storage:SetItem(name,0) end
+				for _,acName in ipairs(restockAircraft) do storage:SetItem(acName,0) end
 				for _,plane in ipairs(allowedPlanes) do storage:SetItem(plane,1073741823) end
 				for _,item in ipairs(allowedItems) do storage:SetItem(item,1073741823) end
 			else
@@ -1697,7 +1693,7 @@ function checkWeaponsList(airbase)
 				local unlimitedDetected = false
 				for _,weapon in ipairs(restrictedWeapons) do
 					local amount = storage:GetItemAmount(weapon)
-					if amount ~= 0 then unlimitedDetected = true end
+					if amount > 10000000 then unlimitedDetected = true end
 					if amount > 0 then
 						storage:RemoveItem(weapon,amount)
 					end
@@ -1711,6 +1707,7 @@ function checkWeaponsList(airbase)
 					end
 				end
 				for name,_ in pairs(ac) do storage:SetItem(name,0) end
+                for _,acName in ipairs(restockAircraft) do storage:SetItem(acName,0) end
 				for _,plane in ipairs(allowedPlanes) do storage:SetItem(plane,1073741823) end
 				for _,item in ipairs(allowedItems) do storage:SetItem(item,1073741823) end
 			else
@@ -2927,13 +2924,13 @@ end
 local resMap = Warehouse.getResourceMap()
 
 function DumpAnythingAt50()
-    local storage = STORAGE:FindByName("Al Dhafra AFB")
+    local storage = STORAGE:FindByName("Bitburg")
     if not storage then return end
 
     for itemName, ws in pairs(resMap) do
         local amt = storage:GetItemAmount(itemName)
         if amt == 1337 then
-            env.info(("{%d,%d,%d,%d} %s = %d"):format(ws[1], ws[2], ws[3], ws[4], itemName or "UNKNOWN", amt))
+            env.info(("%s {%d,%d,%d,%d} = %d"):format(itemName, ws[1], ws[2], ws[3], ws[4], amt))
         end
     end
 end
