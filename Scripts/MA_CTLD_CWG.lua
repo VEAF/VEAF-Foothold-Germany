@@ -9,7 +9,7 @@ Foothold_ctld.CrateDistance = 65
 Foothold_ctld.PackDistance = 65
 Foothold_ctld.maximumHoverHeight = 20
 Foothold_ctld.minimumHoverHeight = 3
-Foothold_ctld.smokedistance = 5000
+Foothold_ctld.smokedistance = 8000
 Foothold_ctld.enableFixedWing = true
 Foothold_ctld.FixedMinAngels = 100 -- for troop/cargo drop via chute in meters, ca 470 ft
 Foothold_ctld.FixedMaxAngels = 2000 -- for troop/cargo drop via chute in meters, ca 6000 ft
@@ -19,18 +19,18 @@ Foothold_ctld.allowcratepickupagain = true
 Foothold_ctld.nobuildinloadzones = true
 Foothold_ctld.movecratesbeforebuild = false
 Foothold_ctld.movetroopstowpzone = true
-Foothold_ctld.enableChinhookGCLoading = true
 Foothold_ctld.hoverautoloading = false
 Foothold_ctld.enableslingload = true
-Foothold_ctld.ChinookTroopCircleRadius = 5
 Foothold_ctld.usesubcats = true
 Foothold_ctld.pilotmustopendoors = true
-Foothold_ctld.TroopUnloadDistGroundHook = 15
-Foothold_ctld.enableChinookGCLoading = true
 Foothold_ctld.buildtime = 30
 Foothold_ctld.onestepmenu = true
 Foothold_ctld.showstockinmenuitems = false
 Foothold_ctld.basetype = "uh1h_cargo"
+Foothold_ctld.C130basetype = "cds_crate"
+if UseC130LoadAndUnload then
+Foothold_ctld.UseC130LoadAndUnload = true
+end
 Foothold_ctld.RadioSoundFC3 = "beaconsilent.ogg"
 Foothold_ctld.VehicleMoveFormation= {AI.Task.VehicleFormation.VEE, AI.Task.VehicleFormation.ECHELON_LEFT, AI.Task.VehicleFormation.ECHELON_RIGHT, AI.Task.VehicleFormation.RANK, AI.Task.VehicleFormation.CONE}
 Foothold_ctld.returntroopstobase = false
@@ -68,35 +68,34 @@ CTLDPrices = {
 }
 CTLD_DEFAULT_PRICE = 0
 
+-- troops
+Foothold_ctld:AddTroopsCargo("Squad 8",{"CTLD_TROOPS_ATS"},CTLD_CARGO.Enum.TROOPS,8,80,10)
+Foothold_ctld:AddTroopsCargo("Platoon 16",{"CTLD_TROOPS_Platon16"},CTLD_CARGO.Enum.TROOPS,16,80,10)
+Foothold_ctld:AddTroopsCargo("Platoon 32",{"CTLD_TROOPS_Platon1"},CTLD_CARGO.Enum.TROOPS,32,80,10)
+Foothold_ctld:AddTroopsCargo("Anti-Air Soldiers",{"CTLD_TROOPS_AA"},CTLD_CARGO.Enum.TROOPS,5,80,10)
+Foothold_ctld:AddTroopsCargo("Mortar Squad",{"CTLD_TROOPS_MRS"},CTLD_CARGO.Enum.TROOPS,6,80,10)
+-- vehicles and fobs
 Foothold_ctld:AddTroopsCargo("Engineer soldier",{"CTLD_TROOPS_Engineers"},CTLD_CARGO.Enum.ENGINEERS,1,80,10)
 Foothold_ctld:AddCratesCargo("Mephisto",{"CTLD_CARGO_Mephisto"}, CTLD_CARGO.Enum.VEHICLE, 2, 1500,10, "ANTI TANK")
 Foothold_ctld:AddCratesCargo("Humvee",{"CTLD_CARGO_HMMWV"},CTLD_CARGO.Enum.VEHICLE,2,1000,10, "ANTI TANK")
 Foothold_ctld:AddCratesCargo("Bradly",{"CTLD_CARGO_Bradly"},CTLD_CARGO.Enum.VEHICLE,2,1500,10, "ANTI TANK")
-Foothold_ctld:AddCratesCargoNoMove("L118",{"CTLD_CARGO_L118"},CTLD_CARGO.Enum.VEHICLE,1,700,12, "Support")
-if Era=='Modern' then
-Foothold_ctld:AddCratesCargoNoMove("HIMARS GMLRRS HE GUIDED",{"CTLD_CARGO_GMLRS_HE"},CTLD_CARGO.Enum.VEHICLE,2,3500,12, "Support")
-Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM STR", {"CTLD_CARGO_IRISTSLM_STR"},CTLD_CARGO.Enum.FOB, 1, 2500, 10, "SAM/AAA")
-Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM LN", {"CTLD_CARGO_IRISTSLM-LN"},CTLD_CARGO.Enum.FOB, 1, 3500, 15, "SAM/AAA")
-Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM C2", {"CTLD_CARGO_IRISTSLM_C2"},CTLD_CARGO.Enum.FOB, 1, 1900, 10, "SAM/AAA")
-Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM System", {"CTLD_CARGO_IRISTSLM_System"}, CTLD_CARGO.Enum.FOB, 3, 2800, 10, "SAM/AAA")
-Foothold_ctld:AddCratesCargoNoMove("C-RAM", {"CTLD_CARGO_CRAM"}, CTLD_CARGO.Enum.FOB, 2, 1000, 10, "SAM/AAA")
-end
+Foothold_ctld:AddCratesCargoNoMove("L118",{"CTLD_CARGO_L118"},CTLD_CARGO.Enum.VEHICLE,1,700,12, "Support",nil,nil,nil,"Cargos",nil,nil, "l118")
 Foothold_ctld:AddCratesCargoNoMove("Ammo Truck",{"CTLD_CARGO_AmmoTruck"},CTLD_CARGO.Enum.VEHICLE,2,800,10, "Support")
 Foothold_ctld:AddCratesCargo("Humvee scout",{"CTLD_CARGO_Scout"},CTLD_CARGO.Enum.VEHICLE,2,1000,10, "Support")
-Foothold_ctld:AddTroopsCargo("Squad 8",{"CTLD_TROOPS_ATS"},CTLD_CARGO.Enum.TROOPS,8,80,10)
-Foothold_ctld:AddTroopsCargo("Platoon 16",{"CTLD_TROOPS_Platon16"},CTLD_CARGO.Enum.TROOPS,16,80,10)
-Foothold_ctld:AddTroopsCargo("Platoon 32",{"CTLD_TROOPS_Platon1"},CTLD_CARGO.Enum.TROOPS,32,80,10)
---Foothold_ctld:AddTroopsCargo("Structure demolition expert",{"Demolition Expert"},CTLD_CARGO.Enum.TROOPS,1,80,10)
-Foothold_ctld:AddTroopsCargo("Anti-Air Soldiers",{"CTLD_TROOPS_AA"},CTLD_CARGO.Enum.TROOPS,5,80,10)
-Foothold_ctld:AddTroopsCargo("Mortar Squad",{"CTLD_TROOPS_MRS"},CTLD_CARGO.Enum.TROOPS,6,80,10)
 Foothold_ctld:AddCratesCargo("Linebacker",{"CTLD_CARGO_Linebacker"},CTLD_CARGO.Enum.VEHICLE,2,1500,10, "SAM/AAA")
---Foothold_ctld:AddCratesCargo("Tank Abrahams",{"CTLD_CARGO_TANK"},CTLD_CARGO.Enum.VEHICLE,5,1600,1, "ANTI TANK")
 Foothold_ctld:AddCratesCargo("Vulcan",{"CTLD_CARGO_Vulcan"}, CTLD_CARGO.Enum.VEHICLE, 2, 1500,10, "SAM/AAA")
-Foothold_ctld:AddCratesCargoNoMove("HAWK Site",{"CTLD_CARGO_HAWKSite"},CTLD_CARGO.Enum.FOB,4,1900,10, "SAM/AAA")
-Foothold_ctld:AddCratesCargoNoMove("Nasam Site",{"CTLD_CARGO_NasamsSite"},CTLD_CARGO.Enum.FOB,4,1900,10, "SAM/AAA")
+Foothold_ctld:AddCratesCargoNoMove("HAWK Site",{"CTLD_CARGO_HAWKSite"},CTLD_CARGO.Enum.FOB,4,1900,10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("Nasam Site",{"CTLD_CARGO_NasamsSite"},CTLD_CARGO.Enum.FOB,4,1900,10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargo("FARP",{"CTLD_TROOP_FOB"},CTLD_CARGO.Enum.FOB,3,1500,10, "FARP",nil,nil,nil,"Cargos","ammo_cargo",nil, "cds_crate")
 
-Foothold_ctld:AddCratesCargo("FARP",{"CTLD_TROOP_FOB"},CTLD_CARGO.Enum.FOB,3,1500,10, "FARP")
-
+if Era=='Modern' then
+Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM STR", {"CTLD_CARGO_IRISTSLM_STR"},CTLD_CARGO.Enum.FOB, 1, 2500, 10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM LN", {"CTLD_CARGO_IRISTSLM-LN"},CTLD_CARGO.Enum.FOB, 1, 3500, 15, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM C2", {"CTLD_CARGO_IRISTSLM_C2"},CTLD_CARGO.Enum.FOB, 1, 1900, 10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM System", {"CTLD_CARGO_IRISTSLM_System"}, CTLD_CARGO.Enum.FOB, 3, 2800, 10, "SAM/AAA", nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("C-RAM", {"CTLD_CARGO_CRAM"}, CTLD_CARGO.Enum.FOB, 2, 1000, 10, "SAM/AAA")
+Foothold_ctld:AddCratesCargoNoMove("HIMARS GMLRRS HE GUIDED",{"CTLD_CARGO_GMLRS_HE"},CTLD_CARGO.Enum.VEHICLE,2,3500,12, "Support")
+end
 
 -- How many of the units loaded from the save file should be spawned next time?
 -- Oldest will be deleted first.
@@ -129,7 +128,7 @@ local MAX_AT_SPAWN = {
 }
 -- How many farps do you want to load? 
 -- Oldest will not be spawned if the number is exceded.
-local MAX_SAVED_FARPS      = 4
+local MAX_SAVED_FARPS      = 3
 
 Group.getByName('CTLD_TROOPS_Engineers'):destroy()
 Group.getByName('CTLD_CARGO_Mephisto'):destroy()
@@ -154,6 +153,23 @@ Group.getByName('CTLD_CARGO_IRISTSLM_C2'):destroy()
 Group.getByName('CTLD_CARGO_IRISTSLM_System'):destroy()
 Group.getByName('CTLD_CARGO_CRAM'):destroy()
 Group.getByName('CTLD_CARGO_GMLRS_HE'):destroy()
+
+Foothold_ctld:SetUnitCapabilities("SA342Mistral", false, true, 0, 2, 10, 400)
+Foothold_ctld:SetUnitCapabilities("SA342L", false, true, 0, 2, 10, 400)
+Foothold_ctld:SetUnitCapabilities("SA342M", false, true, 0, 2, 10, 400)
+Foothold_ctld:SetUnitCapabilities("SA342Minigun", false, true, 0, 2, 10, 400)
+Foothold_ctld:SetUnitCapabilities("UH-1H", true, true, 1, 8, 15, 800)
+Foothold_ctld:SetUnitCapabilities("Mi-8MT", true, true, 2, 16, 15, 6000)
+Foothold_ctld:SetUnitCapabilities("Mi-8MTV2", true, true, 2, 18, 15, 6000)
+Foothold_ctld:SetUnitCapabilities("Ka-50", false, false, 0, 0, 15, 400)
+Foothold_ctld:SetUnitCapabilities("Mi-24P", true, true, 2, 8, 15, 1000)
+Foothold_ctld:SetUnitCapabilities("Mi-24V", true, true, 2, 8, 15, 1000)
+Foothold_ctld:SetUnitCapabilities("Hercules", true, true, 8, 20, 25, 20000)
+Foothold_ctld:SetUnitCapabilities("UH-60L", true, true, 2, 20, 16, 3500)
+Foothold_ctld:SetUnitCapabilities("UH-60L_DAP", true, true, 2, 20, 16, 3500)
+Foothold_ctld:SetUnitCapabilities("AH-64D_BLK_II", false, false, 0, 0, 15, 400)
+Foothold_ctld:SetUnitCapabilities("CH-47Fbl1", true, true, 5, 32, 20, 10800)
+Foothold_ctld:SetUnitCapabilities("OH58D", false, false, 0, 0, 14, 400)
 
 -- ZONES
 
@@ -200,24 +216,6 @@ end
 local scheduler = SCHEDULER:New(nil, function()
     addCTLDZonesForBlueControlled()
 end, {}, 5)
-
-Foothold_ctld:SetUnitCapabilities("SA342Mistral", false, true, 0, 2, 10, 400)
-Foothold_ctld:SetUnitCapabilities("SA342L", false, true, 0, 2, 10, 400)
-Foothold_ctld:SetUnitCapabilities("SA342M", false, true, 0, 2, 10, 400)
-Foothold_ctld:SetUnitCapabilities("SA342Minigun", false, true, 0, 2, 10, 400)
-Foothold_ctld:SetUnitCapabilities("UH-1H", true, true, 1, 8, 15, 800)
-Foothold_ctld:SetUnitCapabilities("Mi-8MT", true, true, 2, 16, 15, 6000)
-Foothold_ctld:SetUnitCapabilities("Mi-8MTV2", true, true, 2, 18, 15, 6000)
-Foothold_ctld:SetUnitCapabilities("Ka-50", false, false, 0, 0, 15, 400)
-Foothold_ctld:SetUnitCapabilities("Mi-24P", true, true, 2, 8, 15, 1000)
-Foothold_ctld:SetUnitCapabilities("Mi-24V", true, true, 2, 8, 15, 1000)
-Foothold_ctld:SetUnitCapabilities("Hercules", true, true, 8, 20, 15, 20000)
-Foothold_ctld:SetUnitCapabilities("C-130J-30", true, true, 8, 64, 15, 20000)
-Foothold_ctld:SetUnitCapabilities("UH-60L", true, true, 2, 20, 16, 3500)
-Foothold_ctld:SetUnitCapabilities("UH-60L_DAP", true, true, 2, 20, 16, 3500)
-Foothold_ctld:SetUnitCapabilities("AH-64D_BLK_II", false, false, 0, 0, 15, 400)
-Foothold_ctld:SetUnitCapabilities("CH-47Fbl1", true, true, 5, 32, 20, 10800)
-Foothold_ctld:SetUnitCapabilities("OH58D", false, false, 0, 0, 14, 400)
 
 local TroopUnits = {}
 local GroundUnits = {}

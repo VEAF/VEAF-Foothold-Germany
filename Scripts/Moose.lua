@@ -33434,7 +33434,7 @@ self.Vec3=SceneryZone:GetVec3()
 self.Vec2=SceneryZone:GetVec2()
 self.Vector=(self.Vec3 and VECTOR)and VECTOR:NewFromVec(self.Vec3)or nil
 end
-if SceneryObject then
+if SceneryObject and SceneryObject.getPoint then
 local vec3=SceneryObject:getPoint()
 self.Vec3={x=vec3.x,y=vec3.y,z=vec3.z}
 self.Vec2={x=vec3.x,y=vec3.z}
@@ -58188,6 +58188,7 @@ self:T({EventData})
 self:T(self.lid.." HandleEventShot")
 local ShootingWeapon=EventData.Weapon
 local ShootingWeaponName=EventData.WeaponName
+if not EventData.IniGroup then return self end
 local weaponcoalition=EventData.IniGroup:GetCoalition()
 if self:_CheckCoalition(weaponcoalition)then
 local IsDetected=self:_ShotIsDetected()
@@ -74654,7 +74655,10 @@ end
 function CTLD_CARGO:HasMoved()
 return self.HasBeenMoved
 end
-function CTLD_CARGO:WasDropped()
+function CTLD_CARGO:WasDropped(hercOnly)
+if hercOnly then
+return self.HasBeenDropped and self.IsHercDrop==true
+end
 return self.HasBeenDropped
 end
 function CTLD_CARGO:CanLoadDirectly()
@@ -74679,8 +74683,9 @@ else
 return false
 end
 end
-function CTLD_CARGO:SetWasDropped(dropped)
-self.HasBeenDropped=dropped or false
+function CTLD_CARGO:SetWasDropped(dropped,isHercDrop)
+self.HasBeenDropped = dropped or false
+self.IsHercDrop = isHercDrop or false
 end
 function CTLD_CARGO:GetStock()
 if self.Stock then
@@ -75134,6 +75139,8 @@ self.filename=string.format("CTLD_%s_Persist.csv",AliaS)
 self.allowcratepickupagain=true
 self.enableslingload=false
 self.basetype="container_cargo"
+self.C130basetype="cds_crate"
+self.UseC130LoadAndUnload = false
 self.SmokeColor=SMOKECOLOR.Red
 self.FlareColor=FLARECOLOR.Red
 for i=1,100 do
@@ -75240,122 +75247,172 @@ end
 self.PlayerTaskQueue:Push(PlayerTask,PlayerTask.PlayerTaskNr)
 return self
 end
+--- (Internal) Event handler function
+-- @param #CTLD self
+-- @param Core.Event#EVENTDATA EventData
 function CTLD:_EventHandler(EventData)
-self:T(string.format("%s Event = %d",self.lid,EventData.id))
-local event=EventData
-if event.id==EVENTS.PlayerEnterAircraft or event.id==EVENTS.PlayerEnterUnit then
-local _coalition=event.IniCoalition
-if _coalition~=self.coalition then
-return
+  self:T(string.format("%s Event = %d",self.lid, EventData.id))
+  local event = EventData -- Core.Event#EVENTDATA
+  if event.id == EVENTS.PlayerEnterAircraft or event.id == EVENTS.PlayerEnterUnit then
+    local _coalition = event.IniCoalition
+    if _coalition ~= self.coalition then
+        return
+    end
+    local unitname = event.IniUnitName or "none"
+    self.MenusDone[unitname] = nil
+    local _unit = event.IniUnit
+    local _group = event.IniGroup
+    self.C130JUnits=self.C130JUnits or{}
+    local utype=_unit:GetTypeName()
+    if self.C130JTypes and self.C130JTypes[utype] then
+      self.C130JUnits[unitname]=true
+    elseif utype=="C-130J-30" then
+      self.C130JUnits[unitname]=true
+    else
+      self.C130JUnits[unitname]=false
+    end
+    if _unit:IsHelicopter() or _group:IsHelicopter() then
+      local unitname = event.IniUnitName or "none"
+      self.Loaded_Cargo[unitname] = nil
+      self:_RefreshF10Menus()
+    end
+    if self:IsFixedWing(_unit) and self.enableFixedWing then
+      local unitname = event.IniUnitName or "none"
+      self.Loaded_Cargo[unitname] = nil
+      self:_RefreshF10Menus()
+    end
+    if _unit:IsGround() and self.allowCATransport then
+      local unitname = event.IniUnitName or "none"
+      self.Loaded_Cargo[unitname] = nil
+      self:_RefreshF10Menus()
+    end
+    return
+  elseif event.id == EVENTS.Land or event.id == EVENTS.Takeoff then
+    local unitname = event.IniUnitName
+    if self.CtldUnits[unitname] then
+      local _group = event.IniGroup
+      local _unit = event.IniUnit
+      self:_RefreshLoadCratesMenu(_group, _unit)
+    if self:IsFixedWing(_unit) and self.enableFixedWing then
+      self:_RefreshDropCratesMenu(_group, _unit)
+    end
+    end
+  elseif event.id == EVENTS.PlayerLeaveUnit or event.id == EVENTS.UnitLost then
+    local unitname = event.IniUnitName or "none"
+    if self.CtldUnits[unitname] then
+        local lostcargo = UTILS.DeepCopy(self.Loaded_Cargo[unitname] or {})
+        self:__HelicopterLost(1,unitname,lostcargo)    
+    end
+    self.CtldUnits[unitname] = nil
+    self.Loaded_Cargo[unitname] = nil
+    self.MenusDone[unitname] = nil
+    if self.C130JUnits then self.C130JUnits[unitname]=nil end
+  --elseif event.id == EVENTS.NewDynamicCargo and event.IniObjectCategory == 6 and string.match(event.IniUnitName,".+|%d%d:%d%d|PKG%d+") then
+  elseif event.id == EVENTS.NewDynamicCargo then
+    self:T(self.lid.."GC New Event "..event.IniDynamicCargoName)
+    ---------------
+    -- New dynamic cargo system Handling NEW
+    --------------
+    self.DynamicCargo[event.IniDynamicCargoName] = event.IniDynamicCargo
+    ---------------
+    -- End new dynamic cargo system Handling
+    --------------
+  elseif event.id == EVENTS.DynamicCargoLoaded then
+    self:T(self.lid.."GC Loaded Event "..event.IniDynamicCargoName)
+    ---------------
+    -- New dynamic cargo system Handling LOADING
+    --------------
+    local dcargo = event.IniDynamicCargo -- Wrapper.DynamicCargo#DYNAMICCARGO
+    -- get client/unit object
+    local client = CLIENT:FindByPlayerName(dcargo.Owner)
+    if client and client:IsAlive() then
+      -- add to unit load list
+      local unitname = client:GetName() or "none"
+      local loaded = {}
+      if self.Loaded_Cargo[unitname] then
+        loaded = self.Loaded_Cargo[unitname] -- #CTLD.LoadedCargo
+      else
+        loaded = {} -- #CTLD.LoadedCargo
+        loaded.Troopsloaded = 0
+        loaded.Cratesloaded = 0
+        loaded.Cargo = {}
+      end
+      loaded.Cratesloaded = loaded.Cratesloaded+1
+      table.insert(loaded.Cargo,dcargo)
+      self.Loaded_Cargo[unitname] = nil
+      self.Loaded_Cargo[unitname] = loaded
+      local Group = client:GetGroup()
+      self:_SendMessage(string.format("Crate %s loaded by ground crew!",event.IniDynamicCargoName), 10, false, Group)
+      self:__CratesPickedUp(1, Group, client, dcargo)
+      self:_RefreshCrateQuantityMenus(Group, client, nil)
+    end
+    ---------------
+    -- End new dynamic cargo system Handling
+    --------------
+  elseif event.id == EVENTS.DynamicCargoUnloaded then
+    self:T(self.lid.."GC Unload Event "..event.IniDynamicCargoName)
+    ---------------
+    -- New dynamic cargo system Handling UNLOADING
+    --------------
+    local dcargo = event.IniDynamicCargo -- Wrapper.DynamicCargo#DYNAMICCARGO
+    -- get client/unit object
+    local client = CLIENT:FindByPlayerName(dcargo.Owner)
+    if client and client:IsAlive() then
+      -- add to unit load list
+      local unitname = client:GetName() or "none"
+      local loaded = {}
+      if self.Loaded_Cargo[unitname] then
+        loaded = self.Loaded_Cargo[unitname] -- #CTLD.LoadedCargo
+        loaded.Cratesloaded = loaded.Cratesloaded - 1
+        if loaded.Cratesloaded < 0  then loaded.Cratesloaded = 0 end
+        -- TODO zap cargo from list
+        local Loaded = {}
+        for _,_item in pairs (loaded.Cargo or {}) do
+          self:T(self.lid.."UNLOAD checking: ".._item:GetName())
+          self:T(self.lid.."UNLOAD state: ".. tostring(_item:WasDropped()))
+          if _item and _item:GetType() == CTLD_CARGO.Enum.GCLOADABLE and event.IniDynamicCargoName and event.IniDynamicCargoName ~= _item:GetName() and not _item:WasDropped() then
+            table.insert(Loaded,_item)
+          else
+            table.insert(Loaded,_item)
+          end 
+        end
+        loaded.Cargo = nil
+        loaded.Cargo = Loaded
+        self.Loaded_Cargo[unitname] = nil
+        self.Loaded_Cargo[unitname] = loaded
+      else
+        loaded = {} -- #CTLD.LoadedCargo
+        loaded.Troopsloaded = 0
+        loaded.Cratesloaded = 0
+        loaded.Cargo = {}
+        self.Loaded_Cargo[unitname] = loaded
+      end
+      local Group = client:GetGroup()
+      self:_SendMessage(string.format("Crate %s unloaded by ground crew!",event.IniDynamicCargoName), 10, false, Group) 
+      self:__CratesDropped(1,Group,client,{dcargo})
+      self:_RefreshCrateQuantityMenus(Group, client, nil)
+    end
+    ---------------
+    -- End new dynamic cargo system Handling
+    --------------
+  elseif event.id == EVENTS.DynamicCargoRemoved then
+    self:T(self.lid.."GC Remove Event "..event.IniDynamicCargoName)
+    ---------------
+    -- New dynamic cargo system Handling REMOVE
+    --------------
+    self.DynamicCargo[event.IniDynamicCargoName] = nil
+    ---------------
+    -- End new dynamic cargo system Handling
+    --------------
+  end
+  return self
 end
-local unitname=event.IniUnitName or"none"
-self.MenusDone[unitname]=nil
-local _unit=event.IniUnit
-local _group=event.IniGroup
-if _unit:IsHelicopter()or _group:IsHelicopter()then
-local unitname=event.IniUnitName or"none"
-self.Loaded_Cargo[unitname]=nil
-self:_RefreshF10Menus()
-end
-if self:IsFixedWing(_unit)and self.enableFixedWing then
-local unitname=event.IniUnitName or"none"
-self.Loaded_Cargo[unitname]=nil
-self:_RefreshF10Menus()
-end
-if _unit:IsGround()and self.allowCATransport then
-local unitname=event.IniUnitName or"none"
-self.Loaded_Cargo[unitname]=nil
-self:_RefreshF10Menus()
-end
-return
-elseif event.id==EVENTS.Land or event.id==EVENTS.Takeoff then
-local unitname=event.IniUnitName
-if self.CtldUnits[unitname]then
-local _group=event.IniGroup
-local _unit=event.IniUnit
-self:_RefreshLoadCratesMenu(_group,_unit)
-if self:IsFixedWing(_unit)and self.enableFixedWing then
-self:_RefreshDropCratesMenu(_group,_unit)
-end
-end
-elseif event.id==EVENTS.PlayerLeaveUnit or event.id==EVENTS.UnitLost then
-local unitname=event.IniUnitName or"none"
-if self.CtldUnits[unitname]then
-local lostcargo=UTILS.DeepCopy(self.Loaded_Cargo[unitname]or{})
-self:__HelicopterLost(1,unitname,lostcargo)
-end
-self.CtldUnits[unitname]=nil
-self.Loaded_Cargo[unitname]=nil
-self.MenusDone[unitname]=nil
-elseif event.id==EVENTS.NewDynamicCargo then
-self:T(self.lid.."GC New Event "..event.IniDynamicCargoName)
-self.DynamicCargo[event.IniDynamicCargoName]=event.IniDynamicCargo
-elseif event.id==EVENTS.DynamicCargoLoaded then
-self:T(self.lid.."GC Loaded Event "..event.IniDynamicCargoName)
-local dcargo=event.IniDynamicCargo
-local client=CLIENT:FindByPlayerName(dcargo.Owner)
-if client and client:IsAlive()then
-local unitname=client:GetName()or"none"
-local loaded={}
-if self.Loaded_Cargo[unitname]then
-loaded=self.Loaded_Cargo[unitname]
-else
-loaded={}
-loaded.Troopsloaded=0
-loaded.Cratesloaded=0
-loaded.Cargo={}
-end
-loaded.Cratesloaded=loaded.Cratesloaded+1
-table.insert(loaded.Cargo,dcargo)
-self.Loaded_Cargo[unitname]=nil
-self.Loaded_Cargo[unitname]=loaded
-local Group=client:GetGroup()
-self:_SendMessage(string.format("Crate %s loaded by ground crew!",event.IniDynamicCargoName),10,false,Group)
-self:__CratesPickedUp(1,Group,client,dcargo)
-self:_RefreshCrateQuantityMenus(Group,client,nil)
-end
-elseif event.id==EVENTS.DynamicCargoUnloaded then
-self:T(self.lid.."GC Unload Event "..event.IniDynamicCargoName)
-local dcargo=event.IniDynamicCargo
-local client=CLIENT:FindByPlayerName(dcargo.Owner)
-if client and client:IsAlive()then
-local unitname=client:GetName()or"none"
-local loaded={}
-if self.Loaded_Cargo[unitname]then
-loaded=self.Loaded_Cargo[unitname]
-loaded.Cratesloaded=loaded.Cratesloaded-1
-if loaded.Cratesloaded<0 then loaded.Cratesloaded=0 end
-local Loaded={}
-for _,_item in pairs(loaded.Cargo or{})do
-self:T(self.lid.."UNLOAD checking: ".._item:GetName())
-self:T(self.lid.."UNLOAD state: "..tostring(_item:WasDropped()))
-if _item and _item:GetType()==CTLD_CARGO.Enum.GCLOADABLE and event.IniDynamicCargoName and event.IniDynamicCargoName~=_item:GetName()and not _item:WasDropped()then
-table.insert(Loaded,_item)
-else
-table.insert(Loaded,_item)
-end
-end
-loaded.Cargo=nil
-loaded.Cargo=Loaded
-self.Loaded_Cargo[unitname]=nil
-self.Loaded_Cargo[unitname]=loaded
-else
-loaded={}
-loaded.Troopsloaded=0
-loaded.Cratesloaded=0
-loaded.Cargo={}
-self.Loaded_Cargo[unitname]=loaded
-end
-local Group=client:GetGroup()
-self:_SendMessage(string.format("Crate %s unloaded by ground crew!",event.IniDynamicCargoName),10,false,Group)
-self:__CratesDropped(1,Group,client,{dcargo})
-self:_RefreshCrateQuantityMenus(Group,client,nil)
-end
-elseif event.id==EVENTS.DynamicCargoRemoved then
-self:T(self.lid.."GC Remove Event "..event.IniDynamicCargoName)
-self.DynamicCargo[event.IniDynamicCargoName]=nil
-end
-return self
+function CTLD:IsC130J(Unit)
+  if not Unit then return false end
+  if not self.UseC130LoadAndUnload then return false end
+  self.C130JUnits = self.C130JUnits or {}
+  local unitname = Unit:GetName() or "none"
+  return self.C130JUnits[unitname] == true
 end
 function CTLD:_SendMessage(Text,Time,Clearscreen,Group)
 self:T(self.lid.." _SendMessage")
@@ -75846,7 +75903,7 @@ function CTLD:_GetCrateQuantity(Group,Unit,cargoObj,quantity)
 local needed=cargoObj and cargoObj:GetCratesNeeded()or 1
 local count=math.max(1,tonumber(quantity)or 1)
 local total=needed*count
-self:_GetCrates(Group,Unit,cargoObj,total,false,false,true)
+self:_GetCrates(Group,Unit,cargoObj,total,false,false)
 return self
 end
 function CTLD:_AddCrateQuantityMenus(Group,Unit,parentMenu,cargoObj,stockSummary)
@@ -75933,11 +75990,14 @@ if maxQuantity==1 then
 self:T("_AddCrateQuantityMenus maxQuantity "..maxQuantity.." Menu for MaxQ=1 ".."parentMenu.MenuText = "..parentMenu.MenuText)
 MENU_GROUP_COMMAND:New(Group,"Get",parentMenu,self._GetCrateQuantity,self,Group,Unit,cargoObj,1)
 local canLoad=(allowLoad and(not capacitySets or capacitySets>=1)and(not maxMassSets or maxMassSets>=1))
-if canLoad then
+local isHerc = self:IsC130J(Unit)
+if canLoad and not isHerc then
 MENU_GROUP_COMMAND:New(Group,"Get and Load",parentMenu,self._GetAndLoad,self,Group,Unit,cargoObj,1)
 else
 local msg
-if maxMassSets and(not capacitySets or capacitySets>=1)and maxMassSets<1 then
+if isHerc then
+msg="Use C-130 system to load"
+elseif maxMassSets and(not capacitySets or capacitySets>=1)and maxMassSets<1 then
 msg="Weight limit reached"
 else
 msg="Crate limit reached"
@@ -75954,11 +76014,14 @@ self:T("_AddCrateQuantityMenus Label "..label)
 local qMenu=MENU_GROUP:New(Group,label,parentMenu)
 MENU_GROUP_COMMAND:New(Group,"Get",qMenu,self._GetCrateQuantity,self,Group,Unit,cargoObj,quantity)
 local canLoad=(allowLoad and(not capacitySets or capacitySets>=quantity)and(not maxMassSets or maxMassSets>=quantity))
-if canLoad then
+local isHerc = self:IsC130J(Unit)
+if canLoad and not isHerc then
 MENU_GROUP_COMMAND:New(Group,"Get and Load",qMenu,self._GetAndLoad,self,Group,Unit,cargoObj,quantity)
 else
 local msg
-if maxMassSets and(not capacitySets or capacitySets>=quantity)and maxMassSets<quantity then
+if isHerc then
+msg="Use C-130 system to load"
+elseif maxMassSets and(not capacitySets or capacitySets>=quantity)and maxMassSets<quantity then
 msg="Weight limit reached"
 else
 msg="Crate limit reached"
@@ -76108,11 +76171,15 @@ startpos:Translate(6,heading,nil,true)
 end
 end
 self.CrateCounter=self.CrateCounter+1
-local CCat,CType,CShape=Cargo:GetStaticTypeAndShape()
-local basetype=CType or self.basetype or"container_cargo"
-CCat=CCat or"Cargos"
-if isstatic then
-basetype=cratetemplate
+local CCat, CType, CShape = Cargo:GetStaticTypeAndShape()
+local basetype = CType or self.basetype or "container_cargo"
+CCat = CCat or "Cargos"
+if not isstatic and self:IsC130J(Unit) then
+  if Cargo.C130TypeName then
+    basetype = Cargo.C130TypeName
+  elseif self.C130basetype and (not CType or CType == self.basetype) then
+    basetype = self.C130basetype
+  end
 end
 if type(ship)=="string"then
 self:T("Spawning on ship "..ship)
@@ -76170,6 +76237,9 @@ local map=cargotype:GetStaticResourceMap()
 realcargo:SetStaticResourceMap(map)
 if cargotype.TypeNames then
 realcargo.TypeNames=UTILS.DeepCopy(cargotype.TypeNames)
+end
+if self:IsC130J(Unit) then
+realcargo:SetWasDropped(true,true)
 end
 end
 local CCat4,CType4,CShape4=cargotype:GetStaticTypeAndShape()
@@ -76346,7 +76416,7 @@ self:E({_point1,_point2})
 return-1
 end
 end
-function CTLD:_FindCratesNearby(_group,_unit,_dist,_ignoreweight,ignoretype)
+function CTLD:_FindCratesNearby(_group,_unit,_dist,_ignoreweight,ignoretype,IgnoreInside)
 self:T(self.lid.." _FindCratesNearby")
 local finddist=_dist
 local location=_group:GetCoordinate()
@@ -76382,8 +76452,14 @@ local cando=cargo:UnitCanCarry(_unit)
 if ignoretype==true then cando=true end
 self:T(self.lid.." Unit can carry: "..tostring(cando))
 local distance=self:_GetDistance(location,staticpos)
+local hercInnerBlocked=false
+if self.UseC130LoadAndUnload then
+if IgnoreInside and _unit and self:IsC130J(_unit) and distance<6 then
+hercInnerBlocked=true
+end
+end
 self:T(self.lid..string.format("Dist %dm/%dm | weight %dkg | maxloadable %dkg",distance,finddist,weight,maxloadable))
-if distance<=finddist and(weight<=maxloadable or _ignoreweight)and restricted==false and cando==true then
+if distance<=finddist and(weight<=maxloadable or _ignoreweight)and restricted==false and cando==true and not hercInnerBlocked then
 index=index+1
 table.insert(found,staticid,cargo)
 maxloadable=maxloadable-weight
@@ -76573,7 +76649,15 @@ local loadedcargo=self.Loaded_Cargo[unitname]or{}
 local loadedmass=self:_GetUnitCargoMass(Unit)
 local maxloadable=self:_GetMaxLoadableMass(Unit)
 local finddist=self.CrateDistance or 35
-if self.Loaded_Cargo[unitname]then
+local hercInnerCrates = nil
+local hercInnerCount = 0
+if self:IsC130J(Unit) or self:IsHook(Unit) then
+local innerDist = capabilities.length and capabilities.length or finddist
+local innerCrates,innerCount = self:_FindCratesNearby(Group,Unit,innerDist,true,true)
+hercInnerCrates = innerCrates
+hercInnerCount = innerCount or 0
+end
+if self.Loaded_Cargo[unitname] or hercInnerCount > 0 then
 local no_troops=loadedcargo.Troopsloaded or 0
 local no_crates=loadedcargo.Cratesloaded or 0
 local cargotable=loadedcargo.Cargo or{}
@@ -76616,6 +76700,15 @@ report:Add(string.format("Crate: %s %d/%d",cName,data.count,data.needed))
 end
 if cratecount==0 then
 report:Add("        N O N E")
+end
+if hercInnerCount > 0 then
+for _,_cargo in pairs(hercInnerCrates or {}) do
+local cargo = _cargo
+local type = cargo:GetType()
+if type ~= CTLD_CARGO.Enum.TROOPS and type ~= CTLD_CARGO.Enum.ENGINEERS then
+report:Add(string.format("Crate: %s size 1",cargo:GetName()))
+end
+end
 end
 report:Add("------------------------------------------------------------")
 report:Add("Total Mass: "..loadedmass.." kg. Loadable: "..maxloadable.." kg.")
@@ -77001,8 +77094,13 @@ self:_SendMessage("You cannot build in a loading area, Pilot!",10,false,Group)
 return self
 end
 end
-local finddist=self.CrateDistance or 35
-local crates,number=self:_FindCratesNearby(Group,Unit,finddist,true,true)
+local baseDist=self.CrateDistance or 35
+local finddist=baseDist
+--if Engineering and self.EngineerSearch and self.EngineerSearch>baseDist then
+if self.EngineerSearch and self.EngineerSearch>baseDist then
+finddist=self.EngineerSearch
+end
+local crates,number=self:_FindCratesNearby(Group,Unit,finddist,true,true,true)
 local buildables={}
 local foundbuilds=false
 local canbuild=false
@@ -77015,6 +77113,16 @@ local required=Crate:GetCratesNeeded()
 local template=Crate:GetTemplates()
 local ctype=Crate:GetType()
 local ccoord=Crate:GetPositionable():GetCoordinate()
+local distToUnit=Unit and ccoord:Get2DDistance(Unit:GetCoordinate())or 0
+local isHercDrop=Crate:WasDropped(true)
+if not isHercDrop and distToUnit>baseDist then
+elseif self:IsC130J(Unit)and distToUnit<15 then
+self:_SendMessage("Please unload crates from the C-130 before building!",10,false,Group)
+return self
+elseif self:IsHook(Unit) and distToUnit<5 then
+self:_SendMessage("Please unload crates from the CH-47 before building!",10,false,Group)
+return self
+else
 if not buildables[name]then
 local object={}
 object.Name=name
@@ -77035,6 +77143,7 @@ buildables[name].CanBuild=true
 canbuild=true
 end
 self:T({buildables=buildables})
+end
 end
 end
 local report=REPORT:New("Checklist Buildable Crates")
@@ -77078,7 +77187,7 @@ local hdg=(Unit:GetHeading()+180)%360
 local lat=(hdg+90)%360
 local base=Unit:GetCoordinate():Translate(20,hdg)
 if full==1 then
-local cratesNow,numberNow=self:_FindCratesNearby(Group,Unit,finddist,true,true)
+local cratesNow,numberNow=self:_FindCratesNearby(Group,Unit,finddist,true,true,true)
 self:_CleanUpCrates(cratesNow,build,numberNow)
 self:_RefreshLoadCratesMenu(Group,Unit)
 if self.buildtime and self.buildtime>0 then
@@ -77962,6 +78071,10 @@ end
 function CTLD:_RefreshLoadCratesMenu(Group,Unit)
 if not Group.MyLoadCratesMenu then return end
 Group.MyLoadCratesMenu:RemoveSubMenus()
+    if self:IsC130J(Unit) then
+      MENU_GROUP_COMMAND:New(Group,"Use C-130 Load system",Group.MyLoadCratesMenu,function() end)
+      return
+    end
 local d=self.CrateDistance or 35
 local nearby,n=self:_FindCratesNearby(Group,Unit,d,true,true)
 if n==0 then
@@ -78311,7 +78424,7 @@ end
 else
 local mAll=MENU_GROUP:New(Group,"Drop ALL crates",dropCratesMenu)
 MENU_GROUP_COMMAND:New(Group,"Drop",mAll,self._UnloadCrates,self,Group,Unit)
-if not(self:IsUnitInAir(Unit)and self:IsFixedWing(Unit))then
+if not ( self:IsUnitInAir(Unit) and self:IsFixedWing(Unit) ) then
 MENU_GROUP_COMMAND:New(Group,"Drop and build",mAll,self._DropAndBuild,self,Group,Unit)
 end
 self.CrateGroupList=self.CrateGroupList or{}
@@ -78347,7 +78460,7 @@ if not idx then break end
 selfArg:_UnloadSingleCrateSet(GroupArg,UnitArg,idx)
 end
 end,self,Group,Unit,cName,needed,1)
-if not(self:IsUnitInAir(Unit)and self:IsFixedWing(Unit))then
+if not(self:IsUnitInAir(Unit)and self:IsFixedWing(Unit)) then
 MENU_GROUP_COMMAND:New(Group,"Drop and build",parentMenu,function(selfArg,GroupArg,UnitArg,cNameArg,neededArg,qty)
 local uName=UnitArg:GetName()
 for k=1,qty do
@@ -78383,7 +78496,7 @@ if not idx then break end
 selfArg:_UnloadSingleCrateSet(GroupArg,UnitArg,idx)
 end
 end,self,Group,Unit,cName,needed,q)
-if not(self:IsUnitInAir(Unit)and self:IsFixedWing(Unit))then
+if not ( self:IsUnitInAir(Unit) and self:IsFixedWing(Unit) ) then
 MENU_GROUP_COMMAND:New(Group,"Drop and build",qm,function(selfArg,GroupArg,UnitArg,cNameArg,neededArg,qty)
 local uName=UnitArg:GetName()
 for k=1,qty do
@@ -78655,53 +78768,56 @@ table.insert(self.Cargo_Troops,cargo)
 if SubCategory and self.usesubcats~=true then self.usesubcats=true end
 return self
 end
-function CTLD:AddCratesCargo(Name,Templates,Type,NoCrates,PerCrateMass,Stock,SubCategory,DontShowInMenu,Location,UnitTypes,Category,TypeName,ShapeName)
-self:T(self.lid.." AddCratesCargo")
-if not self:_CheckTemplates(Templates)then
-self:E(self.lid.."Crates Cargo for "..Name.." has missing template(s)!")
-return self
+function CTLD:AddCratesCargo(Name, Templates, Type, NoCrates, PerCrateMass, Stock, SubCategory, DontShowInMenu, Location, UnitTypes, Category, TypeName, ShapeName, C130TypeName)
+  self:T(self.lid .. " AddCratesCargo")
+  if not self:_CheckTemplates(Templates) then
+    self:E(self.lid .. "Crates Cargo for " .. Name .. " has missing template(s)!" )
+    return self
+  end
+  self.CargoCounter = self.CargoCounter + 1
+  local cargo = CTLD_CARGO:New(self.CargoCounter,Name,Templates,Type,false,false,NoCrates,nil,nil,PerCrateMass,Stock,SubCategory,DontShowInMenu,Location)
+  if UnitTypes then
+    cargo:AddUnitTypeName(UnitTypes)
+  end
+  cargo:SetStaticTypeAndShape("Cargos",self.basetype)
+  if TypeName then
+    cargo:SetStaticTypeAndShape(Category,TypeName,ShapeName)
+  end
+  cargo.C130TypeName = C130TypeName
+  table.insert(self.Cargo_Crates,cargo)
+  if SubCategory and self.usesubcats ~= true then self.usesubcats=true end
+  return self
 end
-self.CargoCounter=self.CargoCounter+1
-local cargo=CTLD_CARGO:New(self.CargoCounter,Name,Templates,Type,false,false,NoCrates,nil,nil,PerCrateMass,Stock,SubCategory,DontShowInMenu,Location)
-if UnitTypes then
-cargo:AddUnitTypeName(UnitTypes)
+function CTLD:AddCratesCargoNoMove(Name, Templates, Type, NoCrates, PerCrateMass, Stock, SubCategory, DontShowInMenu, Location, UnitTypes, Category, TypeName, ShapeName, C130TypeName)
+  self:T(self.lid .. " AddCratesCargoNoMove")
+  if not self:_CheckTemplates(Templates) then
+    self:E(self.lid .. "Crates Cargo for " .. Name .. " has missing template(s)!" )
+    return self
+  end
+  self.CargoCounter = self.CargoCounter + 1
+  local cargo = CTLD_CARGO:New(self.CargoCounter,Name,Templates,Type,false,false,NoCrates,nil,nil,PerCrateMass,Stock,SubCategory,DontShowInMenu,Location)
+  cargo.NoMoveToZone = true
+  if UnitTypes then
+    cargo:AddUnitTypeName(UnitTypes)
+  end
+  cargo:SetStaticTypeAndShape("Cargos",self.basetype)
+  if TypeName then
+    cargo:SetStaticTypeAndShape(Category,TypeName,ShapeName)
+  end
+  cargo.C130TypeName = C130TypeName
+  table.insert(self.Cargo_Crates,cargo)
+  self.templateToCargoName = self.templateToCargoName or {}
+  if type(Templates)=="table" then
+    for _,t in pairs(Templates) do self.templateToCargoName[t] = Name end
+  else
+    self.templateToCargoName[Templates] = Name
+  end
+  self.nomovetozone_names = self.nomovetozone_names or {}
+  self.nomovetozone_names[Name] = true
+  if SubCategory and self.usesubcats ~= true then self.usesubcats=true end
+  return self
 end
-cargo:SetStaticTypeAndShape("Cargos",self.basetype)
-if TypeName then
-cargo:SetStaticTypeAndShape(Category,TypeName,ShapeName)
-end
-table.insert(self.Cargo_Crates,cargo)
-if SubCategory and self.usesubcats~=true then self.usesubcats=true end
-return self
-end
-function CTLD:AddCratesCargoNoMove(Name,Templates,Type,NoCrates,PerCrateMass,Stock,SubCategory,DontShowInMenu,Location,UnitTypes,Category,TypeName,ShapeName)
-self:T(self.lid.." AddCratesCargoNoMove")
-if not self:_CheckTemplates(Templates)then
-self:E(self.lid.."Crates Cargo for "..Name.." has missing template(s)!")
-return self
-end
-self.CargoCounter=self.CargoCounter+1
-local cargo=CTLD_CARGO:New(self.CargoCounter,Name,Templates,Type,false,false,NoCrates,nil,nil,PerCrateMass,Stock,SubCategory,DontShowInMenu,Location)
-cargo.NoMoveToZone=true
-if UnitTypes then
-cargo:AddUnitTypeName(UnitTypes)
-end
-cargo:SetStaticTypeAndShape("Cargos",self.basetype)
-if TypeName then
-cargo:SetStaticTypeAndShape(Category,TypeName,ShapeName)
-end
-table.insert(self.Cargo_Crates,cargo)
-self.templateToCargoName=self.templateToCargoName or{}
-if type(Templates)=="table"then
-for _,t in pairs(Templates)do self.templateToCargoName[t]=Name end
-else
-self.templateToCargoName[Templates]=Name
-end
-self.nomovetozone_names=self.nomovetozone_names or{}
-self.nomovetozone_names[Name]=true
-if SubCategory and self.usesubcats~=true then self.usesubcats=true end
-return self
-end
+
 function CTLD:AddStaticsCargo(Name,Mass,Stock,SubCategory,DontShowInMenu,Location)
 self:T(self.lid.." AddStaticsCargo")
 self.CargoCounter=self.CargoCounter+1
@@ -79475,10 +79591,10 @@ local cargo=_cgo
 local type=cargo.CargoType
 local gname=cargo.Name
 local gcargo=self:_FindCratesCargoObject(gname)or self:_FindTroopsCargoObject(gname)
-self:T("Looking at "..gname.." in the helo - type = "..type)
+self:T("Looking at "..gname.." in the helo - type = "..tostring(type))
 if(type==CTLD_CARGO.Enum.TROOPS or type==CTLD_CARGO.Enum.ENGINEERS or type==CTLD_CARGO.Enum.VEHICLE or type==CTLD_CARGO.Enum.FOB)then
 if gcargo and gcargo:GetStock0()>0 then
-self:T("Adding "..gname.." in the helo - type = "..type)
+self:T("Adding "..gname.." in the helo - type = "..tostring(type))
 if(type==CTLD_CARGO.Enum.TROOPS or type==CTLD_CARGO.Enum.ENGINEERS)then
 Troopstable[gname].Inhelo=Troopstable[gname].Inhelo+1
 end

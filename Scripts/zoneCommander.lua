@@ -2993,9 +2993,9 @@ dc.TARGET_SUBZONES = dc.TARGET_SUBZONES or {}
 dc.RSTATE = dc.RSTATE or (1 + math.floor((((timer and timer.getTime) and timer.getTime()) or 0) * 1000))
 dc.TARGET_TAIL_CACHE = dc.TARGET_TAIL_CACHE or {}
 dc.DEFAULT_SPEED = 20
-dc.DEFAULT_WAYPOINTS_IN_TARGET = dc.DEFAULT_WAYPOINTS_IN_TARGET or 5
+dc.DEFAULT_WAYPOINTS_IN_TARGET = 8
 dc.PATH_CACHE = dc.PATH_CACHE or {}
-dc.OFFROAD_PENALTY = dc.OFFROAD_PENALTY or 1.25
+dc.OFFROAD_PENALTY = 1.25
 dc.OFFROAD_EXIT_EARLY_METERS = math.random(100, 300)
 
 local function dcrand()
@@ -7153,6 +7153,41 @@ function BattleCommander:_autoZoneSuspend()
 							end
 						end
 					end
+		end
+	end
+end
+		local neighborWakeMeters = 15*NM
+		local anchorSet = {}
+		for _, z in ipairs(self.zones) do
+			if z.active and z.side~=0 and not z.isHidden and not z.zone:lower():find("red carrier") then
+				local isCandidate = false
+				for i=1,#toSuspend do
+					if toSuspend[i] == z then
+						isCandidate = true
+						break
+					end
+				end
+				if not isCandidate then
+					anchorSet[#anchorSet+1] = z
+				end
+			end
+		end
+		local protectedByProximity = {}
+		for _, anchor in ipairs(anchorSet) do
+			local row = ZONE_DISTANCES and ZONE_DISTANCES[anchor.zone]
+			if row then
+				for _, z in ipairs(self.zones) do
+					if z.active and z.side==anchor.side and not z.isHidden and not z.zone:lower():find("red carrier") then
+						if z ~= anchor then
+							local d = row[z.zone]
+							if d and d <= neighborWakeMeters then
+								protectedByProximity[z] = true
+								if z.suspended then
+									neighborToResume[#neighborToResume+1] = z
+								end
+							end
+						end
+					end
 				end
 			end
 		end
@@ -7160,6 +7195,7 @@ function BattleCommander:_autoZoneSuspend()
 		for _,z in ipairs(toResume) do wakeSet[z] = true end
 		for _,z in ipairs(neighborToResume) do wakeSet[z] = true end
 		for z,_ in pairs(supplierHold) do wakeSet[z] = true end
+		for z,_ in pairs(protectedByProximity) do wakeSet[z] = true end
 		local finalSuspend = {}
 		for _,z in ipairs(toSuspend) do if not wakeSet[z] then finalSuspend[#finalSuspend+1] = z end end
 		for _, d in ipairs(self.zones) do
@@ -7300,16 +7336,23 @@ table.insert(_activeArrowIds, arrowId)
 	if fromZone and toZone and from and to then
 		local pFrom = edgePoint(from,to)
 		local pTo   = edgePoint(to,from)
+		local headPos = pTo
+		local tailPos = pFrom
+		if fromZone.side == 1 and toZone.side == 2 then
+			headPos = pFrom
+			tailPos = pTo
+		end
 		if (not fromZone.active) or (not toZone.active) then
-			--trigger.action.arrowToAll(-1, arrowId, pTo, pFrom, {0, 0, 0, 0.5}, {0.1,0.1,0.1,0.5}, 0.5)
+			--trigger.action.arrowToAll(-1, arrowId, headPos, tailPos, {0, 0, 0, 0.5}, {0.1,0.1,0.1,0.5}, 0.5)
 		elseif fromZone.side == 2 and toZone.side ~= 1  then
-			trigger.action.arrowToAll(-1, arrowId, pTo, pFrom, {0, 0, 0, 0.5}, {0, 0, 1, 0.5}, 0.5)
+			supplyArrowLog(string.format("DEBUG: Drawing BLUE arrow for connection %d", i))
+			trigger.action.arrowToAll(-1, arrowId, headPos, tailPos, {0, 0, 0, 0.5}, {0, 0, 1, 0.5}, 0.5)
 		elseif fromZone.side == 1 and toZone.side ~= 2 then
 			supplyArrowLog(string.format("DEBUG: Drawing RED arrow for connection %d", i))
-			trigger.action.arrowToAll(-1, arrowId, pTo, pFrom, {0, 0, 0, 0.5}, {1, 0, 0, 0.5}, 0.5)
+			trigger.action.arrowToAll(-1, arrowId, headPos, tailPos, {0, 0, 0, 0.5}, {1, 0, 0, 0.5}, 0.5)
 		else
 			supplyArrowLog(string.format("DEBUG: Drawing NEUTRAL arrow for connection %d", i))
-			trigger.action.arrowToAll(-1, arrowId, pTo, pFrom, {0, 0, 0, 0.5}, {1, 1, 1, 0.5}, 0.5)
+			trigger.action.arrowToAll(-1, arrowId, headPos, tailPos, {0, 0, 0, 0.5}, {1, 1, 1, 0.5}, 0.5)
 		end
 		self.ConnectionArrowIds[v.from.."=>"..v.to] = arrowId
 	else
@@ -7370,17 +7413,23 @@ function BattleCommander:RefreshConnectionsLines(zoneName)
 			if fromZone and toZone and from and to then
 				local pFrom = edgePoint(from,to)
 				local pTo   = edgePoint(to,from)
+				local headPos = pTo
+				local tailPos = pFrom
+				if fromZone.side == 1 and toZone.side == 2 then
+					headPos = pFrom
+					tailPos = pTo
+				end
 				_globalArrowCounter = _globalArrowCounter + 1
 				local arrowId = _globalArrowCounter
 				self.ConnectionArrowIds[key] = arrowId
 				if (not fromZone.active) or (not toZone.active) then
-					--trigger.action.arrowToAll(-1, arrowId, pTo, pFrom, {0, 0, 0, 0.5}, {0.1,0.1,0.1,0.5}, 0.5)
+					--trigger.action.arrowToAll(-1, arrowId, headPos, tailPos, {0, 0, 0, 0.5}, {0.1,0.1,0.1,0.5}, 0.5)
 				elseif fromZone.side == 2 and toZone.side ~= 1  then
-					trigger.action.arrowToAll(-1, arrowId, pTo, pFrom, {0, 0, 0, 0.5}, {0, 0, 1, 0.5}, 0.5)
+					trigger.action.arrowToAll(-1, arrowId, headPos, tailPos, {0, 0, 0, 0.5}, {0, 0, 1, 0.5}, 0.5)
 				elseif fromZone.side == 1 and toZone.side ~= 2 then
-					trigger.action.arrowToAll(-1, arrowId, pTo, pFrom, {0, 0, 0, 0.5}, {1, 0, 0, 0.5}, 0.5)
+					trigger.action.arrowToAll(-1, arrowId, headPos, tailPos, {0, 0, 0, 0.5}, {1, 0, 0, 0.5}, 0.5)
 				else
-					trigger.action.arrowToAll(-1, arrowId, pTo, pFrom, {0, 0, 0, 0.5}, {1, 1, 1, 0.5}, 0.5)
+					trigger.action.arrowToAll(-1, arrowId, headPos, tailPos, {0, 0, 0, 0.5}, {1, 1, 1, 0.5}, 0.5)
 				end
 			end
 		end
@@ -10847,7 +10896,7 @@ function GroupCommander:_assignHeloRoute(grName, zoneName)
         local kmh = math.floor((spd or 280) * 3.6)
 
         local route = {}
-        route[#route+1] = COORDINATE:New(apx, 500, apy):WaypointAirFlyOverPoint("RADIO", kmh)
+        route[#route+1] = COORDINATE:New(apx, 1500, apy):WaypointAirFlyOverPoint("RADIO", kmh)
         local passAb = (useAirbase and airb) or nil
         route[#route+1] = COORDINATE:New(tvx, 0, tvy):WaypointAirLanding(kmh, passAb)
 
@@ -10862,11 +10911,11 @@ function GroupCommander:_assignHeloRoute(grName, zoneName)
 
         table.insert(task.params.route.points, {
             type=AI.Task.WaypointType.TURNING_POINT, x=apx, y=apy, speed=spd, speed_locked=true,
-            action=AI.Task.TurnMethod.FLY_OVER_POINT, alt=500, alt_type=AI.Task.AltitudeType.RADIO
+            action=AI.Task.TurnMethod.FLY_OVER_POINT, alt=1500, alt_type=AI.Task.AltitudeType.RADIO
         })
         table.insert(task.params.route.points, {
             type=AI.Task.WaypointType.TURNING_POINT, x=apx, y=apy, speed=spd, speed_locked=true,
-            action=AI.Task.TurnMethod.FIN_POINT, alt=500, alt_type=AI.Task.AltitudeType.RADIO,
+            action=AI.Task.TurnMethod.FIN_POINT, alt=1500, alt_type=AI.Task.AltitudeType.RADIO,
             task={ id='ComboTask', params={ tasks={{ number=1, auto=false, id='Land', params={ point={ x=destx, y=desty }, duration=20, durationEnabled=true } }} } }
         })
         c:setTask(task)
@@ -14207,7 +14256,7 @@ function LogisticCommander:init()
 				local zoneNameForMoose = zn and zn.zone or nil
 				SCHEDULER:New(nil, function()
 					local mooseUnit = UNIT:FindByName(unitNameForMoose)
-					if mooseUnit then
+					if mooseUnit and mooseUnit:IsAlive() then
 						static:processPlayerSpawn(mooseUnit, zoneNameForMoose)
 					end
 				end, {}, 0.5)
@@ -15558,12 +15607,10 @@ function despawnTexaco()
     end
 end
 
-
-
-
-
 -- BASE:TraceOn()
--- BASE:TraceClass("FLIGHTGROUP")
+-- 
+-- BASE:TraceClass("CTLD")
+-- BASE:TraceClass("CTLD_ENGINEERING")
 -- BASE:TraceClass("AUFTRAG")
 -- BASE:TraceClass("INTEL")
 

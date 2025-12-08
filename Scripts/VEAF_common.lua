@@ -1,4 +1,38 @@
+--[[
+
+# PASSWORDS
+
+- scripts execution (markers, etc.) : veaf_foothold_2026
+- game master slots : veaf_foothold_gamemaster
+
+]]
+
+
 local FOOTHOLD_DYNAMIC_SCRIPTS_PATH = FOOTHOLD_DYNAMIC_PATH .. [[..\scripts\]]
+
+-- load the VEAF scripts
+assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "mist.lua")) ()
+assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "veaf-scripts.lua")) ()
+
+-- configure the VEAF scripts
+veaf.config.MISSION_NAME = "Foothold_Germany"
+veaf.config.MISSION_EXPORT_PATH = nil -- use default folder
+veaf.loggers.get(veaf.Id):info("init - veafRadio")
+veafRadio.initialize(true, true)
+veaf.loggers.get(veaf.Id):info("init - veafSpawn")
+veafSpawn.initialize()
+veaf.loggers.get(veaf.Id):info("init - veafWeather")
+veafWeather.initialize()
+veaf.loggers.get(veaf.Id):info("init - veafShortcuts")
+veafShortcuts.initialize()
+veafSecurity.password_L9["2a4efd2397e081bcacb82b3e447c584c65cc83ee"] = true -- password is "veaf_foothold_2026"
+veafSecurity.password_L1["2a4efd2397e081bcacb82b3e447c584c65cc83ee"] = true -- password is "veaf_foothold_2026"
+veaf.loggers.get(veaf.Id):info("Loading configuration")
+veaf.loggers.get(veaf.Id):info("init - veafSecurity")
+veafSecurity.initialize()
+veaf.loggers.get(veaf.Id):info("init - veafRemote")
+veafRemote.initialize()
+
 
 -- setup first batch of configuration (no need for any script before this one)
 NoSA10AndSA11=false
@@ -10,6 +44,7 @@ CTLDCost=true -- if the above is false, then ctld stuff wil not cost anything. d
 RankingSystem = true -- if false, the shop is open to everyone and no ranking will be applied.
 InvisibleA10 = false-- if the above is true, then A10 wlll be invisble to the enemy planes, not GROUND UNITS
 UseStatics=true
+UseC130LoadAndUnload = true -- if the above is true, you will only load stuff what inside the herc using the herc loading system and not the ctld menu to load it into the helicopter.
 
 -- load first batch of scripts
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "Moose.lua")) ()
@@ -43,10 +78,12 @@ LogisticCommander.allowedTypes['OH58D'] = false
 LogisticCommander.allowedTypes['CH-47Fbl1'] = true
 LogisticCommander.allowedTypes['Bronco-OV-10A'] = false
 LogisticCommander.allowedTypes['OH-6A'] = false
+LogisticCommander.allowedTypes['C-130J-30'] = true
 
 LogisticCommander.doubleSupplyTypes = {}
 LogisticCommander.doubleSupplyTypes['CH-47Fbl1'] = true
 LogisticCommander.doubleSupplyTypes['Hercules'] = true
+LogisticCommander.doubleSupplyTypes['C-130J-30'] = true
 
 LogisticCommander.maxCarriedPilots = 4
 
@@ -60,15 +97,8 @@ assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "MA_CTLD_CWG.lua")) ()
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "Splash_Damage_3.4.1_leka.lua")) ()
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "AIEN.lua")) ()
 
--- Silence ATC on all bases
-local bases = world.getAirbases()
-for _, base in pairs(bases) do
-    if base:getDesc() then
-        if base:getDesc().category == Airbase.Category.AIRDROME then
-            base:setRadioSilentMode(true)
-        end
-    end
-end
+-- Silence ATC on all the airdromes
+veaf.silenceAtcOnAllAirbases()
 
 function createDirectoryRecursive(path)
     -- Remove trailing slash if present
