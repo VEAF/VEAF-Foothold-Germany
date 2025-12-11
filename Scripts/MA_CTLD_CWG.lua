@@ -6,6 +6,7 @@ Foothold_ctld.useprefix = true
 Foothold_ctld.dropcratesanywhere = true
 Foothold_ctld.forcehoverload = false
 Foothold_ctld.CrateDistance = 65
+Foothold_ctld.maxUnitsNearby = 3
 Foothold_ctld.PackDistance = 65
 Foothold_ctld.maximumHoverHeight = 20
 Foothold_ctld.minimumHoverHeight = 3
@@ -65,6 +66,9 @@ CTLDPrices = {
     ["IRIS T SLM System"]     = 1800,
     ["C-RAM"]                 = 500,
     ["HIMARS GMLRRS HE GUIDED"]= 1000,
+    ["FV-107 Scimitar"]       = 250,
+    ["FV-101 Scorpion"]       = 250,
+    ["Avanger"]               = 250,
 }
 CTLD_DEFAULT_PRICE = 0
 
@@ -94,8 +98,15 @@ Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM LN", {"CTLD_CARGO_IRISTSLM-LN"},C
 Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM C2", {"CTLD_CARGO_IRISTSLM_C2"},CTLD_CARGO.Enum.FOB, 1, 1900, 10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
 Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM System", {"CTLD_CARGO_IRISTSLM_System"}, CTLD_CARGO.Enum.FOB, 3, 2800, 10, "SAM/AAA", nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
 Foothold_ctld:AddCratesCargoNoMove("C-RAM", {"CTLD_CARGO_CRAM"}, CTLD_CARGO.Enum.FOB, 2, 1000, 10, "SAM/AAA")
-Foothold_ctld:AddCratesCargoNoMove("HIMARS GMLRRS HE GUIDED",{"CTLD_CARGO_GMLRS_HE"},CTLD_CARGO.Enum.VEHICLE,2,3500,12, "Support")
+Foothold_ctld:AddCratesCargoNoMove("HIMARS GMLRRS HE GUIDED",{"CTLD_CARGO_GMLRS_HE"},CTLD_CARGO.Enum.VEHICLE,2,3500,12, "Support", nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
 end
+Foothold_ctld:AddUnits("Humvee",{"CTLD_CARGO_HMMWV"},CTLD_CARGO.Enum.VEHICLE,10, "ANTI TANK")
+Foothold_ctld:AddUnits("Mephisto",{"CTLD_CARGO_Mephisto"},CTLD_CARGO.Enum.VEHICLE,10, "ANTI TANK")
+Foothold_ctld:AddUnits("Vulcan",{"CTLD_CARGO_Vulcan"}, CTLD_CARGO.Enum.VEHICLE, 10, "SAM/AAA")
+Foothold_ctld:AddUnits("Avenger",{"CTLD_CARGO_Avenger"}, CTLD_CARGO.Enum.VEHICLE, 10, "SAM/AAA")
+Foothold_ctld:AddUnits("Humvee scout",{"CTLD_CARGO_Scout"}, CTLD_CARGO.Enum.VEHICLE, 10, "Support")
+Foothold_ctld:AddUnits("FV-107 Scimitar",{"CTLD_CARGO_Scimitar"}, CTLD_CARGO.Enum.VEHICLE, 10, "Support")
+Foothold_ctld:AddUnits("FV-101 Scorpion",{"CTLD_CARGO_Scorpion"}, CTLD_CARGO.Enum.VEHICLE, 10, "Support")
 
 -- How many of the units loaded from the save file should be spawned next time?
 -- Oldest will be deleted first.
@@ -125,6 +136,9 @@ local MAX_AT_SPAWN = {
     ["IRIS T SLM System"]       = 2,
     ["C-RAM"]                   = 4,
     ["HIMARS GMLRRS HE GUIDED"] = 4,
+    ["FV-107 Scimitar"]         = 2,
+    ["FV-101 Scorpion"]         = 2,
+    ["Avanger"]                 = 2,
 }
 -- How many farps do you want to load? 
 -- Oldest will not be spawned if the number is exceded.
@@ -153,6 +167,9 @@ Group.getByName('CTLD_CARGO_IRISTSLM_C2'):destroy()
 Group.getByName('CTLD_CARGO_IRISTSLM_System'):destroy()
 Group.getByName('CTLD_CARGO_CRAM'):destroy()
 Group.getByName('CTLD_CARGO_GMLRS_HE'):destroy()
+Group.getByName('CTLD_CARGO_Scorpion'):destroy()
+Group.getByName('CTLD_CARGO_Scimitar'):destroy()
+Group.getByName('CTLD_CARGO_Avenger'):destroy()
 
 Foothold_ctld:SetUnitCapabilities("SA342Mistral", false, true, 0, 2, 10, 400)
 Foothold_ctld:SetUnitCapabilities("SA342L", false, true, 0, 2, 10, 400)
@@ -170,6 +187,11 @@ Foothold_ctld:SetUnitCapabilities("UH-60L_DAP", true, true, 2, 20, 16, 3500)
 Foothold_ctld:SetUnitCapabilities("AH-64D_BLK_II", false, false, 0, 0, 15, 400)
 Foothold_ctld:SetUnitCapabilities("CH-47Fbl1", true, true, 5, 32, 20, 10800)
 Foothold_ctld:SetUnitCapabilities("OH58D", false, false, 0, 0, 14, 400)
+
+
+function Foothold_ctld:OnAfterUnitsSpawn(From, Event, To, Group, Unit, Units)
+
+end
 
 -- ZONES
 
@@ -1214,9 +1236,6 @@ local function RefillMissingWithCountTable()
     end
   local countTable = Foothold_ctld:_CountStockPlusInHeloPlusAliveGroups()
 
-  --BASE:I("**** CountStockPlusAliveGroups ****")
-  --UTILS.PrintTableToLog(countTable,1)
-  --BASE:I("**** CountStockPlusAliveGroups ****")
   for cargoName, info in pairs(countTable) do
     local stock0 = info.Stock0 or 0
     local sum    = info.Sum or 0
@@ -1225,17 +1244,28 @@ local function RefillMissingWithCountTable()
     if needed > 0 then
       local isTroop  = Foothold_ctld:_FindTroopsCargoObject(cargoName)  ~= nil
       local isCrates = Foothold_ctld:_FindCratesCargoObject(cargoName) ~= nil
+      local isUnits  = false
+      for _,cfg in pairs(Foothold_ctld.C130GetUnits or {}) do
+        if cfg.Name == cargoName then
+          isUnits = true
+          break
+        end
+      end
 
       if isTroop then
         Foothold_ctld:AddStockTroops(cargoName, needed)
         env.info(string.format("[Refill] TROOPS '%s': sum=%d < stock0=%d => +%d stock added.",
           cargoName, sum, stock0, needed))
-      elseif isCrates then
+      end
+      if isCrates then
         Foothold_ctld:AddStockCrates(cargoName, needed)
         env.info(string.format("[Refill] CRATES '%s': sum=%d < stock0=%d => +%d stock added.",
           cargoName, sum, stock0, needed))
-      else
-        env.info(string.format("[Refill] Cargo '%s' not found in Troops or Crates, cannot refill automatically.", cargoName))
+      end
+      if isUnits then
+        Foothold_ctld:AddStockUnits(cargoName, needed)
+        env.info(string.format("[Refill] UNITS '%s': sum=%d < stock0=%d => +%d stock added.",
+          cargoName, sum, stock0, needed))
       end
     end
 
@@ -1254,7 +1284,6 @@ local function RefillMissingWithCountTable()
       end
     end
   end
-
 end
 
 TIMER:New(RefillMissingWithCountTable):Start(15, 30)

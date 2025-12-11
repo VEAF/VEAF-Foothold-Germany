@@ -75038,6 +75038,7 @@ self:AddTransition("*","TroopsDeployed","*")
 self:AddTransition("*","TroopsRTB","*")
 self:AddTransition("*","CratesDropped","*")
 self:AddTransition("*","CratesBuild","*")
+self:AddTransition("*","UnitsSpawn","*")
 self:AddTransition("*","CratesRepaired","*")
 self:AddTransition("*","CratesBuildStarted","*")
 self:AddTransition("*","CratesRepairStarted","*")
@@ -75083,6 +75084,8 @@ self.EngineersInField={}
 self.EngineerSearch=2000
 self.nobuildmenu=false
 self.CrateDistance=35
+self.UnitDistance=90
+self.maxUnitsNearby=3
 self.PackDistance=35
 self.ExtractFactor=3.33
 self.prefixes=Prefixes or{"Cargoheli"}
@@ -75995,14 +75998,14 @@ if canLoad and not isHerc then
 MENU_GROUP_COMMAND:New(Group,"Get and Load",parentMenu,self._GetAndLoad,self,Group,Unit,cargoObj,1)
 else
 local msg
-if isHerc then
-msg="Use C-130 system to load"
-elseif maxMassSets and(not capacitySets or capacitySets>=1)and maxMassSets<1 then
-msg="Weight limit reached"
+if not isHerc then
+if maxMassSets and (not capacitySets or capacitySets >= 1) and maxMassSets < 1 then
+msg = "Weight limit reached"
 else
-msg="Crate limit reached"
+msg = "Crate limit reached"
 end
-MENU_GROUP_COMMAND:New(Group,msg,parentMenu,self._SendMessage,self,msg,10,false,Group)
+MENU_GROUP_COMMAND:New(Group, msg, parentMenu, self._SendMessage, self, msg, 10, false, Group)
+end
 end
 parentMenu:Refresh()
 return self
@@ -76019,18 +76022,150 @@ if canLoad and not isHerc then
 MENU_GROUP_COMMAND:New(Group,"Get and Load",qMenu,self._GetAndLoad,self,Group,Unit,cargoObj,quantity)
 else
 local msg
-if isHerc then
-msg="Use C-130 system to load"
-elseif maxMassSets and(not capacitySets or capacitySets>=quantity)and maxMassSets<quantity then
-msg="Weight limit reached"
+if not isHerc then
+if maxMassSets and (not capacitySets or capacitySets >= quantity) and maxMassSets < quantity then
+msg = "Weight limit reached"
 else
-msg="Crate limit reached"
+msg = "Crate limit reached"
 end
-MENU_GROUP_COMMAND:New(Group,msg,qMenu,self._SendMessage,self,msg,10,false,Group)
+MENU_GROUP_COMMAND:New(Group, msg, qMenu, self._SendMessage, self, msg, 10, false, Group)
+end
 end
 end
 return self
 end
+function CTLD:_C130GetUnits(Group, Unit, Name)
+  self:T(self.lid .. " _C130GetUnits")
+  if not Group or not Unit then return self end
+  local cfg = nil
+  for _,entry in ipairs(self.C130GetUnits or {}) do
+    if entry.Name == Name then
+      cfg = entry
+      break
+    end
+  end
+  if not cfg then
+    self:_SendMessage("No unit configuration found for "..tostring(Name),10,false,Group)
+    return self
+  end
+  local stock = cfg.Stock
+  if type(stock) == "number" and stock ~= -1 and stock <= 0 then
+    self:_SendMessage(string.format("Sorry, all %s are gone!",cfg.Name or "units"),10,false,Group)
+    return self
+  end
+  local inzone = self:IsUnitInZone(Unit,CTLD.CargoZoneType.LOAD)
+  if not inzone then
+    self:_SendMessage("You are not close enough to a logistics zone!",10,false,Group)
+    return self
+  end
+
+    if CTLDCost == true then
+    local uname  = cfg.Name or "none"
+    local price  = (priceOf and priceOf(uname)) or CTLD_DEFAULT_PRICE or 0
+    local charge = price
+    if charge > 0 and bc then
+      local coal = Group and Group:GetCoalition() or nil
+      if not coal then return self end
+      local dcs  = Group and Group.GetDCSObject and Group:GetDCSObject() or nil
+      local gid  = dcs and dcs:getID() or nil
+      local reason = uname
+      if type(bc.debit) == "function" then
+        local ok = bc:debit(coal,charge,gid,dcs,reason)
+        if not ok then return self end
+      else
+        bc.accounts[coal] = (bc.accounts[coal] or 0) - charge
+      end
+    end
+  end
+
+  local coord = Unit:GetCoordinate() or Group:GetCoordinate()
+  local capabilities = self:_GetUnitCapabilities(Unit)
+  local innerDist = (capabilities.length and capabilities.length/2) or 15
+  local maxUnitsNearby = self.maxUnitsNearby or 3
+  local searchRadius = self.UnitDistance or 90
+  local checkZone = ZONE_RADIUS:New("CTLD_C130UnitsZone",coord:GetVec2(),searchRadius,false)
+  local nearGroups = SET_GROUP:New():FilterCoalitions("blue"):FilterZones({checkZone}):FilterOnce()
+  local nearbyCount = 0
+  for _,gr in pairs(nearGroups.Set) do
+    local gc = gr:GetCoordinate()
+    if gc then
+      local dist = coord:Get2DDistance(gc)
+      if dist > innerDist then
+        for _,ucfg in pairs(self.C130GetUnits or {}) do
+          local templ = ucfg.Templates or {}
+          if type(templ) == "string" then
+            templ = {templ}
+          end
+          local matched = false
+          for _,tName in pairs(templ) do
+            if string.match(gr:GetName(),tName) then
+              nearbyCount = nearbyCount + 1
+              matched = true
+              break
+            end
+          end
+          if matched or nearbyCount >= maxUnitsNearby then break end
+        end
+      end
+    end
+    if nearbyCount >= maxUnitsNearby then break end
+  end
+  if nearbyCount >= maxUnitsNearby then
+    self:_SendMessage(string.format("You already have %d units nearby!",maxUnitsNearby),10,false,Group)
+    return self
+  end
+
+  local temptable = cfg.Templates or {}
+  if type(temptable) == "string" then
+    temptable = {temptable}
+  end
+  local length = (capabilities.length + 5) or 30
+  local heading = (Unit:GetHeading() + 180) % 360
+  local canmove = cfg.CanMove ~= false
+  local spawnedUnits = {}
+  local idx = 1
+  for _,_template in pairs(temptable) do
+    local cratedistance = (idx-1)*2.5 + length
+    local spawncoord = coord:Translate(cratedistance,heading)
+    local randomcoord = spawncoord:GetVec2()
+    self.TroopCounter = self.TroopCounter + 1
+    local tc = self.TroopCounter
+    local alias = string.format("%s-%d",_template,math.random(1,100000))
+    if canmove then
+      SPAWN:NewWithAlias(_template,alias)
+        :InitRandomizeUnits(true,10,2)
+        :InitValidateAndRepositionGroundUnits(self.validateAndRepositionUnits)
+        :InitDelayOff()
+        :OnSpawnGroup(function(grp,TimeStamp)
+          grp.spawntime = TimeStamp or timer.getTime()
+          self.DroppedTroops[tc] = grp
+          table.insert(spawnedUnits,grp)
+          self:__UnitsSpawn(1,Group,Unit,spawnedUnits)
+        end)
+        :SpawnFromVec2(randomcoord)
+    else
+      SPAWN:NewWithAlias(_template,alias)
+        :InitRandomizeUnits(true,10,2)
+        :InitDelayOff()
+        :InitValidateAndRepositionGroundUnits(self.validateAndRepositionUnits)
+        :OnSpawnGroup(function(grp,TimeStamp)
+          grp.spawntime = TimeStamp or timer.getTime()
+          self.DroppedTroops[tc] = grp
+          table.insert(spawnedUnits,grp)
+          self:__UnitsSpawn(1,Group,Unit,spawnedUnits)
+        end)
+        :SpawnFromVec2(randomcoord)
+    end
+    idx = idx + 1
+  end
+  if type(stock) == "number" and stock ~= -1 then
+    cfg.Stock = stock - 1
+  end
+  self:_SendMessage(string.format("%s have been deployed near you!",cfg.Name or "selection"),10,false,Group)
+  
+  return self
+end
+
 function CTLD:_GetCrates(Group,Unit,Cargo,number,drop,pack,quiet)
 self:T(self.lid.." _GetCrates")
 local perSet=Cargo:GetCratesNeeded()or 1
@@ -76359,6 +76494,87 @@ self:_SendMessage(string.format("No (loadable) crates within %d meters!",finddis
 end
 return self
 end
+function CTLD:_C130RemoveUnitsNearby(_group,_unit)
+  self:T(self.lid .. " _C130RemoveUnitsNearby")
+  if not _group or not _unit then return self end
+  local location = _group:GetCoordinate()
+  if not location then return self end
+  local finddist = self.PackDistance or (self.CrateDistance or 35)
+  local zone = ZONE_RADIUS:New("CTLD_C130RemoveZone",location:GetVec2(),finddist,false)
+  local nearestGroups = SET_GROUP:New():FilterCoalitions("blue"):FilterZones({zone}):FilterOnce()
+  local removedAny = false
+  for _, gr in pairs(nearestGroups.Set) do
+    local didRemoveThis = false
+    for _, cfg in pairs(self.C130GetUnits or {}) do
+      local templ = cfg.Templates or {}
+      if type(templ) == "string" then
+        templ = {templ}
+      end
+      for _, tName in pairs(templ) do
+        if string.match(gr:GetName(),tName) then
+          local cname = cfg.Name or "Unit"
+          gr:Destroy(false)
+          self:_SendMessage(cname.." have been removed",10,false,_group)
+          removedAny = true
+          didRemoveThis = true
+          break
+        end
+      end
+      if didRemoveThis then break end
+    end
+  end
+  if not removedAny then
+    self:_SendMessage("Nothing to remove at this distance pilot!",10,false,_group)
+  end
+  return self
+end
+--- (Internal) Function to find and remove nearby C-130 managed units.
+-- @param #CTLD self
+-- @param Wrapper.Group#GROUP Group
+-- @param Wrapper.Unit#UNIT Unit
+-- @return #CTLD self
+function CTLD:_C130RemoveUnitsNearby(_group,_unit)
+  self:T(self.lid .. " _C130RemoveUnitsNearby")
+  if not _group or not _unit then return self end
+  local location = _group:GetCoordinate()
+  if not location then return self end
+  local capabilities = self:_GetUnitCapabilities(_unit)
+  local innerDist = (capabilities.length and capabilities.length/2) or 15
+  local finddist = self.PackDistance or (self.CrateDistance or 35)
+  local zone = ZONE_RADIUS:New("CTLD_C130RemoveZone",location:GetVec2(),finddist,false)
+  local nearestGroups = SET_GROUP:New():FilterCoalitions("blue"):FilterZones({zone}):FilterOnce()
+  local removedAny = false
+  for _, gr in pairs(nearestGroups.Set) do
+    local gc = gr:GetCoordinate()
+    if gc then
+      local dist = location:Get2DDistance(gc)
+      if dist > innerDist then
+        local didRemoveThis = false
+        for _, cfg in pairs(self.C130GetUnits or {}) do
+          local templ = cfg.Templates or {}
+          if type(templ) == "string" then
+            templ = {templ}
+          end
+          for _, tName in pairs(templ) do
+            if string.match(gr:GetName(),tName) then
+              local cname = cfg.Name or "Unit"
+              gr:Destroy(false)
+              self:_SendMessage(cname.." have been removed",10,false,_group)
+              removedAny = true
+              didRemoveThis = true
+              break
+            end
+          end
+          if didRemoveThis then break end
+        end
+      end
+    end
+  end
+  if not removedAny then
+    self:_SendMessage("Nothing to remove at this distance pilot!",10,false,_group)
+  end
+  return self
+end
 function CTLD:_RemoveCratesNearby(_group,_unit)
 self:T(self.lid.." _RemoveCratesNearby")
 local finddist=self.CrateDistance or 35
@@ -76453,13 +76669,16 @@ if ignoretype==true then cando=true end
 self:T(self.lid.." Unit can carry: "..tostring(cando))
 local distance=self:_GetDistance(location,staticpos)
 local hercInnerBlocked=false
-if self.UseC130LoadAndUnload then
-if IgnoreInside and _unit and self:IsC130J(_unit) and distance<6 then
+if self.UseC130LoadAndUnload and ignoreHercInner and _unit and self:IsC130J(_unit) then
+local capabilities=self:_GetUnitCapabilities(_unit)
+local innerDist=capabilities.length and (capabilities.length/2) or 4
+if distance<innerDist then
 hercInnerBlocked=true
 end
 end
 self:T(self.lid..string.format("Dist %dm/%dm | weight %dkg | maxloadable %dkg",distance,finddist,weight,maxloadable))
 if distance<=finddist and(weight<=maxloadable or _ignoreweight)and restricted==false and cando==true and not hercInnerBlocked then
+
 index=index+1
 table.insert(found,staticid,cargo)
 maxloadable=maxloadable-weight
@@ -76639,85 +76858,88 @@ Unit:SetUnitInternalCargo(calculatedMass)
 return self
 end
 function CTLD:_ListCargo(Group,Unit)
-self:T(self.lid.." _ListCargo")
-local unitname=Unit:GetName()
-local unittype=Unit:GetTypeName()
-local capabilities=self:_GetUnitCapabilities(Unit)
-local trooplimit=capabilities.trooplimit
-local cratelimit=capabilities.cratelimit
-local loadedcargo=self.Loaded_Cargo[unitname]or{}
-local loadedmass=self:_GetUnitCargoMass(Unit)
-local maxloadable=self:_GetMaxLoadableMass(Unit)
-local finddist=self.CrateDistance or 35
-local hercInnerCrates = nil
-local hercInnerCount = 0
-if self:IsC130J(Unit) or self:IsHook(Unit) then
-local innerDist = capabilities.length and capabilities.length or finddist
-local innerCrates,innerCount = self:_FindCratesNearby(Group,Unit,innerDist,true,true)
-hercInnerCrates = innerCrates
-hercInnerCount = innerCount or 0
-end
-if self.Loaded_Cargo[unitname] or hercInnerCount > 0 then
-local no_troops=loadedcargo.Troopsloaded or 0
-local no_crates=loadedcargo.Cratesloaded or 0
-local cargotable=loadedcargo.Cargo or{}
-local report=REPORT:New("Transport Checkout Sheet")
-report:Add("------------------------------------------------------------")
-report:Add(string.format("Troops: %d(%d), Crates: %d(%d)",no_troops,trooplimit,no_crates,cratelimit))
-report:Add("------------------------------------------------------------")
-report:Add("        -- TROOPS --")
-for _,_cargo in pairs(cargotable)do
-local cargo=_cargo
-local type=cargo:GetType()
-if(type==CTLD_CARGO.Enum.TROOPS or type==CTLD_CARGO.Enum.ENGINEERS)and(not cargo:WasDropped()or self.allowcratepickupagain)then
-report:Add(string.format("Troop: %s size %d",cargo:GetName(),cargo:GetCratesNeeded()))
-end
-end
-if report:GetCount()==4 then
-report:Add("        N O N E")
-end
-report:Add("------------------------------------------------------------")
-report:Add("       -- CRATES --")
-local cratecount=0
-local accumCrates={}
-for _,_cargo in pairs(cargotable or{})do
-local cargo=_cargo
-local type=cargo:GetType()
-if(type~=CTLD_CARGO.Enum.TROOPS and type~=CTLD_CARGO.Enum.ENGINEERS and type~=CTLD_CARGO.Enum.GCLOADABLE)and(not cargo:WasDropped()or self.allowcratepickupagain)then
-local cName=cargo:GetName()
-local needed=cargo:GetCratesNeeded()or 1
-accumCrates[cName]=accumCrates[cName]or{count=0,needed=needed}
-accumCrates[cName].count=accumCrates[cName].count+1
-end
-if type==CTLD_CARGO.Enum.GCLOADABLE and not cargo:WasDropped()then
-report:Add(string.format("GC loaded Crate: %s size 1",cargo:GetName()))
-cratecount=cratecount+1
-end
-end
-for cName,data in pairs(accumCrates)do
-cratecount=cratecount+data.count
-report:Add(string.format("Crate: %s %d/%d",cName,data.count,data.needed))
-end
-if cratecount==0 then
-report:Add("        N O N E")
-end
-if hercInnerCount > 0 then
-for _,_cargo in pairs(hercInnerCrates or {}) do
-local cargo = _cargo
-local type = cargo:GetType()
-if type ~= CTLD_CARGO.Enum.TROOPS and type ~= CTLD_CARGO.Enum.ENGINEERS then
-report:Add(string.format("Crate: %s size 1",cargo:GetName()))
-end
-end
-end
-report:Add("------------------------------------------------------------")
-report:Add("Total Mass: "..loadedmass.." kg. Loadable: "..maxloadable.." kg.")
-local text=report:Text()
-self:_SendMessage(text,30,true,Group)
-else
-self:_SendMessage(string.format("Nothing loaded!\nTroop limit: %d | Crate limit %d | Weight limit %d kgs",trooplimit,cratelimit,maxloadable),10,false,Group)
-end
-return self
+  self:T(self.lid .. " _ListCargo")
+  local unitname = Unit:GetName()
+  local unittype = Unit:GetTypeName()
+  local capabilities = self:_GetUnitCapabilities(Unit) -- #CTLD.UnitTypeCapabilities
+  local trooplimit = capabilities.trooplimit -- #boolean
+  local cratelimit = capabilities.cratelimit -- #number
+  local loadedcargo = self.Loaded_Cargo[unitname] or {} -- #CTLD.LoadedCargo
+  local loadedmass = self:_GetUnitCargoMass(Unit) -- #number
+  local maxloadable = self:_GetMaxLoadableMass(Unit)
+  local finddist = self.CrateDistance or 35
+  local hercInnerCrates = nil
+  local hercInnerCount = 0
+  if self:IsC130J(Unit) or self:IsHook(Unit) then
+  local innerDist = (capabilities.length and capabilities.length/2) or 15
+  local innerCrates,innerCount = self:_FindCratesNearby(Group,Unit,innerDist,true,true)
+  hercInnerCrates = innerCrates
+  hercInnerCount = innerCount or 0
+  end
+  if self.Loaded_Cargo[unitname] or hercInnerCount > 0 then
+    local no_troops = loadedcargo.Troopsloaded or 0
+    local no_crates = loadedcargo.Cratesloaded or 0
+    local cargotable = loadedcargo.Cargo or {} -- #table
+    local report = REPORT:New("Transport Checkout Sheet")
+    report:Add("------------------------------------------------------------")
+    report:Add(string.format("Troops: %d(%d), Crates: %d(%d)",no_troops,trooplimit,no_crates,cratelimit))
+    report:Add("------------------------------------------------------------")
+    report:Add("        -- TROOPS --")
+    for _,_cargo in pairs(cargotable) do
+      local cargo = _cargo -- #CTLD_CARGO
+      local type = cargo:GetType() -- #CTLD_CARGO.Enum
+      if (type == CTLD_CARGO.Enum.TROOPS or type == CTLD_CARGO.Enum.ENGINEERS) and (not cargo:WasDropped() or self.allowcratepickupagain) then
+        report:Add(string.format("Troop: %s size %d", cargo:GetName(), cargo:GetCratesNeeded()))
+      end
+    end
+    if report:GetCount() == 4 then
+      report:Add("        N O N E")
+    end
+    report:Add("------------------------------------------------------------")
+    report:Add("       -- CRATES --")
+    local cratecount = 0
+    local accumCrates = {}
+    for _,_cargo in pairs(cargotable or {}) do
+      local cargo = _cargo -- #CTLD_CARGO
+      local type = cargo:GetType() -- #CTLD_CARGO.Enum
+      if (type ~= CTLD_CARGO.Enum.TROOPS and type ~= CTLD_CARGO.Enum.ENGINEERS and type ~= CTLD_CARGO.Enum.GCLOADABLE) and (not cargo:WasDropped() or self.allowcratepickupagain) then
+        local cName = cargo:GetName()
+        local needed = cargo:GetCratesNeeded() or 1
+        accumCrates[cName] = accumCrates[cName] or {count=0, needed=needed}
+        accumCrates[cName].count = accumCrates[cName].count + 1
+      end
+      if type == CTLD_CARGO.Enum.GCLOADABLE and not cargo:WasDropped() then
+        report:Add(string.format("GC loaded Crate: %s size 1", cargo:GetName()))
+        cratecount = cratecount + 1
+      end
+    end
+    for cName, data in pairs(accumCrates) do
+      cratecount = cratecount + data.count
+      report:Add(string.format("Crate: %s %d/%d", cName, data.count, data.needed))
+    end
+    if cratecount == 0 then
+      report:Add("        N O N E")
+    end
+    if hercInnerCount > 0 then
+	  local hercMass = 0
+      for _,_cargo in pairs(hercInnerCrates or {}) do
+        local cargo = _cargo
+        local type = cargo:GetType()
+        if type ~= CTLD_CARGO.Enum.TROOPS and type ~= CTLD_CARGO.Enum.ENGINEERS then
+          report:Add(string.format("Crate: %s size 1",cargo:GetName()))
+		  hercMass = hercMass + cargo:GetMass()
+        end
+      end
+	  loadedmass = loadedmass + hercMass
+    end
+    report:Add("------------------------------------------------------------")
+    report:Add("Total Mass: ".. loadedmass .. " kg. Loadable: "..maxloadable.." kg.")
+    local text = report:Text()
+    self:_SendMessage(text, 30, true, Group)
+  else
+    self:_SendMessage(string.format("Nothing loaded!\nTroop limit: %d | Crate limit %d | Weight limit %d kgs", trooplimit, cratelimit, maxloadable), 10, false, Group)
+  end
+  return self
 end
 function CTLD:_ListInventory(Group,Unit)
 self:T(self.lid.." _ListInventory")
@@ -77844,7 +78066,7 @@ subcatmenus[catName]=MENU_GROUP:New(_group,catName,troopsmenu)
 end
 for _,cargoObj in pairs(self.Cargo_Troops)do
 if not cargoObj.DontShowInMenu then
-local menutext=cargoObj.Name
+local menutext=self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
 local parent=subcatmenus[cargoObj.Subcategory]or troopsmenu
 local mSet=MENU_GROUP:New(_group,menutext,parent)
 _group.CTLD_TroopMenus[cargoObj.Name]=mSet
@@ -77854,7 +78076,7 @@ end
 else
 for _,cargoObj in pairs(self.Cargo_Troops)do
 if not cargoObj.DontShowInMenu then
-local menutext=cargoObj.Name
+local menutext=self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
 local mSet=MENU_GROUP:New(_group,menutext,troopsmenu)
 _group.CTLD_TroopMenus[cargoObj.Name]=mSet
 self:_AddTroopQuantityMenus(_group,_unit,mSet,cargoObj)
@@ -77893,11 +78115,12 @@ if cargoObj.DontShowInMenu then
 return
 end
 local needed=cargoObj:GetCratesNeeded()or 1
+local name = self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
 local txt
 if needed>1 then
-txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",name,cargoObj.PerCrateMass or 0)
 else
-txt=string.format("%s (%dkg)",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%s (%dkg)",name,cargoObj.PerCrateMass or 0)
 end
 if cargoObj.Location then txt=txt.."[R]"end
 if self.showstockinmenuitems then
@@ -77936,11 +78159,12 @@ end
 for _,cargoObj in pairs(self.Cargo_Crates)do
 if not cargoObj.DontShowInMenu then
 local needed=cargoObj:GetCratesNeeded()or 1
+local name = self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
 local txt
 if needed>1 then
-txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",name,cargoObj.PerCrateMass or 0)
 else
-txt=string.format("%s (%dkg)",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%s (%dkg)",name,cargoObj.PerCrateMass or 0)
 end
 if cargoObj.Location then txt=txt.."[R]"end
 local stock=cargoObj:GetStock()
@@ -77951,11 +78175,12 @@ end
 for _,cargoObj in pairs(self.Cargo_Statics)do
 if not cargoObj.DontShowInMenu then
 local needed=cargoObj:GetCratesNeeded()or 1
+local name = self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
 local txt
 if needed>1 then
-txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",name,cargoObj.PerCrateMass or 0)
 else
-txt=string.format("%s (%dkg)",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%s (%dkg)",name,cargoObj.PerCrateMass or 0)
 end
 if cargoObj.Location then txt=txt.."[R]"end
 local stock=cargoObj:GetStock()
@@ -77967,11 +78192,12 @@ else
 for _,cargoObj in pairs(self.Cargo_Crates)do
 if not cargoObj.DontShowInMenu then
 local needed=cargoObj:GetCratesNeeded()or 1
+local name = self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
 local txt
 if needed>1 then
-txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",name,cargoObj.PerCrateMass or 0)
 else
-txt=string.format("%s (%dkg)",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%s (%dkg)",name,cargoObj.PerCrateMass or 0)
 end
 if cargoObj.Location then txt=txt.."[R]"end
 local stock=cargoObj:GetStock()
@@ -77982,11 +78208,12 @@ end
 for _,cargoObj in pairs(self.Cargo_Statics)do
 if not cargoObj.DontShowInMenu then
 local needed=cargoObj:GetCratesNeeded()or 1
+local name = self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
 local txt
 if needed>1 then
-txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",name,cargoObj.PerCrateMass or 0)
 else
-txt=string.format("%s (%dkg)",cargoObj.Name,cargoObj.PerCrateMass or 0)
+  txt=string.format("%s (%dkg)",name,cargoObj.PerCrateMass or 0)
 end
 if cargoObj.Location then txt=txt.."[R]"end
 local stock=cargoObj:GetStock()
@@ -78035,6 +78262,45 @@ local line=string.format("Drop %s (%d/%d)",name,info.count,info.needed)
 MENU_GROUP_COMMAND:New(_group,line,dropCratesMenu,self._UnloadSingleCrateSet,self,_group,_unit,name)
 end
 end
+end
+if self:IsC130J(_unit) then
+    local topunits    = MENU_GROUP:New(_group,"Manage Units",topmenu)
+    local getunits    = MENU_GROUP:New(_group,"Get Units",topunits)
+    MENU_GROUP_COMMAND:New(_group,"Remove units nearby",topunits,self._C130RemoveUnitsNearby,self,_group,_unit)
+
+    local unitentries = self.C130GetUnits or {}
+    local unittype    = _unit:GetTypeName() or "none"
+    local subcatmenus = self.usesubcats and {} or nil
+
+    for _,cargoObj in ipairs(unitentries) do
+    local ok = true
+    if cargoObj.UnitTypes then
+        ok = false
+        if type(cargoObj.UnitTypes) == "string" then
+        if unittype == cargoObj.UnitTypes then ok = true end
+        else
+        for _,ut in pairs(cargoObj.UnitTypes) do
+            if unittype == ut then ok = true break end
+        end
+        end
+    end
+    if ok and (not cargoObj.Stock or cargoObj.Stock == -1 or cargoObj.Stock > 0) then
+        local parent = getunits
+        if self.usesubcats == true and cargoObj.SubCategory then
+        local sub = subcatmenus[cargoObj.SubCategory]
+        if not sub then
+            sub = MENU_GROUP:New(_group,cargoObj.SubCategory,getunits)
+            subcatmenus[cargoObj.SubCategory] = sub
+        end
+        parent = sub
+        end
+        local menutext = self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
+        if type(cargoObj.Stock) == "number" and cargoObj.Stock >= 0 and self.showstockinmenuitems then
+        menutext = menutext.."["..cargoObj.Stock.."]"
+        end
+        MENU_GROUP_COMMAND:New(_group,menutext,parent,self._C130GetUnits,self,_group,_unit,cargoObj.Name)
+    end
+    end
 end
 MENU_GROUP_COMMAND:New(_group,"List boarded cargo",topmenu,self._ListCargo,self,_group,_unit)
 MENU_GROUP_COMMAND:New(_group,"Inventory",topmenu,self._ListInventory,self,_group,_unit)
@@ -78768,6 +79034,74 @@ table.insert(self.Cargo_Troops,cargo)
 if SubCategory and self.usesubcats~=true then self.usesubcats=true end
 return self
 end
+
+--- User function - Add *generic* unit-type entry for the C-130J-30 Manage Units menu. This type will spawn units that can move.
+-- @param #CTLD self
+-- @param #string Name Unique name of this type of unit. E.g. "Humvee".
+-- @param #table Templates Table of #string names of late activated Wrapper.Group#GROUP used to spawn this unit.
+-- @param #CTLD_CARGO.Enum Type Type of unit. I.e. VEHICLE or FOB. VEHICLE will move when spawned, FOB stays put.
+-- @param #number Stock Number of units in stock. Nil or -1 for unlimited.
+-- @param #string SubCategory Name of sub-category (optional), used for sub-menus when self.usesubcats == true.
+-- @param #string UnitTypes Unit type names (optional). If set, only these unit types can use this entry, e.g. "C-130J-30" or {"C-130J-30"}.
+-- @return #CTLD self
+function CTLD:AddUnits(Name,Templates,Type,Stock,SubCategory,UnitTypes)
+  self:T(self.lid .. " AddUnits")
+  if not self:_CheckTemplates(Templates) then
+    self:E(self.lid .. "Units for " .. Name .. " has missing template(s)!")
+    return self
+  end
+  self.C130GetUnits = self.C130GetUnits or {}
+  local entry = {}
+  entry.Name = Name
+  entry.Templates = Templates
+  entry.Type = Type
+  entry.Stock = Stock or nil
+  entry.Stock0 = Stock or nil
+  entry.SubCategory = SubCategory
+  entry.UnitTypes = UnitTypes
+  entry.CanMove = true
+  table.insert(self.C130GetUnits,entry)
+  return self
+end
+--- User function - Add *generic* unit-type entry for the C-130J-30 Manage Units menu. This type will spawn units that stay in place.
+-- @param #CTLD self
+-- @param #string Name Unique name of this type of unit. E.g. "Humvee".
+-- @param #table Templates Table of #string names of late activated Wrapper.Group#GROUP used to spawn this unit.
+-- @param #CTLD_CARGO.Enum Type Type of unit. I.e. VEHICLE or FOB. VEHICLE will be treated as non-moving here, FOB stays put.
+-- @param #number Stock Number of units in stock. Nil or -1 for unlimited.
+-- @param #string SubCategory Name of sub-category (optional), used for sub-menus when self.usesubcats == true.
+-- @param #string UnitTypes Unit type names (optional). If set, only these unit types can use this entry, e.g. "C-130J-30" or {"C-130J-30"}.
+-- @return #CTLD self
+function CTLD:AddUnitsNoMove(Name,Templates,Type,Stock,SubCategory,UnitTypes)
+  self:T(self.lid .. " AddUnitsNoMove")
+  if not self:_CheckTemplates(Templates) then
+    self:E(self.lid .. "UnitsNoMove for " .. Name .. " has missing template(s)!")
+    return self
+  end
+  self.C130GetUnits = self.C130GetUnits or {}
+  local entry = {}
+  entry.Name = Name
+  entry.Templates = Templates
+  entry.Type = Type
+  entry.Stock = Stock
+  entry.Stock0 = Stock
+  entry.SubCategory = SubCategory
+  entry.UnitTypes = UnitTypes
+  entry.CanMove = false
+  table.insert(self.C130GetUnits,entry)
+  return self
+end
+
+--- User function - Add *generic* unit-type entry for the C-130J-30 Manage Units menu. This type will spawn units that can move.
+-- @param #CTLD self
+-- @param #string Name Unique name of this type of unit. E.g. "Humvee".
+-- @param #table Templates Table of #string names of late activated Wrapper.Group#GROUP used to spawn this unit.
+-- @param #CTLD_CARGO.Enum Type Type of unit. I.e. VEHICLE or FOB. VEHICLE will move when spawned, FOB stays put.
+-- @param #number Stock Number of units in stock. Nil or -1 for unlimited.
+-- @param #string SubCategory Name of sub-category (optional), used for sub-menus when self.usesubcats == true.
+-- @param #string UnitTypes Unit type names (optional). If set, only these unit types can use this entry, e.g. "C-130J-30" or {"C-130J-30"}.
+-- @return #CTLD self
+
 function CTLD:AddCratesCargo(Name, Templates, Type, NoCrates, PerCrateMass, Stock, SubCategory, DontShowInMenu, Location, UnitTypes, Category, TypeName, ShapeName, C130TypeName)
   self:T(self.lid .. " AddCratesCargo")
   if not self:_CheckTemplates(Templates) then
@@ -79547,6 +79881,23 @@ Troopstable[genname].GenericCargo=generic
 end
 end
 end
+    for _id,_unit in pairs(self.C130GetUnits or {}) do
+      local genname = _unit.Name
+      local stock0  = _unit.Stock0 or 0
+      if stock0 > 0 and not Troopstable[genname] then
+        local stock = _unit.Stock or 0
+        local rel   = stock0 > 0 and math.floor((stock/stock0)*100) or 100
+        Troopstable[genname] = {
+          Stock0 = stock0,
+          Stock = stock,
+          StockR = rel,
+          Infield = 0,
+          Inhelo = 0,
+          CratesInfield = 0,
+          Sum = stock,
+        }
+      end
+    end
 for _id,_cargo in pairs(self.Cargo_Troops)do
 local generic=_cargo
 local genname=generic:GetName()
@@ -79565,22 +79916,43 @@ Troopstable[genname].GenericCargo=generic
 end
 end
 end
-for _index,_group in pairs(self.DroppedTroops)do
-if _group and _group:IsAlive()then
-self:T("Looking at ".._group:GetName().." in the field")
-local generic=self:GetGenericCargoObjectFromGroupName(_group:GetName())
-if generic then
-local genname=generic:GetName()
-self:T("Found Generic "..genname.." in the field. Adding.")
-if generic:GetStock0()>0 then
-Troopstable[genname].Infield=Troopstable[genname].Infield+1
-Troopstable[genname].Sum=Troopstable[genname].Infield+Troopstable[genname].Stock+Troopstable[genname].Inhelo
-end
-else
-self:E(self.lid.."Group without Cargo Generic: ".._group:GetName())
-end
-end
-end
+    for _index, _group in pairs(self.DroppedTroops) do
+      if _group and _group:IsAlive() then
+        self:T("Looking at " .. _group:GetName() .. " in the field")
+        local generic = self:GetGenericCargoObjectFromGroupName(_group:GetName())
+        if generic then 
+          local genname = generic:GetName()
+          self:T("Found Generic " .. genname .. " in the field. Adding.")
+          if generic:GetStock0() > 0 then
+            Troopstable[genname].Infield = Troopstable[genname].Infield + 1
+            Troopstable[genname].Sum = Troopstable[genname].Infield + Troopstable[genname].Stock + Troopstable[genname].Inhelo
+          end
+        else
+          local gname = _group:GetName()
+          local uName = nil
+          for _,cfg in pairs(self.C130GetUnits or {}) do
+            local templ = cfg.Templates or {}
+            if type(templ) == "string" then
+              templ = {templ}
+            end
+            for _,tName in pairs(templ) do
+              if string.find(gname,tName,1,true) then
+                uName = cfg.Name
+                break
+              end
+            end
+            if uName then break end
+          end
+          if uName and Troopstable[uName] then
+            self:T("Found C-130 unit " .. uName .. " in the field. Adding.")
+            Troopstable[uName].Infield = Troopstable[uName].Infield + 1
+            Troopstable[uName].Sum = Troopstable[uName].Infield + Troopstable[uName].Stock + Troopstable[uName].Inhelo
+          else
+            self:E(self.lid .. "Group without Cargo Generic: " .. _group:GetName())
+          end
+        end
+      end
+    end
 for _unitname,_loaded in pairs(self.Loaded_Cargo)do
 local _unit=UNIT:FindByName(_unitname)
 if _unit and _unit:IsAlive()then
@@ -79662,6 +80034,62 @@ end
 end
 return Troopstable
 end
+--- User - function to add stock of a certain units type
+-- @param #CTLD self
+-- @param #string Name Name as defined in the generic unit entry.
+-- @param #number Number Number of units/groups to add.
+-- @return #CTLD self
+function CTLD:AddStockUnits(Name, Number)
+  local name = Name or "none"
+  local number = Number or 1
+  local units = self.C130GetUnits or {}
+  for _id,_unit in pairs(units) do
+    if _unit.Name == name then
+      local stock = _unit.Stock
+      if stock == nil or stock == -1 then
+        _unit.Stock = -1
+      else
+        _unit.Stock = stock + number
+      end
+      break
+    end
+  end
+  return self
+end
+
+--- User - function to set the stock of a certain units type
+-- @param #CTLD self
+-- @param #string Name Name as defined in the generic unit entry.
+-- @param #number Number Number of units/groups to be available. Nil or -1 equals unlimited
+-- @return #CTLD self
+function CTLD:SetStockUnits(Name, Number)
+  local name = Name or "none"
+  local number = Number
+  local units = self.C130GetUnits or {}
+  for _id,_unit in pairs(units) do
+    if _unit.Name == name then
+      if number == nil or number == -1 then
+        _unit.Stock = -1
+      else
+        _unit.Stock = number
+      end
+      break
+    end
+  end
+  return self
+end
+
+  --- User - function to get a table of units in stock (C-130 "Get units")
+  -- @param #CTLD self
+  -- @return #table Table Table of Stock, indexed by unit type name
+  function CTLD:GetStockUnits()
+    local Stock = {}
+    local units = self.C130GetUnits or {}
+    for _id,_unit in pairs(units) do
+        Stock[_unit.Name] = _unit.Stock or -1
+    end
+    return Stock
+  end
 function CTLD:AddStockTroops(Name,Number)
 local name=Name or"none"
 local number=Number or 1
@@ -79798,6 +80226,26 @@ for _id,_troop in pairs(gentroops)do
 if _troop.Name==name then
 _troop:RemoveStock(number)
 self:_RefreshQuantityMenusForGroup()
+end
+end
+return self
+end
+function CTLD:RemoveStockUnits(Name, Number)
+local name = Name or "none"
+local number = Number or 1
+local units = self.C130GetUnits or {}
+for _id,_unit in pairs(units) do
+if _unit.Name == name then
+local stock = _unit.Stock
+if stock == nil or stock == -1 then
+_unit.Stock = -1
+else
+_unit.Stock = stock - number
+if _unit.Stock < 0 then
+_unit.Stock = 0
+end
+end
+break
 end
 end
 return self
@@ -80541,11 +80989,22 @@ structure=dataset[10]
 structure=string.gsub(structure,",","")
 end
 local dropzone=ZONE_RADIUS:New("DropZone",vec2,20)
-if cargotype==CTLD_CARGO.Enum.VEHICLE or cargotype==CTLD_CARGO.Enum.FOB then
-local injectvehicle=CTLD_CARGO:New(nil,cargoname,cargotemplates,cargotype,true,true,size,nil,true,mass)
-injectvehicle:SetStaticTypeAndShape(StaticCategory,StaticType,StaticShape)
+if cargotype == CTLD_CARGO.Enum.VEHICLE or cargotype == CTLD_CARGO.Enum.FOB then
+local injectvehicle = CTLD_CARGO:New(nil,cargoname,cargotemplates,cargotype,true,true,size,nil,true,mass)
+injectvehicle:SetStaticTypeAndShape(StaticCategory,StaticType,StaticShape)      
 self:InjectVehicles(dropzone,injectvehicle,self.surfacetypes,self.useprecisecoordloads,structure,timestamp)
-elseif cargotype==CTLD_CARGO.Enum.TROOPS or cargotype==CTLD_CARGO.Enum.ENGINEERS then
+if self.C130GetUnits then
+for _,_unit in pairs(self.C130GetUnits) do
+if _unit.Name == cargoname then
+if type(_unit.Stock) == "number" and _unit.Stock ~= -1 then
+_unit.Stock0 = _unit.Stock0 or _unit.Stock
+_unit.Stock = math.max(0,(_unit.Stock or 0)-1)
+end
+break
+end
+end
+end
+elseif cargotype == CTLD_CARGO.Enum.TROOPS or cargotype == CTLD_CARGO.Enum.ENGINEERS then
 local injecttroops=CTLD_CARGO:New(nil,cargoname,cargotemplates,cargotype,true,true,size,nil,true,mass)
 self:InjectTroops(dropzone,injecttroops,self.surfacetypes,self.useprecisecoordloads,structure,timestamp)
 end

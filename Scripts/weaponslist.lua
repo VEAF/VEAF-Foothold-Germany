@@ -1518,9 +1518,6 @@ local restockWeapons = {
 
 }
 
-local restockAircraft = {
-"FA-18FT","EA-18G","F-22A","FA-18E","B-52H","FA-18F","FA-18ET","F15EX","A-29B","F-23A",
-"Bronco-OV-10A","JAS39Gripen_AG","MiG-31BM","JAS39Gripen","Su-35S","UH-60L","OH-6A","Su-35","JAS39Gripen_BVR","SK-60","T-45","UH-60L_DAP", "MiG-29 Fulcrum"}
 
 local restrictedWeapons = {
     "weapons.containers.ah-64d_radar",
@@ -1620,10 +1617,15 @@ local allowedPlanes = {
   "C-101EB","F-15C","F-16A MLU","Mirage-F1BD","P3C_Orion","Mirage-F1M-EE","An-30M","AH-64A","MQ-9 Reaper","F-5E-3_FC","Mirage-F1EQ","A-10A","FW-190D9",
   "Mirage-F1M-CE","Mirage-F1ED","C-17A","Tornado GR3","Ka-27","E-2C","UH-60A","Mirage-F1C","Mirage-F1CE","AH-1W","MiG-21Bis","A400M_Atlas","Mirage-F1BE",
   "MB-339APAN","An-26B","Hercules","Su-25","Falcon_Gyrocopter","CH-47D","SA342M","Mirage-F1EDA","WingLoong-I","OH58D","MiG-15bis_FC","Mirage-F1CZ",
-  "Mirage-F1BQ","Mirage-F1B","Yak-52","Mirage-F1C-200","Mirage-F1DDA","MiG-15bis","CH-53E","Mirage-F1CJ","FW-190A8","Mirage-F1CK","Mirage-F1AZ",
-  "P-47D-30","Mirage-F1CT","A-10C","TF-51D","Hawk","P-51D","M-2000C","Mirage-F1EH","Mirage-F1CH","MosquitoFBMkVI","SA342Minigun","MiG-29A",
+  "Mirage-F1BQ","Mirage-F1B","Yak-52","Mirage-F1C-200","Mirage-F1DDA","MiG-15bis","CH-53E","Mirage-F1CJ","FW-190A8","Mirage-F1CK","Mirage-F1AZ", "A-10C_2",
+  "P-47D-30","Mirage-F1CT","A-10C","TF-51D","Hawk","P-51D","M-2000C","Mirage-F1EH","Mirage-F1CH","MosquitoFBMkVI","SA342Minigun","MiG-29A","Bronco-OV-10A","OH-6A",
   "Mirage-F1CG","C-130","F-5E-3","E-3A","F-86F Sabre","Christen Eagle II","F-14A","SpitfireLFMkIX","KJ-2000","L-39C","C-101CC","SA342L","C2A_Greyhound",
   "Mi-8MT","Yak-40","P-51D-30-NA","SpitfireLFMkIXCW","Bf-109K-4","Mirage-F1EE","Mi-28N","MiG-27K","Mi-26","Mi-24P","CH-47Fbl1","FA-18C_hornet","F-16C_50", "MiG-29 Fulcrum","UH-60L_DAP","C-130J-30","F-14B","AH-64D_BLK_II"}
+
+local restockAircraft = {
+"FA-18FT","EA-18G","F-22A","FA-18E","B-52H","FA-18F","FA-18ET","F15EX","A-29B","F-23A",
+"Bronco-OV-10A","JAS39Gripen_AG","MiG-31BM","JAS39Gripen","Su-35S","UH-60L","OH-6A","Su-35","JAS39Gripen_BVR","SK-60","T-45","UH-60L_DAP", "MiG-29 Fulcrum"}
+
 
 local allowedItems = {
     "weapons.droptanks.PTB_1500_MIG29A"
@@ -1642,7 +1644,7 @@ function checkWeaponsList(airbase)
 				local unlimitedDetected = false
 				for _,weapon in ipairs(restrictedWeapons) do
 					local amt = storage:GetItemAmount(weapon)
-					if amt > 10000000 then unlimitedDetected = true end
+					if amt == 1000000 then unlimitedDetected = true end
 					if amt > 0 then
 						storage:RemoveItem(weapon,amt)
 					end
@@ -1678,7 +1680,7 @@ function checkWeaponsList(airbase)
 			end
 		end
 
-		for _, n in ipairs({"CVN-72","CVN-73","Tarawa","CVN-59","CVN-74","HMS Invincible","FOB ALPHA"}) do
+		for _, n in ipairs({"FOB ALPHA", "CVN-72","CVN-73","Tarawa","CVN-59","CVN-74","HMS Invincible","FOB ALPHA"}) do
 			if not seen[n] and IsGroupActive(n) then
 				seen[n] = true
 				airbaseList[#airbaseList + 1] = n
@@ -1693,7 +1695,7 @@ function checkWeaponsList(airbase)
 				local unlimitedDetected = false
 				for _,weapon in ipairs(restrictedWeapons) do
 					local amount = storage:GetItemAmount(weapon)
-					if amount > 10000000 then unlimitedDetected = true end
+					if amount == 1000000 then unlimitedDetected = true end
 					if amount > 0 then
 						storage:RemoveItem(weapon,amount)
 					end
@@ -1723,7 +1725,7 @@ function checkWeaponsList(airbase)
                 airbaseList[#airbaseList + 1] = ab
             end
         end
-        for _, n in ipairs({"CVN-72","CVN-73","Tarawa","CVN-59","CVN-74","HMS Invincible"}) do
+        for _, n in ipairs({"FOB ALPHA", "CVN-72","CVN-73","Tarawa","CVN-59","CVN-74","HMS Invincible"}) do
             if not seen[n] and IsGroupActive(n) then
                 seen[n] = true
                 airbaseList[#airbaseList + 1] = n

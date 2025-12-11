@@ -11235,7 +11235,7 @@ end
 function getBlueCapLimit(numPlayers)
   numPlayers = numPlayers or getBluePlayersCount()
   if numPlayers <= 0 then
-    return 3
+    return 2
   elseif numPlayers == 1 then
     return 2
   elseif numPlayers == 2 then
@@ -12196,6 +12196,13 @@ end
 		local zside = self.zoneCommander.side
 		local plane = Unit.Category.AIRPLANE
 		local heli = Unit.Category.HELICOPTER
+		if self.unitCategory and self.unitCategory ~= plane and self.unitCategory ~= heli then
+			if not self._processAirErrorReported then
+				trigger.action.outText("GroupCommander:processAir called for non-air unit "..tostring(self.name).." Report it to leka",30)
+				self._processAirErrorReported = true
+			end
+			return
+		end
 		
 		if self.template then
 			if zside and zside ~= 0 and zside ~= self.side then self.side = zside end
