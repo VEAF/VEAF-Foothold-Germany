@@ -162,3 +162,75 @@ if lfs and io then
         env.info("Created SITAC file in "..sitac_filename)
     end
 end
+
+-- Overload the BattleCommander:getStateTable() to add our own data
+-------------------------------------------------------------------
+
+-- This is a reference to the old function
+Original_BattleCommander_getStateTable = BattleCommander.getStateTable
+-- This is the new function that will replace BattleCommander:getStateTable()
+function BattleCommander_newGetStateTable(self)
+    veaf.loggers.get(veaf.Id):debug("BattleCommander_newGetStateTable() - Starting custom getStateTable")
+
+    local stateTable = Original_BattleCommander_getStateTable(self)
+
+    -- add the waypoints numbers
+    -- use ZoneCommander.flavorText
+    local flavorTextCount = 0
+    for i,v in ipairs(self.zones) do
+        if v.flavorText and stateTable.zones[v.zone] then
+            -- Remove trailing newlines and whitespace from flavorText
+            local cleanFlavorText = v.flavorText:gsub("[\n\r]+$", ""):gsub("^%s+", ""):gsub("%s+$", "")
+            stateTable.zones[v.zone].flavorText = cleanFlavorText
+            flavorTextCount = flavorTextCount + 1
+        end
+    end
+    veaf.loggers.get(veaf.Id):debug("Added flavorText to %d zones", flavorTextCount)
+
+    -- add the active missions
+    -- use mc.missions (MissionCommander global instance)
+    if mc and mc.missions then
+        stateTable.missions = {}
+        local activeMissionCount = 0
+        for i, mission in ipairs(mc.missions) do
+            if mission.isRunning or (mission.isActive and mission:isActive()) then
+                local missionTitle = type(mission.title) == "function" and mission.title() or mission.title
+                local missionInfo = {
+                    title = missionTitle,
+                    description = type(mission.description) == "function" and mission.description() or mission.description,
+                    isRunning = mission.isRunning,
+                    isEscortMission = mission.isEscortMission or false
+                }
+                table.insert(stateTable.missions, missionInfo)
+                activeMissionCount = activeMissionCount + 1
+                veaf.loggers.get(veaf.Id):trace("Added mission: %s (running=%s)", missionTitle, mission.isRunning)
+            end
+        end
+        veaf.loggers.get(veaf.Id):debug("Added %d active missions to state table", activeMissionCount)
+    else
+        veaf.loggers.get(veaf.Id):debug("MissionCommander (mc) not available or has no missions")
+    end
+
+    -- add the arrows schema
+    -- use self.connections
+    if self.connections then
+        stateTable.connections = {}
+        local connectionCount = 0
+        for i, connection in ipairs(self.connections) do
+            table.insert(stateTable.connections, {
+                from = connection.from,
+                to = connection.to
+            })
+            connectionCount = connectionCount + 1
+        end
+        veaf.loggers.get(veaf.Id):debug("Added %d connections to state table", connectionCount)
+    else
+        veaf.loggers.get(veaf.Id):debug("No connections available in BattleCommander")
+    end
+
+    veaf.loggers.get(veaf.Id):debug("BattleCommander_newGetStateTable() - Completed")
+    return stateTable
+end
+
+-- Replace the BattleCommander:getStateTable() function with ours
+BattleCommander.getStateTable = BattleCommander_newGetStateTable

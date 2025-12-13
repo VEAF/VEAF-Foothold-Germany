@@ -45,4 +45,7 @@ Merge code in zoneCommander.lua (BattleCommander:getStateTable()) :
 - [x] prepare mission
 - [x] prepare presets
 - [x] add the VEAF scripts with no radio menu
-
+- [x] add the waypoint numbers to the LUA persistence file
+- [x] add the active missions to the LUA persistence file
+- [x] add the arrows description to the LUA persistence file
+- [ ] add the players position to the LUA persistence file
