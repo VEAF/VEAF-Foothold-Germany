@@ -166,29 +166,39 @@ end
 -- Overload the BattleCommander:getStateTable() to add our own data
 -------------------------------------------------------------------
 
--- This is a reference to the old function
+-- Get a reference to the original function
+veaf.loggers.get(veaf.Id):info("Getting a reference to the original BattleCommander.getStateTable function")
 Original_BattleCommander_getStateTable = BattleCommander.getStateTable
+veaf.loggers.get(veaf.Id):info("Got a reference to the original BattleCommander.getStateTable function")
+
 -- This is the new function that will replace BattleCommander:getStateTable()
 function BattleCommander_newGetStateTable(self)
-    veaf.loggers.get(veaf.Id):debug("BattleCommander_newGetStateTable() - Starting custom getStateTable")
+    veaf.loggers.get(veaf.Id):info("BattleCommander_newGetStateTable() - Starting custom getStateTable")
 
     local stateTable = Original_BattleCommander_getStateTable(self)
 
     -- add the waypoints numbers
-    -- use ZoneCommander.flavorText
-    local flavorTextCount = 0
-    for i,v in ipairs(self.zones) do
-        if v.flavorText and stateTable.zones[v.zone] then
-            -- Remove trailing newlines and whitespace from flavorText
-            local cleanFlavorText = v.flavorText:gsub("[\n\r]+$", ""):gsub("^%s+", ""):gsub("%s+$", "")
-            stateTable.zones[v.zone].flavorText = cleanFlavorText
-            flavorTextCount = flavorTextCount + 1
+    veaf.loggers.get(veaf.Id):info("Adding waypoint numbers to state table")
+    if not veaf.foothold_zonesDetails_cache then
+        veaf.loggers.get(veaf.Id):info("Adding waypoint numbers to the cache")
+        veaf.foothold_zonesDetails_cache = {}
+        local flavorTextCount = 0
+        for i,v in ipairs(self.zones) do
+            if v.flavorText then
+                -- Remove trailing newlines and whitespace from flavorText
+                local cleanFlavorText = v.flavorText:gsub("[\n\r]+$", ""):gsub("^%s+", ""):gsub("%s+$", "")
+                veaf.foothold_zonesDetails_cache[v.zone] = {
+                    flavorText = cleanFlavorText
+                }
+                flavorTextCount = flavorTextCount + 1
+            end
         end
+        veaf.loggers.get(veaf.Id):info("Added waypoint numbers to %d zones", flavorTextCount)
     end
-    veaf.loggers.get(veaf.Id):debug("Added flavorText to %d zones", flavorTextCount)
+    stateTable.zonesDetails = veaf.foothold_zonesDetails_cache or {}
 
     -- add the active missions
-    -- use mc.missions (MissionCommander global instance)
+    veaf.loggers.get(veaf.Id):info("Adding active missions to state table")
     if mc and mc.missions then
         stateTable.missions = {}
         local activeMissionCount = 0
@@ -206,29 +216,63 @@ function BattleCommander_newGetStateTable(self)
                 veaf.loggers.get(veaf.Id):trace("Added mission: %s (running=%s)", missionTitle, mission.isRunning)
             end
         end
-        veaf.loggers.get(veaf.Id):debug("Added %d active missions to state table", activeMissionCount)
+        veaf.loggers.get(veaf.Id):info("Added %d active missions to state table", activeMissionCount)
     else
-        veaf.loggers.get(veaf.Id):debug("MissionCommander (mc) not available or has no missions")
+        veaf.loggers.get(veaf.Id):info("MissionCommander (mc) not available or has no missions")
     end
 
     -- add the arrows schema
-    -- use self.connections
-    if self.connections then
-        stateTable.connections = {}
-        local connectionCount = 0
-        for i, connection in ipairs(self.connections) do
-            table.insert(stateTable.connections, {
-                from = connection.from,
-                to = connection.to
-            })
-            connectionCount = connectionCount + 1
+    veaf.loggers.get(veaf.Id):info("Adding arrows schema to state table")
+    if not veaf.foothold_connections_cache then
+        veaf.loggers.get(veaf.Id):info("Adding arrows schema to the cache")
+        veaf.foothold_connections_cache = {}
+        if self.connections then
+            local connectionCount = 0
+            for i, connection in ipairs(self.connections) do
+                table.insert(veaf.foothold_connections_cache, {
+                    from = connection.from,
+                    to = connection.to
+                })
+                connectionCount = connectionCount + 1
+            end
+            veaf.loggers.get(veaf.Id):info("Computed %d connections for the state table", connectionCount)
+        else
+            veaf.loggers.get(veaf.Id):info("No connections available in BattleCommander")
         end
-        veaf.loggers.get(veaf.Id):debug("Added %d connections to state table", connectionCount)
-    else
-        veaf.loggers.get(veaf.Id):debug("No connections available in BattleCommander")
     end
+    stateTable.connections = veaf.foothold_connections_cache or {}
 
-    veaf.loggers.get(veaf.Id):debug("BattleCommander_newGetStateTable() - Completed")
+    -- add the players positions
+    veaf.loggers.get(veaf.Id):info("Adding players position to state table")
+    stateTable.players = {}
+    local nbPlayers = 0
+    local nbPlayersOK = 0
+    for _, unit in pairs(mist.DBs.humansByName) do
+        nbPlayers = nbPlayers + 1
+        local coalitionId = 0
+        if unit.coalition then
+            if unit.coalition:lower() == "red" then
+                coalitionId = coalition.side.RED
+            elseif unit.coalition:lower() == "blue" then
+                coalitionId = coalition.side.BLUE
+            end
+        end
+        local dcsUnit = Unit.getByName(unit.unitName)
+        if dcsUnit then
+            playerTable = {}
+            playerTable.coalition = unit.coalition
+            playerTable.playerName = dcsUnit:getPlayerName()
+            playerTable.unitType =  dcsUnit:getTypeName()
+            local point = dcsUnit:getPoint()
+			playerTable.latitude, playerTable.longitude, playerTable.altitude = coord.LOtoLL(point)
+            table.insert(stateTable.players, playerTable)
+            nbPlayersOK = nbPlayersOK + 1
+        end
+    end
+    veaf.loggers.get(veaf.Id):info("Added %s active players data out of %s players slots to state table", nbPlayersOK, nbPlayers)
+
+
+    veaf.loggers.get(veaf.Id):info("BattleCommander_newGetStateTable() - Completed")
     return stateTable
 end
 
