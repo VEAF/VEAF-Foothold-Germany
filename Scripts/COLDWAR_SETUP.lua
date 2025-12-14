@@ -2803,6 +2803,12 @@ bc:registerShopItem('gslot','Unlock extra upgrade slot',3000,function(sender)
 	bc:removeShopItem(2, 'gslot')
 	return nil
 end)
+
+bc:registerShopItem('farphere','Deploy FARP',1000,function(sender)
+        return 'Deploy a FARP via map marker.\nUse marker text: buy:farphere.\nMust be outside all zones and at least 10 NM from enemy zones.'
+end,function(_, params)
+        return bc:processMapFarpPurchase(params)
+end)
 ------------------------------------------- End of Zone upgrades ----------------------------------------
 
 -- first value below is how much in stock, the second number value is the ranking in the shop menu list, the third is the new ranking system.
@@ -2817,25 +2823,25 @@ bc:addShopItem(2, 'dynamicdecoy', -1, 6, 1) -- Decoy flight
 end ]]
 bc:addShopItem(2, 'dynamicarco', -1, 8, 3) -- Navy tanker
 bc:addShopItem(2, 'dynamictexaco', -1, 9, 3) -- Airforce tanker
-
-bc:addShopItem(2, 'capture', -1, 10, 1) -- emergency capture
-bc:addShopItem(2, 'smoke', -1, 11, 1) -- smoke on target
-bc:addShopItem(2, 'intel', -1, 12, 5) -- Intel
-bc:addShopItem(2, 'supplies2', -1, 13, 1) -- upgrade friendly zone
-bc:addShopItem(2, 'supplies', -1, 14, 6) -- fully upgrade friendly zone
-bc:addShopItem(2, 'zinf', -1, 15, 5) -- add infantry to a zone
-bc:addShopItem(2, 'zarm', -1, 16, 7) -- add armour group to a zone
-bc:addShopItem(2, 'zsam', -1, 17, 6) -- add Nasams to a zone
-bc:addShopItem(2, 'gslot', 1, 18, 9) -- add another slot for upgrade
+bc:addShopItem(2, 'farphere', -1, 10, 2) -- deploy FARP
+bc:addShopItem(2, 'capture', -1, 11, 1) -- emergency capture
+bc:addShopItem(2, 'smoke', -1, 12, 1) -- smoke on target
+bc:addShopItem(2, 'intel', -1, 13, 5) -- Intel
+bc:addShopItem(2, 'supplies2', -1, 14, 1) -- upgrade friendly zone
+bc:addShopItem(2, 'supplies', -1, 15, 6) -- fully upgrade friendly zone
+bc:addShopItem(2, 'zinf', -1, 16, 5) -- add infantry to a zone
+bc:addShopItem(2, 'zarm', -1, 17, 7) -- add armour group to a zone
+bc:addShopItem(2, 'zsam', -1, 18, 6) -- add Nasams to a zone
+bc:addShopItem(2, 'gslot', 1, 19, 9) -- add another slot for upgrade
 if Era == 'Modern' then
-    bc:addShopItem(2, 'zpat', -1, 19, 8) -- Patriot system.
+    bc:addShopItem(2, 'zpat', -1, 20, 8) -- Patriot system.
 end
-bc:addShopItem(2, 'armor', -1, 20, 3) -- combined arms
-bc:addShopItem(2, 'artillery', -1, 21, 3) -- combined arms
-bc:addShopItem(2, 'recon', -1, 22, 3) -- combined arms
-bc:addShopItem(2, 'airdef', -1, 23, 3) -- combined arms
-bc:addShopItem(2, '9lineam', -1, 24, 1) -- free jtac
-bc:addShopItem(2, '9linefm', -1, 25, 1) -- free jtac
+bc:addShopItem(2, 'armor', -1, 21, 3) -- combined arms
+bc:addShopItem(2, 'artillery', -1, 22, 3) -- combined arms
+bc:addShopItem(2, 'recon', -1, 23, 3) -- combined arms
+bc:addShopItem(2, 'airdef', -1, 24, 3) -- combined arms
+bc:addShopItem(2, '9lineam', -1, 25, 1) -- free jtac
+bc:addShopItem(2, '9linefm', -1, 26, 1) -- free jtac
 
 
 
@@ -3658,10 +3664,10 @@ mc:trackMission({
         if capWinner then
             local reward = capTargetPlanes * 100
             local pname  = capWinner
-            bc.playerContributions[2][pname] = (bc.playerContributions[2][pname] or 0) + reward
+            bc:addContribution(pname, 2, reward)
             local jp = bc.jointPairs and bc.jointPairs[pname]
             if jp and bc:_jointPartnerAlive(pname) and bc:_jointPartnerAlive(jp) and bc.playerContributions[2][jp] ~= nil then
-                bc.playerContributions[2][jp] = (bc.playerContributions[2][jp] or 0) + reward
+                bc:addContribution(jp, 2, reward)
                 bc:addTempStat(jp,'CAP mission (Joint mission)',1)
                 bc:addTempStat(pname,'CAP mission (Joint mission)',1)
                 trigger.action.outTextForCoalition(2,"["..pname.."] and ["..jp.."] completed the CAP mission!\nReward pending: "..reward.." credits each (land to redeem).",20)
@@ -3734,10 +3740,10 @@ mc:trackMission({
         if casWinner then
             local reward = casTargetKills*30
             local pname  = casWinner
-            bc.playerContributions[2][pname] = (bc.playerContributions[2][pname] or 0) + reward
+            bc:addContribution(pname, 2, reward)
             local jp = bc.jointPairs and bc.jointPairs[pname]
             if jp and bc:_jointPartnerAlive(pname) and bc:_jointPartnerAlive(jp) and bc.playerContributions[2][jp] ~= nil then
-                bc.playerContributions[2][jp] = (bc.playerContributions[2][jp] or 0) + reward
+                bc:addContribution(jp, 2, reward)
             	bc:addTempStat(jp,'CAS mission (Joint mission)',1)
 				bc:addTempStat(pname,'CAS mission (Joint mission)',1)
 				trigger.action.outTextForCoalition(2,'['..pname..'] and ['..jp..'] completed the CAS mission!\nReward pending: '..reward..' credits each (land to redeem).',20)
@@ -3877,7 +3883,7 @@ function generateEscortMission(zoneName, groupName, groupID, group, mission)
 				if cnt > 0 then
 					for pl in pairs(playlist) do
 						if bc.playerContributions[2][pl] ~= nil then
-							bc.playerContributions[2][pl] = bc.playerContributions[2][pl] + share
+							bc:addContribution(pl, 2, share)
 							bc:addTempStat(pl,'Escort Mission',1)
 						end
 					end

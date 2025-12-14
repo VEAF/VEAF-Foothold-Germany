@@ -340,7 +340,7 @@ function BuildAFARP(Coordinate, stamp)
     allZones[#allZones + 1] = FName
   end
 
-  UTILS.SpawnFARPAndFunctionalStatics(FName, coord, ENUMS.FARPType.INVISIBLE, Foothold_ctld.coalition, country.id.USA, FarpNameNumber, FARPFreq, radio.modulation.AM, nil, nil, nil, 6000, 6000,1000,nil, true, true, 3, 80, 80)
+  UTILS.SpawnFARPAndFunctionalStatics(FName, coord, ENUMS.FARPType.INVISIBLE, Foothold_ctld.coalition, country.id.USA, FarpNameNumber, FARPFreq, radio.modulation.AM, nil, nil, nil, 10000, 0,0,nil, true, true, 3, 80, 80)
   
   Foothold_ctld:AddCTLDZone(FName, CTLD.CargoZoneType.LOAD, SMOKECOLOR.Blue, true, false)
   MESSAGE:New(string.format("%s in operation!", FName), 15):ToBlue()
@@ -363,20 +363,20 @@ function BuildAFARP(Coordinate, stamp)
     if srcStore then
       local dstStore=STORAGE:FindByName(FName)
       if dstStore then
-        for item,qty in pairs(srcStore:GetInventory()) do
-          if qty>0 then
-            dstStore:SetItem(item,qty)
-          end
+        local aircraft,liquids,weapons=srcStore:GetInventory()
+        for item,qty in pairs(aircraft or{}) do
+          if qty>0 then dstStore:SetItem(item,qty) end
         end
+        for item,qty in pairs(weapons or{}) do
+          if qty>0 then dstStore:SetItem(item,qty) end
+        end
+		dstStore:SetItem('UH-60L_DAP',1073741823)
+		dstStore:SetItem("UH-60L",1073741823)
       end
     end
   end
 
-  if Era=='Coldwar' then
-    SCHEDULER:New(nil,CopyWarehouse,{},10)
-  else
-    CopyWarehouse()
-  end
+SCHEDULER:New(nil,CopyWarehouse,{},2)
 
   if not NextMarkupId then NextMarkupId = 120000 end
   local markId = NextMarkupId; NextMarkupId = NextMarkupId + 1
@@ -1169,7 +1169,7 @@ function CaptureZoneIfNeutral()
             currentZone:capture(2)
             troopGroup:Destroy()
             if pname and bc.playerContributions[2][pname] ~= nil then
-                bc.playerContributions[2][pname] = (bc.playerContributions[2][pname] or 0) + 200
+                bc:addContribution(pname, 2, 200)
                 bc:addTempStat(pname, 'Zone capture', 1)
                 noteEvent(zoneName, pname, 'captured', 200)
             end
@@ -1194,7 +1194,7 @@ function CaptureZoneIfNeutral()
                     currentZone:upgrade()
                     troopGroup:Destroy()
                     if pname then
-                        bc.playerContributions[2][pname] = (bc.playerContributions[2][pname] or 0) + 200
+                        bc:addContribution(pname, 2, 200)
                         bc:addTempStat(pname, 'Zone upgrade', 1)
                         noteEvent(zoneName, pname, 'upgraded', 200)
                     end

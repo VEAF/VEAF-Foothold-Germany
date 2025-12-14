@@ -87521,16 +87521,23 @@ end
 end
 local waypointcoord=COORDINATE:New(0,0,0)
 if coord then
+local targetcoord=self:GetTargetCoordinate()
+if targetcoord then
 if self.missionWaypointOffsetNM then
-local tgt=self:GetTargetCoordinate()
-local distM=coord:Get2DDistance(tgt)
+local distM=coord:Get2DDistance(targetcoord)
 local wantM=UTILS.NMToMeters(self.missionWaypointOffsetNM)
 if distM>wantM then
 local frac=(distM-wantM)/distM
-waypointcoord=coord:GetIntermediateCoordinate(tgt, frac)
+waypointcoord=coord:GetIntermediateCoordinate(targetcoord,frac)
+else
+waypointcoord=coord:GetIntermediateCoordinate(targetcoord,self.missionFraction)
 end
 else
-waypointcoord=coord:GetIntermediateCoordinate(self:GetTargetCoordinate(),self.missionFraction)
+waypointcoord=coord:GetIntermediateCoordinate(targetcoord,self.missionFraction)
+end
+else
+self:E(self.lid..string.format("ERROR: Cannot get target coordinate for mission waypoint (group %s)!",tostring(group:GetName())))
+waypointcoord=coord
 end
 else
 self:E(self.lid..string.format("ERROR: Cannot get coordinate of group %s (alive=%s)!",tostring(group:GetName()),tostring(group:IsAlive())))

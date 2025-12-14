@@ -1,10 +1,10 @@
-# VEAF Foothold Germany v3.93
+# VEAF Foothold Germany v3.94
 
 ## Presentation
 
 This is a modification of the original Foothold Germany mission by Leka, that I adapted to make it load all the script files and config directly from the server.
 
-**Done using the latest version updated on 2025.12.11.**
+**Done using the latest version updated on 2025.12.14.**
 
 ## Update
 
@@ -48,4 +48,4 @@ Merge code in zoneCommander.lua (BattleCommander:getStateTable()) :
 - [x] add the waypoint numbers to the LUA persistence file
 - [x] add the active missions to the LUA persistence file
 - [x] add the arrows description to the LUA persistence file
-- [ ] add the players position to the LUA persistence file
+- [x] add the players position to the LUA persistence file

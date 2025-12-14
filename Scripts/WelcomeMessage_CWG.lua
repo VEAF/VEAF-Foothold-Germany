@@ -1436,10 +1436,12 @@ function static:OnEventTakeoff(EventData)
 
     local playerUnit = EventData.IniUnit
     local playerGroup = playerUnit:GetGroup()
+    if not playerGroup then return end
     local PGName = playerGroup:GetName()
+    if not PGName then return end
     local playerType = playerUnit:GetTypeName()
 
-    if playerType == "F-15ESE" or playerType == "A-10C_2" or playerType == "Hercules" then
+    if playerType == "F-15ESE" or playerType == "A-10C_2" or playerType == "Hercules" or playerType == "C-130J-30" then
         spawnedGroups[PGName] = spawnedGroups[PGName] or {
             playerName = EventData.IniPlayerName,
             escortGroups = {},
