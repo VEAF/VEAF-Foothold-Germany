@@ -177,23 +177,25 @@ function BattleCommander_newGetStateTable(self)
 
     local stateTable = Original_BattleCommander_getStateTable(self)
 
-    -- add the waypoints numbers
-    veaf.loggers.get(veaf.Id):info("Adding waypoint numbers to state table")
+    -- add the zone details
+    veaf.loggers.get(veaf.Id):info("Adding zone details to state table")
     if not veaf.foothold_zonesDetails_cache then
-        veaf.loggers.get(veaf.Id):info("Adding waypoint numbers to the cache")
+        veaf.loggers.get(veaf.Id):info("Adding zone details to the cache")
         veaf.foothold_zonesDetails_cache = {}
-        local flavorTextCount = 0
+        local zonesCount = 0
         for i,v in ipairs(self.zones) do
+            local cleanFlavorText = nil
             if v.flavorText then
                 -- Remove trailing newlines and whitespace from flavorText
-                local cleanFlavorText = v.flavorText:gsub("[\n\r]+$", ""):gsub("^%s+", ""):gsub("%s+$", "")
-                veaf.foothold_zonesDetails_cache[v.zone] = {
-                    flavorText = cleanFlavorText
-                }
-                flavorTextCount = flavorTextCount + 1
+                cleanFlavorText = v.flavorText:gsub("[\n\r]+$", ""):gsub("^%s+", ""):gsub("%s+$", "")
             end
+            veaf.foothold_zonesDetails_cache[v.zone] = {
+                flavorText = cleanFlavorText,
+                hidden     = v.isHidden or false
+            }
+            zonesCount = zonesCount + 1
         end
-        veaf.loggers.get(veaf.Id):info("Added waypoint numbers to %d zones", flavorTextCount)
+        veaf.loggers.get(veaf.Id):info("Added zone details to %d zones", zonesCount)
     end
     stateTable.zonesDetails = veaf.foothold_zonesDetails_cache or {}
 
