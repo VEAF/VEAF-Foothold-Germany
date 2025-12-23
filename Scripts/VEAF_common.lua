@@ -153,13 +153,16 @@ function writeToFile(filepath, content)
     return true
 end
 
--- Note the persistence filename in a static file for the online SITAC map (./Missions/Saves/foothold.status)
 if lfs and io then
-    local persistence_filename = bc.saveFile
-    local sitac_filename = lfs.writedir() .. [[Missions/Saves/foothold.status]]
-    local result = writeToFile(sitac_filename, persistence_filename.."\n")
-    if result then
-        env.info("Created SITAC file in "..sitac_filename)
+    if bc and bc.saveFile then
+        local persistence_filename = bc.saveFile
+        local sitac_filename = lfs.writedir() .. [[Missions/Saves/foothold.status]]
+        local result = writeToFile(sitac_filename, persistence_filename .. "\n")
+        if result then
+            env.info("Created SITAC file in " .. sitac_filename)
+        end
+    else
+        env.info("Skipping SITAC file creation: persistence filename unavailable")
     end
 end
 
@@ -209,7 +212,7 @@ function BattleCommander_newGetStateTable(self)
                 local missionTitle = type(mission.title) == "function" and mission.title() or mission.title
                 local missionInfo = {
                     title = missionTitle,
-                    description = type(mission.description) == "function" and mission.description() or mission.description,
+                    description = "PLACEHOLDER until LUA export can handle multiline strings", -- mission.description,
                     isRunning = mission.isRunning,
                     isEscortMission = mission.isEscortMission or false
                 }
@@ -261,18 +264,45 @@ function BattleCommander_newGetStateTable(self)
         end
         local dcsUnit = Unit.getByName(unit.unitName)
         if dcsUnit then
-            playerTable = {}
+            local playerTable = {}
             playerTable.coalition = unit.coalition
             playerTable.playerName = dcsUnit:getPlayerName()
-            playerTable.unitType =  dcsUnit:getTypeName()
+            playerTable.unitType = dcsUnit:getTypeName()
             local point = dcsUnit:getPoint()
-			playerTable.latitude, playerTable.longitude, playerTable.altitude = coord.LOtoLL(point)
+            if point then
+                playerTable.latitude, playerTable.longitude, playerTable.altitude = coord.LOtoLL(point)
+            end
             table.insert(stateTable.players, playerTable)
             nbPlayersOK = nbPlayersOK + 1
         end
     end
     veaf.loggers.get(veaf.Id):info("Added %s active players data out of %s players slots to state table", nbPlayersOK, nbPlayers)
 
+    -- add the ejected pilots positions
+    veaf.loggers.get(veaf.Id):info("Adding ejected pilots position to state table")
+    stateTable.ejectedPilots = {}
+    local nbEjectedPilots = 0
+    if lc and lc.ejectedPilots then
+        for _, ejectedPilot in pairs(lc.ejectedPilots) do
+            local ejectedPilotTable = {
+                playerName = "Unknown",
+                lostCredits = 0
+            }
+            local objectID = ejectedPilot:getObjectID()
+            local pilotData = landedPilotOwners and landedPilotOwners[objectID]
+            if pilotData then
+                ejectedPilotTable.playerName = pilotData.playerName or "Unknown"
+                ejectedPilotTable.lostCredits = pilotData.lostCredits or 0
+            end
+            local point = ejectedPilot:getPoint()
+            if point then
+                ejectedPilotTable.latitude, ejectedPilotTable.longitude, ejectedPilotTable.altitude = coord.LOtoLL(point)
+            end
+            table.insert(stateTable.ejectedPilots, ejectedPilotTable)
+            nbEjectedPilots = nbEjectedPilots + 1
+        end
+    end
+    veaf.loggers.get(veaf.Id):info("Added %s ejected pilots data to state table", nbEjectedPilots)
 
     veaf.loggers.get(veaf.Id):info("BattleCommander_newGetStateTable() - Completed")
     return stateTable
