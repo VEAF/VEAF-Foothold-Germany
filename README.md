@@ -49,3 +49,4 @@ Merge code in zoneCommander.lua (BattleCommander:getStateTable()) :
 - [x] add the active missions to the LUA persistence file
 - [x] add the arrows description to the LUA persistence file
 - [x] add the players position to the LUA persistence file
+- [x] add the ejected pilots position to the LUA persistence file

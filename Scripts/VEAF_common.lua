@@ -166,7 +166,50 @@ if lfs and io then
     end
 end
 
--- Overload the BattleCommander:getStateTable() to add our own data
+-- Overload the Utils.serializeValue() to add our own data
+-------------------------------------------------------------------
+
+veaf.loggers.get(veaf.Id):info("Replacing the Utils.serializeValue function")
+
+-- This is the new function that will replace Utils.serializeValue()
+function Utils.serializeValue(value, indent, oneLine)		indent = indent or 0
+    local res = ''
+    if type(value)=='number' or type(value)=='boolean' then
+        res = res..tostring(value)
+    elseif type(value)=='string' then
+        res = res..string.format('%q', value)
+    elseif type(value)=='table' then
+        local pad = string.rep(' ', indent)
+        local pad2 = string.rep(' ', indent + 2)
+        local nl = oneLine and '' or '\n'
+        res = res..'{'..(oneLine and ' ' or nl)
+        for i,v in pairs(value) do
+            local k
+            if type(i)=='number' then
+                k = '['..i..']='
+            else
+                k = '[\''..i..'\']='
+            end
+            res = res..(oneLine and '' or pad2)..k..Utils.serializeValue(v, indent + 2, oneLine)..','..nl
+        end
+        if not oneLine then
+            res = res..pad..'}'
+        else
+            if res:sub(-1) == ' ' then
+                res = res
+            end
+            if res:sub(-2) == ', ' then
+                res = res:sub(1,-3)
+            elseif res:sub(-1) == ',' then
+                res = res:sub(1,-2)
+            end
+            res = res..' }'
+        end
+    end
+    return res
+end
+
+-- Overload the BattleCommander.getStateTable() to add our own data
 -------------------------------------------------------------------
 
 -- Get a reference to the original function
@@ -210,9 +253,10 @@ function BattleCommander_newGetStateTable(self)
         for i, mission in ipairs(mc.missions) do
             if mission.isRunning or (mission.isActive and mission:isActive()) then
                 local missionTitle = type(mission.title) == "function" and mission.title() or mission.title
+                local missionDescription = type(mission.description) == "function" and mission.description() or mission.description
                 local missionInfo = {
                     title = missionTitle,
-                    description = "PLACEHOLDER until LUA export can handle multiline strings", -- mission.description,
+                    description = missionDescription,
                     isRunning = mission.isRunning,
                     isEscortMission = mission.isEscortMission or false
                 }
@@ -251,17 +295,7 @@ function BattleCommander_newGetStateTable(self)
     veaf.loggers.get(veaf.Id):info("Adding players position to state table")
     stateTable.players = {}
     local nbPlayers = 0
-    local nbPlayersOK = 0
     for _, unit in pairs(mist.DBs.humansByName) do
-        nbPlayers = nbPlayers + 1
-        local coalitionId = 0
-        if unit.coalition then
-            if unit.coalition:lower() == "red" then
-                coalitionId = coalition.side.RED
-            elseif unit.coalition:lower() == "blue" then
-                coalitionId = coalition.side.BLUE
-            end
-        end
         local dcsUnit = Unit.getByName(unit.unitName)
         if dcsUnit then
             local playerTable = {}
@@ -273,10 +307,10 @@ function BattleCommander_newGetStateTable(self)
                 playerTable.latitude, playerTable.longitude, playerTable.altitude = coord.LOtoLL(point)
             end
             table.insert(stateTable.players, playerTable)
-            nbPlayersOK = nbPlayersOK + 1
+            nbPlayers = nbPlayers + 1
         end
     end
-    veaf.loggers.get(veaf.Id):info("Added %s active players data out of %s players slots to state table", nbPlayersOK, nbPlayers)
+    veaf.loggers.get(veaf.Id):info("Added %s active players to state table", nbPlayers)
 
     -- add the ejected pilots positions
     veaf.loggers.get(veaf.Id):info("Adding ejected pilots position to state table")
@@ -289,7 +323,7 @@ function BattleCommander_newGetStateTable(self)
                 lostCredits = 0
             }
             local objectID = ejectedPilot:getObjectID()
-            local pilotData = landedPilotOwners and landedPilotOwners[objectID]
+            local pilotData = (landedPilotOwners and landedPilotOwners[objectID]) or (ejectedPilotOwners and ejectedPilotOwners[objectID])
             if pilotData then
                 ejectedPilotTable.playerName = pilotData.playerName or "Unknown"
                 ejectedPilotTable.lostCredits = pilotData.lostCredits or 0
