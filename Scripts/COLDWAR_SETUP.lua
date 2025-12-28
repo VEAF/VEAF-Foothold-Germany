@@ -1,5 +1,11 @@
 env.info("Mission Setup : is loading.")
 
+if Era =='Coldwar' then
+    env.info("Mission Setup : Cold War Era selected.")
+else
+    env.info("Mission Setup : Modern Era selected.")
+end
+
 local function random(min,max) return min + math.random()*(max - min) end
 
 function merge(tbls)
@@ -124,13 +130,14 @@ flavor = {
 
 }
 
-local filepath = (Era == 'Coldwar') and 'FootHold_Germany_ColdWar_V0.1.lua' or 'FootHold_Germany_Modern_V0.1.lua'
-env.info('[DEBUG] Era='..tostring(Era)..'  ->  '..filepath)
-if lfs then 
-	local dir = lfs.writedir()..'Missions/Saves/'
-	lfs.mkdir(dir)
-	filepath = dir..filepath
-	env.info('Foothold - Save file path: '..filepath)
+FootholdSaveBaseName = (Era == 'Coldwar') and 'FootHold_Germany_ColdWar_V0.1' or 'FootHold_Germany_Modern_V0.1'
+
+local filepath = FootholdSaveBaseName .. '.lua'
+if lfs then
+  FootholdSavePath = FootholdSavePath or (lfs.writedir()..'Missions/Saves')
+  lfs.mkdir(FootholdSavePath)
+  filepath = FootholdSavePath .. '/' .. (FootholdSaveBaseName .. '.lua')
+  env.info('Foothold - Save file path: '..filepath)
 end
 
 upgrades = {
@@ -486,6 +493,7 @@ if Era == "Coldwar" then
         'RED_SU-24M_TWOSHIP',
         'RED_SU-24M_ONESHIP',
         'F4E_BLUE_SEAD',
+        'Intruder_BLUE_SEAD',
     }
     CasHeloTemplate = CasHeloTemplate or {
         'RED_Mi-24V_ONESHIP',
@@ -592,9 +600,9 @@ SupplyConvoy = SupplyConvoy or {
     "SupplyConvoy_Blue 1",
 }
 
-SupplyPlaneTemplate = SupplyPlaneTemplate or {
+PlaneSupplyTemplate = PlaneSupplyTemplate or {
 	"IL-76MD",
-	"C-17A",
+	"C-130J-30",
 }
 
 function CasAltitude() return math.random(15,25)*1000 end
@@ -604,13 +612,19 @@ function RunwayStrikeAltitude() return math.random(23,28)*1000 end
 
 
 zones.bitburg:addGroups({
-	GroupCommander:new({name='Bitburg-supply-Hahn', mission='supply', template='HeloSupplyTemplate', targetzone='Hahn'}),
+	--GroupCommander:new({name='Bitburg-supply-Hahn', mission='supply', template='HeloSupplyTemplate', targetzone='Hahn'}),
+	GroupCommander:new({name='Bitburg-supply-Hahn', mission='supply', template='PlaneSupplyTemplate', targetzone='Hahn'}),
+    GroupCommander:new({name='Bitburg-supply-Hahn-Warehouse', mission='supply', template='PlaneSupplyTemplate',MissionType ='Warehouse', targetzone='Hahn'}),
+	GroupCommander:new({name='Bitburg-supply-Frankfurt', mission='supply', template='PlaneSupplyTemplate', targetzone='Frankfurt'}),
+	GroupCommander:new({name='Bitburg-supply-Ramstein', mission='supply', template='PlaneSupplyTemplate', targetzone='Ramstein'}),
+	GroupCommander:new({name='Bitburg-supply-Ramstein-Warehouse', mission='supply', template='PlaneSupplyTemplate',MissionType ='Warehouse', targetzone='Ramstein'}),
 	GroupCommander:new({name='Bitburg-attack-Hahn-Cas', mission='attack', template='CasHeloTemplate',MissionType='CAS', targetzone='Hahn'}),
 	GroupCommander:new({name='Bitburg-attack-Mendig-East-Cap', mission='attack', template='CapPlaneTemplate',MissionType='CAP', targetzone='Mendig East FARP', Altitude = CapAltitude()}),
 	GroupCommander:new({name='Bitburg-attack-SAM-Alpha-SEAD', mission='attack', template='SeadPlaneTemplate',MissionType='SEAD', targetzone='SAM-Alpha', Altitude = SeadAltitude()}),
 })
 
 zones.hahn:addGroups({
+    GroupCommander:new({name='Hahn-supply-Frankfurt-Warehouse', mission='supply', template='PlaneSupplyTemplate',MissionType ='Warehouse', targetzone='Frankfurt'}),
 	GroupCommander:new({name='Hahn-supply-Mendig', mission='supply', template='HeloSupplyTemplate', targetzone='Mendig'}),
 	GroupCommander:new({name='Hahn-supply-Baumholder FARP', mission='supply', template='HeloSupplyTemplate', targetzone='Baumholder FARP'}),
 	GroupCommander:new({name='Hahn-supply-Airracing Frankfurt', mission='supply', template='HeloSupplyTemplate', targetzone='Airracing Frankfurt'}),
@@ -690,7 +704,9 @@ zones.frankfurt:addGroups({
 	GroupCommander:new({name='Frankfurt-Attack-Hahn-RunwayStrike', mission='attack',template='RunwayStrikePlaneTemplate',MissionType='RUNWAYSTRIKE', targetzone='Hahn', Altitude = CasAltitude()}),
 	GroupCommander:new({name='Frankfurt-supply-Hahn', mission='supply', template='HeloSupplyTemplate', targetzone='Hahn'}),
 	GroupCommander:new({name='Frankfurt-supply-Airracing-frankfurt-Convoy', mission='supply', template='SupplyConvoy', targetzone='Airracing Frankfurt', type='surface'}),
-	GroupCommander:new({name='Frankfurt-supply-Gelnhausen', mission='supply', template='HeloSupplyTemplate', targetzone='Gelnhausen'})
+	GroupCommander:new({name='Frankfurt-supply-Gelnhausen', mission='supply', template='PlaneSupplyTemplate', targetzone='Gelnhausen'}),
+	GroupCommander:new({name='Frankfurt-supply-Bindersleben', mission='supply', template='PlaneSupplyTemplate', targetzone='Bindersleben'}),
+	GroupCommander:new({name='Frankfurt-supply-Schkeuditz', mission='supply', template='PlaneSupplyTemplate', targetzone='Schkeuditz'})
 })
 
 zones.fritzlar:addGroups({
@@ -738,7 +754,8 @@ zones.bindersleben:addGroups({
 
 zones.naumburgfarp:addGroups({
 	GroupCommander:new({name='Naumburg FARP-supply-Bindersleben', mission='supply', template='HeloSupplyTemplate', targetzone='Bindersleben'}),
-	GroupCommander:new({name='Naumburg FARP-supply-Schkeuditz', mission='supply', template='HeloSupplyTemplate', targetzone='Schkeuditz'})
+	GroupCommander:new({name='Naumburg FARP-supply-Schkeuditz', mission='supply', template='HeloSupplyTemplate', targetzone='Schkeuditz'}),
+	GroupCommander:new({name='Naumburg FARP-attack-Bindersleben', mission='attack', template='AttackConvoy', targetzone='Bindersleben',type='surface'})
 })
 
 zones.schkeuditz:addGroups({
@@ -749,8 +766,11 @@ zones.schkeuditz:addGroups({
 	GroupCommander:new({name='Schkeuditz-attack-Bindersleben-Sead', mission='attack',template='SeadPlaneTemplate', targetzone='Naumburg FARP'}),
 	GroupCommander:new({name='Schkeuditz-attack-Naumburg FARP', mission='attack', template='AttackConvoy', targetzone='Naumburg FARP', type='surface'}),
 	GroupCommander:new({name='Schkeuditz-supply-Zerbst', mission='supply', template='HeloSupplyTemplate', targetzone='Zerbst'}),
+	GroupCommander:new({name='Schkeuditz-supply-Tegel', mission='supply', template='PlaneSupplyTemplate', targetzone='Tegel'}),
+	GroupCommander:new({name='Schkeuditz-supply-Braunschweig', mission='supply', template='PlaneSupplyTemplate', targetzone='Braunschweig'}),
+	GroupCommander:new({name='Schkeuditz-supply-Hannover', mission='supply', template='PlaneSupplyTemplate', targetzone='Hannover'}),
 	GroupCommander:new({name='Schkeuditz-supply-SAM-Delta', mission='supply', template='SupplyConvoy', targetzone='SAM-Delta', type='surface', spawnDelayFactor = 3}),
-	GroupCommander:new({name='Schkeuditz-attack-Naumburg FARP', mission='attack', template='AttackConvoy', targetzone='Naumburg FARP', type='surface', spawnDelayFactor = 3})
+	GroupCommander:new({name='Schkeuditz-attack-Naumburg FARP', mission='attack', template='AttackConvoy', targetzone='Naumburg FARP', type='surface', spawnDelayFactor = 2})
 })
 
 zones.zerbst:addGroups({
@@ -772,6 +792,7 @@ zones.mahlwinkel:addGroups({
 	GroupCommander:new({name='Mahlwinkel-supply-Zerbst', mission='supply', template='HeloSupplyTemplate', targetzone='Zerbst'}),
 	GroupCommander:new({name='Mahlwinkel-supply-Briest', mission='supply', template='HeloSupplyTemplate', targetzone='Briest'}),
 	GroupCommander:new({name='Mahlwinkel-supply-Braunschweig', mission='supply', template='HeloSupplyTemplate', targetzone='Braunschweig'}),
+	GroupCommander:new({name='Mahlwinkel-attack-Zerbst', mission='attack', template='CasPlaneTemplate',MissionType='CAS', targetzone='Zerbst', Altitude = CasAltitude()}),
 	GroupCommander:new({name='Mahlwinkel-supply-SAM-Echo', mission='supply', template='SupplyConvoy', targetzone='SAM-Echo', type='surface', spawnDelayFactor = 3}),
 	GroupCommander:new({name='Mahlwinkel-patrol-Bindersleben-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Bindersleben', Altitude = CapAltitude()}),
 	GroupCommander:new({name='Mahlwinkel-patrol-Schkeuditz', mission='patrol',template='CapPlaneTemplate',MissionType='CAP', targetzone='Schkeuditz', Altitude = CapAltitude()}),
@@ -789,6 +810,9 @@ zones.hannover:addGroups({
 	GroupCommander:new({name='Hannover-patrol-Braunschweig-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Braunschweig', Altitude = CapAltitude()}),
 	GroupCommander:new({name='Hannover-supply-Braunschweig', mission='supply', template='HeloSupplyTemplate', targetzone='Braunschweig'}),
 	GroupCommander:new({name='Hannover-supply-Fassberg', mission='supply', template='HeloSupplyTemplate', targetzone='Fassberg'}),
+	GroupCommander:new({name='Hannover-attack-Mahlwinkel-Cas', mission='attack', template='CasPlaneTemplate',MissionType='CAS', targetzone='Mahlwinkel', Altitude = CasAltitude()}),
+	GroupCommander:new({name='Hannover-attack-Zerbst-Cas', mission='attack', template='CasPlaneTemplate',MissionType='CAS', targetzone='Zerbst', Altitude = CasAltitude()}),
+	GroupCommander:new({name='Hannover-attack-Zerbst-Sead', mission='attack', template='SeadPlaneTemplate',MissionType='SEAD', targetzone='Zerbst', Altitude = SeadAltitude()}),
 	GroupCommander:new({name='Hannover-supply-SAM-Golf', mission='supply', template='SupplyConvoy', targetzone='SAM-Golf', type='surface', spawnDelayFactor = 2, condition=function() return CustomFlags["HannoverSupply"] ~= true end}),
 	GroupCommander:new({name='Hannover-supply-SAM-Foxtrot', mission='supply', template='SupplyConvoy', targetzone='SAM-Foxtrot', type='surface', spawnDelayFactor = 4, condition=function() return CustomFlags["HannoverSupply"] ~= true end})
 })
@@ -797,7 +821,9 @@ zones.fassberg:addGroups({
 	GroupCommander:new({name='Fassberg-attack-patrol-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Braunschweig', Altitude = CapAltitude()}),
 	GroupCommander:new({name='Fassberg-patrol-Mahlwinkel-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Mahlwinkel', Altitude = CapAltitude()}),
 	GroupCommander:new({name='Fassberg-supply-Hannover', mission='supply', template='HeloSupplyTemplate', targetzone='Hannover'}),
-	GroupCommander:new({name='Fassberg-supply-Scheessel', mission='supply', template='HeloSupplyTemplate', targetzone='Scheessel'})
+	GroupCommander:new({name='Fassberg-supply-Scheessel', mission='supply', template='HeloSupplyTemplate', targetzone='Scheessel'}),
+	GroupCommander:new({name='Fassberg-supply-Bremen', mission='supply', template='PlaneSupplyTemplate', targetzone='Bremen'}),
+
 })
 
 zones.scheessel:addGroups({
@@ -823,7 +849,8 @@ zones.hamburg:addGroups({
 	GroupCommander:new({name='Hamburg-attack-Parchim', mission='attack',template='CasPlaneTemplate', MissionType='CAS', targetzone='Parchim', Altitude = CasAltitude(), diceChance=50}),
 	GroupCommander:new({name='Hamburg-attack-Braunschweig', mission='attack',template='CasPlaneTemplate',MissionType='CAS', targetzone='Braunschweig', Altitude = CasAltitude()}),
 	GroupCommander:new({name='Hamburg-supply-Scheessel', mission='supply', template='HeloSupplyTemplate', targetzone='Scheessel'}),
-	GroupCommander:new({name='Hamburg-supply-Lubeck', mission='supply', template='HeloSupplyTemplate', targetzone='Lubeck'})
+	GroupCommander:new({name='Hamburg-supply-Lubeck', mission='supply', template='HeloSupplyTemplate', targetzone='Lubeck'}),
+	GroupCommander:new({name='Hamburg-supply-Bornholm', mission='supply', template='PlaneSupplyTemplate', targetzone='Bornholm'})
 })
 
 zones.lubeck:addGroups({
@@ -945,6 +972,36 @@ zones.peenemunde:addGroups({
 
 })
 
+zones.sturup:addGroups({
+    GroupCommander:new({name='Sturup-supply-Bornholm', mission='supply',template='PlaneSupplyTemplate', targetzone='Bornholm'}),
+    GroupCommander:new({name='Sturup-supply-Peenemunde', mission='supply',template='PlaneSupplyTemplate', targetzone='Peenemunde'}),
+    GroupCommander:new({name='Sturup-attack-Garz-Cap', mission='attack',template='CapPlaneTemplate',MissionType='CAP', targetzone='Garz', Altitude = CapAltitude()}),
+})
+
+zones.bornholm:addGroups({
+    GroupCommander:new({name='bornholm-attack-Bornholm', mission='supply',template='PlaneSupplyTemplate', targetzone='Bornholm'}),
+    GroupCommander:new({name='bornholm-attack-Peenemunde', mission='supply',template='PlaneSupplyTemplate', targetzone='Peenemunde'}),
+    GroupCommander:new({name='bornholm-attack-Laage-Cap', mission='attack',template='CapPlaneTemplate',MissionType='CAP', targetzone='Laage', Altitude = CapAltitude()}),
+    GroupCommander:new({name='bornholm-attack-Neubrandenburg-Sead', mission='attack',template='CapPlaneTemplate',MissionType='SEAD', targetzone='Neubrandenburg', Altitude = SeadAltitude()}),
+    GroupCommander:new({name='bornholm-attack-Neubrandenburg-Cas', mission='attack',template='CasPlaneTemplate',MissionType='CAS', targetzone='Neubrandenburg', Altitude = SeadAltitude()}),
+    GroupCommander:new({name='bornholm-patrol-Peenemunde-CAP', mission='patrol',template='CapPlaneTemplate',MissionType='CAP', targetzone='Peenemunde', Altitude = CapAltitude()}),
+    GroupCommander:new({name='bornholm-attack-Peenemunde-rwn', mission='attack',template='RunwayStrikePlaneTemplate',MissionType='RUNWAYSTRIKE', targetzone='Peenemunde', Altitude = SeadAltitude()}),
+    GroupCommander:new({name='bornholm-attack-Tutow-rwn', mission='attack',template='RunwayStrikePlaneTemplate',MissionType='RUNWAYSTRIKE', targetzone='Tutow', Altitude = SeadAltitude()}),
+})
+
+zones.kastrup:addGroups({
+    GroupCommander:new({name='Kastrup-supply-Bornholm', mission='supply',template='HeloSupplyTemplate', targetzone='Sturup'}),
+    GroupCommander:new({name='Kastrup-attack-Bornholm-Sead', mission='attack',template='SeadPlaneTemplate',MissionType='SEAD', targetzone='Bornholm', Altitude = SeadAltitude()}),
+    GroupCommander:new({name='Kastrup-attack-Bornholm-Cap', mission='attack',template='CapPlaneTemplate',MissionType='CAP', targetzone='Bornholm', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Kastrup-patrol-Bornholm-Cap', mission='patrol',template='CapPlaneTemplate',MissionType='CAP', targetzone='Bornholm', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Kastrup-patrol-Bornholm-Cap-2', mission='patrol',template='CapPlaneTemplate',MissionType='CAP', targetzone='Bornholm', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Kastrup-patrol-Sturup-Cap', mission='patrol',template='CapPlaneTemplate',MissionType='CAP', targetzone='Sturup', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Kastrup-attack-Hamburg-rwn', mission='attack',template='RunwayStrikePlaneTemplate',MissionType='RUNWAYSTRIKE', targetzone='Hamburg', Altitude = RunwayStrikeAltitude()}),
+    GroupCommander:new({name='Kastrup-attack-Lubeck-rwn', mission='attack',template='RunwayStrikePlaneTemplate',MissionType='RUNWAYSTRIKE', targetzone='Lubeck', Altitude = RunwayStrikeAltitude()}),
+    GroupCommander:new({name='Kastrup-attack-Lubeck-Cas', mission='attack',template='CasPlaneTemplate',MissionType='CAS', targetzone='Lubeck', Altitude = CasAltitude()}),
+    GroupCommander:new({name='Kastrup-attack-Lubeck-Sead', mission='attack',template='CasPlaneTemplate',MissionType='SEAD', targetzone='Lubeck', Altitude = SeadAltitude()}),
+})
+
 
 for i,v in pairs(zones) do
 	bc:addZone(v)
@@ -995,6 +1052,10 @@ zones.neuruppin.isHeloSpawn = true
 zones.larz.isHeloSpawn = true
 zones.templin.isHeloSpawn = true
 zones.werneuchen.isHeloSpawn = true
+
+zones.spangdahlem.LogisticCenter = true
+zones.bitburg.LogisticCenter = true
+
 
 
 
@@ -1487,8 +1548,13 @@ function SpawnFriendlyAssets()
         destroyGroupIfActive('Grisha Fixed')
     end
     if zones.lubeck.side == 2 and zones.laage.side == 2 and not zones.samlima.active then
-        activateGroupIfNotActive('CVN-72')
-        zones.hiddensweden:MakeZoneRedAndUpgrade()
+        if not IsGroupActive('CVN-72') then
+            activateGroupIfNotActive('CVN-72')
+            zones.hiddensweden:MakeZoneRedAndUpgrade()
+            timer.scheduleFunction(function()
+            checkWeaponsList('CVN-72')
+        end, {}, timer.getTime() + 5)
+        end
     end
 end
 
@@ -1541,11 +1607,11 @@ local checkMissionComplete = function(event, sender)
 			break
 		end
 	end
+
 	if done then
 		missionCompleted = true
 		trigger.action.setUserFlag(180, true)
 		trigger.action.outText("Enemy has been defeated.\n\nMission Complete.\n\nYou can restart the mission from the radio menu.", 120)
-
 
 		timer.scheduleFunction(function()
 			trigger.action.outSoundForCoalition(2, "BH.ogg")
@@ -1556,6 +1622,14 @@ local checkMissionComplete = function(event, sender)
 					Utils.saveTable(bc.saveFile, 'zonePersistance', {})
 					if resetSaveFileAndFarp then
 					resetSaveFileAndFarp()
+					end
+					if WarehouseLogistics == true and WarehousePersistence.ClearFile then
+						local opts = {}
+						if FootholdSavePath then opts.path = FootholdSavePath end
+						if FootholdSaveBaseName and tostring(FootholdSaveBaseName) ~= "" then
+						opts.filename = tostring(FootholdSaveBaseName) .. "_storage.csv"
+						end
+						WarehousePersistence.ClearFile(opts)
 					end
 				trigger.action.outText("Restarting now..", 120)
 				timer.scheduleFunction(function()
@@ -2076,7 +2150,7 @@ function CheckJtacStatus()
         local jtacGroup = Group.getByName(jtacInfo.drone)
         if jtacGroup and Utils.isGroupActive(jtacGroup) then
             local zone = bc:getZoneByName(zoneName)
-            if zone and (zone.side == 0 or not zone.active) then
+            if zone and (zone.side ~= 1 or not zone.active) then
                 jtacGroup:destroy()
                 jtacZones[zoneName] = nil
                 jtacFound = true
@@ -2512,7 +2586,7 @@ bc:registerShopItem('intel','Intel on enemy zone',150,function(sender)
 	local pickZone = function(targetZoneName)
 		if intelMenu then
 			local zoneObj = bc:getZoneByName(targetZoneName)
-			if not zoneObj or zoneObj.side ~= 1 or not zoneObj.suspended then
+			if not zoneObj or zoneObj.side ~= 1 or zoneObj.suspended then
 				return 'Must pick an enemy zone'
 			end
 			intelActiveZones[targetZoneName] = true
@@ -2558,6 +2632,79 @@ local function buildAllowTable()
 		end
 	end
 	return t
+end
+
+local function buildLogisticAllowTable()
+    local allowed = {}
+    for _, z in pairs(bc:getZones()) do
+        if z.side == 2 and z.airbaseName and not z.LogisticCenter and not z.isHidden then
+            allowed[z.zone] = true
+        end
+    end
+    return allowed
+end
+
+local function buildWarehouseResupplyAllowTable()
+    local allowed = {}
+    if not WarehouseLogistics then
+        return allowed
+    end
+    for _, z in pairs(bc:getZones()) do
+        if z.side == 2 and z.airbaseName and not z.LogisticCenter and not z.isHidden then
+            allowed[z.zone] = true
+        end
+    end
+    return allowed
+end
+
+local function applyLogisticCenterUpgrade(zoneObj)
+    if not zoneObj or zoneObj.side ~= 2 or zoneObj.suspended then
+        return 'Must pick friendly zone'
+    end
+    if not zoneObj.airbaseName then
+        return 'Zone must have an airbase'
+    end
+    if zoneObj.LogisticCenter then
+        return 'Zone already upgraded'
+    end
+    if type(zoneObj.canRecieveSupply) == 'function' and zoneObj:canRecieveSupply() then
+        return 'The zone must be fully upgraded first!'
+    end
+
+    local ok, err = bc:addWarehouseItemsAtZone(zoneObj, 2, 500000)
+    if not ok then
+        return err or 'Unable to restock warehouse'
+    end
+
+    zoneObj.LogisticCenter = true
+    if type(zoneObj.updateLabel) == 'function' then
+        zoneObj:updateLabel()
+    end
+
+    trigger.action.outTextForCoalition(2, zoneObj.zone..' is now a Logistic Center. Warehouse restocked.', 15)
+    return true
+end
+
+local function applyWarehouseResupply(zoneObj)
+    if not WarehouseLogistics then
+        return 'Warehouse logistics is disabled'
+    end
+    if not zoneObj or zoneObj.side ~= 2 or zoneObj.suspended then
+        return 'Must pick friendly zone'
+    end
+    if not zoneObj.airbaseName then
+        return 'Zone must have an airbase'
+    end
+    if zoneObj.LogisticCenter then
+        return 'Zone already upgraded'
+    end
+    local ok, err = bc:addWarehouseItemsAtZone(zoneObj, 2, 50)
+    if not ok then
+        return err or 'Unable to restock warehouse'
+    end
+
+    trigger.action.outTextForCoalition(2, zoneObj.zone..' warehouse resupplied with 50 items.', 15)
+    return true
 end
 
 local infMenu=nil
@@ -2675,6 +2822,75 @@ function(sender,params)
 	else
 		return 'Must pick friendly zone'
 	end
+end)
+
+local logiMenu=nil
+bc:registerShopItem('zlogc','Upgrade zone to logistic center',2000,function(sender)
+    if logiMenu then
+        return 'Already choosing a zone'
+    end
+    local allow = buildLogisticAllowTable()
+    if not next(allow) then
+        return 'No eligible airbase zones'
+    end
+    local pickZone=function(zName)
+        if not logiMenu then return end
+        local zoneObj = bc:getZoneByName(zName)
+        local result = applyLogisticCenterUpgrade(zoneObj)
+        if result == true then
+            missionCommands.removeItemForCoalition(2,logiMenu)
+            logiMenu=nil
+        else
+            if type(result) == 'string' then
+                trigger.action.outTextForCoalition(2,result,10)
+            end
+            return result
+        end
+    end
+    logiMenu = bc:showTargetZoneMenu(2,'Choose zone for Logistic Center',pickZone,2,nil,allow)
+    trigger.action.outTextForCoalition(2,'Select friendly fully-upgraded airbase zone from F10 menu.',15)
+end,
+function(sender,params)
+    if params.zone then
+        return applyLogisticCenterUpgrade(params.zone)
+    end
+    return 'Must pick friendly zone'
+end)
+
+local warehouseMenu=nil
+bc:registerShopItem('zwh50','Resupply warehouse with 50',500,function(sender)
+    if warehouseMenu then
+        return 'Already choosing a zone'
+    end
+    if not WarehouseLogistics then
+        return 'Warehouse logistics is disabled'
+    end
+    local allow = buildWarehouseResupplyAllowTable()
+    if not next(allow) then
+        return 'No eligible airbase zones'
+    end
+    local pickZone=function(zName)
+        if not warehouseMenu then return end
+        local zoneObj = bc:getZoneByName(zName)
+        local result = applyWarehouseResupply(zoneObj)
+        if result == true then
+            missionCommands.removeItemForCoalition(2,warehouseMenu)
+            warehouseMenu=nil
+        else
+            if type(result) == 'string' then
+                trigger.action.outTextForCoalition(2,result,10)
+            end
+            return result
+        end
+    end
+    warehouseMenu = bc:showTargetZoneMenu(2,'Choose zone to resupply warehouse',pickZone,2,nil,allow)
+    trigger.action.outTextForCoalition(2,'Select friendly airbase zone from F10 menu.',15)
+end,
+function(sender,params)
+    if params.zone then
+        return applyWarehouseResupply(params.zone)
+    end
+    return 'Must pick friendly zone'
 end)
 
 local armMenu=nil
@@ -2832,16 +3048,18 @@ bc:addShopItem(2, 'supplies', -1, 15, 6) -- fully upgrade friendly zone
 bc:addShopItem(2, 'zinf', -1, 16, 5) -- add infantry to a zone
 bc:addShopItem(2, 'zarm', -1, 17, 7) -- add armour group to a zone
 bc:addShopItem(2, 'zsam', -1, 18, 6) -- add Nasams to a zone
-bc:addShopItem(2, 'gslot', 1, 19, 9) -- add another slot for upgrade
+bc:addShopItem(2, 'zlogc', -1, 19, 1) -- upgrade zone to logistic center
+bc:addShopItem(2, 'zwh50', -1, 20, 2) -- resupply warehouse with 50
+bc:addShopItem(2, 'gslot', 1, 21, 9) -- add another slot for upgrade
 if Era == 'Modern' then
-    bc:addShopItem(2, 'zpat', -1, 20, 8) -- Patriot system.
+    bc:addShopItem(2, 'zpat', -1, 22, 8) -- Patriot system.
 end
-bc:addShopItem(2, 'armor', -1, 21, 3) -- combined arms
-bc:addShopItem(2, 'artillery', -1, 22, 3) -- combined arms
-bc:addShopItem(2, 'recon', -1, 23, 3) -- combined arms
-bc:addShopItem(2, 'airdef', -1, 24, 3) -- combined arms
-bc:addShopItem(2, '9lineam', -1, 25, 1) -- free jtac
-bc:addShopItem(2, '9linefm', -1, 26, 1) -- free jtac
+bc:addShopItem(2, 'armor', -1, 23, 3) -- combined arms
+bc:addShopItem(2, 'artillery', -1, 24, 3) -- combined arms
+bc:addShopItem(2, 'recon', -1, 25, 3) -- combined arms
+bc:addShopItem(2, 'airdef', -1, 26, 3) -- combined arms
+bc:addShopItem(2, '9lineam', -1, 27, 1) -- free jtac
+bc:addShopItem(2, '9linefm', -1, 28, 1) -- free jtac
 
 
 
@@ -2912,6 +3130,7 @@ DynamicConvoy.InitRoadPathCacheFromCommanders(GroupCommanders)
 PrecomputeLandingSpots()
 Frontline.ReindexZoneCalcs()
 bc:buildCapSpawnBuckets()
+startWarehousePersistence()
 local HuntNumber = SplashDamage and math.random(10,20) or math.random(8,16)
 bc:initHunter(HuntNumber)
 SCHEDULER:New(nil, function() bc:_buildHunterBaseList() end, {}, 1)
@@ -3268,6 +3487,7 @@ local sceneryList = {
   ["StrikeTarget1"] = {SCENERY:FindByZoneName("StrikeTarget1")},
   ["NaziReunion"] = {SCENERY:FindByZoneName("NaziReunion")},
   ["HannoverSupply"] = {SCENERY:FindByZoneName("HannoverSupply")},
+  ["Striketarget2"] = {SCENERY:FindByZoneName("Striketarget2")},
   
 }
 timer.scheduleFunction(function()
@@ -3301,6 +3521,12 @@ evc:addEvent({
 			return
 		end
 		RegisterScoreTarget('HannoverSupply',tgt,100,'Hannover supply warehouse')
+        local p = tgt:GetDCSObject() and tgt:GetDCSObject():getPoint()
+        if p then
+            missionMarkId = missionMarkId + 1
+            trigger.action.markToCoalition(missionMarkId,"Hannover supply warehouse",p,2,false,false)
+            MissionMarks['HannoverSupply'] = missionMarkId
+        end
 	end,
 	canExecute = function()
 		if CustomFlags['HannoverSupply'] then return false end
@@ -3353,6 +3579,12 @@ evc:addEvent({
 			return
 		end
 		RegisterScoreTarget('NaziGroup',tgt,500,'Strike the Nazis')
+		local p = tgt:GetDCSObject() and tgt:GetDCSObject():getPoint()
+		if p then
+			missionMarkId = missionMarkId + 1
+			trigger.action.markToCoalition(missionMarkId,"Strike the Nazis",p,2,false,false)
+			MissionMarks['NaziReunion'] = missionMarkId
+		end
 	end,
 	canExecute = function()
 		if CustomFlags['NaziReunion'] then return false end
@@ -3392,6 +3624,60 @@ reward = 500]],
 })
 --------------------------------------------- End Nazi reunion ---------------------------------------------------
 
+------------------------------------------------------- Striketarget2 --------------------------------------------------------
+evc:addEvent({
+	id = 'Striketarget2',
+	action = function()
+		ActiveMission['Striketarget2'] = true
+		local tgt = sceneryList['Striketarget2'][1] or SCENERY:FindByZoneName('Striketarget2')
+		if not tgt then
+			trigger.action.outText('Striketarget2 scenery missing',30)
+			return
+		end
+		RegisterScoreTarget('Striketarget2',tgt,500,'Kill the commander')
+        local p = tgt:GetDCSObject() and tgt:GetDCSObject():getPoint()
+        if p then
+            missionMarkId = missionMarkId + 1
+            trigger.action.markToCoalition(missionMarkId,"Kill the commander",p,2,false,false)
+            MissionMarks['Striketarget2'] = missionMarkId
+        end
+	end,
+	canExecute = function()
+		if CustomFlags['Striketarget2'] then return false end
+		if ActiveMission['Striketarget2'] then return false end
+		if bc:getZoneByName('Hahn').side ~= 2 or bc:getZoneByName('Hahn').suspended then return false end
+		return true
+	end
+})
+mc:trackMission({
+	title = "Kill the commander",
+	description = 
+[[We have intel on a bunch of Nazi commander at theese coordinates:
+
+MGRS: 32 U MV 39796 91529
+Lat long: N 49°34'24" E 08°10'02"
+Lat long Decimal Minutes: N 49°34.401' E 08°10.037'
+Lat Long Precise: N 49°34'24.08" E 08°10'02.27"
+Elevation: 577 feet
+
+reward = 500]],
+	messageStart = "New strike mission: Kill the commander\nCoords are in the mission description",
+	messageEnd = "Mission ended: Kill the commander",
+    startAction = function()
+         if not missionCompleted and trigger.misc.getUserFlag(180) == 0 then
+            trigger.action.outSoundForCoalition(2, "ding.ogg")
+        end
+    end,
+    endAction = function()
+	end,
+	isActive = function()
+	if CustomFlags["Striketarget2"] then return false end
+    if ActiveMission['Striketarget2'] then return true end
+	  return false
+	end,
+})
+--------------------------------------------- End Nazi reunion ---------------------------------------------------
+
 ------------------------------------------ Kill Kommandant Günter ------------------------------------------------
 Group.getByName('KommandantGunter'):destroy()
 SecondManEvent = nil
@@ -3406,6 +3692,12 @@ evc:addEvent({
 		end
 		RespawnGroup('KommandantGunter')
 		RegisterScoreTarget('KommandantGunter',tgt,500,'Kill Kommandant Günter')
+		local p = tgt:GetDCSObject() and tgt:GetDCSObject():getPoint()
+		if p then
+			missionMarkId = missionMarkId + 1
+			trigger.action.markToCoalition(missionMarkId,"Kill Kommandant Günter",p,2,false,false)
+			MissionMarks['TerrorCell5'] = missionMarkId
+		end
 	end,
 	canExecute = function()
 		if CustomFlags['KommandantGunter'] then return false end
@@ -3459,6 +3751,12 @@ evc:addEvent({
 			return
 		end
 		RegisterScoreTarget('StrikeTarget1',tgt,500,'Strike enemy communication tower')
+        local p = tgt:GetDCSObject() and tgt:GetDCSObject():getPoint()
+        if p then
+            missionMarkId = missionMarkId + 1
+            trigger.action.markToCoalition(missionMarkId,"Strike enemy communication tower",p,2,false,false)
+            MissionMarks['StrikeTarget1'] = missionMarkId
+        end
 	end,
 	canExecute = function()
 		if CustomFlags['StrikeTarget1'] then return false end

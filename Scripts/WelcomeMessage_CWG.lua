@@ -360,6 +360,7 @@ function getPreferredOrder(groupName)
             elseif prefix == "F.4E.45MC"        then preferredOrder = {"Savage1","Scary2"}
             elseif prefix == "MiG.29A.Fulcrum"  then preferredOrder = {"Wedge7"}
             elseif prefix == "Mi.24P"           then preferredOrder = {"Scorpion3"}
+            elseif prefix == "C.130J.30"        then preferredOrder = {"Mighty1"}
             end
             return prefix, preferredOrder
         end
@@ -510,6 +511,12 @@ aircraftAssignments = {
             assignments = {}
         },
     },
+    ["C.130J.30"] = { 
+        ["Mighty1"] = { 
+            IFFs = {1160, 1161, 1162, 1163}, 
+            assignments = {}
+        },
+    },
 }
 
 function releaseSlot(playerName, zoneName)
@@ -565,23 +572,27 @@ end
 local function refreshBeacons()
     if IsGroupActive("CVN-73") then
         local ab = AirBoss("CVN-73")
+        if not ab then return end
         ab.beacon:ActivateTACAN(73, "X", "GWN", true)
         ab.beacon:ActivateICLS(13, "GWN")
     end
 
     if IsGroupActive("CVN-72") then
         local ab = AirBoss("CVN-72")
+        if not ab then return end
         ab.beacon:ActivateTACAN(72, "X", "ABE", true)
         ab.beacon:ActivateICLS(12, "ABE")
     end
 
     if IsGroupActive("CVN-59") then
         local ab = AirBoss("CVN-59")
+        if not ab then return end
         ab.beacon:ActivateTACAN(59, "X", "FTS", true)
         ab.beacon:ActivateICLS(9,  "FTS")
     end
     if IsGroupActive("CVN-74") then
         local ab = AirBoss("CVN-74")
+        if not ab then return end
         ab.beacon:ActivateTACAN(74, "X", "JCS", true)
         ab.beacon:ActivateICLS(14, "JCS")
     end

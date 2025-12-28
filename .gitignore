@@ -1,5 +1,5 @@
 veaf-tools-updater.exe
 veaf-tools.exe
-veaf-tools.log
+*.log
 MA_Foothold_GCW_V*_Coldwar-Modern.miz
 temp/

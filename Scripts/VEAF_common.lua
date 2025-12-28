@@ -45,6 +45,9 @@ RankingSystem = true -- if false, the shop is open to everyone and no ranking wi
 InvisibleA10 = false-- if the above is true, then A10 wlll be invisble to the enemy planes, not GROUND UNITS
 UseStatics=true
 UseC130LoadAndUnload = true -- if the above is true, you will only load stuff what inside the herc using the herc loading system and not the ctld menu to load it into the helicopter.
+WarehouseLogistics = true -- if true, the logistic commander will use warehouse items for resupply
+AutoFillResources = 5 -- Autofillment if warehouse items every 15 minutes.
+AIDeliveryamount = 20 -- Here you can choose how much warehouse items shall the AI helicopter bring with it on every supply run.
 
 -- load first batch of scripts
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "Moose.lua")) ()
@@ -87,13 +90,33 @@ LogisticCommander.doubleSupplyTypes['C-130J-30'] = true
 
 LogisticCommander.maxCarriedPilots = 4
 
+-- If WarehouseLogistics is false, here you can choose what helicopters can be used to load and unload supplies, the old way.
+LogisticCommander.AllowedToCarrySupplies = {
+    ['Ka-50'] = false,
+    ['Ka-50_3'] = false,
+    ['Mi-24P'] = true,
+    ['SA342Mistral'] = false,
+    ['SA342L'] = false,
+    ['SA342M'] = false,
+    ['SA342Minigun'] = false,
+    ['UH-60L'] = true,
+    ['UH-60L_DAP'] = true,
+    ['AH-64D_BLK_II'] = false,
+    ['UH-1H'] = true,
+    ['Mi-8MT'] = true,
+    ['Hercules'] = true,
+    ['OH58D'] = false,
+    ['CH-47Fbl1'] = true,
+    ['Bronco-OV-10A'] = true,
+    ['OH-6A'] = true,
+    ['C-130J-30'] = true,
+}
+
 -- load the rest of the scripts
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "WelcomeMessage_CWG.lua")) ()
-assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "Foothold_CWG_MANTIS.lua")) ()
-assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "weaponslist.lua")) ()
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "Zeus.lua")) ()
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "EWRS.lua")) ()
-assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "MA_CTLD_CWG.lua")) ()
+assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "Foothold CTLD.lua")) ()
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "Splash_Damage_3.4.1_leka.lua")) ()
 assert(loadfile(FOOTHOLD_DYNAMIC_SCRIPTS_PATH .. "AIEN.lua")) ()
 

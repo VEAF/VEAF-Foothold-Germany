@@ -1,0 +1,2868 @@
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+-- ## CTLD ## --
+
+BASE:I("CTLD : is loading.")
+
+CTLD_Logging = false
+
+Foothold_ctld = CTLD:New(coalition.side.BLUE,{"CH.47", "UH.1H", "Hercules", "Mi.8MT", "Bronco.OV", "UH.60L", "Mi.24P", "OH58D", "KA.50", "AH.64D", "UH.60.DAP","C.130J.30"},"Lufttransportbrigade I")
+local herccargo = CTLD_HERCULES:New("blue", "Hercules Test", Foothold_ctld)
+Foothold_ctld.useprefix = true
+Foothold_ctld.dropcratesanywhere = true
+Foothold_ctld.forcehoverload = false
+Foothold_ctld.CrateDistance = 65
+Foothold_ctld.maxUnitsNearby = 3
+Foothold_ctld.PackDistance = 65
+Foothold_ctld.maximumHoverHeight = 20
+Foothold_ctld.enableChinookGCLoading = true
+Foothold_ctld.minimumHoverHeight = 3
+Foothold_ctld.smokedistance = 8000
+Foothold_ctld.enableFixedWing = true
+Foothold_ctld.FixedMinAngels = 100 -- for troop/cargo drop via chute in meters, ca 470 ft
+Foothold_ctld.FixedMaxAngels = 2000 -- for troop/cargo drop via chute in meters, ca 6000 ft
+Foothold_ctld.FixedMaxSpeed = 200 -- 77mps or 270kph or 150kn
+Foothold_ctld.dropAsCargoCrate = true
+Foothold_ctld.allowcratepickupagain = true
+Foothold_ctld.nobuildinloadzones = true
+Foothold_ctld.movecratesbeforebuild = false
+Foothold_ctld.movetroopstowpzone = true
+Foothold_ctld.hoverautoloading = false
+Foothold_ctld.enableslingload = true
+Foothold_ctld.usesubcats = true
+Foothold_ctld.pilotmustopendoors = true
+Foothold_ctld.buildtime = 30
+Foothold_ctld.onestepmenu = true
+Foothold_ctld.showstockinmenuitems = false
+Foothold_ctld.basetype = "uh1h_cargo"
+Foothold_ctld.C130basetype = "cds_crate"
+if UseC130LoadAndUnload then
+Foothold_ctld.UseC130LoadAndUnload = true
+end
+Foothold_ctld.RadioSoundFC3 = "beaconsilent.ogg"
+Foothold_ctld.VehicleMoveFormation= {AI.Task.VehicleFormation.VEE, AI.Task.VehicleFormation.ECHELON_LEFT, AI.Task.VehicleFormation.ECHELON_RIGHT, AI.Task.VehicleFormation.RANK, AI.Task.VehicleFormation.CONE}
+Foothold_ctld.returntroopstobase = false
+Foothold_ctld:__Start(5)
+
+function priceOf(name)
+    return (CTLDPrices and CTLDPrices[name]) or CTLD_DEFAULT_PRICE or 0
+end
+
+
+CTLDPrices = {
+    ["Engineer soldier"]      = 50,
+    ["Squad 8"]               = 50,
+    ["Platoon 16"]            = 100,
+    ["Platoon 32"]            = 200,
+    ["Anti-Air Soldiers"]     = 100,
+    ["Mortar Squad"]          = 100,
+    ["Mephisto"]              = 250,
+    ["Humvee"]                = 250,
+    ["Bradly"]                = 250,
+    ["L118"]                  = 150,
+    ["Ammo Truck"]            = 100,
+    ["Humvee scout"]          = 100,
+    ["Linebacker"]            = 300,
+    ["Vulcan"]                = 300,
+    ["HAWK Site"]             = 750,
+    ["Nasam Site"]            = 750,
+    ["FARP"]                  = 500,
+    ["IRIS T SLM STR"]        = 750,
+    ["IRIS T SLM LN"]         = 500,
+    ["IRIS T SLM C2"]         = 500,
+    ["IRIS T SLM System"]     = 1800,
+    ["C-RAM"]                 = 500,
+    ["HIMARS GMLRRS HE GUIDED"]= 1000,
+    ["FV-107 Scimitar"]       = 250,
+    ["FV-101 Scorpion"]       = 250,
+    ["Avenger"]               = 250,
+}
+CTLD_DEFAULT_PRICE = 0
+
+-- troops
+Foothold_ctld:AddTroopsCargo("Squad 8",{"CTLD_TROOPS_ATS"},CTLD_CARGO.Enum.TROOPS,8,80,10)
+Foothold_ctld:AddTroopsCargo("Platoon 16",{"CTLD_TROOPS_Platon16"},CTLD_CARGO.Enum.TROOPS,16,80,10)
+Foothold_ctld:AddTroopsCargo("Platoon 32",{"CTLD_TROOPS_Platon1"},CTLD_CARGO.Enum.TROOPS,32,80,10)
+Foothold_ctld:AddTroopsCargo("Anti-Air Soldiers",{"CTLD_TROOPS_AA"},CTLD_CARGO.Enum.TROOPS,5,80,10)
+Foothold_ctld:AddTroopsCargo("Mortar Squad",{"CTLD_TROOPS_MRS"},CTLD_CARGO.Enum.TROOPS,6,80,10)
+-- vehicles and fobs
+Foothold_ctld:AddTroopsCargo("Engineer soldier",{"CTLD_TROOPS_Engineers"},CTLD_CARGO.Enum.ENGINEERS,1,80,10)
+Foothold_ctld:AddCratesCargo("Mephisto",{"CTLD_CARGO_Mephisto"}, CTLD_CARGO.Enum.VEHICLE, 2, 1500,10, "ANTI TANK")
+Foothold_ctld:AddCratesCargo("Humvee",{"CTLD_CARGO_HMMWV"},CTLD_CARGO.Enum.VEHICLE,2,1000,10, "ANTI TANK")
+Foothold_ctld:AddCratesCargo("Bradly",{"CTLD_CARGO_Bradly"},CTLD_CARGO.Enum.VEHICLE,2,1500,10, "ANTI TANK")
+Foothold_ctld:AddCratesCargoNoMove("L118",{"CTLD_CARGO_L118"},CTLD_CARGO.Enum.VEHICLE,1,700,12, "Support",nil,nil,nil,"Cargos",nil,nil, "l118")
+Foothold_ctld:AddCratesCargoNoMove("Ammo Truck",{"CTLD_CARGO_AmmoTruck"},CTLD_CARGO.Enum.VEHICLE,2,800,10, "Support")
+Foothold_ctld:AddCratesCargo("Humvee scout",{"CTLD_CARGO_Scout"},CTLD_CARGO.Enum.VEHICLE,2,1000,10, "Support")
+Foothold_ctld:AddCratesCargo("Linebacker",{"CTLD_CARGO_Linebacker"},CTLD_CARGO.Enum.VEHICLE,2,1500,10, "SAM/AAA")
+Foothold_ctld:AddCratesCargo("Vulcan",{"CTLD_CARGO_Vulcan"}, CTLD_CARGO.Enum.VEHICLE, 2, 1500,10, "SAM/AAA")
+Foothold_ctld:AddCratesCargoNoMove("HAWK Site",{"CTLD_CARGO_HAWKSite"},CTLD_CARGO.Enum.FOB,4,1900,10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("Nasam Site",{"CTLD_CARGO_NasamsSite"},CTLD_CARGO.Enum.FOB,4,1900,10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargo("FARP",{"CTLD_TROOP_FOB"},CTLD_CARGO.Enum.FOB,3,1500,10, "FARP",nil,nil,nil,"Cargos","ammo_cargo",nil, "cds_crate")
+
+if Era=='Modern' then
+Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM STR", {"CTLD_CARGO_IRISTSLM_STR"},CTLD_CARGO.Enum.FOB, 1, 2500, 10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM LN", {"CTLD_CARGO_IRISTSLM-LN"},CTLD_CARGO.Enum.FOB, 1, 3500, 15, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM C2", {"CTLD_CARGO_IRISTSLM_C2"},CTLD_CARGO.Enum.FOB, 1, 1900, 10, "SAM/AAA",nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("IRIS T SLM System", {"CTLD_CARGO_IRISTSLM_System"}, CTLD_CARGO.Enum.FOB, 3, 2800, 10, "SAM/AAA", nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+Foothold_ctld:AddCratesCargoNoMove("C-RAM", {"CTLD_CARGO_CRAM"}, CTLD_CARGO.Enum.FOB, 2, 1000, 10, "SAM/AAA")
+Foothold_ctld:AddCratesCargoNoMove("HIMARS GMLRRS HE GUIDED",{"CTLD_CARGO_GMLRS_HE"},CTLD_CARGO.Enum.VEHICLE,2,3500,12, "Support", nil,nil,nil,"Cargos",nil,nil, "iso_container_small")
+end
+Foothold_ctld:AddUnits("Humvee",{"CTLD_CARGO_HMMWV"},CTLD_CARGO.Enum.VEHICLE,10, "ANTI TANK")
+Foothold_ctld:AddUnits("Mephisto",{"CTLD_CARGO_Mephisto"},CTLD_CARGO.Enum.VEHICLE,10, "ANTI TANK")
+Foothold_ctld:AddUnits("Vulcan",{"CTLD_CARGO_Vulcan"}, CTLD_CARGO.Enum.VEHICLE, 10, "SAM/AAA")
+Foothold_ctld:AddUnits("Avenger",{"CTLD_CARGO_Avenger"}, CTLD_CARGO.Enum.VEHICLE, 10, "SAM/AAA")
+Foothold_ctld:AddUnits("Humvee scout",{"CTLD_CARGO_Scout"}, CTLD_CARGO.Enum.VEHICLE, 10, "Support")
+Foothold_ctld:AddUnits("FV-107 Scimitar",{"CTLD_CARGO_Scimitar"}, CTLD_CARGO.Enum.VEHICLE, 10, "Support")
+Foothold_ctld:AddUnits("FV-101 Scorpion",{"CTLD_CARGO_Scorpion"}, CTLD_CARGO.Enum.VEHICLE, 10, "Support")
+
+Foothold_ctld:AddStaticsCargo("Zone supplies C-130J",3000,nil, "Zone supplies", true, nil, {"C-130J-30"})
+
+--Foothold_ctld:AddStaticsCargo("Zone supplies",3000,nil, "Zone supplies", true, nil)
+
+Foothold_ctld:AddStaticsCargo("Zone supplies CH-47",2500,nil, "Zone supplies", true, nil,{"CH-47Fbl1"})
+
+Foothold_ctld:AddStaticsCargo("Zone supplies UH-1H",500,nil, "Zone supplies", true,nil, {"UH-1H"})
+
+Foothold_ctld:AddStaticsCargo("Zone supplies MI-8",2500,nil, "Zone supplies", true,nil, {"Mi-8MT"})
+
+Foothold_ctld:AddStaticsCargo("Zone supplies Blackhawk",2000,nil, "Zone supplies", true,nil, {"UH-60L_DAP","UH-60L"})
+
+Foothold_ctld:AddStaticsCargo("Zone supplies Mi-24P",500,nil, "Zone supplies", true,nil, {"Mi-24P"})
+
+Foothold_ctld:AddStaticsCargo("10 of everything",5000,nil, "Warehouse", true, nil,{"CH-47Fbl1","Mi-8MT"})
+Foothold_ctld:AddStaticsCargo("10 A/A Missiles",1000,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
+Foothold_ctld:AddStaticsCargo("10 A/G Missiles",1000,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
+Foothold_ctld:AddStaticsCargo("10 A/G Rockets",500,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
+Foothold_ctld:AddStaticsCargo("10 A/G Bombs",2000,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
+Foothold_ctld:AddStaticsCargo("10 (Plane fuel tanks) and pylons",500,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
+Foothold_ctld:AddStaticsCargo("50 of everything",12000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("50 A/A Missiles",3000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("50 A/G Missiles",2000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("50 A/G Rockets",2000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("50 A/G Bombs",3000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("50 Plane fuel-tanks and pylons",2000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("25 of everything",6000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("25 A/A Missiles",1500,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("25 A/G Missiles",1000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("25 A/G Rockets",1000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("25 A/G Bombs",1500,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("25 Plane fuel-tanks and pylons",1000,nil, "Warehouse", true, nil, {"C-130J-30"})
+
+
+local ZONE_SUPPLY_TYPES = {
+  --["Zone supplies"] = true,
+  ["Zone supplies C-130J"] = true,
+  ["Zone supplies UH-1H"] = true,
+  ["Zone supplies MI-8"] = true,
+  ["Zone supplies Mi-24P"] = true,
+  ["Zone supplies CH-47"] = true,
+  ["Zone supplies Blackhawk"] = true,
+}
+
+
+-- How many of the units loaded from the save file should be spawned next time?
+-- Oldest will be deleted first.
+
+local MAX_AT_SPAWN = {
+    ["Engineer soldier"]        = 0,
+    ["Mephisto"]                = 2,
+    ["Humvee"]                  = 2,
+    ["Bradly"]                  = 2,
+    ["L118"]                    = 3,
+    ["Ammo Truck"]              = 3,
+    ["Humvee scout"]            = 1,
+    ["Squad 8"]                 = 0,
+    ["Platoon 16"]              = 0,
+    ["Platoon 32"]              = 0,
+    ["Anti-Air Soldiers"]       = 2,
+    ["Mortar Squad"]            = 2,
+    ["Linebacker"]              = 2,
+    ["Vulcan"]                  = 2,
+    ["HAWK Site"]               = 3,
+    ["Nasam Site"]              = 3,
+    ["Tank Abrahams"]           = 0,
+    ["FARP"]                    = 3,
+    ["IRIS T SLM STR"]          = 3,
+    ["IRIS T SLM LN"]           = 8,
+    ["IRIS T SLM C2"]           = 3,
+    ["IRIS T SLM System"]       = 2,
+    ["C-RAM"]                   = 4,
+    ["HIMARS GMLRRS HE GUIDED"] = 4,
+    ["FV-107 Scimitar"]         = 2,
+    ["FV-101 Scorpion"]         = 2,
+    ["Avenger"]                 = 2,
+}
+-- How many farps do you want to load? 
+-- Oldest will not be spawned if the number is exceded.
+local MAX_SAVED_FARPS      = 3
+
+Group.getByName('CTLD_TROOPS_Engineers'):destroy()
+Group.getByName('CTLD_CARGO_Mephisto'):destroy()
+Group.getByName('CTLD_CARGO_HMMWV'):destroy()
+Group.getByName('CTLD_CARGO_Bradly'):destroy()
+Group.getByName('CTLD_CARGO_L118'):destroy()
+Group.getByName('CTLD_CARGO_AmmoTruck'):destroy()
+Group.getByName('CTLD_TROOPS_ATS'):destroy()
+Group.getByName('CTLD_TROOPS_Platon16'):destroy()
+Group.getByName('CTLD_TROOPS_Platon1'):destroy()
+Group.getByName('CTLD_TROOPS_AA'):destroy()
+Group.getByName('CTLD_TROOPS_MRS'):destroy()
+Group.getByName('CTLD_CARGO_Linebacker'):destroy()
+Group.getByName('CTLD_CARGO_Vulcan'):destroy()
+Group.getByName('CTLD_CARGO_HAWKSite'):destroy()
+Group.getByName('CTLD_CARGO_NasamsSite'):destroy()
+Group.getByName('CTLD_TROOP_FOB'):destroy()
+Group.getByName('CTLD_CARGO_Scout'):destroy()
+Group.getByName('CTLD_CARGO_IRISTSLM_STR'):destroy()
+Group.getByName('CTLD_CARGO_IRISTSLM-LN'):destroy()
+Group.getByName('CTLD_CARGO_IRISTSLM_C2'):destroy()
+Group.getByName('CTLD_CARGO_IRISTSLM_System'):destroy()
+Group.getByName('CTLD_CARGO_CRAM'):destroy()
+Group.getByName('CTLD_CARGO_GMLRS_HE'):destroy()
+Group.getByName('CTLD_CARGO_Scorpion'):destroy()
+Group.getByName('CTLD_CARGO_Scimitar'):destroy()
+Group.getByName('CTLD_CARGO_Avenger'):destroy()
+
+Foothold_ctld:SetUnitCapabilities("SA342Mistral", false, true, 0, 2, 10, 400)
+Foothold_ctld:SetUnitCapabilities("SA342L", false, true, 0, 2, 10, 400)
+Foothold_ctld:SetUnitCapabilities("SA342M", false, true, 0, 2, 10, 400)
+Foothold_ctld:SetUnitCapabilities("SA342Minigun", false, true, 0, 2, 10, 400)
+Foothold_ctld:SetUnitCapabilities("UH-1H", true, true, 1, 8, 15, 800)
+Foothold_ctld:SetUnitCapabilities("Mi-8MT", true, true, 2, 16, 15, 6000)
+Foothold_ctld:SetUnitCapabilities("Mi-8MTV2", true, true, 2, 18, 15, 6000)
+Foothold_ctld:SetUnitCapabilities("Ka-50", false, false, 0, 0, 15, 400)
+Foothold_ctld:SetUnitCapabilities("Mi-24P", true, true, 2, 8, 15, 1000)
+Foothold_ctld:SetUnitCapabilities("Hercules", true, true, 8, 20, 25, 20000)
+Foothold_ctld:SetUnitCapabilities("UH-60L", true, true, 2, 20, 16, 3500)
+Foothold_ctld:SetUnitCapabilities("UH-60L_DAP", true, true, 2, 20, 16, 3500)
+Foothold_ctld:SetUnitCapabilities("AH-64D_BLK_II", false, false, 0, 0, 15, 400)
+Foothold_ctld:SetUnitCapabilities("CH-47Fbl1", true, true, 5, 32, 20, 10800)
+Foothold_ctld:SetUnitCapabilities("OH58D", false, false, 0, 0, 14, 400)
+
+-- ZONES
+
+Foothold_ctld:AddCTLDZone("Tarawa",CTLD.CargoZoneType.SHIP,SMOKECOLOR.Blue,true,false,240,20)
+Foothold_ctld:AddCTLDZone("Khasab Tarawa",CTLD.CargoZoneType.SHIP,SMOKECOLOR.Blue,true,false,240,20)
+Foothold_ctld:AddCTLDZone("HMS Invincible",CTLD.CargoZoneType.SHIP,SMOKECOLOR.Blue,true,false,240,20)
+Foothold_ctld:AddCTLDZone("CVN-72",CTLD.CargoZoneType.SHIP,SMOKECOLOR.Blue,true,false,240,20)
+Foothold_ctld:AddCTLDZone("CVN-73",CTLD.CargoZoneType.SHIP,SMOKECOLOR.Blue,true,false,240,20)
+Foothold_ctld:AddCTLDZone("CVN-74",CTLD.CargoZoneType.SHIP,SMOKECOLOR.Blue,true,false,240,20)
+Foothold_ctld:AddCTLDZone("CVN-59",CTLD.CargoZoneType.SHIP,SMOKECOLOR.Blue,true,false,240,20)
+
+for _, zoneObj in ipairs(bc:getZones()) do
+    local zoneName = zoneObj.zone
+    if not zoneName:lower():find("hidden") then
+        Foothold_ctld:AddCTLDZone(zoneName, CTLD.CargoZoneType.LOAD, SMOKECOLOR.Green, false, false)
+        Foothold_ctld:AddCTLDZone(zoneName, CTLD.CargoZoneType.MOVE, SMOKECOLOR.Green, true, false)
+    end
+end
+
+function addCTLDZonesForBlueControlled(zoneName)
+    if zoneName then
+        local zoneObj = bc:getZoneByName(zoneName)
+        if zoneObj and not zoneName:lower():find("hidden") and not zoneName:lower():find("dropzone") then
+            if zoneObj.wasBlue then
+                --env.info("Activating LOAD for zone: " .. tostring(zoneName))
+                Foothold_ctld:ActivateZone(zoneName, CTLD.CargoZoneType.LOAD)
+                Foothold_ctld:DeactivateZone(zoneName, CTLD.CargoZoneType.MOVE)
+            else
+                --env.info("Activating MOVE for zone: " .. tostring(zoneName))
+                Foothold_ctld:DeactivateZone(zoneName, CTLD.CargoZoneType.LOAD)
+                Foothold_ctld:ActivateZone(zoneName, CTLD.CargoZoneType.MOVE)
+            end
+        end
+    else
+        for _, zoneObj in ipairs(bc:getZones()) do
+            local zName = zoneObj.zone
+            if not zName:lower():find("hidden") and not zName:lower():find("carrier") then
+                if zoneObj.wasBlue then
+                    --BASE:I("Activating LOAD for zone: " .. tostring(zName))
+                    Foothold_ctld:ActivateZone(zName, CTLD.CargoZoneType.LOAD)
+                    Foothold_ctld:DeactivateZone(zName, CTLD.CargoZoneType.MOVE)
+                else
+                    --BASE:I("Activating MOVE for zone: " .. tostring(zName))
+                    Foothold_ctld:DeactivateZone(zName, CTLD.CargoZoneType.LOAD)
+                    Foothold_ctld:ActivateZone(zName, CTLD.CargoZoneType.MOVE)
+                end
+            end
+        end
+    end
+end
+
+local scheduler = SCHEDULER:New(nil, function()
+    addCTLDZonesForBlueControlled()
+end, {}, 5)
+
+local TroopUnits = {}
+local GroundUnits = {}
+deployedTroopsSet = SET_GROUP:New()
+zoneCaptureInfo = {}
+deployedTroops = {}
+local zoneSupplyCrates = {}
+
+
+local WAREHOUSE_SUPPLY_TYPES = {
+  ["10 of everything"]                    = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS"}, amount = 10, reward = 150, label = "10 of everything" },
+  ["10 A/A Missiles"]                     = { categories = { "AA_MISSILES" },                 amount = 10, reward = 30, label = "10 A/A Missiles" },
+  ["10 A/G Missiles"]                     = { categories = { "AG_MISSILES" },                 amount = 10, reward = 30, label = "10 A/G Missiles" },
+  ["10 A/G Rockets"]                      = { categories = { "AG_ROCKETS" },                  amount = 10, reward = 30, label = "10 A/G Rockets" },
+  ["10 A/G Bombs"]                        = { categories = { "AG_GUIDED_BOMBS" ,"AG_BOMBS"},  amount = 10, reward = 30, label = "10 A/G Bombs" },
+  ["10 (Plane fuel tanks) and pylons"]    = { categories = { "FUEL_TANKS","MISC"},            amount = 10, reward = 30, label = "10 (Plane fuel tanks) and pylons" },
+  
+  ["50 of everything"]                    = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS" }, amount = 50, reward = 150, label = "50 of everything" },
+  ["50 A/A Missiles"]                     = { categories = { "AA_MISSILES" },        amount = 50, reward = 50, label = "50 A/A Missiles" },
+  ["50 A/G Missiles"]                     = { categories = { "AG_MISSILES" },        amount = 50, reward = 30, label = "50 A/G Missiles" },
+  ["50 A/G Rockets"]                      = { categories = { "AG_ROCKETS" },         amount = 50, reward = 30, label = "50 A/G Rockets" },
+  ["50 A/G Bombs"]                        = { categories = { "AG_GUIDED_BOMBS", "AG_BOMBS" },    amount = 50, reward = 30, label = "50 A/G Bombs" },
+  ["50 Plane fuel-tanks and pylons"]      = { categories = {"FUEL_TANKS", "MISC" },  amount = 50, reward = 30, label = "50 Plane fuel-tanks and pylons" },
+
+  ["25 of everything"]                    = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS" }, amount = 25, reward = 75, label = "25 of everything" },
+  ["25 A/A Missiles"]                     = { categories = { "AA_MISSILES" },        amount = 25, reward = 25, label = "25 A/A Missiles" },
+  ["25 A/G Missiles"]                     = { categories = { "AG_MISSILES" },        amount = 25, reward = 15, label = "25 A/G Missiles" },
+  ["25 A/G Rockets"]                      = { categories = { "AG_ROCKETS" },         amount = 25, reward = 15, label = "25 A/G Rockets" },
+  ["25 A/G Bombs"]                        = { categories = { "AG_GUIDED_BOMBS", "AG_BOMBS" },    amount = 25, reward = 15, label = "25 A/G Bombs" },
+  ["25 Plane fuel-tanks and pylons"]      = { categories = {"FUEL_TANKS", "MISC" },  amount = 25, reward = 15, label = "25 Plane fuel-tanks and pylons" },
+}
+
+
+local ZONE_SUPPLY_AGL_THRESHOLD = 0.5
+local ZONE_SUPPLY_CAPTURE_REWARD = 200
+local ZONE_SUPPLY_UPGRADE_REWARD = 100
+local ZONE_SUPPLY_NOZONE_TTL = 600
+local ZONE_SUPPLY_INACTIVE_TTL = 600
+local ZONE_SUPPLY_DESTROY_DELAY = 60
+
+local ZONE_SUPPLY_AIRCRAFT_DIMENSIONS = {
+  ["CH-47Fbl1"] = { width = 4, height = 6, length = 11, ropelength = 30 },
+  ["Mi-8MTV2"] = { width = 6, height = 6, length = 15, ropelength = 30 },
+  ["Mi-8MT"] = { width = 6, height = 6, length = 15, ropelength = 30 },
+  ["UH-1H"] = { width = 4, height = 4, length = 9, ropelength = 25 },
+  ["Mi-24P"] = { width = 4, height = 5, length = 11, ropelength = 25 },
+  ["UH-60L"] = { width = 4, height = 5, length = 10, ropelength = 25 },
+  ["UH-60L_DAP"] = { width = 4, height = 5, length = 10, ropelength = 25 },
+  ["C-130J-30"] = { width = 4, height = 12, length = 35, ropelength = 0 },
+  ["Hercules"] = { width = 4, height = 12, length = 35, ropelength = 0 },
+}
+
+local zoneSupplyPendingRemoval = {}
+local zoneSupplyCleanupScheduled = false
+local warehouseSupplyItemCache = {}
+local zoneStorageHandleCache = {}
+local supplyZoneWrapperCache = {}
+local function getSupplyZoneWrapper(name)
+  local z = supplyZoneWrapperCache[name]
+  if z == false then return nil end
+  if z ~= nil then return z end
+  z = ZONE:FindByName(name)
+  supplyZoneWrapperCache[name] = z or false
+  return z
+end
+
+local c130AutoBuildSets = {}
+local c130AutoBuildCrates = {}
+local C130_AUTO_AIRBORNE_AGL = 8
+local C130_OWNER_RESOLVE_MAX3D = 250
+local C130_OWNER_RESOLVE_MOVE2D = 10
+local C130_OWNER_RESOLVE_NEAR2D = 4
+
+local c130AutoBuildClientSet = SET_CLIENT:New():FilterAlive():FilterFunction(function(client)
+  local t = client:GetTypeName()
+  return t == "C-130J-30" or t == "Hercules"
+end):FilterStart()
+
+local function resolveC130AutoBuildOwner(setId, vec3)
+  local set = c130AutoBuildSets[setId]
+  if not set then return end
+
+  local pos = COORDINATE:NewFromVec3(vec3)
+  local bestNearClient = nil
+  local bestNear2D = math.huge
+  local bestClient = nil
+  local bestD = math.huge
+  for _, cl in pairs(c130AutoBuildClientSet:GetAliveSet() or {}) do
+    local clCoord = cl:GetCoordinate()
+    local d2 = clCoord:Get2DDistance(pos)
+    if d2 <= C130_OWNER_RESOLVE_NEAR2D and d2 < bestNear2D then
+      bestNear2D = d2
+      bestNearClient = cl
+    end
+    local d = clCoord:Get3DDistance(pos)
+    if d < bestD then
+      bestD = d
+      bestClient = cl
+    end
+  end
+
+  if bestNearClient then
+    bestClient = bestNearClient
+  else
+    if not bestClient or bestD > C130_OWNER_RESOLVE_MAX3D then return end
+  end
+
+  local playerName = bestClient:GetPlayerName() or _DATABASE:_FindPlayerNameByUnitName(bestClient:GetName()) or "None"
+  local groupName = bestClient:GetGroup():GetName()
+
+  set.playerName = playerName
+  set.groupName = groupName
+  for _, key in ipairs(set.crates) do
+    local entry = c130AutoBuildCrates[key]
+    if entry then
+      entry.playerName = playerName
+      entry.groupName = groupName
+    end
+  end
+end
+
+
+
+local function notifyC130Auto(set, text)
+  if set.groupName then
+    local grp = GROUP:FindByName(set.groupName)
+    if grp then
+      MESSAGE:New(text, 12):ToGroup(grp)
+      return
+    end
+  end
+  MESSAGE:New(text, 12):ToBlue()
+end
+
+local function registerC130AutoBuildSet(groupName, playerName, pickupZone, cargoItems)
+  local setId = string.format("C130AUTO-%s-%d", groupName or "GROUP", math.random(1, 1e9))
+  local setData = {
+    id = setId,
+    groupName = groupName,
+    playerName = playerName,
+    pickupZone = pickupZone,
+    crates = {},
+    required = 0,
+    completed = false,
+  }
+
+  for _, cargoItem in ipairs(cargoItems) do
+    local cargoId = (cargoItem.GetID and cargoItem:GetID()) or cargoItem.ID
+    local staticObj = (cargoItem.GetPositionable and cargoItem:GetPositionable()) or nil
+    if cargoId and staticObj then
+      c130AutoBuildCrates[cargoId] = {
+        cargo = cargoItem,
+        static = staticObj,
+        pickupZone = pickupZone,
+        setId = setId,
+        cargoName = cargoItem.GetName and cargoItem:GetName() or "cargo",
+        groupName = groupName,
+        playerName = playerName,
+        warnedPickup = false,
+        wasAirborne = false,
+        landed = false,
+      }
+      setData.required = setData.required + 1
+      setData.crates[#setData.crates + 1] = cargoId
+    end
+  end
+
+  if setData.required > 0 then
+    c130AutoBuildSets[setId] = setData
+  end
+end
+
+local function processC130AutoBuild()
+  if not next(c130AutoBuildSets) then return end
+
+  for key, entry in pairs(c130AutoBuildCrates) do
+    local staticObj = entry.static
+    if not staticObj or not staticObj:IsAlive() then
+      c130AutoBuildCrates[key] = nil
+      local set = c130AutoBuildSets[entry.setId]
+      if set then set.failed = true end
+    else
+      local coord = staticObj:GetCoordinate()
+      local vec3 = coord and coord:GetVec3() or nil
+      if vec3 then
+        local set = c130AutoBuildSets[entry.setId]
+        if set and not set.ownerResolved then
+          if not entry.spawnVec3 then
+            entry.spawnVec3 = vec3
+          else
+            local dx = vec3.x - entry.spawnVec3.x
+            local dz = vec3.z - entry.spawnVec3.z
+            if (dx * dx + dz * dz) >= (C130_OWNER_RESOLVE_MOVE2D * C130_OWNER_RESOLVE_MOVE2D) then
+              set.ownerResolved = true
+              resolveC130AutoBuildOwner(entry.setId, vec3)
+            end
+          end
+        end
+        local moved = false
+        if entry._lastVec3 then
+          local dx = vec3.x - entry._lastVec3.x
+          local dy = vec3.y - entry._lastVec3.y
+          local dz = vec3.z - entry._lastVec3.z
+          moved = (dx * dx + dy * dy + dz * dz) > 0.25
+          entry._lastVec3.x = vec3.x
+          entry._lastVec3.y = vec3.y
+          entry._lastVec3.z = vec3.z
+        else
+          entry._lastVec3 = { x = vec3.x, y = vec3.y, z = vec3.z }
+        end
+        local agl = vec3.y - land.getHeight({ x = vec3.x, y = vec3.z })
+        if agl >= C130_AUTO_AIRBORNE_AGL then
+          entry.wasAirborne = true
+        end
+        if agl <= ZONE_SUPPLY_AGL_THRESHOLD and entry.wasAirborne and not moved then
+          if entry._landAglConfirm then
+            if math.abs(agl - entry._landAglConfirm) <= 0.05 then
+              entry._landAglConfirm = nil
+              local zoneContainer = bc and bc:getZoneOfPoint(vec3) or nil
+              local zoneName = zoneContainer and zoneContainer.zone or nil
+              if entry.pickupZone and zoneName == entry.pickupZone then
+                if not entry.warnedPickup and entry.playerName then
+                  entry.warnedPickup = true
+                  MESSAGE:New(string.format("[CTLD] Move %s out of %s before Hercules auto-build.", entry.cargoName or "cargo", entry.pickupZone), 10):ToBlue()
+                end
+              else
+                entry.landed = true
+                entry.vec3 = vec3
+              end
+            else
+              entry._landAglConfirm = agl
+            end
+          else
+            entry._landAglConfirm = agl
+          end
+        else
+          entry._landAglConfirm = nil
+        end
+      end
+    end
+  end
+
+  for setId, set in pairs(c130AutoBuildSets) do
+    if set.failed then
+      for _, key in ipairs(set.crates) do
+        c130AutoBuildCrates[key] = nil
+      end
+      c130AutoBuildSets[setId] = nil
+    elseif not set.completed then
+      local landedCount = 0
+      local vecs = {}
+      for _, key in ipairs(set.crates) do
+        local entry = c130AutoBuildCrates[key]
+        if entry and entry.landed and entry.vec3 then
+          landedCount = landedCount + 1
+          vecs[#vecs + 1] = entry.vec3
+        end
+      end
+      if landedCount == set.required and landedCount > 0 then
+        local dcsGroup = set.groupName and Group.getByName(set.groupName) or nil
+        if not dcsGroup or not Utils.someOfGroupInAir(dcsGroup) then
+          notifyC130Auto(set, "[CTLD] Hercules drop auto-build skipped (aircraft not airborne).")
+          set.completed = true
+          for _, key in ipairs(set.crates) do
+            c130AutoBuildCrates[key] = nil
+          end
+          c130AutoBuildSets[setId] = nil
+        else
+          local avg = { x = 0, z = 0 }
+          for _, v in ipairs(vecs) do
+            avg.x = avg.x + v.x
+            avg.z = avg.z + v.z
+          end
+          avg.x = avg.x / landedCount
+          avg.z = avg.z / landedCount
+
+          local helperName = string.format("CTLD_C130_HELPER_%d", math.random(1, 1e6))
+          local helperData = {
+            visible = false,
+            lateActivation = false,
+            tasks = {},
+            x = avg.x,
+            y = avg.z,
+            name = helperName,
+            task = "Ground Nothing",
+            route = { points = { { x = avg.x, y = avg.z, speed = 0, task = { id = "ComboTask", params = { tasks = {} } } } } },
+            units = {
+              [1] = {
+                type = "Soldier M4",
+                name = helperName .. "_1",
+                x = avg.x,
+                y = avg.z,
+                heading = 0,
+                skill = "Excellent",
+              }
+            }
+          }
+
+          local countryId = (Foothold_ctld.coalition == coalition.side.BLUE) and country.id.USA or country.id.RUSSIA
+          coalition.addGroup(countryId, Group.Category.GROUND, helperData)
+
+          timer.scheduleFunction(function()
+            local helperGroup = GROUP:FindByName(helperName)
+            if helperGroup and helperGroup:IsAlive() then
+              local helperUnit = helperGroup:GetUnits()[1]
+              if helperUnit then
+                Foothold_ctld:_BuildCrates(helperGroup, helperUnit, true, true)
+              end
+              timer.scheduleFunction(function()
+                if helperGroup and helperGroup:IsAlive() then helperGroup:Destroy() end
+              end, {}, timer.getTime() + Foothold_ctld.buildtime)
+            end
+          end, {}, timer.getTime() + 5)
+
+          notifyC130Auto(set, "[CTLD] Hercules drop auto-built nearby.")
+          set.completed = true
+          for _, key in ipairs(set.crates) do
+            c130AutoBuildCrates[key] = nil
+          end
+          c130AutoBuildSets[setId] = nil
+        end
+      end
+    end
+  end
+end
+
+local function updateLastPickupZone(Group, ReferenceUnit)
+  if not Group or not Group:IsAlive() then return nil end
+
+    local function safeCoordinate(source)
+        if not source or not source.GetCoordinate then return nil end
+        local ok, coord = pcall(function() return source:GetCoordinate() end)
+        if ok then return coord end
+        return nil
+    end
+
+    local coord = safeCoordinate(ReferenceUnit)
+    if not coord then
+        coord = safeCoordinate(Group)
+    end
+    if not coord then
+        local units = Group.GetUnits and Group:GetUnits() or nil
+        if units and units[1] then
+            coord = safeCoordinate(units[1])
+        end
+    end
+
+    local pickupZone = nil
+    if coord and coord.GetVec3 then
+        local vec = coord:GetVec3()
+        if vec then
+            local zoneContainer = bc:getZoneOfPoint(vec)
+            pickupZone = zoneContainer and zoneContainer.zone or nil
+            if not pickupZone and supplyZones and ZONE and COORDINATE then
+                local coordObj = COORDINATE:NewFromVec3(vec)
+                for i = 1, #supplyZones do
+                    local zoneName = supplyZones[i]
+                    local mooseZone = getSupplyZoneWrapper(zoneName)
+                    if mooseZone and mooseZone:IsCoordinateInZone(coordObj) then
+                        pickupZone = zoneName
+                        break
+                    end
+                end
+            end
+        end
+    end
+
+    Group._lastPickupZone = pickupZone
+    return pickupZone
+end
+
+local function resolveZoneSupplyUnit(entry)
+  if entry and entry.unitName and Unit and Unit.getByName then
+    local u = entry._unitObj
+    if (not u) or (u and u.isExist and not u:isExist()) then
+      u = Unit.getByName(entry.unitName)
+      entry._unitObj = u
+      entry._unitDim = nil
+    end
+    if u and u.isExist and u:isExist() then
+      local pn = (u.getPlayerName and u:getPlayerName()) or nil
+      if not entry.playerName or entry.playerName == "nil" or pn == entry.playerName then
+        return u
+      end
+    end
+  end
+
+  if entry and entry.playerName and entry.playerName ~= "nil" then
+    local players = coalition.getPlayers(2) or {}
+    for _, u in ipairs(players) do
+      if u and u.getPlayerName and u:getPlayerName() == entry.playerName then
+        return u
+      end
+    end
+  end
+
+  return nil
+end
+
+
+zoneSupplyLandingOnce = zoneSupplyLandingOnce or { pending = nil, scheduled = false, delay = 5 }
+
+local function simulateLandingForEntryIfOnGround(entry, zoneName)
+  if not (entry and zoneName) then return end
+
+  if zoneSupplyLandingOnce.pending then return end
+
+  local unitCap = resolveZoneSupplyUnit(entry)
+  if not (unitCap and unitCap.isExist and unitCap:isExist()) then return end
+
+  if Utils and Utils.isInAir and Utils.isInAir(unitCap) then return end
+  if Utils and Utils.isInZone and (not Utils.isInZone(unitCap, zoneName)) then return end
+
+  zoneSupplyLandingOnce.pending = {
+    unit = unitCap,
+    playerName = entry.playerName,
+    zoneName = zoneName
+  }
+end
+
+local function getZoneStorageHandle(zoneName)
+  if not WarehouseLogistics then return nil, nil end
+  if not zoneName then return nil, nil end
+  local cached = zoneStorageHandleCache[zoneName]
+  if cached and cached.storage then
+    return cached.storage, cached.abName
+  end
+  local zoneObj = bc:getZoneByName(zoneName)
+  local abName = zoneObj and (zoneObj.airbaseName or zoneObj.baseName) or zoneName
+  local storage = STORAGE:FindByName(abName)
+  if not storage then
+    if abName ~= zoneName then
+      local storage2 = STORAGE:FindByName(zoneName)
+      if storage2 then
+        zoneStorageHandleCache[zoneName] = { storage = storage2, abName = zoneName }
+        return storage2, zoneName
+      end
+    end
+    return nil, nil
+  end
+  zoneStorageHandleCache[zoneName] = { storage = storage, abName = abName }
+  return storage, abName
+end
+
+
+local function getWarehouseItemsForCategory(categoryKey)
+  if warehouseSupplyItemCache[categoryKey] then
+    return warehouseSupplyItemCache[categoryKey]
+  end
+
+  local list = {}
+  if WEAPONSLIST and WEAPONSLIST.GetItems then
+    local items = WEAPONSLIST.GetItems(categoryKey) or {}
+    for i = 1, #items do
+      local itemName = items[i]
+      if itemName then
+        list[#list + 1] = itemName
+      end
+    end
+  end
+
+  warehouseSupplyItemCache[categoryKey] = list
+  return list
+end
+
+local function grantZoneBundle(zoneName)
+  local storage, abName = getZoneStorageHandle(zoneName)
+  if not storage then return end
+  local bundle = WAREHOUSE_SUPPLY_TYPES["10 of everything"]
+  if not bundle then return end
+  for _, category in ipairs(bundle.categories or {}) do
+    local items = getWarehouseItemsForCategory(category) or {}
+    for _, itemName in ipairs(items) do
+      storage:AddItem(itemName, bundle.amount or 10)
+    end
+  end
+end
+
+
+local function zoneSupplyDebug(msg)
+  if not CTLD_Logging then return end
+  env.info("[ZoneSupply] " .. tostring(msg))
+  trigger.action.outTextForCoalition(2, "[ZoneSupply] " .. tostring(msg), 10)
+end
+
+local function isZoneSupplyCargoItem(cargoItem)
+  local cargoName = cargoItem and cargoItem.GetName and cargoItem:GetName() or nil
+  return cargoName and ZONE_SUPPLY_TYPES[cargoName] == true
+end
+
+local function getZoneSupplyStaticKey(staticObj)
+  if not staticObj then return nil end
+  local key = staticObj.GetID and staticObj:GetID() or nil
+  if not key then
+    key = staticObj.GetName and staticObj:GetName() or nil
+  end
+  return key
+end
+local processZoneSupplyDeliveries
+local zoneSupplyApplyOne
+local zoneSupplyProcessReadyQueue
+local zoneSupplyProcessRunning = false
+local zoneSupplyProcessQueued = false
+
+local function tickZoneSupply()
+  if next(c130AutoBuildSets) then
+    processC130AutoBuild()
+  end
+  if not next(zoneSupplyCrates) then
+    return
+  end
+  local ready = processZoneSupplyDeliveries()
+  if ready and ready > 0 then
+    zoneSupplyProcessReadyQueue()
+  end
+end
+
+local function resolveZoneSupplyGroup(groupName)
+  if not groupName then return nil end
+  local grp = GROUP:FindByName(groupName)
+  if grp and grp:IsAlive() then
+    return grp
+  end
+  return nil
+end
+
+local function resolveZoneSupplyPlayer(entry)
+  if entry.playerName and entry.playerName ~= "" then
+    return entry.playerName
+  end
+  local grp = resolveZoneSupplyGroup(entry.groupName)
+  if not grp then return nil end
+  local units = grp:GetUnits()
+  if units and units[1] then
+    local pname = units[1]:GetPlayerName()
+    if pname and pname ~= "" then
+      entry.playerName = pname
+      return pname
+    end
+  end
+  return nil
+end
+
+local function sendZoneSupplyMessage(entry, text, duration)
+  local grp = resolveZoneSupplyGroup(entry.groupName)
+  if grp then
+    MESSAGE:New(text, duration or 15):ToGroup(grp)
+  else
+    MESSAGE:New(text, duration or 15):ToBlue()
+  end
+end
+
+local function zoneSupplyHasReadyCrates()
+  for _, e in pairs(zoneSupplyCrates) do
+    if e and e._ready then
+      return true
+    end
+  end
+  return false
+end
+
+local function zoneSupplyTryCleanup()
+  zoneSupplyCleanupScheduled = false
+
+  if zoneSupplyProcessRunning then
+    timer.scheduleFunction(zoneSupplyTryCleanup, {}, timer.getTime() + 5)
+    zoneSupplyCleanupScheduled = true
+    return
+  end
+
+  if zoneSupplyHasReadyCrates() then
+    timer.scheduleFunction(zoneSupplyTryCleanup, {}, timer.getTime() + 5)
+    zoneSupplyCleanupScheduled = true
+    return
+  end
+
+  local now = timer.getTime()
+  local nextDue = nil
+  for rkey, r in pairs(zoneSupplyPendingRemoval) do
+    if r and r.due and r.due <= now then
+      local staticObj = r.static
+      if staticObj and staticObj.IsAlive and staticObj:IsAlive() then
+        staticObj:Destroy(false)
+      end
+      zoneSupplyPendingRemoval[rkey] = nil
+    elseif r and r.due then
+      if not nextDue or r.due < nextDue then
+        nextDue = r.due
+      end
+    end
+  end
+
+  if nextDue then
+    local delay = math.max(1, nextDue - now)
+    timer.scheduleFunction(zoneSupplyTryCleanup, {}, now + delay)
+    zoneSupplyCleanupScheduled = true
+  end
+end
+
+local function zoneSupplyScheduleCleanup()
+  if zoneSupplyCleanupScheduled then return end
+  if not next(zoneSupplyPendingRemoval) then return end
+  zoneSupplyCleanupScheduled = true
+  timer.scheduleFunction(zoneSupplyTryCleanup, {}, timer.getTime() + 1)
+end
+
+local function zoneSupplyEnqueueRemoval(staticObj, delaySeconds)
+  if not staticObj then return end
+  local rkey = getZoneSupplyStaticKey(staticObj)
+  if not rkey then return end
+
+  local delay = tonumber(delaySeconds)
+
+  if delay ~= nil and delay <= 0 then
+    zoneSupplyPendingRemoval[rkey] = nil
+    if staticObj.IsAlive and staticObj:IsAlive() then
+      staticObj:Destroy(false)
+    end
+    return
+  end
+
+  zoneSupplyPendingRemoval[rkey] = {
+    static = staticObj,
+    due = timer.getTime() + (delay or ZONE_SUPPLY_DESTROY_DELAY),
+  }
+  zoneSupplyScheduleCleanup()
+end
+
+
+local function zoneSupplyDestroyNow(key, entry, zoneName, reason)
+  local staticObj = (entry and entry.cargo and entry.cargo.GetPositionable and entry.cargo:GetPositionable()) or (entry and entry.static) or nil
+  if staticObj and staticObj.IsAlive and staticObj:IsAlive() then
+    staticObj:Destroy(false)
+  end
+  zoneSupplyCrates[key] = nil
+  if staticObj then
+    local rkey = getZoneSupplyStaticKey(staticObj)
+    if rkey then
+      zoneSupplyPendingRemoval[rkey] = nil
+    end
+  end
+  if entry and reason then
+    sendZoneSupplyMessage(entry, string.format("[CTLD] Zone supplies destroyed in %s (%s).", tostring(zoneName), tostring(reason)))
+  end
+end
+
+
+
+local function finalizeZoneSupplyDelivery(key, entry, zoneName, verb, statLabel, reward)
+  sendZoneSupplyMessage(entry, string.format("[CTLD] Zone supplies %s %s.", verb, zoneName))
+  local pname = resolveZoneSupplyPlayer(entry)
+  if pname and bc and bc.playerContributions and bc.playerContributions[2] and bc.playerContributions[2][pname] ~= nil then
+    bc:addContribution(pname, 2, reward)
+    bc:addTempStat(pname, statLabel, 1)
+  end
+  simulateLandingForEntryIfOnGround(entry, zoneName)
+
+  local staticObj = (entry.cargo and entry.cargo.GetPositionable and entry.cargo:GetPositionable()) or entry.static
+  if staticObj and staticObj.IsAlive and staticObj:IsAlive() then
+    zoneSupplyEnqueueRemoval(staticObj,0)
+  end
+  zoneSupplyCrates[key] = nil
+end
+
+processZoneSupplyDeliveries = function()
+  if not next(zoneSupplyCrates) then return 0 end
+  local now = timer.getTime()
+  local readyCount = 0
+  for key, entry in pairs(zoneSupplyCrates) do
+    entry._ready = false
+    local cargo = entry.cargo
+    local staticObj = (cargo and cargo.GetPositionable and cargo:GetPositionable()) or entry.static
+    if not cargo and not staticObj then
+      zoneSupplyDebug(string.format("Drop tracking for %s cleared: no cargo ref", tostring(key)))
+      zoneSupplyCrates[key] = nil
+    elseif not staticObj or not staticObj:IsAlive() then
+      zoneSupplyDebug(string.format("Drop tracking for %s cleared: static dead/missing", tostring(key)))
+      zoneSupplyCrates[key] = nil
+    else
+      local coord = staticObj:GetCoordinate()
+      if coord then
+        local vec3 = coord:GetVec3()
+        if vec3 then
+          local moved = false
+          if entry._lastVec3 then
+            local dx = vec3.x - entry._lastVec3.x
+            local dy = vec3.y - entry._lastVec3.y
+            local dz = vec3.z - entry._lastVec3.z
+            moved = (dx * dx + dy * dy + dz * dz) > 0.25
+            entry._lastVec3.x = vec3.x
+            entry._lastVec3.y = vec3.y
+            entry._lastVec3.z = vec3.z
+          else
+            entry._lastVec3 = { x = vec3.x, y = vec3.y, z = vec3.z }
+          end
+
+          if moved then
+            if not entry.wasAirborne and not entry._gcLoadedMsg then
+              local staticName = staticObj and staticObj.GetName and staticObj:GetName() or (entry.cargoName or tostring(key))
+              sendZoneSupplyMessage(entry, string.format("Crate %s loaded by ground crew!", tostring(staticName)), 10)
+              entry._gcLoadedMsg = true
+            end
+            entry.wasAirborne = true
+            entry._wasUnloaded = false
+            entry._c130AglConfirm = nil
+            if entry.landedAt then
+              local rkey = getZoneSupplyStaticKey(staticObj)
+              if rkey then
+                zoneSupplyPendingRemoval[rkey] = nil
+              end
+              entry.landedAt = nil
+              entry._noZoneRemovalScheduled = nil
+              entry._inactiveRemovalScheduled = nil
+              entry._lastNoZoneLog = nil
+              entry._lastInactiveLog = nil
+            end
+          else
+            if entry.wasAirborne and not entry._wasUnloaded then
+              local ok = true
+              local unitObj = entry._unitObj
+              if (not unitObj) and entry.unitName then
+                unitObj = Unit.getByName(entry.unitName)
+                entry._unitObj = unitObj
+                entry._unitDim = nil
+              elseif unitObj and entry.unitName and (unitObj.isExist and not unitObj:isExist()) then
+                unitObj = Unit.getByName(entry.unitName)
+                entry._unitObj = unitObj
+                entry._unitDim = nil
+              end
+              local dim = entry._unitDim
+              local inAir = nil
+              local speed2 = nil
+              if unitObj and unitObj.isExist and unitObj:isExist() then
+                if not dim then
+                  dim = ZONE_SUPPLY_AIRCRAFT_DIMENSIONS[unitObj:getTypeName()]
+                  entry._unitDim = dim
+                end
+                if dim then
+                  local up = unitObj:getPoint()
+                  if up and up.x and up.y and up.z then
+                    local dx = up.x - vec3.x
+                    local dy = up.y - vec3.y
+                    local dz = up.z - vec3.z
+                    local d2 = dx * dx + dz * dz
+                    local delta2D = math.sqrt(d2)
+                    local delta3D = math.sqrt(d2 + dy * dy)
+                    inAir = unitObj:inAir()
+                    ok = false
+                    if (not inAir) and (delta2D > dim.length or delta2D > dim.width) then
+                      ok = true
+                    end
+                    if (not ok) and dim.ropelength and delta3D > dim.ropelength then
+                      ok = true
+                    end
+                    if dim.ropelength == 0 and inAir then
+                      local vel = unitObj:getVelocity()
+                      if vel then
+                        speed2 = vel.x * vel.x + vel.y * vel.y + vel.z * vel.z
+                      end
+                    end
+                  end
+                end
+              end
+              if ok then
+                local settleOk = true
+                if dim and dim.ropelength == 0 and inAir and speed2 and speed2 > 9 then
+                  local ground = land.getHeight({ x = vec3.x, y = vec3.z })
+                  local agl = vec3.y - ground
+                  if entry._c130AglConfirm then
+                    if math.abs(agl - entry._c130AglConfirm) <= 0.05 then
+                      entry._c130AglConfirm = nil
+                    else
+                      entry._c130AglConfirm = agl
+                      settleOk = false
+                    end
+                  else
+                    entry._c130AglConfirm = agl
+                    settleOk = false
+                  end
+                else
+                  entry._c130AglConfirm = nil
+                end
+                if settleOk then
+                  if not entry._gcUnloadedMsg then
+                    local staticName = staticObj and staticObj.GetName and staticObj:GetName() or (entry.cargoName or tostring(key))
+                    sendZoneSupplyMessage(entry, string.format("Crate %s unloaded by ground crew!", tostring(staticName)), 10)
+                    entry._gcUnloadedMsg = true
+                  end
+                  entry._wasUnloaded = true
+                end
+              end
+            end
+          end
+
+          local ground = land.getHeight({ x = vec3.x, y = vec3.z })
+          local agl = vec3.y - ground
+          zoneSupplyDebug(string.format("Check crate %s agl=%.2f pickup=%s", tostring(key), agl, tostring(entry.pickupZone)))
+          local onGround = (agl <= ZONE_SUPPLY_AGL_THRESHOLD) or (entry._wasUnloaded and not moved)
+          if onGround then
+
+            if not entry.wasAirborne then
+              if not entry._loggedAwaitingAirborne then
+                entry._loggedAwaitingAirborne = true
+                zoneSupplyDebug(string.format("Crate %s on ground (awaiting pickup/airborne)", tostring(key)))
+              end
+            else
+              if entry._wasUnloaded then
+
+              local zoneContainer = bc and bc:getZoneOfPoint(vec3) or nil
+
+              if (not (zoneContainer and zoneContainer.zone)) and supplyZones and ZONE then
+                for i = 1, #supplyZones do
+                  local zName = supplyZones[i]
+                  local mooseZone = getSupplyZoneWrapper(zName)
+                  if mooseZone and mooseZone:IsCoordinateInZone(coord) then
+                    zoneContainer = { zone = zName }
+                    break
+                  end
+                end
+              end
+
+              if zoneContainer and zoneContainer.zone then
+                local zoneName = zoneContainer.zone
+                local bcZone = bc:getZoneByName(zoneName)
+                local zoneObj = bcZone or zoneContainer
+                local zoneSide = zoneObj and zoneObj.side or "?"
+                local zoneActive = zoneObj and zoneObj.active or false
+                zoneSupplyDebug(string.format("Crate %s landed in %s side=%s active=%s", tostring(key), tostring(zoneName), tostring(zoneSide), tostring(zoneActive)))
+                if entry.pickupZone and zoneName == entry.pickupZone then
+                  if not entry.warnedSameZone then
+                    --sendZoneSupplyMessage(entry, string.format("[CTLD] Deliver zone supplies to a zone other than %s.", zoneName))
+                    entry.warnedSameZone = true
+                  end
+                else
+                  if bcZone and bcZone.active then
+                    local rkey = getZoneSupplyStaticKey(staticObj)
+                    if rkey then
+                      zoneSupplyPendingRemoval[rkey] = nil
+                    end
+                    entry.landedAt = nil
+                    entry._noZoneRemovalScheduled = nil
+                    entry._inactiveRemovalScheduled = nil
+                    entry._lastNoZoneLog = nil
+                    entry._lastInactiveLog = nil
+                    entry._ready = true
+                    entry._zoneName = zoneName
+                    readyCount = readyCount + 1
+                  else
+                    if (not bcZone) and entry.deliveryType == "warehouse" and entry.warehouseMeta and WarehouseLogistics == true then
+                      local storage = getZoneStorageHandle(zoneName)
+                      if storage then
+                        local rkey = getZoneSupplyStaticKey(staticObj)
+                        if rkey then
+                          zoneSupplyPendingRemoval[rkey] = nil
+                        end
+                        entry.landedAt = nil
+                        entry._noZoneRemovalScheduled = nil
+                        entry._inactiveRemovalScheduled = nil
+                        entry._lastNoZoneLog = nil
+                        entry._lastInactiveLog = nil
+                        entry._ready = true
+                        entry._zoneName = zoneName
+                        readyCount = readyCount + 1
+                      else
+                        zoneSupplyDebug(string.format("Crate %s in zone %s but zone inactive; clearing", tostring(key), tostring(zoneName)))
+                        entry.landedAt = entry.landedAt or now
+                        if not entry._inactiveRemovalScheduled then
+                          zoneSupplyEnqueueRemoval(staticObj, ZONE_SUPPLY_INACTIVE_TTL)
+                          entry._inactiveRemovalScheduled = true
+                        end
+                        local age = now - entry.landedAt
+                        if age <= ZONE_SUPPLY_INACTIVE_TTL then
+                          local last = entry._lastInactiveLog or 0
+                          if (now - last) >= 30 then
+                            zoneSupplyDebug(string.format("Crate %s in zone %s but inactive; keep tracking (%.0fs left)", tostring(key), tostring(zoneName), ZONE_SUPPLY_INACTIVE_TTL - age))
+                            entry._lastInactiveLog = now
+                          end
+                        else
+                          zoneSupplyDebug(string.format("Crate %s in zone %s inactive for %.0fs; clearing", tostring(key), tostring(zoneName), age))
+                          zoneSupplyCrates[key] = nil
+                        end
+                      end
+                    else
+                      zoneSupplyDebug(string.format("Crate %s in zone %s but zone inactive; clearing", tostring(key), tostring(zoneName)))
+                      entry.landedAt = entry.landedAt or now
+                      if not entry._inactiveRemovalScheduled then
+                        zoneSupplyEnqueueRemoval(staticObj, ZONE_SUPPLY_INACTIVE_TTL)
+                        entry._inactiveRemovalScheduled = true
+                      end
+                      local age = now - entry.landedAt
+                      if age <= ZONE_SUPPLY_INACTIVE_TTL then
+                        local last = entry._lastInactiveLog or 0
+                        if (now - last) >= 30 then
+                          zoneSupplyDebug(string.format("Crate %s in zone %s but inactive; keep tracking (%.0fs left)", tostring(key), tostring(zoneName), ZONE_SUPPLY_INACTIVE_TTL - age))
+                          entry._lastInactiveLog = now
+                        end
+                      else
+                        zoneSupplyDebug(string.format("Crate %s in zone %s inactive for %.0fs; clearing", tostring(key), tostring(zoneName), age))
+                        zoneSupplyCrates[key] = nil
+                      end
+                    end
+                  end
+                end
+              else
+                entry.landedAt = entry.landedAt or now
+                if not entry._noZoneRemovalScheduled then
+                  zoneSupplyEnqueueRemoval(staticObj, ZONE_SUPPLY_NOZONE_TTL)
+                  entry._noZoneRemovalScheduled = true
+                end
+                local age = now - entry.landedAt
+                if age <= ZONE_SUPPLY_NOZONE_TTL then
+                  local last = entry._lastNoZoneLog or 0
+                  if (now - last) >= 30 then
+                    zoneSupplyDebug(string.format("Crate %s landed but no zone found; keep tracking (%.0fs left)", tostring(key), ZONE_SUPPLY_NOZONE_TTL - age))
+                    entry._lastNoZoneLog = now
+                  end
+                else
+                  zoneSupplyDebug(string.format("Crate %s landed but no zone for %.0fs; clearing", tostring(key), age))
+                  zoneSupplyCrates[key] = nil
+                end
+              end
+            end
+              end
+          else
+            local dtype = entry.deliveryType or (entry.warehouseMeta and "warehouse") or "zone"
+            if entry.wasAirborne then
+              zoneSupplyDebug(string.format("Crate %s still airborne agl=%.2f type=%s", tostring(key), agl, tostring(dtype)))
+            end
+          end
+        end
+      end
+    end
+  end
+  return readyCount
+end
+
+zoneSupplyApplyOne = function(key)
+  local entry = zoneSupplyCrates[key]
+  if not entry then return end
+
+  local cargo = entry.cargo
+  local staticObj = (cargo and cargo.GetPositionable and cargo:GetPositionable()) or entry.static
+  if not staticObj or not staticObj:IsAlive() then
+    zoneSupplyCrates[key] = nil
+    return
+  end
+
+  local coord = staticObj:GetCoordinate()
+  if not coord then return end
+  local vec3 = coord:GetVec3()
+  if not vec3 then return end
+
+  local ground = land.getHeight({ x = vec3.x, y = vec3.z })
+  local agl = vec3.y - ground
+  if agl > ZONE_SUPPLY_AGL_THRESHOLD and not entry._wasUnloaded then
+    return
+  end
+
+  local zoneName = entry._zoneName
+  local zoneContainer = nil
+  if not zoneName then
+    zoneContainer = bc and bc:getZoneOfPoint(vec3) or nil
+    zoneName = zoneContainer and zoneContainer.zone or nil
+  end
+  if not zoneName then
+    return
+  end
+  if entry.pickupZone and zoneName == entry.pickupZone then
+    return
+  end
+
+  local zoneObj = bc and bc:getZoneByName(zoneName) or nil
+  if zoneObj then
+    if not zoneObj.active then
+      return
+    end
+  else
+    if not (entry.deliveryType == "warehouse" and entry.warehouseMeta) then
+      return
+    end
+    if WarehouseLogistics ~= true then
+      return
+    end
+    local storage = getZoneStorageHandle(zoneName)
+    if not storage then
+      return
+    end
+  end
+
+  if zoneObj.side == 1 then
+    zoneSupplyDestroyNow(key, entry, zoneName, "enemy zone")
+    return
+  end
+
+  if entry.deliveryType == "warehouse" and entry.warehouseMeta then
+    if zoneObj.side == 1 then
+      zoneSupplyDestroyNow(key, entry, zoneName, "enemy zone")
+      return
+    end
+
+    if zoneObj.side == 0 then
+      if not entry.neutralTimeoutScheduled then
+        entry.neutralTimeoutScheduled = true
+        timer.scheduleFunction(function()
+          if zoneSupplyCrates[key] then
+            local z = bc and bc:getZoneByName(zoneName) or nil
+            if z and z.side == 2 then
+              return -- became friendly; let normal processing deliver
+            end
+            zoneSupplyDestroyNow(key, entry, zoneName, "neutral zone timeout")
+          end
+        end, {}, timer.getTime() + ZONE_SUPPLY_DESTROY_DELAY)
+      end
+      return
+    end
+
+    if zoneObj.side ~= 2 then
+      return
+    end
+    if WarehouseLogistics ~= true then
+      zoneSupplyDestroyNow(key, entry, zoneName, "warehouse logistics disabled")
+      return
+    end
+    local storage, abName = getZoneStorageHandle(zoneName)
+    if not storage then
+      zoneSupplyDestroyNow(key, entry, zoneName, "no storage")
+      return
+    end
+    local meta = entry.warehouseMeta
+    local categories = meta.categories or {}
+    local applied = false
+    for i = 1, #categories do
+      local items = getWarehouseItemsForCategory(categories[i]) or {}
+      for j = 1, #items do
+        local itemName = items[j]
+        storage:AddItem(itemName, meta.amount)
+        applied = true
+      end
+    end
+    if not applied then
+      zoneSupplyDestroyNow(key, entry, zoneName, "no applicable inventory")
+      return
+    end
+    local staticObj = (entry.cargo and entry.cargo.GetPositionable and entry.cargo:GetPositionable()) or entry.static
+    if staticObj and staticObj.IsAlive and staticObj:IsAlive() then
+      zoneSupplyEnqueueRemoval(staticObj,0)
+    end
+    sendZoneSupplyMessage(entry, string.format("[CTLD] %s delivered to %s (%s).", meta.label or "Supplies", zoneName, abName or "warehouse"))
+    local pname = resolveZoneSupplyPlayer(entry)
+    local reward = meta.reward or ((meta.categories and #meta.categories > 1) and 100 or 50)
+    if pname and bc and bc.playerContributions and bc.playerContributions[2] and bc.playerContributions[2][pname] ~= nil then
+      bc:addContribution(pname, 2, reward)
+      bc:addTempStat(pname, "Warehouse delivery", 1)
+    end
+    simulateLandingForEntryIfOnGround(entry, zoneName)
+    zoneSupplyCrates[key] = nil
+    return
+  end
+
+  -- IMPORTANT: re-evaluate side NOW (may have changed after a previous crate captured).
+  if zoneObj.side == 0 then
+    zoneObj:capture(2)
+    grantZoneBundle(zoneName)
+    finalizeZoneSupplyDelivery(key, entry, zoneName, "captured", "Zone capture", ZONE_SUPPLY_CAPTURE_REWARD)
+    return
+  end
+
+  local needSupply = zoneObj.canRecieveSupply and zoneObj:canRecieveSupply() or false
+  if needSupply then
+    zoneObj:upgrade()
+    grantZoneBundle(zoneName)
+    finalizeZoneSupplyDelivery(key, entry, zoneName, "upgraded", "Zone upgrade", ZONE_SUPPLY_UPGRADE_REWARD)
+  else
+    if not entry.warnedNoNeed then
+      sendZoneSupplyMessage(entry, string.format("[CTLD] %s does not currently need zone supplies.", zoneName))
+      entry.warnedNoNeed = true
+    end
+    local sObj = (entry.cargo and entry.cargo.GetPositionable and entry.cargo:GetPositionable()) or entry.static
+    if sObj and sObj.IsAlive and sObj:IsAlive() then
+      zoneSupplyEnqueueRemoval(sObj,0) -- destroyed after ZONE_SUPPLY_DESTROY_DELAY
+    end
+    zoneSupplyCrates[key] = nil
+  end
+end
+
+zoneSupplyProcessReadyQueue = function()
+  if zoneSupplyProcessRunning then
+    zoneSupplyProcessQueued = true
+    return
+  end
+
+  zoneSupplyProcessRunning = true
+  zoneSupplyProcessQueued = false
+
+  local function isNeutralZoneForWarehouse(entry)
+    if not entry or entry.deliveryType ~= "warehouse" then return false end
+    local zn = entry._zoneName
+    if not (zn and bc and bc.getZoneByName) then return false end
+    local z = bc:getZoneByName(zn)
+    return z and z.side == 0
+  end
+
+  local function pickNextKey()
+    local bestKey, bestPrio = nil, nil
+    local hadAnyReady = false
+
+    for key, entry in pairs(zoneSupplyCrates) do
+      if entry and entry._ready then
+        hadAnyReady = true
+
+        local isWh = (entry.deliveryType == "warehouse")
+        if not isWh then
+          local prio = 1
+          if (not bestPrio) or prio < bestPrio or (prio == bestPrio and tostring(key) < tostring(bestKey)) then
+            bestKey, bestPrio = key, prio
+          end
+        else
+          if not isNeutralZoneForWarehouse(entry) then
+            local prio = 2
+            if (not bestPrio) or prio < bestPrio or (prio == bestPrio and tostring(key) < tostring(bestKey)) then
+              bestKey, bestPrio = key, prio
+            end
+          end
+        end
+      end
+    end
+
+    return bestKey, hadAnyReady
+  end
+
+  local function tryFireLandingOnce()
+    if not (zoneSupplyLandingOnce and zoneSupplyLandingOnce.pending) then return end
+    if zoneSupplyLandingOnce.scheduled then return end
+    zoneSupplyLandingOnce.scheduled = true
+
+    local pending = zoneSupplyLandingOnce.pending
+    local delay = zoneSupplyLandingOnce.delay or 5
+
+    SCHEDULER:New(nil, function()
+      zoneSupplyLandingOnce.scheduled = false
+      zoneSupplyLandingOnce.pending = nil
+
+      local unitCap = pending.unit
+      if not (unitCap and unitCap.isExist and unitCap:isExist()) then return end
+      if Utils and Utils.isInAir and Utils.isInAir(unitCap) then return end
+
+      local landingEvent = {
+        id = world.event.S_EVENT_LAND,
+        time = timer.getAbsTime(),
+        initiator = unitCap,
+        initiatorPilotName = pending.playerName,
+        initiator_unit_type = unitCap:getTypeName(),
+        initiator_coalition = 2,
+        skipRewardMsg = true,
+      }
+      world.onEvent(landingEvent)
+    end, {}, delay, 0)
+  end
+
+  local function step()
+    local key, hadAnyReady = pickNextKey()
+
+    if not key then
+      zoneSupplyProcessRunning = false
+
+      if zoneSupplyProcessQueued then
+        zoneSupplyProcessQueued = false
+        zoneSupplyProcessReadyQueue()
+        return
+      end
+
+      if hadAnyReady then
+        timer.scheduleFunction(function() zoneSupplyProcessReadyQueue() end, {}, timer.getTime() + 3)
+        return
+      end
+
+      tryFireLandingOnce()
+      zoneSupplyScheduleCleanup()
+      return
+    end
+
+    zoneSupplyApplyOne(key)
+    timer.scheduleFunction(function() step() end, {}, timer.getTime() + 3)
+  end
+
+  step()
+end
+
+local function selectOldestUnit(unitTable, cargoName, predicate)
+    local oldestIdx, oldestEntry, oldestTimestamp = nil, nil, math.huge
+    for idx, entry in ipairs(unitTable) do
+        if entry.CargoName == cargoName then
+            if (not predicate or predicate(entry)) and entry.Timestamp < oldestTimestamp then
+                oldestIdx = idx
+                oldestEntry = entry
+                oldestTimestamp = entry.Timestamp
+            end
+        end
+    end
+    return oldestIdx, oldestEntry, oldestTimestamp
+end
+
+local function destroyTrackedGroup(entry)
+  if not entry or not entry.groupName then return end
+  local dcsGroup = GROUP:FindByName(entry.groupName)
+  if dcsGroup and dcsGroup:IsAlive() then
+    dcsGroup:Destroy()
+  end
+end
+
+local function extractCargoItems(Cargo)
+  local items = {}
+    local function push(item)
+        if item and item.GetName then
+            items[#items + 1] = item
+        end
+    end
+    if type(Cargo) ~= "table" then
+        return items
+    end
+    if Cargo.GetName then
+        push(Cargo)
+        return items
+    end
+    for _, value in ipairs(Cargo) do
+        push(value)
+    end
+    if #items == 0 then
+        for _, value in pairs(Cargo) do
+            push(value)
+        end
+    end
+    return items
+end
+
+     local FARPFreq = 129
+     local FARPName = 1
+
+     local FARPClearnames = {
+       [1]="London",
+       [2]="Dallas",
+       [3]="Paris",
+       [4]="Moscow",
+       [5]="Berlin",
+       [6]="Rome",
+       [7]="Madrid",
+       [8]="Warsaw",
+       [9]="Dublin",
+       [10]="Perth",
+       }
+local BuiltFARPCoordinates = {}
+local SpawnedFARPsFromSave = 0
+
+
+function BuildAFARP(Coordinate, stamp)
+  if bc:getZoneOfPoint(Coordinate:GetVec3()) then return end
+  local isFromSave = (stamp ~= nil)
+  if isFromSave then
+    if SpawnedFARPsFromSave >= MAX_SAVED_FARPS then
+      return
+    else
+      SpawnedFARPsFromSave = SpawnedFARPsFromSave + 1
+    end
+  end
+
+  local coord          = Coordinate
+  local FarpNameNumber = ((FARPName - 1) % 10) + 1
+  local FName          = FARPClearnames[FarpNameNumber]
+
+  FARPFreq = FARPFreq + 1
+  FARPName = FARPName + 1
+  FName    = "CTLD FARP " .. FName
+
+  ZONE_RADIUS:New(FName, coord:GetVec2(), 150, false)
+
+  
+  if supplyZones then
+    supplyZones[#supplyZones + 1] = FName
+  end  
+  if allZones then
+    allZones[#allZones + 1] = FName
+  end
+  if era=="Coldwar" then
+      UTILS.SpawnFARPAndFunctionalStatics(FName, coord, ENUMS.FARPType.INVISIBLE, Foothold_ctld.coalition, country.id.USA, FarpNameNumber, FARPFreq, radio.modulation.AM, nil, nil, nil, 10000, 0,0,nil, true, true, 3, 80, 80)
+  else
+      UTILS.SpawnFARPAndFunctionalStatics(FName, coord, ENUMS.FARPType.INVISIBLE, Foothold_ctld.coalition, country.id.USA, FarpNameNumber, FARPFreq, radio.modulation.AM, nil, nil, nil, 10000, 0,1073741823,nil, true, true, 3, 80, 80)
+  end
+  Foothold_ctld:AddCTLDZone(FName, CTLD.CargoZoneType.LOAD, SMOKECOLOR.Blue, true, false)
+  MESSAGE:New(string.format("%s in operation!", FName), 15):ToBlue()
+  Foothold_ctld:RemoveStockCrates("CTLD_TROOP_FOB", 1)
+
+  table.insert(BuiltFARPCoordinates, { name = FName, coord = Coordinate, timestamp = stamp or timer.getTime() })
+
+  bc:registerDynamicFarp(FName, coord, Foothold_ctld.coalition)
+
+if WarehouseLogistics == true and WarehousePersistence and WarehousePersistence.RegisterExtraAirbase then
+  WarehousePersistence.RegisterExtraAirbase(FName)
+end
+
+  SCHEDULER:New(nil, function() bc:CopyWarehouse(FName, isFromSave) end, {}, 1)
+
+  if not NextMarkupId then NextMarkupId = 120000 end
+  local markId = NextMarkupId; NextMarkupId = NextMarkupId + 1
+  trigger.action.circleToAll(-1, markId, coord:GetVec3(), 150,{0,0,1,1},{0,0,1,0.25},1)
+  trigger.action.setMarkupTypeLine(markId, 2)
+  trigger.action.setMarkupColor(markId, {0,1,0,1})
+
+  local textId = NextMarkupId; NextMarkupId = NextMarkupId + 1
+  local textPoint = {x = coord.x, y = coord.y, z = coord.z + 150}
+  trigger.action.textToAll(-1, textId, textPoint,{0,0,0.7,0.8},{0.7,0.7,0.7,0.8},18,true,FName)
+  trigger.action.setMarkupText(textId, FName)
+
+end
+
+
+Foothold_ctld.buildRunning = 0
+
+function Foothold_ctld:OnAfterCratesBuildStarted(From, Event, To, Group, Unit, CargoName)
+
+    self.buildRunning = self.buildRunning + 1
+    self:I(string.format(
+        "[BUILD] start running=%d  group=%s  unit=%s  cargo=%s",
+        self.buildRunning,
+        Group and Group:GetName() or "nil",
+        Unit  and Unit:GetName()  or "nil",
+        CargoName or "nil"))
+
+    if not CargoName then return end
+
+    local obj          = self:_FindCratesCargoObject(CargoName)
+    if not obj then return end
+
+    if obj:GetStock() >= 5 then
+        self:I(string.format("[RESERVE] stock already >=5 for %s (no action)", CargoName))
+        return
+    end
+    local oldestIdx, victim, oldestTs = selectOldestUnit(GroundUnits, CargoName)
+    if oldestIdx and victim then
+        self:I(string.format("[RESERVE] DELETE oldest %s ts=%f (group=%s)", CargoName, oldestTs, victim.groupName))
+        destroyTrackedGroup(victim)
+        if Group then MESSAGE:New(string.format("[CTLD] %s limit reached - removed oldest %s (%s).", CargoName, CargoName, victim.groupName), 12):ToGroup(Group) end
+        table.remove(GroundUnits, oldestIdx)
+        self:AddStockCrates(CargoName, 1)
+        self:I(string.format("[RESERVE] stock was 0 → +1 refunded for %s", CargoName))
+    else
+        self:I(string.format("[RESERVE] no existing %s groups to delete", CargoName))
+    end
+end
+
+function Foothold_ctld:OnAfterCratesBuild(From, Event, To, Group, Unit, Vehicle)
+
+    if self.buildRunning > 0 then
+    self.buildRunning = self.buildRunning - 1
+  end
+    local currentTime = timer.getTime()
+    local groupName   = Vehicle:GetName() or "unknown"
+
+    if string.find(groupName,"CTLD_TROOP_FOB",1,true) then
+        local Coord = Vehicle:GetCoordinate()
+        Vehicle:Destroy(false)
+        BuildAFARP(Coord)
+        return
+    end
+
+    if not Group then return end
+
+    local cargoName, stock = "unknown", 0
+
+    for _, cargoData in pairs(self.Cargo_Crates) do
+      if cargoData.Templates then
+        local templateName = type(cargoData.Templates) == "table" and cargoData.Templates[1] or cargoData.Templates
+        if string.find(groupName, templateName, 1, true) then
+          cargoName = cargoData:GetName()
+          stock     = cargoData:GetStock()
+          break
+        end
+      end
+    end
+
+    local maxTimestamp = 0
+    for _, group in ipairs(GroundUnits) do
+        if group.CargoName == cargoName and group.Timestamp > maxTimestamp then
+            maxTimestamp = group.Timestamp
+        end
+    end
+
+    local cargoObject      = self:_FindCratesCargoObject(cargoName)
+    local currentStock     = cargoObject and cargoObject:GetStock() or 0
+    local newTimestamp     = (maxTimestamp > 0) and (maxTimestamp + 1) or currentTime
+    local configuredMax    = cargoObject and cargoObject:GetStock0() or 999
+    self:I(string.format("OnAfterCratesBuild: cargoName=%s, stock0=%d, currentStock=%d", cargoName, configuredMax, currentStock))
+
+    local groupExists = false
+    for _, group in ipairs(GroundUnits) do
+        if group.groupName == groupName then
+            group.Timestamp = newTimestamp
+            group.Stock     = currentStock
+            groupExists     = true
+            break
+        end
+    end
+
+    if not groupExists then
+        table.insert(GroundUnits, {
+            groupName  = groupName,
+            Timestamp  = newTimestamp,
+            CargoName  = cargoName,
+            Stock      = currentStock
+        })
+    end
+
+    for _, g in ipairs(GroundUnits) do
+        if g.CargoName == cargoName then
+            g.Stock = currentStock
+        end
+    end
+end
+
+local function adjustWarehouseStockAtZone(zoneName, deltaPerItem, categories)
+  if WarehouseLogistics ~= true then return false, "WarehouseLogistics disabled" end
+  if not zoneName then return false, "zoneName nil" end
+  if type(deltaPerItem) ~= "number" or deltaPerItem == 0 then return false, "invalid deltaPerItem" end
+  if not (STORAGE and STORAGE.FindByName) then return false, "STORAGE missing" end
+  if not (WEAPONSLIST and WEAPONSLIST.GetItems) then return false, "WEAPONSLIST missing" end
+
+  local storage, abName = getZoneStorageHandle(zoneName)
+  if not storage then return false, "storage not found for " .. tostring(zoneName) end
+
+  local cats = categories
+  if type(cats) ~= "table" or #cats == 0 then
+    cats = WEAPONSLIST.CategoryOrder or {}
+  end
+
+  local adjusted = 0
+  local skippedLow = 0
+  local delta = deltaPerItem
+  local need = -delta
+
+  for i = 1, #cats do
+    local catKey = cats[i]
+    local items = getWarehouseItemsForCategory(catKey) or {}
+
+    for j = 1, #items do
+      local itemName = items[j]
+      if itemName then
+        local current = storage:GetItemAmount(itemName) or 0
+
+        if delta < 0 then
+          if current >= need then
+            storage:SetItem(itemName, current + delta)
+            adjusted = adjusted + 1
+          else
+            skippedLow = skippedLow + 1
+          end
+        else
+          storage:SetItem(itemName, current + delta)
+          adjusted = adjusted + 1
+        end
+      end
+    end
+  end
+
+  if CTLD_Logging then
+    env.info(string.format(
+      "[WarehouseAdjust] zone=%s ab=%s delta=%+d adjusted=%d skippedLow=%d",
+      tostring(zoneName), tostring(abName), delta, adjusted, skippedLow
+    ))
+  end
+
+  if adjusted == 0 then
+    return false, string.format("no items adjusted (skippedLow=%d) at %s", skippedLow, tostring(abName))
+  end
+
+  return true, string.format("adjusted=%d skippedLow=%d at %s", adjusted, skippedLow, tostring(abName))
+end
+
+
+function Foothold_ctld:CanGetUnits(Group, Unit, Config, quantity, quiet)
+  if CTLDCost ~= true then return true end
+  local uname = Config and Config.Name or "none"
+  local price = (priceOf and priceOf(uname)) or CTLD_DEFAULT_PRICE or 0
+  local charge = price * (quantity or 1)
+  if charge <= 0 or not bc then return true end
+  local coal = Group:GetCoalition()
+  local dcs = Group:GetDCSObject()
+  local gid = dcs:getID()
+  if type(bc.debit) == "function" then
+    return bc:debit(coal, charge, gid, dcs, uname) == true
+  end
+  bc.accounts[coal] = (bc.accounts[coal] or 0) - charge
+  return true
+end
+
+function Foothold_ctld:CanGetCrates(Group, Unit, Cargo, number, drop, pack, quiet, suppressGetEvent)
+  if drop or pack then return true end
+  if WarehouseLogistics ~= true then return true end
+  if not (Cargo and Cargo.GetName) then return true end
+
+  local cname = Cargo:GetName()
+  local meta = WAREHOUSE_SUPPLY_TYPES[cname]
+  if not meta then return true end
+
+  local baseAmount = meta.amount
+  if type(baseAmount) ~= "number" or baseAmount <= 0 then
+    local label = tostring(meta.label or cname or "cargo")
+    local text = string.format("[CTLD] %s misconfigured (invalid amount).", label)
+    if Group and Group.IsAlive and Group:IsAlive() then
+      MESSAGE:New(text, 12):ToGroup(Group)
+    else
+      trigger.action.outTextForCoalition(2, text, 12)
+    end
+    return false
+  end
+  
+  local perSet = Cargo:GetCratesNeeded() or 1
+  if perSet < 1 then perSet = 1 end
+  local requestNumber = tonumber(number) or perSet
+  requestNumber = math.floor(requestNumber)
+  if requestNumber < 1 then requestNumber = perSet end
+  local requestedSets = math.floor((requestNumber + perSet - 1) / perSet)
+  if requestedSets < 1 then requestedSets = 1 end
+  local requiredAmount = baseAmount * requestedSets
+  local pickupZone = updateLastPickupZone(Group, Unit)
+  if not pickupZone then return false end
+
+  local storage, abName = getZoneStorageHandle(pickupZone)
+  local okStock = true
+  local failReason = nil
+
+  if not storage then
+    okStock = false
+    failReason = "no storage"
+  else
+    local categories = meta.categories or {}
+    local missing = {}
+    for i = 1, #categories do
+      local cat = categories[i]
+      local items = getWarehouseItemsForCategory(cat) or {}
+      if #items == 0 then
+        missing[#missing + 1] = string.format("no %s items", cat)
+      else
+        local sum = 0
+        for j = 1, #items do
+          local itemName = items[j]
+          local amt = storage:GetItemAmount(itemName) or 0
+          if amt > 0 then
+            sum = sum + amt
+          end
+        end
+        if sum < requiredAmount then
+          missing[#missing + 1] = string.format("insufficient %s stock", cat)
+        end
+      end
+    end
+    if #missing > 0 then
+      okStock = false
+      failReason = table.concat(missing, ", ")
+    end
+  end
+
+  if not okStock then
+    local where = tostring(abName or pickupZone or "warehouse")
+    local label = tostring(meta.label or cname or "cargo")
+    local text = string.format("[CTLD] %s not available in %s (%s).", label, where, failReason or "not available")
+    if Group and Group.IsAlive and Group:IsAlive() then
+      MESSAGE:New(text, 12):ToGroup(Group)
+    else
+      trigger.action.outTextForCoalition(2, text, 12)
+    end
+    return false
+  end
+
+  if CTLDCost == true then
+    local price = (priceOf and priceOf(cname)) or CTLD_DEFAULT_PRICE or 0
+    local charge = price * requestedSets
+    if charge > 0 and bc then
+      local coal = Group:GetCoalition()
+      local dcs = Group:GetDCSObject()
+      local gid = dcs:getID()
+      local reason = string.format("%dx %s", requestedSets, cname)
+      if type(bc.debit) == "function" then
+        local ok = bc:debit(coal, charge, gid, dcs, reason)
+        if not ok then return false end
+      else
+        bc.accounts[coal] = (bc.accounts[coal] or 0) - charge
+      end
+    end
+  end
+
+  local okAdj, adjMsg = adjustWarehouseStockAtZone(pickupZone, -requiredAmount, meta.categories)
+  if CTLD_Logging then
+    env.info("[ZoneSupply][Debit][CTLD] " .. tostring(okAdj) .. " " .. tostring(adjMsg))
+  end
+
+  if not okAdj then
+    local where = tostring(abName or pickupZone or "warehouse")
+    local label = tostring(meta.label or cname or "cargo")
+    local text = string.format("[CTLD] %s could not be removed from %s (%s).", label, where, tostring(adjMsg or "debit failed"))
+    if Group and Group.IsAlive and Group:IsAlive() then
+      MESSAGE:New(text, 12):ToGroup(Group)
+    else
+      trigger.action.outTextForCoalition(2, text, 12)
+    end
+    return false
+  end
+
+  return true
+end
+
+function Foothold_ctld:OnAfterRemoveCratesNearby(From, Event, To, Group, Unit, Cargotable)
+  local inzone = self:IsUnitInZone(Unit,CTLD.CargoZoneType.LOAD)
+  if not inzone then return end
+
+ local zoneName = updateLastPickupZone(Group, Unit)
+
+  local byName = {}
+  for _,_cargo in pairs(Cargotable or {}) do
+    local cargo = _cargo
+    local name = cargo:GetName() or "none"
+    byName[name] = (byName[name] or 0) + 1
+  end
+
+  local coal = Group:GetCoalition()
+  local dcs = Group:GetDCSObject()
+  local gid = dcs:getID()
+
+  for name,count in pairs(byName) do
+    local object = self:_FindCratesCargoObject(name)
+    local perSet = (object and object:GetCratesNeeded()) or 1
+    if perSet < 1 then perSet = 1 end
+    local removedSets = math.floor((count + perSet - 1) / perSet)
+    if removedSets < 1 then removedSets = 1 end
+
+    if CTLDCost and bc and priceOf then
+      local price = priceOf(name) or 0
+      local refund = price * removedSets
+      if refund > 0 then
+        if bc.credit then
+          bc:credit(coal, refund, gid, dcs, "remove: "..tostring(removedSets).."x "..name)
+        else
+          bc.accounts[coal] = (bc.accounts[coal] or 0) + refund
+        end
+      end
+    end
+
+    if WarehouseLogistics == true and zoneName and WAREHOUSE_SUPPLY_TYPES[name] then
+      local meta = WAREHOUSE_SUPPLY_TYPES[name]
+      local baseAmount = meta.amount
+      if type(baseAmount) == "number" and baseAmount > 0 then
+        local amount = baseAmount * removedSets
+        local okAdj, adjMsg = adjustWarehouseStockAtZone(zoneName, amount, meta.categories)
+        if CTLD_Logging then
+          env.info("[ZoneSupply][Refund][Warehouse] " .. tostring(okAdj) .. " " .. tostring(adjMsg) .. " " .. tostring(zoneName) .. " " .. tostring(amount) .. " " .. tostring(name))
+        end
+      end
+    end
+  end
+end
+
+function Foothold_ctld:OnAfterGetCrates(From, Event, To, Group, Unit, Cargo)
+  if CTLD_Logging then
+    env.info("OnAfterGetCrates Event fired")
+  end
+
+  local unitName = nil
+  if Unit and Unit.GetName then
+    unitName = Unit:GetName()
+  end
+
+  local cargoItems = extractCargoItems(Cargo)
+  if #cargoItems == 0 then
+    if CTLD_Logging then
+      env.info("OnAfterGetCrates: no cargo items")
+    end
+    return
+  end
+
+  local pickupZone = updateLastPickupZone(Group, Unit)
+  if not pickupZone and supplyZones and ZONE and COORDINATE then
+    local coordSource = nil
+    if Unit and Unit.GetCoordinate then
+      coordSource = Unit:GetCoordinate()
+    elseif Group and Group.GetCoordinate then
+      coordSource = Group:GetCoordinate()
+    end
+    if coordSource and coordSource.GetVec3 then
+      local vec = coordSource:GetVec3()
+      if vec then
+        local coordObj = COORDINATE:NewFromVec3(vec)
+        for i = 1, #supplyZones do
+          local zoneName = supplyZones[i]
+          local mooseZone = getSupplyZoneWrapper(zoneName)
+          if mooseZone and mooseZone:IsCoordinateInZone(coordObj) then
+            pickupZone = zoneName
+            break
+          end
+        end
+      end
+    end
+  end
+
+  local groupName = Group and Group:GetName() or "nil"
+  local playerName = Unit and Unit.GetPlayerName and Unit:GetPlayerName() or "nil"
+  local names = {}
+  local sawZoneSupplies = false
+  local sawWarehouse = false
+
+  for _, cargoItem in ipairs(cargoItems) do
+    local cname = cargoItem.GetName and cargoItem:GetName() or "unknown"
+    names[#names + 1] = cname
+
+    if isZoneSupplyCargoItem(cargoItem) then
+      sawZoneSupplies = true
+      cargoItem._zoneSupplyPickupZone = pickupZone
+      cargoItem._zoneSupplyGroupName = groupName
+      cargoItem._zoneSupplyPlayer = playerName
+
+      local cargoId = (cargoItem.GetID and cargoItem:GetID()) or cargoItem.ID
+      local staticObj = (cargoItem.GetPositionable and cargoItem:GetPositionable()) or nil
+      local key = cargoId
+      if not key and staticObj then
+        key = getZoneSupplyStaticKey(staticObj)
+      end
+
+      if key then
+        if not zoneSupplyCrates[key] then
+          local initVec3 = nil
+          if staticObj then
+            local initCoord = staticObj:GetCoordinate()
+            initVec3 = initCoord and initCoord:GetVec3() or nil
+          end
+          local unitObj = Unit and Unit:GetDCSObject() or nil
+          local unitDim = nil
+          if unitObj and unitObj.isExist and unitObj:isExist() then
+            unitDim = ZONE_SUPPLY_AIRCRAFT_DIMENSIONS[unitObj:getTypeName()]
+          end
+          zoneSupplyCrates[key] = {
+            cargo = cargoItem,
+            static = staticObj,
+            pickupZone = pickupZone,
+            groupName = groupName,
+            playerName = playerName,
+            unitName = unitName,
+            _unitObj = unitObj,
+            _unitDim = unitDim,
+            warnedSameZone = false,
+            warnedNoNeed = false,
+            deliveryType = "zone",
+            warehouseMeta = nil,
+            cargoName = cname,
+            wasAirborne = false,
+            _wasUnloaded = false,
+            _lastVec3 = initVec3 and { x = initVec3.x, y = initVec3.y, z = initVec3.z } or nil,
+          }
+          local staticName = staticObj and staticObj.GetName and staticObj:GetName() or "nil"
+          zoneSupplyDebug(string.format(
+            "Tracking zone-supply key=%s cargoId=%s static=%s pickup=%s group=%s player=%s",
+            tostring(key), tostring(cargoId), tostring(staticName), tostring(pickupZone), tostring(groupName), tostring(playerName)
+          ))
+        end
+      else
+        zoneSupplyDebug("OnAfterGetCrates: zone supply without cargoId/static key")
+      end
+
+    elseif WAREHOUSE_SUPPLY_TYPES[cname] then
+      sawWarehouse = true
+      local meta = WAREHOUSE_SUPPLY_TYPES[cname]
+      cargoItem._zoneSupplyPickupZone = pickupZone
+      cargoItem._zoneSupplyGroupName = groupName
+      cargoItem._zoneSupplyPlayer = playerName
+
+      local cargoId = (cargoItem.GetID and cargoItem:GetID()) or cargoItem.ID
+      local staticObj = (cargoItem.GetPositionable and cargoItem:GetPositionable()) or nil
+      local key = cargoId
+      if not key and staticObj then
+        key = getZoneSupplyStaticKey(staticObj)
+      end
+
+      if key then
+        if not zoneSupplyCrates[key] then
+          local initVec3 = nil
+          if staticObj then
+            local initCoord = staticObj:GetCoordinate()
+            initVec3 = initCoord and initCoord:GetVec3() or nil
+          end
+          local unitObj = Unit and Unit:GetDCSObject() or nil
+          local unitDim = nil
+          if unitObj and unitObj.isExist and unitObj:isExist() then
+            unitDim = ZONE_SUPPLY_AIRCRAFT_DIMENSIONS[unitObj:getTypeName()]
+          end
+          zoneSupplyCrates[key] = {
+            cargo = cargoItem,
+            static = staticObj,
+            pickupZone = pickupZone,
+            groupName = groupName,
+            playerName = playerName,
+            unitName = unitName,
+            _unitObj = unitObj,
+            _unitDim = unitDim,
+            warnedSameZone = false,
+            warnedNoNeed = false,
+            warnedWarehouseSide = false,
+            deliveryType = "warehouse",
+            warehouseMeta = meta,
+            cargoName = cname,
+            wasAirborne = false,
+            _wasUnloaded = false,
+            _lastVec3 = initVec3 and { x = initVec3.x, y = initVec3.y, z = initVec3.z } or nil,
+          }
+          local staticName = staticObj and staticObj.GetName and staticObj:GetName() or "nil"
+          zoneSupplyDebug(string.format(
+            "Tracking warehouse cargo key=%s cargoId=%s static=%s pickup=%s group=%s player=%s type=%s",
+            tostring(key), tostring(cargoId), tostring(staticName), tostring(pickupZone), tostring(groupName), tostring(playerName), tostring(cname)
+          ))
+        end
+      else
+        zoneSupplyDebug("OnAfterGetCrates: warehouse cargo without cargoId/static key")
+      end
+    end
+  end
+
+  local kind = (sawZoneSupplies and sawWarehouse) and "mixed" or (sawWarehouse and "warehouse") or (sawZoneSupplies and "zone-supply") or "other"
+  local msg = string.format(
+    "[CTLD] GetCrates by %s (player=%s) pickupZone=%s kind=%s cargo=%s",
+    groupName,
+    playerName,
+    tostring(pickupZone),
+    tostring(kind),
+    table.concat(names, ", ")
+  )
+  if CTLD_Logging then
+    env.info(msg)
+    trigger.action.outText(msg, 10)
+  end
+
+  local shouldAutoBuild = self.UseC130LoadAndUnload and Unit and self:IsC130J(Unit)
+  if shouldAutoBuild then
+    local c130Items = {}
+    for _, cargoItem in ipairs(cargoItems) do
+      local cname = cargoItem.GetName and cargoItem:GetName() or nil
+      if (not isZoneSupplyCargoItem(cargoItem)) and (not (cname and WAREHOUSE_SUPPLY_TYPES[cname])) then
+        local crateObj = cname and self:_FindCratesCargoObject(cname) or nil
+        if crateObj then
+          c130Items[#c130Items + 1] = cargoItem
+        end
+      end
+    end
+    if #c130Items > 0 then
+      registerC130AutoBuildSet(groupName, playerName, pickupZone, c130Items)
+    end
+  end
+end
+
+if lfs then
+	local _ctldBaseName = (FootholdSaveBaseName and tostring(FootholdSaveBaseName) ~= "") and tostring(FootholdSaveBaseName) or nil
+	-- FootholdSaveBaseName is a mission invariant (set in the setup file).
+	FarpFileName = _ctldBaseName .. "_CTLD_FARPS.csv"
+
+function SaveFARPS()
+  local path = Foothold_ctld.filepath
+  local filename = FarpFileName
+  local data = "FARP COORDINATES\n"
+
+  local function sortingfunction(d1,d2)
+   return d1.timestamp > d2.timestamp
+  end
+    
+  table.sort(BuiltFARPCoordinates,sortingfunction)
+
+  local counter = 0
+  
+  for _,_coord in pairs(BuiltFARPCoordinates) do
+    local FName = _coord.name
+    local coord = _coord.coord -- Core.Point#COORDINATE
+    local AFB = AIRBASE:FindByName(FName)
+    if AFB then
+      counter = counter + 1 -- increase counter
+      local vec2 = coord:GetVec2() -- { x = self.x, y = self.z }
+      data = data .. string.format("%f;%f;\n",vec2.x,vec2.y)
+      if counter == FARPStock then break end -- stop creating data when we reached the ceiling
+    end
+  end
+  
+  if UTILS.SaveToFile(path,filename,data) then
+    --BASE:I("***** FARP Positions saved successfully!")
+  else
+    BASE:E("***** ERROR Saving FARP Positions!")
+  end
+end
+ 
+function LoadFARPS()
+  local path = Foothold_ctld.filepath
+  local filename = FarpFileName
+  local okay,data = UTILS.LoadFromFile(path,filename)
+  local stamp = 0
+  if okay then
+    BASE:I("***** FARP Positions loaded successfully!")
+    -- remove header
+    table.remove(data, 1)
+    for _,_entry in pairs(data) do
+      local dataset = UTILS.Split(_entry,";")
+      local x = tonumber(dataset[1])
+      local y = tonumber(dataset[2])
+      
+      local coord = COORDINATE:NewFromVec2({x=x,y=y})
+      stamp = stamp + 1
+      BuildAFARP(coord,stamp)
+    end
+  else
+    BASE:E("***** ERROR Loading FARP Positions!")
+  end
+end
+
+local LoadFARPTimer = TIMER:New(LoadFARPS)
+LoadFARPTimer:Start(2)
+
+local SaveFARPTimer = TIMER:New(SaveFARPS)
+SaveFARPTimer:Start(30,300)
+
+Foothold_ctld.enableLoadSave = true -- allow auto-saving and loading of files
+Foothold_ctld.saveinterval = 300 -- save every 5 minutes
+Foothold_ctld.filename = _ctldBaseName .. "_CTLD_Save.csv"
+Foothold_ctld.filepath = FootholdSavePath or (lfs.writedir() .. "Missions\\Saves") -- example path
+Foothold_ctld.eventoninject = true -- fire OnAfterCratesBuild and OnAfterTroopsDeployed events when loading (uses Inject functions)
+Foothold_ctld.useprecisecoordloads = true -- Instead if slightly varyiing the group position, try to maintain it as is
+
+
+function resetSaveFileAndFarp()
+  -- 1) Overwrite the CTLD save file with empty data:
+  local path     = Foothold_ctld.filepath
+  local fileName = Foothold_ctld.filename
+  if lfs and path then
+    fileName = path .. "\\" .. fileName
+  end
+  local f = assert(io.open(fileName, "wb"))
+  f:write("")
+  f:close()
+  
+  -- 2) Overwrite the FARPs file with empty data too:
+  local farpFile = FarpFileName
+  if lfs and path then
+    farpFile = path .. "\\" .. farpFile
+  end
+  local f2 = assert(io.open(farpFile, "wb"))
+  f2:write("")
+  f2:close()
+
+  BuiltFARPCoordinates = {}
+end
+
+else
+    MESSAGE:New("CTLD will not Save/load. Please, De-Sanitize DCS missionscripting.lua.\n\nfunctionality disabled.", 300):ToAll()
+end
+
+Foothold_ctld:__Load(10)
+
+function Foothold_ctld:OnAfterLoaded(From, Event, To, LoadedGroups)
+  self:I("***** Groups Loaded! *****")
+
+  local MaxAtSpawn = {}
+  for rawName, limit in pairs(MAX_AT_SPAWN) do
+    local k=tostring(rawName)
+    if k~="" then
+      if MaxAtSpawn[k] then
+        if limit>MaxAtSpawn[k] then
+          MaxAtSpawn[k]=limit
+        end
+      else
+        MaxAtSpawn[k]=limit
+      end
+    end
+  end
+
+for i,_t in ipairs(LoadedGroups) do
+  local gName=_t.Group:GetName() or "unknown"
+  local ts=_t.TimeStamp or timer.getTime()
+  local cName=tostring(_t.CargoName)
+  local cr=self:_FindCratesCargoObject(cName)
+  if cr then
+    table.insert(GroundUnits,{groupName=gName,Timestamp=ts,Group=_t.Group,CargoName=cName,Stock=cr:GetStock() or 0})
+  end
+  local tr=self:_FindTroopsCargoObject(cName)
+  if tr then
+    table.insert(TroopUnits,{groupName=gName,Timestamp=ts,Group=_t.Group,CargoName=cName,Stock=tr:GetStock() or 0})
+  end
+end
+
+  local cratesByName={}
+  for _,d in ipairs(GroundUnits) do
+    local k=d.CargoName
+    cratesByName[k]=cratesByName[k] or {}
+    table.insert(cratesByName[k],d)
+  end
+  for normName,list in pairs(cratesByName) do
+    table.sort(list,function(a,b)return a.Timestamp>b.Timestamp end)
+    local maxAllowed=MaxAtSpawn[normName] or MAX_AT_SPAWN[normName] or 0
+    local total=#list
+    local excess=total-maxAllowed
+    for idx,entry in ipairs(list) do
+      local act=idx<=maxAllowed and "KEEP" or "DELETE"
+    end
+    for i=total,maxAllowed+1,-1 do
+      local old=list[i]
+      local g=GROUP:FindByName(old.groupName)
+      if g and g:IsAlive() then g:Destroy() end
+      Foothold_ctld:AddStockCrates(old.CargoName,1)
+      for idx,gu in ipairs(GroundUnits) do
+        if gu.groupName==old.groupName then table.remove(GroundUnits,idx) break end
+      end
+    end
+  end
+
+  local troopsByName={}
+  for _,d in ipairs(TroopUnits) do
+    local k=d.CargoName
+    troopsByName[k]=troopsByName[k] or {}
+    table.insert(troopsByName[k],d)
+  end
+  for normName,list in pairs(troopsByName) do
+    table.sort(list,function(a,b)return a.Timestamp>b.Timestamp end)
+    local maxAllowed=MaxAtSpawn[normName] or MAX_AT_SPAWN[normName] or 0
+    local total=#list
+    local excess=total-maxAllowed
+    for idx,entry in ipairs(list) do
+      local act=idx<=maxAllowed and "KEEP" or "DELETE"
+    end
+    for i=total,maxAllowed+1,-1 do
+      local old=list[i]
+      local g=GROUP:FindByName(old.groupName)
+      if g and g:IsAlive() then g:Destroy() end
+      Foothold_ctld:AddStockTroops(old.CargoName,1)
+      for idx,tu in ipairs(TroopUnits) do
+        if tu.groupName==old.groupName then table.remove(TroopUnits,idx) break end
+      end
+    end
+  end
+-- below a code that deletes the cargo that is left on the ground from last session.
+  if self.Spawned_Cargo then
+    for i=#self.Spawned_Cargo,1,-1 do
+      local c=self.Spawned_Cargo[i]
+      local s=c:GetPositionable()
+      if s and s:IsAlive() then s:Destroy(false) end
+      table.remove(self.Spawned_Cargo,i)
+    end
+  end
+-- end of that.
+  for uName,ld in pairs(self.Loaded_Cargo) do
+    if ld and ld.Cargo then
+      local newC={}
+      local cNum=0
+      for _,cg in ipairs(ld.Cargo) do
+        local tp=cg:GetType()
+        if tp==CTLD_CARGO.Enum.TROOPS or tp==CTLD_CARGO.Enum.ENGINEERS then
+          table.insert(newC,cg)
+        end
+      end
+      ld.Cargo=newC
+      ld.Cratesloaded=cNum
+      self.Loaded_Cargo[uName]=ld
+    end
+  end
+end
+
+zoneSet = SET_ZONE:New()
+for _, zoneObj in ipairs(bc:getZones()) do
+  local mooseZone = ZONE:New(zoneObj.zone)
+  zoneSet:AddZone(mooseZone)
+end
+
+function playRandomSound(Group, soundCategory)
+    local sounds = {
+        unload = {
+            "troops_unload_everybody_off.ogg",
+            "troops_unload_get_off.ogg",
+            "troops_unload_here_we_go.ogg",
+            "troops_unload_moving_out.ogg",
+            "troops_unload_thanks.ogg"
+        },
+        loading = {
+            "troops_load_to_action.ogg",
+            "troops_load_ready.ogg",
+            "troops_load_ao.ogg",
+        }
+    }
+    local selectedSounds = sounds[soundCategory]
+    if selectedSounds then
+        local randomIndex = math.random(1, #selectedSounds)
+        local selectedSound = selectedSounds[randomIndex]
+        local sound = USERSOUND:New(selectedSound)
+        sound:ToGroup(Group)
+    end
+end
+
+
+
+function Foothold_ctld:OnAfterTroopsPickedUp(From, Event, To, Group, Unit, Cargo)
+    if Group and Group:IsAlive() then
+        if Cargo and Cargo.GetName then
+            local cargoName = Cargo:GetName()
+            local cargoObject = self:_FindTroopsCargoObject(cargoName)
+            if cargoObject and cargoObject:GetStock() < 5 then
+                local predicate = function(entry)
+                    return entry.Stock < 5
+                end
+                local oldestIdx, victim, oldestTs = selectOldestUnit(TroopUnits, cargoName, predicate)
+                if oldestIdx and victim then
+                    Foothold_ctld:AddStockTroops(cargoName, 1)
+                    self:I(string.format("[RESERVE] DELETE oldest troop %s ts=%f (group=%s) after load",
+                        cargoName, oldestTs, victim.groupName))
+                    destroyTrackedGroup(victim)
+                    if Group then MESSAGE:New(string.format("[CTLD] %s troop limit reached - removed oldest %s (%s).", cargoName, cargoName, victim.groupName), 12):ToGroup(Group) end
+                    table.remove(TroopUnits, oldestIdx)
+                    local newStock = cargoObject:GetStock()
+                    for _, entry in ipairs(TroopUnits) do
+                        if entry.CargoName == cargoName then
+                            entry.Stock = newStock
+                        end
+                    end
+                else
+                    self:I(string.format("[RESERVE] no existing troop %s groups to delete on load", cargoName))
+                end
+            end
+        end
+        playRandomSound(Group, "loading")
+    else
+        return
+    end
+end
+
+function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troops)
+    if not Group then return end
+
+    local troopGroup = Troops
+    if troopGroup and troopGroup:IsAlive() then
+        local troopGroupName = troopGroup:GetName()
+        local currentTime = timer.getTime()
+        
+        deployedTroops[troopGroupName] = troopGroup
+        deployedTroopsSet:AddGroup(troopGroup)
+        zoneSet:Trigger(deployedTroopsSet)
+
+        if Group and Group:IsAlive() then
+            playRandomSound(Group, "unload")
+        else
+            return
+        end
+
+        local cargoName, stock = "unknown", 0
+
+        for _, cargoData in pairs(self.Cargo_Troops) do
+            if cargoData.Templates then
+                local templateName = type(cargoData.Templates) == "table" 
+                                     and cargoData.Templates[1] 
+                                     or cargoData.Templates
+                if string.find(troopGroupName, templateName, 1, true) then
+                    if cargoData.CargoType == CTLD_CARGO.Enum.TROOPS or cargoData.CargoType == CTLD_CARGO.Enum.ENGINEERS then
+                        cargoName = cargoData:GetName()
+                        stock = cargoData:GetStock()
+                    end
+                    break
+                end
+            end
+        end
+        local maxTimestamp = 0
+        for _, group in ipairs(TroopUnits) do
+            if group.CargoName == cargoName then
+                if group.Timestamp > maxTimestamp then
+                    maxTimestamp = group.Timestamp
+                end
+            end
+        end
+        local newTimestamp = maxTimestamp > 0 and (maxTimestamp + 1) or currentTime
+
+        local groupExists = false
+        for _, group in ipairs(TroopUnits) do
+            if group.groupName == troopGroupName then
+                group.Timestamp = newTimestamp
+                group.Stock = stock
+                groupExists = true
+                break
+            end
+        end
+        if not groupExists then
+            table.insert(TroopUnits, {
+                groupName = troopGroupName,
+                Timestamp = newTimestamp,
+                CargoName = cargoName,
+                Stock = stock
+            })
+        end
+        for _, g in ipairs(TroopUnits) do
+            if g.CargoName == cargoName then
+                g.Stock = stock
+            end
+        end
+
+        local oldestUnit = nil
+        local oldestTimestamp = math.huge
+        for _, group in ipairs(TroopUnits) do
+            if group.CargoName == cargoName
+               and group.Timestamp < newTimestamp
+               and group.Stock < 5
+            then
+                if group.Timestamp < oldestTimestamp then
+                    oldestTimestamp = group.Timestamp
+                    oldestUnit = group
+                end
+            end
+        end
+        if oldestUnit then
+            Foothold_ctld:AddStockTroops(oldestUnit.CargoName, 1)
+            local dcsGroup = GROUP:FindByName(oldestUnit.groupName)
+            if dcsGroup and dcsGroup:IsAlive() then
+                dcsGroup:Destroy()
+            end
+            for i, group in ipairs(TroopUnits) do
+                if group.groupName == oldestUnit.groupName then
+                    table.remove(TroopUnits, i)
+                    break
+                end
+            end
+        end
+        local currentZones = {}
+        for _, zC in ipairs(bc:getZones()) do
+            local missionZoneName = zC.zone
+            local zone = getSupplyZoneWrapper(missionZoneName)
+            if zone and troopGroup:IsPartlyOrCompletelyInZone(zone) then
+                local zoneName = zone:GetName()
+                table.insert(currentZones, {zoneName = zoneName, zoneObject = zC})
+            end
+        end
+
+        if #currentZones > 0 then
+            for _, zoneData in ipairs(currentZones) do
+                local currentZone = zoneData.zoneObject
+                local zoneName    = zoneData.zoneName
+
+                if not currentZone then
+                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, pickupZoneName = Group and Group._lastPickupZone or nil }
+                    return
+                end
+                if currentZone.side == 2 then
+                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, pickupZoneName = Group and Group._lastPickupZone or nil }
+                    CaptureZoneIfNeutral()
+                    return
+                end
+                if currentZone.side == 1 then
+                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, pickupZoneName = Group and Group._lastPickupZone or nil }
+                    return
+                end
+                if currentZone.side == 0 then
+                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, pickupZoneName = Group and Group._lastPickupZone or nil }
+                    CaptureZoneIfNeutral()
+                end
+            end
+        else
+            zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = nil, deployer = Group, cargoName = cargoName, pickupZoneName = Group and Group._lastPickupZone or nil }
+        end
+    end
+end
+function zoneSet:OnAfterEnteredZone(From, Event, To, EnteredGroup, Zone)
+    local troopGroup = EnteredGroup
+    if troopGroup and troopGroup:IsAlive() then
+        local troopGroupName = troopGroup:GetName()
+        local zoneName       = Zone:GetName()
+        local currentZone    = bc:getZoneByName(zoneName)
+
+        if not zoneCaptureInfo[troopGroupName] then
+            zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName }
+        else
+            zoneCaptureInfo[troopGroupName].zoneName   = zoneName
+            zoneCaptureInfo[troopGroupName].troopGroup = troopGroup
+        end
+        if not zoneCaptureInfo[troopGroupName].cargoName then
+            local cname = "unknown"
+            for _, g in ipairs(TroopUnits) do
+                if g.groupName == troopGroupName then cname = g.CargoName break end
+            end
+            zoneCaptureInfo[troopGroupName].cargoName = cname
+        end
+        if zoneCaptureInfo[troopGroupName].pickupZoneName == nil then
+            local dep = zoneCaptureInfo[troopGroupName].deployer
+            if dep and dep._lastPickupZone then
+                zoneCaptureInfo[troopGroupName].pickupZoneName = dep._lastPickupZone
+            end
+        end
+
+        if currentZone and (currentZone.side == 2 or currentZone.side == 0) then
+            timer.scheduleFunction(function() CaptureZoneIfNeutral() end, {}, timer.getTime() + 10)
+        end
+    end
+end
+
+local captureRunning = false
+local captureQueued  = false
+
+function CaptureZoneIfNeutral()
+    if captureRunning then
+        captureQueued = true
+        return
+    end
+    if next(zoneCaptureInfo) == nil then return end
+    captureRunning = true
+    captureQueued = false
+
+    local troopGroupNames = {}
+    for name in pairs(zoneCaptureInfo) do
+        troopGroupNames[#troopGroupNames + 1] = name
+    end
+
+    local zoneEvents   = {}
+    local totalReward  = 0
+    local retrigger    = false
+    local landedThisRun= {}
+
+    local function cleanupDeployment(name)
+        deployedTroops[name] = nil
+        deployedTroopsSet:RemoveGroupsByName(name)
+        zoneCaptureInfo[name] = nil
+        retrigger = true
+    end
+
+    local function noteEvent(zoneName, pname, field, reward)
+        if not zoneName or not pname then return end
+        zoneEvents[zoneName] = zoneEvents[zoneName] or { player = pname }
+        zoneEvents[zoneName][field] = true
+        totalReward = totalReward + reward
+    end
+
+    local function processNextGroup(index)
+        local verb
+        if index > #troopGroupNames then
+            if next(zoneEvents) then
+                local lines = {}
+                for z,ev in pairs(zoneEvents) do
+                    
+                    if ev.captured and ev.upgraded then
+                        verb = 'captured and upgraded'
+                    elseif ev.captured then
+                        verb = 'captured'
+                    else
+                        verb = 'upgraded'
+                    end
+                    lines[#lines + 1] = '['..ev.player..'] '..verb..' '..z
+                end
+                                
+                local players = coalition.getPlayers(2)
+                local zones = bc:getZones()
+                local anyLanded = false
+                local playersToCheck = {}
+                for _, ev in pairs(zoneEvents) do
+                    if ev.player and bc.playerContributions[2][ev.player] ~= nil then playersToCheck[ev.player] = true end
+                end
+                for pname, _ in pairs(playersToCheck) do
+                    for _, playerUnit in ipairs(players) do
+                        if playerUnit:getPlayerName() == pname then
+                            if not Utils.isInAir(playerUnit) then
+                                local didLand = false
+                                for _, zoneData in ipairs(zones) do
+                                    if ((2 == zoneData.side) or (zoneData.wasBlue)) and Utils.isInZone(playerUnit, zoneData.zone) then
+                                        if not landedThisRun[pname] then
+                                            local pnameCap = pname
+                                            local unitCap = playerUnit
+                                            SCHEDULER:New(nil,function()
+                                                local landingEvent = {
+                                                    id = world.event.S_EVENT_LAND,
+                                                    time = timer.getAbsTime(),
+                                                    initiator = unitCap,
+                                                    initiatorPilotName = pnameCap,
+                                                    initiator_unit_type = unitCap:getTypeName(),
+                                                    initiator_coalition = 2,
+                                                    skipRewardMsg = true
+                                                }
+                                                world.onEvent(landingEvent)
+                                            end,{},5,0)
+                                            landedThisRun[pname] = true
+                                        end
+                                        didLand = true
+                                        anyLanded = true
+                                        break
+                                    end
+                                end
+									 
+                            end
+                            break
+                        end
+                    end
+                end
+                if not anyLanded then
+                    trigger.action.outTextForCoalition(2,table.concat(lines, '\n')..'\n'..totalReward..' credits.',20)
+                end
+            end
+
+            captureRunning = false
+            local hasPending = next(zoneCaptureInfo) ~= nil
+            if hasPending and (captureQueued or retrigger) then
+                captureQueued = false
+                CaptureZoneIfNeutral()
+            end
+            return
+        end
+
+        local troopGroupName = troopGroupNames[index]
+        local data = zoneCaptureInfo[troopGroupName]
+
+        local function scheduleNext(delay)
+            local wait = delay
+            if wait == nil then
+                wait = 5
+            elseif wait < 0 then
+                wait = 0
+            end
+            timer.scheduleFunction(function() processNextGroup(index + 1) end, {}, timer.getTime() + wait)
+        end
+
+        if not data then
+            scheduleNext(0)
+            return
+        end
+
+        local troopGroup = data.troopGroup
+        if not troopGroup or not troopGroup:IsAlive() then
+            cleanupDeployment(troopGroupName)
+            scheduleNext(5)
+            return
+        end
+
+        local zoneName = data.zoneName
+        if not zoneName then
+            scheduleNext(5)
+            return
+        end
+
+        local currentZone = bc:getZoneByName(zoneName)
+        if not currentZone then
+            scheduleNext(5)
+            return
+        end
+
+        local pname
+        if data.deployer and data.deployer:IsAlive() then
+            local pilot = data.deployer:GetUnits()[1]
+            if pilot and pilot:GetPlayerName() then pname = pilot:GetPlayerName() end
+        end
+
+        if currentZone.side == 0 and currentZone.active then
+            currentZone:capture(2)
+            troopGroup:Destroy()
+            if pname and bc.playerContributions[2][pname] ~= nil then
+                bc:addContribution(pname, 2, 200)
+                bc:addTempStat(pname, 'Zone capture', 1)
+                noteEvent(zoneName, pname, 'captured', 200)
+            end
+            cleanupDeployment(troopGroupName)
+            scheduleNext(5)
+            return
+        elseif currentZone.side == 2 then
+            if data.pickupZoneName and data.zoneName and data.pickupZoneName == data.zoneName then
+                local cname = data.cargoName or "unknown"
+                if CTLDCost and priceOf then
+                    local dcs = data.deployer and data.deployer.GetDCSObject and data.deployer:GetDCSObject() or nil
+                    local gid = dcs and dcs:getID() or nil
+                    local refund = priceOf(cname) or 0
+                    if refund > 0 then bc:credit(2, refund, gid, dcs, cname) end
+
+                end
+                troopGroup:Destroy()
+                cleanupDeployment(troopGroupName)
+                scheduleNext(1)
+                return
+            else
+                local need = currentZone:canRecieveSupply() or false
+                if need then
+                    currentZone:upgrade()
+                    troopGroup:Destroy()
+                    if pname then
+                        bc:addContribution(pname, 2, 200)
+                        bc:addTempStat(pname, 'Zone upgrade', 1)
+                        noteEvent(zoneName, pname, 'upgraded', 200)
+                    end
+                    cleanupDeployment(troopGroupName)
+                    scheduleNext(5)
+                    return
+                else
+                    local cname = data.cargoName or "unknown"
+                    if CTLDCost and priceOf then
+                    local dcs = data.deployer and data.deployer.GetDCSObject and data.deployer:GetDCSObject() or nil
+                    local gid = dcs and dcs:getID() or nil
+                    local refund = priceOf(cname) or 0
+                    if refund > 0 then bc:credit(2, refund, gid, dcs, cname) end
+                    end
+                    troopGroup:Destroy()
+                    cleanupDeployment(troopGroupName)
+                    scheduleNext(1)
+                    return
+                end
+            end
+        elseif not currentZone.active then
+            troopGroup:Destroy()
+            cleanupDeployment(troopGroupName)
+            scheduleNext(5)
+            return
+        end
+
+        scheduleNext(5)
+    end
+
+    processNextGroup(1)
+
+end
+
+local function RefillMissingWithCountTable()
+    if Foothold_ctld.buildRunning > 0 then
+        return
+    end
+  local countTable = Foothold_ctld:_CountStockPlusInHeloPlusAliveGroups()
+
+  for cargoName, info in pairs(countTable) do
+    local stock0 = info.Stock0 or 0
+    local sum    = info.Sum or 0
+    local needed = stock0 - sum
+
+    if needed > 0 then
+      local isTroop  = Foothold_ctld:_FindTroopsCargoObject(cargoName)  ~= nil
+      local isCrates = Foothold_ctld:_FindCratesCargoObject(cargoName) ~= nil
+      local isUnits  = false
+      for _,cfg in pairs(Foothold_ctld.C130GetUnits or {}) do
+        if cfg.Name == cargoName then
+          isUnits = true
+          break
+        end
+      end
+
+      if isTroop then
+        Foothold_ctld:AddStockTroops(cargoName, needed)
+        env.info(string.format("[Refill] TROOPS '%s': sum=%d < stock0=%d => +%d stock added.",
+          cargoName, sum, stock0, needed))
+      end
+      if isCrates then
+        Foothold_ctld:AddStockCrates(cargoName, needed)
+        env.info(string.format("[Refill] CRATES '%s': sum=%d < stock0=%d => +%d stock added.",
+          cargoName, sum, stock0, needed))
+      end
+      if isUnits then
+        Foothold_ctld:AddStockUnits(cargoName, needed)
+        env.info(string.format("[Refill] UNITS '%s': sum=%d < stock0=%d => +%d stock added.",
+          cargoName, sum, stock0, needed))
+      end
+    end
+
+    if sum > stock0 then
+      local cargoObj = Foothold_ctld:_FindCratesCargoObject(cargoName)
+      if cargoObj then
+        local oldStock = cargoObj.Stock or 0
+        if oldStock > 0 then
+          local difference = sum - stock0
+          local newStock   = oldStock - difference
+          if newStock < 5 then
+            newStock = 5
+          end
+          cargoObj.Stock = newStock
+        end
+      end
+    end
+  end
+end
+
+TIMER:New(RefillMissingWithCountTable):Start(15, 30)
+
+
+TIMER:New(tickZoneSupply):Start(15, 7)
+
+
+BASE:I("CTLD script initialized")

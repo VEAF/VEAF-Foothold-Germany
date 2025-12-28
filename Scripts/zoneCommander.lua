@@ -1,6 +1,12 @@
 local map = env.mission.theatre
+
+SCHEDULER:New(nil, function()
+env.info("[ZoneCommander] Loading for map: "..tostring(map))
+end, {}, 2)
+
 missionMarkId = missionMarkId or 900000000
 if Era == 'Gulfwar' then Era = 'Coldwar' end
+
 PATH_CACHE=PATH_CACHE or{}
 Respawn = {}
 farpBuiltByConvoy={}
@@ -12,6 +18,27 @@ local zoneByName = nil
 local customZoneCache = {}
 local triggerZoneCache = {}
 local mooseZoneCache = {}
+local airbaseCache = {}
+local function getAirbaseByName(name)
+    local ab = airbaseCache[name]
+    if ab == nil then
+        ab = AIRBASE:FindByName(name) or Airbase.getByName(name) or false
+        airbaseCache[name] = ab
+    end
+    if ab == false then return nil end
+    return ab
+end
+
+local dcsAirbaseCache = {}
+local function getDcsAirbaseByName(name)
+    local ab = dcsAirbaseCache[name]
+    if ab == nil then
+        ab = Airbase.getByName(name) or false
+        dcsAirbaseCache[name] = ab
+    end
+    if ab == false then return nil end
+    return ab
+end
 
 local function getTriggerZone(name)
     local z = triggerZoneCache[name]
@@ -222,8 +249,11 @@ function Respawn.Group(groupName, uncontrolled)
 
   FixSelfTasks(tpl.route, tpl.groupId, tpl.units[1].unitId)
 
-  local ok, newGrp = pcall(coalition.addGroup, tpl.countryId, Group.Category[CAT[tpl.category] or "GROUND"], tpl)
-  if not ok then env.error("Respawn: addGroup failed - "..tostring(newGrp)) end
+  local newGrp = coalition.addGroup(tpl.countryId, Group.Category[CAT[tpl.category] or "GROUND"], tpl)
+  if not newGrp then
+	env.error("Respawn: addGroup failed for group '"..groupName.."'")
+	return nil
+  end
   return newGrp
 end
 
@@ -257,8 +287,8 @@ function Respawn.SpawnAtPoint(grpName, coord, headingDeg, distNm, alt, spd)
   freshIds(tpl)
   tpl.lateActivation = false
   FixSelfTasks(tpl.route, tpl.groupId, tpl.units[1].unitId)
-  local ok,newGrp = pcall(coalition.addGroup,tpl.countryId,Group.Category[CAT[tpl.category] or "GROUND"],tpl)
-  if not ok then env.error("Respawn: addGroup failed - "..tostring(newGrp)) return nil end
+  local newGrp = coalition.addGroup(tpl.countryId,Group.Category[CAT[tpl.category] or "GROUND"],tpl)
+  if not newGrp then env.error("Respawn: addGroup failed - "..tostring(newGrp)) return nil end
   return newGrp
 end
 
@@ -2435,7 +2465,8 @@ end
 
 AWACS_GROUPS = {
     [1] = "AWACS_RED",
-    [2] = "AWACS_BLUE"
+    [2] = "AWACS_BLUE",
+    [3] = "AWACS_BLUE_SECONDARY"
 }
 
 
@@ -2734,61 +2765,181 @@ local function _computeAwacsStationWithZone(side)
 end
 
 
-function RepositionAwacsToFront()
-	env.info("AWACS is checking the frontline")
+local function _computeAwacsStationWithZoneSecondary(side, avoidX, avoidZ, minSepNm)
+    local cfg = AWACS_CFG[side] or {}
+    local zi  = Frontline._zoneInfo or {}
+    local sep = cfg.sep or 0
+    if (not _enemyDistIndex) or (next(_enemyDistIndex) == nil) then
+        if Frontline.ReindexZoneCalcs then Frontline.ReindexZoneCalcs() end
+    end
+
+    local myPick, bestD = nil, 1e9
+    for name,info in pairs(zi) do
+        if info and info.center and info.side == side and info.active ~= false then
+            local d = (_enemyDistIndex and _enemyDistIndex[name]) or _minDistToEnemyNm(name, side)
+            if d < bestD then bestD, myPick = d, name end
+        end
+    end
+    if not myPick then myPick = _anyZoneOfSide(side) end; if not myPick then return nil, nil end
+
+    local minSep = (minSepNm or 0) * NM
+    local minSep2 = minSep * minSep
+
+    if not avoidX or not avoidZ then return nil, nil end
+
+    local bestName, bestCnt, bestNear, bestSep2 = nil, -1, 1e9, -1
+    for name,info in pairs(zi) do
+        if info and info.center and info.side == side and info.active ~= false then
+            local dx = info.center.x - avoidX
+            local dy = info.center.y - avoidZ
+            local sep2 = dx*dx + dy*dy
+            if sep2 >= minSep2 then
+                local d = (_enemyDistIndex and _enemyDistIndex[name]) or _minDistToEnemyNm(name, side)
+                local near = math.abs(d - sep)
+                local cnt = 0
+                if info.sameSideNeighbors then
+                    for i=1,#info.sameSideNeighbors do
+                        local n = info.sameSideNeighbors[i]
+                        local ni = zi[n.name]
+                        if ni and ni.center and ni.side == side and n.dist2 then cnt = cnt + 1 else break end
+                    end
+                end
+                if (near < bestNear) or (near == bestNear and cnt > bestCnt) or (near == bestNear and cnt == bestCnt and sep2 > bestSep2) then
+                    bestName, bestCnt, bestNear, bestSep2 = name, cnt, near, sep2
+                end
+            end
+        end
+    end
+    if not bestName then return nil, nil end
+
+    local myInfo = zi[bestName]; if not myInfo or not myInfo.center then return nil, nil end
+    local myC = myInfo.center
+
+    local function nearestEnemyCenter(px, pz)
+        local cx, cy, best2 = nil, nil, 1e18
+        if myInfo.enemyNeighbors and #myInfo.enemyNeighbors > 0 then
+            for i=1,#myInfo.enemyNeighbors do
+                local nb = myInfo.enemyNeighbors[i]
+                if nb.side and nb.side ~= 0 and nb.side ~= side and nb.dist2 and nb.dist2 < best2 then
+                    local de = zi[nb.name]
+                    if de and de.center then best2, cx, cy = nb.dist2, de.center.x, de.center.y end
+                end
+            end
+        end
+        if not cx then
+            for n,inf in pairs(zi) do
+                if inf and inf.center and inf.side and inf.side ~= 0 and inf.side ~= side then
+                    local dx = px - inf.center.x
+                    local dy = pz - inf.center.y
+                    local d2 = dx*dx + dy*dy
+                    if d2 < best2 then best2, cx, cy = d2, inf.center.x, inf.center.y end
+                end
+            end
+        end
+        return cx, cy
+    end
+
+    local dNow = _minDistPointToEnemiesNm(myC.x, myC.y, side)
+    if dNow < sep then
+        local ex, ey = nearestEnemyCenter(myC.x, myC.y)
+        if ex and ey then
+            local dir = vnorm(v2(myC.x - ex, myC.y - ey))
+            myC = vadd(myC, vmul(dir, (sep - dNow) * NM))
+            for i=1,3 do
+                local d2 = _minDistPointToEnemiesNm(myC.x, myC.y, side)
+                if d2 >= sep then break end
+                local ex2, ey2 = nearestEnemyCenter(myC.x, myC.y)
+                if not ex2 then break end
+                local dir2 = vnorm(v2(myC.x - ex2, myC.y - ey2))
+                myC = vadd(myC, vmul(dir2, (sep - d2) * NM))
+            end
+        end
+    end
+
+    local alt = cfg.alt or 30000
+    local hdg = cfg.hdg or 270
+    local toward = nil
+    if myInfo.sameSideNeighbors and #myInfo.sameSideNeighbors > 0 then
+        for i=1,#myInfo.sameSideNeighbors do
+            local nname = myInfo.sameSideNeighbors[i].name
+            local ninfo = nname and zi[nname] or nil
+            if ninfo and ninfo.center and ninfo.side == side and ninfo.active ~= false then
+                local tC = ninfo.center
+                hdg = _bearingDeg({x=myC.x,y=myC.y},{x=tC.x,y=tC.y})
+                toward = nname
+                break
+            end
+        end
+    end
+    return COORDINATE:New(myC.x, UTILS.FeetToMeters(alt), myC.y), bestName, hdg, toward
+end
+
+ function RepositionAwacsToFront()
+    env.info("AWACS is checking the frontline")
+	local blueVec = nil
 	for side=1,2 do
 		local coord, z, h = _computeAwacsStationWithZone(side)
-		if coord then setAwacsRacetrack(side, coord, h, nil, z)
-		
+		if coord then
+			if side == 2 then blueVec = coord.GetVec3 and coord:GetVec3() or nil end
+			setAwacsRacetrack(side, coord, h, nil, z)
 		else env.info("AWACS compute failed") end
+	end
+	if IsGroupActive(AWACS_GROUPS[3]) then
+		local avoidX = (blueVec and blueVec.x) or (_awacsMissionParams[2] and _awacsMissionParams[2].x) or nil
+		local avoidZ = (blueVec and blueVec.z) or (_awacsMissionParams[2] and _awacsMissionParams[2].z) or nil
+		local coord2, z2, h2 = _computeAwacsStationWithZoneSecondary(2, avoidX, avoidZ, 150)
+		if coord2 then setAwacsRacetrack(3, coord2, h2, nil, z2) else env.info("AWACS compute failed") end
+	else
+		spawnAwacs(3, nil, nil)
 	end
 end
 
---[[ function RepositionAwacsToFront()
-    env.info("AWACS is checking the frontline")
-	for side=1,2 do
-		_awacsZone[side] = nil
-		_awacsMissionParams[side] = nil
-		local coord, z, h = _computeAwacsStationWithZone(side)
-		if coord then setAwacsRacetrack(side, coord, h, nil, z) else env.info("AWACS compute failed") end
-	end
-end
- ]]
 function setAwacsRacetrack(side, coord, heading, leg, zoneName)
     local fg = _awacsFG[side] or nil; if not fg or not coord then return end
-    local cfg = AWACS_CFG[side] or {}
+    local cfgSide = (side == 3) and 2 or side
+    local cfg = AWACS_CFG[cfgSide] or {}
     local alt = cfg.alt or 30000
     local spd = cfg.speed or 350
     local hdg = heading or cfg.hdg or 270
     local leglen = leg or cfg.leg or 10
     local vec = coord.GetVec3 and coord:GetVec3() or nil
     local params = _awacsMissionParams[side]
-    local activeZone = params and params.zone or _awacsZone[side]
-    local currentZone = zoneName or activeZone
-    if currentZone == activeZone then return end
+
+    if params and vec and params.x and params.z then
+        local dx = vec.x - params.x
+        local dz = vec.z - params.z
+        if (dx*dx + dz*dz) <= 2500 then return end
+    end
+
     local cur = fg:GetMissionCurrent(); if cur then cur:__Cancel(5) end
     local auf = AUFTRAG:NewAWACS(coord, alt, spd, hdg, leglen)
-    _awacsZone[side] = currentZone
+    _awacsZone[side] = zoneName or _awacsZone[side]
     _awacsMissionParams[side] = {
         x = vec and vec.x or nil,
         z = vec and vec.z or nil,
-        hdg = hdg,
-        leg = leglen,
         zone = _awacsZone[side]
     }
     fg:AddMission(auf)
 end
 
 function spawnAwacs(side, heading, leg)
-    local coord, z, ch, toward = _computeAwacsStationWithZone(side); if not coord then return end
+    local cfgSide = (side == 3) and 2 or side
+    local coord, z, ch, toward
+    if side == 3 then
+        local avoidX = (_awacsMissionParams[2] and _awacsMissionParams[2].x) or nil
+        local avoidZ = (_awacsMissionParams[2] and _awacsMissionParams[2].z) or nil
+        coord, z, ch, toward = _computeAwacsStationWithZoneSecondary(2, avoidX, avoidZ, 150); if not coord then return end
+    else
+        coord, z, ch, toward = _computeAwacsStationWithZone(side); if not coord then return end
+    end
     local aim = toward or z
     local zobj = aim and ZONE:FindByName(aim) or nil
     local targetCoord = (zobj and zobj:GetCoordinate()) or (Frontline._zoneInfo[aim] and COORDINATE:New(Frontline._zoneInfo[aim].center.x, coord.y, Frontline._zoneInfo[aim].center.y)) or nil
     local hdgCalc = targetCoord and coord:GetAngleDegrees(coord:GetDirectionVec3(targetCoord)) or ch
-    local hdg = heading or hdgCalc or AWACS_CFG[side].hdg
-    local alt = AWACS_CFG[side].alt
-    local spd = AWACS_CFG[side].speed
-    local lg  = leg or AWACS_CFG[side].leg
+    local hdg = heading or hdgCalc or AWACS_CFG[cfgSide].hdg
+    local alt = AWACS_CFG[cfgSide].alt
+    local spd = AWACS_CFG[cfgSide].speed
+    local lg  = leg or AWACS_CFG[cfgSide].leg
     local g = Respawn.SpawnAtPoint(AWACS_GROUPS[side], coord, hdg, lg, alt, spd)
     if not g then return end
     timer.scheduleFunction(function(group, time)
@@ -2809,111 +2960,19 @@ function spawnAwacs(side, heading, leg)
             leg = lg,
             zone = _awacsZone[side]
         }
+        if side == 2 and vec then
+            local coord2, z2, h2 = _computeAwacsStationWithZoneSecondary(2, vec.x, vec.z, 150)
+            if coord2 then
+                if IsGroupActive(AWACS_GROUPS[3]) then
+                    setAwacsRacetrack(3, coord2, h2, nil, z2)
+                else
+                    spawnAwacs(3, nil, lg)
+                end
+            end
+        end
     end, g, timer.getTime() + 0.5)
 end
 
-
-
---[[ function Frontline.PickStationNearZone(zoneName, mySide, offsetNmTowardFriendly, lateralJitterNm, forwardJitterNm, minBufferNm)
-    local zi = Frontline._zoneInfo[zoneName]; if not zi then return nil end
-    local signed, seg = nearestSegSigned(zi.center); if not seg then local _dir=(zi.side == (mySide or zi.side)) and 1 or -1; local _off=(offsetNmTowardFriendly or 20) * NM * _dir; return vadd(zi.center, v2(_off,0)) end
-    local dir = (zi.side == (mySide or zi.side)) and 1 or -1
-    local off = (offsetNmTowardFriendly or 20) * NM * dir
-    local t = vnorm(v2(-seg.n.y, seg.n.x))
-    local lateral = 0
-    local sameNeighbors = zi.sameSideNeighbors
-    if sameNeighbors and #sameNeighbors > 0 then
-        local leftProj, rightProj
-        for i=1,math.min(#sameNeighbors,10) do
-            local nb = sameNeighbors[i]
-            local proj = vdot(nb.vec, t)
-            if proj < -1 then
-                if not leftProj or proj > leftProj then leftProj = proj end
-            elseif proj > 1 then
-                if not rightProj or proj < rightProj then rightProj = proj end
-            end
-        end
-        if leftProj and rightProj then
-            lateral = (leftProj + rightProj) * 0.5
-        elseif leftProj then
-            lateral = leftProj * 0.5
-        elseif rightProj then
-            lateral = rightProj * 0.5
-        end
-        local latLimitNm = (lateralJitterNm and lateralJitterNm > 0) and (lateralJitterNm * NM) or nil
-        if latLimitNm then
-            if lateral > latLimitNm then lateral = latLimitNm end
-            if lateral < -latLimitNm then lateral = -latLimitNm end
-        end
-    end
-    local minBufM = (minBufferNm or 0) * NM
-    local clampedOff = off
-    if minBufM > 0 then
-        local enemies = zi.enemyNeighbors
-        if enemies and #enemies > 0 then
-            for i=1,math.min(#enemies,10) do
-                local proj = vdot(enemies[i].vec, seg.n)
-                local limit = proj - minBufM * dir
-                if dir == 1 then
-                    if clampedOff > limit then clampedOff = limit end
-                else
-                    if clampedOff < limit then clampedOff = limit end
-                end
-            end
-        end
-    end
-    local base = vadd(zi.center, vmul(seg.n, clampedOff))
-    local st = vadd(base, vmul(t, lateral))
-    if minBufM > 0 then
-        local enemies = zi.enemyNeighbors
-        if enemies and #enemies > 0 then
-            local best2, ecBest = 1e18, nil
-            for i=1,math.min(#enemies,10) do
-                local ec = vadd(zi.center, enemies[i].vec)
-                local dx, dy = st.x - ec.x, st.y - ec.y
-                local d2 = dx*dx + dy*dy
-                if d2 < best2 then best2, ecBest = d2, ec end
-            end
-            if ecBest then
-                local md = math.sqrt(best2)
-                if md < minBufM then
-                    local away = vnorm(v2(st.x - ecBest.x, st.y - ecBest.y))
-                    if away.x==0 and away.y==0 then away = vmul(seg.n, -dir) end
-                    st = vadd(ecBest, vmul(away, minBufM))
-                end
-            end
-        end
-    end
-    return st
-end ]]
-
---[[ 
-function Frontline.PickCapStationFromOrigin(myZoneName, targetZoneName, mySide, forwardJitterNm, avoidEnemyMinNm)
-    local zi = Frontline._zoneInfo or {}
-    local tInfo = zi[targetZoneName]; if not (tInfo and tInfo.center) then return nil end
-    local anchorName, best2 = nil, 1e18
-    for name,info in pairs(zi) do
-        if info and info.center and info.side == mySide and info.active ~= false then
-            local dx = tInfo.center.x - info.center.x
-            local dy = tInfo.center.y - info.center.y
-            local d2 = dx*dx + dy*dy
-            if d2 < best2 then best2, anchorName = d2, name end
-        end
-    end
-    local aInfo = anchorName and zi[anchorName] or zi[myZoneName]; if not (aInfo and aInfo.center) then return nil end
-    local p0 = aInfo.center
-    local dir = vnorm(v2(tInfo.center.x - p0.x, tInfo.center.y - p0.y))
-    local sep = avoidEnemyMinNm or 0
-    local slackNm = math.max(0, (_minDistPointToEnemiesNm(p0.x, p0.y, mySide) - sep))
-    local toTargetNm = vlen(vsub(tInfo.center, p0)) / NM
-    local wantNm = (forwardJitterNm ~= nil) and forwardJitterNm or slackNm
-    local advNm = math.min(slackNm, toTargetNm, wantNm)
-    local p = vadd(p0, vmul(dir, advNm * NM))
-    local md = _minDistPointToEnemiesNm(p.x, p.y, mySide)
-    if sep > 0 and md < sep then p = vadd(p, vmul(dir, -(sep - md) * NM)) end
-    return { x = p.x, y = p.y }
-end
- ]]
 
 function Frontline.PickCapStationFromOrigin(myZoneName, targetZoneName, mySide, forwardJitterNm, avoidEnemyMinNm)
     local zi = Frontline._zoneInfo or {}
@@ -3525,7 +3584,7 @@ do
 	
 function BattleCommander:new(savepath, updateFrequency, saveFrequency, difficulty) -- difficulty = {start = 1.4, min = -0.5, max = 0.5, escalation = 0.1, fade = 0.1, fadeTime = 30*60, coalition=1} --coalition 1:red 2:blue
 		local obj = {}
-		obj.saveFile = 'zoneCommander_moose.lua'
+		obj.saveFile = 'zoneCommander.lua'
 		if savepath then
 			obj.saveFile = savepath
 		end
@@ -3712,7 +3771,7 @@ function BattleCommander:addShopItem(coalition,id,ammount,prio,reqRank)
 		local nearest, distM = nil, nil
 		for _, z in ipairs(self.zones) do
 			if z.airbaseName and z.side == coalition then
-				local ab = AIRBASE:FindByName(z.airbaseName) or Airbase.getByName(z.airbaseName)
+				local ab = getAirbaseByName(z.airbaseName)
 				local bvec = nil
 				if ab and ab.GetCoordinate then
 					local coord = ab:GetCoordinate()
@@ -3787,6 +3846,39 @@ function BattleCommander:addShopItem(coalition,id,ammount,prio,reqRank)
 		list[#list+1] = entry
 	end
 
+	function BattleCommander:CopyWarehouse(FName, fromSave)
+		if not FName then return end
+		if not (STORAGE and STORAGE.FindByName and WEAPONSLIST and WEAPONSLIST.GetAllItems) then return end
+		local dstStore = STORAGE:FindByName(FName)
+		if not dstStore then return end
+
+		local function safeSet(itemName, qty)
+		if not itemName then return end
+		pcall(function() dstStore:SetItem(itemName, qty) end)
+		end
+
+		for _, ammoName in ipairs(WEAPONSLIST.GetAllItems() or {}) do
+			if WarehouseLogistics == true and fromSave == true then
+				safeSet(ammoName, 0)
+			elseif WarehouseLogistics == true then
+				safeSet(ammoName, 30)
+			else
+				safeSet(ammoName, 1073741823)
+			end
+		end
+
+		local unlimitedPlanes = {}
+		if Era == "Coldwar" and type(allowedPlanes) == "table" then
+		unlimitedPlanes = allowedPlanes
+		elseif type(restockAircraft) == "table" then
+		unlimitedPlanes = restockAircraft
+		end
+		for _, planeName in ipairs(unlimitedPlanes) do
+		safeSet(planeName, 1073741823)
+		end
+	end
+
+
 	function BattleCommander:_minEnemyDistanceNmWithFarps(z)
 		local dist = self:_minEnemyDistanceNm(z)
 		local farps = self.dynamicFarpsBySide
@@ -3817,7 +3909,7 @@ function BattleCommander:addShopItem(coalition,id,ammount,prio,reqRank)
 		local template = 'BLUE_CH-47'
 		self._mapFarpChinookSpawnId = (self._mapFarpChinookSpawnId or 0) + 1
 		local abObj = startAb
-		if startAb and (not startAb.ClassName) and startAb.getName then abObj = AIRBASE:FindByName(startAb:getName()) end
+		if startAb and (not startAb.ClassName) and startAb.getName then abObj = getAirbaseByName(startAb:getName()) end
 		local landingCoord = COORDINATE:NewFromVec3({x=landingPoint.x,y=landingPoint.y or land.getHeight({x=landingPoint.x,y=0,z=landingPoint.z}),z=landingPoint.z})
 		local wasAirborne = false
 		local gname
@@ -3837,11 +3929,11 @@ function BattleCommander:addShopItem(coalition,id,ammount,prio,reqRank)
 			local task = { id='Mission', params={ route={ airborne=true, points={} } } }
 			table.insert(task.params.route.points, {
 				type=AI.Task.WaypointType.TURNING_POINT, x=apx, y=apy, speed=spd, speed_locked=true,
-				action=AI.Task.TurnMethod.FLY_OVER_POINT, alt=500, alt_type=AI.Task.AltitudeType.RADIO
+				action=AI.Task.TurnMethod.FLY_OVER_POINT, alt=1500, alt_type=AI.Task.AltitudeType.RADIO
 			})
 			table.insert(task.params.route.points, {
 				type=AI.Task.WaypointType.TURNING_POINT, x=apx, y=apy, speed=spd, speed_locked=true,
-				action=AI.Task.TurnMethod.FIN_POINT, alt=500, alt_type=AI.Task.AltitudeType.RADIO,
+				action=AI.Task.TurnMethod.FIN_POINT, alt=1500, alt_type=AI.Task.AltitudeType.RADIO,
 				task={ id='ComboTask', params={ tasks={{ number=1, auto=false, id='Land', params={ point={ x=destx, y=desty }, duration=30, durationEnabled=true } }} } }
 			})
 			local c = g:getController()
@@ -4006,12 +4098,21 @@ function BattleCommander:debit(coalition, amount, buyerGroupId, buyerGroupObj, r
     return true
 end
 
-function BattleCommander:credit(coalition, amount, buyerGroupId, reason)
+function BattleCommander:credit(coalition, amount, buyerGroupId, buyerGroupObj, reason)
     if not amount or amount <= 0 then return true end
+    local buyerName = "Unknown"
+    if buyerGroupId and self.playerNames and self.playerNames[buyerGroupId] then
+        buyerName = self.playerNames[buyerGroupId]
+    elseif buyerGroupObj and buyerGroupObj.isExist and buyerGroupObj:isExist() and buyerGroupObj.getName then
+        buyerName = buyerGroupObj:getName()
+    elseif buyerGroupId then
+        buyerName = "Group " .. tostring(buyerGroupId)
+    end
+    local label = reason or "refund"
     self.accounts[coalition] = tonumber(self.accounts[coalition]) or 0
     self.accounts[coalition] = self.accounts[coalition] + amount
+    self:addStat(buyerName, "Points refunded", amount)
 
-    local label = reason or "refund"
     local msg = string.format("%s — %d credits refunded.", label, amount)
     if buyerGroupId then
         trigger.action.outTextForGroup(buyerGroupId, msg, 12)
@@ -4020,6 +4121,7 @@ function BattleCommander:credit(coalition, amount, buyerGroupId, reason)
     end
     return true
 end
+
 
 function BattleCommander:buyShopItem(coalition,id,alternateParams,buyerGroupId,buyerGroupObj)
 			local item   = self.shops[coalition][id]
@@ -4371,8 +4473,8 @@ function findNearestAvailableSupplyCommander(chosenZone)
 
 function measureDistanceZoneToZone(zoneA,zoneB)
 
-	local czA=CustomZone:getByName(zoneA.zone)
-	local czB=CustomZone:getByName(zoneB.zone)
+	local czA=zoneA._cz or CustomZone:getByName(zoneA.zone)
+	local czB=zoneB._cz or CustomZone:getByName(zoneB.zone)
 	
 	if not czA or not czB then return 99999 end
 	
@@ -4802,7 +4904,7 @@ function BattleCommander:getStateTable()
         end
         if v.wasBlue then v.firstCaptureByRed = true end
         if v.side == 1 or v.side == 2 or not v.active then v.firstCaptureByRed = true end
-        states.zones[v.zone] = {
+		states.zones[v.zone] = {
             side              = v.side,
             level             = Utils.getTableSize(v.built),
             remainingUnits    = unitTable,
@@ -4812,8 +4914,9 @@ function BattleCommander:getStateTable()
             wasBlue           = v.wasBlue or false,
             firstCaptureByRed = v.firstCaptureByRed or false,
             upgradesUsed      = v.upgradesUsed,
-			extraUpgrade      = {},
-			lat_long 		  = v.lat_long
+		extraUpgrade      = {},
+		lat_long 	  	  = v.lat_long,
+		logisticCenter   = (v.LogisticCenter == true)
         }
         if v.extraUpgrade then
             for _,grp in ipairs(v.extraUpgrade) do
@@ -4853,6 +4956,9 @@ function BattleCommander:getStateTable()
             states.playerStats[s] = val
         end
     end
+	if ewrs and ewrs.exportPlayerSettings then
+		states.ewrsSettings = ewrs.exportPlayerSettings()
+	end
     return states
 end
 
@@ -4905,7 +5011,7 @@ end
 	
 	function BattleCommander:getZoneOfPoint(point)
 		for i,v in ipairs(self.zones) do
-			local z = CustomZone:getByName(v.zone)
+			local z = v._cz or CustomZone:getByName(v.zone)
 			if z and z:isInside(point) then
 				return v
 			end
@@ -4925,6 +5031,18 @@ end
 			self:refreshConnectionCache()
 	end
 
+	function BattleCommander:addZone(zone)
+		if zone and zone.zone and zone.isHidden == nil then
+			zone.isHidden = zone.zone:lower():find("hidden", 1, true) ~= nil
+		end
+			zone._cz = CustomZone:getByName(zone.zone)
+			table.insert(self.zones, zone)
+			zone.index = self:getZoneIndexByName(zone.zone)+3000
+			zone.battleCommander = self
+			self.indexedZones[zone.zone] = zone
+			self:refreshConnectionCache()
+	end
+
 	function BattleCommander:getZoneByName(name)
 			return self.indexedZones[name]
 	end
@@ -4936,9 +5054,7 @@ end
 	end
 
 	function BattleCommander:refreshConnectionCache()
-		for _, connection in ipairs(self.connections) do
-			self:_cacheConnectionZones(connection)
-		end
+		self:_cacheConnectionZones()
 	end
 
 	function BattleCommander:getConnectionZones(connection)
@@ -4974,7 +5090,7 @@ end
 			local t=v.Template
 			if t.units[1].skill=='Client' then
 				for i2,v2 in ipairs(self.zones) do
-					local zn=CustomZone:getByName(v2.zone)
+					local zn=v2._cz or CustomZone:getByName(v2.zone)
 					local pos3d={x=t.units[1].x,y=0,z=t.units[1].y}
 					if zn and zn:isInside(pos3d) then
 						local coa=0
@@ -5712,6 +5828,39 @@ end
 						end
 					end
 				end
+                if event.text and event.text:lower():find('^additems') then
+                    local zn = self.context:getZoneOfPoint(event.pos)
+                    local gid = event.initiator and event.initiator:getGroup():getID() or nil
+
+					if (not (zn and zn.zone))  then
+						local p = event.pos
+						local alt = land.getHeight({x=p.x,y=p.z})
+						local coord = COORDINATE:New(p.x,alt,p.z)
+						for i = 1, #supplyZones do
+							local zoneName = supplyZones[i]
+							local mooseZone = ZONE:FindByName(zoneName)
+							if mooseZone and mooseZone:IsCoordinateInZone(coord) then
+								zn = { zone = zoneName }
+								break
+							end
+						end
+					end
+
+                    local s = tostring(event.text)
+                    local amtStr = s:match("^[Aa][Dd][Dd][Ii][Tt][Ee][Mm][Ss]%s*:%s*(%d+)%s*$")
+                    local amount = tonumber(amtStr) or 50
+
+                    local ok, msg = self.context:addWarehouseItemsAtZone(zn, event.coalition, amount)
+                    if gid then
+                        trigger.action.outTextForGroup(gid, msg, 12)
+                    else
+                        trigger.action.outTextForCoalition(event.coalition, msg, 12)
+                    end
+
+                    trigger.action.removeMark(event.idx)
+                    success = true
+                end
+
 				if event.text=='event' then
 					for i,v in ipairs(evc.events) do
 						env.info(v.id)
@@ -5778,7 +5927,7 @@ end
 					local p=event.pos
 					local alt=land.getHeight({x=p.x,y=p.z})
 					local coord=COORDINATE:New(p.x,alt,p.z)
-					FarpHere(coord,name)
+					BuildAFarp(coord)
 					trigger.action.removeMark(event.idx)
 					success=true
 				end
@@ -5913,6 +6062,11 @@ end
 
 		table.sort(self.zones, function(a, b) return a.zone < b.zone end)
 		for i, v in ipairs(self.zones) do
+			local n = v and v.airbaseName
+			if n and n ~= '' then
+				getAirbaseByName(n)
+				getDcsAirbaseByName(n)
+			end
 			v:init()
 		end
 
@@ -6086,18 +6240,54 @@ function BattleCommander:buildCapSpawnBuckets()
 end
 
 function BattleCommander:updateBlueZoneCount()
-    local n = 0
-    for _, z in ipairs(self.zones) do
-        if z.side == 2 and z.active and not z.isHidden and not z.suspended then
-            n = n + 1
-        end
-    end
-    self.blueZoneCount = n > 2 and n - 2 or 0
+	local n = 0
+	local blueActiveZones = {}
+	local blueAirbaseZones = {}
+	local airbaseNames = {}
+	local airbaseSeen = {}
+	-- For warehouse persistence we also keep a list that includes suspended zones
+	-- (as long as they are blue & active & not hidden).
+	local airbaseNamesWarehouse = {}
+	local airbaseSeenWarehouse = {}
+
+	for _, z in ipairs(self.zones) do
+		if z.side == 2 and z.active and not z.isHidden and not z.suspended then
+			n = n + 1
+			blueActiveZones[#blueActiveZones + 1] = z
+
+			local abName = z.airbaseName
+			if abName and abName ~= '' then
+				blueAirbaseZones[#blueAirbaseZones + 1] = z
+				if not airbaseSeen[abName] then
+					airbaseSeen[abName] = true
+					airbaseNames[#airbaseNames + 1] = abName
+				end
+			end
+		end
+
+		-- Warehouse persistence: include suspended blue zones too.
+		if z.side == 2 and z.active and not z.isHidden then
+			local abName = z.airbaseName
+			if abName and abName ~= '' then
+				if not airbaseSeenWarehouse[abName] then
+					airbaseSeenWarehouse[abName] = true
+					airbaseNamesWarehouse[#airbaseNamesWarehouse + 1] = abName
+				end
+			end
+		end
+	end
+	table.sort(airbaseNames)
+	table.sort(airbaseNamesWarehouse)
+	self.blueZoneCount = n > 2 and n - 2 or 0
+	self._blueActiveZones = blueActiveZones
+	self._blueAirbaseZones = blueAirbaseZones
+	self._blueAirbaseNames = airbaseNames
+	self._blueAirbaseNamesWarehouse = airbaseNamesWarehouse
 end
 
 SCHEDULER:New(nil, function()
         bc:updateBlueZoneCount()
-end, {}, 4)
+end, {}, 0.1)
 
 
 function BattleCommander:reindexCombatZones()
@@ -6319,7 +6509,7 @@ HELO_CAS_MISSION = HELO_CAS_MISSION or {}
 		if abName then
 		fg:SetHomebase(homeBase)
 		
-		local Airdrome = AIRBASE:FindByName(abName)
+		local Airdrome = getAirbaseByName(abName)
 				fg:GetGroup():SetOptionRadioSilence(true)
 
 
@@ -7375,11 +7565,11 @@ local function edgePoint(a,b)
 end
 
 for i, v in ipairs(self.connections) do
-local from = CustomZone:getByName(v.from)
-local to = CustomZone:getByName(v.to)
-
 local fromZone = self:getZoneByName(v.from)
 local toZone   = self:getZoneByName(v.to)
+
+local from = (fromZone and fromZone._cz) or CustomZone:getByName(v.from)
+local to = (toZone and toZone._cz) or CustomZone:getByName(v.to)
 
 _globalArrowCounter = _globalArrowCounter + 1
 local arrowId = _globalArrowCounter
@@ -7600,19 +7790,25 @@ BattleCommander.blueSideMenus   = {}
 		self.tempStats[playerName] = {}
 	end
 	
-	function BattleCommander:printTempStats(side, player)
+	function BattleCommander:printTempStats(side, player, opts)
 		self.tempStats = self.tempStats or {}
 		self.tempStats[player] = self.tempStats[player] or {}
 		local sorted = {}
-		for i,v in pairs(self.tempStats[player]) do table.insert(sorted,{i,v}) end
+		for i,v in pairs(self.tempStats[player]) do
+			if not (opts and opts.excludePoints and i == 'Points') then
+				table.insert(sorted,{i,v})
+			end
+		end
 		table.sort(sorted, function(a,b) return a[1] < b[1] end)
 		
-		local message = '['..player..']'
+		local indent = opts and opts.indent or ''
+		local message = (opts and opts.noHeader) and '' or '['..player..']'
 		for i,v in ipairs(sorted) do
-			message = message..'\n+'..v[2]..' '..v[1]
+			message = message..'\n'..indent..'+'..v[2]..' '..v[1]
 		end
 		
-		trigger.action.outTextForCoalition(side, message , 10)
+		if opts and opts.returnOnly then return message end
+		trigger.action.outTextForCoalition(side, message , (opts and opts.duration) or 10)
 	end
 	
 function BattleCommander:printMyStats(unitid, player)
@@ -7821,7 +8017,7 @@ function BattleCommander:_buildHunterBaseList()
     if z.side == 1 and z.active then
       local n = z.airbaseName
       if n and not seen[n] then
-        local ab = AIRBASE:FindByName(n)
+        local ab = getAirbaseByName(n)
         if ab and ab:IsAirdrome() then
           list[#list+1] = ab
           seen[n]       = true
@@ -8444,14 +8640,16 @@ function BattleCommander:startRewardPlayerContribution(defaultReward, rewards)
 												coalitionSide = 2
 											end
 											local crew=bc:getMulticrewPlayersNow(player)
+											local redeemMsg = 'Player Redeem :'
+											local did = false
 											for i=1,#crew do
 												local n=crew[i]
 												local add = ((context.playerContributions[coalitionSide] and context.playerContributions[coalitionSide][n]) or 0)
 												if add > 0 then
+													did = true
 													local before = context:getPlayerRank(n)
 													context:addFunds(coalitionSide, add)
-													trigger.action.outTextForCoalition(coalitionSide, '[' .. n .. '] redeemed ' .. add .. ' credits', 15)
-													context:printTempStats(coalitionSide, n)
+													redeemMsg = redeemMsg..'\n'..tostring(n)..': '..tostring(add)..' credits'..context:printTempStats(coalitionSide, n, { returnOnly=true, noHeader=true, indent='  ', excludePoints=true })
 													context:addTempStat(n, 'Points', add)
 													context:commitTempStats(n)
 													context.playerContributions[coalitionSide][n] = 0
@@ -8471,6 +8669,9 @@ function BattleCommander:startRewardPlayerContribution(defaultReward, rewards)
 														bc.huntDone[n] = nil
 													end
 												end
+											end
+											if did then
+												trigger.action.outTextForCoalition(coalitionSide, redeemMsg, 15)
 											end
 										end
 									end
@@ -8532,14 +8733,16 @@ function BattleCommander:startRewardPlayerContribution(defaultReward, rewards)
 											if un:getLife() > 0 then
 												local coalitionSide = un:getCoalition()
 												local crew=bc:getMulticrewPlayersNow(player)
+												local redeemMsg = 'Player Redeem :'
+												local did = false
 												for i=1,#crew do
 													local n=crew[i]
 													local add = ((context.playerContributions[coalitionSide] and context.playerContributions[coalitionSide][n]) or 0)
 													if add > 0 then
+														did = true
 														local before = context:getPlayerRank(n)
 														context:addFunds(coalitionSide,add)
-														trigger.action.outTextForCoalition(coalitionSide,'[' .. n .. '] redeemed ' .. add .. ' credits',15)
-														context:printTempStats(coalitionSide,n)
+														redeemMsg = redeemMsg..'\n'..tostring(n)..': '..tostring(add)..' credits'..context:printTempStats(coalitionSide, n, { returnOnly=true, noHeader=true, indent='  ', excludePoints=true })
 														context:addTempStat(n,'Points',add)
 														context:commitTempStats(n)
 														context.playerContributions[coalitionSide][n] = 0
@@ -8556,6 +8759,9 @@ function BattleCommander:startRewardPlayerContribution(defaultReward, rewards)
 														end
 														if Hunt then bc.huntDone[n] = nil end
 													end
+												end
+												if did then
+													trigger.action.outTextForCoalition(coalitionSide, redeemMsg, 15)
 												end
 											end
 										end
@@ -8924,7 +9130,15 @@ function BattleCommander:loadFromDisk()
 						end
 												
 						zn.wasBlue = v.wasBlue or false
-						zn.firstCaptureByRed = v.firstCaptureByRed or false 
+						zn.firstCaptureByRed = v.firstCaptureByRed or false
+
+						local savedLogistic = v.logisticCenter
+						if savedLogistic == nil then
+							savedLogistic = v.LogisticCenter
+						end
+						if savedLogistic ~= nil then
+							zn.LogisticCenter = savedLogistic and true or false
+						end 
 					end
 				end
 			end
@@ -8983,6 +9197,14 @@ function BattleCommander:loadFromDisk()
 			
 			if zonePersistance.customFlags then
 				CustomFlags = zonePersistance.customFlags
+			end
+
+			if zonePersistance.ewrsSettings then
+				if ewrs and ewrs.importPlayerSettings then
+					ewrs.importPlayerSettings(zonePersistance.ewrsSettings)
+				else
+					EWRS_PENDING_PLAYER_SETTINGS = zonePersistance.ewrsSettings
+				end
 			end
 		end
 	end
@@ -9285,7 +9507,7 @@ function ZoneCommander:getFilteredUpgrades()
 			
 			if self.airbaseName and self.airbaseName ~= 'CVN-72' and self.airbaseName ~= 'CVN-73' then
 				env.info("Disabling airbase " .. self.airbaseName)
-				local ab = Airbase.getByName(self.airbaseName)
+				local ab = getDcsAirbaseByName(self.airbaseName)
 				if ab then
 					if self.wasBlue and not self.active then
 						if ab:autoCaptureIsOn() then ab:autoCapture(false) end
@@ -10033,6 +10255,70 @@ function ZoneCommander:MakeZoneRed()
         BASE:I("Zone is either inactive or not eligible for red capture, no action taken.")
     end
 end
+
+
+function BattleCommander:addWarehouseItemsAtZone(zoneObj, coalition, amountPerItem)
+    if not zoneObj then
+        return false, "[Warehouse] No zone at this point."
+    end
+
+    local zoneName = zoneObj.zone
+    local abName = zoneObj.airbaseName or zoneObj.baseName or zoneName
+    if not abName or abName == "" then
+        return false, string.format("[Warehouse] %s has no airbase.", tostring(zoneName or "Zone"))
+    end
+
+    if not WarehouseLogistics then
+        return false, "[Warehouse] WarehouseLogistics is disabled."
+    end
+
+    local storage = STORAGE and STORAGE.FindByName and STORAGE:FindByName(abName) or nil
+    if not storage and zoneName and abName ~= zoneName then
+        storage = STORAGE and STORAGE.FindByName and STORAGE:FindByName(zoneName) or nil
+        if storage then
+            abName = zoneName
+        end
+    end
+    if not storage then
+        return false, string.format("[Warehouse] No storage found for airbase: %s", tostring(abName))
+    end
+
+    local amount = tonumber(amountPerItem) or 50
+    amount = math.max(1, math.floor(amount))
+
+    local items = (WEAPONSLIST and WEAPONSLIST.GetAllItems and WEAPONSLIST.GetAllItems()) or {}
+    local added = 0
+
+    for _, item in ipairs(items) do
+        -- Always respect Coldwar restrictions
+        if not (Era == "Coldwar" and WEAPONSLIST and WEAPONSLIST.IsRestricted and WEAPONSLIST.IsRestricted(item)) then
+            storage:AddItem(item, amount)
+            added = added + 1
+        end
+    end
+
+    return true, string.format("[Warehouse] Added %d item types x%d to %s (zone: %s).",added, amount, tostring(abName), tostring(zoneName or "unknown"))
+end
+
+local function _autoRestockFriendlyAirbases()
+	if WarehouseLogistics ~= true then return end
+	if not bc or not (bc.zones or bc.getZones) then return end
+	if not (bc.addWarehouseItemsAtZone) then return end
+
+	for _, zoneObj in ipairs(bc.zones or bc:getZones() or {}) do
+		if zoneObj and zoneObj.side == 2 and not zoneObj.suspended and zoneObj.airbaseName then
+			local amount = AutoFillResources or 5
+			bc:addWarehouseItemsAtZone(zoneObj, 2, amount)
+		end
+	end
+end
+
+if WarehouseLogistics == true then
+	SCHEDULER:New(nil, function()
+		_autoRestockFriendlyAirbases()
+	end, {}, 900, 900)
+end
+
 -------------------------------- maxxa --------------------------------------------------------
 
 
@@ -10121,7 +10407,7 @@ function ZoneCommander:init()
 	if self.airbaseName and self.airbaseName ~= 'CVN-72' and self.airbaseName ~= 'CVN-73' then
 
 		timer.scheduleFunction(function()
-			local ab = Airbase.getByName(self.airbaseName)
+			local ab = getDcsAirbaseByName(self.airbaseName)
 			if ab then
 				if ab:autoCaptureIsOn() then ab:autoCapture(false) end
 				if self.side == 0 or (not self.active and not self.wasBlue) then
@@ -10129,6 +10415,9 @@ function ZoneCommander:init()
 						RespawnStaticsForAirbase(self.airbaseName, 0)						
 					end
 					ab:setCoalition(1)
+					if WarehouseLogistics == true and not self.LogisticCenter then
+						WEAPONSLIST.ClearWeaponsAtAirbase(self.airbaseName)
+					end					
 				end
 				if self.side == 1 then
 					if RespawnStaticsForAirbase then
@@ -10140,12 +10429,15 @@ function ZoneCommander:init()
 					if RespawnStaticsForAirbase then
 						RespawnStaticsForAirbase(self.airbaseName, 2)
 					end
-					ab:setCoalition(2)	
+						ab:setCoalition(2)
+					if WarehouseLogistics == true and not self.LogisticCenter then
+						WEAPONSLIST.ClearWeaponsAtAirbase(self.airbaseName)
+					end
 				end
 			else
 				env.info("Airbase " .. self.airbaseName .. " not found")
 			end
-		end, {}, timer.getTime() +3)
+		end, {}, timer.getTime() +1)
 	end
 
 	local upgrades = self:getFilteredUpgrades()
@@ -10260,27 +10552,30 @@ function ZoneCommander:init()
 				--env.info("[ZoneCommander DEBUG] Stored static "..v)
 			end
 		end
-    if not self.isHidden then
-        local waypointLabel = WaypointList and WaypointList[self.zone] or ""
-        local msg = " " .. self.zone .. "" .. waypointLabel
-        if missions and missions[self.zone] then
-            local m = missions[self.zone]
-            local tz = bc:getZoneByName(m.TargetZone)
-            if tz and (self.side == 2 and tz.side == 1) then
-                msg = msg .. "\n Mission!"
-            end
-        end
-        if self.side == 2 then
-            local upgrades = self:getFilteredUpgrades()
-            local builtCount = 0
-            for _ in pairs(self.built) do builtCount = builtCount + 1 end
-            local total = #upgrades
-            msg = msg .. "\n " .. builtCount .. "/" .. total
-        end
-        local backgroundColor = {0.7, 0.7, 0.7, 0.8}
-        trigger.action.textToAll(-1, 2000 + self.index, point, textColor, backgroundColor, 18, true, msg)
-        trigger.action.setMarkupText(2000 + self.index, msg)
-    end
+	if not self.isHidden then
+		local waypointLabel = WaypointList and WaypointList[self.zone] or ""
+		local msg = " " .. self.zone .. "" .. waypointLabel
+		if missions and missions[self.zone] then
+			local m = missions[self.zone]
+			local tz = bc:getZoneByName(m.TargetZone)
+			if tz and (self.side == 2 and tz.side == 1) then
+				msg = msg .. "\n Mission!"
+			end
+		end
+		if self.LogisticCenter then
+			msg = msg .. "\n [WH]"
+		end
+		if self.side == 2 then
+			local upgrades = self:getFilteredUpgrades()
+			local builtCount = 0
+			for _ in pairs(self.built) do builtCount = builtCount + 1 end
+			local total = #upgrades
+			msg = msg .. "\n " .. builtCount .. "/" .. total
+		end
+		local backgroundColor = {0.7, 0.7, 0.7, 0.8}
+		trigger.action.textToAll(-1, 2000 + self.index, point, textColor, backgroundColor, 18, true, msg)
+		trigger.action.setMarkupText(2000 + self.index, msg)
+	end
 
 
 	if self.side == 2 and self.isHeloSpawn then
@@ -10300,6 +10595,10 @@ function ZoneCommander:init()
 	end
 end
 
+if WarehouseLogistics == true then 
+	env.info("ZoneCommander: WarehouseLogistics is enabled")
+
+end
 
 	function ZoneCommander:weedOutRemainingUnits()
 		local destroyPersistedUnits = function(context)
@@ -10469,7 +10768,7 @@ end
 			self.battleCommander:buildZoneStatusMenuForGroup()
 			if self.airbaseName and self.airbaseName ~= 'CVN-72' and self.airbaseName ~= 'CVN-73' then
 
-				local ab = Airbase.getByName(self.airbaseName)
+				local ab = getDcsAirbaseByName(self.airbaseName)
 				if ab then
 					local currentCoalition = ab:getCoalition()
 					--if currentCoalition ~= coalition.side.RED then
@@ -10477,6 +10776,9 @@ end
 						RespawnStaticsForAirbase(self.airbaseName, coalition.side.NEUTRAL)
 						end
 						ab:setCoalition(1)
+						if WarehouseLogistics == true and not self.LogisticCenter then
+							WEAPONSLIST.ClearWeaponsAtAirbase(self.airbaseName)
+						end
 					--end
 				end
 			end	
@@ -10485,7 +10787,28 @@ end
 				if trigger.misc.getUserFlag(180) == 0 then
 					trigger.action.outSoundForCoalition(2, "ding.ogg")
 				end
-			end
+            if WarehouseLogistics then
+                local zn = tostring(self.zone or "")
+                if string.find(zn, "Carrier") then
+                    if not self._carrierAutoRecapScheduled then
+                        self._carrierAutoRecapScheduled = true
+                        local zc = self
+                        timer.scheduleFunction(function()
+                            if not zc then return end
+                            zc._carrierAutoRecapScheduled = false
+                            -- only if it’s still neutral when the timer fires
+                            if zc.active and zc.side == 0 then
+                                if map == "Syria" then
+                                    local sz = zc.battleCommander:getZoneByName('Silkworm Site')
+                                    if sz and sz.active then return end
+                                end
+                                zc:capture(2)
+                            end
+                        end, nil, timer.getTime() + 5)
+                    end
+                end
+            end
+        end
 			if self.active then   
 				trigger.action.setMarkupColor(2000 + self.index, {0.3, 0.3, 0.3, 1})
 				trigger.action.setMarkupColorFill(self.index, {0.7, 0.7, 0.7, 0.3})
@@ -10579,16 +10902,19 @@ end
 				end
 			end
 		end
-        if ActiveCurrentMission[self.zone] then
-            local cur = ActiveCurrentMission[self.zone]
-            if type(cur) == "table" then
-                for k in pairs(cur) do
-                    msg = msg .. "\n " .. k .. "!"
-                end
-            else
-                msg = msg .. "\n " .. cur .. "!"
-            end
-        end
+		if self.LogisticCenter then
+			msg = msg .. "\n [WH]"
+		end
+		if ActiveCurrentMission[self.zone] then
+			local cur = ActiveCurrentMission[self.zone]
+			if type(cur) == "table" then
+				for k in pairs(cur) do
+					msg = msg .. "\n " .. k .. "!"
+				end
+			else
+				msg = msg .. "\n " .. cur .. "!"
+			end
+		end
 		local intelActive = (intelActiveZones and intelActiveZones[self.zone] == true)
 		if (self.side == 2 and not self.suspended) or intelActive then
 			local upgrades = self:getFilteredUpgrades()
@@ -10811,7 +11137,7 @@ end
 	end
 
 	function ZoneCommander:clearWreckage()
-		 local zn = trigger.misc.getZone(self.zone)
+		 local zn = getTriggerZone(self.zone)
 		 local pos =  {
 		x = zn.point.x, 
 		y = land.getHeight({x = zn.point.x, y = zn.point.z}), 
@@ -11120,7 +11446,7 @@ function GroupCommander:_resolveParkingWithBelonging()
     local need = math.max(self.AirCount or 2, 1)
     local termType = self.terminalType or AIRBASE.TerminalType.OpenMedOrBig
     for ni=1,#chain do
-        local ab = AIRBASE:FindByName(chain[ni])
+        local ab = getAirbaseByName(chain[ni])
         local co = (ab and ab.GetCoalition) and ab:GetCoalition() or nil
         local sideOk = (self.side == 1 and co == coalition.side.RED) or (self.side == 2 and co == coalition.side.BLUE)
         if ab and ab:IsAirdrome() and sideOk then
@@ -11146,11 +11472,11 @@ function GroupCommander:_resolveParkingWithBelonging()
     return nil
 end
 
-function GroupCommander:_assignPlaneRoute(grName, zoneName, altitude)
+function GroupCommander:_assignPlaneRoute(grName, zoneName, altitude,ownZone, ownside)
     local group = GROUP:FindByName(grName); if not group or not group:IsAlive() then return end
     local tz = self.zoneCommander.battleCommander:getZoneByName(zoneName); if not tz then return end
     local ab, abn = nil, tz.airbaseName
-    if abn then ab = AIRBASE:FindByName(abn)
+    if abn then ab = getAirbaseByName(abn)
         if ab and ab:GetCoalition() ~= tz.side then
             ab:SetCoalition(0)
         end
@@ -11169,9 +11495,257 @@ function GroupCommander:_assignPlaneRoute(grName, zoneName, altitude)
 
     wp[#wp+1] = abC:WaypointAirLanding(UTILS.MpsToKmph(50), ab, {}, "RTB Land (Airbase)")
     group:Route(wp, 1)
+	self:_adjustWarehouseStock(ownZone, -50)
+end
+
+local function _buildMooseWaypointAirLike(coord, altType, wpType, wpAction, speedKmh, speedLocked, airbase, dcsTasks, description, timeReFuAr)
+	altType = altType or "RADIO"
+	if speedLocked == nil then speedLocked = true end
+	speedKmh = speedKmh or 500
+
+	local RoutePoint = {}
+	RoutePoint.x = coord.x
+	RoutePoint.y = coord.z
+	RoutePoint.alt = coord.y
+	RoutePoint.alt_type = altType
+	RoutePoint.type = wpType
+	RoutePoint.action = wpAction
+	RoutePoint.speed = speedKmh / 3.6
+	RoutePoint.speed_locked = speedLocked
+	RoutePoint.ETA = 0
+	RoutePoint.ETA_locked = false
+	RoutePoint.name = description
+
+	if airbase then
+		local AirbaseID = airbase:GetID()
+		local AirbaseCategory = airbase:GetAirbaseCategory()
+		if AirbaseCategory == Airbase.Category.SHIP or AirbaseCategory == Airbase.Category.HELIPAD then
+			RoutePoint.linkUnit = AirbaseID
+			RoutePoint.helipadId = AirbaseID
+			RoutePoint.airdromeId = airbase:IsAirdrome() and AirbaseID or nil
+		elseif AirbaseCategory == Airbase.Category.AIRDROME then
+			RoutePoint.airdromeId = AirbaseID
+		else
+			env.info("[Route] ERROR: Unknown airbase category in _buildMooseWaypointAirLike")
+		end
+	end
+
+	if wpType == "LandingReFuAr" then
+		RoutePoint.timeReFuAr = timeReFuAr or 10
+	end
+
+	RoutePoint.task = { id = "ComboTask", params = { tasks = dcsTasks or {} } }
+	return RoutePoint
+end
+
+-- Small MOOSE-style helper: build a DCS CargoTransportation task that can be placed into a waypoint ComboTask.
+-- This allows doing helo logistics with GROUP:Route() without using AUFTRAG.
+if COORDINATE and not COORDINATE.TaskCargoTransportation then
+	function COORDINATE:TaskCargoTransportation(cargoGroupId, dropZoneId)
+		return { number = 1, auto = false, id = 'CargoTransportation', params = { groupId = cargoGroupId, zoneId = dropZoneId } }
+	end
 end
 
 
+function GroupCommander:_assignHeloLogisticsRoute(groupName, targetZoneName, ownZone, side)
+	local staticType = "container_cargo"
+	local staticCategory = "Cargos"
+	local cargoMassKg = 600
+	local cargoCountryId = side == 1 and country.id.RUSSIA or country.id.USA
+
+	local gr = Group.getByName(groupName); if not gr then env.info("No group found for name " .. groupName) return end
+	local c = gr:getController(); if not c then env.info("No controller found for group " .. groupName) return end
+	local un = gr:getUnit(1); if not un then env.info("No unit found for group " .. groupName) return end
+	local pos = un:getPoint()
+	local destx, desty
+	local useAirbase = false
+
+	local sub = collectSubZones(targetZoneName)
+	local pickName = (#sub > 0) and sub[math.random(#sub)] or targetZoneName
+
+	local dropZone = getMooseZone(pickName)
+	if not dropZone or not dropZone.ZoneID then return end
+
+	local fz = getTriggerZone(pickName)
+	if not fz or not fz.point then return end
+	local dropx, dropy = fz.point.x, fz.point.z
+
+
+	local spawnCoord = nil
+	local prefix = ownZone.."-land"
+	local pooledLand = {}
+	local lastSpawn = self._lastGroundSpawnSpot and self._lastGroundSpawnSpot.zone or nil
+	for name,list in pairs(LandingSpots) do
+		if name:sub(1, #prefix) == prefix then
+			for i=1,#list do
+				if not (lastSpawn and lastSpawn == name) then
+					local spot = list[i]
+					if spot and spot.x and spot.z then
+						pooledLand[#pooledLand+1] = { name = name, x = spot.x, z = spot.z }
+					end
+				end
+			end
+		end
+	end
+	if #pooledLand > 0 then
+		local pick = pooledLand[math.random(#pooledLand)]
+		spawnCoord = COORDINATE:New(pick.x, 0, pick.z)
+	else
+		local heading = un and un.getHeading and un:getHeading() or 0
+		local behind = (heading + math.pi) % (2 * math.pi)
+		local azDeg = math.deg(behind)
+		spawnCoord = COORDINATE:New(pos.x, pos.y, pos.z):Translate(20, azDeg)
+	end
+
+	local tag = self.name .. "_LOGI"
+	local cargoName = string.format("%s_CARGO_%d", tostring(tag), math.random(100000,999999))
+	
+	--local sp = SPAWNSTATIC:NewFromStatic("AI Cargo", cargoCountryId)
+	
+	local sp = SPAWNSTATIC:NewFromType(staticType, staticCategory, cargoCountryId)
+	sp:InitCoordinate(spawnCoord)
+	sp:InitCargo(true)
+	sp:InitCargoMass(cargoMassKg)
+	local cargo = sp:Spawn(0, cargoName)
+	if not cargo then return end
+	self._logiCargoByGroup = self._logiCargoByGroup or {}
+	self._logiCargoByGroup[self.name] = cargoName
+	if AIDeliveryamount == nil then AIDeliveryamount = 20 end
+	self:_adjustWarehouseStock(ownZone, -AIDeliveryamount)
+
+	local prefix2 = targetZoneName.."-land"
+	local pooledLand2 = {}
+	for name,list in pairs(LandingSpots) do
+		if name:sub(1, #prefix2) == prefix2 then
+			for i=1,#list do pooledLand2[#pooledLand2+1] = list[i] end
+		end
+	end
+	if #pooledLand2 > 0 then
+		local pick = pooledLand2[math.random(#pooledLand2)]
+		env.info('Landing spot for ' .. targetZoneName .. ' found, picking')
+		destx, desty = pick.x, pick.z
+	end
+
+	if not destx then
+		local pooledForced = {}
+		local idx = 0
+		while true do
+			local fname = string.format("%s-land-forced-%d", targetZoneName, idx)
+			local fz = trigger.misc.getZone(fname)
+			if not fz then break end
+			pooledForced[#pooledForced+1] = { x=fz.point.x, z=fz.point.z }
+			idx = idx + 1
+		end
+		if #pooledForced > 0 then
+			local pick = pooledForced[math.random(#pooledForced)]
+			destx, desty = pick.x, pick.z
+		end
+	end
+
+	if not destx then
+		local tz = self.zoneCommander.battleCommander:getZoneByName(targetZoneName)
+		local abn = tz and tz.airbaseName
+		if abn then
+			local ab = AIRBASE:FindByName(abn)
+			if ab and ab:GetCoalition()==gr:getCoalition() then
+				useAirbase = true
+			end
+		end
+	end
+
+	if not destx and not useAirbase then
+		local lz = self:_findFlatLZ(targetZoneName.."-", 200, math.tan(math.rad(15)))
+		if not lz then lz = self:_findFlatLZ(targetZoneName, 200, math.tan(math.rad(15))) end
+		if lz then destx, desty = lz.x, lz.z end
+	end
+	if not destx and not useAirbase then return end
+
+	if useAirbase then
+		local tz = self.zoneCommander.battleCommander:getZoneByName(targetZoneName)
+		local abn = tz and tz.airbaseName
+		local airb = abn and AIRBASE:FindByName(abn) or nil
+		if airb and airb.GetCoordinate then
+			local cc = airb:GetCoordinate(); if cc and cc.GetVec2 then local v=cc:GetVec2(); destx, desty = v.x, v.y end
+		end
+	end
+	if not destx or not desty then return end
+
+	local spd = 180
+	local alt = 500
+	local kmh = math.floor(spd * 3.6)
+
+	-- Use MOOSE route engine end-to-end (this also gives the 1s delayed SetTask that Route(...,1) uses).
+	local gmoose = GROUP:FindByName(groupName)
+	if not gmoose or not gmoose:IsAlive() then return end
+
+	local route = {}
+	-- WP1 at cargo location: execute CargoTransportation (pick up here, deliver to dropZone.ZoneID).
+	local cargoTask = (COORDINATE and COORDINATE.TaskCargoTransportation) and COORDINATE:TaskCargoTransportation(cargo:GetID(), dropZone.ZoneID)
+	local pickupCoord = COORDINATE:New(spawnCoord.x, spawnCoord.y, spawnCoord.z):SetAltitude(alt)
+	route[#route + 1] = pickupCoord:WaypointAirTurningPoint("RADIO", kmh, { cargoTask }, "Cargo")
+
+	-- WP2 at drop point: fly over.
+	route[#route + 1] = COORDINATE:New(dropx, alt, dropy):WaypointAirFlyOverPoint("RADIO", kmh)
+
+	-- WP3 landing: if airbase, pin to airbase; else land at coordinate.
+	if useAirbase then
+		local tz = self.zoneCommander.battleCommander:getZoneByName(targetZoneName)
+		local abn = tz and tz.airbaseName
+		local airb = abn and AIRBASE:FindByName(abn) or nil
+		if not airb then return end
+		route[#route + 1] = airb:GetCoordinate():WaypointAirLanding(kmh, airb, {}, "Landing")
+	else
+		local landTask = { id='Land', params={ point={ x=destx, y=desty }, duration=20, durationEnabled=true } }
+		route[#route + 1] = COORDINATE:New(dropx, alt, dropy):WaypointAirTurningPoint("RADIO", kmh, { landTask }, "Landing")
+	end
+
+	gmoose:Route(route, 1)
+end
+
+function ManualAdjustWarehouse(zoneName, deltaPerItem)
+    if not bc or type(zoneName) ~= "string" then
+        env.info("[ManualAdjustWarehouse] Missing battle commander or zone name")
+        return
+    end
+    local proxy = setmetatable({
+        name = "ManualAdjust",
+        side = 2,
+        zoneCommander = { battleCommander = bc },
+    }, { __index = GroupCommander })
+
+    proxy:_adjustWarehouseStock(zoneName, deltaPerItem)
+end
+
+-- Example:
+-- ManualAdjustWarehouse("Naumburg FARP", -10)
+
+function GroupCommander:_adjustWarehouseStock(zoneName, deltaPerItem)
+	if WarehouseLogistics ~= true then return end
+	if type(deltaPerItem) ~= "number" or deltaPerItem == 0 then return end
+	if not zoneName then return end
+	if self.side ~= 2 then return end
+
+	local originZone = self.zoneCommander.battleCommander:getZoneByName(zoneName) or zoneName
+	local abName = originZone and originZone.airbaseName or zoneName
+	if not abName then return end
+
+	local storage = STORAGE:FindByName(abName)
+	if not storage then return end
+
+	local items = WEAPONSLIST.GetAllItems() or {}
+	for _, item in ipairs(items) do
+		local current = 0
+		local amt = storage:GetItemAmount(item)
+		if type(amt) == "number" then
+			current = amt
+		end
+		local target = current + deltaPerItem
+		if target < 0 then target = 0 end
+		pcall(function() storage:SetItem(item, target) end)
+	end
+
+	env.info(string.format("Group [%s] adjusted warehouse [%s] by %+d per item (zone=%s)", tostring(self.name), tostring(abName), deltaPerItem, tostring(zoneName)))
+end
 
 
 function GroupCommander:_assignHeloRoute(grName, zoneName)
@@ -11240,7 +11814,7 @@ function GroupCommander:_assignHeloRoute(grName, zoneName)
         tvx, tvy = tvx or pos.x, tvy or pos.z
         local dx, dz = tvx - pos.x, tvy - pos.z
         local L = math.sqrt(dx*dx + dz*dz)
-        local back = 2 * 1852
+        local back = 3 * 1852
         local apx = (L > 10) and (tvx - dx / L * back) or tvx
         local apy = (L > 10) and (tvy - dz / L * back) or tvy
 
@@ -12466,20 +13040,25 @@ function GroupCommander:_spawnFromGroundAt(resolved, originZone, targetZone, hot
     local tpl = self:_getAirTemplate(resolved); if not tpl then return nil end
     local base = originZone and (originZone.."-land") or nil
     local pool = nil
-    if base and LandingSpots then
-        pool = {}
-        for n, lst in pairs(LandingSpots) do
-            if n:sub(1, #base) == base then
-                for i=1,#lst do pool[#pool+1] = lst[i] end
-            end
-        end
+	if base and LandingSpots then
+		pool = {}
+		for n, lst in pairs(LandingSpots) do
+			if n:sub(1, #base) == base then
+				for i=1,#lst do
+					local spot = lst[i]
+					if spot and spot.x and spot.z then
+						pool[#pool+1] = { name = n, x = spot.x, z = spot.z }
+					end
+				end
+			end
+		end
         if #pool == 0 then
             local idx = 0
             while true do
                 local fname = string.format("%s-land-forced-%d", originZone, idx)
                 local fz = trigger.misc.getZone(fname)
                 if not fz then break end
-                pool[#pool+1] = { x=fz.point.x, z=fz.point.z }
+				pool[#pool+1] = { name=fname, x=fz.point.x, z=fz.point.z }
                 idx = idx + 1
             end
         end
@@ -12491,11 +13070,11 @@ function GroupCommander:_spawnFromGroundAt(resolved, originZone, targetZone, hot
         LandingSpotsUsedIndex[base] = idx
         p = pool[idx]
     else
-        local lz = self:_findFlatLZ(originZone, 50, 0.06)
-        if lz then p = {x=lz.x, z=lz.z} end
+		local lz = self:_findFlatLZ(originZone, 50, 0.06)
+		if lz then p = { name = string.format("%s-flat", originZone or "unknown"), x=lz.x, z=lz.z } end
     end
     if not p then return nil end
-    local jitter = 8
+    local jitter = 20
     local lx, lz = p.x + math.random(-jitter,jitter), p.z + math.random(-jitter,jitter)
 
     local ly = land.getHeight({x=lx, y=lz})
@@ -12503,9 +13082,14 @@ function GroupCommander:_spawnFromGroundAt(resolved, originZone, targetZone, hot
     tpl.route = tpl.route or {}; tpl.route.points = tpl.route.points or {}; tpl.route.points[1] = tpl.route.points[1] or {}
 	tpl.route.points[1].type = hot and "TakeOffGroundHot" or "TakeOffGround"; tpl.route.points[1].action = hot and "From Ground Area Hot" or "From Ground Area"; tpl.route.points[1].x = lx; tpl.route.points[1].y = lz; tpl.route.points[1].alt = 0; tpl.route.points[1].alt_type = "RADIO"
 	for i=1,#tpl.units do local u=tpl.units[i]; local dx=(#tpl.units==2) and 0 or (i-1)*4; local dy=(#tpl.units==2) and ((i==1) and -15 or 15) or 0; u.x=lx+dx; u.y=lz+dy; u.alt=ly; u.parking=nil; u.parking_id=nil end
+    self._lastGroundSpawnSpot = { zone = p.name or base or originZone, x = lx, z = lz }
     local sp = SPAWN:NewFromTemplate(tpl, resolved, self.name, true)
     if self.mission=='supply' and self.unitCategory==Unit.Category.HELICOPTER then
-        sp = sp:OnSpawnGroup(function(g) self:_assignHeloRoute(g:GetName(), self.targetzone) end)
+		if WarehouseLogistics == true then
+        sp = sp:OnSpawnGroup(function(g) self:_assignHeloLogisticsRoute(g:GetName(), self.targetzone, originZone, self.side) end)
+		else
+		 sp = sp:OnSpawnGroup(function(g) self:_assignHeloRoute(g:GetName(), self.targetzone) end)
+		end
     elseif self.MissionType=='CAS' and self.unitCategory==Unit.Category.HELICOPTER and self.template then
         sp = sp:OnSpawnGroup(function(g) bc:EngageHeloCasMission(self.targetzone, g:GetName(), nil, nil, self._landUnitID) end)
     elseif self.MissionType=='CAS' and self.unitCategory==Unit.Category.AIRPLANE and self.template then
@@ -12656,13 +13240,17 @@ end
 											if self.side == 2 and self._pendingBlueSupplyCost and self._pendingBlueSupplyCost > 0 then
 												self.zoneCommander.battleCommander.accounts[2] = math.max((self.zoneCommander.battleCommander.accounts[2] or 0) - self._pendingBlueSupplyCost, 0)
 												self._pendingBlueSupplyCost = nil end
-											self:_assignHeloRoute(g:GetName(), self.targetzone)
+												if WarehouseLogistics == true then
+													self:_assignHeloLogisticsRoute(g:GetName(), self.targetzone, originZone, self.side)
+												else
+													self:_assignHeloRoute(g:GetName(), self.targetzone)
+												end
 
 										elseif self.mission == 'supply' and self.unitCategory == plane then
 											if self.side == 2 and self._pendingBlueSupplyCost and self._pendingBlueSupplyCost > 0 then
 												self.zoneCommander.battleCommander.accounts[2] = math.max((self.zoneCommander.battleCommander.accounts[2] or 0) - self._pendingBlueSupplyCost, 0)
 												self._pendingBlueSupplyCost = nil end
-											self:_assignPlaneRoute(g:GetName(), self.targetzone, self.Altitude)
+											self:_assignPlaneRoute(g:GetName(), self.targetzone, self.Altitude,originZone,self.side)
 
 										elseif self.MissionType=='CAS' and self.unitCategory == plane then
 											bc:EngageCasMission(self.targetzone, g:GetName(), nil, nil, self.Altitude, self._landUnitID, self.side)
@@ -12710,7 +13298,8 @@ end
 							if self.unitCategory == plane then
 								self:_enterHangar(false)
 							else
-								local spawned = self:_spawnFromGroundAt(resolved, originZone, self.targetzone)
+								local tk = (self.mission == 'supply' and self.side == 2) and SPAWN.Takeoff.Hot or SPAWN.Takeoff.Cold
+								local spawned = self:_spawnFromGroundAt(resolved, originZone, self.targetzone, tk)
 								if spawned then
 									if (self.mission=='supply' or self.MissionType=='CAS') and self.unitCategory == heli then spawned:OptionPreferVerticalLanding() end
 									self.spawnedName = spawned:GetName()
@@ -12763,6 +13352,25 @@ end
 			end
 
 		elseif self.state == 'inair' then
+			if self.mission == 'supply' and self.unitCategory == heli and timer.getAbsTime() - self.lastStateTime > 180 then
+				local hb = self.zoneCommander.battleCommander:getZoneByName(self.zoneCommander.zone)
+				if hb and gr and Utils.someOfGroupInZone(gr, hb.zone) then
+					if self._logiCargoByGroup then
+						local cname = self._logiCargoByGroup[self.name]
+						if cname then
+							local cargo = StaticObject.getByName(cname)
+							if cargo and cargo:isExist() then cargo:destroy() end
+							self._logiCargoByGroup[self.name] = nil
+						end
+					end
+					if gr and gr:isExist() then gr:destroy() end
+					self.state = 'preparing'
+					self.lastStateTime = timer.getAbsTime()
+					self._zonePinged = nil
+					self.pinged = false
+					return
+				end
+			end
 			if self.mission=='supply' and not self._zonePinged then
 				local tg = self.zoneCommander.battleCommander:getZoneByName(self.targetzone)
 				if tg and gr and Utils.someOfGroupInZone(gr, tg.zone) then
@@ -12789,6 +13397,23 @@ end
 					elseif tg.side == self.side then
 						env.info("Group [" .. self.name .. "] landed in zone [" .. tg.zone .. "], upgrading zone for side " .. self.side)
 						tg:upgrade()
+					end
+					local abName = tg.airbaseName
+					if abName and WarehouseLogistics and self.side == 2 then
+						if AIDeliveryamount == nil then AIDeliveryamount = 20 end
+						local amount = (self.unitCategory == plane) and 50 or AIDeliveryamount
+						local bcObj =self.zoneCommander.battleCommander
+						if bcObj and bcObj.addWarehouseItemsAtZone then
+							bcObj:addWarehouseItemsAtZone(tg, self.side, amount)
+						end
+						if self._logiCargoByGroup then
+							local cname = self._logiCargoByGroup[self.name]
+							if cname then
+								local cargo = StaticObject.getByName(cname)
+								if cargo and cargo:isExist() then cargo:destroy() end
+								self._logiCargoByGroup[self.name] = nil
+							end
+						end
 					end
 					SCHEDULER:New(nil,function() if gr and gr:isExist() then gr:destroy() end end,{},0.5,0) return
 				else
@@ -13742,6 +14367,27 @@ do
 	LogisticCommander.allowedTypes['OH-6A'] = true
 	LogisticCommander.allowedTypes['C-130J-30'] = true
 
+	LogisticCommander.AllowedToCarrySupplies = {
+    ['Ka-50'] = false,
+    ['Ka-50_3'] = false,
+    ['Mi-24P'] = true,
+    ['SA342Mistral'] = false,
+    ['SA342L'] = false,
+    ['SA342M'] = false,
+    ['SA342Minigun'] = false,
+    ['UH-60L'] = true,
+    ['UH-60L_DAP'] = true,
+    ['AH-64D_BLK_II'] = false,
+    ['UH-1H'] = true,
+    ['Mi-8MT'] = true,
+    ['Hercules'] = true,
+    ['OH58D'] = false,
+    ['CH-47Fbl1'] = true,
+    ['Bronco-OV-10A'] = true,
+    ['OH-6A'] = true,
+    ['C-130J-30'] = true,
+}
+
 	LogisticCommander.doubleSupplyTypes = {}
 	LogisticCommander.doubleSupplyTypes['CH-47Fbl1'] = true
 	LogisticCommander.doubleSupplyTypes['Hercules'] = true
@@ -14425,7 +15071,7 @@ function LogisticCommander:init()
 					if zn then
 						local isDifferentSide = zn.side ~= un:getCoalition()
 						
-						if isDifferentSide and not zn.wasBlue then
+						if isDifferentSide and not zn.wasBlue and not zn.isHidden then
 							for i, v in pairs(plist) do
 								if net.get_name(v) == player then
 									net.send_chat_to('Cannot spawn as '..gr:getName()..' in enemy/neutral zone', v)
@@ -14599,13 +15245,94 @@ function LogisticCommander:init()
 							LogisticCommander.mooseLogisticsMenus[groupid] = cargomenuObj
 						end
 						local cargomenu = cargomenuObj and cargomenuObj.MenuPath or missionCommands.addSubMenuForGroup(groupid, 'Logistics')
-						missionCommands.addCommandForGroup(groupid, 'Load supplies', cargomenu, self.context.loadSupplies, self.context, groupname)
-						if LogisticCommander.doubleSupplyTypes and LogisticCommander.doubleSupplyTypes[unitType] then
-							missionCommands.addCommandForGroup(groupid, 'Load 2 supplies', cargomenu, self.context.loadSupplies, self.context, groupname, 2)
+						if LogisticCommander.AllowedToCarrySupplies[unitType] and WarehouseLogistics == false then
+							missionCommands.addCommandForGroup(groupid, 'Load supplies', cargomenu, self.context.loadSupplies, self.context, groupname)
+							if LogisticCommander.doubleSupplyTypes and LogisticCommander.doubleSupplyTypes[unitType] then
+								missionCommands.addCommandForGroup(groupid, 'Load 2 supplies', cargomenu, self.context.loadSupplies, self.context, groupname, 2)
+							end
+							missionCommands.addCommandForGroup(groupid, 'Unload supplies', cargomenu, self.context.unloadSupplies, self.context, groupname)
+							missionCommands.addCommandForGroup(groupid, 'List supply zones', cargomenu, self.context.listSupplyZones, self.context, groupname)
+							missionCommands.addCommandForGroup(groupid, 'Supplies Status', cargomenu, self.context.checkSuppliesStatus, self.context, groupid)
 						end
-						missionCommands.addCommandForGroup(groupid, 'Unload supplies', cargomenu, self.context.unloadSupplies, self.context, groupname)
-						missionCommands.addCommandForGroup(groupid, 'List supply zones', cargomenu, self.context.listSupplyZones, self.context, groupname)
-						missionCommands.addCommandForGroup(groupid, 'Supplies Status', cargomenu, self.context.checkSuppliesStatus, self.context, groupid)
+                        -- duplicate CTLD static cargo menus under Logistics
+
+						if Foothold_ctld and Foothold_ctld.Cargo_Statics and WarehouseLogistics == true then
+							self.context.staticMenus = self.context.staticMenus or {}
+							self.context.staticMenus[groupid] = self.context.staticMenus[groupid] or {}
+							local staticMenuPages = {}
+							local crateStockSummary = nil
+							if Foothold_ctld.showstockinmenuitems then
+								crateStockSummary = Foothold_ctld:_CountStockPlusInHeloPlusAliveGroups(false)
+							end
+                            local function ensureStaticSubMenu(label)
+                                if self.context.staticMenus[groupid][label] then
+                                    return self.context.staticMenus[groupid][label]
+                                end
+                                local handle
+                                if cargomenuObj then
+                                    handle = MENU_GROUP:New(mooseGroup, label, cargomenuObj)
+                                else
+                                    handle = missionCommands.addSubMenuForGroup(groupid, label, cargomenu)
+                                end
+                                self.context.staticMenus[groupid][label] = handle
+                                return handle
+                            end
+
+							local function getPagedStaticMenu(label)
+								local state = staticMenuPages[label]
+								if not state then
+									state = { current = ensureStaticSubMenu(label), count = 0 }
+									staticMenuPages[label] = state
+								end
+								if state.count >= 9 then
+									local nextHandle
+									if cargomenuObj then
+										nextHandle = MENU_GROUP:New(mooseGroup, 'More', state.current)
+									else
+										nextHandle = missionCommands.addSubMenuForGroup(groupid, 'More', state.current)
+									end
+									state.current = nextHandle
+									state.count = 0
+								end
+								state.count = state.count + 1
+								return state.current
+							end
+
+                            local function unitCanCarryStatic(cargoObj)
+                                if not cargoObj or not cargoObj.UnitCanCarry then
+                                    return true
+                                end
+                                local unitRef = mooseGroup and mooseGroup:GetUnit(1)
+                                return unitRef and cargoObj:UnitCanCarry(unitRef) or false
+                            end
+
+                            local function addStaticCommand(cargoObj)
+                                if not unitCanCarryStatic(cargoObj) then return end
+								local parentMenu = getPagedStaticMenu(cargoObj.Subcategory or "Statics")
+                                local title = Foothold_ctld:_FormatCargoDisplayText(cargoObj.Name, cargoObj)
+                                if cargomenuObj then
+                                    local unitRef = mooseGroup and mooseGroup:GetUnit(1)
+                                    if unitRef then
+                                        local mSet = MENU_GROUP:New(mooseGroup, title, parentMenu)
+                                        Foothold_ctld:_AddCrateQuantityMenus(mooseGroup, unitRef, mSet, cargoObj, crateStockSummary)
+                                    end
+                                else
+                                    local function handler()
+                                        local unitRef = mooseGroup and mooseGroup:GetUnit(1)
+                                        if unitRef then
+                                            Foothold_ctld:_GetCrates(mooseGroup, unitRef, cargoObj, cargoObj:GetCratesNeeded())
+                                        end
+                                    end
+                                    missionCommands.addCommandForGroup(groupid, title, parentMenu, handler)
+                                end
+                            end
+
+							for _, cargoObj in pairs(Foothold_ctld.Cargo_Statics) do
+								if cargoObj then
+									addStaticCommand(cargoObj)
+								end
+							end
+                        end
 						local main = missionCommands.addSubMenuForGroup(groupid, 'Mark Zone', cargomenu)
 						local sub1
 						for i, v in ipairs(self.context.battleCommander.zones) do
@@ -14661,7 +15388,7 @@ function LogisticCommander:init()
 	end
 
         if event.id == world.event.S_EVENT_TAKEOFF
-           and event.initiator and event.initiator.getPlayerName
+           and event.initiator and event.initiator.getPlayerName and WarehouseLogistics == false
         then
             local groupid = event.initiator:getGroup():getID()
             local unitType = event.initiator:getDesc()['typeName']
@@ -14672,7 +15399,7 @@ function LogisticCommander:init()
             if zn and (zn.side == un:getCoalition() or (un:getCoalition() == 2 and zn.wasBlue)) then
                 for _, v in ipairs(self.context.supplyZones) do
                     if v == zn.zone then
-                        if self.context.allowedTypes[unitType] and not self.context.carriedCargo[groupid] then
+                        if self.context.AllowedToCarrySupplies[unitType] and not self.context.carriedCargo[groupid] then
                             trigger.action.outTextForGroup(groupid, 'Warning: Supplies not loaded', 30,true)
                             if trigger.misc.getUserFlag(180) == 0 then
                                 trigger.action.outSoundForGroup(groupid, "micclick.ogg")
@@ -15814,33 +16541,8 @@ function FarpHere(Coordinate, customName)
   UTILS.SpawnFARPAndFunctionalStatics(FName,Coordinate,ENUMS.FARPType.INVISIBLE,Foothold_ctld.coalition,country.id.USA,MapFARPCount,FARPFreq,radio.modulation.AM,nil,nil,nil,10000,0,0,nil,true,true,3,80,80)
   Foothold_ctld:AddCTLDZone(FName,CTLD.CargoZoneType.LOAD,SMOKECOLOR.Blue,true,false)
   MESSAGE:New(string.format("%s in operation!",FName),15):ToBlue()
-  local function CopyWarehouse()
-    local srcStore=nil
-    if zones then
-      for _,zone in pairs(zones) do
-        local n=zone.airbaseName
-        if n then
-          srcStore=STORAGE:FindByName(n)
-          if srcStore then break end
-        end
-      end
-    end
-    if srcStore then
-      local dstStore=STORAGE:FindByName(FName)
-      if dstStore then
-        local aircraft,liquids,weapons=srcStore:GetInventory()
-        for item,qty in pairs(aircraft or{}) do
-          if qty>0 then dstStore:SetItem(item,qty) end
-        end
-        for item,qty in pairs(weapons or{}) do
-          if qty>0 then dstStore:SetItem(item,qty) end
-        end
-		dstStore:SetItem('UH-60L_DAP',1073741823)
-		dstStore:SetItem("UH-60L",1073741823)
-      end
-    end
-  end
-SCHEDULER:New(nil,CopyWarehouse,{},2)
+ 
+SCHEDULER:New(nil, function() bc:CopyWarehouse(FName) end, {}, 2)
 bc:registerDynamicFarp(FName, Coordinate, 2)
   if not NextMarkupId then NextMarkupId=120000 end
   local markId=NextMarkupId; NextMarkupId=NextMarkupId+1
@@ -15869,33 +16571,8 @@ function CustomBuildAFARP(Coordinate,startZone)
   UTILS.SpawnFARPAndFunctionalStatics(FName,Coordinate,ENUMS.FARPType.INVISIBLE,Foothold_ctld.coalition,country.id.USA,EscortFARPCount,FARPFreq,radio.modulation.AM,nil,nil,nil,5000,0,0,nil,true,true, 3, 80, 80)
   Foothold_ctld:AddCTLDZone(FName,CTLD.CargoZoneType.LOAD,SMOKECOLOR.Blue,true,false)
   MESSAGE:New(string.format("%s in operation!",FName),15):ToBlue()
-  local function CopyWarehouse()
-    local srcStore=nil
-    if zones then
-      for _,zone in pairs(zones) do
-        local n=zone.airbaseName
-        if n then
-          srcStore=STORAGE:FindByName(n)
-          if srcStore then break end
-        end
-      end
-    end
-    if srcStore then
-      local dstStore=STORAGE:FindByName(FName)
-      if dstStore then
-        local aircraft,liquids,weapons=srcStore:GetInventory()
-        for item,qty in pairs(aircraft or{}) do
-          if qty>0 then dstStore:SetItem(item,qty) end
-        end
-        for item,qty in pairs(weapons or{}) do
-          if qty>0 then dstStore:SetItem(item,qty) end
-        end
-		dstStore:SetItem('UH-60L_DAP',1073741823)
-		dstStore:SetItem("UH-60L",1073741823)
-      end
-    end
-  end
-  SCHEDULER:New(nil,CopyWarehouse,nil,2)
+
+  SCHEDULER:New(nil, function() bc:CopyWarehouse(FName) end, {}, 2)
 
   local markId = 96000 + EscortFARPCount
   trigger.action.circleToAll(-1,markId,Coordinate:GetVec3(),120,{0,0,1,1},{0,0,1,0.25},1)
@@ -16178,6 +16855,9 @@ function startTexacoProximityWatch()
     TexacoZone:Trigger(BlueClients)
 end
 
+-- BASE:TraceOn()
+-- BASE:TraceClass("AUFTRAG")
+
 function setTexacoRacetrack(coord, heading, leg, zone)
     if not TexacoGroup then return end
     local currentMission = TexacoGroup:GetMissionCurrent()
@@ -16185,9 +16865,16 @@ function setTexacoRacetrack(coord, heading, leg, zone)
         currentMission:__Cancel(5)
     end
     local TexacoTanker2 = AUFTRAG:NewTANKER(coord, 16000, 280, heading, leg)
-    TexacoGroup:AddMission(TexacoTanker2)
+    
+	TexacoTanker2:SetMissionSpeed(361)
+	TexacoTanker2:SetMissionAltitude(16000)
+	TexacoGroup:AddMission(TexacoTanker2)
+
+
 	function TexacoTanker2:OnAfterStarted(From, Event, To)
-		TexacoGroup:SetAltitude(4876)
+--[[ 		TexacoGroup:SetAltitude(4876)
+		TexacoGroup:SetSpeed(UTILS.KnotsToMps(400)) ]]
+
 	end
 	function TexacoTanker2:OnAfterExecuting(From, Event, To)
 		if leg == 0 then
@@ -16216,10 +16903,10 @@ function setArcoRacetrack(coord, heading, leg, zone)
         currentMission:__Cancel(5)
     end
     local ArcoTanker2 = AUFTRAG:NewTANKER(coord, 18000, 280, heading, leg)
+	ArcoTanker2:SetMissionSpeed(371)
+	ArcoTanker2:SetMissionAltitude(18000)
     ArcoGroup:AddMission(ArcoTanker2)
-	function ArcoTanker2:OnAfterStarted(From, Event, To)
-		ArcoGroup:SetAltitude(5486)
-	end
+
 	function ArcoTanker2:OnAfterExecuting(From, Event, To)
 		if leg == 0 then
 			if zone then
@@ -17409,7 +18096,12 @@ local BombMission = AUFTRAG:NewCASENHANCED(targetZone,27000,550,15,nil)
 	BombMission:AddConditionSuccess(function() return bc:getZoneByName(targetZoneName).side == 0 end)
 	BombMission:AddConditionFailure(function() return BomberGroup and bc:getZoneByName(targetZoneName).side == 1 and BomberGroup:IsOutOfBombs() end)
 	BombMission:SetMissionAltitude(27000)
-	BombMission:SetWeaponExpend(AI.Task.WeaponExpend.ONE)
+	if era == 'Coldwar' then
+		BombMission:SetWeaponExpend(AI.Task.WeaponExpend.FOUR)
+	else
+		BombMission:SetWeaponExpend(AI.Task.WeaponExpend.ONE)
+	end
+	
 	BomberGroup:AddMission(BombMission)
 function BombMission:OnAfterExecuting(From, Event, To)
 	BombMission:SetROE(1)
@@ -17592,3 +18284,1846 @@ function checkGroupState(groupName)
 end
 
 --checkGroupState("Taftanaz-attack-Duhur-Cas")
+
+
+-- Start Mantis efter 10 Seconds.
+
+SCHEDULER:New(nil, function()
+--if IsGroupActive("AWACS_RED") then
+	--FootholdMantis = MANTIS:New("Foothold MANTIS","Red SAM","Red EWR",nil,"red",true,"AWACS_RED")
+--else
+	FootholdMantis = MANTIS:New("Foothold MANTIS","Red SAM","Red EWR",nil,"red",true,nil)
+--end
+FootholdMantis:SetSAMRange(110)
+FootholdMantis:SetDetectInterval(10)
+FootholdMantis:SetAccousticDetectionOn(3000)
+--FootholdMantis:SetSmokeDecoy(true)
+ZoneTable_Mantis = SET_ZONE:New():FilterPrefixes("Scoot"):FilterStart()
+FootholdMantis:AddScootZones(ZoneTable_Mantis, 3, true, "Cone")
+FootholdMantis.autorelocate = true
+FootholdMantis:Start()
+end, {}, 3)
+
+
+--FootholdMantis:Debug(true)
+--[[ BASE:TraceOn()
+BASE:TraceClass("AUFTRAG")
+BASE:TraceClass("FLIGHTGROUP") ]]
+
+WarehouseExtraAirbases = WarehouseExtraAirbases or {}
+WarehousePersistence = WarehousePersistence or {}
+do
+
+	local function _shouldSkip(name)
+		if not name or name == "" then return true end
+		if name == 'CVN-72' or name == 'CVN-73' or name == 'CVN-74' or name == 'CVN-59' or name == 'Tarawa' or name == 'HMS Invincible' then return true end
+		if Airbase and Airbase.getByName and Airbase.Category then
+			local dcsAb = Airbase.getByName(name)
+			if dcsAb and dcsAb.getDesc then
+				local desc = dcsAb:getDesc()
+				if desc and desc.category == Airbase.Category.SHIP then return true end
+			end
+		end
+		if AIRBASE and AIRBASE.FindByName then
+			local ab = AIRBASE:FindByName(name)
+			if ab and ab.IsShip and ab:IsShip() then return true end
+		end
+		return false
+	end
+
+	function WarehousePersistence.RegisterExtraAirbase(name)
+		if _shouldSkip(name) then return false end
+		WarehouseExtraAirbases = WarehouseExtraAirbases or {}
+		WarehouseExtraAirbases[name] = true
+		return true
+	end
+
+    local function _airbases(zonesTbl)
+        local zs = zonesTbl
+        if zs and zs.zones then zs = zs.zones end
+        zs = zs or zones or {}
+        local names, seen = {}, {}
+        for _, z in pairs(zs) do
+            if z and z.side == 2 and z.active and not z.isHidden then
+                local n = z.airbaseName
+                if n and not _shouldSkip(n) and not seen[n] then
+                    seen[n] = true
+                    names[#names + 1] = n
+                end
+            end
+        end
+        for extraName in pairs(WarehouseExtraAirbases or {}) do
+            if extraName and not seen[extraName] and not _shouldSkip(extraName) then
+                seen[extraName] = true
+                names[#names + 1] = extraName
+            end
+        end
+        table.sort(names)
+        return names
+    end
+
+	local function _pathFile(opts)
+		local path = (opts and opts.path) or (lfs and lfs.writedir and (lfs.writedir() .. "Missions\\Saves")) or nil
+		local filename = (opts and opts.filename)
+		if not filename then
+			if FootholdSaveBaseName and tostring(FootholdSaveBaseName) ~= "" then
+				filename = tostring(FootholdSaveBaseName) .. "_storage.csv"
+			else
+				filename = "Foothold_storage.csv"
+			end
+		end
+		return path, filename
+	end
+
+  function WarehousePersistence.ClearFile(opts)
+    opts = opts or {}
+    if not (io and lfs and lfs.writedir) then return false end
+
+    local path, filename = _pathFile(opts)
+    if not (path and filename) then return false end
+
+    local full = path .. "\\" .. filename
+    local ok, err = pcall(function()
+      local f = assert(io.open(full, "wb"))
+      f:write("")
+      f:close()
+    end)
+
+    if ok then
+      env.info(string.format("[WarehousePersistence] Cleared storage file %s", tostring(full)))
+      return true
+    end
+
+    env.info(string.format("[WarehousePersistence] Failed clearing storage file %s (%s)", tostring(full), tostring(err)))
+    return false
+  end
+
+	function WarehousePersistence.Save(zonesTbl, opts)
+		opts = opts or {}
+		if WarehouseLogistics ~= true and opts.force ~= true then return false end
+		if not (lfs and io and UTILS and UTILS.SaveToFile) then return false end
+		if not (STORAGE and STORAGE.FindByName) then return false end
+		local path, filename = _pathFile(opts); if not path then return false end
+		local airbases = opts.airbases or _airbases(zonesTbl)
+		local out = {'AIRBASE;KIND;NAME;QTY'}
+		local saved = 0
+		for _, ab in ipairs(airbases) do
+			local st = STORAGE:FindByName(ab)
+			if st and st.GetInventory then
+				local _, _, wp = st:GetInventory()
+				if type(wp) == 'table' then
+					for item, qty in pairs(wp) do
+						qty = tonumber(qty) or 0
+						if qty ~= 0 then
+							out[#out + 1] = string.format('%s;W;%s;%d', ab, tostring(item), qty)
+						end
+					end
+				end
+				saved = saved + 1
+			end
+		end
+		local ok = UTILS.SaveToFile(path, filename, table.concat(out, '\n') .. '\n')
+		if ok then env.info(string.format('[WarehousePersistence] Saved %d storages to %s\\%s', saved, tostring(path), tostring(filename))) end
+		return ok
+	end
+
+	function WarehousePersistence.Load(zonesTbl, opts)
+		opts = opts or {}
+		if WarehouseLogistics ~= true and opts.force ~= true then return false end
+		if not (lfs and io and UTILS and UTILS.LoadFromFile and UTILS.Split) then return false end
+		if not (STORAGE and STORAGE.FindByName) then return false end
+		local path, filename = _pathFile(opts); if not path then return false end
+		local allowed = {}
+		for _, ab in ipairs(opts.airbases or _airbases(zonesTbl)) do
+			allowed[ab] = true
+		end
+		local ok, lines = UTILS.LoadFromFile(path, filename)
+		if not ok or type(lines) ~= 'table' then return false end
+		local byBase = {}
+		for i = 2, #lines do
+			local row = lines[i]
+			if row and row ~= '' then
+				local cols = UTILS.Split(row, ';')
+				local ab = cols and cols[1]
+				local kind = cols and cols[2]
+				local name = cols and cols[3]
+				local qty = cols and tonumber(cols[4] or '0') or 0
+				if ab and allowed[ab] and kind == 'W' and name and qty and not _shouldSkip(ab) then
+					byBase[ab] = byBase[ab] or {}
+					byBase[ab][name] = qty
+				end
+			end
+		end
+		local loaded = 0
+		for ab, items in pairs(byBase) do
+			local st = STORAGE:FindByName(ab)
+			if st and st.SetItem then
+				WEAPONSLIST.ClearWeaponsAtAirbase(ab)
+				for name, qty in pairs(items) do
+					st:SetItem(name, tonumber(qty) or 0)
+				end
+				loaded = loaded + 1
+			end
+		end
+		if loaded > 0 then env.info(string.format('[WarehousePersistence] Loaded %d storages from %s\\%s', loaded, tostring(path), tostring(filename))) end
+		return loaded > 0
+	end
+
+	function WarehousePersistence.Start(zonesTbl, opts)
+		opts = opts or {}
+		if WarehouseLogistics ~= true and opts.force ~= true then return false end
+		local loadDelay = tonumber(opts.loadDelay) or 0
+		local saveDelay = tonumber(opts.saveDelay) or 30
+		local interval = tonumber(opts.interval) or 300
+		local function _load()
+			WarehousePersistence.Load(zonesTbl or zones, opts)
+		end
+		local function _save()
+			WarehousePersistence.Save(zonesTbl or zones, opts)
+		end
+		if loadDelay >= 0 then
+			if TIMER and TIMER.New then
+				TIMER:New(_load):Start(loadDelay)
+			else
+				SCHEDULER:New(nil, _load, {}, loadDelay)
+			end
+		else
+			_load()
+		end
+		if saveDelay >= 0 then
+			if TIMER and TIMER.New then
+				TIMER:New(_save):Start(saveDelay, interval)
+			else
+				SCHEDULER:New(nil, _save, {}, saveDelay, interval)
+			end
+		end
+		return true
+	end
+end
+function startWarehousePersistence()
+	if WarehouseLogistics == true and WarehousePersistence and WarehousePersistence.Start then
+		local opts = { loadDelay = 10, saveDelay = 30, interval = 300 }
+		if FootholdSavePath then opts.path = FootholdSavePath end
+		if FootholdSaveBaseName and tostring(FootholdSaveBaseName) ~= "" then
+			opts.filename = tostring(FootholdSaveBaseName) .. "_storage.csv"
+		end
+		WarehousePersistence.Start(bc, opts)
+		trigger.action.outText('WarehousePersistence started', 10)
+	end
+end
+
+
+WEAPONSLIST = WEAPONSLIST or {}
+
+WEAPONSLIST.ItemCategory = {
+    AA_MISSILES = "AA_MISSILES",
+    AG_MISSILES = "AG_MISSILES",
+    AG_ROCKETS = "AG_ROCKETS",
+    AG_BOMBS = "AG_BOMBS",
+    AG_GUIDED_BOMBS = "AG_GUIDED_BOMBS",
+    FUEL_TANKS = "FUEL_TANKS",
+    MISC = "MISC",
+    ALL = "ALL",
+}
+
+WEAPONSLIST.CategoryOrder = {
+    WEAPONSLIST.ItemCategory.AA_MISSILES,
+    WEAPONSLIST.ItemCategory.AG_MISSILES,
+    WEAPONSLIST.ItemCategory.AG_ROCKETS,
+    WEAPONSLIST.ItemCategory.AG_BOMBS,
+    WEAPONSLIST.ItemCategory.AG_GUIDED_BOMBS,
+    WEAPONSLIST.ItemCategory.FUEL_TANKS,
+    WEAPONSLIST.ItemCategory.MISC,
+}
+
+WEAPONSLIST.Items = {
+[WEAPONSLIST.ItemCategory.AA_MISSILES] = {
+    -- AA MISSILES
+         'weapons.missiles.CATM_9M',
+        'weapons.missiles.Mistral',
+        'weapons.missiles.Igla_1E',
+        'weapons.missiles.R_550',
+        'weapons.missiles.P_60',
+        'weapons.missiles.AIM_120C',
+        'weapons.missiles.AIM_120',
+        'weapons.missiles.P_33E',
+        'weapons.missiles.Rb 24',
+        'weapons.missiles.Rb 24J',
+        'weapons.missiles.Rb 74',
+        'weapons.missiles.P_27P',
+        'weapons.missiles.AIM-9P',
+        'weapons.missiles.AIM_9X',
+        'weapons.missiles.P_27PE',
+        'weapons.missiles.P_27T',
+        'weapons.missiles.P_27TE',
+        'weapons.missiles.P_73',
+        'weapons.missiles.P_77',
+        'weapons.missiles.MICA_T',
+        'weapons.missiles.AIM_7',
+        'weapons.missiles.AIM_9',
+        'weapons.missiles.AIM_54',
+        'weapons.missiles.P_24T',
+        'weapons.missiles.GAR-8',
+        'weapons.missiles.AIM-9P5',
+        'weapons.missiles.AIM-9L',
+        'weapons.missiles.AIM-7E',
+        'weapons.missiles.AIM-7F',
+        'weapons.missiles.P_40T',
+        'weapons.missiles.AIM-7MH',
+        'weapons.missiles.MICA_R',
+        'weapons.missiles.PL-5EII',
+        'weapons.missiles.SD-10',
+        'weapons.missiles.PL-12',
+        'weapons.missiles.PL-8B',
+        'weapons.missiles.PL-8A',
+        'weapons.missiles.AIM_54A_Mk47',
+        'weapons.missiles.AIM_54A_Mk60',
+        'weapons.missiles.AIM_54C_Mk47',
+        'weapons.missiles.MMagicII',
+        'weapons.missiles.R-13M',
+        'weapons.missiles.R-13M1',
+        'weapons.missiles.R-3S',
+        'weapons.missiles.R-3R',
+        'weapons.missiles.RS2US',
+        'weapons.missiles.R-55',
+        'weapons.missiles.R-60',
+        'weapons.missiles.Matra Super 530D',
+        'weapons.missiles.AIM-9J',
+        'weapons.missiles.AIM-9JULI',
+        'weapons.missiles.R_530F_EM',
+        'weapons.missiles.R_530F_IR',
+        'weapons.missiles.AIM-7P',
+        'weapons.missiles.Super_530D',
+        'weapons.missiles.R_550_M1',
+        'weapons.missiles.AIM_54C_Mk60',
+        'weapons.missiles.Super_530F',
+        'weapons.missiles.AIM-7E-2',
+        'weapons.missiles.AIM-9P3',
+        'weapons.missiles.HB-AIM-7E',
+        'weapons.missiles.HB-AIM-7E-2',
+        'weapons.missiles.AIM-9E',
+        'weapons.missiles.OH58D_FIM_92',
+        'weapons.missiles.P_40R',
+        'weapons.missiles.P_24R',
+    },
+
+[WEAPONSLIST.ItemCategory.AG_MISSILES] = {
+    -- AG MISSILES
+        'weapons.missiles.TGM_65G',
+        'weapons.missiles.TGM_65G',
+        'weapons.missiles.TGM_65D',
+        'weapons.missiles.CATM_65K',
+        'weapons.missiles.TGM_65H',
+        'weapons.missiles.BK90_MJ1_MJ2',
+        'weapons.missiles.Rb 05A',
+        'weapons.missiles.Rb_04',
+        'weapons.missiles.RB75',
+        'weapons.missiles.RB75T',
+        'weapons.missiles.RB75B',
+        'weapons.missiles.BK90_MJ1',
+        'weapons.missiles.BK90_MJ2',
+        'weapons.missiles.Rb 04E',
+        'weapons.missiles.Rb 15F',
+        'weapons.missiles.TOW',
+        'weapons.missiles.AGM_154',
+        'weapons.missiles.S_25L',
+        'weapons.missiles.AGM_65H',
+        'weapons.missiles.AGM_65G',
+        'weapons.missiles.Rb 15F (for A.I.)',
+        'weapons.missiles.Rb 04E (for A.I.)',
+        'weapons.missiles.AGM_65F',
+        'weapons.missiles.AGM_65L',
+        'weapons.missiles.AGM_65A',
+        'weapons.missiles.AGM_65B',
+        'weapons.missiles.AGM_84D',
+        'weapons.missiles.AGM_84H',
+        'weapons.missiles.AGM_154A',
+        'weapons.missiles.AGM_154B',
+        'weapons.missiles.DWS39_MJ1',
+        'weapons.missiles.DWS39_MJ2',
+        'weapons.missiles.DWS39_MJ1_MJ2',
+        'weapons.missiles.Kh25MP_PRGS1VP',
+        'weapons.missiles.ADM_141A',
+        'weapons.missiles.ADM_141B',
+        'weapons.missiles.AGR_20A',
+        'weapons.missiles.AGR_20_M282',
+        'weapons.missiles.GB-6',
+        'weapons.missiles.GB-6-SFW',
+        'weapons.missiles.GB-6-HE',
+        'weapons.missiles.BRM-1_90MM',
+        'weapons.missiles.YJ-83K',
+        'weapons.missiles.CM-802AKG',
+        'weapons.missiles.LD-10',
+        'weapons.missiles.AKD-10',
+        'weapons.missiles.Kh-66_Grom',
+        'weapons.missiles.Ataka_9M220',
+        'weapons.missiles.Ataka_9M120',
+        'weapons.missiles.Ataka_9M120F',
+        'weapons.missiles.YJ-12',
+        'weapons.missiles.C_802AK',
+        'weapons.missiles.CM_802AKG',
+        'weapons.missiles.AGM_86C',
+        'weapons.missiles.AGM_114K',
+        'weapons.missiles.AGM_119',
+        'weapons.missiles.HOT3_MBDA',
+        'weapons.missiles.X_22',
+        'weapons.missiles.KD_20',
+        'weapons.missiles.C_701T',
+        'weapons.missiles.AGM_12B',
+        'weapons.missiles.AGM_12A',
+        'weapons.missiles.KD_63',
+        'weapons.missiles.KD_63B',
+        'weapons.missiles.LS_6',
+        'weapons.missiles.LS_6_500',
+        'weapons.missiles.AGM_45B',
+        'weapons.missiles.AGM_78B',
+        'weapons.missiles.AGM_78A',
+        'weapons.missiles.AGM_12C_ED',
+        'weapons.missiles.X_28',
+        'weapons.missiles.SPIKE_ER',
+        'weapons.missiles.SPIKE_ER2',
+        'weapons.missiles.HJ-12',
+        'weapons.missiles.CM-400AKG',
+        'weapons.missiles.X_25ML',
+        'weapons.missiles.X_58',
+        'weapons.missiles.X_555',
+        'weapons.missiles.X_101',
+        'weapons.missiles.C_701IR',
+        'weapons.missiles.ASM_N_2',
+        'weapons.missiles.X_25MP',
+        'weapons.missiles.AT_6',
+        'weapons.missiles.X_29L',
+        'weapons.missiles.X_65',
+        'weapons.missiles.X_31A',
+        'weapons.missiles.X_59M',
+        'weapons.missiles.X_35',
+        'weapons.missiles.X_41',
+        'weapons.missiles.Vikhr_M',
+        'weapons.missiles.AGM_114',
+        'weapons.missiles.AGM_45A',
+        'weapons.missiles.AGM_65K',
+        'weapons.missiles.AGM_84A',
+        'weapons.missiles.AGM_84E',
+        'weapons.missiles.AGM_86',
+        'weapons.missiles.AGM_88',
+        'weapons.missiles.Sea_Eagle',
+        'weapons.missiles.AGM_122',
+        'weapons.missiles.AGM_65E',
+        'weapons.missiles.AGM_130',
+        'weapons.missiles.ALARM',
+        'weapons.missiles.X_25MR',
+        'weapons.missiles.X_29T',
+        'weapons.missiles.X_31P',
+        'weapons.missiles.AGM_65D',
+        'weapons.missiles.Kormoran',
+    },
+
+
+[WEAPONSLIST.ItemCategory.AG_ROCKETS] = {
+    -- AG ROCKETS
+       'weapons.nurs.ARAKM70BHE',
+        'weapons.nurs.ARAKM70BAP',
+        'weapons.nurs.ARAKM70BAPPX',
+        'weapons.nurs.HYDRA_70_MK1',
+        'weapons.nurs.HYDRA_70_MK5',
+        'weapons.nurs.HYDRA_70_MK61',
+        'weapons.nurs.HYDRA_70_M151',
+        'weapons.nurs.HYDRA_70_M156',
+        'weapons.nurs.HYDRA_70_WTU1B',
+        'weapons.nurs.HYDRA_70_M274',
+        'weapons.nurs.HYDRA_70_M257',
+        'weapons.nurs.C_8OFP2',
+        'weapons.nurs.C_8OM',
+        'weapons.nurs.HVAR',
+        'weapons.nurs.C_8CM_GN',
+        'weapons.nurs.C_8CM_RD',
+        'weapons.nurs.C_8CM_WH',
+        'weapons.nurs.C_8CM_BU',
+        'weapons.nurs.C_8CM_YE',
+        'weapons.nurs.C_8CM_VT',
+        'weapons.nurs.R4M',
+        'weapons.nurs.WGr21',
+        'weapons.nurs.M8rocket',
+        'weapons.nurs.FFAR Mk1 HE',
+        'weapons.nurs.FFAR Mk5 HEAT',
+        'weapons.nurs.FFAR M156 WP',
+        'weapons.nurs.C_8CM',
+        'weapons.nurs.C_5',
+        'weapons.nurs.C_8',
+        'weapons.nurs.RS-82',
+        'weapons.nurs.S5M1_HEFRAG_FFAR',
+        'weapons.nurs.C_13',
+        'weapons.nurs.S5MO_HEFRAG_FFAR',
+        'weapons.nurs.C_24',
+        'weapons.nurs.S-5M',
+        'weapons.nurs.S-24A',
+        'weapons.nurs.S-24B',
+        'weapons.nurs.C_25',
+        'weapons.nurs.HYDRA_70_M282',
+        'weapons.nurs.British_HE_60LBFNo1_3INCHNo1',
+        'weapons.nurs.British_HE_60LBSAPNo2_3INCHNo1',
+        'weapons.nurs.British_AP_25LBNo1_3INCHNo1',
+        'weapons.nurs.ARF8M3HEI',
+        'weapons.nurs.ARF8M3API',
+        'weapons.nurs.ARF8M3TPSM',
+        'weapons.nurs.S-25-O',
+        'weapons.nurs.Zuni_127',
+        'weapons.nurs.HYDRA_70_M229',
+        'weapons.nurs.SNEB_TYPE250_F1B',
+        'weapons.nurs.SNEB_TYPE251_F1B',
+        'weapons.nurs.SNEB_TYPE251_H1',
+        'weapons.nurs.SNEB_TYPE252_F1B',
+        'weapons.nurs.SNEB_TYPE252_H1',
+        'weapons.nurs.SNEB_TYPE253_F1B',
+        'weapons.nurs.SNEB_TYPE253_H1',
+        'weapons.nurs.SNEB_TYPE254_F1B_RED',
+        'weapons.nurs.SNEB_TYPE254_H1_RED',
+        'weapons.nurs.SNEB_TYPE254_F1B_YELLOW',
+        'weapons.nurs.SNEB_TYPE254_H1_YELLOW',
+        'weapons.nurs.SNEB_TYPE254_F1B_GREEN',
+        'weapons.nurs.SNEB_TYPE254_H1_GREEN',
+        'weapons.nurs.SNEB_TYPE256_F1B',
+        'weapons.nurs.SNEB_TYPE256_H1',
+        'weapons.nurs.SNEB_TYPE257_F1B',
+        'weapons.nurs.SNEB_TYPE257_H1',
+        'weapons.nurs.SNEB_TYPE259E_F1B',
+        'weapons.nurs.SNEB_TYPE259E_H1',
+        'weapons.nurs.HYDRA_70_M259',
+        'weapons.nurs.HYDRA_70_M151_M433',
+        'weapons.nurs.FFAR_Mk61',
+        'weapons.nurs.S_5KP',
+        'weapons.nurs.S_5M',
+        'weapons.nurs.Tiny Tim',
+        'weapons.nurs.HVAR USN Mk28 Mod4',
+        'weapons.nurs.Rkt_90-1_HE',
+    },
+
+[WEAPONSLIST.ItemCategory.AG_BOMBS] = {
+    -- AG BOMBS (UNGUIDED / CLUSTER / GENERAL)
+        'weapons.containers.BRD-4-250',
+        'weapons.bombs.BetAB_500',
+        'weapons.bombs.BETAB-500S',
+        'weapons.bombs.BAP_100',
+        'weapons.bombs.BAP-100',
+        'weapons.bombs.BetAB_500ShP',
+        'weapons.bombs.Type_200A',
+        'weapons.bombs.Durandal',
+        'weapons.bombs.RBK_250',
+        'weapons.bombs.RBK_500AO',
+        'weapons.bombs.BL_755',
+        'weapons.bombs.AB_250_2_SD_2',
+        'weapons.bombs.AB_250_2_SD_10A',
+        'weapons.bombs.AB_500_1_SD_10A',
+        'weapons.bombs.BLG66',
+        'weapons.bombs.RBK_250_275_AO_1SCH',
+        'weapons.bombs.RBK_500U_OAB_2_5RT',
+        'weapons.bombs.CBU_99',
+        'weapons.bombs.BLG66_BELOUGA',
+        'weapons.bombs.CBU_97',
+        'weapons.bombs.ROCKEYE',
+        'weapons.bombs.BLG66_EG',
+        'weapons.bombs.BLU-3_GROUP',
+        'weapons.bombs.BLU-3B_GROUP',
+        'weapons.bombs.BLU-4B_GROUP',
+        'weapons.bombs.CBU_87',
+        'weapons.bombs.CBU_105',
+        'weapons.bombs.CBU_103',
+        'weapons.bombs.RBK_500U',
+        'weapons.bombs.CBU_52B',
+        'weapons.bombs.LYSBOMB 11086',
+        'weapons.bombs.LYSBOMB 11087',
+        'weapons.bombs.LYSBOMB 11088',
+        'weapons.bombs.LYSBOMB 11089',
+        'weapons.bombs.SAB_250_200',
+        'weapons.bombs.SAB_100MN',
+        'weapons.bombs.LUU_2B',
+        'weapons.bombs.HEBOMB',
+        'weapons.bombs.HEBOMBD',
+        'weapons.bombs.SC_50',
+        'weapons.bombs.SC_250_T1_L2',
+        'weapons.bombs.SC_250_T3_J',
+        'weapons.bombs.SC_500_J',
+        'weapons.bombs.SC_500_L2',
+        'weapons.bombs.SD_250_Stg',
+        'weapons.bombs.SD_500_A',
+        'weapons.bombs.British_GP_250LB_Bomb_Mk1',
+        'weapons.bombs.British_GP_250LB_Bomb_Mk4',
+        'weapons.bombs.British_GP_250LB_Bomb_Mk5',
+        'weapons.bombs.British_GP_500LB_Bomb_Mk1',
+        'weapons.bombs.British_GP_500LB_Bomb_Mk4',
+        'weapons.bombs.British_GP_500LB_Bomb_Mk4_Short',
+        'weapons.bombs.British_GP_500LB_Bomb_Mk5',
+        'weapons.bombs.British_MC_250LB_Bomb_Mk1',
+        'weapons.bombs.British_MC_250LB_Bomb_Mk2',
+        'weapons.bombs.British_MC_500LB_Bomb_Mk1_Short',
+        'weapons.bombs.British_MC_500LB_Bomb_Mk2',
+        'weapons.bombs.British_SAP_250LB_Bomb_Mk5',
+        'weapons.bombs.British_SAP_500LB_Bomb_Mk5',
+        'weapons.bombs.AN_M30A1',
+        'weapons.bombs.AN_M57',
+        'weapons.bombs.AN_M65',
+        'weapons.bombs.AN_M66',
+        'weapons.bombs.BEER_BOMB',
+        'weapons.bombs.Mk_81',
+        'weapons.bombs.Mk_82',
+        'weapons.bombs.Mk_82Y',
+        'weapons.bombs.Mk_83CT',
+        'weapons.bombs.BDU_45',
+        'weapons.bombs.BDU_45B',
+        'weapons.bombs.BIN_200',
+        'weapons.bombs.BR_250',
+        'weapons.bombs.BR_500',
+        'weapons.bombs.Mk_83',
+        'weapons.bombs.FAB_100SV',
+        'weapons.bombs.P-50T',
+        'weapons.bombs.OFAB-100 Jupiter',
+        'weapons.bombs.FAB_50',
+        'weapons.bombs.FAB_100M',
+        'weapons.bombs.IAB-500',
+        'weapons.bombs.RN-24',
+        'weapons.bombs.RN-28',
+        'weapons.bombs.Mk_84',
+        'weapons.bombs.ODAB-500PM',
+        'weapons.bombs.FAB-500M54',
+        'weapons.bombs.FAB-500TA',
+        'weapons.bombs.FAB-500SL',
+        'weapons.bombs.FAB-500M54TU',
+        'weapons.bombs.OFAB-100-120TU',
+        'weapons.bombs.FAB-250M54TU',
+        'weapons.bombs.FAB-250M54',
+        'weapons.bombs.BETAB-500M',
+        'weapons.bombs.M_117',
+        'weapons.bombs.250-2',
+        'weapons.bombs.250-3',
+        'weapons.bombs.FAB-250-M62',
+        'weapons.bombs.BAT-120',
+        'weapons.bombs.MK76',
+        'weapons.bombs.MK106',
+        'weapons.bombs.SAMP125LD',
+        'weapons.bombs.SAMP250LD',
+        'weapons.bombs.SAMP250HD',
+        'weapons.bombs.SAMP400LD',
+        'weapons.bombs.SAMP400HD',
+        'weapons.bombs.Mk_84AIR_GP',
+        'weapons.bombs.Mk_84AIR_TP',
+        'weapons.bombs.HB_F4E_GBU15V1',
+        'weapons.bombs.OH58D_Red_Smoke_Grenade',
+        'weapons.bombs.OH58D_Blue_Smoke_Grenade',
+        'weapons.bombs.OH58D_Green_Smoke_Grenade',
+        'weapons.bombs.OH58D_Violet_Smoke_Grenade',
+        'weapons.bombs.OH58D_Yellow_Smoke_Grenade',
+        'weapons.bombs.OH58D_White_Smoke_Grenade',
+        'weapons.bombs.FAB_100',
+        'weapons.bombs.Mk_83AIR',
+        'weapons.bombs.FAB_250',
+        'weapons.bombs.BDU_33',
+        'weapons.bombs.FAB_500',
+        'weapons.bombs.BDU_50LD',
+        'weapons.bombs.BDU_50HD',
+        'weapons.bombs.MK_82AIR',
+        'weapons.bombs.MK_82SNAKEYE',
+        'weapons.bombs.FAB_1500',
+        'weapons.bombs.AN_M64',
+    },
+
+[WEAPONSLIST.ItemCategory.AG_GUIDED_BOMBS] = {
+    -- AG GUIDED BOMBS
+        'weapons.bombs.KAB_500',
+        'weapons.bombs.KAB_500Kr',
+        'weapons.bombs.KAB_1500Kr',
+        'weapons.bombs.KAB_1500T',
+        'weapons.bombs.KAB_1500LG',
+        'weapons.bombs.KAB_500S',
+        'weapons.bombs.GBU_31_V_2B',
+        'weapons.bombs.GBU_31_V_4B',
+        'weapons.bombs.GBU_32_V_2B',
+        'weapons.bombs.GBU_54_V_1B',
+        'weapons.bombs.BDU_45LGB',
+        'weapons.bombs.GBU_10',
+        'weapons.bombs.GBU_12',
+        'weapons.bombs.GBU_16',
+        'weapons.bombs.GBU_24',
+        'weapons.bombs.GBU_15_V_31_B',
+        'weapons.bombs.GBU_27',
+        'weapons.bombs.AGM_62_I',
+        'weapons.bombs.LS_6_100',
+        'weapons.bombs.AGM_62',
+        'weapons.bombs.GBU_39',
+        'weapons.bombs.GBU_8_B',
+        'weapons.bombs.GBU_28',
+        'weapons.bombs.GBU_15_V_1_B',
+        'weapons.bombs.BDU_50LGB',
+        'weapons.bombs.GBU_31',
+        'weapons.bombs.GBU_38',
+        'weapons.bombs.GBU_31_V_3B',
+        'weapons.bombs.GBU_43', -- MOAB
+    },
+
+[WEAPONSLIST.ItemCategory.FUEL_TANKS] = {
+    -- FUEL TANKS
+        'weapons.droptanks.fuel_tank_230',
+        'weapons.droptanks.HB_A6E_AERO1D_EMPTY',
+        'weapons.droptanks.HB_A6E_D704',
+        'weapons.droptanks.HB_A6E_AERO1D',
+        'weapons.droptanks.PTB_1200_F1',
+        'weapons.droptanks.PTB_580G_F1',
+        'weapons.droptanks.oiltank',
+        'weapons.droptanks.MB339_FT330',
+        'weapons.droptanks.MB339_TT500_L',
+        'weapons.droptanks.MB339_TT500_R',
+        'weapons.droptanks.MB339_TT320_L',
+        'weapons.droptanks.MB339_TT320_R',
+        'weapons.droptanks.AV8BNA_AERO1D',
+        'weapons.droptanks.AV8BNA_AERO1D_EMPTY',
+        'weapons.droptanks.M2KC_02_RPL541_EMPTY',
+        'weapons.droptanks.M2KC_08_RPL541_EMPTY',
+        'weapons.droptanks.M2KC_RPL_522_EMPTY',
+        'weapons.droptanks.',
+        'weapons.droptanks.F-15E_Drop_Tank',
+        'weapons.droptanks.F-15E_Drop_Tank_Empty',
+        'weapons.droptanks.HB_F-4E_EXT_WingTank',
+        'weapons.droptanks.HB_F-4E_EXT_WingTank_R',
+        'weapons.droptanks.HB_F-4E_EXT_Center_Fuel_Tank',
+        'weapons.droptanks.HB_HIGH_PERFORMANCE_CENTERLINE_600_GAL',
+        'weapons.droptanks.HB_F-4E_EXT_WingTank_EMPTY',
+        'weapons.droptanks.HB_F-4E_EXT_WingTank_R_EMPTY',
+        'weapons.droptanks.HB_F-4E_EXT_Center_Fuel_Tank_EMPTY',
+        'weapons.droptanks.Drop_Tank_300_Liter',
+        'weapons.droptanks.FW-190_Fuel-Tank',
+        'weapons.droptanks.droptank_108_gal',
+        'weapons.droptanks.droptank_110_gal',
+        'weapons.droptanks.droptank_150_gal',
+        'weapons.droptanks.Spitfire_slipper_tank',
+        'weapons.droptanks.Spitfire_tank_1',
+        'weapons.droptanks.F4U-1D_Drop_Tank_Aux',
+        'weapons.droptanks.F4U-1D_Drop_Tank_Mk5',
+        'weapons.droptanks.F4U-1D_Drop_Tank_Mk6',
+        'weapons.droptanks.PTB_1500_MIG29A',
+        'weapons.droptanks.LNS_VIG_XTANK',
+        'weapons.droptanks.800L Tank',
+        'weapons.droptanks.1100L Tank',
+        'weapons.droptanks.PTB_200_F86F35',
+        'weapons.droptanks.PTB_120_F86F35',
+        'weapons.droptanks.HB_F14_EXT_DROPTANK_EMPTY',
+        'weapons.droptanks.HB_F14_EXT_DROPTANK',
+        'weapons.droptanks.FPU_8A',
+        'weapons.droptanks.i16_eft',
+        'weapons.droptanks.FuelTank_150L',
+        'weapons.droptanks.FuelTank_350L',
+        'weapons.droptanks.M2KC_02_RPL541',
+        'weapons.droptanks.M2KC_08_RPL541',
+        'weapons.droptanks.M2KC_RPL_522',
+        'weapons.droptanks.PTB400_MIG15',
+        'weapons.droptanks.PTB600_MIG15',
+        'weapons.droptanks.PTB300_MIG15',
+        'weapons.droptanks.PTB400_MIG19',
+        'weapons.droptanks.PTB760_MIG19',
+        'weapons.droptanks.PTB-490-MIG21',
+        'weapons.droptanks.PTB-490C-MIG21',
+        'weapons.droptanks.PTB-800-MIG21',
+        'weapons.droptanks.Mosquito_Drop_Tank_50gal',
+        'weapons.droptanks.Mosquito_Drop_Tank_100gal',
+        'weapons.droptanks.PTB-450',
+        'weapons.droptanks.800L Tank Empty',
+        'weapons.droptanks.1100L Tank Empty',
+        'weapons.droptanks.fueltank450',
+        'weapons.droptanks.fueltank200',
+        'weapons.droptanks.C130J_Ext_Tank_R',
+        'weapons.droptanks.C130J_Ext_Tank_L',
+        'weapons.droptanks.fueltank230',
+        'weapons.droptanks.uh60l_iafts',
+    },
+
+[WEAPONSLIST.ItemCategory.MISC] = {
+    -- MISC (ADAPTERS / PODS / GUNMOUNTS / OTHER)
+        'weapons.containers.AAQ-28_LITENING',
+        'weapons.containers.MB339_Vinten',
+        'weapons.containers.F-15E_AAQ-13_LANTIRN',
+        'weapons.containers.F-15E_AAQ-14_LANTIRN',
+        'weapons.containers.F-15E_AAQ-28_LITENING',
+        'weapons.containers.F-15E_AAQ-33_XR_ATP-SE',
+        'weapons.containers.F-15E_AXQ-14_DATALINK',
+        'weapons.containers.KINGAL',
+        'weapons.containers.ah-64d_radar',
+        'weapons.containers.HB_ALE_40_0_0',
+        'weapons.containers.HB_ALE_40_0_120',
+        'weapons.containers.HB_ALE_40_30_60',
+        'weapons.containers.HB_ALE_40_15_90',
+        'weapons.containers.HB_ALE_40_30_0',
+        'weapons.containers.HB_ORD_Pave_Spike',
+        'weapons.containers.HB_ORD_Pave_Spike_Fast',
+        'weapons.containers.HB_F14_EXT_TARPS',
+        'weapons.containers.HB_F14_EXT_ECA',
+        'weapons.containers.LANTIRN',
+        'weapons.containers.AN_AAQ_33',
+        'weapons.containers.APK-9',
+        'weapons.containers.PAVETACK',
+        'weapons.containers.ANAWW_13',
+        'weapons.containers.aaq-28LEFT litening',
+        'weapons.containers.AN_ASQ_228',
+        'weapons.containers.dlpod_akg',
+        'weapons.containers.wmd7',
+        'weapons.containers.{F14-LANTIRN-TP}',
+        'weapons.containers.LANTIRN-F14-TARGET',
+        'weapons.containers.TANGAZH',
+        'weapons.containers.ETHER',
+        'weapons.containers.SHPIL',
+        'weapons.containers.Fantasm',
+        'weapons.containers.F-18-FLIR-POD',
+        'weapons.containers.F-18-LDT-POD',
+        'weapons.containers.16c_hts_pod',
+        'weapons.containers.Spear',
+        'weapons.containers.ALQ-184',
+        'weapons.containers.SORBCIJA_R',
+        'weapons.containers.BARAX',
+        'weapons.containers.MATRA-PHIMAT',
+        'weapons.containers.HB_F14_EXT_AN_APQ-167',
+        'weapons.containers.ALQ-131',
+        'weapons.containers.SORBCIJA_L',
+        'weapons.containers.U22',
+        'weapons.containers.U22A',
+        'weapons.containers.SPS-141',
+        'weapons.containers.AV8BNA_ALQ164',
+        'weapons.containers.SKY_SHADOW',
+        'weapons.containers.kg600',
+        'weapons.containers.',
+        'weapons.containers.SPS-141-100',
+        'weapons.containers.{ECM_POD_L_175V}',
+        'weapons.containers.MPS-410',
+        'weapons.containers.alq-184long',
+        'weapons.containers.ais-pod-t50_r',
+        'weapons.containers.sa342_dipole_antenna',
+        'weapons.containers.MB339_TravelPod',
+        'weapons.adapters.lau-88',
+        'weapons.containers.FAS',
+        'weapons.containers.IRDeflector',
+        'weapons.containers.{EclairM_60}',
+        'weapons.containers.{EclairM_51}',
+        'weapons.containers.{EclairM_42}',
+        'weapons.containers.{EclairM_33}',
+        'weapons.containers.{EclairM_24}',
+        'weapons.containers.{EclairM_15}',
+        'weapons.containers.{EclairM_06}',
+        'weapons.containers.KBpod',
+        'weapons.containers.BOZ-100',
+        'weapons.containers.{Eclair}',
+        'weapons.containers.ASO-2',
+        'weapons.containers.{M2KC_AGF}',
+        'weapons.containers.{M2KC_AAF}',
+        'weapons.containers.MB339_SMOKE-POD',
+        'weapons.containers.{US_M10_SMOKE_TANK_RED}',
+        'weapons.containers.{US_M10_SMOKE_TANK_YELLOW}',
+        'weapons.containers.{US_M10_SMOKE_TANK_ORANGE}',
+        'weapons.containers.{US_M10_SMOKE_TANK_GREEN}',
+        'weapons.containers.{US_M10_SMOKE_TANK_BLUE}',
+        'weapons.containers.{US_M10_SMOKE_TANK_WHITE}',
+        'weapons.containers.{F4U1D_SMOKE_WHITE}',
+        'weapons.containers.{SMOKE_WHITE}',
+        'weapons.containers.smoke_pod',
+        'weapons.containers.{CE2_SMOKE_WHITE}',
+        'weapons.containers.HVAR_rocket',
+        'weapons.containers.{MIG21_SMOKE_WHITE}',
+        'weapons.containers.{MIG21_SMOKE_RED}',
+        'weapons.containers.pl5eii',
+        'weapons.containers.SPRD_99Twin',
+        'weapons.containers.HB_F14_EXT_BRU34',
+        'weapons.containers.F4-PILON',
+        'weapons.containers.SPRD-99',
+        'weapons.containers.ais-pod-t50',
+        'weapons.containers.rightSeat',
+        'weapons.containers.leftSeat',
+        'weapons.containers.rearCargoSeats',
+        'weapons.containers.ais-pod-t50_l',
+        'weapons.containers.HB_F14_EXT_LAU-7',
+        'weapons.containers.fullCargoSeats',
+        'weapons.containers.lau-105',
+        'weapons.containers.HB_ORD_MER',
+        'weapons.containers.HB_ORD_Missile_Well_Adapter',
+
+
+        'weapons.shells.KDA_35_FAPDS',
+        'weapons.shells.Rh202_20_HE',
+        'weapons.shells.Mauser7.92x57_S.m.K.',
+        'weapons.shells.Mauser7.92x57_S.m.K._Ub.m.Zerl.',
+        'weapons.shells.N37_37x155_HEI_T',
+        'weapons.shells.MG_20x82_API',
+        'weapons.shells.GSH23_23_AP',
+        'weapons.shells.M2_12_7',
+        'weapons.shells.L23A1_APFSDS',
+        'weapons.shells.DEFA553_30HE',
+        'weapons.shells.KS19_100HE',
+        'weapons.shells.50Browning_API_M8_Corsair',
+        'weapons.shells.MG_13x64_HEI_T',
+        'weapons.shells.2A38_30_AP',
+        'weapons.shells.20mm_M70LD_SAPHEI',
+        'weapons.shells.ZTZ_125_HE',
+        'weapons.shells.HP30_30_AP',
+        'weapons.shells.M256_120_HE',
+        'weapons.shells.7_62x51tr',
+        'weapons.shells.AK176_76',
+        'weapons.shells.M393A3_105_HE',
+        'weapons.shells.M61_20_AP',
+        'weapons.shells.DM53_120_AP',
+        'weapons.shells.PJ26_76_PFHE',
+        'weapons.shells.HEDPM430',
+        'weapons.shells.GSH_23_HE',
+        'weapons.shells.Hispano_Mk_II_SAP/I',
+        'weapons.shells.DEFA554_30_HE',
+        'weapons.shells.50Browning_Ball_M2',
+        'weapons.shells.50Browning_I_M1',
+        'weapons.shells.British303_Ball_Mk8',
+        'weapons.shells.ZTZ_7_62',
+        'weapons.shells.Mauser7.92x57_B.',
+        'weapons.shells.M39_20_HEI',
+        "weapons.shells.Mauser7.92x57_S.m.K._L'spur(weiss)",
+        'weapons.shells.3UBM11_100mm_AP',
+        'weapons.shells.MK_108_MGsch',
+        'weapons.shells.ship_Bofors_40mm_HE',
+        'weapons.shells.GSh_30_2K_AP_Tr',
+        'weapons.shells.M383',
+        'weapons.shells.M53_APT_RED',
+        'weapons.shells.75mm_AA_JAP',
+        'weapons.shells.2A28_73',
+        'weapons.shells.GAU8_30_AP',
+        'weapons.shells.British303_Ball_Mk1c',
+        'weapons.shells.L31_120mm_HESH',
+        'weapons.shells.20mm_M53_API',
+        'weapons.shells.MINGR55_NO_TRC',
+        'weapons.shells.British303_G_Mk4',
+        'weapons.shells.CHAP_76_PFHE',
+        'weapons.shells.PJ87_100_PFHE',
+        'weapons.shells.2A42_30_AP',
+        'weapons.shells.37mm_Type_100_JAP',
+        'weapons.shells.M2_12_7_T',
+        'weapons.shells.2A42_30_HE',
+        'weapons.shells.M230_HEI M799',
+        'weapons.shells.Sprgr_34_L48',
+        'weapons.shells.7_62x39',
+        'weapons.shells.GSH23_23_HE',
+        'weapons.shells.British303_G_Mk2',
+        'weapons.shells.M242_25_AP_M919',
+        'weapons.shells.M322_120_AP',
+        'weapons.shells.M242_25_HE_M792',
+        'weapons.shells.M46',
+        'weapons.shells.CHAP_76_HE_T',
+        'weapons.shells.2A38_30_HE',
+        'weapons.shells.British303_G_Mk5',
+        'weapons.shells.M39_20_TP',
+        'weapons.shells.GAU8_30_HE',
+        'weapons.shells.KDA_35_AP',
+        'weapons.shells.CL3143_120_AP',
+        'weapons.shells.M61_20_TP_T',
+        'weapons.shells.NR23_23x115_API',
+        'weapons.shells.KPVT_14_5',
+        'weapons.shells.L14A2_30_APDS',
+        'weapons.shells.L21A1_30_HE',
+        'weapons.shells.GSh_30_2K_HE',
+        'weapons.shells.M39_20_API',
+        'weapons.shells.2A46M_125_AP',
+        'weapons.shells.M61_20_HEIT_RED',
+        'weapons.shells.KS19_100AP',
+        'weapons.shells.20mm_M56_HEI',
+        'weapons.shells.M61',
+        'weapons.shells.2A46M_125_HE',
+        'weapons.shells.50Browning_T_M1',
+        'weapons.shells.NR30_30x155_APT',
+        'weapons.shells.AK630_30_AP',
+        'weapons.shells.L23_120_AP',
+        'weapons.shells.25mm_AA_JAP',
+        'weapons.shells.MK_108_HEI',
+        'weapons.shells.MG_13x64_I_T',
+        'weapons.shells.M39_20_TP_T',
+        'weapons.shells.OF_350',
+        'weapons.shells.M134_7_62_T',
+        'weapons.shells.DM33_120_AP',
+        'weapons.shells.M256_120_HE_L55',
+        'weapons.shells.YakB_12_7',
+        'weapons.shells.M230_30',
+        'weapons.shells.VOG17',
+        'weapons.shells.GSh_30_2K_AP',
+        'weapons.shells.M61_20_PGU30',
+        'weapons.shells.120_EXPL_F1_120mm_HE',
+        'weapons.shells.PGU32_SAPHEI_T',
+        'weapons.shells.British303_W_Mk1z',
+        'weapons.shells.5_56x45_NOtr',
+        'weapons.shells.50Browning_API_M8',
+        'weapons.shells.5_45x39',
+        'weapons.shells.M39_20_HEI_T',
+        'weapons.shells.CHAP_125_3BM69_APFSDS_T',
+        'weapons.shells.3BM59_125_AP',
+        'weapons.shells.6_5mm_Type_91_JAP',
+        'weapons.shells.M61_20_PGU28',
+        'weapons.shells.NR30_30x155_APHE',
+        'weapons.shells.7_7mm_Type_97_JAP',
+        'weapons.shells.PINK_PROJECTILE',
+        'weapons.shells.CHAP_76_HESH_T',
+        'weapons.shells.PKT_7_62',
+        'weapons.shells.OFL_120F2_AP',
+        'weapons.shells.DM12_L55_120mm_HEAT_MP_T',
+        'weapons.shells.British303_O_Mk1',
+        'weapons.shells.M256_120_AP',
+        'weapons.shells.UOF412_100HE',
+        'weapons.shells.M61_20_HE_gr',
+        'weapons.shells.M61_20_PGU27',
+        'weapons.shells.Utes_12_7x108',
+        'weapons.shells.2A7_23_HE',
+        'weapons.shells.British303_G_Mk3',
+        'weapons.shells.M61_20_AP_gr',
+        'weapons.shells.M485_155_IL',
+        'weapons.shells.2A64_152',
+        'weapons.shells.M61_20_HE',
+        'weapons.shells.57mm_Type_90_JAP',
+        'weapons.shells.DEFA554_30_HE_TRACERS',
+        'weapons.shells.Hispano_Mk_II_MKIIZ_AP',
+        'weapons.shells.M256_120_AP_L55',
+        'weapons.shells.MG_13x64_HE',
+        'weapons.shells.Hispano_Mk_II_Tracer_G',
+        'weapons.shells.20mm_M220_Tracer',
+        'weapons.shells.Bofors_40mm_Essex',
+        'weapons.shells.MG_13x64_I',
+        'weapons.shells.Pzgr_39/40',
+        'weapons.shells.2A60_120',
+        'weapons.shells.MK_108_MGsch_T',
+        'weapons.shells.HP30_30_HE',
+        'weapons.shells.L31A7_HESH',
+        'weapons.shells.GSH301_30_AP',
+        'weapons.shells.M55A2_TP_RED',
+        'weapons.shells.MG_13x64_API',
+        'weapons.shells.DM23_105_AP',
+        'weapons.shells.Bofors_40mm_HE',
+        'weapons.shells.7_62x54',
+        'weapons.shells.DM12_120mm_HEAT_MP_T',
+        'weapons.shells.DEFA553_30AP',
+        'weapons.shells.76mm_AA_JAP',
+        'weapons.shells.PLZ_155_HE',
+        'weapons.shells.GSH301_30_HE',
+        'weapons.shells.Br303',
+        'weapons.shells.DANA_152',
+        'weapons.shells.MK45_127',
+        'weapons.shells.M230_TP M788',
+        'weapons.shells.Utes_12_7x108_T',
+        'weapons.shells.7_92x57sS',
+        'weapons.shells.M20_50_aero_APIT',
+        'weapons.shells.20MM_M242_HEI-T',
+        'weapons.shells.M339_120mm_HEAT_MP_T',
+        'weapons.shells.M68_105_HE',
+        'weapons.shells.50Browning_APIT_M20',
+        'weapons.shells.M197_20',
+        'weapons.shells.KDA_35_HE',
+        'weapons.shells.British303_Ball_Mk6',
+        'weapons.shells.7_62x54_NOTRACER',
+        'weapons.shells.ZTZ_14_5',
+        'weapons.shells.A222_130',
+        'weapons.shells.50Browning_AP_M2_Corsair',
+        'weapons.shells.M68_105_AP',
+        'weapons.shells.Mauser7.92x57_S.m.K.H.',
+        'weapons.shells.BR_354N',
+        'weapons.shells.British303_G_Mk6z',
+        'weapons.shells.KPVT_14_5_T',
+        'weapons.shells.NR23_23x115_HEI_T',
+        'weapons.shells.M56A3_HE_RED',
+        'weapons.shells.GSh_30_2K_HE_Tr',
+        'weapons.shells.K307_155HE',
+        'weapons.shells.Oerlikon_20mm_Essex',
+        'weapons.shells.HESH_105',
+        'weapons.shells.M242_25_AP_M791',
+        'weapons.shells.BK_27',
+        'weapons.shells.M185_155',
+        'weapons.shells.British303_B_Mk4z',
+        'weapons.shells.M246_20_HE_gr',
+        'weapons.shells.Hispano_Mk_II_MKI_HE/I',
+        'weapons.shells.2A7_23_AP',
+        'weapons.shells.MG_13x64_APT',
+        'weapons.shells.M2_50_aero_AP',
+        'weapons.shells.2A18_122',
+        'weapons.shells.YakB_12_7_T',
+        'weapons.shells.N37_37x155_API_T',
+        'weapons.shells.MG_20x82_MGsch',
+        'weapons.shells.British303_G_Mk1',
+        'weapons.shells.M53_AP_RED',
+        'weapons.shells.British303_Ball_Mk7',
+        'weapons.shells.7_62x51',
+        'weapons.shells.Hispano_Mk_II_AP/T',
+        'weapons.shells.GSH_23_AP',
+        'weapons.shells.MK75_76',
+        'weapons.shells.50Browning_Ball_M2_Corsair',
+        'weapons.shells.GAU8_30_TP',
+        'weapons.shells.MK45_127mm_AP_Essex',
+        'weapons.shells.NR30_30x155_HEI_T',
+        'weapons.shells.PKT_7_62_T',
+        'weapons.shells.7_92x57_Smkl',
+        'weapons.shells.M2_12_7_TG',
+        'weapons.shells.M230_ADEM/DEFA',
+        'weapons.shells.9x19_m882',
+        'weapons.shells.2A33_152',
+        'weapons.shells.M825A1_155_SM',
+        'weapons.shells.53-UBR-281U',
+        'weapons.shells.MINGR55',
+        'weapons.shells.MK45_127mm_Essex',
+        'weapons.shells.MAUZER30_30',
+        'weapons.shells.MG_20x82_HEI_T',
+        'weapons.shells.DEFA552_30',
+        'weapons.shells.50Browning_AP_M2',
+        'weapons.shells.5_56x45',
+        'weapons.shells.M61_20_TP',
+        'weapons.shells.AK100_100',
+        'weapons.shells.53-UOR-281U',
+        'weapons.shells.ZTZ_125_AP',
+        'weapons.shells.50Browning_APIT_M20_Corsair',
+        'weapons.shells.British303_B_Mk6z',
+        'weapons.shells.M61_20_HE_INVIS',
+        'weapons.shells.M230_HEDP M789',
+        'weapons.shells.Rh202_20_AP',
+        'weapons.shells.Br303_tr',
+        'weapons.shells.UOF_17_100HE',
+        'weapons.shells.5_45x39_NOtr',
+        'weapons.shells.GSH23_23_HE_T',
+        'weapons.shells.AK630_30_HE',
+        'weapons.shells.Flak18_Sprgr_39',
+        "weapons.shells.Mauser7.92x57_S.m.K._L'spur(gelb)",
+        'weapons.shells.DEFA553_30APIT',
+        "weapons.shells.Mauser7.92x57_P.m.K.",
+        'weapons.shells.Hispano_Mk_II_Mk_Z_Ball',
+
+        'weapons.gunmounts.NR-30',
+        'weapons.gunmounts.{MB339_ANM3_L}',
+        'weapons.gunmounts.OH58D_M3P_L500',
+        'weapons.gunmounts.C130_M4_Rifle',
+        'weapons.gunmounts.{C130-M18-Sidearm}',
+        'weapons.gunmounts.MINIGUN',
+        'weapons.gunmounts.{GIAT_M621_SAPHEI}',
+        'weapons.gunmounts.{C130-Cargo-Bay-M4}',
+        'weapons.gunmounts.{CC420_GUN_POD}',
+        'weapons.gunmounts.{MB339_DEFA553_R}',
+        'weapons.gunmounts.PKT_7_62',
+        'weapons.gunmounts.{UH60_GAU19_LEFT}',
+        'weapons.gunmounts.defa_553',
+        'weapons.gunmounts.{CH47_STBD_M60D}',
+        'weapons.gunmounts.N-37',
+        'weapons.gunmounts.{CH47_AFT_M60D}',
+        'weapons.gunmounts.M-61A1',
+        'weapons.gunmounts.UH60L_M134',
+        'weapons.gunmounts.{AN-M3}',
+        'weapons.gunmounts.NR-23',
+        'weapons.gunmounts.UPK_23_25',
+        'weapons.gunmounts.{UH60L_M134_GUNNER}',
+        'weapons.gunmounts.{SUU_23_POD}',
+        'weapons.gunmounts.{SA342_M134_SIDE_R}',
+        'weapons.gunmounts.HMP400',
+        'weapons.gunmounts.M134_R',
+        'weapons.gunmounts.OH_58_BRAUNING',
+        'weapons.gunmounts.{UH60L_M60_GUNNER}',
+        'weapons.gunmounts.M60_SIDE_L',
+        'weapons.gunmounts.KORD_12_7_MI24_R',
+        'weapons.gunmounts.KORD_12_7_MI24_L',
+        'weapons.gunmounts.M60_SIDE_R',
+        'weapons.gunmounts.{GAU_12_Equalizer_HE}',
+        'weapons.gunmounts.{FN_HMP400_100}',
+        'weapons.gunmounts.MG_151_20',
+        'weapons.gunmounts.C130_M18_Sidearm',
+        'weapons.gunmounts.m3_browning',
+        'weapons.gunmounts.{AKAN_NO_TRC}',
+        'weapons.gunmounts.A20_TopTurret_M2_R',
+        'weapons.gunmounts.MG_131',
+        'weapons.gunmounts.GUV_VOG',
+        'weapons.gunmounts.GIAT_M261',
+        'weapons.gunmounts.GSh-23-2 tail defense',
+        'weapons.gunmounts.HispanoMkII',
+        'weapons.gunmounts.{ADEN_GUNPOD}',
+        'weapons.gunmounts.OH58D_M3P',
+        'weapons.gunmounts.{GAU_12_Equalizer}',
+        'weapons.gunmounts.CPG_M4',
+        'weapons.gunmounts.M134_L',
+        'weapons.gunmounts.{UH60_M134_LEFT}',
+        'weapons.gunmounts.{UH60_M230_RIGHT}',
+        'weapons.gunmounts.M134_SIDE_R',
+        'weapons.gunmounts.UH-60L GAU-19',
+        'weapons.gunmounts.{AKAN}',
+        'weapons.gunmounts.GAU_12',
+        'weapons.gunmounts.OH58D_M3P_L300',
+        'weapons.gunmounts.{GAU_12_Equalizer_AP}',
+        'weapons.gunmounts.{MB339_ANM3_R}',
+        'weapons.gunmounts.MK_108',
+        'weapons.gunmounts.UH60_M134',
+        'weapons.gunmounts.OH58D_M3P_L100',
+        'weapons.gunmounts.{CH47_PORT_M240H}',
+        'weapons.gunmounts.{GIAT_M621_HEAP}',
+        'weapons.gunmounts.{GIAT_M621_HE}',
+        'weapons.gunmounts.SPPU_22',
+        'weapons.gunmounts.{FN_HMP400_200}',
+        'weapons.gunmounts.{PK-3}',
+        'weapons.gunmounts.A20_TopTurret_M2_L',
+        'weapons.gunmounts.{UH60_GAU19_RIGHT}',
+        'weapons.gunmounts.{CH47_PORT_M134D}',
+        'weapons.gunmounts.{GIAT_M621_AP}',
+        'weapons.gunmounts.AKAN_NO_TRC',
+        'weapons.gunmounts.BrowningM2',
+        'weapons.gunmounts.{CH47_AFT_M240H}',
+        'weapons.gunmounts.OH58D_M3P_L400',
+        'weapons.gunmounts.M230',
+        'weapons.gunmounts.{MB339_DEFA553_L}',
+        'weapons.gunmounts.M-61',
+        'weapons.gunmounts.GSH_23',
+        'weapons.gunmounts.M134_SIDE_L',
+        'weapons.gunmounts.GUV_YakB_GSHP',
+        'weapons.gunmounts.KORD_12_7',
+        'weapons.gunmounts.AKAN',
+        'weapons.gunmounts.Browning303MkII',
+        'weapons.gunmounts.DEFA_553',
+        'weapons.gunmounts.{C-101-DEFA553}',
+        'weapons.gunmounts.{CH47_STBD_M240H}',
+        'weapons.gunmounts.{UH60_M134_RIGHT}',
+        'weapons.gunmounts.{FN_HMP400}',
+        'weapons.gunmounts.{GIAT_M621_APHE}',
+        'weapons.gunmounts.SHKAS_GUN',
+        'weapons.gunmounts.{UH60_M230_LEFT}',
+        'weapons.gunmounts.{CH47_AFT_M3M}',
+        'weapons.gunmounts.OH58D_M3P_L200',
+        'weapons.gunmounts.{CH47_PORT_M60D}',
+        'weapons.gunmounts.DEFA 554',
+        'weapons.gunmounts.{UH60L_M2_GUNNER}',
+        'weapons.gunmounts.{CH47_STBD_M134D}',
+
+        'weapons.adapters.UB-13',
+        'weapons.adapters.APU-60-1',
+        'weapons.adapters.M-2000C_AUF2',
+        'weapons.adapters.Carrier_N-1_EM_EF',
+        'weapons.adapters.RB15pylon',
+        'weapons.adapters.UB_32A',
+        'weapons.adapters.OH58D_M260',
+        'weapons.adapters.HB_F14_EXT_SHOULDER_PHX_L',
+        'weapons.adapters.sa342_ATAM_Tube_2x',
+        'weapons.adapters.CHAP_Mi28N_ataka',
+        'weapons.adapters.B-8V20A',
+        'weapons.adapters.apu-13mt',
+        'weapons.adapters.HB_ORD_Missile_Well_Adapter',
+        'weapons.adapters.KMGU-2',
+        'weapons.adapters.9M114-PYLON_EMPTY',
+        'weapons.adapters.adapter_gdj_kd63',
+        'weapons.adapters.LAU-117',
+        'weapons.adapters.Spitfire_pilon2L',
+        'weapons.adapters.adapter_df4b',
+        'weapons.adapters.b52-mbd_mk84',
+        'weapons.adapters.J-11A_twinpylon_l',
+        'weapons.adapters.aero-3b',
+        'weapons.adapters.F4-PILON',
+        'weapons.adapters.mbd-4',
+        'weapons.adapters.m559',
+        'weapons.adapters.BRU-42_LS_(LAU-131)',
+        'weapons.adapters.LAU-61',
+        'weapons.adapters.mer2',
+        'weapons.adapters.30-6-M2',
+        'weapons.adapters.LAU-10',
+        'weapons.adapters.HB_F14_EXT_LAU-7',
+        'weapons.adapters.PU_9S846_STRELEC',
+        'weapons.adapters.b-52_CSRL_ALCM',
+        'weapons.adapters.9M114-PILON',
+        'weapons.adapters.CLB_4',
+        'weapons.adapters.CHAP_Mi28N_igla',
+        'weapons.adapters.hj12-launcher-tube',
+        'weapons.adapters.9m114-pilon',
+        'weapons.adapters.b52-mbd_m117',
+        'weapons.adapters.OH58D_HRACK_R',
+        'weapons.adapters.F4E_dual_LAU7',
+        'weapons.adapters.HB_F14_EXT_SPARROW_PYLON',
+        'weapons.adapters.tu-22m3-mbd',
+        'weapons.adapters.HB_F-4E_BRU-42',
+        'weapons.adapters.MBD-2-67',
+        'weapons.adapters.OH58D_SRACK_R',
+        'weapons.adapters.UB-16',
+        'weapons.adapters.APU-170',
+        'weapons.adapters.adapter_df4a',
+        'weapons.adapters.Rocket_Launcher_4_5inch',
+        'weapons.adapters.JF-17_PF12_twin',
+        'weapons.adapters.CLB_30',
+        'weapons.adapters.9M120_pylon',
+        'weapons.adapters.oro-57k.edm',
+        'weapons.adapters.suu-25',
+        'weapons.adapters.LAU-3',
+        'weapons.adapters.F-15E_LAU-117',
+        'weapons.adapters.SA342_LAU_HOT3_2x',
+        'weapons.adapters.Schloss_500XIIC',
+        'weapons.adapters.mbd-3',
+        'weapons.adapters.b52-mbd_agm86',
+        'weapons.adapters.Spitfire_pilon2R',
+        'weapons.adapters.apu-60-2_R',
+        'weapons.adapters.MER-5E',
+        'weapons.adapters.gdj-iv1',
+        'weapons.adapters.14-3-M2',
+        'weapons.adapters.OH-58D_Gorgona',
+        'weapons.adapters.ARAKM70B',
+        'weapons.adapters.apu-6',
+        'weapons.adapters.BRU-42_LS',
+        'weapons.adapters.M299_AGM114',
+        'weapons.adapters.BRU-42_LS_(LAU-68)',
+        'weapons.adapters.B-1B_Conventional_Rotary_Launcher',
+        'weapons.adapters.LAU-105',
+        'weapons.adapters.ER4_Rack',
+        'weapons.adapters.lau-118a',
+        'weapons.adapters.b-52_suu67',
+        'weapons.adapters.JF-17_GDJ-II19L',
+        'weapons.adapters.AUF2_RACK',
+        'weapons.adapters.kmgu-2',
+        'weapons.adapters.JF-17_GDJ-II19R',
+        'weapons.adapters.F-15E_LAU-88',
+        'weapons.adapters.9k121',
+        'weapons.adapters.MAK-79_VAR_4',
+        'weapons.adapters.BRU_42A',
+        'weapons.adapters.APU-12-40',
+        'weapons.adapters.HB_F14_EXT_BRU34',
+        'weapons.adapters.apu-13u-2',
+        'weapons.adapters.UB-32',
+        'weapons.adapters.HB_ORD_LAU-88',
+        'weapons.adapters.ptab-2_5ko_block1',
+        'weapons.adapters.XM158',
+        'weapons.adapters.CBLS-200',
+        'weapons.adapters.ao-2_5rt_block1',
+        'weapons.adapters.MAK-79_VAR_2',
+        'weapons.adapters.UB_32A_24',
+        'weapons.adapters.tow-pilon',
+        'weapons.adapters.apu-7',
+        'weapons.adapters.BRU-42_HS',
+        'weapons.adapters.TER-9A',
+        'weapons.adapters.LAU-115C',
+        'weapons.adapters.M-2000C_LRF4.edm',
+        'weapons.adapters.su-27-twinpylon',
+        'weapons.adapters.BRU_33A',
+        'weapons.adapters.T45_PMBR',
+        'weapons.adapters.MBD-3-LAU-68',
+        'weapons.adapters.M-2000c_BAP_Rack',
+        'weapons.adapters.apu-60-2_L',
+        'weapons.adapters.BRD-4-250',
+        'weapons.adapters.lau-117',
+        'weapons.adapters.MBD-3-LAU-61',
+        'weapons.adapters.uh60l_lwl12',
+        'weapons.adapters.HB_ORD_SUU_7',
+        'weapons.adapters.9m120',
+        'weapons.adapters.APU-68',
+        'weapons.adapters.OH58D_HRACK_L',
+        'weapons.adapters.APU-73',
+        'weapons.adapters.CHAP_Tu95MS_rotary_launcher',
+        'weapons.adapters.MAK-79_VAR_3',
+        'weapons.adapters.hf20_pod',
+        'weapons.adapters.LAU_127',
+        'weapons.adapters.M272_AGM114',
+        'weapons.adapters.HB_F14_EXT_SHOULDER_PHX_R',
+        'weapons.adapters.rb04pylon',
+        'weapons.adapters.M-2000C_LRF4',
+        'weapons.adapters.mbd',
+        'weapons.adapters.PylonM71',
+        'weapons.adapters.b-52_CRL_mod1',
+        'weapons.adapters.9K114_Shturm',
+        'weapons.adapters.f4-pilon',
+        'weapons.adapters.M261',
+        'weapons.adapters.B-20',
+        'weapons.adapters.BR21-Gerat',
+        'weapons.adapters.LAU-68',
+        'weapons.adapters.HB_F-4E_LAU-34',
+        'weapons.adapters.LR-25',
+        'weapons.adapters.b-52_HSAB',
+        'weapons.adapters.BRU_57',
+        'weapons.adapters.MAK-79_VAR_1',
+        'weapons.adapters.SA342_Telson8',
+        'weapons.adapters.LAU-115C+2_LAU127',
+        'weapons.adapters.BRU-42_LS_(SUU-25)',
+        'weapons.adapters.9M120_pylon2',
+        'weapons.adapters.LAU-131',
+        'weapons.adapters.apu-68um3',
+        'weapons.adapters.OH58D_SRACK_L',
+        'weapons.adapters.rb05pylon',
+        'weapons.adapters.B-1B_28-store_Conventional_Bomb_Module',
+        'weapons.adapters.C-25PU',
+        'weapons.adapters.HB_F4E_LAU117',
+        'weapons.adapters.UB-16-57UMP',
+        'weapons.adapters.mbd3-u6-68',
+        'weapons.adapters.b-20',
+        'weapons.adapters.c-25pu',
+        'weapons.adapters.Matra-F1-Rocket',
+        'weapons.adapters.J-11A_twinpylon_r',
+        'weapons.adapters.M299',
+        'weapons.adapters.Spitfire_pilon1',
+        'weapons.adapters.adapter_gdj_yj83k',
+        'weapons.adapters.HB_ORD_MER',
+        'weapons.adapters.9m114_pylon2',
+        'weapons.adapters.boz-100',
+        'weapons.adapters.BRU_55',
+        'weapons.adapters.lau-105',
+        'weapons.adapters.apu-68m3',
+        'weapons.adapters.B-1B_10-store_Conventional_Bomb_Module',
+        'weapons.adapters.AKU-58',
+        'weapons.adapters.HB_F14_EXT_BRU42',
+        'weapons.adapters.SA342_LAU_HOT3_1x',
+        'weapons.adapters.MBD-2-67U',
+        'weapons.adapters.BRU_41A',
+        'weapons.adapters.9m120m',
+        'weapons.adapters.M260',
+
+        'weapons.missiles.Aster 30 Blk 1NT',
+        'weapons.missiles.HQ-16',
+        'weapons.missiles.SA9M83M',
+        'weapons.missiles.MALUTKA',
+        'weapons.missiles.SAHQ2',
+        'weapons.missiles.SM_6',
+        'weapons.missiles.Sea_Dart',
+        'weapons.missiles.SA48H6E2',
+        'weapons.missiles.Sea_Cat',
+        'weapons.missiles.FIM_92C',
+        'weapons.missiles.SM_2ER',
+        'weapons.missiles.SA9M338K',
+        'weapons.missiles.M39A1',
+        'weapons.missiles.Strela-2',
+        'weapons.missiles.SA3M9M',
+        'weapons.missiles.Aster 30 Blk 1',
+        'weapons.missiles.SA9M83',
+        'weapons.missiles.HQ-7B',
+        'weapons.missiles.SA5B55',
+        'weapons.missiles.9M723',
+        'weapons.missiles.SAV601P',
+        'weapons.missiles.SVIR',
+        'weapons.missiles.REFLEX',
+        'weapons.missiles.HOT2',
+        'weapons.missiles.Rapier',
+        'weapons.missiles.Igla_S',
+        'weapons.missiles.YJ-83',
+        'weapons.missiles.SA9M317',
+        'weapons.missiles.BGM_109B',
+        'weapons.missiles.ROLAND_R',
+        'weapons.missiles.SPIKE_ERA',
+        'weapons.missiles.TOW2',
+        'weapons.missiles.SA9M333',
+        'weapons.missiles.Strela-2M',
+        'weapons.missiles.P_9M133',
+        'weapons.missiles.RIM_116A',
+        'weapons.missiles.Sea_Wolf',
+        'weapons.missiles.Aster 30 Blk 2',
+        'weapons.missiles.M30',
+        'weapons.missiles.SA_IRIS_T_SL',
+        'weapons.missiles.9M317',
+        'weapons.missiles.SA9M82M',
+        'weapons.missiles.SA9M31',
+        'weapons.missiles.HHQ-9',
+        'weapons.missiles.MIM_104',
+        'weapons.missiles.SM_1',
+        'weapons.missiles.HAWK_RAKETA',
+        'weapons.missiles.HY-2',
+        'weapons.missiles.SA57E6',
+        'weapons.missiles.P_500',
+        'weapons.missiles.9M723_HE',
+        'weapons.missiles.SA2V759',
+        'weapons.missiles.SA2V755',
+        'weapons.missiles.SCUD_RAKETA',
+        'weapons.missiles.SA9M38M1',
+        'weapons.missiles.SA9M33',
+        'weapons.missiles.Strela-3',
+        'weapons.missiles.SA5B27',
+        'weapons.missiles.M31',
+        'weapons.missiles.SM_2',
+        'weapons.missiles.KONKURS',
+        'weapons.missiles.SA9M311',
+        'weapons.missiles.P_700',
+        'weapons.missiles.MIM_72G',
+        'weapons.missiles.SA9M82',
+        'weapons.missiles.SeaSparrow',
+        'weapons.missiles.SA9M330',
+        'weapons.missiles.M48',
+        'weapons.missiles.YJ-62',
+        'weapons.missiles.P_9M117',
+        'weapons.missiles.SA5V28',
+        'weapons.missiles.AGM_84S',
+        'weapons.missiles.HB_AGM_78',
+        'weapons.missiles.X_29TE',
+        'weapons.missiles.YJ-82',
+
+
+        'weapons.nurs.SMERCH_9M55F',
+        'weapons.nurs.M26',
+        'weapons.nurs.AGR_20_M282_unguided',
+        'weapons.nurs.AGR_20_M151_unguided',
+        'weapons.nurs.BRM1_90MM_UG',
+        'weapons.nurs.PG_9V',
+        'weapons.nurs.PG_16V',
+        'weapons.nurs.GRAD_9M22U',
+        'weapons.nurs.URAGAN_9M27F',
+        'weapons.nurs.M26HE',
+        'weapons.nurs.SMERCH_9M55K',
+        'weapons.nurs.MO_10104M',
+
+        'weapons.bombs.M485_FLARE',
+        'weapons.bombs.GBU_30',
+        'weapons.bombs.S_8OM_FLARE',
+        'weapons.bombs.RBK_500SOAB',
+        'weapons.bombs.KAB_500KrOD',
+        'weapons.bombs.BKF_AO2_5RT',
+        'weapons.bombs.RBK_500U_BETAB_M',
+        'weapons.bombs.SAB_100_FLARE',
+        'weapons.bombs.AO_2_5RT',
+        'weapons.bombs.GBU_11',
+        'weapons.bombs.LUU_2BB',
+        'weapons.bombs.RBK_250S',
+        'weapons.bombs.PTAB_2_5KO',
+        'weapons.bombs.GBU_17',
+        'weapons.bombs.LUU_19',
+        'weapons.bombs.BKF_PTAB2_5KO',
+        'weapons.bombs.M257_FLARE',
+        'weapons.bombs.LYSBOMB_CANDLE',
+        'weapons.bombs.SAB_250_FLARE',
+        'weapons.bombs.GBU_29',
+        'weapons.bombs.LUU_2AB',
+
+        'weapons.torpedoes.Mark_46',
+        'weapons.torpedoes.mk46torp_name',
+        'weapons.torpedoes.LTF_5B',
+        'weapons.torpedoes.YU-6',
+
+    },
+}
+
+local function _flattenUnique(itemsByCat, cats)
+    local out, seen = {}, {}
+    for _, cat in ipairs(cats) do
+        local items = itemsByCat[cat]
+        if items then
+            for _, item in ipairs(items) do
+                if not seen[item] then
+                    out[#out + 1] = item
+                    seen[item] = true
+                end
+            end
+        end
+    end
+    return out
+end
+
+
+local function _wsShouldFilterRestricted()
+
+  return (Era == "Coldwar") and (WEAPONSLIST and WEAPONSLIST.IsRestricted) ~= nil
+end
+
+local function _wsFilterRestricted(list)
+  if not _wsShouldFilterRestricted() then
+    return list or {}
+  end
+  local out = {}
+  for i = 1, #(list or {}) do
+    local item = list[i]
+    if not WEAPONSLIST.IsRestricted(item) then
+      out[#out + 1] = item
+    end
+  end
+  return out
+end
+
+	local storageCache = {}
+	local function getStorageByName(name)
+		local st = storageCache[name]
+		if st ~= nil then
+			return st or nil
+		end
+		st = STORAGE:FindByName(name) or false
+		storageCache[name] = st
+		if st == false then return nil end
+		return st
+	end
+
+function WEAPONSLIST.GetItems(category)
+  local raw
+  if (category == nil) or (category == WEAPONSLIST.ItemCategory.ALL) or (category == "ALL") then
+    raw = _flattenUnique(WEAPONSLIST.Items, WEAPONSLIST.CategoryOrder)
+  else
+    raw = WEAPONSLIST.Items[category] or {}
+  end
+  return _wsFilterRestricted(raw)
+end
+
+function WEAPONSLIST.GetAllItems()
+  return WEAPONSLIST.GetItems("ALL")
+end
+
+function WEAPONSLIST.ClearWeaponsInStorage(storage)
+	if not storage then return false end
+	for _, itemName in ipairs(WEAPONSLIST.GetAllItems() or {}) do
+		pcall(function() storage:SetItem(itemName, 0) end)
+	end
+	return true
+end
+
+function WEAPONSLIST.ClearWeaponsAtAirbase(airbaseName)
+	if not airbaseName then return false end
+	if not (STORAGE and STORAGE.FindByName) then return false end
+	local storage = getStorageByName(airbaseName)
+	if not storage then return false end
+	return WEAPONSLIST.ClearWeaponsInStorage(storage)
+end
+
+local restrictedWeapons = {
+    -- Apache Radar
+    "weapons.containers.ah-64d_radar",
+    -- Missiles
+    "weapons.missiles.AIM_120C",
+    "weapons.missiles.AIM_120",
+    "weapons.missiles.AGM_154",
+    "weapons.missiles.AIM_9X",
+    "weapons.missiles.ADM_141B",
+    "weapons.missiles.AGM_119",
+    "weapons.missiles.AGM_130",
+    "weapons.missiles.AGM_154A",
+    "weapons.missiles.AGM_154B",
+    "weapons.missiles.AGM_65G",
+    "weapons.missiles.AGM_65H",
+    "weapons.missiles.AGM_65K",
+    "weapons.missiles.AGM_65L",
+    "weapons.missiles.AGM_84E",
+    "weapons.missiles.AGM_84H",
+    "weapons.missiles.AGM_86C",
+    "weapons.missiles.ALARM",
+    "weapons.missiles.Ataka_9M120F",
+    "weapons.missiles.Ataka_9M220",
+    "weapons.missiles.Vikhr_M",
+    "weapons.missiles.BK90_MJ1",
+    "weapons.missiles.BK90_MJ2",
+    "weapons.missiles.BK90_MJ1_MJ2",
+    "weapons.missiles.BRM-1_90MM",
+    "weapons.missiles.C_701T",
+    "weapons.missiles.C_802AK",
+    "weapons.missiles.CM-400AKG",
+    "weapons.missiles.CM-802AKG",
+    "weapons.missiles.DWS39_MJ1",
+    "weapons.missiles.DWS39_MJ2",
+    "weapons.missiles.DWS39_MJ1_MJ2",
+    "weapons.missiles.GB-6",
+    "weapons.missiles.GB-6-HE",
+    "weapons.missiles.GB-6-SFW",
+    "weapons.missiles.HJ-12",
+    "weapons.missiles.HOT3_MBDA",
+    "weapons.missiles.KD_20",
+    "weapons.missiles.KD_63",
+    "weapons.missiles.KD_63B",
+    "weapons.missiles.LD-10",
+    "weapons.missiles.LS_6",
+    "weapons.missiles.LS_6_500",
+    "weapons.missiles.MICA_R",
+    "weapons.missiles.MICA_T",
+    "weapons.missiles.Mistral",
+    "weapons.missiles.PL-12",
+    "weapons.missiles.PL-5EII",
+    "weapons.missiles.PL-8B",
+    "weapons.missiles.S_25L",
+    "weapons.missiles.SD-10",
+    "weapons.missiles.SPIKE_ER",
+    "weapons.missiles.SPIKE_ER2",
+    "weapons.missiles.TGM_65G",
+    "weapons.missiles.TGM_65H",
+    "weapons.missiles.X_35",
+    "weapons.missiles.X_41",
+    "weapons.missiles.X_59M",
+    "weapons.missiles.YJ-12",
+    "weapons.missiles.YJ-83",
+    "weapons.containers.ALQ-184",
+    "weapons.containers.alq-184long",
+    --"weapons.containers.AN_ASQ_228",
+    "weapons.missiles.AGM_114L",
+    "weapons.missiles.AGM_114",
+     --"weapons.missiles.AGM_114K",
+    --"weapons.missiles.AGM_65F",
+
+    -- Bombs
+    
+    "weapons.bombs.GBU_31_V_4B",
+    "weapons.bombs.CBU_105",
+    "weapons.bombs.CBU_103",
+    "weapons.bombs.CBU_97",
+    "weapons.bombs.GBU_28",
+    "weapons.bombs.GBU_31",
+    "weapons.bombs.GBU_31_V_2B",
+    "weapons.bombs.GBU_31_V_3B",
+    "weapons.bombs.GBU_32_V_2B",
+    "weapons.bombs.GBU_38",
+    "weapons.bombs.GBU_39",
+    "weapons.bombs.GBU_54_V_1B",
+    "weapons.bombs.KAB_500S",
+    "weapons.bombs.KAB_1500LG",
+    "weapons.bombs.KAB_1500T",
+    "weapons.bombs.LS_6_100",
+    "weapons.bombs.GBU-43/B(MOAB)",}
+
+
+allowedPlanes = {
+  "MiG-19P","Mirage-F1AD","F/A-18A","Su-24MR","F-4E-45MC","MiG-23MLD","Mirage-F1CR","SA342Mistral","Mi-24V","F-15E","AJS37","UH-1H",
+  "UH-60L","MB-339A","F-14A-135-GR", "F-14A-135-GR-Early", "F-15C","F-16A MLU","Mirage-F1BD","P3C_Orion","Mirage-F1M-EE","An-30M","F-5E-3_FC",
+  "Mirage-F1EQ","A-10A", "Mirage-F1M-CE","Mirage-F1ED","Ka-27","E-2C","UH-60A","Mirage-F1C","Mirage-F1CE","AH-1W","MiG-21Bis","Mirage-F1BE",
+  "MB-339APAN","Hercules","Su-25","SA342M","Mirage-F1EDA","OH58D","MiG-15bis_FC","Mirage-F1CZ", "Mirage-F1BQ", "Mirage-F1B",
+  "Mirage-F1C-200","Mirage-F1DDA","MiG-15bis","Mirage-F1CJ","Mirage-F1CK","Mirage-F1AZ", "A-10C_2", "Mirage-F1CT","A-10C","M-2000C",
+  "Mirage-F1EH","Mirage-F1CH","SA342Minigun","MiG-29A","Bronco-OV-10A","OH-6A", "Mirage-F1CG","F-5E-3","F-86F Sabre","F-14A","L-39C","C-101CC",
+  "SA342L","Mi-8MT","Mirage-F1EE","Mi-24P","CH-47Fbl1","FA-18C_hornet","F-16C_50", "MiG-29 Fulcrum","UH-60L_DAP","C-130J-30","F-14B","AH-64D_BLK_II"}
+
+restockAircraft = {
+"FA-18FT","EA-18G","F-22A","FA-18E","B-52H","FA-18F","FA-18ET","F15EX","A-29B","F-23A","Ka-50_3","Ka-50",
+"Bronco-OV-10A","JAS39Gripen_AG","MiG-31BM","JAS39Gripen","Su-35S","UH-60L","OH-6A","Su-35","JAS39Gripen_BVR","SK-60","T-45","UH-60L_DAP", "MiG-29 Fulcrum"}
+
+
+
+local restrictedWeaponSet = {}
+for _,weapon in ipairs(restrictedWeapons) do
+    restrictedWeaponSet[weapon] = true
+end
+
+local restockWeapons = WEAPONSLIST.GetAllItems()
+
+function WEAPONSLIST.IsRestricted(itemName)
+    return restrictedWeaponSet[itemName] == true
+end
+
+function checkWeaponsList(airbase)
+	if airbase and Era ~= 'Coldwar' then
+		local storage = STORAGE:FindByName(airbase)
+		if storage then
+			local allWeapons = WEAPONSLIST.GetAllItems()
+			for _, name in ipairs(allWeapons or {}) do
+				local okAmt, amt = pcall(storage.GetItemAmount, storage, name)
+				if (not okAmt) or (amt == nil) or (amt == 0) or (amt >= 0 and amt < 10000000) then
+					pcall(storage.SetItem, storage, name, 1073741823)
+				end
+			end
+
+			for _, acName in ipairs(restockAircraft) do
+				local okAmt, amt = pcall(storage.GetItemAmount, storage, acName)
+				if (not okAmt) or (amt == nil) or (amt >= 0 and amt < 10000000) then
+					pcall(storage.SetItem, storage, acName, 1073741823)
+				end
+			end
+		end
+		return
+	end	
+    local function isLogisticCenterAirbase(airbaseName)
+        if not airbaseName then return false end
+        if not (bc and bc.getZones and bc.getZoneByName) then return false end
+        for _, zref in ipairs(bc:getZones() or {}) do
+            local z = bc:getZoneByName(zref.zone)
+            if z and z.airbaseName == airbaseName then
+                return z.LogisticCenter == true
+            end
+        end
+        return false
+    end
+
+    local function removeRestricted(storage, airbaseName)
+        if not storage then return end
+		local unlimitedDetected = false
+        for _, weapon in ipairs(restrictedWeapons or {}) do
+            local amt = storage:GetItemAmount(weapon)
+			if amt == 1000000 then unlimitedDetected = true end
+            if amt and amt > 0 then
+               storage:RemoveItem(weapon, amt)
+            end
+        end
+		if unlimitedDetected then
+			trigger.action.outText('Unlimited warehouse detected at '..tostring(airbaseName),15)
+		end
+    end
+
+    local function restockColdwarLogisticCenter(storage)
+        if not storage then return end
+        if not storage.GetInventory then return end
+
+        local ac, lq, wp = storage:GetInventory()
+
+        for name, _ in pairs(wp or {}) do
+            if not (restrictedWeaponSet and restrictedWeaponSet[name]) then
+                storage:SetItem(name, 1073741823)
+            end
+        end
+
+        for name, _ in pairs(ac or {}) do
+            storage:SetItem(name, 0)
+        end
+
+        for _, acName in ipairs(restockAircraft or {}) do
+           storage:SetItem(acName, 0)
+        end
+
+        for _, plane in ipairs(allowedPlanes or {}) do
+           storage:SetItem(plane, 1073741823)
+        end
+    end
+
+    local function processColdwarAirbase(airbaseName)
+        local storage = getStorageByName(airbaseName)
+        if not storage then return end
+
+        removeRestricted(storage, airbaseName)
+
+        if WarehouseLogistics ~= true or isLogisticCenterAirbase(airbaseName) then
+            restockColdwarLogisticCenter(storage)
+        end
+    end
+
+    if Era == 'Coldwar' then
+        if airbase then
+            processColdwarAirbase(airbase)
+            return
+        end
+
+        local airbaseList, seen = {}, {}
+
+        for _, zref in ipairs(bc:getZones() or {}) do
+            local z = bc:getZoneByName(zref.zone)
+            local abName = z and z.airbaseName
+            if abName and not seen[abName] and (not abName:find("^CVN%-")) and (abName ~= "Tarawa") and (abName ~= "HMS Invincible") then
+                seen[abName] = true
+                airbaseList[#airbaseList + 1] = abName
+            end
+        end
+
+        for _, n in ipairs({"FOB ALPHA", "CVN-72","CVN-73","Tarawa","CVN-59","CVN-74","HMS Invincible"}) do
+            if not seen[n] and IsGroupActive(n) then
+                seen[n] = true
+                airbaseList[#airbaseList + 1] = n
+            end
+        end
+
+        for _, airbaseName in ipairs(airbaseList) do
+            processColdwarAirbase(airbaseName)
+        end
+
+        return
+    end
+
+     local fillAll = (WarehouseLogistics == false)
+    local airbaseList, seen = {}, {}
+
+    for _, z in ipairs(bc:getZones() or {}) do
+        local zobj = bc:getZoneByName(z.zone)
+        local ab = zobj and zobj.airbaseName
+        if ab and not seen[ab] and (fillAll or zobj.LogisticCenter == true) then
+            seen[ab] = true
+            airbaseList[#airbaseList + 1] = ab
+        end
+    end
+
+
+    local allWeapons = WEAPONSLIST.GetAllItems()
+    for _, airbaseName in ipairs(airbaseList) do
+        local storage = STORAGE:FindByName(airbaseName)
+        if storage then
+
+            for _, name in ipairs(allWeapons or {}) do
+                local okAmt, amt = pcall(storage.GetItemAmount, storage, name)
+                if (not okAmt) or (amt == nil) or (amt == 0) or (amt >= 0 and amt < 10000000) then
+                    pcall(storage.SetItem, storage, name, 1073741823)
+                end
+            end
+
+            for _, acName in ipairs(restockAircraft) do
+                local okAmt, amt = pcall(storage.GetItemAmount, storage, acName)
+                if (not okAmt) or (amt == nil) or (amt >= 0 and amt < 10000000) then
+                    pcall(storage.SetItem, storage, acName, 1073741823)
+                end
+            end
+        end
+    end
+end
+
+timer.scheduleFunction(function()
+    checkWeaponsList()
+end, {}, timer.getTime() + 1)
