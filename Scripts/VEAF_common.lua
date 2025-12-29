@@ -337,17 +337,22 @@ function BattleCommander_newGetStateTable(self)
 
     -- add the ejected pilots positions
     veaf.loggers.get(veaf.Id):info("Adding ejected pilots position to state table")
+    veaf.loggers.get(veaf.Id):info("landedPilotOwners = %s", landedPilotOwners)
+    veaf.loggers.get(veaf.Id):info("ejectedPilotOwners = %s", ejectedPilotOwners)
     stateTable.ejectedPilots = {}
     local nbEjectedPilots = 0
     if lc and lc.ejectedPilots then
         for _, ejectedPilot in pairs(lc.ejectedPilots) do
+            veaf.loggers.get(veaf.Id):info("ejectedPilot = %s", ejectedPilot)
             local ejectedPilotTable = {
                 playerName = "Unknown",
                 lostCredits = 0
             }
             local objectID = ejectedPilot:getObjectID()
+            veaf.loggers.get(veaf.Id):info("objectID = %s", objectID)
             local pilotData = (landedPilotOwners and landedPilotOwners[objectID]) or (ejectedPilotOwners and ejectedPilotOwners[objectID])
             if pilotData then
+                veaf.loggers.get(veaf.Id):info("pilotData = %s", pilotData)
                 ejectedPilotTable.playerName = pilotData.playerName or "Unknown"
                 ejectedPilotTable.lostCredits = pilotData.lostCredits or 0
             end
@@ -355,6 +360,7 @@ function BattleCommander_newGetStateTable(self)
             if point then
                 ejectedPilotTable.latitude, ejectedPilotTable.longitude, ejectedPilotTable.altitude = coord.LOtoLL(point)
             end
+            veaf.loggers.get(veaf.Id):info("ejectedPilotTable = %s", ejectedPilotTable)
             table.insert(stateTable.ejectedPilots, ejectedPilotTable)
             nbEjectedPilots = nbEjectedPilots + 1
         end

@@ -3867,6 +3867,15 @@ function BattleCommander:addShopItem(coalition,id,ammount,prio,reqRank)
 			end
 		end
 
+		if allZones then
+			allZones[#allZones + 1] = FName
+		end
+
+		  if supplyZones then
+			supplyZones[#supplyZones + 1] = FName
+			supplyZonesSet[FName] = true
+		end  
+
 		local unlimitedPlanes = {}
 		if Era == "Coldwar" and type(allowedPlanes) == "table" then
 		unlimitedPlanes = allowedPlanes
@@ -11915,7 +11924,10 @@ end
 
 function GroupCommander:_resolveSpawn()
     local zc = self.zoneCommander
-    local abName = zc and zc.airbaseName
+    local abName = zc.airbaseName
+    if type(abName) == "table" then
+        abName = abName[zc.side]
+    end
     local need = self.AirCount
     local termType = self.terminalType or AIRBASE.TerminalType.OpenMedOrBig
     local helipadId
@@ -16536,8 +16548,6 @@ function FarpHere(Coordinate, customName)
   local FName="CTLD Farp "..baseLabel
   FARPFreq=FARPFreq+1
   ZONE_RADIUS:New(FName,Coordinate:GetVec2(),120,false)
-  if supplyZones then supplyZones[#supplyZones+1]=FName end
-  if allZones then allZones[#allZones+1]=FName end
   UTILS.SpawnFARPAndFunctionalStatics(FName,Coordinate,ENUMS.FARPType.INVISIBLE,Foothold_ctld.coalition,country.id.USA,MapFARPCount,FARPFreq,radio.modulation.AM,nil,nil,nil,10000,0,0,nil,true,true,3,80,80)
   Foothold_ctld:AddCTLDZone(FName,CTLD.CargoZoneType.LOAD,SMOKECOLOR.Blue,true,false)
   MESSAGE:New(string.format("%s in operation!",FName),15):ToBlue()
@@ -16556,7 +16566,6 @@ bc:registerDynamicFarp(FName, Coordinate, 2)
 end
 
 
-
 local FARPFreq=129
 local EscortFARPCount=0
 function CustomBuildAFARP(Coordinate,startZone)
@@ -16566,8 +16575,6 @@ function CustomBuildAFARP(Coordinate,startZone)
   FARPFreq=FARPFreq+1
   escortFarpToZone[FName]=startZone
   ZONE_RADIUS:New(FName,Coordinate:GetVec2(),120,false)
-  if supplyZones then supplyZones[#supplyZones+1]=FName end
-  if allZones then allZones[#allZones+1]=FName end
   UTILS.SpawnFARPAndFunctionalStatics(FName,Coordinate,ENUMS.FARPType.INVISIBLE,Foothold_ctld.coalition,country.id.USA,EscortFARPCount,FARPFreq,radio.modulation.AM,nil,nil,nil,5000,0,0,nil,true,true, 3, 80, 80)
   Foothold_ctld:AddCTLDZone(FName,CTLD.CargoZoneType.LOAD,SMOKECOLOR.Blue,true,false)
   MESSAGE:New(string.format("%s in operation!",FName),15):ToBlue()

@@ -39,10 +39,11 @@ Foothold_ctld.C130basetype = "cds_crate"
 if UseC130LoadAndUnload then
 Foothold_ctld.UseC130LoadAndUnload = true
 end
+
 Foothold_ctld.RadioSoundFC3 = "beaconsilent.ogg"
 Foothold_ctld.VehicleMoveFormation= {AI.Task.VehicleFormation.VEE, AI.Task.VehicleFormation.ECHELON_LEFT, AI.Task.VehicleFormation.ECHELON_RIGHT, AI.Task.VehicleFormation.RANK, AI.Task.VehicleFormation.CONE}
 Foothold_ctld.returntroopstobase = false
-Foothold_ctld:__Start(5)
+Foothold_ctld:__Start(2)
 
 function priceOf(name)
     return (CTLDPrices and CTLDPrices[name]) or CTLD_DEFAULT_PRICE or 0
@@ -340,8 +341,7 @@ local ZONE_SUPPLY_AIRCRAFT_DIMENSIONS = {
   ["Mi-24P"] = { width = 4, height = 5, length = 11, ropelength = 25 },
   ["UH-60L"] = { width = 4, height = 5, length = 10, ropelength = 25 },
   ["UH-60L_DAP"] = { width = 4, height = 5, length = 10, ropelength = 25 },
-  ["C-130J-30"] = { width = 4, height = 12, length = 35, ropelength = 0 },
-  ["Hercules"] = { width = 4, height = 12, length = 35, ropelength = 0 },
+  ["C-130J-30"] = { width = 4, height = 12, length = 35, ropelength = 0, detach = 14, attach = 10 },
 }
 
 local zoneSupplyPendingRemoval = {}
@@ -349,6 +349,19 @@ local zoneSupplyCleanupScheduled = false
 local warehouseSupplyItemCache = {}
 local zoneStorageHandleCache = {}
 local supplyZoneWrapperCache = {}
+supplyZonesSet = {}
+local function isCtldSupplyZoneName(zoneName)
+  if not zoneName then return false end
+  if supplyZonesSet[zoneName] == true then return true end
+  if supplyZones then
+    for i = 1, #supplyZones do
+      local n = supplyZones[i]
+      supplyZonesSet[n] = true
+    end
+  end
+  return supplyZonesSet[zoneName] == true
+end
+
 local function getSupplyZoneWrapper(name)
   local z = supplyZoneWrapperCache[name]
   if z == false then return nil end
@@ -367,7 +380,7 @@ local C130_OWNER_RESOLVE_NEAR2D = 4
 
 local c130AutoBuildClientSet = SET_CLIENT:New():FilterAlive():FilterFunction(function(client)
   local t = client:GetTypeName()
-  return t == "C-130J-30" or t == "Hercules"
+  return t == "C-130J-30"
 end):FilterStart()
 
 local function resolveC130AutoBuildOwner(setId, vec3)
@@ -401,14 +414,19 @@ local function resolveC130AutoBuildOwner(setId, vec3)
 
   local playerName = bestClient:GetPlayerName() or _DATABASE:_FindPlayerNameByUnitName(bestClient:GetName()) or "None"
   local groupName = bestClient:GetGroup():GetName()
+  local unitName = bestClient:GetName()
 
   set.playerName = playerName
   set.groupName = groupName
+  set.unitName = unitName
   for _, key in ipairs(set.crates) do
     local entry = c130AutoBuildCrates[key]
     if entry then
       entry.playerName = playerName
       entry.groupName = groupName
+      entry.unitName = unitName
+      entry._unitObj = nil
+      entry._unitDim = nil
     end
   end
 end
@@ -426,12 +444,13 @@ local function notifyC130Auto(set, text)
   MESSAGE:New(text, 12):ToBlue()
 end
 
-local function registerC130AutoBuildSet(groupName, playerName, pickupZone, cargoItems)
+local function registerC130AutoBuildSet(groupName, playerName, unitName, pickupZone, cargoItems)
   local setId = string.format("C130AUTO-%s-%d", groupName or "GROUP", math.random(1, 1e9))
   local setData = {
     id = setId,
     groupName = groupName,
     playerName = playerName,
+    unitName = unitName,
     pickupZone = pickupZone,
     crates = {},
     required = 0,
@@ -450,9 +469,14 @@ local function registerC130AutoBuildSet(groupName, playerName, pickupZone, cargo
         cargoName = cargoItem.GetName and cargoItem:GetName() or "cargo",
         groupName = groupName,
         playerName = playerName,
+        unitName = unitName,
+        _unitObj = nil,
+        _unitDim = nil,
         warnedPickup = false,
         wasAirborne = false,
         landed = false,
+        detached = false,
+        attached = false,
       }
       setData.required = setData.required + 1
       setData.crates[#setData.crates + 1] = cargoId
@@ -503,10 +527,65 @@ local function processC130AutoBuild()
           entry._lastVec3 = { x = vec3.x, y = vec3.y, z = vec3.z }
         end
         local agl = vec3.y - land.getHeight({ x = vec3.x, y = vec3.z })
-        if agl >= C130_AUTO_AIRBORNE_AGL then
+
+        if (entry.unitName or entry.groupName) and (not entry.detached or not entry.attached) then
+          local unitObj = entry._unitObj
+          if (not unitObj) and entry.unitName then
+            unitObj = Unit.getByName(entry.unitName)
+            entry._unitObj = unitObj
+            entry._unitDim = nil
+          elseif unitObj and entry.unitName and (unitObj.isExist and not unitObj:isExist()) then
+            unitObj = Unit.getByName(entry.unitName)
+            entry._unitObj = unitObj
+            entry._unitDim = nil
+          end
+          if (not unitObj) and entry.groupName then
+            local dcsGroup = Group.getByName(entry.groupName)
+            unitObj = dcsGroup and dcsGroup:getUnit(1) or nil
+            entry._unitObj = unitObj
+            entry._unitDim = nil
+          end
+          local dim = entry._unitDim
+          if unitObj and unitObj.isExist and unitObj:isExist() then
+            if not dim then
+              dim = ZONE_SUPPLY_AIRCRAFT_DIMENSIONS[unitObj:getTypeName()]
+              entry._unitDim = dim
+            end
+            local up = unitObj:getPoint()
+            if dim and up and up.x and up.y and up.z then
+              local dx = up.x - vec3.x
+              local dy = up.y - vec3.y
+              local dz = up.z - vec3.z
+              local d2 = dx * dx + dz * dz
+              local delta3D = math.sqrt(d2 + dy * dy)
+
+              if not entry.attached and not unitObj:inAir() then
+                local attach = dim.attach or 8
+                if delta3D <= attach then
+                  entry.attached = true
+                  if CTLD_Logging then
+                    env.info(string.format("[C130AutoBuild] Attached crate %s d3=%.2f attach=%.2f unit=%s", tostring(key), delta3D, attach, tostring(entry.unitName or entry.groupName)))
+                  end
+                end
+              end
+
+              if entry.attached and not entry.detached and unitObj:inAir() and (entry.wasAirborne or agl >= C130_AUTO_AIRBORNE_AGL) then
+                local detach = dim.detach or 14
+                if delta3D > detach then
+                  entry.detached = true
+                  if CTLD_Logging then
+                    env.info(string.format("[C130AutoBuild] Detached crate %s d3=%.2f detach=%.2f unit=%s", tostring(key), delta3D, detach, tostring(entry.unitName or entry.groupName)))
+                  end
+                end
+              end
+            end
+          end
+        end
+
+        if entry.attached and agl >= C130_AUTO_AIRBORNE_AGL then
           entry.wasAirborne = true
         end
-        if agl <= ZONE_SUPPLY_AGL_THRESHOLD and entry.wasAirborne and not moved then
+        if entry.attached and agl <= ZONE_SUPPLY_AGL_THRESHOLD and entry.wasAirborne and not moved then
           if entry._landAglConfirm then
             if math.abs(agl - entry._landAglConfirm) <= 0.05 then
               entry._landAglConfirm = nil
@@ -602,9 +681,9 @@ local function processC130AutoBuild()
               end
               timer.scheduleFunction(function()
                 if helperGroup and helperGroup:IsAlive() then helperGroup:Destroy() end
-              end, {}, timer.getTime() + Foothold_ctld.buildtime)
+              end, {}, timer.getTime() + Foothold_ctld.buildtime +5)
             end
-          end, {}, timer.getTime() + 5)
+          end, {}, timer.getTime() + 2)
 
           notifyC130Auto(set, "[CTLD] Hercules drop auto-built nearby.")
           set.completed = true
@@ -793,6 +872,7 @@ end
 local processZoneSupplyDeliveries
 local zoneSupplyApplyOne
 local zoneSupplyProcessReadyQueue
+local adjustWarehouseStockAtZone
 local zoneSupplyProcessRunning = false
 local zoneSupplyProcessQueued = false
 
@@ -1010,7 +1090,7 @@ processZoneSupplyDeliveries = function()
             end
           else
             if entry.wasAirborne and not entry._wasUnloaded then
-              local ok = true
+              local ok = false
               local unitObj = entry._unitObj
               if (not unitObj) and entry.unitName then
                 unitObj = Unit.getByName(entry.unitName)
@@ -1021,7 +1101,16 @@ processZoneSupplyDeliveries = function()
                 entry._unitObj = unitObj
                 entry._unitDim = nil
               end
+              if (not unitObj) or (unitObj and unitObj.isExist and not unitObj:isExist()) then
+                local ground = land.getHeight({ x = vec3.x, y = vec3.z })
+                local agl = vec3.y - ground
+                if agl <= ZONE_SUPPLY_AGL_THRESHOLD then
+                  entry._wasUnloaded = true
+                  entry._c130AglConfirm = nil
+                end
+              end
               local dim = entry._unitDim
+
               local inAir = nil
               local speed2 = nil
               if unitObj and unitObj.isExist and unitObj:isExist() then
@@ -1040,10 +1129,22 @@ processZoneSupplyDeliveries = function()
                     local delta3D = math.sqrt(d2 + dy * dy)
                     inAir = unitObj:inAir()
                     ok = false
-                    if (not inAir) and (delta2D > dim.length or delta2D > dim.width) then
-                      ok = true
+                    if not inAir then
+                      if dim.ropelength == 0 then
+                        if delta2D > (dim.detach or dim.width) then
+                          ok = true
+                        end
+                      elseif (delta2D > dim.length or delta2D > dim.width) then
+                        ok = true
+                      end
+                    else
+                      if dim.ropelength == 0 then
+                        if delta3D > (dim.detach or dim.width) then
+                          ok = true
+                        end
+                      end
                     end
-                    if (not ok) and dim.ropelength and delta3D > dim.ropelength then
+                    if (not ok) and dim.ropelength and dim.ropelength > 0 and delta3D > dim.ropelength then
                       ok = true
                     end
                     if dim.ropelength == 0 and inAir then
@@ -1074,10 +1175,12 @@ processZoneSupplyDeliveries = function()
                 else
                   entry._c130AglConfirm = nil
                 end
-                if settleOk then
-                  if not entry._gcUnloadedMsg then
-                    local staticName = staticObj and staticObj.GetName and staticObj:GetName() or (entry.cargoName or tostring(key))
-                    sendZoneSupplyMessage(entry, string.format("Crate %s unloaded by ground crew!", tostring(staticName)), 10)
+              if settleOk then
+                  if not entry._gcUnloadedMsg and not (dim and dim.ropelength == 0) then
+                    local staticName = staticObj:GetName() or nil
+                    if staticName then
+                      sendZoneSupplyMessage(entry, string.format("Crate %s unloaded by ground crew!", tostring(staticName)), 10)
+                    end
                     entry._gcUnloadedMsg = true
                   end
                   entry._wasUnloaded = true
@@ -1121,9 +1224,25 @@ processZoneSupplyDeliveries = function()
                 local zoneActive = zoneObj and zoneObj.active or false
                 zoneSupplyDebug(string.format("Crate %s landed in %s side=%s active=%s", tostring(key), tostring(zoneName), tostring(zoneSide), tostring(zoneActive)))
                 if entry.pickupZone and zoneName == entry.pickupZone then
-                  if not entry.warnedSameZone then
-                    --sendZoneSupplyMessage(entry, string.format("[CTLD] Deliver zone supplies to a zone other than %s.", zoneName))
-                    entry.warnedSameZone = true
+                  if entry.deliveryType == "warehouse" and entry.warehouseMeta and WarehouseLogistics == true then
+                    local rkey = getZoneSupplyStaticKey(staticObj)
+                    if rkey then
+                      zoneSupplyPendingRemoval[rkey] = nil
+                    end
+                    entry.landedAt = nil
+                    entry._noZoneRemovalScheduled = nil
+                    entry._inactiveRemovalScheduled = nil
+                    entry._lastNoZoneLog = nil
+                    entry._lastInactiveLog = nil
+                    entry._ready = true
+                    entry._zoneName = zoneName
+                    env.info(string.format("[ZoneSupply] Ready key=%s zone=%s type=%s pickup=%s", tostring(key), tostring(zoneName), tostring(entry.deliveryType), tostring(entry.pickupZone)))
+                    readyCount = readyCount + 1
+                  else
+                    if not entry.warnedSameZone then
+                      --sendZoneSupplyMessage(entry, string.format("[CTLD] Deliver zone supplies to a zone other than %s.", zoneName))
+                      entry.warnedSameZone = true
+                    end
                   end
                 else
                   if bcZone and bcZone.active then
@@ -1138,9 +1257,10 @@ processZoneSupplyDeliveries = function()
                     entry._lastInactiveLog = nil
                     entry._ready = true
                     entry._zoneName = zoneName
+                    env.info(string.format("[ZoneSupply] Ready key=%s zone=%s type=%s pickup=%s", tostring(key), tostring(zoneName), tostring(entry.deliveryType), tostring(entry.pickupZone))) -- custom
                     readyCount = readyCount + 1
                   else
-                    if (not bcZone) and entry.deliveryType == "warehouse" and entry.warehouseMeta and WarehouseLogistics == true then
+                    if (not bcZone) and entry.deliveryType == "warehouse" and entry.warehouseMeta and WarehouseLogistics == true and isCtldSupplyZoneName(zoneName) then
                       local storage = getZoneStorageHandle(zoneName)
                       if storage then
                         local rkey = getZoneSupplyStaticKey(staticObj)
@@ -1154,6 +1274,7 @@ processZoneSupplyDeliveries = function()
                         entry._lastInactiveLog = nil
                         entry._ready = true
                         entry._zoneName = zoneName
+                        env.info(string.format("[ZoneSupply] Ready key=%s zone=%s type=%s pickup=%s", tostring(key), tostring(zoneName), tostring(entry.deliveryType), tostring(entry.pickupZone)))
                         readyCount = readyCount + 1
                       else
                         zoneSupplyDebug(string.format("Crate %s in zone %s but zone inactive; clearing", tostring(key), tostring(zoneName)))
@@ -1256,13 +1377,40 @@ zoneSupplyApplyOne = function(key)
     zoneContainer = bc and bc:getZoneOfPoint(vec3) or nil
     zoneName = zoneContainer and zoneContainer.zone or nil
   end
+  if not zoneName and supplyZones and ZONE then
+    for i = 1, #supplyZones do
+      local zName = supplyZones[i]
+      local mooseZone = getSupplyZoneWrapper(zName)
+      if mooseZone and mooseZone:IsCoordinateInZone(coord) then
+        zoneName = zName
+        break
+      end
+    end
+  end
   if not zoneName then
     return
   end
   if entry.pickupZone and zoneName == entry.pickupZone then
+    if entry.deliveryType == "warehouse" and entry.warehouseMeta and WarehouseLogistics == true then
+      local meta = entry.warehouseMeta
+      local baseAmount = meta.amount
+      if type(baseAmount) == "number" and baseAmount > 0 then
+        local okAdj, adjMsg = adjustWarehouseStockAtZone(zoneName, baseAmount, meta.categories)
+        if CTLD_Logging then
+          env.info("[ZoneSupply][Return][Warehouse] " .. tostring(okAdj) .. " " .. tostring(adjMsg) .. " " .. tostring(zoneName) .. " " .. tostring(baseAmount))
+        end
+      end
+      local sObj = (entry.cargo and entry.cargo.GetPositionable and entry.cargo:GetPositionable()) or entry.static
+      if sObj and sObj.IsAlive and sObj:IsAlive() then
+        zoneSupplyEnqueueRemoval(sObj,0)
+      end
+      sendZoneSupplyMessage(entry, string.format("[CTLD] %s returned to %s.", meta.label or "Supplies", zoneName))
+      zoneSupplyCrates[key] = nil
+    end
     return
   end
 
+  local isCtldZone = false
   local zoneObj = bc and bc:getZoneByName(zoneName) or nil
   if zoneObj then
     if not zoneObj.active then
@@ -1272,6 +1420,9 @@ zoneSupplyApplyOne = function(key)
     if not (entry.deliveryType == "warehouse" and entry.warehouseMeta) then
       return
     end
+    if not isCtldSupplyZoneName(zoneName) then
+      return
+    end
     if WarehouseLogistics ~= true then
       return
     end
@@ -1279,37 +1430,42 @@ zoneSupplyApplyOne = function(key)
     if not storage then
       return
     end
+    isCtldZone = true
   end
 
-  if zoneObj.side == 1 then
-    zoneSupplyDestroyNow(key, entry, zoneName, "enemy zone")
-    return
-  end
-
-  if entry.deliveryType == "warehouse" and entry.warehouseMeta then
+  if not isCtldZone then
     if zoneObj.side == 1 then
       zoneSupplyDestroyNow(key, entry, zoneName, "enemy zone")
       return
     end
+  end
 
-    if zoneObj.side == 0 then
-      if not entry.neutralTimeoutScheduled then
-        entry.neutralTimeoutScheduled = true
-        timer.scheduleFunction(function()
-          if zoneSupplyCrates[key] then
-            local z = bc and bc:getZoneByName(zoneName) or nil
-            if z and z.side == 2 then
-              return -- became friendly; let normal processing deliver
-            end
-            zoneSupplyDestroyNow(key, entry, zoneName, "neutral zone timeout")
-          end
-        end, {}, timer.getTime() + ZONE_SUPPLY_DESTROY_DELAY)
+  if entry.deliveryType == "warehouse" and entry.warehouseMeta then
+    if not isCtldZone then
+      if zoneObj.side == 1 then
+        zoneSupplyDestroyNow(key, entry, zoneName, "enemy zone")
+        return
       end
-      return
-    end
 
-    if zoneObj.side ~= 2 then
-      return
+      if zoneObj.side == 0 then
+        if not entry.neutralTimeoutScheduled then
+          entry.neutralTimeoutScheduled = true
+          timer.scheduleFunction(function()
+            if zoneSupplyCrates[key] then
+              local z = bc and bc:getZoneByName(zoneName) or nil
+              if z and z.side == 2 then
+                return -- became friendly; let normal processing deliver
+              end
+              zoneSupplyDestroyNow(key, entry, zoneName, "neutral zone timeout")
+            end
+          end, {}, timer.getTime() + ZONE_SUPPLY_DESTROY_DELAY)
+        end
+        return
+      end
+
+      if zoneObj.side ~= 2 then
+        return
+      end
     end
     if WarehouseLogistics ~= true then
       zoneSupplyDestroyNow(key, entry, zoneName, "warehouse logistics disabled")
@@ -1340,11 +1496,13 @@ zoneSupplyApplyOne = function(key)
       zoneSupplyEnqueueRemoval(staticObj,0)
     end
     sendZoneSupplyMessage(entry, string.format("[CTLD] %s delivered to %s (%s).", meta.label or "Supplies", zoneName, abName or "warehouse"))
-    local pname = resolveZoneSupplyPlayer(entry)
-    local reward = meta.reward or ((meta.categories and #meta.categories > 1) and 100 or 50)
-    if pname and bc and bc.playerContributions and bc.playerContributions[2] and bc.playerContributions[2][pname] ~= nil then
-      bc:addContribution(pname, 2, reward)
-      bc:addTempStat(pname, "Warehouse delivery", 1)
+    if not isCtldZone and not (entry.pickupZone and zoneName == entry.pickupZone) then
+      local pname = resolveZoneSupplyPlayer(entry)
+      local reward = meta.reward or ((meta.categories and #meta.categories > 1) and 100 or 50)
+      if pname and bc and bc.playerContributions and bc.playerContributions[2] and bc.playerContributions[2][pname] ~= nil then
+        bc:addContribution(pname, 2, reward)
+        bc:addTempStat(pname, "Warehouse delivery", 1)
+      end
     end
     simulateLandingForEntryIfOnGround(entry, zoneName)
     zoneSupplyCrates[key] = nil
@@ -1376,6 +1534,7 @@ zoneSupplyApplyOne = function(key)
     zoneSupplyCrates[key] = nil
   end
 end
+
 
 zoneSupplyProcessReadyQueue = function()
   if zoneSupplyProcessRunning then
@@ -1567,13 +1726,7 @@ function BuildAFARP(Coordinate, stamp)
 
   ZONE_RADIUS:New(FName, coord:GetVec2(), 150, false)
 
-  
-  if supplyZones then
-    supplyZones[#supplyZones + 1] = FName
-  end  
-  if allZones then
-    allZones[#allZones + 1] = FName
-  end
+
   if era=="Coldwar" then
       UTILS.SpawnFARPAndFunctionalStatics(FName, coord, ENUMS.FARPType.INVISIBLE, Foothold_ctld.coalition, country.id.USA, FarpNameNumber, FARPFreq, radio.modulation.AM, nil, nil, nil, 10000, 0,0,nil, true, true, 3, 80, 80)
   else
@@ -1710,7 +1863,7 @@ function Foothold_ctld:OnAfterCratesBuild(From, Event, To, Group, Unit, Vehicle)
     end
 end
 
-local function adjustWarehouseStockAtZone(zoneName, deltaPerItem, categories)
+adjustWarehouseStockAtZone = function(zoneName, deltaPerItem, categories)
   if WarehouseLogistics ~= true then return false, "WarehouseLogistics disabled" end
   if not zoneName then return false, "zoneName nil" end
   if type(deltaPerItem) ~= "number" or deltaPerItem == 0 then return false, "invalid deltaPerItem" end
@@ -2049,8 +2202,7 @@ function Foothold_ctld:OnAfterGetCrates(From, Event, To, Group, Unit, Cargo)
           local staticName = staticObj and staticObj.GetName and staticObj:GetName() or "nil"
           zoneSupplyDebug(string.format(
             "Tracking zone-supply key=%s cargoId=%s static=%s pickup=%s group=%s player=%s",
-            tostring(key), tostring(cargoId), tostring(staticName), tostring(pickupZone), tostring(groupName), tostring(playerName)
-          ))
+            tostring(key), tostring(cargoId), tostring(staticName), tostring(pickupZone), tostring(groupName), tostring(playerName)))
         end
       else
         zoneSupplyDebug("OnAfterGetCrates: zone supply without cargoId/static key")
@@ -2104,8 +2256,7 @@ function Foothold_ctld:OnAfterGetCrates(From, Event, To, Group, Unit, Cargo)
           local staticName = staticObj and staticObj.GetName and staticObj:GetName() or "nil"
           zoneSupplyDebug(string.format(
             "Tracking warehouse cargo key=%s cargoId=%s static=%s pickup=%s group=%s player=%s type=%s",
-            tostring(key), tostring(cargoId), tostring(staticName), tostring(pickupZone), tostring(groupName), tostring(playerName), tostring(cname)
-          ))
+            tostring(key), tostring(cargoId), tostring(staticName), tostring(pickupZone), tostring(groupName), tostring(playerName), tostring(cname)))
         end
       else
         zoneSupplyDebug("OnAfterGetCrates: warehouse cargo without cargoId/static key")
@@ -2140,7 +2291,7 @@ function Foothold_ctld:OnAfterGetCrates(From, Event, To, Group, Unit, Cargo)
       end
     end
     if #c130Items > 0 then
-      registerC130AutoBuildSet(groupName, playerName, pickupZone, c130Items)
+      registerC130AutoBuildSet(groupName, playerName, unitName, pickupZone, c130Items)
     end
   end
 end
@@ -2206,7 +2357,7 @@ function LoadFARPS()
 end
 
 local LoadFARPTimer = TIMER:New(LoadFARPS)
-LoadFARPTimer:Start(2)
+LoadFARPTimer:Start(5)
 
 local SaveFARPTimer = TIMER:New(SaveFARPS)
 SaveFARPTimer:Start(30,300)
@@ -2866,3 +3017,74 @@ TIMER:New(tickZoneSupply):Start(15, 7)
 
 
 BASE:I("CTLD script initialized")
+
+--[[ 
+function ZoneSupply_StartDistanceLog(entry, reason, duration, interval)
+  if entry._distLogScheduled then return end
+  entry._distLogScheduled = true
+  entry._distLogReason = reason or "GetCrates"
+  entry._distLogInterval = interval or 5
+  entry._distLogUntil = timer.getTime() + (duration or 120)
+
+  timer.scheduleFunction(function()
+    local now = timer.getTime()
+    if not entry then return end
+    if now >= (entry._distLogUntil or now) then entry._distLogScheduled = nil return end
+
+    local cargo = entry.cargo
+    local staticObj = (cargo and cargo.GetPositionable and cargo:GetPositionable()) or entry.static
+    if not staticObj or not staticObj:IsAlive() then entry._distLogScheduled = nil return end
+
+    local coord = staticObj:GetCoordinate()
+    if not coord then return now + (entry._distLogInterval or 5) end
+    local vec3 = coord:GetVec3()
+    if not vec3 then return now + (entry._distLogInterval or 5) end
+
+    local unitObj = entry._unitObj
+    if (not unitObj) and entry.unitName then
+      unitObj = Unit.getByName(entry.unitName)
+      entry._unitObj = unitObj
+    end
+    if not unitObj then
+      env.info(string.format("[ZoneSupply][Dist] reason=%s key=%s unit=nil", tostring(entry._distLogReason), tostring(entry.cargoId or entry.cargoName or "?")))
+      return now + (entry._distLogInterval or 5)
+    end
+
+    local up = unitObj:getPoint()
+    if not up then return now + (entry._distLogInterval or 5) end
+
+    local dx = up.x - vec3.x
+    local dy = up.y - vec3.y
+    local dz = up.z - vec3.z
+    local d2 = dx * dx + dz * dz
+    local delta2D = math.sqrt(d2)
+    local delta3D = math.sqrt(d2 + dy * dy)
+
+    local ground = land.getHeight({ x = vec3.x, y = vec3.z })
+    local agl = vec3.y - ground
+    local inAir = unitObj:inAir()
+
+    local speed2 = 0
+    if inAir then
+      local vel = unitObj:getVelocity()
+      if vel then speed2 = vel.x * vel.x + vel.y * vel.y + vel.z * vel.z end
+    end
+
+    env.info(string.format("[ZoneSupply][Dist] reason=%s key=%s unit=%s type=%s inAir=%s agl=%.2f d2=%.2f d3=%.2f speed2=%.2f wasAirborne=%s wasUnloaded=%s",
+      tostring(entry._distLogReason),
+      tostring(entry.cargoId or entry.cargoName or "?"),
+      tostring(entry.unitName or "?"),
+      tostring(unitObj:getTypeName()),
+      tostring(inAir),
+      agl,
+      delta2D,
+      delta3D,
+      speed2,
+      tostring(entry.wasAirborne),
+      tostring(entry._wasUnloaded)
+    ))
+
+    return now + (entry._distLogInterval or 5)
+  end, nil, timer.getTime() + (entry._distLogInterval or 5))
+end
+ ]]

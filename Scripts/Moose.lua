@@ -76327,6 +76327,25 @@ if type(instock)=="number"and tonumber(instock)<=0 and tonumber(instock)~=-1 the
 self:_SendMessage(string.format("Sorry, we ran out of %s",cgoname),10,false,Group)
 return false
 end
+-- leka custom
+if CTLDCost == true then
+local price = (priceOf and priceOf(cgoname)) or CTLD_DEFAULT_PRICE or 0
+local charge = price * requestedSets
+if charge > 0 and bc then
+local coal = Group and Group:GetCoalition() or nil
+if not coal then return self end
+local dcs  = Group and Group.GetDCSObject and Group:GetDCSObject() or nil
+local gid  = dcs and dcs:getID() or nil
+local reason = string.format("%dx %s", requestedSets, cgoname)
+if type(bc.debit) == "function" then
+local ok = bc:debit(coal, charge, gid, dcs, reason)
+if not ok then return false end
+else
+bc.accounts[coal] = (bc.accounts[coal] or 0) - charge
+end
+end
+end
+--end of custom
 end
 local inzone=false
 local drop=drop or false
@@ -77614,7 +77633,7 @@ local hdg=(Unit:GetHeading()+180)%360
 local lat=(hdg+90)%360
 local base=Unit:GetCoordinate():Translate(20,hdg)
 if full==1 then
-local cratesNow,numberNow=self:_FindCratesNearby(Group,Unit,finddist,true,true,true)
+local cratesNow,numberNow=self:_FindCratesNearby(Group,Unit,finddist,true,true,not Engineering)
 self:_CleanUpCrates(cratesNow,build,numberNow)
 self:_RefreshLoadCratesMenu(Group,Unit)
 if self.buildtime and self.buildtime>0 then
