@@ -3,3 +3,4 @@ veaf-tools.exe
 *.log
 MA_Foothold_GCW_V*_Coldwar-Modern.miz
 temp/
+.copilot-docs/VEAF_common_modifications.md
