@@ -61,7 +61,7 @@ AIEN.config.artyFireLastContactThereshold     = 180               -- seconds, ma
 AIEN.config.taskTimeout                       = 480               -- seconds after which a tasked group is removed from the database
 AIEN.config.targetedTimeout                   = 240               -- seconds after which a targeted variable in inteldb is removed from database
 AIEN.config.artyTaskTimeout                   = 160               -- 160
-AIEN.config.artyTaskTimeoutGuided             = 480               -- 480
+AIEN.config.artyTaskTimeoutGuided             = 1200               -- 480
 AIEN.config.artyTargetedTimeout               = 140               -- 140
 AIEN.config.disperseActionTime				  = 120               -- seconds
 AIEN.config.counterBatteryRadarRange          = 50000             -- m, capable distance for a radar to perform counter battery calculations
@@ -9574,7 +9574,7 @@ local function getDangerClose(vec3, coa, range)
                 range = 500
             end
 
-            -- check targets   
+            -- check targets
             local firePoint = vec3
             local friendly = nil
             local _volume = {
@@ -13673,6 +13673,7 @@ end
                                         }
 
                                         local curPri = 0
+                                        local jtac9Cache = {}
                                         local _search = function(_obj)
                                             if _obj ~= nil and Object.getCategory(_obj) == 1 and _obj:isExist() and _obj:getCoalition() ~= gData.coa then
                                                 if _obj.isActive and _obj:isActive() == false then
@@ -13706,6 +13707,15 @@ end
                                                 local jtacOK = false
                                                 local jtacSrc = nil
                                                 local scoutActive = zTgt and AIEN.isScoutActiveForZone(zTgt.zone, gData.coa) or false
+                                                local jtac9Active = false
+                                                if zTgt then
+                                                    local cached = jtac9Cache[zTgt.zone]
+                                                    if cached == nil then
+                                                        cached = AIEN.JTAC9line_isActive(zTgt.zone, gData.coa)
+                                                        jtac9Cache[zTgt.zone] = cached
+                                                    end
+                                                    jtac9Active = cached
+                                                end
                                                 --if report and (report.cls == "ARTY" or report.cls == "SAM") then
                                                     --jtacOK = true
                                                     --jtacSrc = "cls"
@@ -13719,6 +13729,7 @@ end
                                                             end
                                                         end
                                                     end
+                                                    if not jtacOK and jtac9Active then jtacOK = true jtacSrc = "9line" end
                                                     if not jtacOK and scoutActive then jtacOK = true jtacSrc = "scout" end
                                                 --end
                                                 if (not report) and gData.coa == 2 then
@@ -13730,7 +13741,7 @@ end
                                                         end
                                                     end
                                                 end
-                                                if scoutActive then
+                                                                 if scoutActive then
                                                     if report then
                                                         report.pos = p
                                                         report.record = now
@@ -13749,6 +13760,27 @@ end
                                                     intelDb[_obj_id] = report
                                                     if AIEN.config.AIEN_debugProcessDetail then
                                                         env.info("ARTY_JTAC "..gData.n.." seeded/refresh ".._obj:getName().." via scout")
+                                                    end
+                                                end
+                                                if jtac9Active and not scoutActive then
+                                                    if report then
+                                                        report.pos = p
+                                                        report.record = now
+                                                        report.life = _obj:getLife() or report.life
+                                                        report.speed = 0
+                                                        report.obj = _obj
+                                                        report.coa = _obj:getCoalition()
+                                                        report.id = _obj_id
+                                                        report.jtacFallback = false
+                                                    else
+                                                        local grp = _obj:getGroup()
+                                                        local cls = (grp and getGroupClass(grp)) or getUnitClass(_obj) or "UNKN"
+                                                        if cls == "none" then cls = "UNKN" end
+                                                        report = { pos = p, cls = cls, record = now, speed = 0, life = _obj:getLife() or 0, jtacFallback = false, obj = _obj, coa = _obj:getCoalition(), id = _obj_id }
+                                                    end
+                                                    intelDb[_obj_id] = report
+                                                    if AIEN.config.AIEN_debugProcessDetail then
+                                                        env.info("ARTY_JTAC "..gData.n.." seeded/refresh ".._obj:getName().." via 9line")
                                                     end
                                                 end
                                                 if (not report) and jtacOK and jtacSrc == "scout" then
@@ -13808,7 +13840,7 @@ end
                                             local radius = isSAM and 10 or nil
                                             if guided and #candidates > 0 then
                                                 table.sort(candidates, function(a,b) return a.pri > b.pri end)
-                                                local k = math.min(3, math.max(1, roundsToFire), #candidates)
+                                                local k = math.min(6, math.max(1, roundsToFire), #candidates)
                                                 local ctrl = gData.group and gData.group:getController(); if ctrl then for j=1,8 do ctrl:popTask() end end
                                                 for i = 1, k do groupfireAtPoint({gData.group, candidates[i].pos, 1, description, radius}) end
                                             else
@@ -14205,8 +14237,6 @@ end
                         
                         if AI_consent == true then
     
-                            trigger.action.groupStopMoving(group)
-    
                             -- suppression part
                             if AIEN.config.suppression == true and armoured then
                                 local suppressEffects = false
@@ -14245,6 +14275,10 @@ end
                             -- reaction part
                             local choosenAct = nil
                             if not underAttack[group:getID()] then -- if a group has already been identified as "attacked", it won't repeat all the whole process every time or it could became a freaking mess in case of multiple hits
+
+                                -- Only stop the group on the first hit of the underAttack window.
+                                -- If we stop again on subsequent hits, reactions are skipped and the group can freeze.
+                                trigger.action.groupStopMoving(group)
                                 
                                 if AIEN.config.AIEN_debugProcessDetail == true then
                                     env.info(("AIEN.event_hit, S_EVENT_HIT, group " .. tostring(group:getName()) ))

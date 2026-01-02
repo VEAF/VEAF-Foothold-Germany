@@ -116,27 +116,25 @@ Foothold_ctld:AddUnits("Humvee scout",{"CTLD_CARGO_Scout"}, CTLD_CARGO.Enum.VEHI
 Foothold_ctld:AddUnits("FV-107 Scimitar",{"CTLD_CARGO_Scimitar"}, CTLD_CARGO.Enum.VEHICLE, 10, "Support")
 Foothold_ctld:AddUnits("FV-101 Scorpion",{"CTLD_CARGO_Scorpion"}, CTLD_CARGO.Enum.VEHICLE, 10, "Support")
 
-Foothold_ctld:AddStaticsCargo("Zone supplies C-130J",3000,nil, "Zone supplies", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("Zone supplies C-130J",5000,nil, "Zone supplies", true, nil, {"C-130J-30"})
 
---Foothold_ctld:AddStaticsCargo("Zone supplies",3000,nil, "Zone supplies", true, nil)
-
-Foothold_ctld:AddStaticsCargo("Zone supplies CH-47",2500,nil, "Zone supplies", true, nil,{"CH-47Fbl1"})
+Foothold_ctld:AddStaticsCargo("Zone supplies CH-47",5000,nil, "Zone supplies", true, nil,{"CH-47Fbl1"})
 
 Foothold_ctld:AddStaticsCargo("Zone supplies UH-1H",500,nil, "Zone supplies", true,nil, {"UH-1H"})
 
-Foothold_ctld:AddStaticsCargo("Zone supplies MI-8",2500,nil, "Zone supplies", true,nil, {"Mi-8MT"})
+Foothold_ctld:AddStaticsCargo("Zone supplies MI-8",5000,nil, "Zone supplies", true,nil, {"Mi-8MT"})
 
 Foothold_ctld:AddStaticsCargo("Zone supplies Blackhawk",2000,nil, "Zone supplies", true,nil, {"UH-60L_DAP","UH-60L"})
 
 Foothold_ctld:AddStaticsCargo("Zone supplies Mi-24P",500,nil, "Zone supplies", true,nil, {"Mi-24P"})
 
-Foothold_ctld:AddStaticsCargo("10 of everything",5000,nil, "Warehouse", true, nil,{"CH-47Fbl1","Mi-8MT"})
+Foothold_ctld:AddStaticsCargo("10 of everything",4000,nil, "Warehouse", true, nil,{"CH-47Fbl1","Mi-8MT"})
 Foothold_ctld:AddStaticsCargo("10 A/A Missiles",1000,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
 Foothold_ctld:AddStaticsCargo("10 A/G Missiles",1000,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
 Foothold_ctld:AddStaticsCargo("10 A/G Rockets",500,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
-Foothold_ctld:AddStaticsCargo("10 A/G Bombs",2000,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
+Foothold_ctld:AddStaticsCargo("10 A/G Bombs",1000,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
 Foothold_ctld:AddStaticsCargo("10 (Plane fuel tanks) and pylons",500,nil, "Warehouse", true, nil,{"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"})
-Foothold_ctld:AddStaticsCargo("50 of everything",12000,nil, "Warehouse", true, nil, {"C-130J-30"})
+Foothold_ctld:AddStaticsCargo("50 of everything",10000,nil, "Warehouse", true, nil, {"C-130J-30"})
 Foothold_ctld:AddStaticsCargo("50 A/A Missiles",3000,nil, "Warehouse", true, nil, {"C-130J-30"})
 Foothold_ctld:AddStaticsCargo("50 A/G Missiles",2000,nil, "Warehouse", true, nil, {"C-130J-30"})
 Foothold_ctld:AddStaticsCargo("50 A/G Rockets",2000,nil, "Warehouse", true, nil, {"C-130J-30"})
@@ -300,6 +298,7 @@ deployedTroopsSet = SET_GROUP:New()
 zoneCaptureInfo = {}
 deployedTroops = {}
 local zoneSupplyCrates = {}
+WarehouseSupplyTypes = WAREHOUSE_SUPPLY_TYPES
 
 
 local WAREHOUSE_SUPPLY_TYPES = {
@@ -980,18 +979,22 @@ end
 
 local function zoneSupplyEnqueueRemoval(staticObj, delaySeconds)
   if not staticObj then return end
-  local rkey = getZoneSupplyStaticKey(staticObj)
-  if not rkey then return end
 
   local delay = tonumber(delaySeconds)
 
   if delay ~= nil and delay <= 0 then
-    zoneSupplyPendingRemoval[rkey] = nil
+    local rkey = getZoneSupplyStaticKey(staticObj)
+    if rkey then
+      zoneSupplyPendingRemoval[rkey] = nil
+    end
     if staticObj.IsAlive and staticObj:IsAlive() then
       staticObj:Destroy(false)
     end
     return
   end
+
+  local rkey = getZoneSupplyStaticKey(staticObj)
+  if not rkey then return end
 
   zoneSupplyPendingRemoval[rkey] = {
     static = staticObj,
@@ -999,6 +1002,7 @@ local function zoneSupplyEnqueueRemoval(staticObj, delaySeconds)
   }
   zoneSupplyScheduleCleanup()
 end
+
 
 
 local function zoneSupplyDestroyNow(key, entry, zoneName, reason)
@@ -1499,9 +1503,14 @@ zoneSupplyApplyOne = function(key)
     if not isCtldZone and not (entry.pickupZone and zoneName == entry.pickupZone) then
       local pname = resolveZoneSupplyPlayer(entry)
       local reward = meta.reward or ((meta.categories and #meta.categories > 1) and 100 or 50)
-      if pname and bc and bc.playerContributions and bc.playerContributions[2] and bc.playerContributions[2][pname] ~= nil then
-        bc:addContribution(pname, 2, reward)
-        bc:addTempStat(pname, "Warehouse delivery", 1)
+      if pname then
+        if warehouseSupplyMissionTargetZone == zoneName and not warehouseSupplyMissionWinner then
+          warehouseSupplyMissionWinner = pname
+        end
+        if bc and bc.playerContributions[2][pname] ~= nil then
+          bc:addContribution(pname, 2, reward)
+          bc:addTempStat(pname, "Warehouse delivery", 1)
+        end
       end
     end
     simulateLandingForEntryIfOnGround(entry, zoneName)
@@ -1707,7 +1716,15 @@ local SpawnedFARPsFromSave = 0
 
 function BuildAFARP(Coordinate, stamp)
   if bc:getZoneOfPoint(Coordinate:GetVec3()) then return end
-  local isFromSave = (stamp ~= nil)
+  local saveName = nil
+  local saveStamp = nil
+  if type(stamp) == "table" then
+    saveName = stamp.name
+    saveStamp = stamp.timestamp
+  else
+    saveStamp = stamp
+  end
+  local isFromSave = (saveStamp ~= nil)
   if isFromSave then
     if SpawnedFARPsFromSave >= MAX_SAVED_FARPS then
       return
@@ -1718,7 +1735,7 @@ function BuildAFARP(Coordinate, stamp)
 
   local coord          = Coordinate
   local FarpNameNumber = ((FARPName - 1) % 10) + 1
-  local FName          = FARPClearnames[FarpNameNumber]
+  local FName          = saveName or FARPClearnames[FarpNameNumber]
 
   FARPFreq = FARPFreq + 1
   FARPName = FARPName + 1
@@ -1736,7 +1753,7 @@ function BuildAFARP(Coordinate, stamp)
   MESSAGE:New(string.format("%s in operation!", FName), 15):ToBlue()
   Foothold_ctld:RemoveStockCrates("CTLD_TROOP_FOB", 1)
 
-  table.insert(BuiltFARPCoordinates, { name = FName, coord = Coordinate, timestamp = stamp or timer.getTime() })
+  table.insert(BuiltFARPCoordinates, { name = FName, coord = Coordinate, timestamp = saveStamp or timer.getTime() })
 
   bc:registerDynamicFarp(FName, coord, Foothold_ctld.coalition)
 
@@ -1758,6 +1775,7 @@ end
   trigger.action.setMarkupText(textId, FName)
 
 end
+
 
 
 Foothold_ctld.buildRunning = 0
@@ -2307,14 +2325,14 @@ function SaveFARPS()
   local data = "FARP COORDINATES\n"
 
   local function sortingfunction(d1,d2)
-   return d1.timestamp > d2.timestamp
+   return d1.timestamp < d2.timestamp
   end
     
   table.sort(BuiltFARPCoordinates,sortingfunction)
 
   local counter = 0
   
-  for _,_coord in pairs(BuiltFARPCoordinates) do
+  for _,_coord in ipairs(BuiltFARPCoordinates) do
     local FName = _coord.name
     local coord = _coord.coord -- Core.Point#COORDINATE
     local AFB = AIRBASE:FindByName(FName)
@@ -2332,6 +2350,7 @@ function SaveFARPS()
     BASE:E("***** ERROR Saving FARP Positions!")
   end
 end
+
  
 function LoadFARPS()
   local path = Foothold_ctld.filepath
@@ -2342,7 +2361,7 @@ function LoadFARPS()
     BASE:I("***** FARP Positions loaded successfully!")
     -- remove header
     table.remove(data, 1)
-    for _,_entry in pairs(data) do
+    for _,_entry in ipairs(data) do
       local dataset = UTILS.Split(_entry,";")
       local x = tonumber(dataset[1])
       local y = tonumber(dataset[2])
