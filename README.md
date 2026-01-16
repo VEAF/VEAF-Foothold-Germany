@@ -18,7 +18,7 @@ Add this triggers on MissionStart:
 name: `Foothold loading`
 do_script:
 ```lua
-FOOTHOLD_DYNAMIC_PATH = [[C:\Users\veaf\Saved Games\DCS.missions\_servers\_TEMPLATES\Missions\foothold\Germany\Modern\]]
+FOOTHOLD_DYNAMIC_PATH = [[C:\Users\veaf\Saved Games\DCS.missions\_TEMPLATES\Missions\foothold\Germany\Modern\]]
 env.info("FOOTHOLD LOADING")
 assert(loadfile(FOOTHOLD_DYNAMIC_PATH .. "VEAF_loader.lua")) ()
 ```
@@ -27,7 +27,7 @@ assert(loadfile(FOOTHOLD_DYNAMIC_PATH .. "VEAF_loader.lua")) ()
 name: `Foothold loading`
 do_script:
 ```lua
-FOOTHOLD_DYNAMIC_PATH = [[C:\Users\veaf\Saved Games\DCS.missions\_servers\_TEMPLATES\Missions\foothold\Germany\Coldwar\]]
+FOOTHOLD_DYNAMIC_PATH = [[C:\Users\veaf\Saved Games\DCS.missions\_TEMPLATES\Missions\foothold\Germany\Coldwar\]]
 env.info("FOOTHOLD LOADING")
 assert(loadfile(FOOTHOLD_DYNAMIC_PATH .. "VEAF_loader.lua")) ()
 ```
