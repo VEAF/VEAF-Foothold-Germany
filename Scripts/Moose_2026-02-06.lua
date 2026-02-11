@@ -1,4 +1,4 @@
-env.info('*** MOOSE GITHUB Commit Hash ID: 2025-12-30T10:40:50+01:00-bf155a0bebe2532d23d0179b26773f4d94d12ee2 ***')
+env.info('*** MOOSE GITHUB Commit Hash ID: 2026-02-09T18:51:33+01:00-c781c2fefba37260de21373ac12c4a147efad742 ***')
 if not MOOSE_DEVELOPMENT_FOLDER then
 MOOSE_DEVELOPMENT_FOLDER='Scripts'
 end
@@ -1660,6 +1660,267 @@ ENUMS.Storage.weapons.missiles.Igla_S='weapons.missiles.Igla_S'
 ENUMS.Storage.weapons.gunmounts.AKAN_NO_TRC='weapons.gunmounts.{AKAN_NO_TRC}'
 ENUMS.Storage.weapons.gunmounts.AKAN='weapons.gunmounts.{AKAN}'
 ENUMS.Storage.weapons.shells.M882_9x19='weapons.shells.9x19_m882'
+ENUMS.Storage.weapons.droptanks.fuel_tank_370gal="weapons.droptanks.fuel_tank_370gal"
+ENUMS.Storage.weapons.droptanks.fuel_tank_300gal="weapons.droptanks.fuel_tank_300gal"
+ENUMS.Storage.weapons.adapters.HB_F_4E_ORD_LAU_77='weapons.adapters.HB_F-4E_ORD_LAU_77'
+ENUMS.Storage.weapons.adapters.hb_a_6e_lau7_adu299='weapons.adapters.hb_a-6e_lau7_adu299'
+ENUMS.Storage.weapons.bombs.AH6_SMOKE_BLUE='weapons.bombs.AH6_SMOKE_BLUE'
+ENUMS.Storage.weapons.bombs.AH6_SMOKE_GREEN='weapons.bombs.AH6_SMOKE_GREEN'
+ENUMS.Storage.weapons.bombs.AH6_SMOKE_RED='weapons.bombs.AH6_SMOKE_RED'
+ENUMS.Storage.weapons.bombs.AH6_SMOKE_YELLOW='weapons.bombs.AH6_SMOKE_YELLOW'
+ENUMS.Storage.weapons.missiles.HB_AGM_78='weapons.missiles.HB_AGM_78'
+ENUMS.Storage.weapons.missiles.V_1='weapons.missiles.V-1'
+ENUMS.Storage.weapons.shells.Oerlikon_20mm_HE='weapons.shells.Oerlikon_20mm_HE'
+ENUMS.Storage.weapons.shells.RM_15cm_HE='weapons.shells.RM_15cm_HE'
+ENUMS.Storage.weapons.shells.HE_T_MkII_40mm='weapons.shells.HE_T_MkII_40mm'
+ENUMS.Storage.weapons.shells.APCBC='weapons.shells.APCBC'
+ENUMS.Storage.weapons.shells.Sprgr_43_L71='weapons.shells.Sprgr_43_L71'
+ENUMS.Storage.weapons.shells.Mk_20_HE_shell='weapons.shells.Mk_20_HE_shell'
+ENUMS.Storage.weapons.shells.Pzgr_39_42='weapons.shells.Pzgr_39/42'
+ENUMS.Storage.weapons.shells.M1_37mm_37AP_T='weapons.shells.M1_37mm_37AP-T'
+ENUMS.Storage.weapons.shells.Sprgr_38='weapons.shells.Sprgr_38'
+ENUMS.Storage.weapons.shells.Sprgr_39='weapons.shells.Sprgr_39'
+ENUMS.Storage.weapons.shells.Pzgr_39_43='weapons.shells.Pzgr_39/43'
+ENUMS.Storage.weapons.shells.Pzgr_39_5cm='weapons.shells.Pzgr_39_5cm'
+ENUMS.Storage.weapons.shells.AP_2A20_115mm='weapons.shells.2A20_115mm_AP'
+ENUMS.Storage.weapons.shells.AP_T_MkI_40mm='weapons.shells.AP_T_MkI_40mm'
+ENUMS.Storage.weapons.shells.AP_37x263='weapons.shells.37x263_AP'
+ENUMS.Storage.weapons.shells.AP_20x138B='weapons.shells.20x138B_AP'
+ENUMS.Storage.weapons.shells.Besa7_92x57T='weapons.shells.Besa7_92x57T'
+ENUMS.Storage.weapons.shells.Sprgr_34_L70='weapons.shells.Sprgr_34_L70'
+ENUMS.Storage.weapons.shells.QF94_AA_HE='weapons.shells.QF94_AA_HE'
+ENUMS.Storage.weapons.shells.AH_6762x51mm_M62='weapons.shells.AH-6 7.62x51mm M62'
+ENUMS.Storage.weapons.shells.AH_6762x51mm_M80='weapons.shells.AH-6 7.62x51mm M80'
+ENUMS.Storage.weapons.shells.AH_6_762x51mm_M61='weapons.shells.AH-6 7.62x51mm M61'
+ENUMS.Storage.weapons.shells.leFH18_105HE='weapons.shells.leFH18_105HE'
+ENUMS.Storage.weapons.shells.M63_37HE='weapons.shells.M63_37HE'
+ENUMS.Storage.weapons.shells.QF95_206R_fixed='weapons.shells.QF95_206R_fixed'
+ENUMS.Storage.weapons.shells.UBR_365_85AP='weapons.shells.UBR_365_85AP'
+ENUMS.Storage.weapons.shells.M101='weapons.shells.M101'
+ENUMS.Storage.weapons.shells.HE_M1_Shell='weapons.shells.HE_M1_Shell'
+ENUMS.Storage.weapons.shells.UO_365K_85HE='weapons.shells.UO_365K_85HE'
+ENUMS.Storage.weapons.shells.Flak41_Sprgr_39='weapons.shells.Flak41_Sprgr_39'
+ENUMS.Storage.weapons.shells.M1_37mm_HE_T='weapons.shells.M1_37mm_HE-T'
+ENUMS.Storage.weapons.shells.QF17_HE='weapons.shells.QF17_HE'
+ENUMS.Storage.weapons.shells.Pzgr_39='weapons.shells.Pzgr_39'
+ENUMS.Storage.weapons.shells.Besa7_92x57='weapons.shells.Besa7_92x57'
+ENUMS.Storage.weapons.shells.I_Gr_33='weapons.shells.I_Gr_33'
+ENUMS.Storage.weapons.shells.M62_APC='weapons.shells.M62_APC'
+ENUMS.Storage.weapons.shells.Mk_12_HE_shell='weapons.shells.Mk_12_HE_shell'
+ENUMS.Storage.weapons.shells.M51_37AP='weapons.shells.M51_37AP'
+ENUMS.Storage.weapons.shells.M42A1_HE='weapons.shells.M42A1_HE'
+ENUMS.Storage.weapons.shells.HE_20x138B='weapons.shells.20x138B_HE'
+ENUMS.Storage.weapons.shells.HE_37x263='weapons.shells.37x263_HE'
+ENUMS.Storage.weapons.shells.HE_2A20_115mm='weapons.shells.2A20_115mm_HE'
+ENUMS.Storage.weapons.gunmounts.B17_TailTurret_M2_L='weapons.gunmounts.B17_TailTurret_M2_L'
+ENUMS.Storage.weapons.gunmounts.AH6_M134L='weapons.gunmounts.{AH6_M134L}'
+ENUMS.Storage.weapons.gunmounts.B17_Left_Nose_M2='weapons.gunmounts.B17_Left_Nose_M2'
+ENUMS.Storage.weapons.gunmounts.Ju88_Turret_Top_Right_MG_81='weapons.gunmounts.Ju88_Turret_Top_Right_MG_81'
+ENUMS.Storage.weapons.gunmounts.Ju88_Turret_Bottom_MG_81_L='weapons.gunmounts.Ju88_Turret_Bottom_MG_81_L'
+ENUMS.Storage.weapons.gunmounts.B17_ChinTurret_M2_R='weapons.gunmounts.B17_ChinTurret_M2_R'
+ENUMS.Storage.weapons.gunmounts.B17_Waist_Right_M2='weapons.gunmounts.B17_Waist_Right_M2'
+ENUMS.Storage.weapons.gunmounts.AH_6_Door_Gun='weapons.gunmounts.AH-6_Door_Gun'
+ENUMS.Storage.weapons.gunmounts.B17_BallTurret_M2_L='weapons.gunmounts.B17_BallTurret_M2_L'
+ENUMS.Storage.weapons.gunmounts.B17_BallTurret_M2_R='weapons.gunmounts.B17_BallTurret_M2_R'
+ENUMS.Storage.weapons.gunmounts.B17_TopTurret_M2_R='weapons.gunmounts.B17_TopTurret_M2_R'
+ENUMS.Storage.weapons.gunmounts.B17_Right_Nose_M2='weapons.gunmounts.B17_Right_Nose_M2'
+ENUMS.Storage.weapons.gunmounts.Ju88_Turret_Bottom_MG_81_R='weapons.gunmounts.Ju88_Turret_Bottom_MG_81_R'
+ENUMS.Storage.weapons.gunmounts.B17_TopTurret_M2_L='weapons.gunmounts.B17_TopTurret_M2_L'
+ENUMS.Storage.weapons.gunmounts.B17_Waist_Left_M2='weapons.gunmounts.B17_Waist_Left_M2'
+ENUMS.Storage.weapons.gunmounts.Ju88_Turret_ahead_MG_81='weapons.gunmounts.Ju88_Turret_ahead_MG_81'
+ENUMS.Storage.weapons.gunmounts.AH6_M134R='weapons.gunmounts.{AH6_M134R}'
+ENUMS.Storage.weapons.gunmounts.Ju88_Turret_Top_Left_MG_81='weapons.gunmounts.Ju88_Turret_Top_Left_MG_81'
+ENUMS.Storage.weapons.gunmounts.B17_TailTurret_M2_R='weapons.gunmounts.B17_TailTurret_M2_R'
+ENUMS.Storage.weapons.gunmounts.AKAN_NO_TRC='weapons.gunmounts.AKAN_NO_TRC'
+ENUMS.Storage.weapons.gunmounts.AKAN='weapons.gunmounts.AKAN'
+ENUMS.Storage.weapons.gunmounts.B17_ChinTurret_M2_L='weapons.gunmounts.B17_ChinTurret_M2_L'
+ENUMS.Storage.weapons.gunmounts.AKAN='weapons.gunmounts.AKAN'
+ENUMS.Storage.weapons.gunmounts.AKAN_NO_TRC='weapons.gunmounts.AKAN_NO_TRC'
+ENUMS.Storage.weapons.gunmounts.AH_6_Door='weapons.gunmounts.{AH-6_Door}'
+ENUMS.Storage.weapons.gunmounts.AH_6_FN_HMP400='weapons.gunmounts.{AH-6_FN_HMP400}'
+ENUMS.Storage.weapons.gunmounts.AH_6_M134L='weapons.gunmounts.AH-6_M134L'
+ENUMS.Storage.weapons.gunmounts.AH_6_M134R='weapons.gunmounts.AH-6_M134R'
+ENUMS.Storage.weapons.gunmounts.AH_6_HMP400='weapons.gunmounts.AH-6_HMP400'
+ENUMS.Storage.weapons.droptanks.PTB_800='weapons.droptanks.PTB-800'
+ENUMS.Storage.weapons.droptanks.PTB_275='weapons.droptanks.PTB-275'
+ENUMS.Storage.weapons.droptanks.HB_A6E_AERO1D_EMPTY='weapons.droptanks.HB_A6E_AERO1D_EMPTY'
+ENUMS.Storage.weapons.droptanks.Drop_tank_75gal='weapons.droptanks.Drop tank 75gal'
+ENUMS.Storage.weapons.droptanks.S_3_PTB='weapons.droptanks.S-3-PTB'
+ENUMS.Storage.weapons.droptanks.PTB_3000='weapons.droptanks.PTB-3000'
+ENUMS.Storage.weapons.droptanks.HB_A6E_D704='weapons.droptanks.HB_A6E_D704'
+ENUMS.Storage.weapons.droptanks.PTB_1150_29='weapons.droptanks.PTB-1150-29'
+ENUMS.Storage.weapons.droptanks.f_18c_ptb='weapons.droptanks.f-18c-ptb'
+ENUMS.Storage.weapons.droptanks.F4_BAK_L='weapons.droptanks.F4-BAK-L'
+ENUMS.Storage.weapons.droptanks.HB_A6E_AERO1D='weapons.droptanks.HB_A6E_AERO1D'
+ENUMS.Storage.weapons.droptanks.IAFS_ComboPak_100='weapons.droptanks.{IAFS_ComboPak_100}'
+ENUMS.Storage.weapons.droptanks.PTB_2000='weapons.droptanks.PTB-2000'
+ENUMS.Storage.weapons.droptanks.M2000_PTB='weapons.droptanks.M2000-PTB'
+ENUMS.Storage.weapons.droptanks.PTB_150='weapons.droptanks.PTB-150'
+ENUMS.Storage.weapons.droptanks.PTB_1150='weapons.droptanks.PTB-1150'
+ENUMS.Storage.weapons.droptanks.fuel_tank_300gal='weapons.droptanks.fuel_tank_300gal'
+ENUMS.Storage.weapons.droptanks.MIG_25_PTB='weapons.droptanks.MIG-25-PTB'
+ENUMS.Storage.weapons.droptanks.PTB_1500='weapons.droptanks.PTB-1500'
+ENUMS.Storage.weapons.droptanks.MIG_23_PTB='weapons.droptanks.MIG-23-PTB'
+ENUMS.Storage.weapons.droptanks.FT600='weapons.droptanks.FT600'
+ENUMS.Storage.weapons.droptanks.F15_PTB='weapons.droptanks.F15-PTB'
+ENUMS.Storage.weapons.droptanks.ah6_auxtank='weapons.droptanks.ah6_auxtank'
+ENUMS.Storage.weapons.droptanks.T_PTB='weapons.droptanks.T-PTB'
+ENUMS.Storage.weapons.droptanks.fuel_tank_370gal='weapons.droptanks.fuel_tank_370gal'
+ENUMS.Storage.weapons.droptanks.F4_BAK_C='weapons.droptanks.F4-BAK-C'
+ENUMS.Storage.weapons.droptanks.F16_PTB_N2='weapons.droptanks.F-16-PTB-N2'
+ENUMS.Storage.weapons.droptanks.PTB_800='weapons.droptanks.PTB-800'
+ENUMS.Storage.weapons.droptanks.PTB_275='weapons.droptanks.PTB-275'
+ENUMS.Storage.weapons.droptanks.T_PTB='weapons.droptanks.T-PTB'
+ENUMS.Storage.weapons.droptanks.F16_PTB_N2='weapons.droptanks.F-16-PTB-N2'
+ENUMS.Storage.weapons.droptanks.F4_BAK_C='weapons.droptanks.F4-BAK-C'
+ENUMS.Storage.weapons.droptanks.PTB_1150_29='weapons.droptanks.PTB-1150-29'
+ENUMS.Storage.weapons.droptanks.PTB_1150='weapons.droptanks.PTB-1150'
+ENUMS.Storage.weapons.droptanks.fuel_tank_300gal='weapons.droptanks.fuel_tank_300gal'
+ENUMS.Storage.weapons.droptanks.MIG_25_PTB='weapons.droptanks.MIG-25-PTB'
+ENUMS.Storage.weapons.droptanks.PTB_1500='weapons.droptanks.PTB-1500'
+ENUMS.Storage.weapons.droptanks.FT600='weapons.droptanks.FT600'
+ENUMS.Storage.weapons.droptanks.Drop_tank_75gal='weapons.droptanks.Drop tank 75gal'
+ENUMS.Storage.weapons.droptanks.F15_PTB='weapons.droptanks.F15-PTB'
+ENUMS.Storage.weapons.droptanks.M2000_PTB='weapons.droptanks.M2000-PTB'
+ENUMS.Storage.weapons.droptanks.PTB_150='weapons.droptanks.PTB-150'
+ENUMS.Storage.weapons.droptanks.F4_BAK_L='weapons.droptanks.F4-BAK-L'
+ENUMS.Storage.weapons.droptanks.PTB_3000='weapons.droptanks.PTB-3000'
+ENUMS.Storage.weapons.droptanks.PTB_2000='weapons.droptanks.PTB-2000'
+ENUMS.Storage.weapons.droptanks.S_3_PTB='weapons.droptanks.S-3-PTB'
+ENUMS.Storage.weapons.droptanks.fuel_tank_370gal='weapons.droptanks.fuel_tank_370gal'
+ENUMS.Storage.weapons.droptanks.MIG_23_PTB='weapons.droptanks.MIG-23-PTB'
+ENUMS.Storage.weapons.droptanks.f_18c_ptb='weapons.droptanks.f-18c-ptb'
+ENUMS.Storage.weapons.containers.FN_HMP400_100='weapons.containers.{FN_HMP400_100}'
+ENUMS.Storage.weapons.containers.AN_M3='weapons.containers.{AN-M3}'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L500='weapons.containers.OH58D_M3P_L500'
+ENUMS.Storage.weapons.containers.GIAT_M621_HE='weapons.containers.{GIAT_M621_HE}'
+ENUMS.Storage.weapons.containers.KORD_12_7_MI24_L='weapons.containers.KORD_12_7_MI24_L'
+ENUMS.Storage.weapons.containers.CH47_STBD_M240H='weapons.containers.{CH47_STBD_M240H}'
+ENUMS.Storage.weapons.containers.CH47_AFT_M60D='weapons.containers.{CH47_AFT_M60D}'
+ENUMS.Storage.weapons.containers.UPK_23_250_MiG_21='weapons.containers.{UPK-23-250 MiG-21}'
+ENUMS.Storage.weapons.containers.CH47_STBD_M134D='weapons.containers.{CH47_STBD_M134D}'
+ENUMS.Storage.weapons.containers.GAU_12_Equalizer='weapons.containers.{GAU_12_Equalizer}'
+ENUMS.Storage.weapons.containers.PKT_7_62='weapons.containers.PKT_7_62'
+ENUMS.Storage.weapons.containers.CH47_AFT_M240H='weapons.containers.{CH47_AFT_M240H}'
+ENUMS.Storage.weapons.containers.GIAT_M621_SAPHEI='weapons.containers.{GIAT_M621_SAPHEI}'
+ENUMS.Storage.weapons.containers.ADEN_GUNPOD='weapons.containers.{ADEN_GUNPOD}'
+ENUMS.Storage.weapons.containers.GAU_12_Equalizer_HE='weapons.containers.{GAU_12_Equalizer_HE}'
+ENUMS.Storage.weapons.containers.M60_SIDE_L='weapons.containers.M60_SIDE_L'
+ENUMS.Storage.weapons.containers.KORD_12_7_MI24_R='weapons.containers.KORD_12_7_MI24_R'
+ENUMS.Storage.weapons.containers.GIAT_M621_APHE='weapons.containers.{GIAT_M621_APHE}'
+ENUMS.Storage.weapons.containers.MB339_ANM3_L='weapons.containers.{MB339_ANM3_L}'
+ENUMS.Storage.weapons.containers.FN_HMP400='weapons.containers.{FN_HMP400}'
+ENUMS.Storage.weapons.containers.AH_6_Door='weapons.containers.{AH-6_Door}'
+ENUMS.Storage.weapons.containers.MB339_DEFA553_L='weapons.containers.{MB339_DEFA553_L}'
+ENUMS.Storage.weapons.containers.MB339_ANM3_R='weapons.containers.{MB339_ANM3_R}'
+ENUMS.Storage.weapons.containers.PK_3='weapons.containers.{PK-3}'
+ENUMS.Storage.weapons.containers.GUV_VOG='weapons.containers.GUV_VOG'
+ENUMS.Storage.weapons.containers.SA342_M134_SIDE_R='weapons.containers.{SA342_M134_SIDE_R}'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L100='weapons.containers.OH58D_M3P_L100'
+ENUMS.Storage.weapons.containers.MXU_648='weapons.containers.MXU-648'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L400='weapons.containers.OH58D_M3P_L400'
+ENUMS.Storage.weapons.containers.FN_HMP400_200='weapons.containers.{FN_HMP400_200}'
+ENUMS.Storage.weapons.containers.GIAT_M621_HE='weapons.containers.{GIAT_M621_HE}'
+ENUMS.Storage.weapons.containers.M134_L='weapons.containers.M134_L'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L200='weapons.containers.OH58D_M3P_L200'
+ENUMS.Storage.weapons.containers.GIAT_M621_AP='weapons.containers.{GIAT_M621_AP}'
+ENUMS.Storage.weapons.containers.CH47_STBD_M134D='weapons.containers.{CH47_STBD_M134D}'
+ENUMS.Storage.weapons.containers.PKT_7_62='weapons.containers.PKT_7_62'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L300='weapons.containers.OH58D_M3P_L300'
+ENUMS.Storage.weapons.containers.GIAT_M621_SAPHEI='weapons.containers.{GIAT_M621_SAPHEI}'
+ENUMS.Storage.weapons.containers.M60_SIDE_L='weapons.containers.M60_SIDE_L'
+ENUMS.Storage.weapons.containers.CH47_PORT_M134D='weapons.containers.{CH47_PORT_M134D}'
+ENUMS.Storage.weapons.containers.CH47_PORT_M60D='weapons.containers.{CH47_PORT_M60D}'
+ENUMS.Storage.weapons.containers.ADEN_GUNPOD='weapons.containers.{ADEN_GUNPOD}'
+ENUMS.Storage.weapons.containers.C_101_DEFA553='weapons.containers.{C-101-DEFA553}'
+ENUMS.Storage.weapons.containers.MB339_ANM3_R='weapons.containers.{MB339_ANM3_R}'
+ENUMS.Storage.weapons.containers.CH47_AFT_M60D='weapons.containers.{CH47_AFT_M60D}'
+ENUMS.Storage.weapons.containers.KORD_12_7='weapons.containers.KORD_12_7'
+ENUMS.Storage.weapons.containers.GIAT_M621_HEAP='weapons.containers.{GIAT_M621_HEAP}'
+ENUMS.Storage.weapons.containers.CH47_AFT_M3M='weapons.containers.{CH47_AFT_M3M}'
+ENUMS.Storage.weapons.containers.GUV_YakB_GSHP='weapons.containers.GUV_YakB_GSHP'
+ENUMS.Storage.weapons.containers.R_73U='weapons.containers.R-73U'
+ENUMS.Storage.weapons.containers.GUV_VOG='weapons.containers.GUV_VOG'
+ENUMS.Storage.weapons.containers.KORD_12_7_MI24_L='weapons.containers.KORD_12_7_MI24_L'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L100='weapons.containers.OH58D_M3P_L100'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L400='weapons.containers.OH58D_M3P_L400'
+ENUMS.Storage.weapons.containers.CH47_STBD_M240H='weapons.containers.{CH47_STBD_M240H}'
+ENUMS.Storage.weapons.containers.CH47_PORT_M240H='weapons.containers.{CH47_PORT_M240H}'
+ENUMS.Storage.weapons.containers.CC420_GUN_POD='weapons.containers.{CC420_GUN_POD}'
+ENUMS.Storage.weapons.containers.FN_HMP400_100='weapons.containers.{FN_HMP400_100}'
+ENUMS.Storage.weapons.containers.MB339_ANM3_L='weapons.containers.{MB339_ANM3_L}'
+ENUMS.Storage.weapons.containers.MB339_DEFA553_R='weapons.containers.{MB339_DEFA553_R}'
+ENUMS.Storage.weapons.containers.GAU_12_Equalizer_HE='weapons.containers.{GAU_12_Equalizer_HE}'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L500='weapons.containers.OH58D_M3P_L500'
+ENUMS.Storage.weapons.containers.SUU_23_POD='weapons.containers.{SUU_23_POD}'
+ENUMS.Storage.weapons.containers.PK_3='weapons.containers.{PK-3}'
+ENUMS.Storage.weapons.containers.AKAN='weapons.containers.{AKAN}'
+ENUMS.Storage.weapons.containers.CH47_STBD_M60D='weapons.containers.{CH47_STBD_M60D}'
+ENUMS.Storage.weapons.containers.SA342_M134_SIDE_R='weapons.containers.{SA342_M134_SIDE_R}'
+ENUMS.Storage.weapons.containers.M60_SIDE_R='weapons.containers.M60_SIDE_R'
+ENUMS.Storage.weapons.containers.GAU_12_Equalizer_AP='weapons.containers.{GAU_12_Equalizer_AP}'
+ENUMS.Storage.weapons.containers.GAU_12_Equalizer='weapons.containers.{GAU_12_Equalizer}'
+ENUMS.Storage.weapons.containers.KORD_12_7_MI24_R='weapons.containers.KORD_12_7_MI24_R'
+ENUMS.Storage.weapons.containers.M134_SIDE_R='weapons.containers.M134_SIDE_R'
+ENUMS.Storage.weapons.containers.AKAN_NO_TRC='weapons.containers.{AKAN_NO_TRC}'
+ENUMS.Storage.weapons.containers.oh_58_brauning='weapons.containers.oh-58-brauning'
+ENUMS.Storage.weapons.containers.MXU_648='weapons.containers.MXU-648'
+ENUMS.Storage.weapons.containers.M134_R='weapons.containers.M134_R'
+ENUMS.Storage.weapons.containers.AN_M3='weapons.containers.{AN-M3}'
+ENUMS.Storage.weapons.containers.GIAT_M621_APHE='weapons.containers.{GIAT_M621_APHE}'
+ENUMS.Storage.weapons.containers.AIM_9S='weapons.containers.AIM-9S'
+ENUMS.Storage.weapons.containers.CH47_AFT_M240H='weapons.containers.{CH47_AFT_M240H}'
+ENUMS.Storage.weapons.containers.FN_HMP400='weapons.containers.{FN_HMP400}'
+ENUMS.Storage.weapons.containers.M134_SIDE_L='weapons.containers.M134_SIDE_L'
+ENUMS.Storage.weapons.containers.MB339_DEFA553_L='weapons.containers.{MB339_DEFA553_L}'
+ENUMS.Storage.weapons.containers.MISC_1='weapons.containers.{05544F1A-C39C-466b-BC37-5BD1D52E57BB}'
+ENUMS.Storage.weapons.containers.MISC_2='weapons.containers.{E92CBFE5-C153-11d8-9897-000476191836}'
+ENUMS.Storage.weapons.containers.hvar_SmokeGenerator='weapons.containers.hvar_SmokeGenerator'
+ENUMS.Storage.weapons.containers.INV_SMOKE_RED='weapons.containers.{INV-SMOKE-RED}'
+ENUMS.Storage.weapons.containers.INV_SMOKE_YELLOW='weapons.containers.{INV-SMOKE-YELLOW}'
+ENUMS.Storage.weapons.containers.INV_SMOKE_BLUE='weapons.containers.{INV-SMOKE-BLUE}'
+ENUMS.Storage.weapons.containers.INV_SMOKE_GREEN='weapons.containers.{INV-SMOKE-GREEN}'
+ENUMS.Storage.weapons.containers.INV_SMOKE_WHITE='weapons.containers.{INV-SMOKE-WHITE}'
+ENUMS.Storage.weapons.containers.INV_SMOKE_ORANGE='weapons.containers.{INV-SMOKE-ORANGE}'
+ENUMS.Storage.weapons.containers.GAU_12_Equalizer_AP='weapons.containers.{GAU_12_Equalizer_AP}'
+ENUMS.Storage.weapons.containers.AH_6_Gunners='weapons.containers.{AH-6_Gunners}'
+ENUMS.Storage.weapons.containers.AH_6_FN_HMP400='weapons.containers.{AH-6_FN_HMP400}'
+ENUMS.Storage.weapons.containers.R_73U='weapons.containers.R-73U'
+ENUMS.Storage.weapons.containers.M60_SIDE_R='weapons.containers.M60_SIDE_R'
+ENUMS.Storage.weapons.containers.CH47_AFT_M3M='weapons.containers.{CH47_AFT_M3M}'
+ENUMS.Storage.weapons.containers.GUV_YakB_GSHP='weapons.containers.GUV_YakB_GSHP'
+ENUMS.Storage.weapons.containers.RKL609_L='weapons.containers.{RKL609_L}'
+ENUMS.Storage.weapons.containers.CH47_PORT_M134D='weapons.containers.{CH47_PORT_M134D}'
+ENUMS.Storage.weapons.containers.CH47_PORT_M60D='weapons.containers.{CH47_PORT_M60D}'
+ENUMS.Storage.weapons.containers.RKL609_R='weapons.containers.{RKL609_R}'
+ENUMS.Storage.weapons.containers.C_101_DEFA553='weapons.containers.{C-101-DEFA553}'
+ENUMS.Storage.weapons.containers.AH6_M134L='weapons.containers.{AH6_M134L}'
+ENUMS.Storage.weapons.containers.KORD_12_7='weapons.containers.KORD_12_7'
+ENUMS.Storage.weapons.containers.C130_M18_Sidearm='weapons.containers.{C130-M18-Sidearm}'
+ENUMS.Storage.weapons.containers.GIAT_M621_HEAP='weapons.containers.{GIAT_M621_HEAP}'
+ENUMS.Storage.weapons.containers.BRU_42_LS='weapons.containers.BRU-42_LS'
+ENUMS.Storage.weapons.containers.CH47_STBD_M60D='weapons.containers.{CH47_STBD_M60D}'
+ENUMS.Storage.weapons.containers.SUU_23_POD='weapons.containers.{SUU_23_POD}'
+ENUMS.Storage.weapons.containers.M134_SIDE_R='weapons.containers.M134_SIDE_R'
+ENUMS.Storage.weapons.containers.AKAN_NO_TRC='weapons.containers.{AKAN_NO_TRC}'
+ENUMS.Storage.weapons.containers.oh_58_brauning='weapons.containers.oh-58-brauning'
+ENUMS.Storage.weapons.containers.AH_6_DOORS='weapons.containers.{AH-6_DOORS}'
+ENUMS.Storage.weapons.containers.CC420_GUN_POD='weapons.containers.{CC420_GUN_POD}'
+ENUMS.Storage.weapons.containers.CH47_PORT_M240H='weapons.containers.{CH47_PORT_M240H}'
+ENUMS.Storage.weapons.containers.MB339_DEFA553_R='weapons.containers.{MB339_DEFA553_R}'
+ENUMS.Storage.weapons.containers.AIM_9S='weapons.containers.AIM-9S'
+ENUMS.Storage.weapons.containers.hvar_SmokeGenerator='weapons.containers.hvar_SmokeGenerator'
+ENUMS.Storage.weapons.containers.M134_L='weapons.containers.M134_L'
+ENUMS.Storage.weapons.containers.AKAN='weapons.containers.{AKAN}'
+ENUMS.Storage.weapons.containers.C130_Cargo_Bay_M4='weapons.containers.{C130-Cargo-Bay-M4}'
+ENUMS.Storage.weapons.containers.M134_SIDE_L='weapons.containers.M134_SIDE_L'
+ENUMS.Storage.weapons.containers.FN_HMP400_200='weapons.containers.{FN_HMP400_200}'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L200='weapons.containers.OH58D_M3P_L200'
+ENUMS.Storage.weapons.containers.GIAT_M621_AP='weapons.containers.{GIAT_M621_AP}'
+ENUMS.Storage.weapons.containers.M134_R='weapons.containers.M134_R'
+ENUMS.Storage.weapons.containers.OH58D_M3P_L300='weapons.containers.OH58D_M3P_L300'
+ENUMS.Storage.weapons.containers.AH6_M134R='weapons.containers.{AH6_M134R}'
+ENUMS.Storage.weapons.torpedoes.G7A_T1='weapons.torpedoes.G7A_T1'
 ENUMS.Storage.weapons.gunmounts.UH60LGAU19='weapons.gunmounts.UH-60L GAU-19'
 ENUMS.Storage.weapons.gunmounts.UH60L_M134='weapons.gunmounts.UH60L_M134'
 ENUMS.Storage.weapons.gunmounts.UH60_M134='weapons.gunmounts.UH60_M134'
@@ -1674,6 +1935,15 @@ ENUMS.Storage.weapons.gunmounts.UH60L_M60_GUNNER='weapons.gunmounts.{UH60L_M60_G
 ENUMS.Storage.weapons.gunmounts.UH60L_M2_GUNNER='weapons.gunmounts.{UH60L_M2_GUNNER}'
 ENUMS.Storage.weapons.gunmounts.UH60_M230_LEFT='weapons.gunmounts.{UH60_M230_LEFT}'
 ENUMS.Storage.weapons.gunmounts.UH60_M230_RIGHT='weapons.gunmounts.{UH60_M230_RIGHT}'
+ENUMS.Storage.weapons.containers.UH60_M134_RIGHT='weapons.containers.{UH60_M134_RIGHT}'
+ENUMS.Storage.weapons.containers.UH60_M134_LEFT='weapons.containers.{UH60_M134_LEFT}'
+ENUMS.Storage.weapons.containers.UH60_M230_LEFT='weapons.containers.{UH60_M230_LEFT}'
+ENUMS.Storage.weapons.containers.UH60L_M134_GUNNER='weapons.containers.{UH60L_M134_GUNNER}'
+ENUMS.Storage.weapons.containers.UH60_GAU19_LEFT='weapons.containers.{UH60_GAU19_LEFT}'
+ENUMS.Storage.weapons.containers.UH60L_M60_GUNNER='weapons.containers.{UH60L_M60_GUNNER}'
+ENUMS.Storage.weapons.containers.UH60_GAU19_RIGHT='weapons.containers.{UH60_GAU19_RIGHT}'
+ENUMS.Storage.weapons.containers.UH60_M230_RIGHT='weapons.containers.{UH60_M230_RIGHT}'
+ENUMS.Storage.weapons.containers.UH60L_M2_GUNNER='weapons.containers.{UH60L_M2_GUNNER}'
 ENUMS.FARPType={
 FARP="FARP",
 INVISIBLE="INVISIBLE",
@@ -2651,11 +2921,17 @@ end
 function UTILS.VecSubstract(a,b)
 return{x=a.x-b.x,y=a.y-b.y,z=a.z-b.z}
 end
+function UTILS.VecScale(v,s)
+return{x=v.x*s,y=v.y*s,z=v.z*s}
+end
 function UTILS.VecSubtract(a,b)
 return UTILS.VecSubstract(a,b)
 end
 function UTILS.Vec2Substract(a,b)
 return{x=a.x-b.x,y=a.y-b.y}
+end
+function UTILS.Vec3Substract(a,b)
+return{x=a.x-b.x,y=a.y-b.y,z=a.z-b.z}
 end
 function UTILS.Vec2Subtract(a,b)
 return UTILS.Vec2Substract(a,b)
@@ -2724,6 +3000,9 @@ local Radians=math.rad(angle or 0)
 local TX=distance*math.cos(Radians)+SX
 local TY=distance*math.sin(Radians)+SY
 return{x=TX,y=TY}
+end
+function UTILS.Vec3Length(v)
+return math.sqrt(v.x*v.x+v.y*v.y+v.z*v.z)
 end
 function UTILS.Rotate2D(a,angle)
 local phi=math.rad(angle)
@@ -3548,12 +3827,16 @@ end
 local outcome=UTILS.SaveToFile(Path,Filename,data)
 return outcome
 end
-function UTILS.LoadStationaryListOfGroups(Path,Filename,Reduce,Structured,Cinematic,Effect,Density)
+function UTILS.LoadStationaryListOfGroups(Path,Filename,Reduce,Structured,Cinematic,Effect,Density,Resurrection,ResurrectPercentage,Healmin,Healmax)
+local healmin=Healmin or 25
+local healmax=Healmax or 75
+local resurrection=(Resurrection==true)and true or false
+local resurrectpercentage=ResurrectPercentage or 25
 local fires={}
 local function Smokers(name,coord,effect,density)
 local eff=math.random(8)
 if type(effect)=="number"then eff=effect end
-coord:BigSmokeAndFire(eff,density,name)
+coord:BigSmokeAndFire(eff,Density,300,1,name)
 table.insert(fires,name)
 end
 local function Cruncher(group,typename,anzahl)
@@ -3567,7 +3850,15 @@ local coordinate=_unit:GetCoordinate()
 local name=_unit:GetName()
 Smokers(name,coordinate,Effect,Density)
 end
+local resurectok=math.random(1,100)
+BASE:E(string.format("Load Group | Resurrection | Resurrect %s | Thresh %d | Random %d",tostring(resurrection),resurrectpercentage,resurectok))
+if resurrection==true and(resurectok<resurrectpercentage)then
+local heallife=math.random(healmin,healmax)
+BASE:E("Load Group | Resurrection | Life "..heallife)
+_unit:SetLife(heallife)
+else
 _unit:Destroy(false)
+end
 reduced=reduced+1
 if reduced==anzahl then break end
 end
@@ -4493,7 +4784,7 @@ else
 local OriginVec2={x=FarpVec2.x-(SpacingX/2),y=FarpVec2.y-(SpacingY/2)}
 Grid=UTILS.GenerateGridPoints(OriginVec2,NumberPads,SpacingX,SpacingY)
 end
-table.sort(Grid,function(a,b) if a.y~=b.y then return a.y<b.y else return a.x<b.x end end)				  
+table.sort(Grid,function(a,b) if a.y~=b.y then return a.y<b.y else return a.x<b.x end end)
 local groupData={
 ["visible"]=true,
 ["hidden"]=false,
@@ -4678,6 +4969,14 @@ end
 return{x=vec.x,y=y,z=vec.y}
 else
 return{x=vec.x,y=vec.y,z=vec.z}
+end
+end
+function UTILS.Vec3toVec2(Vec3)
+if Vec3 and type(Vec3)=="table"then
+local Vec2={}
+Vec2.x=Vec3.x or 0
+Vec2.y=Vec3.z or 0
+return Vec2
 end
 end
 function UTILS.GetNorthCorrection(gPoint)
@@ -5236,6 +5535,61 @@ local j=math.random(1,i)
 pts[i],pts[j]=pts[j],pts[i]
 end
 return welzlHelper(pts,#pts,{})
+end
+function UTILS.CalculateInterceptBearing(A1,V1,A2,V2_speed)
+local function berechne_bearing(richtung)
+local bearing=math.deg(math.atan2(richtung.x,richtung.y))
+if bearing<0 then
+bearing=bearing+360
+end
+return bearing
+end
+local function vec_normalize(v)
+local len=UTILS.Vec3Length(v)
+if len==0 then return{x=0,y=0,z=0}end
+return{x=v.x/len,y=v.y/len,z=v.z/len}
+end
+local rel_pos=UTILS.Vec3Substract(A1,A2)
+local distance=UTILS.Vec3Length(rel_pos)
+if distance==0 then
+return nil
+end
+local richtung_zu_f1=vec_normalize(rel_pos)
+local v1_normalisiert=vec_normalize(V1)
+local annaeherung=UTILS.VecDot(v1_normalisiert,richtung_zu_f1)
+if annaeherung<-0.95 then
+return nil
+end
+local rel_velocity=UTILS.VecSubstract(V1,{x=0,y=0,z=0})
+local flucht_komponente=UTILS.VecDot(vec_normalize(rel_velocity),richtung_zu_f1)
+if flucht_komponente>0.95 then
+return nil
+end
+local v1=UTILS.Vec3Length(V1)
+local v2=V2_speed
+local a=UTILS.VecDot(V1,V1)-v2*v2
+local b=2*UTILS.VecDot(rel_pos,V1)
+local c=UTILS.VecDot(rel_pos,rel_pos)
+local discriminant=b*b-4*a*c
+if discriminant<0 then
+return nil
+end
+local t1=(-b+math.sqrt(discriminant))/(2*a)
+local t2=(-b-math.sqrt(discriminant))/(2*a)
+local t=nil
+if t1>0 and t2>0 then
+t=math.min(t1,t2)
+elseif t1>0 then
+t=t1
+elseif t2>0 then
+t=t2
+else
+return nil
+end
+local treffpunkt=UTILS.VecAdd(A1,UTILS.VecScale(V1,t))
+local richtung=UTILS.VecSubstract(treffpunkt,A2)
+local bearing=berechne_bearing(richtung)
+return UTILS.Round(bearing,0)
 end
 PROFILER={
 ClassName="PROFILER",
@@ -7636,19 +7990,18 @@ EVENT={
 ClassName="EVENT",
 ClassID=0,
 MissionEnd=false,
+CreateMarkCoordinateOnEvent=false,
 }
-world.event.S_EVENT_NEW_CARGO=world.event.S_EVENT_MAX+1000
-world.event.S_EVENT_DELETE_CARGO=world.event.S_EVENT_MAX+1001
-world.event.S_EVENT_NEW_ZONE=world.event.S_EVENT_MAX+1002
-world.event.S_EVENT_DELETE_ZONE=world.event.S_EVENT_MAX+1003
-world.event.S_EVENT_NEW_ZONE_GOAL=world.event.S_EVENT_MAX+1004
-world.event.S_EVENT_DELETE_ZONE_GOAL=world.event.S_EVENT_MAX+1005
-world.event.S_EVENT_REMOVE_UNIT=world.event.S_EVENT_MAX+1006
-world.event.S_EVENT_PLAYER_ENTER_AIRCRAFT=world.event.S_EVENT_MAX+1007
-world.event.S_EVENT_NEW_DYNAMIC_CARGO=world.event.S_EVENT_MAX+1008
-world.event.S_EVENT_DYNAMIC_CARGO_LOADED=world.event.S_EVENT_MAX+1009
-world.event.S_EVENT_DYNAMIC_CARGO_UNLOADED=world.event.S_EVENT_MAX+1010
-world.event.S_EVENT_DYNAMIC_CARGO_REMOVED=world.event.S_EVENT_MAX+1011
+world.event.S_EVENT_NEW_ZONE=world.event.S_EVENT_MAX+1000
+world.event.S_EVENT_DELETE_ZONE=world.event.S_EVENT_MAX+1001
+world.event.S_EVENT_NEW_ZONE_GOAL=world.event.S_EVENT_MAX+1002
+world.event.S_EVENT_DELETE_ZONE_GOAL=world.event.S_EVENT_MAX+1003
+world.event.S_EVENT_REMOVE_UNIT=world.event.S_EVENT_MAX+1004
+world.event.S_EVENT_PLAYER_ENTER_AIRCRAFT=world.event.S_EVENT_MAX+1005
+world.event.S_EVENT_NEW_DYNAMIC_CARGO=world.event.S_EVENT_MAX+1006
+world.event.S_EVENT_DYNAMIC_CARGO_LOADED=world.event.S_EVENT_MAX+1007
+world.event.S_EVENT_DYNAMIC_CARGO_UNLOADED=world.event.S_EVENT_MAX+1008
+world.event.S_EVENT_DYNAMIC_CARGO_REMOVED=world.event.S_EVENT_MAX+1009
 EVENTS={
 Shot=world.event.S_EVENT_SHOT,
 Hit=world.event.S_EVENT_HIT,
@@ -7676,8 +8029,6 @@ ShootingEnd=world.event.S_EVENT_SHOOTING_END,
 MarkAdded=world.event.S_EVENT_MARK_ADDED,
 MarkChange=world.event.S_EVENT_MARK_CHANGE,
 MarkRemoved=world.event.S_EVENT_MARK_REMOVED,
-NewCargo=world.event.S_EVENT_NEW_CARGO,
-DeleteCargo=world.event.S_EVENT_DELETE_CARGO,
 NewZone=world.event.S_EVENT_NEW_ZONE,
 DeleteZone=world.event.S_EVENT_DELETE_ZONE,
 NewZoneGoal=world.event.S_EVENT_NEW_ZONE_GOAL,
@@ -7879,16 +8230,6 @@ Order=1,
 Side="I",
 Event="OnEventMarkRemoved",
 Text="S_EVENT_MARK_REMOVED"
-},
-[EVENTS.NewCargo]={
-Order=1,
-Event="OnEventNewCargo",
-Text="S_EVENT_NEW_CARGO"
-},
-[EVENTS.DeleteCargo]={
-Order=1,
-Event="OnEventDeleteCargo",
-Text="S_EVENT_DELETE_CARGO"
 },
 [EVENTS.NewZone]={
 Order=1,
@@ -8247,24 +8588,6 @@ return self
 end
 end
 do
-function EVENT:CreateEventNewCargo(Cargo)
-self:F({Cargo})
-local Event={
-id=EVENTS.NewCargo,
-time=timer.getTime(),
-cargo=Cargo,
-}
-world.onEvent(Event)
-end
-function EVENT:CreateEventDeleteCargo(Cargo)
-self:F({Cargo})
-local Event={
-id=EVENTS.DeleteCargo,
-time=timer.getTime(),
-cargo=Cargo,
-}
-world.onEvent(Event)
-end
 function EVENT:CreateEventNewZone(Zone)
 self:F({Zone})
 local Event={
@@ -8441,7 +8764,7 @@ Event.IniDynamicCargo=DYNAMICCARGO:FindByName(Event.IniUnitName)
 Event.IniDynamicCargoName=Event.IniUnitName
 Event.IniPlayerName=string.match(Event.IniUnitName,"^(.+)|%d%d:%d%d|PKG%d+")
 else
-Event.IniUnit=CARGO:FindByName(Event.IniDCSUnitName)
+Event.IniUnit=STATIC:FindByName(Event.IniDCSUnitName,false)
 end
 Event.IniCoalition=Event.IniDCSUnit:getCoalition()
 Event.IniCategory=Event.IniDCSUnit:getDesc().category
@@ -8450,7 +8773,8 @@ elseif Event.IniObjectCategory==Object.Category.SCENERY then
 Event.IniDCSUnit=Event.initiator
 Event.IniDCSUnitName=(Event.IniDCSUnit and Event.IniDCSUnit.getName)and Event.IniDCSUnit:getName()or"Scenery no name "..math.random(1,20000)
 Event.IniUnitName=Event.IniDCSUnitName
-Event.IniUnit=SCENERY:Register(Event.IniDCSUnitName,Event.initiator)
+local ID=(Event.IniDCSUnit and Event.IniDCSUnit.getID)and Event.IniDCSUnit:getID()or Event.IniDCSUnitName
+Event.IniUnit=(_SCENERY~=nil)and _SCENERY[ID]or nil
 Event.IniCategory=(Event.IniDCSUnit and Event.IniDCSUnit.getDesc)and Event.IniDCSUnit:getDesc().category
 Event.IniTypeName=(Event.initiator and Event.initiator.isExist
 and Event.initiator:isExist()and Event.IniDCSUnit and Event.IniDCSUnit.getTypeName)and Event.IniDCSUnit:getTypeName()or"SCENERY"
@@ -8526,7 +8850,8 @@ Event.TgtDCSUnit=Event.target
 Event.TgtDCSUnitName=Event.TgtDCSUnit.getName and Event.TgtDCSUnit:getName()or nil
 if Event.TgtDCSUnitName~=nil then
 Event.TgtUnitName=Event.TgtDCSUnitName
-Event.TgtUnit=SCENERY:Register(Event.TgtDCSUnitName,Event.target)
+local ID=(Event.TgtDCSUnit and Event.TgtDCSUnit.getID)and Event.TgtDCSUnit:getID()or Event.TgtDCSUnitName
+Event.TgtUnit=(_SCENERY~=nil)and _SCENERY[ID]or nil
 Event.TgtCategory=Event.TgtDCSUnit:getDesc().category
 Event.TgtTypeName=Event.TgtDCSUnit:getTypeName()
 end
@@ -8555,15 +8880,13 @@ end
 if Event.idx then
 Event.MarkID=Event.idx
 Event.MarkVec3=Event.pos
+if self.CreateMarkCoordinateOnEvent==true then
 Event.MarkCoordinate=COORDINATE:NewFromVec3(Event.pos)
+end
 Event.MarkText=Event.text
 Event.MarkCoalition=Event.coalition
 Event.IniCoalition=Event.coalition
 Event.MarkGroupID=Event.groupID
-end
-if Event.cargo then
-Event.Cargo=Event.cargo
-Event.CargoName=Event.cargo.Name
 end
 if Event.dynamiccargo then
 Event.IniDynamicCargo=Event.dynamiccargo
@@ -8662,9 +8985,6 @@ end
 end
 end
 end
-end
-if Event.id==EVENTS.DeleteCargo then
-Event.Cargo.NoDestroy=nil
 end
 else
 self:T({EventMeta.Text,Event})
@@ -9317,8 +9637,11 @@ end
 return nil
 end
 function MENU_INDEX:SetGroupMenu(Group,Path,Menu)
+if not Group then return end
 local MenuGroupName=Group:GetName()
+if MenuGroupName then
 self.Group[MenuGroupName].Menus[Path]=Menu
+end
 end
 function MENU_INDEX:ClearGroupMenu(Group,Path)
 local MenuGroupName=Group:GetName()
@@ -12011,7 +12334,6 @@ PLAYERS={},
 PLAYERSJOINED={},
 PLAYERUNITS={},
 CLIENTS={},
-CARGOS={},
 AIRBASES={},
 COUNTRY_ID={},
 COUNTRY_NAME={},
@@ -12056,8 +12378,8 @@ self:HandleEvent(EVENTS.Crash,self._EventOnDeadOrCrash)
 self:HandleEvent(EVENTS.RemoveUnit,self._EventOnDeadOrCrash)
 self:HandleEvent(EVENTS.UnitLost,self._EventOnDeadOrCrash)
 self:HandleEvent(EVENTS.Hit,self.AccountHits)
-self:HandleEvent(EVENTS.NewCargo)
-self:HandleEvent(EVENTS.DeleteCargo)
+-- self:HandleEvent(EVENTS.NewCargo)
+-- self:HandleEvent(EVENTS.DeleteCargo)
 self:HandleEvent(EVENTS.NewZone)
 self:HandleEvent(EVENTS.DeleteZone)
 self:HandleEvent(EVENTS.PlayerLeaveUnit,self._EventOnPlayerLeaveUnit)
@@ -12322,64 +12644,6 @@ end
 end
 function DATABASE:DeleteOpsZone(ZoneName)
 self.OPSZONES[ZoneName]=nil
-end
-end
-do
-function DATABASE:AddCargo(Cargo)
-if not self.CARGOS[Cargo.Name]then
-self.CARGOS[Cargo.Name]=Cargo
-end
-end
-function DATABASE:DeleteCargo(CargoName)
-self.CARGOS[CargoName]=nil
-end
-function DATABASE:FindCargo(CargoName)
-local CargoFound=self.CARGOS[CargoName]
-return CargoFound
-end
-function DATABASE:IsCargo(TemplateName)
-TemplateName=env.getValueDictByKey(TemplateName)
-local Cargo=TemplateName:match("#(CARGO)")
-return Cargo and Cargo=="CARGO"
-end
-function DATABASE:_RegisterCargos()
-local Groups=UTILS.DeepCopy(self.GROUPS)
-for CargoGroupName,CargoGroup in pairs(Groups)do
-if self:IsCargo(CargoGroupName)then
-local CargoInfo=CargoGroupName:match("#CARGO(.*)")
-local CargoParam=CargoInfo and CargoInfo:match("%((.*)%)")
-local CargoName1=CargoGroupName:match("(.*)#CARGO%(.*%)")
-local CargoName2=CargoGroupName:match(".*#CARGO%(.*%)(.*)")
-local CargoName=CargoName1..(CargoName2 or"")
-local Type=CargoParam and CargoParam:match("T=([%a%d ]+),?")
-local Name=CargoParam and CargoParam:match("N=([%a%d]+),?")or CargoName
-local LoadRadius=CargoParam and tonumber(CargoParam:match("RR=([%a%d]+),?"))
-local NearRadius=CargoParam and tonumber(CargoParam:match("NR=([%a%d]+),?"))
-self:I({"Register CargoGroup:",Type=Type,Name=Name,LoadRadius=LoadRadius,NearRadius=NearRadius})
-CARGO_GROUP:New(CargoGroup,Type,Name,LoadRadius,NearRadius)
-end
-end
-for CargoStaticName,CargoStatic in pairs(self.STATICS)do
-if self:IsCargo(CargoStaticName)then
-local CargoInfo=CargoStaticName:match("#CARGO(.*)")
-local CargoParam=CargoInfo and CargoInfo:match("%((.*)%)")
-local CargoName=CargoStaticName:match("(.*)#CARGO")
-local Type=CargoParam and CargoParam:match("T=([%a%d ]+),?")
-local Category=CargoParam and CargoParam:match("C=([%a%d ]+),?")
-local Name=CargoParam and CargoParam:match("N=([%a%d]+),?")or CargoName
-local LoadRadius=CargoParam and tonumber(CargoParam:match("RR=([%a%d]+),?"))
-local NearRadius=CargoParam and tonumber(CargoParam:match("NR=([%a%d]+),?"))
-if Category=="SLING"then
-self:I({"Register CargoSlingload:",Type=Type,Name=Name,LoadRadius=LoadRadius,NearRadius=NearRadius})
-CARGO_SLINGLOAD:New(CargoStatic,Type,Name,LoadRadius,NearRadius)
-else
-if Category=="CRATE"then
-self:I({"Register CargoCrate:",Type=Type,Name=Name,LoadRadius=LoadRadius,NearRadius=NearRadius})
-CARGO_CRATE:New(CargoStatic,Type,Name,LoadRadius,NearRadius)
-end
-end
-end
-end
 end
 end
 function DATABASE:FindClient(ClientName)
@@ -13043,11 +13307,6 @@ end
 function DATABASE:ForEachClient(IteratorFunction,FinalizeFunction,...)
 self:F2(arg)
 self:ForEach(IteratorFunction,FinalizeFunction,arg,self.CLIENTS)
-return self
-end
-function DATABASE:ForEachCargo(IteratorFunction,FinalizeFunction,...)
-self:F2(arg)
-self:ForEach(IteratorFunction,FinalizeFunction,arg,self.CARGOS)
 return self
 end
 function DATABASE:OnEventNewCargo(EventData)
@@ -16076,207 +16335,6 @@ return MAirbaseInclude
 end
 end
 do
-SET_CARGO={
-ClassName="SET_CARGO",
-Cargos={},
-Filter={
-Coalitions=nil,
-Types=nil,
-Countries=nil,
-ClientPrefixes=nil,
-},
-FilterMeta={
-Coalitions={
-red=coalition.side.RED,
-blue=coalition.side.BLUE,
-neutral=coalition.side.NEUTRAL,
-},
-},
-}
-function SET_CARGO:New()
-local self=BASE:Inherit(self,SET_BASE:New(_DATABASE.CARGOS))
-return self
-end
-function SET_CARGO:AddCargo(Cargo)
-self:Add(Cargo:GetName(),Cargo)
-return self
-end
-function SET_CARGO:AddCargosByName(AddCargoNames)
-local AddCargoNamesArray=(type(AddCargoNames)=="table")and AddCargoNames or{AddCargoNames}
-for AddCargoID,AddCargoName in pairs(AddCargoNamesArray)do
-self:Add(AddCargoName,CARGO:FindByName(AddCargoName))
-end
-return self
-end
-function SET_CARGO:RemoveCargosByName(RemoveCargoNames)
-local RemoveCargoNamesArray=(type(RemoveCargoNames)=="table")and RemoveCargoNames or{RemoveCargoNames}
-for RemoveCargoID,RemoveCargoName in pairs(RemoveCargoNamesArray)do
-self:Remove(RemoveCargoName.CargoName)
-end
-return self
-end
-function SET_CARGO:FindCargo(CargoName)
-local CargoFound=self.Set[CargoName]
-return CargoFound
-end
-function SET_CARGO:FilterTypes(Types)
-if not self.Filter.Types then
-self.Filter.Types={}
-end
-if type(Types)~="table"then
-Types={Types}
-end
-for TypeID,Type in pairs(Types)do
-self.Filter.Types[Type]=Type
-end
-return self
-end
-function SET_CARGO:FilterCountries(Countries)
-if not self.Filter.Countries then
-self.Filter.Countries={}
-end
-if type(Countries)~="table"then
-Countries={Countries}
-end
-for CountryID,Country in pairs(Countries)do
-self.Filter.Countries[Country]=Country
-end
-return self
-end
-function SET_CARGO:FilterPrefixes(Prefixes)
-if not self.Filter.CargoPrefixes then
-self.Filter.CargoPrefixes={}
-end
-if type(Prefixes)~="table"then
-Prefixes={Prefixes}
-end
-for PrefixID,Prefix in pairs(Prefixes)do
-self.Filter.CargoPrefixes[Prefix]=Prefix
-end
-return self
-end
-function SET_CARGO:FilterStart()
-if _DATABASE then
-self:_FilterStart()
-self:HandleEvent(EVENTS.NewCargo)
-self:HandleEvent(EVENTS.DeleteCargo)
-end
-return self
-end
-function SET_CARGO:FilterStop()
-self:UnHandleEvent(EVENTS.NewCargo)
-self:UnHandleEvent(EVENTS.DeleteCargo)
-return self
-end
-function SET_CARGO:AddInDatabase(Event)
-return Event.IniDCSUnitName,self.Database[Event.IniDCSUnitName]
-end
-function SET_CARGO:FindInDatabase(Event)
-return Event.IniDCSUnitName,self.Database[Event.IniDCSUnitName]
-end
-function SET_CARGO:ForEachCargo(IteratorFunction,...)
-self:ForEach(IteratorFunction,arg,self:GetSet())
-return self
-end
-function SET_CARGO:FindNearestCargoFromPointVec2(Coordinate)
-local NearestCargo=self:FindNearestObjectFromPointVec2(Coordinate)
-return NearestCargo
-end
-function SET_CARGO:FirstCargoWithState(State)
-local FirstCargo=nil
-for CargoName,Cargo in pairs(self.Set)do
-if Cargo:Is(State)then
-FirstCargo=Cargo
-break
-end
-end
-return FirstCargo
-end
-function SET_CARGO:FirstCargoWithStateAndNotDeployed(State)
-local FirstCargo=nil
-for CargoName,Cargo in pairs(self.Set)do
-if Cargo:Is(State)and not Cargo:IsDeployed()then
-FirstCargo=Cargo
-break
-end
-end
-return FirstCargo
-end
-function SET_CARGO:FirstCargoUnLoaded()
-local FirstCargo=self:FirstCargoWithState("UnLoaded")
-return FirstCargo
-end
-function SET_CARGO:FirstCargoUnLoadedAndNotDeployed()
-local FirstCargo=self:FirstCargoWithStateAndNotDeployed("UnLoaded")
-return FirstCargo
-end
-function SET_CARGO:FirstCargoLoaded()
-local FirstCargo=self:FirstCargoWithState("Loaded")
-return FirstCargo
-end
-function SET_CARGO:FirstCargoDeployed()
-local FirstCargo=self:FirstCargoWithState("Deployed")
-return FirstCargo
-end
-function SET_CARGO:IsIncludeObject(MCargo)
-local MCargoInclude=true
-if MCargo then
-local MCargoName=MCargo:GetName()
-if self.Filter.Coalitions then
-local MCargoCoalition=false
-for CoalitionID,CoalitionName in pairs(self.Filter.Coalitions)do
-local CargoCoalitionID=MCargo:GetCoalition()
-if self.FilterMeta.Coalitions[CoalitionName]and self.FilterMeta.Coalitions[CoalitionName]==CargoCoalitionID then
-MCargoCoalition=true
-end
-end
-MCargoInclude=MCargoInclude and MCargoCoalition
-end
-if self.Filter.Types then
-local MCargoType=false
-for TypeID,TypeName in pairs(self.Filter.Types)do
-if TypeName==MCargo:GetType()then
-MCargoType=true
-end
-end
-MCargoInclude=MCargoInclude and MCargoType
-end
-if self.Filter.CargoPrefixes then
-local MCargoPrefix=false
-for CargoPrefixId,CargoPrefix in pairs(self.Filter.CargoPrefixes)do
-if string.find(MCargo.Name,CargoPrefix,1)then
-MCargoPrefix=true
-end
-end
-MCargoInclude=MCargoInclude and MCargoPrefix
-end
-end
-if self.Filter.Functions and MCargoInclude then
-local MClientFunc=self:_EvalFilterFunctions(MCargo)
-MCargoInclude=MCargoInclude and MClientFunc
-end
-return MCargoInclude
-end
-function SET_CARGO:OnEventNewCargo(EventData)
-if EventData.Cargo then
-if EventData.Cargo and self:IsIncludeObject(EventData.Cargo)then
-self:Add(EventData.Cargo.Name,EventData.Cargo)
-end
-end
-end
-function SET_CARGO:OnEventDeleteCargo(EventData)
-if EventData.Cargo then
-local Cargo=_DATABASE:FindCargo(EventData.Cargo.Name)
-if Cargo and Cargo.Name then
-if Cargo.NoDestroy then
-else
-self:Remove(Cargo.Name)
-end
-end
-end
-end
-end
-do
 SET_ZONE={
 ClassName="SET_ZONE",
 Zones={},
@@ -19166,6 +19224,11 @@ local DirectionVec3=FromCoordinate:GetDirectionVec3(self)
 local AngleRadians=self:GetAngleRadians(DirectionVec3)
 local Distance=self:Get2DDistance(FromCoordinate)
 return"BR, "..self:GetBRText(AngleRadians,Distance,Settings,nil,MagVar,Precision)
+end
+function COORDINATE:ToStringBearing(FromCoordinate,Settings,MagVar,Precision)
+local DirectionVec3=FromCoordinate:GetDirectionVec3(self)
+local AngleRadians=self:GetAngleRadians(DirectionVec3)
+return self:GetBearingText(AngleRadians,Precision,Settings,MagVar)
 end
 function COORDINATE:ToStringBRA(FromCoordinate,Settings,MagVar)
 local DirectionVec3=FromCoordinate:GetDirectionVec3(self)
@@ -27310,6 +27373,30 @@ return self
 end
 return nil
 end
+function CONTROLLABLE:OptionAllowFormationSideSwap()
+self:F2({self.ControllableName})
+local DCSControllable=self:GetDCSObject()
+if DCSControllable then
+local Controller=self:_GetController()
+if self:IsAir()then
+Controller:setOption(AI.Option.Air.id.ALLOW_FORMATION_SIDE_SWAP,true)
+end
+return self
+end
+return nil
+end
+function CONTROLLABLE:OptionAIRunwayLineUp()
+self:F2({self.ControllableName})
+local DCSControllable=self:GetDCSObject()
+if DCSControllable then
+local Controller=self:_GetController()
+if self:IsAir()then
+Controller:setOption(37,true)
+end
+return self
+end
+return nil
+end
 function CONTROLLABLE:OptionROTEvadeFirePossible()
 self:F2({self.ControllableName})
 local DCSControllable=self:GetDCSObject()
@@ -31115,8 +31202,7 @@ elseif Attributes["Infantry"]or Attributes["EWR"]then
 ThreatLevel=1
 end
 ThreatText=ThreatLevels[ThreatLevel+1]
-end
-if self:IsAir()then
+elseif self:IsAir()then
 local ThreatLevels={
 [1]="Unarmed",
 [2]="Tanker",
@@ -31156,8 +31242,7 @@ elseif Attributes["Tankers"]then
 ThreatLevel=1
 end
 ThreatText=ThreatLevels[ThreatLevel+1]
-end
-if self:IsShip()then
+elseif self:IsShip()then
 local ThreatLevels={
 [1]="Unarmed ship",
 [2]="Light armed ships",
@@ -31670,23 +31755,6 @@ if ClientDCSUnit and ClientDCSUnit:isExist()then
 self:T2(ClientDCSUnit)
 return ClientDCSUnit
 end
-end
-function CLIENT:IsTransport()
-self:F()
-return self.ClientTransport
-end
-function CLIENT:ShowCargo()
-self:F()
-local CargoMsg=""
-for CargoName,Cargo in pairs(CARGOS)do
-if self==Cargo:IsLoadedInClient()then
-CargoMsg=CargoMsg..Cargo.CargoName.." Type:"..Cargo.CargoType.." Weight: "..Cargo.CargoWeight.."\n"
-end
-end
-if CargoMsg==""then
-CargoMsg="empty"
-end
-self:Message(CargoMsg,15,"Co-Pilot: Cargo Status",30)
 end
 function CLIENT:Message(Message,MessageDuration,MessageCategory,MessageInterval,MessageID)
 self:F({Message,MessageDuration,MessageCategory,MessageInterval})
@@ -32213,6 +32281,64 @@ AIRBASE.SouthAtlantic={
 ["Ushuaia_Helo_Port"]="Ushuaia Helo Port",
 }
 AIRBASE.Sinai={
+["Abu_Rudeis"]="Abu Rudeis",
+["Abu_Suwayr"]="Abu Suwayr",
+["Al_Bahr_al_Ahmar"]="Al Bahr al Ahmar",
+["Al_Ismailiyah"]="Al Ismailiyah",
+["Al_Khatatbah"]="Al Khatatbah",
+["Al_Mansurah"]="Al Mansurah",
+["Al_Rahmaniyah_Air_Base"]="Al Rahmaniyah Air Base",
+["As_Salihiyah"]="As Salihiyah",
+["AzZaqaziq"]="AzZaqaziq",
+["Baluza"]="Baluza",
+["Ben_Gurion"]="Ben-Gurion",
+["Beni_Suef"]="Beni Suef",
+["Bilbeis_Air_Base"]="Bilbeis Air Base",
+["Bir_Hasanah"]="Bir Hasanah",
+["Birma_Air_Base"]="Birma Air Base",
+["Borg_El_Arab_International_Airport"]="Borg El Arab International Airport",
+["Cairo_International_Airport"]="Cairo International Airport",
+["Cairo_West"]="Cairo West",
+["Damascus_Intl"]="Damascus Intl",
+["Difarsuwar_Airfield"]="Difarsuwar Airfield",
+["Ein_Shamer"]="Ein Shamer",
+["El_Arish"]="El Arish",
+["El_Gora"]="El Gora",
+["El_Minya"]="El Minya",
+["Fayed"]="Fayed",
+["Gebel_El_Basur_Air_Base"]="Gebel El Basur Air Base",
+["Hatzerim"]="Hatzerim",
+["Hatzor"]="Hatzor",
+["Hurghada_International_Airport"]="Hurghada International Airport",
+["Inshas_Airbase"]="Inshas Airbase",
+["Jiyanklis_Air_Base"]="Jiyanklis Air Base",
+["Kedem"]="Kedem",
+["Khalkhalah_Air_Base"]="Khalkhalah Air Base",
+["Kibrit_Air_Base"]="Kibrit Air Base",
+["King_Feisal_Air_Base"]="King Feisal Air Base",
+["Kom_Awshim"]="Kom Awshim",
+["Megiddo"]="Megiddo",
+["Melez"]="Melez",
+["Mezzeh_Air_Base"]="Mezzeh Air Base",
+["Nevatim"]="Nevatim",
+["Ovda"]="Ovda",
+["Palmachim"]="Palmachim",
+["Quwaysina"]="Quwaysina",
+["Rafic_Hariri_Intl"]="Rafic Hariri Intl",
+["Ramat_David"]="Ramat David",
+["Ramon_Airbase"]="Ramon Airbase",
+["Ramon_International_Airport"]="Ramon International Airport",
+["Sde_Dov"]="Sde Dov",
+["Sharm_El_Sheikh_International_Airport"]="Sharm El Sheikh International Airport",
+["St_Catherine"]="St Catherine",
+["Taba_International_Airport"]="Taba International Airport",
+["Tabuk"]="Tabuk",
+["TabukHeliBase"]="TabukHeliBase",
+["Tel_Nof"]="Tel Nof",
+["Wadi_Abu_Rish"]="Wadi Abu Rish",
+["Wadi_al_Jandali"]="Wadi al Jandali",
+}
+AIRBASE.SinaiMap={
 ["Abu_Rudeis"]="Abu Rudeis",
 ["Abu_Suwayr"]="Abu Suwayr",
 ["Al_Bahr_al_Ahmar"]="Al Bahr al Ahmar",
@@ -32868,7 +32994,7 @@ self:T2({parkingdata=parkingdata})
 return parkingdata
 end
 function AIRBASE:GetParkingSpotsNumber(termtype)
-local parkingdata=self:GetParkingData(false)
+local parkingdata=self:GetParkingData(false)or{}
 local nspots=0
 for _,parkingspot in pairs(parkingdata)do
 if AIRBASE._CheckTerminalType(parkingspot.Term_Type,termtype)then
@@ -32878,7 +33004,7 @@ end
 return nspots
 end
 function AIRBASE:GetFreeParkingSpotsNumber(termtype,allowTOAC)
-local parkingdata=self:GetParkingData(true)
+local parkingdata=self:GetParkingData(true)or{}
 local nfree=0
 for _,parkingspot in pairs(parkingdata)do
 if AIRBASE._CheckTerminalType(parkingspot.Term_Type,termtype)then
@@ -32890,7 +33016,7 @@ end
 return nfree
 end
 function AIRBASE:GetFreeParkingSpotsCoordinates(termtype,allowTOAC)
-local parkingdata=self:GetParkingData(true)
+local parkingdata=self:GetParkingData(true)or{}
 local spots={}
 for _,parkingspot in pairs(parkingdata)do
 if AIRBASE._CheckTerminalType(parkingspot.Term_Type,termtype)then
@@ -32940,7 +33066,7 @@ return self.AirbaseZone
 end
 end
 function AIRBASE:_InitParkingSpots()
-local parkingdata=self:GetParkingData(false)
+local parkingdata=self:GetParkingData(false)or{}
 self.parking={}
 self.parkingByID={}
 self.NparkingTotal=0
@@ -32989,8 +33115,8 @@ function AIRBASE:_GetParkingSpotByID(TerminalID)
 return self.parkingByID[TerminalID]
 end
 function AIRBASE:GetParkingSpotsTable(termtype)
-local parkingdata=self:GetParkingData(false)
-local parkingfree=self:GetParkingData(true)
+local parkingdata=self:GetParkingData(false)or{}
+local parkingfree=self:GetParkingData(true)or{}
 local function _isfree(_tocheck)
 for _,_spot in pairs(parkingfree)do
 if _spot.Term_Index==_tocheck.Term_Index then
@@ -33016,7 +33142,7 @@ end
 return spots
 end
 function AIRBASE:GetFreeParkingSpotsTable(termtype,allowTOAC)
-local parkingfree=self:GetParkingData(true)
+local parkingfree=self:GetParkingData(true)or{}
 local freespots={}
 for _,_spot in pairs(parkingfree)do
 if AIRBASE._CheckTerminalType(_spot.Term_Type,termtype)then
@@ -33032,7 +33158,7 @@ end
 return freespots
 end
 function AIRBASE:GetParkingSpotData(TerminalID)
-local parkingdata=self:GetParkingSpotsTable()
+local parkingdata=self:GetParkingSpotsTable()or{}
 for _,_spot in pairs(parkingdata)do
 local spot=_spot
 self:T({TerminalID=spot.TerminalID,TerminalType=spot.TerminalType})
@@ -33047,7 +33173,7 @@ function AIRBASE:MarkParkingSpots(termtype,mark)
 if mark==nil then
 mark=true
 end
-local parkingdata=self:GetParkingSpotsTable(termtype)
+local parkingdata=self:GetParkingSpotsTable(termtype)or{}
 local airbasename=self:GetName()
 self:E(string.format("Parking spots at %s for terminal type %s:",airbasename,tostring(termtype)))
 for _,_spot in pairs(parkingdata)do
@@ -33111,7 +33237,7 @@ if _test then
 return validspots
 end
 local markobstacles=false
-for _,parkingspot in pairs(parkingdata)do
+for _,parkingspot in pairs(parkingdata or{})do
 local _spot=parkingspot.Coordinate
 local _termid=parkingspot.TerminalID
 if AIRBASE._CheckTerminalType(parkingspot.TerminalType,terminaltype)and self:_CheckParkingLists(_termid)then
@@ -35580,1330 +35706,6 @@ local typename=client:GetTypeName()
 local isinclude=DYNAMICCARGO.AircraftTypes[typename]~=nil and true or false
 return isinclude
 end
-CARGOS={}
-do
-CARGO={
-ClassName="CARGO",
-Type=nil,
-Name=nil,
-Weight=nil,
-CargoObject=nil,
-CargoCarrier=nil,
-Representable=false,
-Slingloadable=false,
-Moveable=false,
-Containable=false,
-Reported={},
-}
-function CARGO:New(Type,Name,Weight,LoadRadius,NearRadius)
-local self=BASE:Inherit(self,FSM:New())
-self:T({Type,Name,Weight,LoadRadius,NearRadius})
-self:SetStartState("UnLoaded")
-self:AddTransition({"UnLoaded","Boarding"},"Board","Boarding")
-self:AddTransition("Boarding","Boarding","Boarding")
-self:AddTransition("Boarding","CancelBoarding","UnLoaded")
-self:AddTransition("Boarding","Load","Loaded")
-self:AddTransition("UnLoaded","Load","Loaded")
-self:AddTransition("Loaded","UnBoard","UnBoarding")
-self:AddTransition("UnBoarding","UnBoarding","UnBoarding")
-self:AddTransition("UnBoarding","UnLoad","UnLoaded")
-self:AddTransition("Loaded","UnLoad","UnLoaded")
-self:AddTransition("*","Damaged","Damaged")
-self:AddTransition("*","Destroyed","Destroyed")
-self:AddTransition("*","Respawn","UnLoaded")
-self:AddTransition("*","Reset","UnLoaded")
-self.Type=Type
-self.Name=Name
-self.Weight=Weight or 0
-self.CargoObject=nil
-self.CargoCarrier=nil
-self.Representable=false
-self.Slingloadable=false
-self.Moveable=false
-self.Containable=false
-self.CargoLimit=0
-self.LoadRadius=LoadRadius or 500
-self:SetDeployed(false)
-self.CargoScheduler=SCHEDULER:New()
-CARGOS[self.Name]=self
-return self
-end
-function CARGO:FindByName(CargoName)
-local CargoFound=_DATABASE:FindCargo(CargoName)
-return CargoFound
-end
-function CARGO:GetX()
-if self:IsLoaded()then
-return self.CargoCarrier:GetCoordinate().x
-else
-return self.CargoObject:GetCoordinate().x
-end
-end
-function CARGO:GetY()
-if self:IsLoaded()then
-return self.CargoCarrier:GetCoordinate().z
-else
-return self.CargoObject:GetCoordinate().z
-end
-end
-function CARGO:GetHeading()
-if self:IsLoaded()then
-return self.CargoCarrier:GetHeading()
-else
-return self.CargoObject:GetHeading()
-end
-end
-function CARGO:CanSlingload()
-return false
-end
-function CARGO:CanBoard()
-return true
-end
-function CARGO:CanUnboard()
-return true
-end
-function CARGO:CanLoad()
-return true
-end
-function CARGO:CanUnload()
-return true
-end
-function CARGO:Destroy()
-if self.CargoObject then
-self.CargoObject:Destroy()
-end
-self:Destroyed()
-end
-function CARGO:GetName()
-return self.Name
-end
-function CARGO:GetObject()
-if self:IsLoaded()then
-return self.CargoCarrier
-else
-return self.CargoObject
-end
-end
-function CARGO:GetObjectName()
-if self:IsLoaded()then
-return self.CargoCarrier:GetName()
-else
-return self.CargoObject:GetName()
-end
-end
-function CARGO:GetCount()
-return 1
-end
-function CARGO:GetType()
-return self.Type
-end
-function CARGO:GetTransportationMethod()
-return self.TransportationMethod
-end
-function CARGO:GetCoalition()
-if self:IsLoaded()then
-return self.CargoCarrier:GetCoalition()
-else
-return self.CargoObject:GetCoalition()
-end
-end
-function CARGO:GetCoordinate()
-return self.CargoObject:GetCoordinate()
-end
-function CARGO:IsDestroyed()
-return self:Is("Destroyed")
-end
-function CARGO:IsLoaded()
-return self:Is("Loaded")
-end
-function CARGO:IsLoadedInCarrier(Carrier)
-return self.CargoCarrier and self.CargoCarrier:GetName()==Carrier:GetName()
-end
-function CARGO:IsUnLoaded()
-return self:Is("UnLoaded")
-end
-function CARGO:IsBoarding()
-return self:Is("Boarding")
-end
-function CARGO:IsUnboarding()
-return self:Is("UnBoarding")
-end
-function CARGO:IsAlive()
-if self:IsLoaded()then
-return self.CargoCarrier:IsAlive()
-else
-return self.CargoObject:IsAlive()
-end
-end
-function CARGO:SetDeployed(Deployed)
-self.Deployed=Deployed
-end
-function CARGO:IsDeployed()
-return self.Deployed
-end
-function CARGO:Spawn(PointVec2)
-self:T()
-end
-function CARGO:Flare(FlareColor)
-if self:IsUnLoaded()then
-trigger.action.signalFlare(self.CargoObject:GetVec3(),FlareColor,0)
-end
-end
-function CARGO:FlareWhite()
-self:Flare(trigger.flareColor.White)
-end
-function CARGO:FlareYellow()
-self:Flare(trigger.flareColor.Yellow)
-end
-function CARGO:FlareGreen()
-self:Flare(trigger.flareColor.Green)
-end
-function CARGO:FlareRed()
-self:Flare(trigger.flareColor.Red)
-end
-function CARGO:Smoke(SmokeColor,Radius)
-if self:IsUnLoaded()then
-if Radius then
-trigger.action.smoke(self.CargoObject:GetRandomVec3(Radius),SmokeColor)
-else
-trigger.action.smoke(self.CargoObject:GetVec3(),SmokeColor)
-end
-end
-end
-function CARGO:SmokeGreen()
-self:Smoke(trigger.smokeColor.Green,Range)
-end
-function CARGO:SmokeRed()
-self:Smoke(trigger.smokeColor.Red,Range)
-end
-function CARGO:SmokeWhite()
-self:Smoke(trigger.smokeColor.White,Range)
-end
-function CARGO:SmokeOrange()
-self:Smoke(trigger.smokeColor.Orange,Range)
-end
-function CARGO:SmokeBlue()
-self:Smoke(trigger.smokeColor.Blue,Range)
-end
-function CARGO:SetLoadRadius(LoadRadius)
-self.LoadRadius=LoadRadius or 150
-end
-function CARGO:GetLoadRadius()
-return self.LoadRadius
-end
-function CARGO:IsInLoadRadius(Coordinate)
-self:T({Coordinate,LoadRadius=self.LoadRadius})
-local Distance=0
-if self:IsUnLoaded()then
-local CargoCoordinate=self.CargoObject:GetCoordinate()
-Distance=Coordinate:Get2DDistance(CargoCoordinate)
-self:T(Distance)
-if Distance<=self.LoadRadius then
-return true
-end
-end
-return false
-end
-function CARGO:IsInReportRadius(Coordinate)
-self:T({Coordinate})
-local Distance=0
-if self:IsUnLoaded()then
-Distance=Coordinate:Get2DDistance(self.CargoObject:GetCoordinate())
-self:T(Distance)
-if Distance<=self.LoadRadius then
-return true
-end
-end
-return false
-end
-function CARGO:IsNear(Coordinate,NearRadius)
-if self.CargoObject:IsAlive()then
-local Distance=Coordinate:Get2DDistance(self.CargoObject:GetCoordinate())
-if Distance<=NearRadius then
-return true
-end
-end
-return false
-end
-function CARGO:IsInZone(Zone)
-if self:IsLoaded()then
-return Zone:IsPointVec2InZone(self.CargoCarrier:GetPointVec2())
-else
-if self.CargoObject:GetSize()~=0 then
-return Zone:IsPointVec2InZone(self.CargoObject:GetPointVec2())
-else
-return false
-end
-end
-return nil
-end
-function CARGO:GetPointVec2()
-return self.CargoObject:GetPointVec2()
-end
-function CARGO:GetCoordinate()
-return self.CargoObject:GetCoordinate()
-end
-function CARGO:GetWeight()
-return self.Weight
-end
-function CARGO:SetWeight(Weight)
-self.Weight=Weight
-return self
-end
-function CARGO:GetVolume()
-return self.Volume
-end
-function CARGO:SetVolume(Volume)
-self.Volume=Volume
-return self
-end
-function CARGO:MessageToGroup(Message,CarrierGroup,Name)
-MESSAGE:New(Message,20,"Cargo "..self:GetName()):ToGroup(CarrierGroup)
-end
-function CARGO:Report(ReportText,Action,CarrierGroup)
-if not self.Reported[CarrierGroup]or not self.Reported[CarrierGroup][Action]then
-self.Reported[CarrierGroup]={}
-self.Reported[CarrierGroup][Action]=true
-self:MessageToGroup(ReportText,CarrierGroup)
-if self.ReportFlareColor then
-if not self.Reported[CarrierGroup]["Flaring"]then
-self:Flare(self.ReportFlareColor)
-self.Reported[CarrierGroup]["Flaring"]=true
-end
-end
-if self.ReportSmokeColor then
-if not self.Reported[CarrierGroup]["Smoking"]then
-self:Smoke(self.ReportSmokeColor)
-self.Reported[CarrierGroup]["Smoking"]=true
-end
-end
-end
-end
-function CARGO:ReportFlare(FlareColor)
-self.ReportFlareColor=FlareColor
-end
-function CARGO:ReportSmoke(SmokeColor)
-self.ReportSmokeColor=SmokeColor
-end
-function CARGO:ReportReset(Action,CarrierGroup)
-self.Reported[CarrierGroup][Action]=nil
-end
-function CARGO:ReportResetAll(CarrierGroup)
-self.Reported[CarrierGroup]=nil
-end
-function CARGO:RespawnOnDestroyed(RespawnDestroyed)
-if RespawnDestroyed then
-self.onenterDestroyed=function(self)
-self:Respawn()
-end
-else
-self.onenterDestroyed=nil
-end
-end
-end
-do
-CARGO_REPRESENTABLE={
-ClassName="CARGO_REPRESENTABLE"
-}
-function CARGO_REPRESENTABLE:New(CargoObject,Type,Name,LoadRadius,NearRadius)
-local self=BASE:Inherit(self,CARGO:New(Type,Name,0,LoadRadius,NearRadius))
-self:T({Type,Name,LoadRadius,NearRadius})
-local Desc=CargoObject:GetDesc()
-self:T({Desc=Desc})
-local Weight=math.random(80,120)
-if Desc then
-if Desc.typeName=="2B11 mortar"then
-Weight=210
-else
-Weight=Desc.massEmpty
-end
-end
-self:SetWeight(Weight)
-return self
-end
-function CARGO_REPRESENTABLE:Destroy()
-self:T({CargoName=self:GetName()})
-return self
-end
-function CARGO_REPRESENTABLE:RouteTo(ToPointVec2,Speed)
-self:F2(ToPointVec2)
-local Points={}
-local PointStartVec2=self.CargoObject:GetPointVec2()
-Points[#Points+1]=PointStartVec2:WaypointGround(Speed)
-Points[#Points+1]=ToPointVec2:WaypointGround(Speed)
-local TaskRoute=self.CargoObject:TaskRoute(Points)
-self.CargoObject:SetTask(TaskRoute,2)
-return self
-end
-function CARGO_REPRESENTABLE:MessageToGroup(Message,TaskGroup,Name)
-local CoordinateZone=ZONE_RADIUS:New("Zone",self:GetCoordinate():GetVec2(),500)
-CoordinateZone:Scan({Object.Category.UNIT})
-for _,DCSUnit in pairs(CoordinateZone:GetScannedUnits())do
-local NearUnit=UNIT:Find(DCSUnit)
-self:T({NearUnit=NearUnit})
-local NearUnitCoalition=NearUnit:GetCoalition()
-local CargoCoalition=self:GetCoalition()
-if NearUnitCoalition==CargoCoalition then
-local Attributes=NearUnit:GetDesc()
-self:T({Desc=Attributes})
-if NearUnit:HasAttribute("Trucks")then
-MESSAGE:New(Message,20,NearUnit:GetCallsign().." reporting - Cargo "..self:GetName()):ToGroup(TaskGroup)
-break
-end
-end
-end
-end
-end
-do
-CARGO_REPORTABLE={
-ClassName="CARGO_REPORTABLE"
-}
-function CARGO_REPORTABLE:New(Type,Name,Weight,LoadRadius,NearRadius)
-local self=BASE:Inherit(self,CARGO:New(Type,Name,Weight,LoadRadius,NearRadius))
-self:T({Type,Name,Weight,LoadRadius,NearRadius})
-return self
-end
-function CARGO_REPORTABLE:MessageToGroup(Message,TaskGroup,Name)
-MESSAGE:New(Message,20,"Cargo "..self:GetName().." reporting"):ToGroup(TaskGroup)
-end
-end
-do
-CARGO_PACKAGE={
-ClassName="CARGO_PACKAGE"
-}
-function CARGO_PACKAGE:New(CargoCarrier,Type,Name,Weight,LoadRadius,NearRadius)
-local self=BASE:Inherit(self,CARGO_REPRESENTABLE:New(CargoCarrier,Type,Name,Weight,LoadRadius,NearRadius))
-self:T({Type,Name,Weight,LoadRadius,NearRadius})
-self:T(CargoCarrier)
-self.CargoCarrier=CargoCarrier
-return self
-end
-function CARGO_PACKAGE:onafterOnBoard(From,Event,To,CargoCarrier,Speed,BoardDistance,LoadDistance,Angle)
-self:T()
-self.CargoInAir=self.CargoCarrier:InAir()
-self:T(self.CargoInAir)
-if not self.CargoInAir then
-local Points={}
-local StartPointVec2=self.CargoCarrier:GetPointVec2()
-local CargoCarrierHeading=CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-self:T({CargoCarrierHeading,CargoDeployHeading})
-local CargoDeployPointVec2=CargoCarrier:GetPointVec2():Translate(BoardDistance,CargoDeployHeading)
-Points[#Points+1]=StartPointVec2:WaypointGround(Speed)
-Points[#Points+1]=CargoDeployPointVec2:WaypointGround(Speed)
-local TaskRoute=self.CargoCarrier:TaskRoute(Points)
-self.CargoCarrier:SetTask(TaskRoute,1)
-end
-self:Boarded(CargoCarrier,Speed,BoardDistance,LoadDistance,Angle)
-end
-function CARGO_PACKAGE:IsNear(CargoCarrier)
-self:T()
-local CargoCarrierPoint=CargoCarrier:GetCoordinate()
-local Distance=CargoCarrierPoint:Get2DDistance(self.CargoCarrier:GetCoordinate())
-self:T(Distance)
-if Distance<=self.NearRadius then
-return true
-else
-return false
-end
-end
-function CARGO_PACKAGE:onafterOnBoarded(From,Event,To,CargoCarrier,Speed,BoardDistance,LoadDistance,Angle)
-self:T()
-if self:IsNear(CargoCarrier)then
-self:__Load(1,CargoCarrier,Speed,LoadDistance,Angle)
-else
-self:__Boarded(1,CargoCarrier,Speed,BoardDistance,LoadDistance,Angle)
-end
-end
-function CARGO_PACKAGE:onafterUnBoard(From,Event,To,CargoCarrier,Speed,UnLoadDistance,UnBoardDistance,Radius,Angle)
-self:T()
-self.CargoInAir=self.CargoCarrier:InAir()
-self:T(self.CargoInAir)
-if not self.CargoInAir then
-self:_Next(self.FsmP.UnLoad,UnLoadDistance,Angle)
-local Points={}
-local StartPointVec2=CargoCarrier:GetPointVec2()
-local CargoCarrierHeading=self.CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-self:T({CargoCarrierHeading,CargoDeployHeading})
-local CargoDeployPointVec2=StartPointVec2:Translate(UnBoardDistance,CargoDeployHeading)
-Points[#Points+1]=StartPointVec2:WaypointGround(Speed)
-Points[#Points+1]=CargoDeployPointVec2:WaypointGround(Speed)
-local TaskRoute=CargoCarrier:TaskRoute(Points)
-CargoCarrier:SetTask(TaskRoute,1)
-end
-self:__UnBoarded(1,CargoCarrier,Speed)
-end
-function CARGO_PACKAGE:onafterUnBoarded(From,Event,To,CargoCarrier,Speed)
-self:T()
-if self:IsNear(CargoCarrier)then
-self:__UnLoad(1,CargoCarrier,Speed)
-else
-self:__UnBoarded(1,CargoCarrier,Speed)
-end
-end
-function CARGO_PACKAGE:onafterLoad(From,Event,To,CargoCarrier,Speed,LoadDistance,Angle)
-self:T()
-self.CargoCarrier=CargoCarrier
-local StartPointVec2=self.CargoCarrier:GetPointVec2()
-local CargoCarrierHeading=self.CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-local CargoDeployPointVec2=StartPointVec2:Translate(LoadDistance,CargoDeployHeading)
-local Points={}
-Points[#Points+1]=StartPointVec2:WaypointGround(Speed)
-Points[#Points+1]=CargoDeployPointVec2:WaypointGround(Speed)
-local TaskRoute=self.CargoCarrier:TaskRoute(Points)
-self.CargoCarrier:SetTask(TaskRoute,1)
-end
-function CARGO_PACKAGE:onafterUnLoad(From,Event,To,CargoCarrier,Speed,Distance,Angle)
-self:T()
-local StartPointVec2=self.CargoCarrier:GetPointVec2()
-local CargoCarrierHeading=self.CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-local CargoDeployPointVec2=StartPointVec2:Translate(Distance,CargoDeployHeading)
-self.CargoCarrier=CargoCarrier
-local Points={}
-Points[#Points+1]=StartPointVec2:WaypointGround(Speed)
-Points[#Points+1]=CargoDeployPointVec2:WaypointGround(Speed)
-local TaskRoute=self.CargoCarrier:TaskRoute(Points)
-self.CargoCarrier:SetTask(TaskRoute,1)
-end
-end
-do
-CARGO_UNIT={
-ClassName="CARGO_UNIT"
-}
-function CARGO_UNIT:New(CargoUnit,Type,Name,LoadRadius,NearRadius)
-local self=BASE:Inherit(self,CARGO_REPRESENTABLE:New(CargoUnit,Type,Name,LoadRadius,NearRadius))
-self:T({Type=Type,Name=Name,LoadRadius=LoadRadius,NearRadius=NearRadius})
-self.CargoObject=CargoUnit
-self:SetEventPriority(5)
-return self
-end
-function CARGO_UNIT:onenterUnBoarding(From,Event,To,ToPointVec2,NearRadius)
-self:T({From,Event,To,ToPointVec2,NearRadius})
-local Angle=180
-local Speed=60
-local DeployDistance=9
-local RouteDistance=60
-if From=="Loaded"then
-if not self:IsDestroyed()then
-local CargoCarrier=self.CargoCarrier
-if CargoCarrier:IsAlive()then
-local CargoCarrierPointVec2=CargoCarrier:GetPointVec2()
-local CargoCarrierHeading=self.CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-local CargoRoutePointVec2=CargoCarrierPointVec2:Translate(RouteDistance,CargoDeployHeading)
-local FromDirectionVec3=CargoCarrierPointVec2:GetDirectionVec3(ToPointVec2 or CargoRoutePointVec2)
-local FromAngle=CargoCarrierPointVec2:GetAngleDegrees(FromDirectionVec3)
-local FromPointVec2=CargoCarrierPointVec2:Translate(DeployDistance,FromAngle)
-ToPointVec2=ToPointVec2 or CargoCarrierPointVec2:GetRandomCoordinateInRadius(NearRadius,DeployDistance)
-if self.CargoObject then
-if CargoCarrier:IsShip()then
-self.CargoObject:ReSpawnAt(ToPointVec2,CargoDeployHeading)
-else
-self.CargoObject:ReSpawnAt(FromPointVec2,CargoDeployHeading)
-end
-self:T({"CargoUnits:",self.CargoObject:GetGroup():GetName()})
-self.CargoCarrier=nil
-local Points={}
-Points[#Points+1]=FromPointVec2:WaypointGround(Speed,"Vee")
-Points[#Points+1]=ToPointVec2:WaypointGround(Speed,"Vee")
-local TaskRoute=self.CargoObject:TaskRoute(Points)
-self.CargoObject:SetTask(TaskRoute,1)
-self:__UnBoarding(1,ToPointVec2,NearRadius)
-end
-else
-self:Destroyed()
-end
-end
-end
-end
-function CARGO_UNIT:onleaveUnBoarding(From,Event,To,ToPointVec2,NearRadius)
-self:T({From,Event,To,ToPointVec2,NearRadius})
-local Angle=180
-local Speed=10
-local Distance=5
-if From=="UnBoarding"then
-return true
-end
-end
-function CARGO_UNIT:onafterUnBoarding(From,Event,To,ToPointVec2,NearRadius)
-self:T({From,Event,To,ToPointVec2,NearRadius})
-self.CargoInAir=self.CargoObject:InAir()
-self:T(self.CargoInAir)
-if not self.CargoInAir then
-end
-self:__UnLoad(1,ToPointVec2,NearRadius)
-end
-function CARGO_UNIT:onenterUnLoaded(From,Event,To,ToPointVec2)
-self:T({ToPointVec2,From,Event,To})
-local Angle=180
-local Speed=10
-local Distance=5
-if From=="Loaded"then
-local StartPointVec2=self.CargoCarrier:GetPointVec2()
-local CargoCarrierHeading=self.CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-local CargoDeployCoord=StartPointVec2:Translate(Distance,CargoDeployHeading)
-ToPointVec2=ToPointVec2 or COORDINATE:New(CargoDeployCoord.x,CargoDeployCoord.z)
-if self.CargoObject then
-self.CargoObject:ReSpawnAt(ToPointVec2,0)
-self.CargoCarrier=nil
-end
-end
-if self.OnUnLoadedCallBack then
-self.OnUnLoadedCallBack(self,unpack(self.OnUnLoadedParameters))
-self.OnUnLoadedCallBack=nil
-end
-end
-function CARGO_UNIT:onafterBoard(From,Event,To,CargoCarrier,NearRadius,...)
-self:T({From,Event,To,CargoCarrier,NearRadius=NearRadius})
-self.CargoInAir=self.CargoObject:InAir()
-local Desc=self.CargoObject:GetDesc()
-local MaxSpeed=Desc.speedMaxOffRoad
-local TypeName=Desc.typeName
-if not self.CargoInAir then
-local NearRadius=NearRadius or CargoCarrier:GetBoundingRadius()+5
-if self:IsNear(CargoCarrier:GetPointVec2(),NearRadius)then
-self:Load(CargoCarrier,NearRadius,...)
-else
-if MaxSpeed and MaxSpeed==0 or TypeName and TypeName=="Stinger comm"then
-self:Load(CargoCarrier,NearRadius,...)
-else
-local Speed=90
-local Angle=180
-local Distance=0
-local CargoCarrierPointVec2=CargoCarrier:GetPointVec2()
-local CargoCarrierHeading=CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-local CargoDeployPointVec2=CargoCarrierPointVec2:Translate(Distance,CargoDeployHeading)
-self.CargoObject:OptionAlarmStateGreen()
-local Points={}
-local PointStartVec2=self.CargoObject:GetPointVec2()
-Points[#Points+1]=PointStartVec2:WaypointGround(Speed)
-Points[#Points+1]=CargoDeployPointVec2:WaypointGround(Speed)
-local TaskRoute=self.CargoObject:TaskRoute(Points)
-self.CargoObject:SetTask(TaskRoute,2)
-self:__Boarding(-5,CargoCarrier,NearRadius,...)
-self.RunCount=0
-end
-end
-end
-end
-function CARGO_UNIT:onafterBoarding(From,Event,To,CargoCarrier,NearRadius,...)
-self:T({From,Event,To,CargoCarrier:GetName(),NearRadius=NearRadius})
-self:T({IsAlive=self.CargoObject:IsAlive()})
-if CargoCarrier and CargoCarrier:IsAlive()then
-if(CargoCarrier:IsAir()and not CargoCarrier:InAir())or true then
-local NearRadius=NearRadius or CargoCarrier:GetBoundingRadius(NearRadius)+5
-if self:IsNear(CargoCarrier:GetPointVec2(),NearRadius)then
-self:__Load(-1,CargoCarrier,...)
-else
-if self:IsNear(CargoCarrier:GetPointVec2(),20)then
-self:__Boarding(-1,CargoCarrier,NearRadius,...)
-self.RunCount=self.RunCount+1
-else
-self:__Boarding(-2,CargoCarrier,NearRadius,...)
-self.RunCount=self.RunCount+2
-end
-if self.RunCount>=40 then
-self.RunCount=0
-local Speed=90
-local Angle=180
-local Distance=0
-local CargoCarrierPointVec2=CargoCarrier:GetPointVec2()
-local CargoCarrierHeading=CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-local CargoDeployPointVec2=CargoCarrierPointVec2:Translate(Distance,CargoDeployHeading)
-self.CargoObject:OptionAlarmStateGreen()
-local Points={}
-local PointStartVec2=self.CargoObject:GetPointVec2()
-Points[#Points+1]=PointStartVec2:WaypointGround(Speed,"Off road")
-Points[#Points+1]=CargoDeployPointVec2:WaypointGround(Speed,"Off road")
-local TaskRoute=self.CargoObject:TaskRoute(Points)
-self.CargoObject:SetTask(TaskRoute,0.2)
-end
-end
-else
-self.CargoObject:MessageToGroup("Cancelling Boarding... Get back on the ground!",5,CargoCarrier:GetGroup(),self:GetName())
-self:CancelBoarding(CargoCarrier,NearRadius,...)
-self.CargoObject:SetCommand(self.CargoObject:CommandStopRoute(true))
-end
-else
-self:T("Something is wrong")
-end
-end
-function CARGO_UNIT:onenterLoaded(From,Event,To,CargoCarrier)
-self:T({From,Event,To,CargoCarrier})
-self.CargoCarrier=CargoCarrier
-if self.CargoObject then
-self.CargoObject:Destroy(false)
-end
-end
-function CARGO_UNIT:GetTransportationMethod()
-if self:IsLoaded()then
-return"for unboarding"
-else
-if self:IsUnLoaded()then
-return"for boarding"
-else
-if self:IsDeployed()then
-return"delivered"
-end
-end
-end
-return""
-end
-end
-do
-CARGO_SLINGLOAD={
-ClassName="CARGO_SLINGLOAD"
-}
-function CARGO_SLINGLOAD:New(CargoStatic,Type,Name,LoadRadius,NearRadius)
-local self=BASE:Inherit(self,CARGO_REPRESENTABLE:New(CargoStatic,Type,Name,nil,LoadRadius,NearRadius))
-self:T({Type,Name,NearRadius})
-self.CargoObject=CargoStatic
-_EVENTDISPATCHER:CreateEventNewCargo(self)
-self:HandleEvent(EVENTS.Dead,self.OnEventCargoDead)
-self:HandleEvent(EVENTS.Crash,self.OnEventCargoDead)
-self:HandleEvent(EVENTS.PlayerLeaveUnit,self.OnEventCargoDead)
-self:SetEventPriority(4)
-self.NearRadius=NearRadius or 25
-return self
-end
-function CARGO_SLINGLOAD:OnEventCargoDead(EventData)
-local Destroyed=false
-if self:IsDestroyed()or self:IsUnLoaded()then
-if self.CargoObject:GetName()==EventData.IniUnitName then
-if not self.NoDestroy then
-Destroyed=true
-end
-end
-end
-if Destroyed then
-self:I({"Cargo crate destroyed: "..self.CargoObject:GetName()})
-self:Destroyed()
-end
-end
-function CARGO_SLINGLOAD:CanSlingload()
-return true
-end
-function CARGO_SLINGLOAD:CanBoard()
-return false
-end
-function CARGO_SLINGLOAD:CanUnboard()
-return false
-end
-function CARGO_SLINGLOAD:CanLoad()
-return false
-end
-function CARGO_SLINGLOAD:CanUnload()
-return false
-end
-function CARGO_SLINGLOAD:IsInReportRadius(Coordinate)
-local Distance=0
-if self:IsUnLoaded()then
-Distance=Coordinate:Get2DDistance(self.CargoObject:GetCoordinate())
-if Distance<=self.LoadRadius then
-return true
-end
-end
-return false
-end
-function CARGO_SLINGLOAD:IsInLoadRadius(Coordinate)
-local Distance=0
-if self:IsUnLoaded()then
-Distance=Coordinate:Get2DDistance(self.CargoObject:GetCoordinate())
-if Distance<=self.NearRadius then
-return true
-end
-end
-return false
-end
-function CARGO_SLINGLOAD:GetCoordinate()
-return self.CargoObject:GetCoordinate()
-end
-function CARGO_SLINGLOAD:IsAlive()
-local Alive=true
-if self:IsLoaded()then
-Alive=Alive==true and self.CargoCarrier:IsAlive()
-else
-Alive=Alive==true and self.CargoObject:IsAlive()
-end
-return Alive
-end
-function CARGO_SLINGLOAD:RouteTo(Coordinate)
-end
-function CARGO_SLINGLOAD:IsNear(CargoCarrier,NearRadius)
-return self:IsNear(CargoCarrier:GetCoordinate(),NearRadius)
-end
-function CARGO_SLINGLOAD:Respawn()
-if self.CargoObject then
-self.CargoObject:ReSpawn()
-self:__Reset(-0.1)
-end
-end
-function CARGO_SLINGLOAD:onafterReset()
-if self.CargoObject then
-self:SetDeployed(false)
-self:SetStartState("UnLoaded")
-self.CargoCarrier=nil
-_EVENTDISPATCHER:CreateEventNewCargo(self)
-end
-end
-function CARGO_SLINGLOAD:GetTransportationMethod()
-if self:IsLoaded()then
-return"for sling loading"
-else
-if self:IsUnLoaded()then
-return"for sling loading"
-else
-if self:IsDeployed()then
-return"delivered"
-end
-end
-end
-return""
-end
-end
-do
-CARGO_CRATE={
-ClassName="CARGO_CRATE"
-}
-function CARGO_CRATE:New(CargoStatic,Type,Name,LoadRadius,NearRadius)
-local self=BASE:Inherit(self,CARGO_REPRESENTABLE:New(CargoStatic,Type,Name,nil,LoadRadius,NearRadius))
-self:T({Type,Name,NearRadius})
-self.CargoObject=CargoStatic
-_EVENTDISPATCHER:CreateEventNewCargo(self)
-self:HandleEvent(EVENTS.Dead,self.OnEventCargoDead)
-self:HandleEvent(EVENTS.Crash,self.OnEventCargoDead)
-self:HandleEvent(EVENTS.PlayerLeaveUnit,self.OnEventCargoDead)
-self:SetEventPriority(4)
-self.NearRadius=NearRadius or 25
-return self
-end
-function CARGO_CRATE:OnEventCargoDead(EventData)
-local Destroyed=false
-if self:IsDestroyed()or self:IsUnLoaded()or self:IsBoarding()then
-if self.CargoObject:GetName()==EventData.IniUnitName then
-if not self.NoDestroy then
-Destroyed=true
-end
-end
-else
-if self:IsLoaded()then
-local CarrierName=self.CargoCarrier:GetName()
-if CarrierName==EventData.IniDCSUnitName then
-MESSAGE:New("Cargo is lost from carrier "..CarrierName,15):ToAll()
-Destroyed=true
-self.CargoCarrier:ClearCargo()
-end
-end
-end
-if Destroyed then
-self:I({"Cargo crate destroyed: "..self.CargoObject:GetName()})
-self:Destroyed()
-end
-end
-function CARGO_CRATE:onenterUnLoaded(From,Event,To,ToPointVec2)
-local Angle=180
-local Speed=10
-local Distance=10
-if From=="Loaded"then
-local StartCoordinate=self.CargoCarrier:GetCoordinate()
-local CargoCarrierHeading=self.CargoCarrier:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-local CargoDeployCoord=StartCoordinate:Translate(Distance,CargoDeployHeading)
-ToPointVec2=ToPointVec2 or COORDINATE:NewFromVec2({x=CargoDeployCoord.x,y=CargoDeployCoord.z})
-if self.CargoObject then
-self.CargoObject:ReSpawnAt(ToPointVec2,0)
-self.CargoCarrier=nil
-end
-end
-if self.OnUnLoadedCallBack then
-self.OnUnLoadedCallBack(self,unpack(self.OnUnLoadedParameters))
-self.OnUnLoadedCallBack=nil
-end
-end
-function CARGO_CRATE:onenterLoaded(From,Event,To,CargoCarrier)
-self.CargoCarrier=CargoCarrier
-if self.CargoObject then
-self:T("Destroying")
-self.NoDestroy=true
-self.CargoObject:Destroy(false)
-end
-end
-function CARGO_CRATE:CanBoard()
-return false
-end
-function CARGO_CRATE:CanUnboard()
-return false
-end
-function CARGO_CRATE:CanSlingload()
-return false
-end
-function CARGO_CRATE:IsInReportRadius(Coordinate)
-local Distance=0
-if self:IsUnLoaded()then
-Distance=Coordinate:Get2DDistance(self.CargoObject:GetCoordinate())
-if Distance<=self.LoadRadius then
-return true
-end
-end
-return false
-end
-function CARGO_CRATE:IsInLoadRadius(Coordinate)
-local Distance=0
-if self:IsUnLoaded()then
-Distance=Coordinate:Get2DDistance(self.CargoObject:GetCoordinate())
-if Distance<=self.NearRadius then
-return true
-end
-end
-return false
-end
-function CARGO_CRATE:GetCoordinate()
-return self.CargoObject:GetCoordinate()
-end
-function CARGO_CRATE:IsAlive()
-local Alive=true
-if self:IsLoaded()then
-Alive=Alive==true and self.CargoCarrier:IsAlive()
-else
-Alive=Alive==true and self.CargoObject:IsAlive()
-end
-return Alive
-end
-function CARGO_CRATE:RouteTo(Coordinate)
-self:T({Coordinate=Coordinate})
-end
-function CARGO_CRATE:IsNear(CargoCarrier,NearRadius)
-self:T({NearRadius=NearRadius})
-return self:IsNear(CargoCarrier:GetCoordinate(),NearRadius)
-end
-function CARGO_CRATE:Respawn()
-self:T({"Respawning crate "..self:GetName()})
-if self.CargoObject then
-self.CargoObject:ReSpawn()
-self:__Reset(-0.1)
-end
-end
-function CARGO_CRATE:onafterReset()
-self:T({"Reset crate "..self:GetName()})
-if self.CargoObject then
-self:SetDeployed(false)
-self:SetStartState("UnLoaded")
-self.CargoCarrier=nil
-_EVENTDISPATCHER:CreateEventNewCargo(self)
-end
-end
-function CARGO_CRATE:GetTransportationMethod()
-if self:IsLoaded()then
-return"for unloading"
-else
-if self:IsUnLoaded()then
-return"for loading"
-else
-if self:IsDeployed()then
-return"delivered"
-end
-end
-end
-return""
-end
-end
-do
-CARGO_GROUP={
-ClassName="CARGO_GROUP",
-}
-function CARGO_GROUP:New(CargoGroup,Type,Name,LoadRadius,NearRadius)
-local self=BASE:Inherit(self,CARGO_REPORTABLE:New(Type,Name,0,LoadRadius,NearRadius))
-self:T({Type,Name,LoadRadius})
-self.CargoSet=SET_CARGO:New()
-self.CargoGroup=CargoGroup
-self.Grouped=true
-self.CargoUnitTemplate={}
-self.NearRadius=NearRadius
-self:SetDeployed(false)
-local WeightGroup=0
-local VolumeGroup=0
-self.CargoGroup:Destroy()
-local GroupName=CargoGroup:GetName()
-self.CargoName=Name
-self.CargoTemplate=UTILS.DeepCopy(_DATABASE:GetGroupTemplate(GroupName))
-self.CargoTemplate.lateActivation=false
-self.GroupTemplate=UTILS.DeepCopy(self.CargoTemplate)
-self.GroupTemplate.name=self.CargoName.."#CARGO"
-self.GroupTemplate.groupId=nil
-self.GroupTemplate.units={}
-for UnitID,UnitTemplate in pairs(self.CargoTemplate.units)do
-UnitTemplate.name=UnitTemplate.name.."#CARGO"
-local CargoUnitName=UnitTemplate.name
-self.CargoUnitTemplate[CargoUnitName]=UnitTemplate
-self.GroupTemplate.units[#self.GroupTemplate.units+1]=self.CargoUnitTemplate[CargoUnitName]
-self.GroupTemplate.units[#self.GroupTemplate.units].unitId=nil
-local Unit=UNIT:Register(CargoUnitName)
-end
-self.CargoGroup=GROUP:NewTemplate(self.GroupTemplate,self.GroupTemplate.CoalitionID,self.GroupTemplate.CategoryID,self.GroupTemplate.CountryID)
-self.CargoObject=_DATABASE:Spawn(self.GroupTemplate)
-for CargoUnitID,CargoUnit in pairs(self.CargoObject:GetUnits())do
-local CargoUnitName=CargoUnit:GetName()
-local Cargo=CARGO_UNIT:New(CargoUnit,Type,CargoUnitName,LoadRadius,NearRadius)
-self.CargoSet:Add(CargoUnitName,Cargo)
-WeightGroup=WeightGroup+Cargo:GetWeight()
-end
-self:SetWeight(WeightGroup)
-self:T({"Weight Cargo",WeightGroup})
-_EVENTDISPATCHER:CreateEventNewCargo(self)
-self:HandleEvent(EVENTS.Dead,self.OnEventCargoDead)
-self:HandleEvent(EVENTS.Crash,self.OnEventCargoDead)
-self:HandleEvent(EVENTS.PlayerLeaveUnit,self.OnEventCargoDead)
-self:SetEventPriority(4)
-return self
-end
-function CARGO_GROUP:Respawn()
-self:T({"Respawning"})
-for CargoID,CargoData in pairs(self.CargoSet:GetSet())do
-local Cargo=CargoData
-Cargo:Destroy()
-Cargo:SetStartState("UnLoaded")
-end
-_DATABASE:Spawn(self.GroupTemplate)
-for CargoUnitID,CargoUnit in pairs(self.CargoObject:GetUnits())do
-local CargoUnitName=CargoUnit:GetName()
-local Cargo=CARGO_UNIT:New(CargoUnit,self.Type,CargoUnitName,self.LoadRadius)
-self.CargoSet:Add(CargoUnitName,Cargo)
-end
-self:SetDeployed(false)
-self:SetStartState("UnLoaded")
-end
-function CARGO_GROUP:Ungroup()
-if self.Grouped==true then
-self.Grouped=false
-self.CargoGroup:Destroy()
-for CargoUnitName,CargoUnit in pairs(self.CargoSet:GetSet())do
-local CargoUnit=CargoUnit
-if CargoUnit:IsUnLoaded()then
-local GroupTemplate=UTILS.DeepCopy(self.CargoTemplate)
-GroupTemplate.name=self.CargoName.."#CARGO#"..CargoUnitName
-GroupTemplate.groupId=nil
-if CargoUnit:IsUnLoaded()then
-GroupTemplate.units={}
-GroupTemplate.units[1]=self.CargoUnitTemplate[CargoUnitName]
-GroupTemplate.units[#GroupTemplate.units].unitId=nil
-GroupTemplate.units[#GroupTemplate.units].x=CargoUnit:GetX()
-GroupTemplate.units[#GroupTemplate.units].y=CargoUnit:GetY()
-GroupTemplate.units[#GroupTemplate.units].heading=CargoUnit:GetHeading()
-end
-local CargoGroup=GROUP:NewTemplate(GroupTemplate,GroupTemplate.CoalitionID,GroupTemplate.CategoryID,GroupTemplate.CountryID)
-_DATABASE:Spawn(GroupTemplate)
-end
-end
-self.CargoObject=nil
-end
-end
-function CARGO_GROUP:Regroup()
-self:T("Regroup")
-if self.Grouped==false then
-self.Grouped=true
-local GroupTemplate=UTILS.DeepCopy(self.CargoTemplate)
-GroupTemplate.name=self.CargoName.."#CARGO"
-GroupTemplate.groupId=nil
-GroupTemplate.units={}
-for CargoUnitName,CargoUnit in pairs(self.CargoSet:GetSet())do
-local CargoUnit=CargoUnit
-self:T({CargoUnit:GetName(),UnLoaded=CargoUnit:IsUnLoaded()})
-if CargoUnit:IsUnLoaded()then
-CargoUnit.CargoObject:Destroy()
-GroupTemplate.units[#GroupTemplate.units+1]=self.CargoUnitTemplate[CargoUnitName]
-GroupTemplate.units[#GroupTemplate.units].unitId=nil
-GroupTemplate.units[#GroupTemplate.units].x=CargoUnit:GetX()
-GroupTemplate.units[#GroupTemplate.units].y=CargoUnit:GetY()
-GroupTemplate.units[#GroupTemplate.units].heading=CargoUnit:GetHeading()
-end
-end
-self.CargoGroup=GROUP:NewTemplate(GroupTemplate,GroupTemplate.CoalitionID,GroupTemplate.CategoryID,GroupTemplate.CountryID)
-self:T({"Regroup",GroupTemplate})
-self.CargoObject=_DATABASE:Spawn(GroupTemplate)
-end
-end
-function CARGO_GROUP:OnEventCargoDead(EventData)
-self:T(EventData)
-local Destroyed=false
-if self:IsDestroyed()or self:IsUnLoaded()or self:IsBoarding()or self:IsUnboarding()then
-Destroyed=true
-for CargoID,CargoData in pairs(self.CargoSet:GetSet())do
-local Cargo=CargoData
-if Cargo:IsAlive()then
-Destroyed=false
-else
-Cargo:Destroyed()
-end
-end
-else
-local CarrierName=self.CargoCarrier:GetName()
-if CarrierName==EventData.IniDCSUnitName then
-MESSAGE:New("Cargo is lost from carrier "..CarrierName,15):ToAll()
-Destroyed=true
-self.CargoCarrier:ClearCargo()
-end
-end
-if Destroyed then
-self:Destroyed()
-self:T({"Cargo group destroyed"})
-end
-end
-function CARGO_GROUP:onafterBoard(From,Event,To,CargoCarrier,NearRadius,...)
-self:T({CargoCarrier.UnitName,From,Event,To,NearRadius=NearRadius})
-NearRadius=NearRadius or self.NearRadius
-self.CargoSet:ForEach(
-function(Cargo,...)
-self:T({"Board Unit",Cargo:GetName(),Cargo:IsDestroyed(),Cargo.CargoObject:IsAlive()})
-local CargoGroup=Cargo.CargoObject
-CargoGroup:OptionAlarmStateGreen()
-Cargo:__Board(1,CargoCarrier,NearRadius,...)
-end,...
-)
-self:__Boarding(-1,CargoCarrier,NearRadius,...)
-end
-function CARGO_GROUP:onafterLoad(From,Event,To,CargoCarrier,...)
-if From=="UnLoaded"then
-for CargoID,Cargo in pairs(self.CargoSet:GetSet())do
-if not Cargo:IsDestroyed()then
-Cargo:Load(CargoCarrier)
-end
-end
-end
-self.CargoCarrier=CargoCarrier
-self.CargoCarrier:AddCargo(self)
-end
-function CARGO_GROUP:onafterBoarding(From,Event,To,CargoCarrier,NearRadius,...)
-local Boarded=true
-local Cancelled=false
-local Dead=true
-self.CargoSet:Flush()
-for CargoID,Cargo in pairs(self.CargoSet:GetSet())do
-if not Cargo:is("Loaded")
-and(not Cargo:is("Destroyed"))then
-Boarded=false
-end
-if Cargo:is("UnLoaded")then
-Cancelled=true
-end
-if not Cargo:is("Destroyed")then
-Dead=false
-end
-end
-if not Dead then
-if not Cancelled then
-if not Boarded then
-self:__Boarding(-5,CargoCarrier,NearRadius,...)
-else
-self:T("Group Cargo is loaded")
-self:__Load(1,CargoCarrier,...)
-end
-else
-self:__CancelBoarding(1,CargoCarrier,NearRadius,...)
-end
-else
-self:__Destroyed(1,CargoCarrier,NearRadius,...)
-end
-end
-function CARGO_GROUP:onafterUnBoard(From,Event,To,ToPointVec2,NearRadius,...)
-self:T({From,Event,To,ToPointVec2,NearRadius})
-NearRadius=NearRadius or 25
-local Timer=1
-if From=="Loaded"then
-if self.CargoObject then
-self.CargoObject:Destroy()
-end
-self.CargoSet:ForEach(
-function(Cargo,NearRadius)
-if not Cargo:IsDestroyed()then
-local ToVec=nil
-if ToPointVec2==nil then
-ToVec=self.CargoCarrier:GetPointVec2():GetRandomPointVec2InRadius(2*NearRadius,NearRadius)
-else
-ToVec=ToPointVec2
-end
-Cargo:__UnBoard(Timer,ToVec,NearRadius)
-Timer=Timer+1
-end
-end,{NearRadius}
-)
-self:__UnBoarding(1,ToPointVec2,NearRadius,...)
-end
-end
-function CARGO_GROUP:onafterUnBoarding(From,Event,To,ToPointVec2,NearRadius,...)
-local Angle=180
-local Speed=10
-local Distance=5
-if From=="UnBoarding"then
-local UnBoarded=true
-for CargoID,Cargo in pairs(self.CargoSet:GetSet())do
-self:T({Cargo:GetName(),Cargo.current})
-if not Cargo:is("UnLoaded")and not Cargo:IsDestroyed()then
-UnBoarded=false
-end
-end
-if UnBoarded then
-self:__UnLoad(1,ToPointVec2,...)
-else
-self:__UnBoarding(1,ToPointVec2,NearRadius,...)
-end
-return false
-end
-end
-function CARGO_GROUP:onafterUnLoad(From,Event,To,ToPointVec2,...)
-if From=="Loaded"then
-self.CargoSet:ForEach(
-function(Cargo)
-local RandomVec2=nil
-if ToPointVec2 then
-RandomVec2=ToPointVec2:GetRandomPointVec2InRadius(20,10)
-end
-Cargo:UnBoard(RandomVec2)
-end
-)
-end
-self.CargoCarrier:RemoveCargo(self)
-self.CargoCarrier=nil
-end
-function CARGO_GROUP:GetCoordinate()
-local Cargo=self:GetFirstAlive()
-if Cargo then
-return Cargo.CargoObject:GetCoordinate()
-end
-return nil
-end
-function CARGO:GetX()
-local Cargo=self:GetFirstAlive()
-if Cargo then
-return Cargo:GetCoordinate().x
-end
-return nil
-end
-function CARGO:GetY()
-local Cargo=self:GetFirstAlive()
-if Cargo then
-return Cargo:GetCoordinate().z
-end
-return nil
-end
-function CARGO_GROUP:IsAlive()
-local Cargo=self:GetFirstAlive()
-return Cargo~=nil
-end
-function CARGO_GROUP:GetFirstAlive()
-local CargoFirstAlive=nil
-for _,Cargo in pairs(self.CargoSet:GetSet())do
-if not Cargo:IsDestroyed()then
-CargoFirstAlive=Cargo
-break
-end
-end
-return CargoFirstAlive
-end
-function CARGO_GROUP:GetCount()
-return self.CargoSet:Count()
-end
-function CARGO_GROUP:GetGroup(Cargo)
-local Cargo=Cargo or self:GetFirstAlive()
-return Cargo.CargoObject:GetGroup()
-end
-function CARGO_GROUP:RouteTo(Coordinate)
-self.CargoSet:ForEach(
-function(Cargo)
-Cargo.CargoObject:RouteGroundTo(Coordinate,10,"vee",0)
-end
-)
-end
-function CARGO_GROUP:IsNear(CargoCarrier,NearRadius)
-self:T({NearRadius=NearRadius})
-for _,Cargo in pairs(self.CargoSet:GetSet())do
-local Cargo=Cargo
-if Cargo:IsAlive()then
-if Cargo:IsNear(CargoCarrier:GetCoordinate(),NearRadius)then
-self:T("Near")
-return true
-end
-end
-end
-return nil
-end
-function CARGO_GROUP:IsInLoadRadius(Coordinate)
-local Cargo=self:GetFirstAlive()
-if Cargo then
-local Distance=0
-local CargoCoordinate
-if Cargo:IsLoaded()then
-CargoCoordinate=Cargo.CargoCarrier:GetCoordinate()
-else
-CargoCoordinate=Cargo.CargoObject:GetCoordinate()
-end
-if CargoCoordinate then
-Distance=Coordinate:Get2DDistance(CargoCoordinate)
-else
-return false
-end
-self:T({Distance=Distance,LoadRadius=self.LoadRadius})
-if Distance<=self.LoadRadius then
-return true
-else
-return false
-end
-end
-return nil
-end
-function CARGO_GROUP:IsInReportRadius(Coordinate)
-local Cargo=self:GetFirstAlive()
-if Cargo then
-self:T({Cargo})
-local Distance=0
-if Cargo:IsUnLoaded()then
-Distance=Coordinate:Get2DDistance(Cargo.CargoObject:GetCoordinate())
-if Distance<=self.LoadRadius then
-return true
-end
-end
-end
-return nil
-end
-function CARGO_GROUP:Flare(FlareColor)
-local Cargo=self.CargoSet:GetFirst()
-if Cargo then
-Cargo:Flare(FlareColor)
-end
-end
-function CARGO_GROUP:Smoke(SmokeColor,Radius)
-local Cargo=self.CargoSet:GetFirst()
-if Cargo then
-Cargo:Smoke(SmokeColor,Radius)
-end
-end
-function CARGO_GROUP:IsInZone(Zone)
-local Cargo=self.CargoSet:GetFirst()
-if Cargo then
-return Cargo:IsInZone(Zone)
-end
-return nil
-end
-function CARGO_GROUP:GetTransportationMethod()
-if self:IsLoaded()then
-return"for unboarding"
-else
-if self:IsUnLoaded()then
-return"for boarding"
-else
-if self:IsDeployed()then
-return"delivered"
-end
-end
-end
-return""
-end
-end
 SCORING={
 ClassName="SCORING",
 ClassID=0,
@@ -38155,7 +36957,10 @@ filename=filename..".csv"
 local data=self:ReportScoreAllSummary("",true)
 local text="-- Playername;;Score;;Penalty\n"
 for _playername,_data in pairs(data or{})do
-text=text..string.format("%s;;%d;;%d\n")
+local Playername=_playername or"Ghost"
+local Score=_data.Score or 0
+local Penalty=_data.Penalty or 0
+text=text..string.format("%s;;%d;;%d\n",Playername,Score,Penalty)
 end
 UTILS.SaveToFile(path,filename,text)
 end
@@ -38552,7 +37357,7 @@ self:HandleEvent(EVENTS.Shot,self.HandleEventShot)
 self:SetStartState("Running")
 self:AddTransition("*","ManageEvasion","*")
 self:AddTransition("*","CalculateHitZone","*")
-self:I("*** SEAD - Started Version 0.4.9")
+self:I("*** SEAD - Started Version 0.4.11")
 return self
 end
 function SEAD:UpdateSet(SEADGroupPrefixes)
@@ -38654,6 +37459,7 @@ Ropt=Ropt*0.87
 elseif height<=12500 then
 Ropt=Ropt*0.98
 end
+local WeaponWrapper=WEAPON:New(SEADWeapon)
 for n=1,3 do
 local dist=Ropt-((n-1)*20000)
 local predpos=pos0:Translate(dist,wph)
@@ -38673,7 +37479,7 @@ _targetgroup=tgtgrp
 _targetgroupname=tgtgrp:GetName()
 _targetskill=tgtgrp:GetUnit(1):GetSkill()
 self:T("*** Found Target = ".._targetgroupname)
-self:ManageEvasion(_targetskill,_targetgroup,pos0,"AGM_88",SEADGroup,20)
+self:ManageEvasion(_targetskill,_targetgroup,pos0,"AGM_88",SEADGroup,20,WeaponWrapper)
 end
 end
 end
@@ -38750,7 +37556,16 @@ if _tti>600 then delay=_tti-90 end
 local SuppressionStartTime=timer.getTime()+delay
 local SuppressionEndTime=timer.getTime()+delay+_tti+self.Padding+delay
 local _targetgroupname=_targetgroup:GetName()
-if not self.SuppressedGroups[_targetgroupname]then
+local shoradactive=_targetgroup:GetProperty("SHORAD_ACTIVE")
+if not self.SuppressedGroups[_targetgroupname]and shoradactive~=true then
+local allow=true
+if self.UseCallBack and self.CallBack and self.CallBack.SeadAllowSuppression then
+allow=self.CallBack:SeadAllowSuppression(_targetgroup,_targetgroupname,SEADGroup,SEADWeaponName,Weapon,_tti,delay)
+end
+if not allow then
+self:T(string.format("*** SEAD - %s | Suppression vetoed by callback",_targetgroupname))
+return self
+end
 self:T(string.format("*** SEAD - %s | Parameters TTI %ds | Switch-Off in %ds",_targetgroupname,_tti,delay))
 timer.scheduleFunction(SuppressionStart,{_targetgroup,_targetgroupname,SEADGroup},SuppressionStartTime)
 timer.scheduleFunction(SuppressionStop,{_targetgroup,_targetgroupname},SuppressionEndTime)
@@ -39523,411 +38338,6 @@ end
 return true
 end
 return false
-end
-MISSILETRAINER={
-ClassName="MISSILETRAINER",
-TrackingMissiles={},
-}
-function MISSILETRAINER._Alive(Client,self)
-if self.Briefing then
-Client:Message(self.Briefing,15,"Trainer")
-end
-if self.MenusOnOff==true then
-Client:Message("Use the 'Radio Menu' -> 'Other (F10)' -> 'Missile Trainer' menu options to change the Missile Trainer settings (for all players).",15,"Trainer")
-Client.MainMenu=MENU_GROUP:New(Client:GetGroup(),"Missile Trainer",nil)
-Client.MenuMessages=MENU_GROUP:New(Client:GetGroup(),"Messages",Client.MainMenu)
-Client.MenuOn=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Messages On",Client.MenuMessages,self._MenuMessages,{MenuSelf=self,MessagesOnOff=true})
-Client.MenuOff=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Messages Off",Client.MenuMessages,self._MenuMessages,{MenuSelf=self,MessagesOnOff=false})
-Client.MenuTracking=MENU_GROUP:New(Client:GetGroup(),"Tracking",Client.MainMenu)
-Client.MenuTrackingToAll=MENU_GROUP_COMMAND:New(Client:GetGroup(),"To All",Client.MenuTracking,self._MenuMessages,{MenuSelf=self,TrackingToAll=true})
-Client.MenuTrackingToTarget=MENU_GROUP_COMMAND:New(Client:GetGroup(),"To Target",Client.MenuTracking,self._MenuMessages,{MenuSelf=self,TrackingToAll=false})
-Client.MenuTrackOn=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Tracking On",Client.MenuTracking,self._MenuMessages,{MenuSelf=self,TrackingOnOff=true})
-Client.MenuTrackOff=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Tracking Off",Client.MenuTracking,self._MenuMessages,{MenuSelf=self,TrackingOnOff=false})
-Client.MenuTrackIncrease=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Frequency Increase",Client.MenuTracking,self._MenuMessages,{MenuSelf=self,TrackingFrequency=-1})
-Client.MenuTrackDecrease=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Frequency Decrease",Client.MenuTracking,self._MenuMessages,{MenuSelf=self,TrackingFrequency=1})
-Client.MenuAlerts=MENU_GROUP:New(Client:GetGroup(),"Alerts",Client.MainMenu)
-Client.MenuAlertsToAll=MENU_GROUP_COMMAND:New(Client:GetGroup(),"To All",Client.MenuAlerts,self._MenuMessages,{MenuSelf=self,AlertsToAll=true})
-Client.MenuAlertsToTarget=MENU_GROUP_COMMAND:New(Client:GetGroup(),"To Target",Client.MenuAlerts,self._MenuMessages,{MenuSelf=self,AlertsToAll=false})
-Client.MenuHitsOn=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Hits On",Client.MenuAlerts,self._MenuMessages,{MenuSelf=self,AlertsHitsOnOff=true})
-Client.MenuHitsOff=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Hits Off",Client.MenuAlerts,self._MenuMessages,{MenuSelf=self,AlertsHitsOnOff=false})
-Client.MenuLaunchesOn=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Launches On",Client.MenuAlerts,self._MenuMessages,{MenuSelf=self,AlertsLaunchesOnOff=true})
-Client.MenuLaunchesOff=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Launches Off",Client.MenuAlerts,self._MenuMessages,{MenuSelf=self,AlertsLaunchesOnOff=false})
-Client.MenuDetails=MENU_GROUP:New(Client:GetGroup(),"Details",Client.MainMenu)
-Client.MenuDetailsDistanceOn=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Range On",Client.MenuDetails,self._MenuMessages,{MenuSelf=self,DetailsRangeOnOff=true})
-Client.MenuDetailsDistanceOff=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Range Off",Client.MenuDetails,self._MenuMessages,{MenuSelf=self,DetailsRangeOnOff=false})
-Client.MenuDetailsBearingOn=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Bearing On",Client.MenuDetails,self._MenuMessages,{MenuSelf=self,DetailsBearingOnOff=true})
-Client.MenuDetailsBearingOff=MENU_GROUP_COMMAND:New(Client:GetGroup(),"Bearing Off",Client.MenuDetails,self._MenuMessages,{MenuSelf=self,DetailsBearingOnOff=false})
-Client.MenuDistance=MENU_GROUP:New(Client:GetGroup(),"Set distance to plane",Client.MainMenu)
-Client.MenuDistance50=MENU_GROUP_COMMAND:New(Client:GetGroup(),"50 meter",Client.MenuDistance,self._MenuMessages,{MenuSelf=self,Distance=50/1000})
-Client.MenuDistance100=MENU_GROUP_COMMAND:New(Client:GetGroup(),"100 meter",Client.MenuDistance,self._MenuMessages,{MenuSelf=self,Distance=100/1000})
-Client.MenuDistance150=MENU_GROUP_COMMAND:New(Client:GetGroup(),"150 meter",Client.MenuDistance,self._MenuMessages,{MenuSelf=self,Distance=150/1000})
-Client.MenuDistance200=MENU_GROUP_COMMAND:New(Client:GetGroup(),"200 meter",Client.MenuDistance,self._MenuMessages,{MenuSelf=self,Distance=200/1000})
-else
-if Client.MainMenu then
-Client.MainMenu:Remove()
-end
-end
-local ClientID=Client:GetID()
-self:T(ClientID)
-if not self.TrackingMissiles[ClientID]then
-self.TrackingMissiles[ClientID]={}
-end
-self.TrackingMissiles[ClientID].Client=Client
-if not self.TrackingMissiles[ClientID].MissileData then
-self.TrackingMissiles[ClientID].MissileData={}
-end
-end
-function MISSILETRAINER:New(Distance,Briefing)
-local self=BASE:Inherit(self,BASE:New())
-self:F(Distance)
-if Briefing then
-self.Briefing=Briefing
-end
-self.Schedulers={}
-self.SchedulerID=0
-self.MessageInterval=2
-self.MessageLastTime=timer.getTime()
-self.Distance=Distance/1000
-self:HandleEvent(EVENTS.Shot)
-self.DBClients=SET_CLIENT:New():FilterStart()
-self.DBClients:ForEachClient(
-function(Client)
-self:F("ForEach:"..Client.UnitName)
-Client:Alive(self._Alive,self)
-end
-)
-self.MessagesOnOff=true
-self.TrackingToAll=false
-self.TrackingOnOff=true
-self.TrackingFrequency=3
-self.AlertsToAll=true
-self.AlertsHitsOnOff=true
-self.AlertsLaunchesOnOff=true
-self.DetailsRangeOnOff=true
-self.DetailsBearingOnOff=true
-self.MenusOnOff=true
-self.TrackingMissiles={}
-self.TrackingScheduler=SCHEDULER:New(self,self._TrackMissiles,{},0.5,0.05,0)
-return self
-end
-function MISSILETRAINER:InitMessagesOnOff(MessagesOnOff)
-self:F(MessagesOnOff)
-self.MessagesOnOff=MessagesOnOff
-if self.MessagesOnOff==true then
-MESSAGE:New("Messages ON",15,"Menu"):ToAll()
-else
-MESSAGE:New("Messages OFF",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitTrackingToAll(TrackingToAll)
-self:F(TrackingToAll)
-self.TrackingToAll=TrackingToAll
-if self.TrackingToAll==true then
-MESSAGE:New("Missile tracking to all players ON",15,"Menu"):ToAll()
-else
-MESSAGE:New("Missile tracking to all players OFF",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitTrackingOnOff(TrackingOnOff)
-self:F(TrackingOnOff)
-self.TrackingOnOff=TrackingOnOff
-if self.TrackingOnOff==true then
-MESSAGE:New("Missile tracking ON",15,"Menu"):ToAll()
-else
-MESSAGE:New("Missile tracking OFF",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitTrackingFrequency(TrackingFrequency)
-self:F(TrackingFrequency)
-self.TrackingFrequency=self.TrackingFrequency+TrackingFrequency
-if self.TrackingFrequency<0.5 then
-self.TrackingFrequency=0.5
-end
-if self.TrackingFrequency then
-MESSAGE:New("Missile tracking frequency is "..self.TrackingFrequency.." seconds.",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitAlertsToAll(AlertsToAll)
-self:F(AlertsToAll)
-self.AlertsToAll=AlertsToAll
-if self.AlertsToAll==true then
-MESSAGE:New("Alerts to all players ON",15,"Menu"):ToAll()
-else
-MESSAGE:New("Alerts to all players OFF",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitAlertsHitsOnOff(AlertsHitsOnOff)
-self:F(AlertsHitsOnOff)
-self.AlertsHitsOnOff=AlertsHitsOnOff
-if self.AlertsHitsOnOff==true then
-MESSAGE:New("Alerts Hits ON",15,"Menu"):ToAll()
-else
-MESSAGE:New("Alerts Hits OFF",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitAlertsLaunchesOnOff(AlertsLaunchesOnOff)
-self:F(AlertsLaunchesOnOff)
-self.AlertsLaunchesOnOff=AlertsLaunchesOnOff
-if self.AlertsLaunchesOnOff==true then
-MESSAGE:New("Alerts Launches ON",15,"Menu"):ToAll()
-else
-MESSAGE:New("Alerts Launches OFF",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitRangeOnOff(DetailsRangeOnOff)
-self:F(DetailsRangeOnOff)
-self.DetailsRangeOnOff=DetailsRangeOnOff
-if self.DetailsRangeOnOff==true then
-MESSAGE:New("Range display ON",15,"Menu"):ToAll()
-else
-MESSAGE:New("Range display OFF",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitBearingOnOff(DetailsBearingOnOff)
-self:F(DetailsBearingOnOff)
-self.DetailsBearingOnOff=DetailsBearingOnOff
-if self.DetailsBearingOnOff==true then
-MESSAGE:New("Bearing display OFF",15,"Menu"):ToAll()
-else
-MESSAGE:New("Bearing display OFF",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER:InitMenusOnOff(MenusOnOff)
-self:F(MenusOnOff)
-self.MenusOnOff=MenusOnOff
-if self.MenusOnOff==true then
-MESSAGE:New("Menus are ENABLED (only when a player rejoins a slot)",15,"Menu"):ToAll()
-else
-MESSAGE:New("Menus are DISABLED",15,"Menu"):ToAll()
-end
-return self
-end
-function MISSILETRAINER._MenuMessages(MenuParameters)
-local self=MenuParameters.MenuSelf
-if MenuParameters.MessagesOnOff~=nil then
-self:InitMessagesOnOff(MenuParameters.MessagesOnOff)
-end
-if MenuParameters.TrackingToAll~=nil then
-self:InitTrackingToAll(MenuParameters.TrackingToAll)
-end
-if MenuParameters.TrackingOnOff~=nil then
-self:InitTrackingOnOff(MenuParameters.TrackingOnOff)
-end
-if MenuParameters.TrackingFrequency~=nil then
-self:InitTrackingFrequency(MenuParameters.TrackingFrequency)
-end
-if MenuParameters.AlertsToAll~=nil then
-self:InitAlertsToAll(MenuParameters.AlertsToAll)
-end
-if MenuParameters.AlertsHitsOnOff~=nil then
-self:InitAlertsHitsOnOff(MenuParameters.AlertsHitsOnOff)
-end
-if MenuParameters.AlertsLaunchesOnOff~=nil then
-self:InitAlertsLaunchesOnOff(MenuParameters.AlertsLaunchesOnOff)
-end
-if MenuParameters.DetailsRangeOnOff~=nil then
-self:InitRangeOnOff(MenuParameters.DetailsRangeOnOff)
-end
-if MenuParameters.DetailsBearingOnOff~=nil then
-self:InitBearingOnOff(MenuParameters.DetailsBearingOnOff)
-end
-if MenuParameters.Distance~=nil then
-self.Distance=MenuParameters.Distance
-MESSAGE:New("Hit detection distance set to "..(self.Distance*1000).." meters",15,"Menu"):ToAll()
-end
-end
-function MISSILETRAINER:OnEventShot(EVentData)
-self:F({EVentData})
-local TrainerSourceDCSUnit=EVentData.IniDCSUnit
-local TrainerSourceDCSUnitName=EVentData.IniDCSUnitName
-local TrainerWeapon=EVentData.Weapon
-local TrainerWeaponName=EVentData.WeaponName
-self:T("Missile Launched = "..TrainerWeaponName)
-local TrainerTargetDCSUnit=TrainerWeapon:getTarget()
-if TrainerTargetDCSUnit then
-local TrainerTargetDCSUnitName=Unit.getName(TrainerTargetDCSUnit)
-local TrainerTargetSkill=_DATABASE.Templates.Units[TrainerTargetDCSUnitName].Template.skill
-self:T(TrainerTargetDCSUnitName)
-local Client=self.DBClients:FindClient(TrainerTargetDCSUnitName)
-if Client then
-local TrainerSourceUnit=UNIT:Find(TrainerSourceDCSUnit)
-local TrainerTargetUnit=UNIT:Find(TrainerTargetDCSUnit)
-if self.MessagesOnOff==true and self.AlertsLaunchesOnOff==true then
-local Message=MESSAGE:New(
-string.format("%s launched a %s",
-TrainerSourceUnit:GetTypeName(),
-TrainerWeaponName
-)..self:_AddRange(Client,TrainerWeapon)..self:_AddBearing(Client,TrainerWeapon),5,"Launch Alert")
-if self.AlertsToAll then
-Message:ToAll()
-else
-Message:ToClient(Client)
-end
-end
-local ClientID=Client:GetID()
-self:T(ClientID)
-local MissileData={}
-MissileData.TrainerSourceUnit=TrainerSourceUnit
-MissileData.TrainerWeapon=TrainerWeapon
-MissileData.TrainerTargetUnit=TrainerTargetUnit
-MissileData.TrainerWeaponTypeName=TrainerWeapon:getTypeName()
-MissileData.TrainerWeaponLaunched=true
-table.insert(self.TrackingMissiles[ClientID].MissileData,MissileData)
-end
-else
-if(TrainerWeapon:getTypeName()=="9M311")then
-SCHEDULER:New(TrainerWeapon,TrainerWeapon.destroy,{},1)
-else
-end
-end
-end
-function MISSILETRAINER:_AddRange(Client,TrainerWeapon)
-local RangeText=""
-if self.DetailsRangeOnOff then
-local PositionMissile=TrainerWeapon:getPoint()
-local TargetVec3=Client:GetVec3()
-local Range=((PositionMissile.x-TargetVec3.x)^2+
-(PositionMissile.y-TargetVec3.y)^2+
-(PositionMissile.z-TargetVec3.z)^2
-)^0.5/1000
-RangeText=string.format(", at %4.2fkm",Range)
-end
-return RangeText
-end
-function MISSILETRAINER:_AddBearing(Client,TrainerWeapon)
-local BearingText=""
-if self.DetailsBearingOnOff then
-local PositionMissile=TrainerWeapon:getPoint()
-local TargetVec3=Client:GetVec3()
-self:T2({TargetVec3,PositionMissile})
-local DirectionVector={x=PositionMissile.x-TargetVec3.x,y=PositionMissile.y-TargetVec3.y,z=PositionMissile.z-TargetVec3.z}
-local DirectionRadians=math.atan2(DirectionVector.z,DirectionVector.x)
-if DirectionRadians<0 then
-DirectionRadians=DirectionRadians+2*math.pi
-end
-local DirectionDegrees=DirectionRadians*180/math.pi
-BearingText=string.format(", %d degrees",DirectionDegrees)
-end
-return BearingText
-end
-function MISSILETRAINER:_TrackMissiles()
-self:F2()
-local ShowMessages=false
-if self.MessagesOnOff and self.MessageLastTime+self.TrackingFrequency<=timer.getTime()then
-self.MessageLastTime=timer.getTime()
-ShowMessages=true
-end
-for ClientDataID,ClientData in pairs(self.TrackingMissiles)do
-local Client=ClientData.Client
-if Client and Client:IsAlive()then
-for MissileDataID,MissileData in pairs(ClientData.MissileData)do
-self:T3(MissileDataID)
-local TrainerSourceUnit=MissileData.TrainerSourceUnit
-local TrainerWeapon=MissileData.TrainerWeapon
-local TrainerTargetUnit=MissileData.TrainerTargetUnit
-local TrainerWeaponTypeName=MissileData.TrainerWeaponTypeName
-local TrainerWeaponLaunched=MissileData.TrainerWeaponLaunched
-if Client and Client:IsAlive()and TrainerSourceUnit and TrainerSourceUnit:IsAlive()and TrainerWeapon and TrainerWeapon:isExist()and TrainerTargetUnit and TrainerTargetUnit:IsAlive()then
-local PositionMissile=TrainerWeapon:getPosition().p
-local TargetVec3=Client:GetVec3()
-local Distance=((PositionMissile.x-TargetVec3.x)^2+
-(PositionMissile.y-TargetVec3.y)^2+
-(PositionMissile.z-TargetVec3.z)^2
-)^0.5/1000
-if Distance<=self.Distance then
-TrainerWeapon:destroy()
-if self.MessagesOnOff==true and self.AlertsHitsOnOff==true then
-self:T("killed")
-local Message=MESSAGE:New(
-string.format("%s launched by %s killed %s",
-TrainerWeapon:getTypeName(),
-TrainerSourceUnit:GetTypeName(),
-TrainerTargetUnit:GetPlayerName()
-),15,"Hit Alert")
-if self.AlertsToAll==true then
-Message:ToAll()
-else
-Message:ToClient(Client)
-end
-MissileData=nil
-table.remove(ClientData.MissileData,MissileDataID)
-self:T(ClientData.MissileData)
-end
-end
-else
-if not(TrainerWeapon and TrainerWeapon:isExist())then
-if self.MessagesOnOff==true and self.AlertsLaunchesOnOff==true then
-local Message=MESSAGE:New(
-string.format("%s launched by %s self destructed!",
-TrainerWeaponTypeName,
-TrainerSourceUnit:GetTypeName()
-),5,"Tracking")
-if self.AlertsToAll==true then
-Message:ToAll()
-else
-Message:ToClient(Client)
-end
-end
-MissileData=nil
-table.remove(ClientData.MissileData,MissileDataID)
-self:T(ClientData.MissileData)
-end
-end
-end
-else
-self.TrackingMissiles[ClientDataID]=nil
-end
-end
-if ShowMessages==true and self.MessagesOnOff==true and self.TrackingOnOff==true then
-for ClientDataID,ClientData in pairs(self.TrackingMissiles)do
-local Client=ClientData.Client
-ClientData.MessageToClient=""
-ClientData.MessageToAll=""
-for TrackingDataID,TrackingData in pairs(self.TrackingMissiles)do
-for MissileDataID,MissileData in pairs(TrackingData.MissileData)do
-local TrainerSourceUnit=MissileData.TrainerSourceUnit
-local TrainerWeapon=MissileData.TrainerWeapon
-local TrainerTargetUnit=MissileData.TrainerTargetUnit
-local TrainerWeaponTypeName=MissileData.TrainerWeaponTypeName
-local TrainerWeaponLaunched=MissileData.TrainerWeaponLaunched
-if Client and Client:IsAlive()and TrainerSourceUnit and TrainerSourceUnit:IsAlive()and TrainerWeapon and TrainerWeapon:isExist()and TrainerTargetUnit and TrainerTargetUnit:IsAlive()then
-if ShowMessages==true then
-local TrackingTo
-TrackingTo=string.format("  -> %s",
-TrainerWeaponTypeName
-)
-if ClientDataID==TrackingDataID then
-if ClientData.MessageToClient==""then
-ClientData.MessageToClient="Missiles to You:\n"
-end
-ClientData.MessageToClient=ClientData.MessageToClient..TrackingTo..self:_AddRange(ClientData.Client,TrainerWeapon)..self:_AddBearing(ClientData.Client,TrainerWeapon).."\n"
-else
-if self.TrackingToAll==true then
-if ClientData.MessageToAll==""then
-ClientData.MessageToAll="Missiles to other Players:\n"
-end
-ClientData.MessageToAll=ClientData.MessageToAll..TrackingTo..self:_AddRange(ClientData.Client,TrainerWeapon)..self:_AddBearing(ClientData.Client,TrainerWeapon).." ( "..TrainerTargetUnit:GetPlayerName().." )\n"
-end
-end
-end
-end
-end
-end
-if ClientData.MessageToClient~=""or ClientData.MessageToAll~=""then
-local Message=MESSAGE:New(ClientData.MessageToClient..ClientData.MessageToAll,1,"Tracking"):ToClient(Client)
-end
-end
-end
-return true
 end
 ATC_GROUND={
 ClassName="ATC_GROUND",
@@ -43517,6 +41927,11 @@ self:F2(speed)
 self.Vcruisemax=speed/3.6
 return self
 end
+function RAT:SetMinCruiseSpeed(speed)
+self:F2(speed)
+self.Vcruisemin=speed/3.6
+return self
+end
 function RAT:SetClimbRate(rate)
 self:F2(rate)
 rate=rate or self.Vclimb
@@ -43703,6 +42118,14 @@ elseif DCStype=="Saab340"then
 self.aircraft.length=19.73
 self.aircraft.height=6.97
 self.aircraft.width=21.44
+elseif DCStype=="vwv_l-1049"then
+self.aircraft.length=35.41
+self.aircraft.height=7.54
+self.aircraft.width=38.47
+elseif DCStype=="uh2b"then
+self.aircraft.length=11.48
+self.aircraft.height=4.11
+self.aircraft.width=13.41
 end
 self.aircraft.box=math.max(self.aircraft.length,self.aircraft.width)
 local text=string.format("\n******************************************************\n")
@@ -44067,7 +42490,12 @@ VxCruiseMax=math.min(self.Vcruisemax,self.aircraft.Vmax)
 else
 VxCruiseMax=math.min(self.aircraft.Vmax*0.90,250)
 end
-local VxCruiseMin=math.min(VxCruiseMax*0.70,166)
+local VxCruiseMin
+if self.Vcruisemin then
+VxCruiseMin=self.Vcruisemin
+else
+VxCruiseMin=math.min(VxCruiseMax*0.70,166)
+end
 local VxCruise=UTILS.RandomGaussian((VxCruiseMax-VxCruiseMin)/2+VxCruiseMin,(VxCruiseMax-VxCruiseMax)/4,VxCruiseMin,VxCruiseMax)
 local VxClimb=math.min(self.aircraft.Vmax*0.90,200)
 local VxDescent=math.min(self.aircraft.Vmax*0.60,140)
@@ -44197,6 +42625,13 @@ local Pdestination
 if landing==RAT.wp.air then
 local vec2=destination:GetRandomVec2()
 Pdestination=COORDINATE:NewFromVec2(vec2)
+elseif destination:IsShip()then
+local _ship=UNIT:FindByName(destination:GetName())
+local _shipHeading=_ship:GetHeading()
+Pdestination=destination:GetCoordinate()
+local _transitTime=Pdeparture:Get2DDistance(Pdestination)/VxCruise
+Pdestination.x=Pdestination.x+(_ship:GetGroundSpeed()*math.cos(math.rad(_shipHeading))*_transitTime)
+Pdestination.z=Pdestination.z+(_ship:GetGroundSpeed()*math.sin(math.rad(_shipHeading))*_transitTime)
 else
 Pdestination=destination:GetCoordinate()
 end
@@ -48773,19 +47208,6 @@ self:AddTransition("Rearming","Arrived","Rearming")
 self:AddTransition("Rearming","Move","Rearming")
 return self
 end
-function ARTY:NewFromCargoGroup(cargogroup,alias)
-if cargogroup then
-BASE:T(string.format("ARTY script version %s. Added CARGO group %s.",ARTY.version,cargogroup:GetName()))
-else
-BASE:E("ERROR: Requested ARTY CARGO GROUP does not exist! (Has to be a MOOSE CARGO(!) group.)")
-return nil
-end
-local group=cargogroup:GetObject()
-local arty=ARTY:New(group,alias)
-arty.iscargo=true
-arty.cargogroup=cargogroup
-return arty
-end
 function ARTY:AssignTargetCoord(coord,prio,radius,nshells,maxengage,time,weapontype,name,unique)
 self:F({coord=coord,prio=prio,radius=radius,nshells=nshells,maxengage=maxengage,time=time,weapontype=weapontype,name=name,unique=unique})
 nshells=nshells or 5
@@ -52456,7 +50878,7 @@ Assets={},
 WarehouseID=0,
 Warehouses={}
 }
-WAREHOUSE.version="1.0.2a"
+WAREHOUSE.version="2.0.0"
 function WAREHOUSE:New(warehouse,alias)
 local self=BASE:Inherit(self,FSM:New())
 if type(warehouse)=="string"then
@@ -53137,10 +51559,12 @@ local athomebase=self.airbase and self.airbase:GetName()==airbase
 local onground=not group:InAir()
 local inspawnzone=group:IsPartlyOrCompletelyInZone(self.spawnzone)
 local ishome=false
-if category==Group.Category.GROUND or category==Group.Category.HELICOPTER then
-ishome=inspawnzone and onground and notmoving
+if category==Group.Category.GROUND then
+ishome=inspawnzone and notmoving
 elseif category==Group.Category.AIRPLANE then
 ishome=athomebase and onground and notmoving
+elseif category==Group.Category.HELICOPTER then
+ishome=(athomebase or inspawnzone)and onground and notmoving
 end
 local text=string.format("Group %s: speed=%d km/h, onground=%s , airbase=%s, spawnzone=%s ==> ishome=%s",group:GetName(),speed,tostring(onground),airbase,tostring(inspawnzone),tostring(ishome))
 self:T(self.lid..text)
@@ -53645,76 +52069,25 @@ end
 Request.transportgroupset=TransportGroupSet
 return
 end
-local _boardradius=500
-if Request.transporttype==WAREHOUSE.TransportType.AIRPLANE then
-_boardradius=5000
-elseif Request.transporttype==WAREHOUSE.TransportType.HELICOPTER then
-elseif Request.transporttype==WAREHOUSE.TransportType.APC then
-elseif Request.transporttype==WAREHOUSE.TransportType.SHIP or Request.transporttype==WAREHOUSE.TransportType.AIRCRAFTCARRIER
-or Request.transporttype==WAREHOUSE.TransportType.ARMEDSHIP or Request.transporttype==WAREHOUSE.TransportType.WARSHIP then
-_boardradius=6000
-end
-local CargoGroups=SET_CARGO:New()
-for _,_group in pairs(CargoGroupSet:GetSetObjects())do
-local asset=self:FindAssetInDB(_group)
-local cargogroup=CARGO_GROUP:New(_group,_cargotype,_group:GetName(),_boardradius,asset.loadradius)
-cargogroup:SetWeight(asset.weight)
-CargoGroups:AddCargo(cargogroup)
-end
 local CargoTransport
 if Request.transporttype==WAREHOUSE.TransportType.AIRPLANE then
-local PickupAirbaseSet=SET_ZONE:New():AddZone(ZONE_AIRBASE:New(self.airbase:GetName()))
-local DeployAirbaseSet=SET_ZONE:New():AddZone(ZONE_AIRBASE:New(Request.airbase:GetName()))
-CargoTransport=AI_CARGO_DISPATCHER_AIRPLANE:New(TransportGroupSet,CargoGroups,PickupAirbaseSet,DeployAirbaseSet)
-CargoTransport:SetHomeZone(ZONE_AIRBASE:New(self.airbase:GetName()))
+CargoTransport=OPSTRANSPORT:New(CargoGroupSet,ZONE_AIRBASE:New(self.airbase:GetName()),ZONE_AIRBASE:New(Request.airbase:GetName()))
+CargoTransport:SetEmbarkZone(self.spawnzone)
+CargoTransport:SetDisembarkZone(Request.warehouse.spawnzone)
 elseif Request.transporttype==WAREHOUSE.TransportType.HELICOPTER then
-local PickupZoneSet=SET_ZONE:New():AddZone(self.spawnzone)
-local DeployZoneSet=SET_ZONE:New():AddZone(Request.warehouse.spawnzone)
-CargoTransport=AI_CARGO_DISPATCHER_HELICOPTER:New(TransportGroupSet,CargoGroups,PickupZoneSet,DeployZoneSet)
-CargoTransport:SetHomeZone(self.spawnzone)
+CargoTransport=OPSTRANSPORT:New(CargoGroupSet,self.spawnzone,Request.warehouse.spawnzone)
 elseif Request.transporttype==WAREHOUSE.TransportType.APC then
-local PickupZoneSet=SET_ZONE:New():AddZone(self.spawnzone)
-local DeployZoneSet=SET_ZONE:New():AddZone(Request.warehouse.spawnzone)
-CargoTransport=AI_CARGO_DISPATCHER_APC:New(TransportGroupSet,CargoGroups,PickupZoneSet,DeployZoneSet,0)
-CargoTransport:SetHomeZone(self.spawnzone)
+CargoTransport=OPSTRANSPORT:New(CargoGroupSet,self.spawnzone,Request.warehouse.spawnzone)
 elseif Request.transporttype==WAREHOUSE.TransportType.SHIP or Request.transporttype==WAREHOUSE.TransportType.AIRCRAFTCARRIER
 or Request.transporttype==WAREHOUSE.TransportType.ARMEDSHIP or Request.transporttype==WAREHOUSE.TransportType.WARSHIP then
-local PickupZoneSet=SET_ZONE:New():AddZone(self.portzone)
-PickupZoneSet:AddZone(self.harborzone)
-local DeployZoneSet=SET_ZONE:New():AddZone(Request.warehouse.harborzone)
+CargoTransport=OPSTRANSPORT:New(CargoGroupSet,self.portzone,Request.warehouse.portzone)
+CargoTransport:SetEmbarkZone(self.spawnzone)
+CargoTransport:SetDisembarkZone(Request.warehouse.spawnzone)
 local remotename=Request.warehouse.warehouse:GetName()
 local ShippingLane=self.shippinglanes[remotename][math.random(#self.shippinglanes[remotename])]
-CargoTransport=AI_CARGO_DISPATCHER_SHIP:New(TransportGroupSet,CargoGroups,PickupZoneSet,DeployZoneSet,ShippingLane)
-CargoTransport:SetHomeZone(self.portzone)
 else
 self:E(self.lid.."ERROR: Unknown transporttype!")
 end
-local pickupouter=200
-local pickupinner=0
-local deployouter=200
-local deployinner=0
-if Request.transporttype==WAREHOUSE.TransportType.SHIP or Request.transporttype==WAREHOUSE.TransportType.AIRCRAFTCARRIER
-or Request.transporttype==WAREHOUSE.TransportType.ARMEDSHIP or Request.transporttype==WAREHOUSE.TransportType.WARSHIP then
-pickupouter=1000
-pickupinner=20
-deployouter=1000
-deployinner=0
-else
-pickupouter=200
-pickupinner=0
-if self.spawnzone.Radius~=nil then
-pickupouter=self.spawnzone.Radius
-pickupinner=20
-end
-deployouter=200
-deployinner=0
-if self.spawnzone.Radius~=nil then
-deployouter=Request.warehouse.spawnzone.Radius
-deployinner=20
-end
-end
-CargoTransport:SetPickupRadius(pickupouter,pickupinner)
-CargoTransport:SetDeployRadius(deployouter,deployinner)
 Request.carriercargo={}
 for _,carriergroup in pairs(TransportGroupSet:GetSetObjects())do
 local asset=self:FindAssetInDB(carriergroup)
@@ -53726,44 +52099,32 @@ carrierunit:SetCargoBayWeightLimit(cargobay)
 self:T2(self.lid..string.format("Cargo bay weight limit of carrier unit %s: %.1f kg.",carrierunit:GetName(),carrierunit:GetCargoBayFreeWeight()))
 end
 end
-function CargoTransport:OnAfterPickedUp(From,Event,To,Carrier,PickupZone)
-local warehouse=Carrier:GetState(Carrier,"WAREHOUSE")
-local text=string.format("Carrier group %s picked up at pickup zone %s.",Carrier:GetName(),PickupZone:GetName())
-warehouse:T(warehouse.lid..text)
-end
-function CargoTransport:OnAfterDeployed(From,Event,To,Carrier,DeployZone)
-local warehouse=Carrier:GetState(Carrier,"WAREHOUSE")
-end
-function CargoTransport:OnAfterHome(From,Event,To,Carrier,Coordinate,Speed,Height,HomeZone)
-local warehouse=Carrier:GetState(Carrier,"WAREHOUSE")
-local text=string.format("Carrier group %s going home to zone %s.",Carrier:GetName(),HomeZone:GetName())
-warehouse:T(warehouse.lid..text)
-end
-function CargoTransport:OnAfterLoaded(From,Event,To,Carrier,Cargo,CarrierUnit,PickupZone)
-local warehouse=Carrier:GetState(Carrier,"WAREHOUSE")
-local text=string.format("Carrier group %s loaded cargo %s into unit %s in pickup zone %s",Carrier:GetName(),Cargo:GetName(),CarrierUnit:GetName(),PickupZone:GetName())
-warehouse:T(warehouse.lid..text)
-local group=Cargo:GetObject()
+CargoTransport.warehouse=self
+function CargoTransport:OnAfterLoaded(From,Event,To,OpsGroupCargo,OpsGroupCarrier,CarrierElement)
+local warehouse=CargoTransport.warehouse
+local group=OpsGroupCargo:GetGroup()
 local request=warehouse:_GetRequestOfGroup(group,warehouse.pending)
-table.insert(request.carriercargo[CarrierUnit:GetName()],warehouse:_GetNameWithOut(Cargo:GetName()))
+table.insert(request.carriercargo[CarrierElement.name],warehouse:_GetNameWithOut(group:GetName()))
 end
-function CargoTransport:OnAfterUnloaded(From,Event,To,Carrier,Cargo,CarrierUnit,DeployZone)
-local warehouse=Carrier:GetState(Carrier,"WAREHOUSE")
-local group=Cargo:GetObject()
-local text=string.format("Cargo group %s was unloaded from carrier unit %s.",tostring(group:GetName()),tostring(CarrierUnit:GetName()))
+function CargoTransport:OnAfterUnloaded(From,Event,To,OpsGroupCargo,OpsGroupCarrier)
+local warehouse=CargoTransport.warehouse
+local group=OpsGroupCargo:GetGroup()
+local text=string.format("Cargo group %s was unloaded from carrier group %s.",tostring(group:GetName()),tostring(OpsGroupCarrier:GetName()))
 warehouse:T(warehouse.lid..text)
 warehouse:Arrived(group)
 end
-function CargoTransport:OnAfterBackHome(From,Event,To,Carrier)
-local carrier=Carrier
-local warehouse=carrier:GetState(carrier,"WAREHOUSE")
-carrier:SmokeWhite()
-local text=string.format("Carrier %s is back home at warehouse %s.",tostring(Carrier:GetName()),tostring(warehouse.warehouse:GetName()))
-MESSAGE:New(text,5):ToAllIf(warehouse.Debug)
-warehouse:I(warehouse.lid..text)
-warehouse:__Arrived(1,Carrier)
+for _,carriergroup in pairs(TransportGroupSet:GetSetObjects())do
+local opsgroup=nil
+if Request.transporttype==WAREHOUSE.TransportType.AIRPLANE or Request.transporttype==WAREHOUSE.TransportType.HELICOPTER then
+opsgroup=FLIGHTGROUP:New(carriergroup)
+elseif Request.transporttype==WAREHOUSE.TransportType.APC then
+opsgroup=ARMYGROUP:New(carriergroup)
+elseif Request.transporttype==WAREHOUSE.TransportType.SHIP or Request.transporttype==WAREHOUSE.TransportType.AIRCRAFTCARRIER
+or Request.transporttype==WAREHOUSE.TransportType.ARMEDSHIP or Request.transporttype==WAREHOUSE.TransportType.WARSHIP then
+opsgroup=NAVYGROUP:New(carriergroup)
 end
-CargoTransport:__Start(5)
+opsgroup:AddOpsTransport(CargoTransport)
+end
 end
 function WAREHOUSE:onafterUnloaded(From,Event,To,group)
 self:_DebugMessage(string.format("Cargo %s unloaded!",tostring(group:GetName())),5)
@@ -55633,7 +53994,6 @@ for i=1,#self.stock do
 local item=self.stock[i]
 if item.uid==stockitem.uid then
 table.remove(self.stock,i)
-_WAREHOUSEDB.Assets[stockitem.uid]=nil
 break
 end
 end
@@ -56837,7 +55197,7 @@ end
 MANTIS={
 ClassName="MANTIS",
 name="mymantis",
-version="0.9.42",
+version="0.9.44",
 SAM_Templates_Prefix="",
 SAM_Group=nil,
 EWR_Templates_Prefix="",
@@ -56891,6 +55251,8 @@ logsamstatus=false,
 DetectAccoustic=false,
 DetectAccousticRadius=2000,
 DetectAccousticCategories={Unit.Category.HELICOPTER},
+ARMWeaponSeen={},
+InboundARMs={},
 }
 MANTIS.AdvancedState={
 GREEN=0,
@@ -56910,55 +55272,55 @@ MANTIS.radiusscale[MANTIS.SamType.SHORT]=1.75
 MANTIS.radiusscale[MANTIS.SamType.POINT]=3
 MANTIS.SamData={
 ["Hawk"]={Range=35,Blindspot=0,Height=12,Type="Medium",Radar="Hawk"},
-["NASAMS"]={Range=14,Blindspot=0,Height=7,Type="Short",Radar="NSAMS"},
+["NASAMS"]={Range=14,Blindspot=0,Height=7,Type="Short",Radar="NSAMS",ARMCapacity=1},
 ["Patriot"]={Range=99,Blindspot=0,Height=25,Type="Long",Radar="Patriot str"},
 ["Rapier"]={Range=10,Blindspot=0,Height=3,Type="Short",Radar="rapier"},
 ["SA-2"]={Range=40,Blindspot=7,Height=25,Type="Medium",Radar="S_75M_Volhov"},
 ["SA-3"]={Range=18,Blindspot=6,Height=18,Type="Short",Radar="5p73 s-125 ln"},
 ["SA-5"]={Range=250,Blindspot=7,Height=40,Type="Long",Radar="5N62V"},
 ["SA-6"]={Range=25,Blindspot=0,Height=8,Type="Medium",Radar="1S91"},
-["SA-10"]={Range=119,Blindspot=0,Height=18,Type="Long",Radar="S-300PS 4"},
+["SA-10"]={Range=119,Blindspot=0,Height=18,Type="Long",Radar="S-300PS 4",ARMCapacity=4},
 ["SA-11"]={Range=35,Blindspot=0,Height=20,Type="Medium",Radar="SA-11"},
-["Roland"]={Range=6,Blindspot=0,Height=5,Type="Short",Radar="Roland"},
+["Roland"]={Range=6,Blindspot=0,Height=5,Type="Short",Radar="Roland",ARMCapacity=1},
 ["Gepard"]={Range=5,Blindspot=0,Height=4,Type="Point",Radar="Gepard"},
 ["HQ-7"]={Range=12,Blindspot=0,Height=3,Type="Short",Radar="HQ-7"},
 ["SA-9"]={Range=4,Blindspot=0,Height=3,Type="Point",Radar="Strela",Point="true"},
 ["SA-8"]={Range=10,Blindspot=0,Height=5,Type="Short",Radar="Osa 9A33"},
 ["SA-19"]={Range=8,Blindspot=0,Height=3,Type="Short",Radar="Tunguska"},
-["SA-15"]={Range=11,Blindspot=0,Height=6,Type="Point",Radar="Tor 9A331",Point="true"},
+["SA-15"]={Range=11,Blindspot=0,Height=6,Type="Point",Radar="Tor 9A331",Point="true",ARMCapacity=2},
 ["SA-13"]={Range=5,Blindspot=0,Height=3,Type="Point",Radar="Strela",Point="true"},
 ["Avenger"]={Range=4,Blindspot=0,Height=3,Type="Short",Radar="Avenger"},
 ["Chaparral"]={Range=8,Blindspot=0,Height=3,Type="Short",Radar="Chaparral"},
 ["Linebacker"]={Range=4,Blindspot=0,Height=3,Type="Point",Radar="Linebacker",Point="true"},
 ["Silkworm"]={Range=90,Blindspot=1,Height=0.2,Type="Long",Radar="Silkworm"},
 ["C-RAM"]={Range=2,Blindspot=0,Height=2,Type="Point",Radar="HEMTT_C-RAM_Phalanx",Point="true"},
-["SA-10B"]={Range=75,Blindspot=0,Height=18,Type="Medium",Radar="SA-10B"},
-["SA-17"]={Range=50,Blindspot=3,Height=50,Type="Medium",Radar="SA-17"},
-["SA-20A"]={Range=150,Blindspot=5,Height=27,Type="Long",Radar="S-300PMU1"},
-["SA-20B"]={Range=200,Blindspot=4,Height=27,Type="Long",Radar="S-300PMU2"},
+["SA-10B"]={Range=75,Blindspot=0,Height=18,Type="Medium",Radar="SA-10B",ARMCapacity=4},
+["SA-17"]={Range=50,Blindspot=3,Height=50,Type="Medium",Radar="SA-17",ARMCapacity=4},
+["SA-20A"]={Range=150,Blindspot=5,Height=27,Type="Long",Radar="S-300PMU1",ARMCapacity=16},
+["SA-20B"]={Range=200,Blindspot=4,Height=27,Type="Long",Radar="S-300PMU2",ARMCapacity=18},
 ["SA-21"]={Range=380,Blindspot=5,Height=30,Type="Long",Radar="92N6E"},
-["S-300VM"]={Range=200,Blindspot=5,Height=30,Type="Long",Radar="9S32M"},
-["S-300V4"]={Range=380,Blindspot=5,Height=30,Type="Long",Radar="9S32M"},
-["S-400"]={Range=250,Blindspot=5,Height=27,Type="Long",Radar="92N6E"},
+["S-300VM"]={Range=200,Blindspot=5,Height=30,Type="Long",Radar="9S32M",ARMCapacity=4},
+["S-300V4"]={Range=380,Blindspot=5,Height=30,Type="Long",Radar="9S32M",ARMCapacity=4},
+["S-400"]={Range=250,Blindspot=5,Height=27,Type="Long",Radar="92N6E",ARMCapacity=4},
 ["HQ-2"]={Range=50,Blindspot=6,Height=35,Type="Medium",Radar="HQ_2_Guideline_LN"},
 ["TAMIR IDFA"]={Range=20,Blindspot=0.6,Height=12.3,Type="Short",Radar="IRON_DOME_LN"},
 ["STUNNER IDFA"]={Range=250,Blindspot=1,Height=45,Type="Long",Radar="DAVID_SLING_LN"},
 ["Nike"]={Range=155,Blindspot=6,Height=30,Type="Long",Radar="HIPAR"},
 ["Dog Ear"]={Range=11,Blindspot=0,Height=9,Type="Point",Radar="Dog Ear",Point="true"},
-["Pantsir S1"]={Range=20,Blindspot=1.2,Height=15,Type="Point",Radar="PantsirS1",Point="true"},
-["Tor M2"]={Range=12,Blindspot=1,Height=10,Type="Point",Radar="TorM2",Point="true"},
-["IRIS-T SLM"]={Range=40,Blindspot=0.5,Height=20,Type="Medium",Radar="CH_IRIST_SLM"},
+["Pantsir S1"]={Range=20,Blindspot=1.2,Height=15,Type="Point",Radar="PantsirS1",Point="true",ARMCapacity=3},
+["Tor M2"]={Range=12,Blindspot=1,Height=10,Type="Point",Radar="TorM2",Point="true",ARMCapacity=4},
+["IRIS-T SLM"]={Range=40,Blindspot=0.5,Height=20,Type="Medium",Radar="CH_IRIST_SLM",ARMCapacity=12},
 }
 MANTIS.SamDataHDS={
 ["SA-2 HDS"]={Range=56,Blindspot=7,Height=30,Type="Medium",Radar="V759"},
 ["SA-3 HDS"]={Range=20,Blindspot=6,Height=30,Type="Short",Radar="V-601P"},
-["SA-10B HDS"]={Range=90,Blindspot=5,Height=25,Type="Long",Radar="5P85CE ln"},
-["SA-10C HDS"]={Range=75,Blindspot=5,Height=25,Type="Long",Radar="5P85SE ln"},
-["SA-17 HDS"]={Range=50,Blindspot=3,Height=50,Type="Medium",Radar="SA-17 "},
-["SA-12 HDS 2"]={Range=100,Blindspot=13,Height=30,Type="Long",Radar="S-300V 9A82 l"},
-["SA-12 HDS 1"]={Range=75,Blindspot=6,Height=25,Type="Long",Radar="S-300V 9A83 l"},
-["SA-23 HDS 2"]={Range=200,Blindspot=5,Height=37,Type="Long",Radar="S-300VM 9A82ME"},
-["SA-23 HDS 1"]={Range=100,Blindspot=1,Height=50,Type="Long",Radar="S-300VM 9A83ME"},
+["SA-10B HDS"]={Range=90,Blindspot=5,Height=25,Type="Long",Radar="5P85CE ln",ARMCapacity=8},
+["SA-10C HDS"]={Range=75,Blindspot=5,Height=25,Type="Long",Radar="5P85SE ln",ARMCapacity=3},
+["SA-17 HDS"]={Range=50,Blindspot=3,Height=50,Type="Medium",Radar="SA-17",ARMCapacity=4},
+["SA-12 HDS 2"]={Range=100,Blindspot=13,Height=30,Type="Long",Radar="S-300V 9A82 l",ARMCapacity=12},
+["SA-12 HDS 1"]={Range=75,Blindspot=6,Height=25,Type="Long",Radar="S-300V 9A83 l",ARMCapacity=12},
+["SA-23 HDS 2"]={Range=200,Blindspot=5,Height=37,Type="Long",Radar="S-300VM 9A82ME",ARMCapacity=14},
+["SA-23 HDS 1"]={Range=100,Blindspot=1,Height=50,Type="Long",Radar="S-300VM 9A83ME",ARMCapacity=14},
 ["HQ-2 HDS"]={Range=50,Blindspot=6,Height=35,Type="Medium",Radar="HQ_2_Guideline_LN"},
 ["SAMPT Block 1 HDS"]={Range=120,Blindspot=1,Height=20,Type="long",Radar="SAMPT_MLT_Blk1"},
 ["SAMPT Block 1INT HDS"]={Range=150,Blindspot=1,Height=25,Type="long",Radar="SAMPT_MLT_Blk1NT"},
@@ -56978,21 +55340,21 @@ MANTIS.SamDataSMA={
 }
 MANTIS.SamDataCH={
 ["2S38 CHM"]={Range=6,Blindspot=0.1,Height=4.5,Type="Short",Radar="2S38"},
-["PantsirS1 CHM"]={Range=20,Blindspot=1.2,Height=15,Type="Point",Radar="PantsirS1",Point="true"},
-["PantsirS2 CHM"]={Range=30,Blindspot=1.2,Height=18,Type="Medium",Radar="PantsirS2"},
+["PantsirS1 CHM"]={Range=20,Blindspot=1.2,Height=15,Type="Point",Radar="PantsirS1",Point="true",ARMCapacity=3},
+["PantsirS2 CHM"]={Range=30,Blindspot=1.2,Height=18,Type="Medium",Radar="PantsirS2",ARMCapacity=4},
 ["PGL-625 CHM"]={Range=10,Blindspot=1,Height=5,Type="Short",Radar="PGL_625"},
 ["HQ-17A CHM"]={Range=15,Blindspot=1.5,Height=10,Type="Short",Radar="HQ17A"},
 ["M903PAC2 CHM"]={Range=120,Blindspot=3,Height=24.5,Type="Long",Radar="MIM104_M903_PAC2"},
 ["M903PAC3 CHM"]={Range=160,Blindspot=1,Height=40,Type="Long",Radar="MIM104_M903_PAC3"},
-["TorM2 CHM"]={Range=12,Blindspot=1,Height=10,Type="Point",Radar="TorM2",Point="true"},
-["TorM2K CHM"]={Range=12,Blindspot=1,Height=10,Type="Point",Radar="TorM2K",Point="true"},
-["TorM2M CHM"]={Range=16,Blindspot=1,Height=10,Type="Point",Radar="TorM2M",Point="true"},
+["TorM2 CHM"]={Range=12,Blindspot=1,Height=10,Type="Point",Radar="TorM2",Point="true",ARMCapacity=3},
+["TorM2K CHM"]={Range=12,Blindspot=1,Height=10,Type="Point",Radar="TorM2K",Point="true",ARMCapacity=4},
+["TorM2M CHM"]={Range=16,Blindspot=1,Height=10,Type="Point",Radar="TorM2M",Point="true",ARMCapacity=4},
 ["NASAMS3-AMRAAMER CHM"]={Range=50,Blindspot=2,Height=35.7,Type="Medium",Radar="CH_NASAMS3_LN_AMRAAM_ER"},
 ["NASAMS3-AIM9X2 CHM"]={Range=20,Blindspot=0.2,Height=18,Type="Short",Radar="CH_NASAMS3_LN_AIM9X2"},
 ["C-RAM CHM"]={Range=2,Blindspot=0,Height=2,Type="Point",Radar="CH_Centurion_C_RAM",Point="true"},
 ["PGZ-09 CHM"]={Range=4,Blindspot=0.5,Height=3,Type="Point",Radar="CH_PGZ09",Point="true"},
-["S350-9M100 CHM"]={Range=15,Blindspot=1,Height=8,Type="Short",Radar="CH_S350_50P6_9M100"},
-["S350-9M96D CHM"]={Range=150,Blindspot=2.5,Height=30,Type="Long",Radar="CH_S350_50P6_9M96D"},
+["S350-9M100 CHM"]={Range=15,Blindspot=1,Height=8,Type="Short",Radar="CH_S350_50P6_9M100",ARMCapacity=20},
+["S350-9M96D CHM"]={Range=150,Blindspot=2.5,Height=30,Type="Long",Radar="CH_S350_50P6_9M96D",ARMCapacity=20},
 ["LAV-AD CHM"]={Range=8,Blindspot=0.16,Height=4.8,Type="Short",Radar="CH_LAVAD"},
 ["HQ-22 CHM"]={Range=170,Blindspot=5,Height=27,Type="Long",Radar="CH_HQ22_LN"},
 ["PGZ-95 CHM"]={Range=2.5,Blindspot=0.5,Height=2,Type="Point",Radar="CH_PGZ95",Point="true"},
@@ -57004,8 +55366,8 @@ MANTIS.SamDataCH={
 ["Skynex CHM"]={Range=3.5,Blindspot=0.1,Height=3.5,Type="Point",Radar="CH_SkynexHX",Point="true"},
 ["Skyshield CHM"]={Range=3.5,Blindspot=0.1,Height=3.5,Type="Point",Radar="CH_Skyshield_Gun",Point="true"},
 ["WieselOzelot CHM"]={Range=8,Blindspot=0.16,Height=4.8,Type="Short",Radar="CH_Wiesel2Ozelot"},
-["BukM3-9M317M CHM"]={Range=70,Blindspot=0.25,Height=35,Type="Medium",Radar="CH_BukM3_9A317M"},
-["BukM3-9M317MA CHM"]={Range=70,Blindspot=0.25,Height=35,Type="Medium",Radar="CH_BukM3_9A317MA"},
+["BukM3-9M317M CHM"]={Range=70,Blindspot=0.25,Height=35,Type="Medium",Radar="CH_BukM3_9A317M",ARMCapacity=20},
+["BukM3-9M317MA CHM"]={Range=70,Blindspot=0.25,Height=35,Type="Medium",Radar="CH_BukM3_9A317MA",ARMCapacity=20},
 ["SkySabre CHM"]={Range=30,Blindspot=0.5,Height=10,Type="Medium",Radar="CH_SkySabreLN"},
 ["Stormer CHM"]={Range=7.5,Blindspot=0.3,Height=7,Type="Short",Radar="CH_StormerHVM"},
 ["THAAD CHM"]={Range=200,Blindspot=40,Height=150,Type="Long",Radar="CH_THAAD_M1120"},
@@ -57074,6 +55436,8 @@ self.maxclassic=6
 self.autoshorad=true
 self.ShoradGroupSet=SET_GROUP:New()
 self.FilterZones=Zones
+self.LastThreatEval={}
+self.InboundARMs={}
 self.SkateZones=nil
 self.SkateNumber=3
 self.shootandscoot=false
@@ -57785,6 +56149,7 @@ local blind=0
 local group=GROUP:FindByName(grpname)
 local units=group:GetUnits()
 local SAMData=self.SamData
+local ARMCapacity
 if mod then
 SAMData=self.SamDataHDS
 elseif sma then
@@ -57792,18 +56157,23 @@ SAMData=self.SamDataSMA
 elseif chm then
 SAMData=self.SamDataCH
 end
+self:T("Looking to auto-match for "..grpname)
 for _,_unit in pairs(units)do
 local unit=_unit
-local type=string.lower(unit:GetTypeName())
+local typename=string.lower(unit:GetTypeName())
+self:T(string.format("Matching typename: %s",typename))
 for idx,entry in pairs(SAMData)do
 local _entry=entry
 local _radar=string.lower(_entry.Radar)
-if string.find(type,_radar,1,true)then
+self:T(string.format("Trying typename: %s",_radar))
+if string.find(typename,_radar,1,true)then
 type=_entry.Type
 radiusscale=self.radiusscale[type]
 range=_entry.Range*1000*radiusscale
 height=_entry.Height*1000
 blind=_entry.Blindspot*100
+ARMCapacity=_entry.ARMCapacity
+self:T(string.format("Match: %s - %s",_radar,type))
 found=true
 break
 end
@@ -57823,7 +56193,7 @@ end
 if not found then
 self:E(self.lid..string.format("*****Could not match radar data for %s! Will default to midrange values!",grpname))
 end
-return range,height,type,blind
+return range,height,type,blind,ARMCapacity
 end
 function MANTIS:_GetSAMRange(grpname)
 self:T(self.lid.."_GetSAMRange for "..tostring(grpname))
@@ -57836,6 +56206,7 @@ local found=false
 local HDSmod=false
 local SMAMod=false
 local CHMod=false
+local ARMCapacity=0
 if string.find(grpname,"HDS",1,true)then
 HDSmod=true
 elseif string.find(grpname,"SMA",1,true)then
@@ -57852,6 +56223,7 @@ radiusscale=self.radiusscale[type]
 range=_entry.Range*1000*radiusscale
 height=_entry.Height*1000
 blind=_entry.Blindspot
+ARMCapacity=_entry.ARMCapacity or 0
 self:T("Matching Groupname = "..grpname.." Range= "..range)
 found=true
 break
@@ -57868,14 +56240,14 @@ found=true
 end
 end
 if(not found)or HDSmod or SMAMod or CHMod then
-range,height,type=self:_GetSAMDataFromUnits(grpname,HDSmod,SMAMod,CHMod)
+range,height,type,blind,ARMCapacity=self:_GetSAMDataFromUnits(grpname,HDSmod,SMAMod,CHMod)
 elseif not found then
 self:E(self.lid..string.format("*****Could not match radar data for %s! Will default to midrange values!",grpname))
 end
 if found and string.find(grpname,"SHORAD",1,true)then
 type=MANTIS.SamType.POINT
 end
-return range,height,type,blind
+return range,height,type,blind,ARMCapacity
 end
 function MANTIS:SetSAMStartState()
 self:T(self.lid.."Setting SAM Start States")
@@ -57900,8 +56272,9 @@ end
 group:OptionEngageRange(engagerange)
 local grpname=group:GetName()
 local grpcoord=group:GetCoordinate()
-local grprange,grpheight,type,blind=self:_GetSAMRange(grpname)
-table.insert(SAM_Tbl,{grpname,grpcoord,grprange,grpheight,blind,type})
+local grprange,grpheight,type,blind,ARMCapacity=self:_GetSAMRange(grpname)
+if ARMCapacity and ARMCapacity>0 then _group:SetProperty("ARMCapacity",ARMCapacity)end
+table.insert(SAM_Tbl,{grpname,grpcoord,grprange,grpheight,blind,type,ARMCapacity})
 if type==MANTIS.SamType.LONG then
 table.insert(SAM_Tbl_lg,{grpname,grpcoord,grprange,grpheight,blind,type})
 table.insert(SEAD_Grps,grpname)
@@ -57956,10 +56329,13 @@ group:OptionEngageRange(engagerange)
 if group:IsGround()and group:IsAlive()then
 local grpname=group:GetName()
 local grpcoord=group:GetCoordinate()
-local grprange,grpheight,type,blind=self:_GetSAMRange(grpname)
+local grprange,grpheight,type,blind,ARMCapacity=self:_GetSAMRange(grpname)
+if ARMCapacity and ARMCapacity>0 then _group:SetProperty("ARMCapacity",ARMCapacity)end
 local radaralive=true
-table.insert(SAM_Tbl,{grpname,grpcoord,grprange,grpheight,blind,type})
+table.insert(SAM_Tbl,{grpname,grpcoord,grprange,grpheight,blind,type,ARMCapacity})
+if type~=MANTIS.SamType.POINT then
 table.insert(SEAD_Grps,grpname)
+end
 if type==MANTIS.SamType.LONG and radaralive then
 table.insert(SAM_Tbl_lg,{grpname,grpcoord,grprange,grpheight,blind,type})
 self:T({grpname,grprange,grpheight})
@@ -58023,6 +56399,52 @@ end
 end
 return self
 end
+function MANTIS:SeadAllowSuppression(targetGroup,targetName,attackerGroup,weaponName,weaponWrapper,tti,delay)
+self:T(self.lid.."SeadAllowSuppression")
+self:T(string.format("MANTIS:SeadAllowSuppression REQUEST | target=%s | weapon=%s | tti=%s | delay=%s",tostring(targetName),
+tostring(weaponName),tostring(tti),tostring(delay)))
+local armcap=targetGroup:GetProperty("ARMCapacity")
+if not armcap then
+for _,sam in pairs(self.SAM_Table or{})do
+if sam[1]==targetName then
+armcap=sam[7]
+break
+end
+end
+end
+self:T(string.format("MANTIS:SeadAllowSuppression SAM DATA | target=%s | ARMCapacity=%s",tostring(targetName),armcap and tostring(armcap)or"nil"))
+local THREAT_WINDOW=0.1
+self.LastThreatEval=self.LastThreatEval or{}
+self.InboundARMs=self.InboundARMs or{}
+local now=timer.getTime()
+local last=self.LastThreatEval[targetName]or 0
+if(now-last)>=THREAT_WINDOW then
+self.InboundARMs[targetName]=(self.InboundARMs[targetName]or 0)+1
+self.LastThreatEval[targetName]=now
+self:T(string.format("MANTIS:SeadAllowSuppression NEW threat accepted | Δt=%.3f",now-last))
+else
+self:T(string.format("MANTIS:SeadAllowSuppression duplicate evaluation ignored | Δt=%.3f",now-last))
+end
+local inbound=self.InboundARMs[targetName]or 0
+self:T(string.format("MANTIS:SeadAllowSuppression THREAT COUNT | target=%s | inboundThreats=%d",tostring(targetName),inbound))
+if targetGroup and targetGroup:IsAlive()then
+local AmmotT,AmmoS,_,_,AmmoM=targetGroup:GetAmmunition()
+if AmmoM and AmmoM==0 then
+self:T(string.format("MANTIS:SeadAllowSuppression DECISION -> APPROVED (no MISSILES) | target=%s",tostring(targetName)))
+return true
+end
+end
+if(not armcap)or armcap==0 then
+self:T(string.format("MANTIS:SeadAllowSuppression DECISION -> APPROVED (no ARMCAP) | target=%s",tostring(targetName)))
+return true
+end
+if inbound>=armcap then
+self:T(string.format("MANTIS:SeadAllowSuppression DECISION -> APPROVED (inbound %d >= cap %d) | target=%s",inbound,armcap,tostring(targetName)))
+return true
+end
+self:T(string.format("MANTIS:SeadAllowSuppression DECISION -> DENIED (inbound %d < cap %d) | target=%s",inbound,armcap,tostring(targetName)))
+return false
+end
 function MANTIS:_CheckLoop(samset,detset,dlink,limit)
 self:T(self.lid.."CheckLoop "..#detset.." Coordinates")
 local switchedon=0
@@ -58047,6 +56469,7 @@ local activeshorad=false
 if self.Shorad and self.Shorad.ActiveGroups and self.Shorad.ActiveGroups[name]then
 activeshorad=true
 end
+if samgroup:GetProperty("SHORAD_ACTIVE")==true and activeshorad==false then activeshorad=true end
 if IsInZone and(not suppressed)and(not activeshorad)then
 if samgroup:IsAlive()then
 local switch=false
@@ -58060,6 +56483,7 @@ switchedon=switchedon+1
 switch=true
 end
 if self.SamStateTracker[name]~="RED"and switch then
+self.SamStateTracker[name]="RED"
 self:__RedState(1,samgroup)
 end
 if shortsam==true and self.SmokeDecoy==true and Distance<self.DetectAccousticRadius*1.5 then
@@ -58086,27 +56510,13 @@ else
 samgroup:OptionAlarmStateGreen()
 end
 if self.SamStateTracker[name]~="GREEN"then
-self:__GreenState(1,samgroup)
 self.SamStateTracker[name]="GREEN"
+self:__GreenState(1,samgroup)
 end
 if self.debug or self.verbose then
 local text=string.format("SAM %s in alarm state GREEN!",name)
 if self.verbose then self:I(self.lid..text)end
 end
-end
-end
-end
-if self.debug or self.verbose or self.logsamstatus then
-for _,_status in pairs(self.SamStateTracker)do
-if _status=="GREEN"then
-instatusgreen=instatusgreen+1
-elseif _status=="RED"then
-instatusred=instatusred+1
-end
-end
-if self.Shorad then
-for _,_name in pairs(self.Shorad.ActiveGroups or{})do
-activeshorads=activeshorads+1
 end
 end
 end
@@ -58130,12 +56540,26 @@ local instatusredm,instatusgreenm,activeshoradsm=self:_CheckLoop(samset,detset,d
 local samset=self.SAM_Table_Short
 local instatusreds,instatusgreens,activeshoradss=self:_CheckLoop(samset,detset,dlink,self.maxshortrange)
 local samset=self.SAM_Table_PointDef
-instatusred,instatusgreen,activeshorads=self:_CheckLoop(samset,detset,dlink,self.maxpointdefrange)
+local instatusred,instatusgreen,activeshorads=self:_CheckLoop(samset,detset,dlink,self.maxpointdefrange)
 else
 local samset=self:_GetSAMTable()
-instatusred,instatusgreen,activeshorads=self:_CheckLoop(samset,detset,dlink,self.maxclassic)
+local instatusred,instatusgreen,activeshorads=self:_CheckLoop(samset,detset,dlink,self.maxclassic)
 end
 local function GetReport()
+if self.debug or self.verbose or self.logsamstatus then
+for _,_status in pairs(self.SamStateTracker)do
+if _status=="GREEN"then
+instatusgreen=instatusgreen+1
+elseif _status=="RED"then
+instatusred=instatusred+1
+end
+end
+if self.Shorad then
+for _,_name in pairs(self.Shorad.ActiveGroups or{})do
+activeshorads=activeshorads+1
+end
+end
+end
 local statusreport=REPORT:New("\nMANTIS Status "..self.name)
 statusreport:Add("+-----------------------------+")
 statusreport:Add(string.format("+ SAM in RED State: %2d",instatusred))
@@ -58212,6 +56636,7 @@ self.Shorad:SetDefenseLimits(80,95)
 self.ShoradLink=true
 self.Shorad.Groupset=self.ShoradGroupSet
 self.Shorad.debug=self.debug
+self.Shorad:AddCallBack(self)
 end
 if self.shootandscoot and self.SkateZones and self.Shorad then
 self.Shorad:AddScootZones(self.SkateZones,self.SkateNumber or 3,self.ScootRandom,self.ScootFormation)
@@ -58320,6 +56745,7 @@ end
 function MANTIS:onafterSeadSuppressionEnd(From,Event,To,Group,Name)
 self:T({From,Event,To,Name})
 self.SuppressedGroups[Name]=false
+self.InboundARMs[Name]=0
 return self
 end
 function MANTIS:onafterSeadSuppressionPlanned(From,Event,To,Group,Name,SuppressionStartTime,SuppressionEndTime,Attacker)
@@ -58400,7 +56826,7 @@ if SmokeDecoy then
 self.SmokeDecoy=SmokeDecoy
 self.SmokeDecoyColor=SmokeDecoyColor or SMOKECOLOR.White
 end
-self:I("*** SHORAD - Started Version 0.3.5")
+self:I("*** SHORAD - Started Version 0.3.6")
 self.lid=string.format("SHORAD %s | ",self.name)
 self:_InitState()
 self:HandleEvent(EVENTS.Shot,self.HandleEventShot)
@@ -58578,6 +57004,12 @@ end
 end
 return returnname
 end
+function SHORAD:AddCallBack(Object)
+self:T({Class=Object.ClassName})
+self.CallBack=Object
+self.UseCallBack=true
+return self
+end
 function SHORAD:_SmokeUnits(Group)
 if self.SmokeDecoy==true then
 if Group and Group:IsAlive()then
@@ -58612,7 +57044,46 @@ return IsDetected
 end
 function SHORAD:onafterWakeUpShorad(From,Event,To,TargetGroup,Radius,ActiveTimer,TargetCat,ShotAt)
 self:T(self.lid.." WakeUpShorad")
-self:T({TargetGroup,Radius,ActiveTimer,TargetCat})
+local TDiff=4
+local function SleepShorad(group)
+if group and group:IsAlive()then
+local groupname=group:GetName()
+self.ActiveGroups[groupname]=nil
+if self.UseEmOnOff then
+group:EnableEmission(false)
+else
+group:OptionAlarmStateGreen()
+end
+group:SetProperty("SHORAD_ACTIVE",false)
+local text=string.format("Sleeping SHORAD %s",group:GetName())
+self:T(text)
+local m=MESSAGE:New(text,10,"SHORAD"):ToAllIf(self.debug)
+if self.shootandscoot then
+self:__ShootAndScoot(1,group)
+else
+end
+end
+end
+local function WakeUp(_group,groupname)
+local text=string.format("Waking up SHORAD %s",_group:GetName())
+self:T(text)
+local m=MESSAGE:New(text,10,"SHORAD"):ToAllIf(self.debug)
+if self.UseEmOnOff then
+_group:EnableEmission(true)
+end
+_group:OptionAlarmStateRed()
+_group:SetProperty("SHORAD_ACTIVE",true)
+self:_SmokeUnits(_group)
+if self.ActiveGroups[groupname]==nil then
+self.ActiveGroups[groupname]={Timing=ActiveTimer}
+local endtime=timer.getTime()+(ActiveTimer*math.random(75,100)/100)
+self.ActiveGroups[groupname].Timer=TIMER:New(SleepShorad,_group):Start(endtime)
+if self.shootandscoot then
+self:__ShootAndScoot(TDiff,_group)
+TDiff=TDiff+1
+end
+end
+end
 local targetcat=TargetCat or Object.Category.UNIT
 local targetgroup=TargetGroup
 local targetvec2=nil
@@ -58628,27 +57099,14 @@ end
 local targetzone=ZONE_RADIUS:New("Shorad",targetvec2,Radius)
 local groupset=self.Groupset
 local shoradset=groupset:GetAliveSet()
-local function SleepShorad(group)
-if group and group:IsAlive()then
-local groupname=group:GetName()
-self.ActiveGroups[groupname]=nil
-if self.UseEmOnOff then
-group:EnableEmission(false)
-else
-group:OptionAlarmStateGreen()
-end
-local text=string.format("Sleeping SHORAD %s",group:GetName())
-self:T(text)
-local m=MESSAGE:New(text,10,"SHORAD"):ToAllIf(self.debug)
-if self.shootandscoot then
-self:__ShootAndScoot(1,group)
-end
-end
-end
-local TDiff=4
 for _,_group in pairs(shoradset)do
 local groupname=_group:GetName()
 if groupname==TargetGroup and ShotAt==true then
+local allow=false
+if self.CallBack and self.UseCallBack==true then
+allow=self.CallBack:SeadAllowSuppression(_group,groupname)
+end
+if allow==true then
 if self.UseEmOnOff then
 _group:EnableEmission(false)
 end
@@ -58660,25 +57118,14 @@ local m=MESSAGE:New(text,10,"SHORAD"):ToAllIf(self.debug)
 self:_SmokeUnits(_group)
 if self.shootandscoot then
 self:__ShootAndScoot(1,_group)
+else
+_group:RelocateGroundRandomInRadius(30,500,false,true,"Diamond",true)
+end
+else
+WakeUp(_group,groupname)
 end
 elseif _group:IsAnyInZone(targetzone)or groupname==TargetGroup then
-local text=string.format("Waking up SHORAD %s",_group:GetName())
-self:T(text)
-local m=MESSAGE:New(text,10,"SHORAD"):ToAllIf(self.debug)
-if self.UseEmOnOff then
-_group:EnableEmission(true)
-end
-_group:OptionAlarmStateRed()
-self:_SmokeUnits(_group)
-if self.ActiveGroups[groupname]==nil then
-self.ActiveGroups[groupname]={Timing=ActiveTimer}
-local endtime=timer.getTime()+(ActiveTimer*math.random(75,100)/100)
-self.ActiveGroups[groupname].Timer=TIMER:New(SleepShorad,_group):Start(endtime)
-if self.shootandscoot then
-self:__ShootAndScoot(TDiff,_group)
-TDiff=TDiff+1
-end
-end
+WakeUp(_group,groupname)
 end
 end
 return self
@@ -58764,7 +57211,6 @@ end
 return self
 end
 function SHORAD:HandleEventShot(EventData)
-self:T({EventData})
 self:T(self.lid.." HandleEventShot")
 local ShootingWeapon=EventData.Weapon
 local ShootingWeaponName=EventData.WeaponName
@@ -58783,7 +57229,7 @@ if(self:_CheckHarms(ShootingWeaponName)or self:_CheckMavs(ShootingWeaponName))an
 local targetdata=EventData.Weapon:getTarget()
 if not targetdata or self.debug then
 if string.find(ShootingWeaponName,"AGM_88",1,true)then
-self:I("**** Tracking AGM-88 with no target data.")
+self:T("**** Tracking AGM-88 with no target data.")
 local pos0=EventData.IniUnit:GetCoordinate()
 local fheight=EventData.IniUnit:GetHeight()
 self:__CalculateHitZone(20,ShootingWeapon,pos0,fheight,EventData.IniGroup)
@@ -60399,7 +58845,7 @@ end
 function AUTOLASE:GetLosFromUnit(Unit)
 local lasedistance=self.LaseDistance
 local unitheight=Unit:GetHeight()
-local coord=Unit:GetCoordinate()
+local coord=Unit:GetCoord()
 local landheight=coord:GetLandHeight()
 local asl=unitheight-landheight
 if asl>100 then
@@ -60531,7 +58977,7 @@ locationstring=entry.coordinate:ToStringLLDMS(settings)
 elseif settings:IsA2G_LL_DDM()then
 locationstring=entry.coordinate:ToStringLLDDM(settings)
 elseif settings:IsA2G_BR()then
-local startcoordinate=Unit:GetCoordinate()or Group:GetCoordinate()
+local startcoordinate=Unit:GetCoord()or Group:GetCoord()
 locationstring=entry.coordinate:ToStringBR(startcoordinate,settings,false,self.RoundingPrecision)
 end
 end
@@ -60617,8 +59063,8 @@ else
 self.RecceUnits[name].cooldown=false
 end
 end
-local reccecoord=Recce:GetCoordinate()
-local unitcoord=Unit:GetCoordinate()
+local reccecoord=Recce:GetCoord()
+local unitcoord=Unit:GetCoord()
 local islos=reccecoord:IsLOS(unitcoord,2.5)
 local distance=math.floor(reccecoord:Get3DDistance(unitcoord))
 local lasedistance=self:GetLosFromUnit(Recce)
@@ -60660,8 +59106,8 @@ if hasstatics then
 self:T(self.lid.."Checking possibly visible STATICs for Recce "..unit:GetName())
 for _,_static in pairs(Statics)do
 local static=STATIC:Find(_static)
-if static and static:GetCoalition()~=self.coalition and static:GetCoordinate()then
-local IsLOS=position:IsLOS(static:GetCoordinate())
+if static and static:GetCoalition()~=self.coalition and static:GetCoord()then
+local IsLOS=position:IsLOS(static:GetCoord())
 if IsLOS then
 unit:KnowUnit(static,true,true)
 end
@@ -60698,7 +59144,7 @@ local reccename=contact.recce or"none"
 local threat=contact.threatlevel or 0
 local reccegrp=UNIT:FindByName(reccename)
 if reccegrp then
-local reccecoord=reccegrp:GetCoordinate()
+local reccecoord=reccegrp:GetCoord()
 local distance=math.floor(reccecoord:Get3DDistance(coord))
 local text=string.format("%s of %s | Distance %d km | Threatlevel %d",contact.attribute,contact.groupname,math.floor(distance/1000),contact.threatlevel)
 report:Add(text)
@@ -60731,7 +59177,6 @@ for _,_unit in pairs(units)do
 local unit=_unit
 if unit and unit:IsAlive()then
 local threat=unit:GetThreatLevel()
-local coord=unit:GetCoordinate()
 if threat>=self.minthreatlevel then
 local unitname=unit:GetName()
 if unit:HasAttribute("RADAR_BAND1_FOR_ARM")or unit:HasAttribute("RADAR_BAND2_FOR_ARM")or unit:HasAttribute("Optical Tracker")then
@@ -60779,16 +59224,16 @@ targets=targets+1
 local code=self:GetLaserCode(reccename)
 local spot=SPOT:New(recce)
 spot:LaseOn(unit,code,self.LaseDuration)
-local locationstring=unit:GetCoordinate():ToStringLLDDM()
+local locationstring=unit:GetCoord():ToStringLLDDM()
 if _SETTINGS:IsA2G_MGRS()then
 local precision=_SETTINGS:GetMGRS_Accuracy()
 local settings={}
 settings.MGRS_Accuracy=precision
-locationstring=unit:GetCoordinate():ToStringMGRS(settings)
+locationstring=unit:GetCoord():ToStringMGRS(settings)
 elseif _SETTINGS:IsA2G_LL_DMS()then
-locationstring=unit:GetCoordinate():ToStringLLDMS(_SETTINGS)
+locationstring=unit:GetCoord():ToStringLLDMS(_SETTINGS)
 elseif _SETTINGS:IsA2G_BR()then
-locationstring=unit:GetCoordinate():ToStringBULLS(self.coalition,_SETTINGS)
+locationstring=unit:GetCoord():ToStringBULLS(self.coalition,_SETTINGS)
 end
 local laserspot={
 laserspot=spot,
@@ -60800,7 +59245,7 @@ timestamp=timer.getAbsTime(),
 unitname=unitname,
 reccename=reccename,
 unittype=unit:GetTypeName(),
-coordinate=unit:GetCoordinate(),
+coordinate=unit:GetCoord(),
 }
 if self.smoketargets then
 local coord=unit:GetCoordinate()
@@ -60877,138 +59322,6 @@ function AUTOLASE:onbeforeCancel(From,Event,To)
 self:UnHandleEvent(EVENTS.PlayerEnterAircraft)
 self:__Stop(2)
 return self
-end
-do
-ZONE_GOAL_CARGO={
-ClassName="ZONE_GOAL_CARGO",
-}
-ZONE_GOAL_CARGO.States={}
-function ZONE_GOAL_CARGO:New(Zone,Coalition)
-local self=BASE:Inherit(self,ZONE_GOAL:New(Zone))
-self:F({Zone=Zone,Coalition=Coalition})
-self:SetCoalition(Coalition)
-do
-end
-do
-end
-do
-end
-do
-end
-self:AddTransition("*","Guard","Guarded")
-self:AddTransition("*","Empty","Empty")
-self:AddTransition({"Guarded","Empty"},"Attack","Attacked")
-self:AddTransition({"Guarded","Attacked","Empty"},"Capture","Captured")
-return self
-end
-function ZONE_GOAL_CARGO:SetCoalition(Coalition)
-self.Coalition=Coalition
-end
-function ZONE_GOAL_CARGO:GetCoalition()
-return self.Coalition
-end
-function ZONE_GOAL_CARGO:GetCoalitionName()
-if self.Coalition==coalition.side.BLUE then
-return"Blue"
-end
-if self.Coalition==coalition.side.RED then
-return"Red"
-end
-if self.Coalition==coalition.side.NEUTRAL then
-return"Neutral"
-end
-return""
-end
-function ZONE_GOAL_CARGO:IsGuarded()
-local IsGuarded=self.Zone:IsAllInZoneOfCoalition(self.Coalition)
-self:F({IsGuarded=IsGuarded})
-return IsGuarded
-end
-function ZONE_GOAL_CARGO:IsEmpty()
-local IsEmpty=self.Zone:IsNoneInZone()
-self:F({IsEmpty=IsEmpty})
-return IsEmpty
-end
-function ZONE_GOAL_CARGO:IsCaptured()
-local IsCaptured=self.Zone:IsAllInZoneOfOtherCoalition(self.Coalition)
-self:F({IsCaptured=IsCaptured})
-return IsCaptured
-end
-function ZONE_GOAL_CARGO:IsAttacked()
-local IsAttacked=self.Zone:IsSomeInZoneOfCoalition(self.Coalition)
-self:F({IsAttacked=IsAttacked})
-return IsAttacked
-end
-function ZONE_GOAL_CARGO:Mark()
-local Coord=self.Zone:GetCoordinate()
-local ZoneName=self:GetZoneName()
-local State=self:GetState()
-if self.MarkRed and self.MarkBlue then
-self:F({MarkRed=self.MarkRed,MarkBlue=self.MarkBlue})
-Coord:RemoveMark(self.MarkRed)
-Coord:RemoveMark(self.MarkBlue)
-end
-if self.Coalition==coalition.side.BLUE then
-self.MarkBlue=Coord:MarkToCoalitionBlue("Guard Zone: "..ZoneName.."\nStatus: "..State)
-self.MarkRed=Coord:MarkToCoalitionRed("Capture Zone: "..ZoneName.."\nStatus: "..State)
-else
-self.MarkRed=Coord:MarkToCoalitionRed("Guard Zone: "..ZoneName.."\nStatus: "..State)
-self.MarkBlue=Coord:MarkToCoalitionBlue("Capture Zone: "..ZoneName.."\nStatus: "..State)
-end
-end
-function ZONE_GOAL_CARGO:onenterGuarded()
-if self.Coalition==coalition.side.BLUE then
-else
-end
-self:Mark()
-end
-function ZONE_GOAL_CARGO:onenterCaptured()
-local NewCoalition=self.Zone:GetCoalition()
-self:F({NewCoalition=NewCoalition})
-self:SetCoalition(NewCoalition)
-self:Mark()
-end
-function ZONE_GOAL_CARGO:onenterEmpty()
-self:Mark()
-end
-function ZONE_GOAL_CARGO:onenterAttacked()
-self:Mark()
-end
-function ZONE_GOAL_CARGO:onafterGuard()
-if not self.SmokeScheduler then
-self.SmokeScheduler=self:ScheduleRepeat(1,1,0.1,nil,self.StatusSmoke,self)
-end
-if not self.ScheduleStatusZone then
-self.ScheduleStatusZone=self:ScheduleRepeat(15,15,0.1,nil,self.StatusZone,self)
-end
-end
-function ZONE_GOAL_CARGO:IsCaptured()
-local IsCaptured=self.Zone:IsAllInZoneOfOtherCoalition(self.Coalition)
-self:F({IsCaptured=IsCaptured})
-return IsCaptured
-end
-function ZONE_GOAL_CARGO:IsAttacked()
-local IsAttacked=self.Zone:IsSomeInZoneOfCoalition(self.Coalition)
-self:F({IsAttacked=IsAttacked})
-return IsAttacked
-end
-function ZONE_GOAL_CARGO:StatusZone()
-local State=self:GetState()
-self:F({State=self:GetState()})
-self.Zone:Scan()
-if State~="Guarded"and self:IsGuarded()then
-self:Guard()
-end
-if State~="Empty"and self:IsEmpty()then
-self:Empty()
-end
-if State~="Attacked"and self:IsAttacked()then
-self:Attack()
-end
-if State~="Captured"and self:IsCaptured()then
-self:Capture()
-end
-end
 end
 TIRESIAS={
 ClassName="TIRESIAS",
@@ -72202,7 +70515,7 @@ terminaltype=nil,
 unlimitedfuel=false,
 }
 _RECOVERYTANKERID=0
-RECOVERYTANKER.version="1.0.10"
+RECOVERYTANKER.version="1.0.11"
 function RECOVERYTANKER:New(carrierunit,tankergroupname)
 local self=BASE:Inherit(self,FSM:New())
 if type(carrierunit)=="string"then
@@ -72434,6 +70747,19 @@ end
 Spawn:InitRadioCommsOnOff(true)
 Spawn:InitRadioFrequency(self.RadioFreq)
 Spawn:InitRadioModulation(self.RadioModu)
+if self.callsignname and self.callsignnumber then
+local grp=GROUP:FindByName(self.tankergroupname)
+if grp then
+local typename=grp:GetTypeName()or""
+local Name
+local enumerator=CALLSIGN.Tanker
+if typename=="A6E"then
+enumerator=CALLSIGN.Intruder
+end
+Name=self:_GetCallsignName(self.callsignname,enumerator)
+Spawn:InitCallSign(self.callsignname,Name,self.callsignnumber,self.callsignnumber)
+end
+end
 Spawn:InitModex(self.modex)
 if self.takeoff==SPAWN.Takeoff.Air then
 local hdg=self.carrier:GetHeading()
@@ -72553,12 +70879,12 @@ local wp={}
 wp[1]=self.tanker:GetCoordinate():WaypointAirTurningPoint(nil,UTILS.MpsToKmph(self.speed),{},"Current Position")
 wp[2]=p0:WaypointAirTurningPoint(nil,UTILS.MpsToKmph(self.speed),{taskorbit},"Tanker Orbit")
 self.tanker:WayPointInitialize(wp)
-local taskroll=self.tanker:EnRouteTaskTanker()
+local taskrole=self.tanker:EnRouteTaskTanker()
 if self.awacs then
-taskroll=self.tanker:EnRouteTaskAWACS()
+taskrole=self.tanker:EnRouteTaskAWACS()
 end
 local taskroute=self.tanker:TaskRoute(wp)
-local taskcombo=self.tanker:TaskCombo({taskroll,taskroute})
+local taskcombo=self.tanker:TaskCombo({taskrole,taskroute})
 self.tanker:SetTask(taskcombo,1)
 self.Tupdate=timer.getTime()
 end
@@ -72670,6 +70996,14 @@ MESSAGE:New(text,10,"DEBUG"):ToAllIf(self.Debug)
 self:T(self.lid..text)
 self:RefuelStop(receiver)
 end
+end
+function RECOVERYTANKER:_GetCallsignName(Callsign,Enumerator)
+for name,value in pairs(Enumerator or{})do
+if value==Callsign then
+return name
+end
+end
+return""
 end
 function RECOVERYTANKER:_OnEventCrashOrDead(EventData)
 self:F2({eventdata=EventData})
@@ -75441,7 +73775,7 @@ if ind>0 then
 local crate=ctable[1]
 local static=crate:GetPositionable()
 local crate_pos=static:GetCoordinate()
-local gpos=group:GetCoordinate()
+local gpos=group:GetCoord()
 local distance=self:_GetDistance(gpos,crate_pos)
 self:T(string.format("%s Distance to crate: %d",self.lid,distance))
 if distance>30 and distance~=-1 and self:IsStatus("Searching")then
@@ -75461,7 +73795,7 @@ self:T(self.lid.."Move")
 self:SetStatus("Moving")
 local group=self.Group
 local tgtpos=self.currwpt
-local gpos=group:GetCoordinate()
+local gpos=group:GetCoord()
 local distance=self:_GetDistance(gpos,tgtpos)
 self:T(string.format("%s Distance remaining: %d",self.lid,distance))
 if distance<=30 and distance~=-1 then
@@ -75566,6 +73900,8 @@ CTLD.UnitTypeCapabilities={
 ["SH-60B"]={type="SH-60B",crates=true,troops=true,cratelimit=2,trooplimit=20,length=16,cargoweightlimit=3500},
 ["AH-64D_BLK_II"]={type="AH-64D_BLK_II",crates=false,troops=true,cratelimit=0,trooplimit=2,length=17,cargoweightlimit=200},
 ["Bronco-OV-10A"]={type="Bronco-OV-10A",crates=false,troops=true,cratelimit=0,trooplimit=5,length=13,cargoweightlimit=1450},
+["AH-6J"]={type="AH-6J",crates=false,troops=true,cratelimit=0,trooplimit=4,length=7,cargoweightlimit=550},
+["MH-6J"]={type="MH-6J",crates=false,troops=true,cratelimit=0,trooplimit=4,length=7,cargoweightlimit=550},
 ["OH-6A"]={type="OH-6A",crates=false,troops=true,cratelimit=0,trooplimit=4,length=7,cargoweightlimit=550},
 ["OH58D"]={type="OH58D",crates=false,troops=false,cratelimit=0,trooplimit=0,length=14,cargoweightlimit=400},
 ["CH-47Fbl1"]={type="CH-47Fbl1",crates=true,troops=true,cratelimit=4,trooplimit=31,length=20,cargoweightlimit=10800},
@@ -75578,7 +73914,7 @@ CTLD.FixedWingTypes={
 ["Mosquito"]="Mosquito",
 ["C-130J-30"]="C-130J-30",
 }
-CTLD.version="1.3.42"
+CTLD.version="1.3.43"
 function CTLD:New(Coalition,Prefixes,Alias)
 local self=BASE:Inherit(self,FSM:New())
 BASE:T({Coalition,Prefixes,Alias})
@@ -76084,6 +74420,9 @@ end
 end
 return self
 end
+function CTLD:CanGetTroops(Group, Unit, Cargo, quantity, Inject)
+  return true
+end
 function CTLD:_LoadTroops(Group,Unit,Cargotype,Inject)
 self:T(self.lid.." _LoadTroops")
 local instock=Cargotype:GetStock()
@@ -76104,7 +74443,7 @@ end
 if not Inject then
 if not inzone then
 self:_SendMessage("You are not close enough to a logistics zone!",10,false,Group)
-if not self.debug then return false end
+if not self.debug then return self end
 elseif not grounded and not hoverload then
 self:_SendMessage("You need to land or hover in position to load!",10,false,Group)
 if not self.debug then return self end
@@ -76141,21 +74480,10 @@ elseif maxloadable<cgonetmass then
 self:_SendMessage("Sorry, that\'s too heavy to load!",10,false,Group)
 return
 else
-if CTLDCost == true then
-local price = (priceOf and priceOf(cgoname)) or CTLD_DEFAULT_PRICE or 0
-if price > 0 and not Inject then
-local coal = Group and Group:GetCoalition() or nil
-if not coal then return self end
-local dcs = Group and Group.GetDCSObject and Group:GetDCSObject() or nil
-local gid = dcs and dcs:getID() or nil
-if bc and type(bc.debit) == "function" then
-local ok = bc:debit(coal, price, gid, dcs, cgoname)
-if not ok then return self end
-else
-bc.accounts[coal] = (bc.accounts[coal] or 0) - price
+if not self:CanGetTroops(Group,Unit,Cargotype,1,Inject) then
+return self
 end
-end
-end
+self:__TroopsPickedUp(1,Group,Unit,Cargotype)
 self.CargoCounter=self.CargoCounter+1
 local loadcargotype=CTLD_CARGO:New(self.CargoCounter,Cargotype.Name,Cargotype.Templates,cgotype,true,true,Cargotype.CratesNeeded,nil,nil,Cargotype.PerCrateMass)
 self:T({cargotype=loadcargotype})
@@ -76164,7 +74492,6 @@ table.insert(loaded.Cargo,loadcargotype)
 self.Loaded_Cargo[unitname]=loaded
 self:_SendMessage(string.format("%s boarded!",cgoname),10,false,Group)
 self:_RefreshDropTroopsMenu(Group,Unit)
-self:__TroopsPickedUp(1,Group,Unit,Cargotype)
 self:_UpdateUnitCargoMass(Unit)
 Cargotype:RemoveStock()
 self:_RefreshTroopQuantityMenus(Group,Unit,Cargotype)
@@ -76394,26 +74721,27 @@ return self
 end
 function CTLD:_LoadTroopsQuantity(Group,Unit,Cargo,quantity)
 local n=math.max(1,tonumber(quantity)or 1)
-if CTLDCost==true then
-local name=Cargo:GetName()
-local price=(priceOf and priceOf(name)) or CTLD_DEFAULT_PRICE or 0
-if price>0 then
-local coal=Group and Group:GetCoalition() or nil
-if not coal then return self end
-local dcs=Group and Group.GetDCSObject and Group:GetDCSObject() or nil
-local gid=dcs and dcs:getID() or nil
-if bc and type(bc.debit)=="function" then
-local ok=bc:debit(coal,price*n,gid,dcs,string.format("%dx %s",n,name))
-if not ok then return self end
-else
-bc.accounts[coal]=(bc.accounts[coal] or 0)-(price*n)
+local grounded=not self:IsUnitInAir(Unit)
+local hoverload=self:CanHoverLoad(Unit)
+local inzone,zonename,zone,distance=self:IsUnitInZone(Unit,CTLD.CargoZoneType.LOAD)
+if not inzone then
+inzone,zonename,zone,distance=self:IsUnitInZone(Unit,CTLD.CargoZoneType.SHIP)
 end
+if not inzone then
+self:_SendMessage("You are not close enough to a logistics zone!",10,false,Group)
+if not self.debug then return self end
+elseif not grounded and not hoverload then
+self:_SendMessage("You need to land or hover in position to load!",10,false,Group)
+if not self.debug then return self end
+elseif self.pilotmustopendoors and not UTILS.IsLoadingDoorOpen(Unit:GetName())then
+self:_SendMessage("You need to open the door(s) to load troops!",10,false,Group)
+if not self.debug then return self end
 end
-end
+if not self:CanGetTroops(Group,Unit,Cargo,n,false) then return self end
 local prevSuppress=self.suppressmessages
 self.suppressmessages=true
 for i=1,n do
-timer.scheduleFunction(function()self:_LoadTroops(Group,Unit,Cargo,true)end,{},timer.getTime()+0.2*i)
+timer.scheduleFunction(function()self:_LoadTroops(Group,Unit,Cargo)end,{},timer.getTime()+0.2*i)
 end
 timer.scheduleFunction(function()
 self.suppressmessages=prevSuppress
@@ -76446,11 +74774,10 @@ local capacitySets=math.floor(space/troopsize)
 if capacitySets<maxQuantity then maxQuantity=capacitySets end
 end
 for quantity=1,maxQuantity do
-local m=MENU_GROUP:New(Group,tostring(quantity),parentMenu)
 if quantity==1 then
-MENU_GROUP_COMMAND:New(Group,"Load",m,self._LoadTroops,self,Group,Unit,cargoObj)
+MENU_GROUP_COMMAND:New(Group,tostring(quantity),parentMenu,self._LoadTroops,self,Group,Unit,cargoObj)
 else
-MENU_GROUP_COMMAND:New(Group,"Load",m,self._LoadTroopsQuantity,self,Group,Unit,cargoObj,quantity)
+MENU_GROUP_COMMAND:New(Group,tostring(quantity),parentMenu,self._LoadTroopsQuantity,self,Group,Unit,cargoObj,quantity)
 end
 end
 return self
@@ -76606,8 +74933,8 @@ end
 end
 return self
 end
-function CTLD:CanGetUnits(Group, Unit, Config, quantity, quiet)
-  return true
+function CTLD:CanGetUnits(Group,Unit,Config,quantity,quiet)
+return true
 end
 function CTLD:_C130GetUnits(Group,Unit,Name)
 self:T(self.lid.." _C130GetUnits")
@@ -76633,7 +74960,7 @@ if not inzone then
 self:_SendMessage("You are not close enough to a logistics zone!",10,false,Group)
 return self
 end
-if not self:CanGetUnits(Group, Unit, cfg, 1, false) then
+if not self:CanGetUnits(Group,Unit,cfg,1,false)then
 return self
 end
 local coord=Unit:GetCoordinate()or Group:GetCoordinate()
@@ -76747,6 +75074,7 @@ end
 -- leka custom
 if CTLDCost == true then
 local price = (priceOf and priceOf(cgoname)) or CTLD_DEFAULT_PRICE or 0
+local reqRank = (reqRankOf and reqRankOf(cgoname)) or 0
 local charge = price * requestedSets
 if charge > 0 and bc then
 local coal = Group and Group:GetCoalition() or nil
@@ -76755,7 +75083,7 @@ local dcs  = Group and Group.GetDCSObject and Group:GetDCSObject() or nil
 local gid  = dcs and dcs:getID() or nil
 local reason = string.format("%dx %s", requestedSets, cgoname)
 if type(bc.debit) == "function" then
-local ok = bc:debit(coal, charge, gid, dcs, reason)
+local ok = bc:debit(coal, charge, gid, dcs, reason, reqRank)
 if not ok then return false end
 else
 bc.accounts[coal] = (bc.accounts[coal] or 0) - charge
@@ -76802,7 +75130,7 @@ end
 local capabilities=self:_GetUnitCapabilities(Unit)
 local canloadcratesno=capabilities.cratelimit
 local loaddist=self.CrateDistance or 35
-local nearcrates,numbernearby=self:_FindCratesNearby(Group,Unit,loaddist,true,true)
+local nearcrates,numbernearby=self:_FindCratesNearby(Group,Unit,loaddist,true,true,true)
 if numbernearby>=canloadcratesno and not drop then
 self:_SendMessage("There are enough crates nearby already! Take care of those first!",10,false,Group)
 return false
@@ -77205,7 +75533,7 @@ end
 function CTLD:_FindCratesNearby(_group,_unit,_dist,_ignoreweight,ignoretype,ignoreHercInner)
 self:T(self.lid.." _FindCratesNearby")
 local finddist=_dist
-local location=_group:GetCoordinate()
+local location=_unit:GetCoordinate()
 local existingcrates=self.Spawned_Cargo
 local index=0
 local indexg=0
@@ -77239,9 +75567,9 @@ if ignoretype==true then cando=true restricted=false end
 self:T(self.lid.." Unit can carry: "..tostring(cando))
 local distance=self:_GetDistance(location,staticpos)
 local hercInnerBlocked=false
-if self.UseC130LoadAndUnload and ignoreHercInner and _unit and self:IsC130J(_unit)then
+if ignoreHercInner then
 local capabilities=self:_GetUnitCapabilities(_unit)
-local innerDist=capabilities.length and(capabilities.length/2)or 4
+local innerDist=self:IsC130J(_unit)and 15 or math.max(4,(capabilities.length or 0)/2)
 if distance<innerDist then
 hercInnerBlocked=true
 end
@@ -77658,6 +75986,8 @@ if self.Loaded_Cargo[unitname]and(grounded or hoverunload)then
 if not droppingatbase or self.debug then
 local loadedcargo=self.Loaded_Cargo[unitname]or{}
 local cargotable=loadedcargo.Cargo
+local deployedTroopsByName={}
+local deployedEngineersByName={}
 for _,_cargo in pairs(cargotable)do
 local cargo=_cargo
 local type=cargo:GetType()
@@ -77710,16 +76040,24 @@ if type==CTLD_CARGO.Enum.ENGINEERS then
 self.Engineers=self.Engineers+1
 local grpname=self.DroppedTroops[self.TroopCounter]:GetName()
 self.EngineersInField[self.Engineers]=CTLD_ENGINEERING:New(name,grpname)
-self:_SendMessage(string.format("Dropped Engineers %s into action!",name),10,false,Group)
+deployedEngineersByName[name]=(deployedEngineersByName[name]or 0)+1
 else
-self:_SendMessage(string.format("Dropped Troops %s into action!",name),10,false,Group)
+deployedTroopsByName[name]=(deployedTroopsByName[name]or 0)+1
 end
 end
+end
+local parts={}
+for nName,nCount in pairs(deployedTroopsByName)do
+parts[#parts+1]=tostring(nCount).."x Troops "..nName
+end
+for nName,nCount in pairs(deployedEngineersByName)do
+parts[#parts+1]=tostring(nCount).."x Engineers "..nName
+end
+if#parts>0 then
+self:_SendMessage("Dropped "..table.concat(parts,", ").." into action!",10,false,Group)
 end
 else
-if not CTLDCost then
 self:_SendMessage("Troops have returned to base!",10,false,Group)
-end
 self:__TroopsRTB(1,Group,Unit,zonename,zone)
 end
 local loaded={}
@@ -77745,21 +76083,6 @@ local stock=_troop:GetStock()
 if stock and tonumber(stock)>=0 then
 _troop:AddStock()
 self:_RefreshTroopQuantityMenus(Group,Unit,_troop)
-end
-end
-end
-if CTLDCost and bc and priceOf then
-local coal = Group and Group:GetCoalition() or nil
-if coal then
-local refund = priceOf(name) or 0
-if refund > 0 then
-local dcs = Group and Group.GetDCSObject and Group:GetDCSObject() or nil
-local gid = dcs and dcs:getID() or nil
-if bc.credit then
-bc:credit(coal, refund, gid, dcs, "return: "..name)
-else
-bc.accounts[coal] = (bc.accounts[coal] or 0) + refund
-end
 end
 end
 end
@@ -77890,11 +76213,10 @@ end
 end
 local baseDist=self.CrateDistance or 35
 local finddist=baseDist
-if self.EngineerSearch and self.EngineerSearch>baseDist then
-finddist=self.EngineerSearch
+if Engineering and self.EngineerSearch and self.EngineerSearch>baseDist then
 finddist=self.EngineerSearch
 end
-local crates,number=self:_FindCratesNearby(Group,Unit,finddist,true,true)
+local crates,number=self:_FindCratesNearby(Group,Unit,finddist,true,true,not Engineering)
 local buildables={}
 local foundbuilds=false
 local canbuild=false
@@ -77914,11 +76236,8 @@ local distToUnit=Unit and ccoord:Get2DDistance(Unit:GetCoordinate())or 0
 local isHercDrop=Crate:WasDropped(true)
 if not isHercDrop and distToUnit>baseDist then
 elseif self.UseC130LoadAndUnload and self:IsC130J(Unit)and distToUnit<15 then
-self:_SendMessage("Please unload crates from the C-130 before building!",10,false,Group)
-return self
 elseif self.UseC130LoadAndUnload and self:IsHook(Unit)and distToUnit<5 then
-self:_SendMessage("Please unload crates from the CH-47 before building!",10,false,Group)
-return self
+elseif self.UseC130LoadAndUnload and(Unit:GetTypeName()=="Mi-8MTV2"or Unit:GetTypeName()=="Mi-8MT")and distToUnit<8 then
 else
 if not buildables[name]then
 local object={}
@@ -78653,13 +76972,25 @@ _group.MyTopTroopsMenu=toptroops
 _group.CTLD_TroopMenus={}
 if self.usesubcats then
 local subcatmenus={}
+local subcatcount=0
+local onlycat=nil
+for catName,_ in pairs(self.subcatsTroop)do
+subcatcount=subcatcount+1
+onlycat=catName
+end
+local useTroopSubcats=subcatcount>1 or(subcatcount==1 and onlycat~="Other")
+if useTroopSubcats then
 for catName,_ in pairs(self.subcatsTroop)do
 subcatmenus[catName]=MENU_GROUP:New(_group,catName,troopsmenu)
+end
 end
 for _,cargoObj in pairs(self.Cargo_Troops)do
 if not cargoObj.DontShowInMenu then
 local menutext=self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
-local parent=subcatmenus[cargoObj.Subcategory]or troopsmenu
+local parent=troopsmenu
+if useTroopSubcats and cargoObj.Subcategory and subcatmenus[cargoObj.Subcategory]then
+parent=subcatmenus[cargoObj.Subcategory]
+end
 local mSet=MENU_GROUP:New(_group,menutext,parent)
 _group.CTLD_TroopMenus[cargoObj.Name]=mSet
 self:_AddTroopQuantityMenus(_group,_unit,mSet,cargoObj)
@@ -78722,7 +77053,7 @@ subcatmenus[cargoObj.Subcategory]=parent
 end
 end
 local needed=cargoObj:GetCratesNeeded()or 1
-local name = self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
+local name=self:_FormatCargoDisplayText(cargoObj.Name,cargoObj)
 local txt
 if needed>1 then
 txt=string.format("%d crate%s %s (%dkg)",needed,needed==1 and""or"s",name,cargoObj.PerCrateMass or 0)
@@ -79407,8 +77738,9 @@ end
 end
 end
 end
-function CTLD:_UnloadSingleTroopByID(Group,Unit,chunkID)
+function CTLD:_UnloadSingleTroopByID(Group,Unit,chunkID,qty)
 self:T(self.lid.." _UnloadSingleTroopByID chunkID="..tostring(chunkID))
+qty=qty or 1
 local droppingatbase=false
 local inzone,zonename,zone,distance=self:IsUnitInZone(Unit,CTLD.CargoZoneType.LOAD)
 if not inzone then
@@ -79442,12 +77774,11 @@ self:_SendMessage(string.format("Troop chunk is empty for ID %d!",chunkID),10,fa
 if not self.debug then return self end
 return self
 end
+local deployedTroopsByName={}
+local deployedEngineersByName={}
+for n=1,qty do
 local foundCargo=chunk[1]
-if not foundCargo then
-self:_SendMessage(string.format("No troop cargo at chunk %d!",chunkID),10,false,Group)
-if not self.debug then return self end
-return self
-end
+if not foundCargo then break end
 local cType=foundCargo:GetType()
 local name=foundCargo:GetName()or"none"
 local tmpl=foundCargo:GetTemplates()or{}
@@ -79501,22 +77832,33 @@ if cType==CTLD_CARGO.Enum.ENGINEERS then
 self.Engineers=self.Engineers+1
 local grpname=self.DroppedTroops[self.TroopCounter]:GetName()
 self.EngineersInField[self.Engineers]=CTLD_ENGINEERING:New(name,grpname)
-self:_SendMessage(string.format("Dropped Engineers %s into action!",name),10,false,Group)
+deployedEngineersByName[name]=(deployedEngineersByName[name]or 0)+1
 else
-self:_SendMessage(string.format("Dropped Troops %s into action!",name),10,false,Group)
+deployedTroopsByName[name]=(deployedTroopsByName[name]or 0)+1
 end
 table.remove(chunk,1)
 if#chunk==0 then
 self.TroopsIDToChunk[chunkID]=nil
+break
+end
+end
+local parts={}
+for nName,nCount in pairs(deployedTroopsByName)do
+parts[#parts+1]=tostring(nCount).."x Troops "..nName
+end
+for nName,nCount in pairs(deployedEngineersByName)do
+parts[#parts+1]=tostring(nCount).."x Engineers "..nName
+end
+if#parts>0 then
+self:_SendMessage("Dropped "..table.concat(parts,", ").." into action!",10,false,Group)
 end
 else
-if not CTLDCost then
 self:_SendMessage("Troops have returned to base!",10,false,Group)
-end
 self:__TroopsRTB(1,Group,Unit,zonename,zone)
 if self.TroopsIDToChunk and self.TroopsIDToChunk[chunkID]then
 local chunk=self.TroopsIDToChunk[chunkID]
-if#chunk>0 then
+for n=1,qty do
+if#chunk==0 then break end
 local firstObj=chunk[1]
 local cName=firstObj:GetName()
 local gentroops=self.Cargo_Troops
@@ -79526,29 +77868,14 @@ local st=_troop:GetStock()
 if st and tonumber(st)>=0 then
 _troop:AddStock()
 self:_RefreshTroopQuantityMenus(Group,Unit,_troop)
-if CTLDCost and bc and priceOf then
-local coal = Group and Group:GetCoalition() or nil
-if coal then
-local refund = priceOf(cName) or 0
-if refund > 0 then
-local dcs = Group and Group.GetDCSObject and Group:GetDCSObject() or nil
-local gid = dcs and dcs:getID() or nil
-if bc.credit then
-bc:credit(coal, refund, gid, dcs, "return: "..name)
-else
-bc.accounts[coal] = (bc.accounts[coal] or 0) + refund
-end
-end
-end
-end
 end
 end
 end
 firstObj:SetWasDropped(true)
 table.remove(chunk,1)
+end
 if#chunk==0 then
 self.TroopsIDToChunk[chunkID]=nil
-end
 end
 end
 end
@@ -79588,11 +77915,13 @@ local theUnit=Unit
 if not theGroup.CTLDTopmenu then return end
 local topTroops=theGroup.MyTopTroopsMenu
 if not topTroops then return end
-if topTroops.DropTroopsMenu then
-topTroops.DropTroopsMenu:Remove()
-end
-local dropTroopsMenu=MENU_GROUP:New(theGroup,"Drop Troops",topTroops)
+local dropTroopsMenu=topTroops.DropTroopsMenu
+if dropTroopsMenu then
+dropTroopsMenu:RemoveSubMenus()
+else
+dropTroopsMenu=MENU_GROUP:New(theGroup,"Drop Troops",topTroops)
 topTroops.DropTroopsMenu=dropTroopsMenu
+end
 MENU_GROUP_COMMAND:New(theGroup,"Drop ALL troops",dropTroopsMenu,self._UnloadTroops,self,theGroup,theUnit)
 local loadedData=self.Loaded_Cargo[theUnit:GetName()]
 if not loadedData or not loadedData.Cargo then return end
@@ -79611,10 +77940,19 @@ self.TroopsIDToChunk=self.TroopsIDToChunk or{}
 for tName,objList in pairs(troopsByName)do
 table.sort(objList,function(a,b)return a:GetID()<b:GetID()end)
 local count=#objList
+if count>0 then
 local chunkID=objList[1]:GetID()
 self.TroopsIDToChunk[chunkID]=objList
 local label=string.format("Drop %s (%d)",tName,count)
-MENU_GROUP_COMMAND:New(theGroup,label,dropTroopsMenu,self._UnloadSingleTroopByID,self,theGroup,theUnit,chunkID)
+if count==1 then
+MENU_GROUP_COMMAND:New(theGroup,label,dropTroopsMenu,self._UnloadSingleTroopByID,self,theGroup,theUnit,chunkID,1)
+else
+local parentMenu=MENU_GROUP:New(theGroup,label,dropTroopsMenu)
+for q=1,count do
+MENU_GROUP_COMMAND:New(theGroup,string.format("Drop (%d) %s",q,tName),parentMenu,self._UnloadSingleTroopByID,self,theGroup,theUnit,chunkID,q)
+end
+end
+end
 end
 end
 function CTLD:_CheckTemplates(temptable)
@@ -82132,7 +80470,9 @@ CSAR.AircraftType["MH-60R"]=10
 CSAR.AircraftType["OH-6A"]=2
 CSAR.AircraftType["OH58D"]=2
 CSAR.AircraftType["CH-47Fbl1"]=31
-CSAR.version="1.0.35"
+CSAR.AircraftType["AH-6J"]=2
+CSAR.AircraftType["MH-6J"]=2
+CSAR.version="1.0.36"
 function CSAR:New(Coalition,Template,Alias)
 local self=BASE:Inherit(self,FSM:New())
 BASE:T({Coalition,Template,Alias})
@@ -84008,7 +82348,8 @@ Squadron:Start()
 end
 local airbasename=self:GetAirbaseName()
 if airbasename then
-local group=GROUP:FindByName(Squadron.templategroup)
+local group=Squadron.templategroup
+if group then
 local Nunits=1
 local units
 if group then units=group:GetUnits()end
@@ -84016,10 +82357,22 @@ if units then Nunits=#units end
 local typename=Squadron.aircrafttype or"none"
 local NAssets=Squadron.Ngroups*Nunits
 local storage=STORAGE:New(airbasename)
+self:T(self.lid.."Adding "..typename.." #"..NAssets)
 if storage and storage.warehouse and storage:IsLimitedAircraft()and typename~="none"then
 local NInStore=storage:GetItemAmount(typename)or 0
 if NAssets>NInStore then
 storage:AddItem(typename,NAssets)
+end
+end
+local unit=group:GetUnit(1)
+if unit and storage and storage.warehouse and storage:IsLimitedLiquids()and typename~="none"then
+local fuel=unit:GetFuelMassMax()
+local neededfuel=(fuel*NAssets)
+local NInStore=storage:GetLiquidAmount(STORAGE.Liquid.JETFUEL)or 0
+self:T(string.format(self.lid.."Fuel Needed: %dt | Fuel in store: %dt",neededfuel/1000,NInStore/1000))
+if neededfuel>NInStore then
+storage:AddLiquid(STORAGE.Liquid.JETFUEL,neededfuel)
+end
 end
 end
 end
@@ -93698,7 +92051,7 @@ self:SetThreatLevelRange()
 self.Defcon=CHIEF.DEFCON.GREEN
 self.strategy=CHIEF.Strategy.DEFENSIVE
 self.TransportCategories={Group.Category.HELICOPTER}
-self.commander=COMMANDER:New(Coalition)
+self.commander=COMMANDER:New(Coalition,Alias)
 self:AddTransition("*","MissionAssign","*")
 self:AddTransition("*","MissionCancel","*")
 self:AddTransition("*","TransportCancel","*")
@@ -94911,6 +93264,9 @@ return true
 end
 end
 return false
+end
+function CHIEF:CanMission(Mission)
+return self.commander and self.commander:CanMission(Mission)
 end
 COHORT={
 ClassName="COHORT",
@@ -96446,6 +94802,43 @@ end
 end
 end
 return cohorts
+end
+function COMMANDER:CanMission(Mission)
+local commander=self
+local TargetVec2=Mission:GetTargetVec2()
+local MaxWeight=nil
+if Mission.NcarriersMin then
+local legions=commander.legions
+local cohorts=nil
+if Mission.transportLegions or Mission.transportCohorts then
+legions=Mission.transportLegions
+cohorts=Mission.transportCohorts
+end
+local Cohorts=LEGION._GetCohorts(legions,cohorts)
+local transportcohorts={}
+for _,_cohort in pairs(Cohorts)do
+local cohort=_cohort
+local can=LEGION._CohortCan(cohort,AUFTRAG.Type.OPSTRANSPORT,Mission.carrierCategories,Mission.carrierAttributes,Mission.carrierProperties,nil,TargetVec2)
+if can and(MaxWeight==nil or cohort.cargobayLimit>MaxWeight)then
+MaxWeight=cohort.cargobayLimit
+end
+end
+end
+local legions=commander.legions
+local cohorts=nil
+if Mission.specialLegions or Mission.specialCohorts then
+legions=Mission.specialLegions
+cohorts=Mission.specialCohorts
+end
+local Cohorts=LEGION._GetCohorts(legions,cohorts,Mission.operation,commander.opsqueue)
+for _,_cohort in pairs(Cohorts)do
+local cohort=_cohort
+local can=LEGION._CohortCan(cohort,Mission.type,nil,Mission.attributes,Mission.properties,{Mission.engageWeaponType},TargetVec2,Mission.engageRange,Mission.refuelSystem,nil,MaxWeight)
+if can then
+return true
+end
+end
+return false
 end
 function COMMANDER:RecruitAssetsForMission(Mission)
 self:T2(self.lid..string.format("Recruiting assets for mission \"%s\" [%s]",Mission:GetName(),Mission:GetType()))
@@ -101826,7 +100219,7 @@ item.attribute="Static"
 item.category=3
 item.categoryname=static:GetCategoryName()or"Unknown"
 item.threatlevel=static:GetThreatLevel()or 0
-item.position=static:GetCoordinate()
+item.position=static:GetCoord()
 item.velocity=static:GetVelocityVec3()
 item.speed=0
 item.recce=RecceName
@@ -101877,14 +100270,14 @@ local unit=UNIT:FindByName(name)
 if unit and unit:IsAlive()then
 local DetectionAccepted=true
 if self.RadarAcceptRange then
-local reccecoord=Unit:GetCoordinate()
-local coord=unit:GetCoordinate()
+local reccecoord=Unit:GetCoord()
+local coord=unit:GetCoord()
 local dist=math.floor(coord:Get2DDistance(reccecoord)/1000)
 if dist>self.RadarAcceptRangeKilometers then DetectionAccepted=false end
 end
 if self.RadarBlur then
-local reccecoord=Unit:GetCoordinate()
-local coord=unit:GetCoordinate()
+local reccecoord=Unit:GetCoord()
+local coord=unit:GetCoord()
 local dist=math.floor(coord:Get2DDistance(reccecoord)/1000)
 local AGL=unit:GetAltitude(true)
 local minheight=self.RadarBlurMinHeight or 250
@@ -105786,7 +104179,7 @@ ASSIGNED="assigned to carrier",
 BOARDING="boarding",
 LOADED="loaded",
 }
-OPSGROUP.version="1.0.4"
+OPSGROUP.version="1.0.5"
 function OPSGROUP:New(group)
 local self=BASE:Inherit(self,FSM:New())
 if type(group)=="string"then
@@ -108036,7 +106429,6 @@ self:Cruise()
 end
 if Task.description=="Task_Land_At"then
 self:T(self.lid.."Taske DONE Task_Land_At ==> Wait")
-self:Cruise()
 self:Wait(20,100)
 else
 self:T(self.lid.."Task Done but NO mission found ==> _CheckGroupDone in 1 sec")
@@ -109587,7 +107979,8 @@ gotcargo=true
 end
 end
 end
-if gotcargo and self.cargoTransport:_CheckRequiredCargos(self.cargoTZC,self)and not boarding then
+local required=self.cargoTransport:_CheckRequiredCargos(self.cargoTZC,self)
+if gotcargo and required and not boarding then
 self:T(self.lid.."Boarding/loading finished ==> Loaded")
 self.Tloading=nil
 self:LoadingDone()
@@ -110389,6 +108782,9 @@ self:TaskCancel(Task)
 else
 self:T(self.lid.."ERROR: No current task but landed at?!")
 end
+end
+if self:IsWaiting()then
+self:__Cruise(-10)
 end
 elseif self:IsArmygroup()then
 local path=self.cargoTransport:_GetPathTransport(self.category,self.cargoTZC)
@@ -112534,7 +110930,7 @@ OPSGROUP="OPSGROUP",
 STORAGE="STORAGE",
 }
 _OPSTRANSPORTID=0
-OPSTRANSPORT.version="0.8.0"
+OPSTRANSPORT.version="0.9.0"
 function OPSTRANSPORT:New(CargoGroups,PickupZone,DeployZone)
 local self=BASE:Inherit(self,FSM:New())
 _OPSTRANSPORTID=_OPSTRANSPORTID+1
@@ -113312,7 +111708,9 @@ else
 requiredCargos={}
 for _,_cargo in pairs(TransportZoneCombo.Cargos)do
 local cargo=_cargo
+if not cargo.delivered then
 table.insert(requiredCargos,cargo.opsgroup)
+end
 end
 end
 if requiredCargos==nil or#requiredCargos==0 then
@@ -115124,6 +113522,7 @@ CRUISER="Cruiser",
 DESTROYER="Destroyer",
 CARRIER="Aircraft Carrier",
 RADIOS="Radios",
+INTERCEPTCOURSE="Intercept course",
 },
 DE={
 TASKABORT="Auftrag abgebrochen!",
@@ -115211,9 +113610,10 @@ CRUISER="Kreuzer",
 DESTROYER="Zerstörer",
 CARRIER="Flugzeugträger",
 RADIOS="Frequenzen",
+INTERCEPTCOURSE="Abfangkurs",
 },
 }
-PLAYERTASKCONTROLLER.version="0.1.71"
+PLAYERTASKCONTROLLER.version="0.1.73"
 function PLAYERTASKCONTROLLER:New(Name,Coalition,Type,ClientFilter)
 local self=BASE:Inherit(self,FSM:New())
 self.Name=Name or"CentCom"
@@ -116298,6 +114698,22 @@ self.SRSQueue:NewTransmission(text,nil,self.SRS,nil,2,{Group},text,30,self.BCFre
 end
 return self
 end
+function PLAYERTASKCONTROLLER:_CalcGroupFuturePosition(group,seconds)
+local p=group:GetCoordinate()
+local v=group:GetVelocityVec3()
+local t=seconds or self.prediction
+local Vec3={x=p.x+v.x*t,y=p.y+v.y*t,z=p.z+v.z*t}
+local futureposition=COORDINATE:NewFromVec3(Vec3)
+if self.verbose==true then
+local markerID=group:GetProperty("PLAYERTASK_ARROW")
+if markerID then
+COORDINATE:RemoveMark(markerID)
+end
+markerID=p:ArrowToAll(futureposition,self.coalition,{1,0,0},1,{1,1,0},0.5,2,true,"Position Calc")
+group:SetProperty("PLAYERTASK_ARROW",markerID)
+end
+return futureposition
+end
 function PLAYERTASKCONTROLLER:_FlashInfo()
 self:T(self.lid.."_FlashInfo")
 for _playername,_client in pairs(self.FlashPlayer)do
@@ -116308,12 +114724,29 @@ local Coordinate=task.Target:GetCoordinate()
 local CoordText=""
 if self.Type~=PLAYERTASKCONTROLLER.Type.A2A and task.Type~=AUFTRAG.Type.INTERCEPT then
 CoordText=Coordinate:ToStringA2G(_client,nil,self.ShowMagnetic)
+local targettxt=self.gettext:GetEntry("TARGET",self.locale)
+local text=targettxt..": "..CoordText
+local m=MESSAGE:New(text,10,"Tasking"):ToClient(_client)
 else
 CoordText=Coordinate:ToStringA2A(_client,nil,self.ShowMagnetic)
-end
 local targettxt=self.gettext:GetEntry("TARGET",self.locale)
-local text="Target: "..CoordText
+local text=targettxt..": "..CoordText
+local name=task.Target:GetName()
+local group=GROUP:FindByName(name)
+local clientcoord=_client:GetCoordinate()
+if group and clientcoord and group:IsAlive()and task.Type==AUFTRAG.Type.INTERCEPT then
+local speed=math.max(UTILS.KnotsToMps(350)or _client:GetVelocityMPS())
+local dist=Coordinate:Get3DDistance(clientcoord)
+local iTime=math.floor(dist/speed)+5
+if iTime<10 then iTime=10
+elseif iTime>600 then iTime=600 end
+local npos=self:_CalcGroupFuturePosition(group,iTime)
+local BR=npos:ToStringBearing(clientcoord,nil,self.ShowMagnetic,0)
+local Intercepttext=self.gettext:GetEntry("INTERCEPTCOURSE",self.locale)
+text=text.."\n"..Intercepttext.." "..BR
+end
 local m=MESSAGE:New(text,10,"Tasking"):ToClient(_client)
+end
 end
 end
 end
@@ -116380,8 +114813,10 @@ elevationmeasure=self.gettext:GetEntry("METER",self.locale)
 else
 Elevation=math.floor(UTILS.MetersToFeet(Elevation))
 end
+if task.Type~=AUFTRAG.Type.INTERCEPT then
 local elev=self.gettext:GetEntry("ELEVATION",self.locale)
 text=text..string.format(elev,tostring(math.floor(Elevation)),elevationmeasure)
+end
 if task.Type==AUFTRAG.Type.PRECISIONBOMBING and self.precisionbombing then
 if LasingDrone and LasingDrone.playertask then
 local yes=self.gettext:GetEntry("YES",self.locale)
@@ -120110,10 +118545,11 @@ FuelCriticalThreshold=10,
 showpatrolpointmarks=false,
 EngageTargetTypes={"Air"},
 }
-EASYGCICAP.version="0.1.33"
+EASYGCICAP.version="0.1.34"
 function EASYGCICAP:New(Alias,AirbaseName,Coalition,EWRName)
 local self=BASE:Inherit(self,FSM:New())
 self.alias=Alias or AirbaseName.." CAP Wing"
+self.lid=string.format("EASYGCICAP %s | ",self.alias)
 self.coalitionname=string.lower(Coalition)or"blue"
 self.coalition=self.coalitionname=="blue"and coalition.side.BLUE or coalition.side.RED
 self.wings={}
@@ -120146,7 +118582,7 @@ self.FuelLowThreshold=25
 self.FuelCriticalThreshold=10
 self.showpatrolpointmarks=false
 self.EngageTargetTypes={"Air"}
-self.lid=string.format("EASYGCICAP %s | ",self.alias)
+self:SetDefaultTurnoverTime()
 self:SetStartState("Stopped")
 self:AddTransition("Stopped","Start","Running")
 self:AddTransition("Running","Stop","Stopped")
@@ -120273,6 +118709,12 @@ end
 function EASYGCICAP:SetDefaultMissionRange(Range)
 self:T(self.lid.."SetDefaultMissionRange")
 self.missionrange=Range or 100
+return self
+end
+function EASYGCICAP:SetDefaultTurnoverTime(MaintenanceTime,RepairTime)
+self:T(self.lid.."SetDefaultTurnoverTime")
+self.maintenancetime=MaintenanceTime or 5
+self.repairtime=RepairTime or 10
 return self
 end
 function EASYGCICAP:SetDefaultNumberAlert5Standby(Airframes)
@@ -120670,7 +119112,7 @@ self:T(self.lid.."_AddSquadron "..SquadName)
 local Squadron_One=SQUADRON:New(TemplateName,AirFrames,SquadName)
 Squadron_One:AddMissionCapability({AUFTRAG.Type.CAP,AUFTRAG.Type.GCICAP,AUFTRAG.Type.INTERCEPT,AUFTRAG.Type.PATROLRACETRACK,AUFTRAG.Type.ALERT5})
 Squadron_One:SetFuelLowThreshold(0.3)
-Squadron_One:SetTurnoverTime(10,20)
+Squadron_One:SetTurnoverTime(self.maintenancetime,self.repairtime)
 Squadron_One:SetModex(Modex)
 Squadron_One:SetLivery(Livery)
 Squadron_One:SetSkill(Skill or AI.Skill.AVERAGE)
@@ -120685,7 +119127,7 @@ self:T(self.lid.."_AddReconSquadron "..SquadName)
 local Squadron_One=SQUADRON:New(TemplateName,AirFrames,SquadName)
 Squadron_One:AddMissionCapability({AUFTRAG.Type.RECON})
 Squadron_One:SetFuelLowThreshold(0.3)
-Squadron_One:SetTurnoverTime(10,20)
+Squadron_One:SetTurnoverTime(self.maintenancetime,self.repairtime)
 Squadron_One:SetModex(Modex)
 Squadron_One:SetLivery(Livery)
 Squadron_One:SetSkill(Skill or AI.Skill.AVERAGE)
@@ -120700,7 +119142,7 @@ self:T(self.lid.."_AddTankerSquadron "..SquadName)
 local Squadron_One=SQUADRON:New(TemplateName,AirFrames,SquadName)
 Squadron_One:AddMissionCapability({AUFTRAG.Type.TANKER})
 Squadron_One:SetFuelLowThreshold(0.3)
-Squadron_One:SetTurnoverTime(10,20)
+Squadron_One:SetTurnoverTime(self.maintenancetime,self.repairtime)
 Squadron_One:SetModex(Modex)
 Squadron_One:SetLivery(Livery)
 Squadron_One:SetSkill(Skill or AI.Skill.AVERAGE)
@@ -120719,7 +119161,7 @@ self:T(self.lid.."_AddAWACSSquadron "..SquadName)
 local Squadron_One=SQUADRON:New(TemplateName,AirFrames,SquadName)
 Squadron_One:AddMissionCapability({AUFTRAG.Type.AWACS})
 Squadron_One:SetFuelLowThreshold(0.3)
-Squadron_One:SetTurnoverTime(10,20)
+Squadron_One:SetTurnoverTime(self.maintenancetime,self.repairtime)
 Squadron_One:SetModex(Modex)
 Squadron_One:SetLivery(Livery)
 Squadron_One:SetSkill(Skill or AI.Skill.AVERAGE)
@@ -120942,7 +119384,7 @@ BlueIntel:SetVerbosity(0)
 if self.usecorridors==true then
 BlueIntel:SetCorridorZones(self.corridorzones)
 if self.corridorfloor or self.corridorceiling then
-BlueIntel:SetCorridorLimitsFeet(self.corridorfloor,self.corridorceiling)
+BlueIntel:SetCorridorLimits(self.corridorfloor,self.corridorceiling)
 end
 end
 BlueIntel:Start()
@@ -121105,10 +119547,11 @@ FuelCriticalThreshold=10,
 showpatrolpointmarks=false,
 EngageTargetTypes={"Ground"},
 }
-EASYA2G.version="0.1.3"
+EASYA2G.version="0.1.4"
 function EASYA2G:New(Alias,AirbaseName,Coalition,ScoutName)
 local self=BASE:Inherit(self,EASYGCICAP:New(Alias,AirbaseName,Coalition,ScoutName))
 self.alias=Alias or AirbaseName.." A2G Wing"
+self.lid=string.format("EASYA2G %s | ",self.alias)
 self.coalitionname=string.lower(Coalition)or"blue"
 self.coalition=self.coalitionname=="blue"and coalition.side.BLUE or coalition.side.RED
 self.wings={}
@@ -121141,7 +119584,7 @@ self.FuelLowThreshold=25
 self.FuelCriticalThreshold=10
 self.showpatrolpointmarks=false
 self.EngageTargetTypes={"Ground"}
-self.lid=string.format("EASYA2G %s | ",self.alias)
+self:SetDefaultTurnoverTime()
 self:SetStartState("Stopped")
 self:AddTransition("Stopped","Start","Running")
 self:AddTransition("Running","Stop","Stopped")
@@ -121220,7 +119663,7 @@ self:T(self.lid.."_AddSquadron "..SquadName)
 local Squadron_One=SQUADRON:New(TemplateName,AirFrames,SquadName)
 Squadron_One:AddMissionCapability({AUFTRAG.Type.CAS,AUFTRAG.Type.CASENHANCED,AUFTRAG.Type.BAI,AUFTRAG.Type.ALERT5,AUFTRAG.Type.BOMBING,AUFTRAG.Type.STRIKE})
 Squadron_One:SetFuelLowThreshold(0.3)
-Squadron_One:SetTurnoverTime(10,20)
+Squadron_One:SetTurnoverTime(self.maintenancetime,self.repairtime)
 Squadron_One:SetModex(Modex)
 Squadron_One:SetLivery(Livery)
 Squadron_One:SetSkill(Skill or AI.Skill.AVERAGE)
@@ -121531,8503 +119974,6 @@ MESSAGE:New(text,15,"A2G"):ToAll():ToLogIf(self.debug)
 end
 self:__Status(30)
 return self
-end
-AI_BALANCER={
-ClassName="AI_BALANCER",
-PatrolZones={},
-AIGroups={},
-Earliest=5,
-Latest=60,
-}
-function AI_BALANCER:New(SetClient,SpawnAI)
-local self=BASE:Inherit(self,FSM_SET:New(SET_GROUP:New()))
-self:SetStartState("None")
-self:AddTransition("*","Monitor","Monitoring")
-self:AddTransition("*","Spawn","Spawning")
-self:AddTransition("Spawning","Spawned","Spawned")
-self:AddTransition("*","Destroy","Destroying")
-self:AddTransition("*","Return","Returning")
-self.SetClient=SetClient
-self.SetClient:FilterOnce()
-self.SpawnAI=SpawnAI
-self.SpawnQueue={}
-self.ToNearestAirbase=false
-self.ToHomeAirbase=false
-self:__Monitor(1)
-return self
-end
-function AI_BALANCER:InitSpawnInterval(Earliest,Latest)
-self.Earliest=Earliest
-self.Latest=Latest
-return self
-end
-function AI_BALANCER:ReturnToNearestAirbases(ReturnThresholdRange,ReturnAirbaseSet)
-self.ToNearestAirbase=true
-self.ReturnThresholdRange=ReturnThresholdRange
-self.ReturnAirbaseSet=ReturnAirbaseSet
-end
-function AI_BALANCER:ReturnToHomeAirbase(ReturnThresholdRange)
-self.ToHomeAirbase=true
-self.ReturnThresholdRange=ReturnThresholdRange
-end
-function AI_BALANCER:onenterSpawning(SetGroup,From,Event,To,ClientName)
-local AIGroup=self.SpawnAI:Spawn()
-if AIGroup then
-AIGroup:T({"Spawning new AIGroup",ClientName=ClientName})
-SetGroup:Remove(ClientName)
-SetGroup:Add(ClientName,AIGroup)
-self.SpawnQueue[ClientName]=nil
-self:Spawned(AIGroup)
-end
-end
-function AI_BALANCER:onenterDestroying(SetGroup,From,Event,To,ClientName,AIGroup)
-AIGroup:Destroy()
-SetGroup:Flush(self)
-SetGroup:Remove(ClientName)
-SetGroup:Flush(self)
-end
-function AI_BALANCER:onenterReturning(SetGroup,From,Event,To,AIGroup)
-local AIGroupTemplate=AIGroup:GetTemplate()
-if self.ToHomeAirbase==true then
-local WayPointCount=#AIGroupTemplate.route.points
-local SwitchWayPointCommand=AIGroup:CommandSwitchWayPoint(1,WayPointCount,1)
-AIGroup:SetCommand(SwitchWayPointCommand)
-AIGroup:MessageToRed("Returning to home base ...",30)
-else
-local PointVec2=COORDINATE:New(AIGroup:GetVec2().x,0,AIGroup:GetVec2().y)
-local ClosestAirbase=self.ReturnAirbaseSet:FindNearestAirbaseFromPointVec2(PointVec2)
-self:T(ClosestAirbase.AirbaseName)
-AIGroup:RouteRTB(ClosestAirbase)
-end
-end
-function AI_BALANCER:onenterMonitoring(SetGroup)
-self:T2({self.SetClient:Count()})
-self.SetClient:ForEachClient(
-function(Client)
-self:T3(Client.ClientName)
-local AIGroup=self.Set:Get(Client.UnitName)
-if AIGroup then self:T({AIGroup=AIGroup:GetName(),IsAlive=AIGroup:IsAlive()})end
-if Client:IsAlive()==true then
-if AIGroup and AIGroup:IsAlive()==true then
-if self.ToNearestAirbase==false and self.ToHomeAirbase==false then
-self:Destroy(Client.UnitName,AIGroup)
-else
-local PlayerInRange={Value=false}
-local RangeZone=ZONE_RADIUS:New('RangeZone',AIGroup:GetVec2(),self.ReturnThresholdRange)
-self:T2(RangeZone)
-_DATABASE:ForEachPlayerUnit(
-function(RangeTestUnit,RangeZone,AIGroup,PlayerInRange)
-self:T2({PlayerInRange,RangeTestUnit.UnitName,RangeZone.ZoneName})
-if RangeTestUnit:IsInZone(RangeZone)==true then
-self:T2("in zone")
-if RangeTestUnit:GetCoalition()~=AIGroup:GetCoalition()then
-self:T2("in range")
-PlayerInRange.Value=true
-end
-end
-end,
-function(RangeZone,AIGroup,PlayerInRange)
-if PlayerInRange.Value==false then
-self:Return(AIGroup)
-end
-end
-,RangeZone,AIGroup,PlayerInRange
-)
-end
-self.Set:Remove(Client.UnitName)
-end
-else
-if not AIGroup or not AIGroup:IsAlive()==true then
-self:T("Client "..Client.UnitName.." not alive.")
-self:T({Queue=self.SpawnQueue[Client.UnitName]})
-if not self.SpawnQueue[Client.UnitName]then
-self:__Spawn(math.random(self.Earliest,self.Latest),Client.UnitName)
-self.SpawnQueue[Client.UnitName]=true
-self:T("New AI Spawned for Client "..Client.UnitName)
-end
-end
-end
-return true
-end
-)
-self:__Monitor(10)
-end
-AI_AIR={
-ClassName="AI_AIR",
-}
-AI_AIR.TaskDelay=0.5
-function AI_AIR:New(AIGroup)
-local self=BASE:Inherit(self,FSM_CONTROLLABLE:New())
-self:SetControllable(AIGroup)
-self:SetStartState("Stopped")
-self:AddTransition("*","Queue","Queued")
-self:AddTransition("*","Start","Started")
-self:AddTransition("*","Stop","Stopped")
-self:AddTransition("*","Status","*")
-self:AddTransition("*","RTB","*")
-self:AddTransition("Patrolling","Refuel","Refuelling")
-self:AddTransition("*","Takeoff","Airborne")
-self:AddTransition("*","Return","Returning")
-self:AddTransition("*","Hold","Holding")
-self:AddTransition("*","Home","Home")
-self:AddTransition("*","LostControl","LostControl")
-self:AddTransition("*","Fuel","Fuel")
-self:AddTransition("*","Damaged","Damaged")
-self:AddTransition("*","Eject","*")
-self:AddTransition("*","Crash","Crashed")
-self:AddTransition("*","PilotDead","*")
-self.IdleCount=0
-self.RTBSpeedMaxFactor=0.6
-self.RTBSpeedMinFactor=0.5
-return self
-end
-function GROUP:OnEventTakeoff(EventData,Fsm)
-Fsm:Takeoff()
-self:UnHandleEvent(EVENTS.Takeoff)
-end
-function AI_AIR:SetDispatcher(Dispatcher)
-self.Dispatcher=Dispatcher
-end
-function AI_AIR:GetDispatcher()
-return self.Dispatcher
-end
-function AI_AIR:SetTargetDistance(Coordinate)
-local CurrentCoord=self.Controllable:GetCoordinate()
-self.TargetDistance=CurrentCoord:Get2DDistance(Coordinate)
-self.ClosestTargetDistance=(not self.ClosestTargetDistance or self.ClosestTargetDistance>self.TargetDistance)and self.TargetDistance or self.ClosestTargetDistance
-end
-function AI_AIR:ClearTargetDistance()
-self.TargetDistance=nil
-self.ClosestTargetDistance=nil
-end
-function AI_AIR:SetSpeed(PatrolMinSpeed,PatrolMaxSpeed)
-self:F2({PatrolMinSpeed,PatrolMaxSpeed})
-self.PatrolMinSpeed=PatrolMinSpeed
-self.PatrolMaxSpeed=PatrolMaxSpeed
-end
-function AI_AIR:SetRTBSpeed(RTBMinSpeed,RTBMaxSpeed)
-self:F({RTBMinSpeed,RTBMaxSpeed})
-self.RTBMinSpeed=RTBMinSpeed
-self.RTBMaxSpeed=RTBMaxSpeed
-end
-function AI_AIR:SetAltitude(PatrolFloorAltitude,PatrolCeilingAltitude)
-self:F2({PatrolFloorAltitude,PatrolCeilingAltitude})
-self.PatrolFloorAltitude=PatrolFloorAltitude
-self.PatrolCeilingAltitude=PatrolCeilingAltitude
-end
-function AI_AIR:SetHomeAirbase(HomeAirbase)
-self:F2({HomeAirbase})
-self.HomeAirbase=HomeAirbase
-end
-function AI_AIR:SetTanker(TankerName)
-self:F2({TankerName})
-self.TankerName=TankerName
-end
-function AI_AIR:SetDisengageRadius(DisengageRadius)
-self:F2({DisengageRadius})
-self.DisengageRadius=DisengageRadius
-end
-function AI_AIR:SetStatusOff()
-self:F2()
-self.CheckStatus=false
-end
-function AI_AIR:SetFuelThreshold(FuelThresholdPercentage,OutOfFuelOrbitTime)
-self.FuelThresholdPercentage=FuelThresholdPercentage
-self.OutOfFuelOrbitTime=OutOfFuelOrbitTime
-self.Controllable:OptionRTBBingoFuel(false)
-return self
-end
-function AI_AIR:SetDamageThreshold(PatrolDamageThreshold)
-self.PatrolManageDamage=true
-self.PatrolDamageThreshold=PatrolDamageThreshold
-return self
-end
-function AI_AIR:onafterStart(Controllable,From,Event,To)
-self:__Status(10)
-self:HandleEvent(EVENTS.PilotDead,self.OnPilotDead)
-self:HandleEvent(EVENTS.Crash,self.OnCrash)
-self:HandleEvent(EVENTS.Ejection,self.OnEjection)
-Controllable:OptionROEHoldFire()
-Controllable:OptionROTVertical()
-end
-function AI_AIR:onafterReturn(Controllable,From,Event,To)
-self:__RTB(self.TaskDelay)
-end
-function AI_AIR:onbeforeStatus()
-return self.CheckStatus
-end
-function AI_AIR:onafterStatus()
-if self.Controllable and self.Controllable:IsAlive()then
-local RTB=false
-local DistanceFromHomeBase=self.HomeAirbase:GetCoordinate():Get2DDistance(self.Controllable:GetCoordinate())
-if not self:Is("Holding")and not self:Is("Returning")then
-local DistanceFromHomeBase=self.HomeAirbase:GetCoordinate():Get2DDistance(self.Controllable:GetCoordinate())
-if DistanceFromHomeBase>self.DisengageRadius then
-self:T(self.Controllable:GetName().." is too far from home base, RTB!")
-self:Hold(300)
-RTB=false
-end
-end
-if not self:Is("Fuel")and not self:Is("Home")and not self:is("Refuelling")then
-local Fuel=self.Controllable:GetFuelMin()
-if Fuel<self.FuelThresholdPercentage then
-if self.TankerName then
-self:T(self.Controllable:GetName().." is out of fuel: "..Fuel.." ... Refuelling at Tanker!")
-self:Refuel()
-else
-self:T(self.Controllable:GetName().." is out of fuel: "..Fuel.." ... RTB!")
-local OldAIControllable=self.Controllable
-local OrbitTask=OldAIControllable:TaskOrbitCircle(math.random(self.PatrolFloorAltitude,self.PatrolCeilingAltitude),self.PatrolMinSpeed)
-local TimedOrbitTask=OldAIControllable:TaskControlled(OrbitTask,OldAIControllable:TaskCondition(nil,nil,nil,nil,self.OutOfFuelOrbitTime,nil))
-OldAIControllable:SetTask(TimedOrbitTask,10)
-self:Fuel()
-RTB=true
-end
-else
-end
-end
-if self:Is("Fuel")and not self:Is("Home")and not self:is("Refuelling")then
-RTB=true
-end
-local Damage=self.Controllable:GetLife()
-local InitialLife=self.Controllable:GetLife0()
-if(Damage/InitialLife)<self.PatrolDamageThreshold then
-self:T(self.Controllable:GetName().." is damaged: "..Damage.." ... RTB!")
-self:Damaged()
-RTB=true
-self:SetStatusOff()
-end
-if self.Controllable:HasTask()==false then
-if not self:Is("Started")and
-not self:Is("Stopped")and
-not self:Is("Fuel")and
-not self:Is("Damaged")and
-not self:Is("Home")then
-if self.IdleCount>=10 then
-if Damage~=InitialLife then
-self:Damaged()
-else
-self:T(self.Controllable:GetName().." control lost! ")
-self:LostControl()
-end
-else
-self.IdleCount=self.IdleCount+1
-end
-end
-else
-self.IdleCount=0
-end
-if RTB==true then
-self:__RTB(self.TaskDelay)
-end
-if not self:Is("Home")then
-self:__Status(10)
-end
-end
-end
-function AI_AIR.RTBRoute(AIGroup,Fsm)
-AIGroup:F({"AI_AIR.RTBRoute:",AIGroup:GetName()})
-if AIGroup:IsAlive()then
-Fsm:RTB()
-end
-end
-function AI_AIR.RTBHold(AIGroup,Fsm)
-AIGroup:F({"AI_AIR.RTBHold:",AIGroup:GetName()})
-if AIGroup:IsAlive()then
-Fsm:__RTB(Fsm.TaskDelay)
-Fsm:Return()
-local Task=AIGroup:TaskOrbitCircle(4000,400)
-AIGroup:SetTask(Task)
-end
-end
-function AI_AIR:SetRTBSpeedFactors(MinFactor,MaxFactor)
-self.RTBSpeedMaxFactor=MaxFactor or 0.6
-self.RTBSpeedMinFactor=MinFactor or 0.5
-return self
-end
-function AI_AIR:onafterRTB(AIGroup,From,Event,To)
-self:F({AIGroup,From,Event,To})
-if AIGroup and AIGroup:IsAlive()then
-self:T("Group "..AIGroup:GetName().." ... RTB! ( "..self:GetState().." )")
-self:ClearTargetDistance()
-AIGroup:OptionProhibitAfterburner(true)
-local EngageRoute={}
-local FromCoord=AIGroup:GetCoordinate()
-if not FromCoord then return end
-local ToTargetCoord=self.HomeAirbase:GetCoordinate()
-local ToTargetVec3=ToTargetCoord:GetVec3()
-ToTargetVec3.y=ToTargetCoord:GetLandHeight()+3000
-local ToTargetCoord2=COORDINATE:NewFromVec3(ToTargetVec3)
-if not self.RTBMinSpeed or not self.RTBMaxSpeed then
-local RTBSpeedMax=AIGroup:GetSpeedMax()
-local RTBSpeedMaxFactor=self.RTBSpeedMaxFactor or 0.6
-local RTBSpeedMinFactor=self.RTBSpeedMinFactor or 0.5
-self:SetRTBSpeed(RTBSpeedMax*RTBSpeedMinFactor,RTBSpeedMax*RTBSpeedMaxFactor)
-end
-local RTBSpeed=math.random(self.RTBMinSpeed,self.RTBMaxSpeed)
-local Distance=FromCoord:Get2DDistance(ToTargetCoord2)
-local ToAirbaseCoord=ToTargetCoord2
-if Distance<5000 then
-self:T("RTB and near the airbase!")
-self:Home()
-return
-end
-if not AIGroup:InAir()==true then
-self:T("Not anymore in the air, considered Home.")
-self:Home()
-return
-end
-local FromRTBRoutePoint=FromCoord:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-RTBSpeed,
-true
-)
-local ToRTBRoutePoint=ToAirbaseCoord:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-RTBSpeed,
-true
-)
-EngageRoute[#EngageRoute+1]=FromRTBRoutePoint
-EngageRoute[#EngageRoute+1]=ToRTBRoutePoint
-local Tasks={}
-Tasks[#Tasks+1]=AIGroup:TaskFunction("AI_AIR.RTBRoute",self)
-EngageRoute[#EngageRoute].task=AIGroup:TaskCombo(Tasks)
-AIGroup:OptionROEHoldFire()
-AIGroup:OptionROTEvadeFire()
-AIGroup:Route(EngageRoute,self.TaskDelay)
-end
-end
-function AI_AIR:onafterHome(AIGroup,From,Event,To)
-self:F({AIGroup,From,Event,To})
-self:T("Group "..self.Controllable:GetName().." ... Home! ( "..self:GetState().." )")
-if AIGroup and AIGroup:IsAlive()then
-end
-end
-function AI_AIR:onafterHold(AIGroup,From,Event,To,HoldTime)
-self:F({AIGroup,From,Event,To})
-self:T("Group "..self.Controllable:GetName().." ... Holding! ( "..self:GetState().." )")
-if AIGroup and AIGroup:IsAlive()then
-local Coordinate=AIGroup:GetCoordinate()
-if Coordinate==nil then return end
-local OrbitTask=AIGroup:TaskOrbitCircle(math.random(self.PatrolFloorAltitude,self.PatrolCeilingAltitude),self.PatrolMinSpeed,Coordinate)
-local TimedOrbitTask=AIGroup:TaskControlled(OrbitTask,AIGroup:TaskCondition(nil,nil,nil,nil,HoldTime,nil))
-local RTBTask=AIGroup:TaskFunction("AI_AIR.RTBHold",self)
-local OrbitHoldTask=AIGroup:TaskOrbitCircle(4000,self.PatrolMinSpeed)
-AIGroup:SetTask(AIGroup:TaskCombo({TimedOrbitTask,RTBTask,OrbitHoldTask}),1)
-end
-end
-function AI_AIR.Resume(AIGroup,Fsm)
-AIGroup:T({"AI_AIR.Resume:",AIGroup:GetName()})
-if AIGroup:IsAlive()then
-Fsm:__RTB(Fsm.TaskDelay)
-end
-end
-function AI_AIR:onafterRefuel(AIGroup,From,Event,To)
-self:F({AIGroup,From,Event,To})
-if AIGroup and AIGroup:IsAlive()then
-local Tanker=GROUP:FindByName(self.TankerName)
-if Tanker and Tanker:IsAlive()and Tanker:IsAirPlane()then
-self:T("Group "..self.Controllable:GetName().." ... Refuelling! State="..self:GetState()..", Refuelling tanker "..self.TankerName)
-local RefuelRoute={}
-local FromRefuelCoord=AIGroup:GetCoordinate()
-local ToRefuelCoord=Tanker:GetCoordinate()
-local ToRefuelSpeed=math.random(self.PatrolMinSpeed,self.PatrolMaxSpeed)
-local FromRefuelRoutePoint=FromRefuelCoord:WaypointAir(self.PatrolAltType,COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,ToRefuelSpeed,true)
-local ToRefuelRoutePoint=Tanker:GetCoordinate():WaypointAir(self.PatrolAltType,COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,ToRefuelSpeed,true)
-self:F({ToRefuelSpeed=ToRefuelSpeed})
-RefuelRoute[#RefuelRoute+1]=FromRefuelRoutePoint
-RefuelRoute[#RefuelRoute+1]=ToRefuelRoutePoint
-AIGroup:OptionROEHoldFire()
-AIGroup:OptionROTEvadeFire()
-local classname=self:GetClassName()
-if classname=="AI_A2A_CAP"then
-classname="AI_AIR_PATROL"
-end
-env.info("FF refueling classname="..classname)
-local Tasks={}
-Tasks[#Tasks+1]=AIGroup:TaskRefueling()
-Tasks[#Tasks+1]=AIGroup:TaskFunction(classname..".Resume",self)
-RefuelRoute[#RefuelRoute].task=AIGroup:TaskCombo(Tasks)
-AIGroup:Route(RefuelRoute,self.TaskDelay)
-else
-self:RTB()
-end
-end
-end
-function AI_AIR:onafterDead()
-self:SetStatusOff()
-end
-function AI_AIR:OnCrash(EventData)
-if self.Controllable:IsAlive()and EventData.IniDCSGroupName==self.Controllable:GetName()then
-if#self.Controllable:GetUnits()==1 then
-self:__Crash(self.TaskDelay,EventData)
-end
-end
-end
-function AI_AIR:OnEjection(EventData)
-if self.Controllable:IsAlive()and EventData.IniDCSGroupName==self.Controllable:GetName()then
-self:__Eject(self.TaskDelay,EventData)
-end
-end
-function AI_AIR:OnPilotDead(EventData)
-if self.Controllable:IsAlive()and EventData.IniDCSGroupName==self.Controllable:GetName()then
-self:__PilotDead(self.TaskDelay,EventData)
-end
-end
-AI_AIR_PATROL={
-ClassName="AI_AIR_PATROL",
-}
-function AI_AIR_PATROL:New(AI_Air,AIGroup,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local self=BASE:Inherit(self,AI_Air)
-local SpeedMax=AIGroup:GetSpeedMax()
-self.PatrolZone=PatrolZone
-self.PatrolFloorAltitude=PatrolFloorAltitude or 1000
-self.PatrolCeilingAltitude=PatrolCeilingAltitude or 1500
-self.PatrolMinSpeed=PatrolMinSpeed or SpeedMax*0.5
-self.PatrolMaxSpeed=PatrolMaxSpeed or SpeedMax*0.75
-self.PatrolAltType=PatrolAltType or"RADIO"
-self:AddTransition({"Started","Airborne","Refuelling"},"Patrol","Patrolling")
-self:AddTransition("Patrolling","PatrolRoute","Patrolling")
-self:AddTransition("*","Reset","Patrolling")
-return self
-end
-function AI_AIR_PATROL:SetEngageRange(EngageRange)
-self:F2()
-if EngageRange then
-self.EngageRange=EngageRange
-else
-self.EngageRange=nil
-end
-end
-function AI_AIR_PATROL:SetRaceTrackPattern(LegMin,LegMax,HeadingMin,HeadingMax,DurationMin,DurationMax,CapCoordinates)
-self.racetrack=true
-self.racetracklegmin=LegMin or 10000
-self.racetracklegmax=LegMax or 15000
-self.racetrackheadingmin=HeadingMin or 0
-self.racetrackheadingmax=HeadingMax or 180
-self.racetrackdurationmin=DurationMin
-self.racetrackdurationmax=DurationMax
-if self.racetrackdurationmax and not self.racetrackdurationmin then
-self.racetrackdurationmin=self.racetrackdurationmax
-end
-self.racetrackcapcoordinates=CapCoordinates
-end
-function AI_AIR_PATROL:onafterPatrol(AIPatrol,From,Event,To)
-self:F2()
-self:ClearTargetDistance()
-self:__PatrolRoute(self.TaskDelay)
-AIPatrol:OnReSpawn(
-function(PatrolGroup)
-self:__Reset(self.TaskDelay)
-self:__PatrolRoute(self.TaskDelay)
-end
-)
-end
-function AI_AIR_PATROL.___PatrolRoute(AIPatrol,Fsm)
-AIPatrol:F({"AI_AIR_PATROL.___PatrolRoute:",AIPatrol:GetName()})
-if AIPatrol and AIPatrol:IsAlive()then
-Fsm:PatrolRoute()
-end
-end
-function AI_AIR_PATROL:onafterPatrolRoute(AIPatrol,From,Event,To)
-self:F2()
-if From=="RTB"then
-return
-end
-if AIPatrol and AIPatrol:IsAlive()then
-local PatrolRoute={}
-local CurrentCoord=AIPatrol:GetCoordinate()
-local altitude=math.random(self.PatrolFloorAltitude,self.PatrolCeilingAltitude)
-local ToTargetCoord=self.PatrolZone:GetRandomPointVec2()
-ToTargetCoord:SetAlt(altitude)
-self:SetTargetDistance(ToTargetCoord)
-local ToTargetSpeed=math.random(self.PatrolMinSpeed,self.PatrolMaxSpeed)
-local speedkmh=ToTargetSpeed
-local FromWP=CurrentCoord:WaypointAir(self.PatrolAltType or"RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,ToTargetSpeed,true)
-PatrolRoute[#PatrolRoute+1]=FromWP
-if self.racetrack then
-local heading=math.random(self.racetrackheadingmin,self.racetrackheadingmax)
-local leg=math.random(self.racetracklegmin,self.racetracklegmax)
-local duration=self.racetrackdurationmin
-if self.racetrackdurationmax then
-duration=math.random(self.racetrackdurationmin,self.racetrackdurationmax)
-end
-local c0=self.PatrolZone:GetRandomCoordinate()
-if self.racetrackcapcoordinates and#self.racetrackcapcoordinates>0 then
-c0=self.racetrackcapcoordinates[math.random(#self.racetrackcapcoordinates)]
-end
-local c1=c0:SetAltitude(altitude)
-local c2=c1:Translate(leg,heading):SetAltitude(altitude)
-self:SetTargetDistance(c0)
-self:T(string.format("Patrol zone race track: v=%.1f knots, h=%.1f ft, heading=%03d, leg=%d m, t=%s sec",UTILS.KmphToKnots(speedkmh),UTILS.MetersToFeet(altitude),heading,leg,tostring(duration)))
-local taskOrbit=AIPatrol:TaskOrbit(c1,altitude,UTILS.KmphToMps(speedkmh),c2)
-local taskPatrol=AIPatrol:TaskFunction("AI_AIR_PATROL.___PatrolRoute",self)
-local taskCond=AIPatrol:TaskCondition(nil,nil,nil,nil,duration,nil)
-local taskCont=AIPatrol:TaskControlled(taskOrbit,taskCond)
-PatrolRoute[2]=c1:WaypointAirTurningPoint(self.PatrolAltType,speedkmh,{taskCont,taskPatrol},"CAP Orbit")
-else
-local ToWP=ToTargetCoord:WaypointAir(self.PatrolAltType,COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,ToTargetSpeed,true)
-PatrolRoute[#PatrolRoute+1]=ToWP
-local Tasks={}
-Tasks[#Tasks+1]=AIPatrol:TaskFunction("AI_AIR_PATROL.___PatrolRoute",self)
-PatrolRoute[#PatrolRoute].task=AIPatrol:TaskCombo(Tasks)
-end
-AIPatrol:OptionROEReturnFire()
-AIPatrol:OptionROTEvadeFire()
-AIPatrol:Route(PatrolRoute,self.TaskDelay)
-end
-end
-function AI_AIR_PATROL.Resume(AIPatrol,Fsm)
-AIPatrol:F({"AI_AIR_PATROL.Resume:",AIPatrol:GetName()})
-if AIPatrol and AIPatrol:IsAlive()then
-Fsm:__Reset(Fsm.TaskDelay)
-Fsm:__PatrolRoute(Fsm.TaskDelay)
-end
-end
-AI_AIR_ENGAGE={
-ClassName="AI_AIR_ENGAGE",
-}
-function AI_AIR_ENGAGE:New(AI_Air,AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local self=BASE:Inherit(self,AI_Air)
-self.Accomplished=false
-self.Engaging=false
-local SpeedMax=AIGroup:GetSpeedMax()
-self.EngageMinSpeed=EngageMinSpeed or SpeedMax*0.5
-self.EngageMaxSpeed=EngageMaxSpeed or SpeedMax*0.75
-self.EngageFloorAltitude=EngageFloorAltitude or 1000
-self.EngageCeilingAltitude=EngageCeilingAltitude or 1500
-self.EngageAltType=EngageAltType or"RADIO"
-self:AddTransition({"Started","Engaging","Returning","Airborne","Patrolling"},"EngageRoute","Engaging")
-self:AddTransition({"Started","Engaging","Returning","Airborne","Patrolling"},"Engage","Engaging")
-self:AddTransition("Engaging","Fired","Engaging")
-self:AddTransition("*","Destroy","*")
-self:AddTransition("Engaging","Abort","Patrolling")
-self:AddTransition("Engaging","Accomplish","Patrolling")
-self:AddTransition({"Patrolling","Engaging"},"Refuel","Refuelling")
-return self
-end
-function AI_AIR_ENGAGE:onafterStart(AIGroup,From,Event,To)
-self:GetParent(self,AI_AIR_ENGAGE).onafterStart(self,AIGroup,From,Event,To)
-AIGroup:HandleEvent(EVENTS.Takeoff,nil,self)
-end
-function AI_AIR_ENGAGE:onafterEngage(AIGroup,From,Event,To)
-self:HandleEvent(EVENTS.Dead)
-end
-function AI_AIR_ENGAGE:onbeforeEngage(AIGroup,From,Event,To)
-if self.Accomplished==true then
-return false
-end
-return true
-end
-function AI_AIR_ENGAGE:onafterAbort(AIGroup,From,Event,To)
-AIGroup:ClearTasks()
-self:Return()
-end
-function AI_AIR_ENGAGE:onafterAccomplish(AIGroup,From,Event,To)
-self.Accomplished=true
-end
-function AI_AIR_ENGAGE:onafterDestroy(AIGroup,From,Event,To,EventData)
-if EventData.IniUnit then
-self.AttackUnits[EventData.IniUnit]=nil
-end
-end
-function AI_AIR_ENGAGE:OnEventDead(EventData)
-self:F({"EventDead",EventData})
-if EventData.IniDCSUnit then
-if self.AttackUnits and self.AttackUnits[EventData.IniUnit]then
-self:__Destroy(self.TaskDelay,EventData)
-end
-end
-end
-function AI_AIR_ENGAGE.___EngageRoute(AIGroup,Fsm,AttackSetUnit)
-Fsm:T(string.format("AI_AIR_ENGAGE.___EngageRoute: %s",tostring(AIGroup:GetName())))
-if AIGroup and AIGroup:IsAlive()then
-Fsm:__EngageRoute(Fsm.TaskDelay or 0.1,AttackSetUnit)
-end
-end
-function AI_AIR_ENGAGE:onafterEngageRoute(DefenderGroup,From,Event,To,AttackSetUnit)
-self:T({DefenderGroup,From,Event,To,AttackSetUnit})
-local DefenderGroupName=DefenderGroup:GetName()
-self.AttackSetUnit=AttackSetUnit
-local AttackCount=AttackSetUnit:CountAlive()
-if AttackCount>0 then
-if DefenderGroup:IsAlive()then
-local EngageAltitude=math.random(self.EngageFloorAltitude,self.EngageCeilingAltitude)
-local EngageSpeed=math.random(self.EngageMinSpeed,self.EngageMaxSpeed)
-local DefenderCoord=DefenderGroup:GetPointVec3()
-DefenderCoord:SetY(EngageAltitude)
-local TargetCoord=AttackSetUnit:GetRandomSurely():GetPointVec3()
-if TargetCoord==nil then
-self:Return()
-return
-end
-TargetCoord:SetY(EngageAltitude)
-local TargetDistance=DefenderCoord:Get2DDistance(TargetCoord)
-local EngageDistance=(DefenderGroup:IsHelicopter()and 5000)or(DefenderGroup:IsAirPlane()and 10000)
-if TargetDistance<=EngageDistance*9 then
-self:__Engage(0.1,AttackSetUnit)
-else
-local EngageRoute={}
-local AttackTasks={}
-local FromWP=DefenderCoord:WaypointAir(self.PatrolAltType or"RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,EngageSpeed,true)
-EngageRoute[#EngageRoute+1]=FromWP
-self:SetTargetDistance(TargetCoord)
-local FromEngageAngle=DefenderCoord:GetAngleDegrees(DefenderCoord:GetDirectionVec3(TargetCoord))
-local ToCoord=DefenderCoord:Translate(EngageDistance,FromEngageAngle,true)
-local ToWP=ToCoord:WaypointAir(self.PatrolAltType or"RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,EngageSpeed,true)
-EngageRoute[#EngageRoute+1]=ToWP
-AttackTasks[#AttackTasks+1]=DefenderGroup:TaskFunction("AI_AIR_ENGAGE.___EngageRoute",self,AttackSetUnit)
-EngageRoute[#EngageRoute].task=DefenderGroup:TaskCombo(AttackTasks)
-DefenderGroup:OptionROEReturnFire()
-DefenderGroup:OptionROTEvadeFire()
-DefenderGroup:Route(EngageRoute,self.TaskDelay or 0.1)
-end
-end
-else
-self:T(DefenderGroupName..": No targets found -> Going RTB")
-self:Return()
-end
-end
-function AI_AIR_ENGAGE.___Engage(AIGroup,Fsm,AttackSetUnit)
-Fsm:T(string.format("AI_AIR_ENGAGE.___Engage: %s",tostring(AIGroup:GetName())))
-if AIGroup and AIGroup:IsAlive()then
-local delay=Fsm.TaskDelay or 0.1
-Fsm:__Engage(delay,AttackSetUnit)
-end
-end
-function AI_AIR_ENGAGE:onafterEngage(DefenderGroup,From,Event,To,AttackSetUnit)
-self:F({DefenderGroup,From,Event,To,AttackSetUnit})
-local DefenderGroupName=DefenderGroup:GetName()
-self.AttackSetUnit=AttackSetUnit
-local AttackCount=AttackSetUnit:CountAlive()
-self:T({AttackCount=AttackCount})
-if AttackCount>0 then
-if DefenderGroup and DefenderGroup:IsAlive()then
-local EngageAltitude=math.random(self.EngageFloorAltitude or 500,self.EngageCeilingAltitude or 1000)
-local EngageSpeed=math.random(self.EngageMinSpeed,self.EngageMaxSpeed)
-local DefenderCoord=DefenderGroup:GetPointVec3()
-DefenderCoord:SetY(EngageAltitude)
-local TargetCoord=AttackSetUnit:GetRandomSurely():GetPointVec3()
-if not TargetCoord then
-self:Return()
-return
-end
-TargetCoord:SetY(EngageAltitude)
-local TargetDistance=DefenderCoord:Get2DDistance(TargetCoord)
-local EngageDistance=(DefenderGroup:IsHelicopter()and 5000)or(DefenderGroup:IsAirPlane()and 10000)
-local EngageRoute={}
-local AttackTasks={}
-local FromWP=DefenderCoord:WaypointAir(self.EngageAltType or"RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,EngageSpeed,true)
-EngageRoute[#EngageRoute+1]=FromWP
-self:SetTargetDistance(TargetCoord)
-local FromEngageAngle=DefenderCoord:GetAngleDegrees(DefenderCoord:GetDirectionVec3(TargetCoord))
-local ToCoord=DefenderCoord:Translate(EngageDistance,FromEngageAngle,true)
-local ToWP=ToCoord:WaypointAir(self.EngageAltType or"RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,EngageSpeed,true)
-EngageRoute[#EngageRoute+1]=ToWP
-if TargetDistance<=EngageDistance*9 then
-local AttackUnitTasks=self:CreateAttackUnitTasks(AttackSetUnit,DefenderGroup,EngageAltitude)
-if#AttackUnitTasks==0 then
-self:T(DefenderGroupName..": No valid targets found -> Going RTB")
-self:Return()
-return
-else
-local text=string.format("%s: Engaging targets at distance %.2f NM",DefenderGroupName,UTILS.MetersToNM(TargetDistance))
-self:T(text)
-DefenderGroup:OptionROEOpenFire()
-DefenderGroup:OptionROTEvadeFire()
-DefenderGroup:OptionKeepWeaponsOnThreat()
-AttackTasks[#AttackTasks+1]=DefenderGroup:TaskCombo(AttackUnitTasks)
-end
-end
-AttackTasks[#AttackTasks+1]=DefenderGroup:TaskFunction("AI_AIR_ENGAGE.___Engage",self,AttackSetUnit)
-EngageRoute[#EngageRoute].task=DefenderGroup:TaskCombo(AttackTasks)
-DefenderGroup:Route(EngageRoute,self.TaskDelay or 0.1)
-end
-else
-self:T(DefenderGroupName..": No targets found -> returning.")
-self:Return()
-return
-end
-end
-function AI_AIR_ENGAGE.Resume(AIEngage,Fsm)
-AIEngage:F({"Resume:",AIEngage:GetName()})
-if AIEngage and AIEngage:IsAlive()then
-Fsm:__Reset(Fsm.TaskDelay or 0.1)
-Fsm:__EngageRoute(Fsm.TaskDelay or 0.2,Fsm.AttackSetUnit)
-end
-end
-AI_A2A_PATROL={
-ClassName="AI_A2A_PATROL",
-}
-function AI_A2A_PATROL:New(AIPatrol,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local AI_Air=AI_AIR:New(AIPatrol)
-local AI_Air_Patrol=AI_AIR_PATROL:New(AI_Air,AIPatrol,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local self=BASE:Inherit(self,AI_Air_Patrol)
-self:SetFuelThreshold(.2,60)
-self:SetDamageThreshold(0.4)
-self:SetDisengageRadius(70000)
-self.PatrolZone=PatrolZone
-self.PatrolFloorAltitude=PatrolFloorAltitude
-self.PatrolCeilingAltitude=PatrolCeilingAltitude
-self.PatrolMinSpeed=PatrolMinSpeed
-self.PatrolMaxSpeed=PatrolMaxSpeed
-self.PatrolAltType=PatrolAltType or"BARO"
-self:AddTransition({"Started","Airborne","Refuelling"},"Patrol","Patrolling")
-self:AddTransition("Patrolling","Route","Patrolling")
-self:AddTransition("*","Reset","Patrolling")
-return self
-end
-function AI_A2A_PATROL:SetSpeed(PatrolMinSpeed,PatrolMaxSpeed)
-self:F2({PatrolMinSpeed,PatrolMaxSpeed})
-self.PatrolMinSpeed=PatrolMinSpeed
-self.PatrolMaxSpeed=PatrolMaxSpeed
-end
-function AI_A2A_PATROL:SetAltitude(PatrolFloorAltitude,PatrolCeilingAltitude)
-self:F2({PatrolFloorAltitude,PatrolCeilingAltitude})
-self.PatrolFloorAltitude=PatrolFloorAltitude
-self.PatrolCeilingAltitude=PatrolCeilingAltitude
-end
-function AI_A2A_PATROL:onafterPatrol(AIPatrol,From,Event,To)
-self:F2()
-self:ClearTargetDistance()
-self:__Route(1)
-AIPatrol:OnReSpawn(
-function(PatrolGroup)
-self:__Reset(1)
-self:__Route(5)
-end
-)
-end
-function AI_A2A_PATROL.PatrolRoute(AIPatrol,Fsm)
-AIPatrol:F({"AI_A2A_PATROL.PatrolRoute:",AIPatrol:GetName()})
-if AIPatrol and AIPatrol:IsAlive()then
-Fsm:Route()
-end
-end
-function AI_A2A_PATROL:onafterRoute(AIPatrol,From,Event,To)
-self:F2()
-if From=="RTB"then
-return
-end
-if AIPatrol and AIPatrol:IsAlive()then
-local PatrolRoute={}
-local CurrentCoord=AIPatrol:GetCoordinate()
-local altitude=math.random(self.PatrolFloorAltitude,self.PatrolCeilingAltitude)
-local speedkmh=math.random(self.PatrolMinSpeed,self.PatrolMaxSpeed)
-PatrolRoute[1]=CurrentCoord:WaypointAirTurningPoint(nil,speedkmh,{},"Current")
-if self.racetrack then
-local heading=math.random(self.racetrackheadingmin,self.racetrackheadingmax)
-local leg=math.random(self.racetracklegmin,self.racetracklegmax)
-local duration=self.racetrackdurationmin
-if self.racetrackdurationmax then
-duration=math.random(self.racetrackdurationmin,self.racetrackdurationmax)
-end
-local c0=self.PatrolZone:GetRandomCoordinate()
-if self.racetrackcapcoordinates and#self.racetrackcapcoordinates>0 then
-c0=self.racetrackcapcoordinates[math.random(#self.racetrackcapcoordinates)]
-end
-local c1=c0:SetAltitude(altitude)
-local c2=c1:Translate(leg,heading):SetAltitude(altitude)
-self:SetTargetDistance(c0)
-self:T(string.format("Patrol zone race track: v=%.1f knots, h=%.1f ft, heading=%03d, leg=%d m, t=%s sec",UTILS.KmphToKnots(speedkmh),UTILS.MetersToFeet(altitude),heading,leg,tostring(duration)))
-local taskOrbit=AIPatrol:TaskOrbit(c1,altitude,UTILS.KmphToMps(speedkmh),c2)
-local taskPatrol=AIPatrol:TaskFunction("AI_A2A_PATROL.PatrolRoute",self)
-local taskCond=AIPatrol:TaskCondition(nil,nil,nil,nil,duration,nil)
-local taskCont=AIPatrol:TaskControlled(taskOrbit,taskCond)
-PatrolRoute[2]=c1:WaypointAirTurningPoint(self.PatrolAltType,speedkmh,{taskCont,taskPatrol},"CAP Orbit")
-else
-local ToTargetCoord=self.PatrolZone:GetRandomCoordinate()
-ToTargetCoord:SetAltitude(altitude)
-self:SetTargetDistance(ToTargetCoord)
-local taskReRoute=AIPatrol:TaskFunction("AI_A2A_PATROL.PatrolRoute",self)
-PatrolRoute[2]=ToTargetCoord:WaypointAirTurningPoint(self.PatrolAltType,speedkmh,{taskReRoute},"Patrol Point")
-end
-AIPatrol:OptionROEReturnFire()
-AIPatrol:OptionROTEvadeFire()
-AIPatrol:Route(PatrolRoute,0.5)
-end
-end
-AI_A2A_CAP={
-ClassName="AI_A2A_CAP",
-}
-function AI_A2A_CAP:New2(AICap,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType,PatrolZone,PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType)
-local AI_Air=AI_AIR:New(AICap)
-local AI_Air_Patrol=AI_AIR_PATROL:New(AI_Air,AICap,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local AI_Air_Engage=AI_AIR_ENGAGE:New(AI_Air_Patrol,AICap,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local self=BASE:Inherit(self,AI_Air_Engage)
-self:SetFuelThreshold(.2,60)
-self:SetDamageThreshold(0.4)
-self:SetDisengageRadius(70000)
-return self
-end
-function AI_A2A_CAP:New(AICap,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,EngageMinSpeed,EngageMaxSpeed,PatrolAltType)
-return self:New2(AICap,EngageMinSpeed,EngageMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType,PatrolZone,PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType)
-end
-function AI_A2A_CAP:onafterStart(AICap,From,Event,To)
-self:GetParent(self,AI_A2A_CAP).onafterStart(self,AICap,From,Event,To)
-AICap:HandleEvent(EVENTS.Takeoff,nil,self)
-end
-function AI_A2A_CAP:SetEngageZone(EngageZone)
-self:F2()
-if EngageZone then
-self.EngageZone=EngageZone
-else
-self.EngageZone=nil
-end
-end
-function AI_A2A_CAP:SetEngageRange(EngageRange)
-self:F2()
-if EngageRange then
-self.EngageRange=EngageRange
-else
-self.EngageRange=nil
-end
-end
-function AI_A2A_CAP:CreateAttackUnitTasks(AttackSetUnit,DefenderGroup,EngageAltitude)
-local AttackUnitTasks={}
-for AttackUnitID,AttackUnit in pairs(self.AttackSetUnit:GetSet())do
-local AttackUnit=AttackUnit
-if AttackUnit and AttackUnit:IsAlive()and AttackUnit:IsAir()then
-self:T({"Attacking Task:",AttackUnit:GetName(),AttackUnit:IsAlive(),AttackUnit:IsAir()})
-AttackUnitTasks[#AttackUnitTasks+1]=DefenderGroup:TaskAttackUnit(AttackUnit)
-end
-end
-return AttackUnitTasks
-end
-AI_A2A_GCI={
-ClassName="AI_A2A_GCI",
-}
-function AI_A2A_GCI:New2(AIIntercept,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local AI_Air=AI_AIR:New(AIIntercept)
-local AI_Air_Engage=AI_AIR_ENGAGE:New(AI_Air,AIIntercept,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local self=BASE:Inherit(self,AI_Air_Engage)
-self:SetFuelThreshold(.2,60)
-self:SetDamageThreshold(0.4)
-self:SetDisengageRadius(70000)
-return self
-end
-function AI_A2A_GCI:New(AIIntercept,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-return self:New2(AIIntercept,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-end
-function AI_A2A_GCI:onafterStart(AIIntercept,From,Event,To)
-self:GetParent(self,AI_A2A_GCI).onafterStart(self,AIIntercept,From,Event,To)
-end
-function AI_A2A_GCI:CreateAttackUnitTasks(AttackSetUnit,DefenderGroup,EngageAltitude)
-local AttackUnitTasks={}
-for AttackUnitID,AttackUnit in pairs(self.AttackSetUnit:GetSet())do
-local AttackUnit=AttackUnit
-self:T({"Attacking Unit:",AttackUnit:GetName(),AttackUnit:IsAlive(),AttackUnit:IsAir()})
-if AttackUnit:IsAlive()and AttackUnit:IsAir()then
-AttackUnitTasks[#AttackUnitTasks+1]=DefenderGroup:TaskAttackUnit(AttackUnit)
-end
-end
-return AttackUnitTasks
-end
-do
-AI_A2A_DISPATCHER={
-ClassName="AI_A2A_DISPATCHER",
-Detection=nil,
-}
-AI_A2A_DISPATCHER.Takeoff=GROUP.Takeoff
-AI_A2A_DISPATCHER.Landing={
-NearAirbase=1,
-AtRunway=2,
-AtEngineShutdown=3,
-}
-function AI_A2A_DISPATCHER:New(Detection)
-local self=BASE:Inherit(self,DETECTION_MANAGER:New(nil,Detection))
-self.Detection=Detection
-self.DefenderSquadrons={}
-self.DefenderSpawns={}
-self.DefenderTasks={}
-self.DefenderDefault={}
-self.SetSendPlayerMessages=false
-self.Detection:FilterCategories({Unit.Category.AIRPLANE,Unit.Category.HELICOPTER})
-self.Detection:SetRefreshTimeInterval(30)
-self:SetEngageRadius()
-self:SetGciRadius()
-self:SetIntercept(300)
-self:SetDisengageRadius(300000)
-self:SetDefaultTakeoff(AI_A2A_DISPATCHER.Takeoff.Air)
-self:SetDefaultTakeoffInAirAltitude(500)
-self:SetDefaultLanding(AI_A2A_DISPATCHER.Landing.NearAirbase)
-self:SetDefaultOverhead(1)
-self:SetDefaultGrouping(1)
-self:SetDefaultFuelThreshold(0.15,0)
-self:SetDefaultDamageThreshold(0.4)
-self:SetDefaultCapTimeInterval(180,600)
-self:SetDefaultCapLimit(1)
-self:AddTransition("Started","Assign","Started")
-self:AddTransition("*","CAP","*")
-self:AddTransition("*","GCI","*")
-self:AddTransition("*","ENGAGE","*")
-self:HandleEvent(EVENTS.Crash,self.OnEventCrashOrDead)
-self:HandleEvent(EVENTS.Dead,self.OnEventCrashOrDead)
-self:HandleEvent(EVENTS.Land)
-self:HandleEvent(EVENTS.EngineShutdown)
-self:HandleEvent(EVENTS.BaseCaptured)
-self:SetTacticalDisplay(false)
-self.DefenderCAPIndex=0
-self:__Start(5)
-return self
-end
-function AI_A2A_DISPATCHER:onafterStart(From,Event,To)
-self:GetParent(self,AI_A2A_DISPATCHER).onafterStart(self,From,Event,To)
-for SquadronName,_DefenderSquadron in pairs(self.DefenderSquadrons)do
-local DefenderSquadron=_DefenderSquadron
-DefenderSquadron.Resources={}
-if DefenderSquadron.ResourceCount then
-for Resource=1,DefenderSquadron.ResourceCount do
-self:ParkDefender(DefenderSquadron)
-end
-end
-end
-end
-function AI_A2A_DISPATCHER:ParkDefender(DefenderSquadron)
-local TemplateID=math.random(1,#DefenderSquadron.Spawn)
-local Spawn=DefenderSquadron.Spawn[TemplateID]
-Spawn:InitGrouping(1)
-local SpawnGroup
-if self:IsSquadronVisible(DefenderSquadron.Name)then
-local Grouping=DefenderSquadron.Grouping or self.DefenderDefault.Grouping
-Grouping=1
-Spawn:InitGrouping(Grouping)
-SpawnGroup=Spawn:SpawnAtAirbase(DefenderSquadron.Airbase,SPAWN.Takeoff.Cold)
-local GroupName=SpawnGroup:GetName()
-DefenderSquadron.Resources=DefenderSquadron.Resources or{}
-DefenderSquadron.Resources[TemplateID]=DefenderSquadron.Resources[TemplateID]or{}
-DefenderSquadron.Resources[TemplateID][GroupName]={}
-DefenderSquadron.Resources[TemplateID][GroupName]=SpawnGroup
-self.uncontrolled=self.uncontrolled or{}
-self.uncontrolled[DefenderSquadron.Name]=self.uncontrolled[DefenderSquadron.Name]or{}
-table.insert(self.uncontrolled[DefenderSquadron.Name],{group=SpawnGroup,name=GroupName,grouping=Grouping})
-end
-end
-function AI_A2A_DISPATCHER:OnEventBaseCaptured(EventData)
-local AirbaseName=EventData.PlaceName
-self:T("Captured "..AirbaseName)
-for SquadronName,Squadron in pairs(self.DefenderSquadrons)do
-if Squadron.AirbaseName==AirbaseName then
-Squadron.ResourceCount=-999
-Squadron.Captured=true
-self:T("Squadron "..SquadronName.." captured.")
-end
-end
-end
-function AI_A2A_DISPATCHER:OnEventCrashOrDead(EventData)
-self.Detection:ForgetDetectedUnit(EventData.IniUnitName)
-end
-function AI_A2A_DISPATCHER:OnEventLand(EventData)
-self:F("Landed")
-local DefenderUnit=EventData.IniUnit
-local Defender=EventData.IniGroup
-local Squadron=self:GetSquadronFromDefender(Defender)
-if Squadron then
-self:F({SquadronName=Squadron.Name})
-local LandingMethod=self:GetSquadronLanding(Squadron.Name)
-if LandingMethod==AI_A2A_DISPATCHER.Landing.AtRunway then
-local DefenderSize=Defender:GetSize()
-if DefenderSize==1 then
-self:RemoveDefenderFromSquadron(Squadron,Defender)
-end
-DefenderUnit:Destroy()
-self:ParkDefender(Squadron)
-return
-end
-if DefenderUnit:GetLife()~=DefenderUnit:GetLife0()then
-DefenderUnit:Destroy()
-return
-end
-end
-end
-function AI_A2A_DISPATCHER:OnEventEngineShutdown(EventData)
-local DefenderUnit=EventData.IniUnit
-local Defender=EventData.IniGroup
-local Squadron=self:GetSquadronFromDefender(Defender)
-if Squadron then
-self:F({SquadronName=Squadron.Name})
-local LandingMethod=self:GetSquadronLanding(Squadron.Name)
-if LandingMethod==AI_A2A_DISPATCHER.Landing.AtEngineShutdown and not DefenderUnit:InAir()then
-local DefenderSize=Defender:GetSize()
-if DefenderSize==1 then
-self:RemoveDefenderFromSquadron(Squadron,Defender)
-end
-DefenderUnit:Destroy()
-self:ParkDefender(Squadron)
-end
-end
-end
-function AI_A2A_DISPATCHER:SetEngageRadius(EngageRadius)
-self.Detection:SetFriendliesRange(EngageRadius or 100000)
-return self
-end
-function AI_A2A_DISPATCHER:SetDisengageRadius(DisengageRadius)
-self.DisengageRadius=DisengageRadius or 300000
-return self
-end
-function AI_A2A_DISPATCHER:SetGciRadius(GciRadius)
-self.GciRadius=GciRadius or 200000
-return self
-end
-function AI_A2A_DISPATCHER:SetBorderZone(BorderZone)
-self.Detection:SetAcceptZones(BorderZone)
-return self
-end
-function AI_A2A_DISPATCHER:SetTacticalDisplay(TacticalDisplay)
-self.TacticalDisplay=TacticalDisplay
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultDamageThreshold(DamageThreshold)
-self.DefenderDefault.DamageThreshold=DamageThreshold
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultCapTimeInterval(CapMinSeconds,CapMaxSeconds)
-self.DefenderDefault.CapMinSeconds=CapMinSeconds
-self.DefenderDefault.CapMaxSeconds=CapMaxSeconds
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultCapLimit(CapLimit)
-self.DefenderDefault.CapLimit=CapLimit
-return self
-end
-function AI_A2A_DISPATCHER:SetIntercept(InterceptDelay)
-self.DefenderDefault.InterceptDelay=InterceptDelay
-local Detection=self.Detection
-Detection:SetIntercept(true,InterceptDelay)
-return self
-end
-function AI_A2A_DISPATCHER:GetAIFriendliesNearBy(DetectedItem)
-local FriendliesNearBy=self.Detection:GetFriendliesDistance(DetectedItem)
-return FriendliesNearBy
-end
-function AI_A2A_DISPATCHER:GetDefenderTasks()
-return self.DefenderTasks or{}
-end
-function AI_A2A_DISPATCHER:GetDefenderTask(Defender)
-return self.DefenderTasks[Defender]
-end
-function AI_A2A_DISPATCHER:GetDefenderTaskFsm(Defender)
-return self:GetDefenderTask(Defender).Fsm
-end
-function AI_A2A_DISPATCHER:GetDefenderTaskTarget(Defender)
-return self:GetDefenderTask(Defender).Target
-end
-function AI_A2A_DISPATCHER:GetDefenderTaskSquadronName(Defender)
-return self:GetDefenderTask(Defender).SquadronName
-end
-function AI_A2A_DISPATCHER:ClearDefenderTask(Defender)
-if Defender and Defender:IsAlive()and self.DefenderTasks[Defender]then
-local Target=self.DefenderTasks[Defender].Target
-local Message="Clearing ("..self.DefenderTasks[Defender].Type..") "
-Message=Message..Defender:GetName()
-if Target then
-Message=Message..(Target and(" from "..Target.Index.." ["..Target.Set:Count().."]"))or""
-end
-self:F({Target=Message})
-end
-self.DefenderTasks[Defender]=nil
-return self
-end
-function AI_A2A_DISPATCHER:ClearDefenderTaskTarget(Defender)
-local DefenderTask=self:GetDefenderTask(Defender)
-if Defender and Defender:IsAlive()and DefenderTask then
-local Target=DefenderTask.Target
-local Message="Clearing ("..DefenderTask.Type..") "
-Message=Message..Defender:GetName()
-if Target then
-Message=Message..((Target and(" from "..Target.Index.." ["..Target.Set:Count().."]"))or"")
-end
-self:F({Target=Message})
-end
-if Defender and DefenderTask and DefenderTask.Target then
-DefenderTask.Target=nil
-end
-return self
-end
-function AI_A2A_DISPATCHER:SetDefenderTask(SquadronName,Defender,Type,Fsm,Target)
-self:F({SquadronName=SquadronName,Defender=Defender:GetName(),Type=Type,Target=Target})
-self.DefenderTasks[Defender]=self.DefenderTasks[Defender]or{}
-self.DefenderTasks[Defender].Type=Type
-self.DefenderTasks[Defender].Fsm=Fsm
-self.DefenderTasks[Defender].SquadronName=SquadronName
-if Target then
-self:SetDefenderTaskTarget(Defender,Target)
-end
-return self
-end
-function AI_A2A_DISPATCHER:SetDefenderTaskTarget(Defender,AttackerDetection)
-local Message="("..self.DefenderTasks[Defender].Type..") "
-Message=Message..Defender:GetName()
-Message=Message..((AttackerDetection and(" target "..AttackerDetection.Index.." ["..AttackerDetection.Set:Count().."]"))or"")
-self:F({AttackerDetection=Message})
-if AttackerDetection then
-self.DefenderTasks[Defender].Target=AttackerDetection
-end
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadron(SquadronName,AirbaseName,TemplatePrefixes,ResourceCount)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-local DefenderSquadron=self.DefenderSquadrons[SquadronName]
-DefenderSquadron.Name=SquadronName
-DefenderSquadron.Airbase=AIRBASE:FindByName(AirbaseName)
-DefenderSquadron.AirbaseName=DefenderSquadron.Airbase:GetName()
-if not DefenderSquadron.Airbase then
-error("Cannot find airbase with name:"..AirbaseName)
-end
-DefenderSquadron.Spawn={}
-if type(TemplatePrefixes)=="string"then
-local SpawnTemplate=TemplatePrefixes
-self.DefenderSpawns[SpawnTemplate]=self.DefenderSpawns[SpawnTemplate]or SPAWN:New(SpawnTemplate)
-DefenderSquadron.Spawn[1]=self.DefenderSpawns[SpawnTemplate]
-else
-for TemplateID,SpawnTemplate in pairs(TemplatePrefixes)do
-self.DefenderSpawns[SpawnTemplate]=self.DefenderSpawns[SpawnTemplate]or SPAWN:New(SpawnTemplate)
-DefenderSquadron.Spawn[#DefenderSquadron.Spawn+1]=self.DefenderSpawns[SpawnTemplate]
-end
-end
-DefenderSquadron.ResourceCount=ResourceCount
-DefenderSquadron.TemplatePrefixes=TemplatePrefixes
-DefenderSquadron.Captured=false
-self:SetSquadronLanguage(SquadronName,"EN")
-self:F({Squadron={SquadronName,AirbaseName,TemplatePrefixes,ResourceCount}})
-return self
-end
-function AI_A2A_DISPATCHER:GetSquadron(SquadronName)
-local DefenderSquadron=self.DefenderSquadrons[SquadronName]
-if not DefenderSquadron then
-error("Unknown Squadron:"..SquadronName)
-end
-return DefenderSquadron
-end
-function AI_A2A_DISPATCHER:QuerySquadron(Squadron)
-local Squadron=self:GetSquadron(Squadron)
-if Squadron.ResourceCount then
-self:T2(string.format("%s = %s",Squadron.Name,Squadron.ResourceCount))
-return Squadron.ResourceCount
-end
-self:F({Squadron=Squadron.Name,SquadronResourceCount=Squadron.ResourceCount})
-return nil
-end
-function AI_A2A_DISPATCHER:SetSquadronVisible(SquadronName)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Uncontrolled=true
-DefenderSquadron.Grouping=1
-local nfreeparking=DefenderSquadron.Airbase:GetFreeParkingSpotsNumber(AIRBASE.TerminalType.FighterAircraft,true)
-DefenderSquadron.ResourceCount=DefenderSquadron.ResourceCount or nfreeparking
-DefenderSquadron.ResourceCount=math.min(DefenderSquadron.ResourceCount,nfreeparking)
-for SpawnTemplate,_DefenderSpawn in pairs(self.DefenderSpawns)do
-local DefenderSpawn=_DefenderSpawn
-DefenderSpawn:InitUnControlled(true)
-end
-end
-function AI_A2A_DISPATCHER:IsSquadronVisible(SquadronName)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-if DefenderSquadron then
-return DefenderSquadron.Uncontrolled==true
-end
-return nil
-end
-function AI_A2A_DISPATCHER:SetSquadronCap2(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType,Zone,PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Cap=self.DefenderSquadrons[SquadronName].Cap or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-local Cap=self.DefenderSquadrons[SquadronName].Cap
-Cap.Name=SquadronName
-Cap.EngageMinSpeed=EngageMinSpeed
-Cap.EngageMaxSpeed=EngageMaxSpeed
-Cap.EngageFloorAltitude=EngageFloorAltitude
-Cap.EngageCeilingAltitude=EngageCeilingAltitude
-Cap.Zone=Zone
-Cap.PatrolMinSpeed=PatrolMinSpeed
-Cap.PatrolMaxSpeed=PatrolMaxSpeed
-Cap.PatrolFloorAltitude=PatrolFloorAltitude
-Cap.PatrolCeilingAltitude=PatrolCeilingAltitude
-Cap.PatrolAltType=PatrolAltType
-Cap.EngageAltType=EngageAltType
-self:SetSquadronCapInterval(SquadronName,self.DefenderDefault.CapLimit,self.DefenderDefault.CapMinSeconds,self.DefenderDefault.CapMaxSeconds,1)
-self:T({CAP={SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,Zone,PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType,EngageAltType}})
-local RecceSet=self.Detection:GetDetectionSet()
-RecceSet:FilterPrefixes(DefenderSquadron.TemplatePrefixes)
-RecceSet:FilterStart()
-self.Detection:SetFriendlyPrefixes(DefenderSquadron.TemplatePrefixes)
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronCap(SquadronName,Zone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,EngageMinSpeed,EngageMaxSpeed,AltType)
-return self:SetSquadronCap2(SquadronName,EngageMinSpeed,EngageMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,AltType,Zone,PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,AltType)
-end
-function AI_A2A_DISPATCHER:SetSquadronCapInterval(SquadronName,CapLimit,LowInterval,HighInterval,Probability)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Cap=self.DefenderSquadrons[SquadronName].Cap or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-local Cap=self.DefenderSquadrons[SquadronName].Cap
-if Cap then
-Cap.LowInterval=LowInterval or 180
-Cap.HighInterval=HighInterval or 600
-Cap.Probability=Probability or 1
-Cap.CapLimit=CapLimit or 1
-Cap.Scheduler=Cap.Scheduler or SCHEDULER:New(self)
-local Scheduler=Cap.Scheduler
-local ScheduleID=Cap.ScheduleID
-local Variance=(Cap.HighInterval-Cap.LowInterval)/2
-local Repeat=Cap.LowInterval+Variance
-local Randomization=Variance/Repeat
-local Start=math.random(1,Cap.HighInterval)
-if ScheduleID then
-Scheduler:Stop(ScheduleID)
-end
-Cap.ScheduleID=Scheduler:Schedule(self,self.SchedulerCAP,{SquadronName},Start,Repeat,Randomization)
-else
-error("This squadron does not exist:"..SquadronName)
-end
-end
-function AI_A2A_DISPATCHER:GetCAPDelay(SquadronName)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Cap=self.DefenderSquadrons[SquadronName].Cap or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-local Cap=self.DefenderSquadrons[SquadronName].Cap
-if Cap then
-return math.random(Cap.LowInterval,Cap.HighInterval)
-else
-error("This squadron does not exist:"..SquadronName)
-end
-end
-function AI_A2A_DISPATCHER:CanCAP(SquadronName)
-self:F({SquadronName=SquadronName})
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Cap=self.DefenderSquadrons[SquadronName].Cap or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-if DefenderSquadron.Captured==false then
-if(not DefenderSquadron.ResourceCount)or(DefenderSquadron.ResourceCount and DefenderSquadron.ResourceCount>0)then
-local Cap=DefenderSquadron.Cap
-if Cap then
-local CapCount=self:CountCapAirborne(SquadronName)
-self:F({CapCount=CapCount})
-if CapCount<Cap.CapLimit then
-local Probability=math.random()
-if Probability<=Cap.Probability then
-return DefenderSquadron
-end
-end
-end
-end
-end
-return nil
-end
-function AI_A2A_DISPATCHER:SetDefaultCapRacetrack(LeglengthMin,LeglengthMax,HeadingMin,HeadingMax,DurationMin,DurationMax,CapCoordinates)
-self.DefenderDefault.Racetrack=true
-self.DefenderDefault.RacetrackLengthMin=LeglengthMin
-self.DefenderDefault.RacetrackLengthMax=LeglengthMax
-self.DefenderDefault.RacetrackHeadingMin=HeadingMin
-self.DefenderDefault.RacetrackHeadingMax=HeadingMax
-self.DefenderDefault.RacetrackDurationMin=DurationMin
-self.DefenderDefault.RacetrackDurationMax=DurationMax
-self.DefenderDefault.RacetrackCoordinates=CapCoordinates
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronCapRacetrack(SquadronName,LeglengthMin,LeglengthMax,HeadingMin,HeadingMax,DurationMin,DurationMax,CapCoordinates)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-if DefenderSquadron then
-DefenderSquadron.Racetrack=true
-DefenderSquadron.RacetrackLengthMin=LeglengthMin
-DefenderSquadron.RacetrackLengthMax=LeglengthMax
-DefenderSquadron.RacetrackHeadingMin=HeadingMin
-DefenderSquadron.RacetrackHeadingMax=HeadingMax
-DefenderSquadron.RacetrackDurationMin=DurationMin
-DefenderSquadron.RacetrackDurationMax=DurationMax
-DefenderSquadron.RacetrackCoordinates=CapCoordinates
-end
-return self
-end
-function AI_A2A_DISPATCHER:CanGCI(SquadronName)
-self:F({SquadronName=SquadronName})
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Gci=self.DefenderSquadrons[SquadronName].Gci or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-if DefenderSquadron.Captured==false then
-if(not DefenderSquadron.ResourceCount)or(DefenderSquadron.ResourceCount and DefenderSquadron.ResourceCount>0)then
-local Gci=DefenderSquadron.Gci
-if Gci then
-return DefenderSquadron
-end
-end
-end
-return nil
-end
-function AI_A2A_DISPATCHER:SetSquadronGci2(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Gci=self.DefenderSquadrons[SquadronName].Gci or{}
-local Intercept=self.DefenderSquadrons[SquadronName].Gci
-Intercept.Name=SquadronName
-Intercept.EngageMinSpeed=EngageMinSpeed
-Intercept.EngageMaxSpeed=EngageMaxSpeed
-Intercept.EngageFloorAltitude=EngageFloorAltitude
-Intercept.EngageCeilingAltitude=EngageCeilingAltitude
-Intercept.EngageAltType=EngageAltType
-self:T({GCI={SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType}})
-end
-function AI_A2A_DISPATCHER:SetSquadronGci(SquadronName,EngageMinSpeed,EngageMaxSpeed)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Gci=self.DefenderSquadrons[SquadronName].Gci or{}
-local Intercept=self.DefenderSquadrons[SquadronName].Gci
-Intercept.Name=SquadronName
-Intercept.EngageMinSpeed=EngageMinSpeed
-Intercept.EngageMaxSpeed=EngageMaxSpeed
-self:F({GCI={SquadronName,EngageMinSpeed,EngageMaxSpeed}})
-end
-function AI_A2A_DISPATCHER:SetDefaultOverhead(Overhead)
-self.DefenderDefault.Overhead=Overhead
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronOverhead(SquadronName,Overhead)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Overhead=Overhead
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultGrouping(Grouping)
-self.DefenderDefault.Grouping=Grouping
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronGrouping(SquadronName,Grouping)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Grouping=Grouping
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultTakeoff(Takeoff)
-self.DefenderDefault.Takeoff=Takeoff
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronTakeoff(SquadronName,Takeoff)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Takeoff=Takeoff
-return self
-end
-function AI_A2A_DISPATCHER:GetDefaultTakeoff()
-return self.DefenderDefault.Takeoff
-end
-function AI_A2A_DISPATCHER:GetSquadronTakeoff(SquadronName)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-return DefenderSquadron.Takeoff or self.DefenderDefault.Takeoff
-end
-function AI_A2A_DISPATCHER:SetDefaultTakeoffInAir()
-self:SetDefaultTakeoff(AI_A2A_DISPATCHER.Takeoff.Air)
-return self
-end
-function AI_A2A_DISPATCHER:SetSendMessages(onoff)
-self.SetSendPlayerMessages=onoff
-end
-function AI_A2A_DISPATCHER:SetSquadronTakeoffInAir(SquadronName,TakeoffAltitude)
-self:SetSquadronTakeoff(SquadronName,AI_A2A_DISPATCHER.Takeoff.Air)
-if TakeoffAltitude then
-self:SetSquadronTakeoffInAirAltitude(SquadronName,TakeoffAltitude)
-end
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultTakeoffFromRunway()
-self:SetDefaultTakeoff(AI_A2A_DISPATCHER.Takeoff.Runway)
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronTakeoffFromRunway(SquadronName)
-self:SetSquadronTakeoff(SquadronName,AI_A2A_DISPATCHER.Takeoff.Runway)
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultTakeoffFromParkingHot()
-self:SetDefaultTakeoff(AI_A2A_DISPATCHER.Takeoff.Hot)
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronTakeoffFromParkingHot(SquadronName)
-self:SetSquadronTakeoff(SquadronName,AI_A2A_DISPATCHER.Takeoff.Hot)
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultTakeoffFromParkingCold()
-self:SetDefaultTakeoff(AI_A2A_DISPATCHER.Takeoff.Cold)
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronTakeoffFromParkingCold(SquadronName)
-self:SetSquadronTakeoff(SquadronName,AI_A2A_DISPATCHER.Takeoff.Cold)
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultTakeoffInAirAltitude(TakeoffAltitude)
-self.DefenderDefault.TakeoffAltitude=TakeoffAltitude
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronTakeoffInAirAltitude(SquadronName,TakeoffAltitude)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.TakeoffAltitude=TakeoffAltitude
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultLanding(Landing)
-self.DefenderDefault.Landing=Landing
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronLanding(SquadronName,Landing)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Landing=Landing
-return self
-end
-function AI_A2A_DISPATCHER:GetDefaultLanding()
-return self.DefenderDefault.Landing
-end
-function AI_A2A_DISPATCHER:GetSquadronLanding(SquadronName)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-return DefenderSquadron.Landing or self.DefenderDefault.Landing
-end
-function AI_A2A_DISPATCHER:SetDefaultLandingNearAirbase()
-self:SetDefaultLanding(AI_A2A_DISPATCHER.Landing.NearAirbase)
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronLandingNearAirbase(SquadronName)
-self:SetSquadronLanding(SquadronName,AI_A2A_DISPATCHER.Landing.NearAirbase)
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultLandingAtRunway()
-self:SetDefaultLanding(AI_A2A_DISPATCHER.Landing.AtRunway)
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronLandingAtRunway(SquadronName)
-self:SetSquadronLanding(SquadronName,AI_A2A_DISPATCHER.Landing.AtRunway)
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultLandingAtEngineShutdown()
-self:SetDefaultLanding(AI_A2A_DISPATCHER.Landing.AtEngineShutdown)
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronLandingAtEngineShutdown(SquadronName)
-self:SetSquadronLanding(SquadronName,AI_A2A_DISPATCHER.Landing.AtEngineShutdown)
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultFuelThreshold(FuelThreshold)
-self.DefenderDefault.FuelThreshold=FuelThreshold
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronFuelThreshold(SquadronName,FuelThreshold)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.FuelThreshold=FuelThreshold
-return self
-end
-function AI_A2A_DISPATCHER:SetDefaultTanker(TankerName)
-self.DefenderDefault.TankerName=TankerName
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronTanker(SquadronName,TankerName)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.TankerName=TankerName
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronLanguage(SquadronName,Language)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Language=Language
-if DefenderSquadron.RadioQueue then
-DefenderSquadron.RadioQueue:SetLanguage(Language)
-end
-return self
-end
-function AI_A2A_DISPATCHER:SetSquadronRadioFrequency(SquadronName,RadioFrequency,RadioModulation,RadioPower)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.RadioFrequency=RadioFrequency
-DefenderSquadron.RadioModulation=RadioModulation or radio.modulation.AM
-DefenderSquadron.RadioPower=RadioPower or 100
-if DefenderSquadron.RadioQueue then
-DefenderSquadron.RadioQueue:Stop()
-end
-DefenderSquadron.RadioQueue=nil
-DefenderSquadron.RadioQueue=RADIOSPEECH:New(DefenderSquadron.RadioFrequency,DefenderSquadron.RadioModulation)
-DefenderSquadron.RadioQueue.power=DefenderSquadron.RadioPower
-DefenderSquadron.RadioQueue:Start(0.5)
-DefenderSquadron.RadioQueue:SetLanguage(DefenderSquadron.Language)
-end
-function AI_A2A_DISPATCHER:AddDefenderToSquadron(Squadron,Defender,Size)
-self.Defenders=self.Defenders or{}
-local DefenderName=Defender:GetName()
-self.Defenders[DefenderName]=Squadron
-if Squadron.ResourceCount then
-Squadron.ResourceCount=Squadron.ResourceCount-Size
-end
-self:F({DefenderName=DefenderName,SquadronResourceCount=Squadron.ResourceCount})
-end
-function AI_A2A_DISPATCHER:RemoveDefenderFromSquadron(Squadron,Defender)
-self.Defenders=self.Defenders or{}
-local DefenderName=Defender:GetName()
-if Squadron.ResourceCount then
-Squadron.ResourceCount=Squadron.ResourceCount+Defender:GetSize()
-end
-self.Defenders[DefenderName]=nil
-self:F({DefenderName=DefenderName,SquadronResourceCount=Squadron.ResourceCount})
-end
-function AI_A2A_DISPATCHER:GetSquadronFromDefender(Defender)
-self.Defenders=self.Defenders or{}
-if Defender~=nil then
-local DefenderName=Defender:GetName()
-self:F({DefenderName=DefenderName})
-return self.Defenders[DefenderName]
-else
-return nil
-end
-end
-function AI_A2A_DISPATCHER:EvaluateSWEEP(DetectedItem)
-self:F({DetectedItem.ItemID})
-local DetectedSet=DetectedItem.Set
-local DetectedZone=DetectedItem.Zone
-if DetectedItem.IsDetected==false then
-local TargetSetUnit=SET_UNIT:New()
-TargetSetUnit:SetDatabase(DetectedSet)
-TargetSetUnit:FilterOnce()
-return TargetSetUnit
-end
-return nil
-end
-function AI_A2A_DISPATCHER:CountCapAirborne(SquadronName)
-local CapCount=0
-local DefenderSquadron=self.DefenderSquadrons[SquadronName]
-if DefenderSquadron then
-for AIGroup,DefenderTask in pairs(self:GetDefenderTasks())do
-if DefenderTask.SquadronName==SquadronName then
-if DefenderTask.Type=="CAP"then
-if AIGroup and AIGroup:IsAlive()then
-if DefenderTask.Fsm:Is("Patrolling")or DefenderTask.Fsm:Is("Engaging")or DefenderTask.Fsm:Is("Refuelling")or DefenderTask.Fsm:Is("Started")then
-CapCount=CapCount+1
-end
-end
-end
-end
-end
-end
-return CapCount
-end
-function AI_A2A_DISPATCHER:CountDefendersEngaged(AttackerDetection)
-local DefenderCount=0
-local DetectedSet=AttackerDetection.Set
-local DefenderTasks=self:GetDefenderTasks()
-for DefenderGroup,DefenderTask in pairs(DefenderTasks)do
-local Defender=DefenderGroup
-local DefenderTaskTarget=DefenderTask.Target
-local DefenderSquadronName=DefenderTask.SquadronName
-if DefenderTaskTarget and DefenderTaskTarget.Index==AttackerDetection.Index then
-local Squadron=self:GetSquadron(DefenderSquadronName)
-local SquadronOverhead=Squadron.Overhead or self.DefenderDefault.Overhead
-local DefenderSize=Defender:GetInitialSize()
-if DefenderSize then
-DefenderCount=DefenderCount+DefenderSize/SquadronOverhead
-self:F("Defender Group Name: "..Defender:GetName()..", Size: "..DefenderSize)
-else
-DefenderCount=0
-end
-end
-end
-self:F({DefenderCount=DefenderCount})
-return DefenderCount
-end
-function AI_A2A_DISPATCHER:CountDefendersToBeEngaged(AttackerDetection,DefenderCount)
-local Friendlies=nil
-local AttackerSet=AttackerDetection.Set
-local AttackerCount=AttackerSet:Count()
-local DefenderFriendlies=self:GetAIFriendliesNearBy(AttackerDetection)
-for FriendlyDistance,AIFriendly in UTILS.spairs(DefenderFriendlies or{})do
-if AttackerCount>DefenderCount then
-if AIFriendly then
-local classname=AIFriendly.ClassName or"No Class Name"
-local unitname=AIFriendly.IdentifiableName or"No Unit Name"
-end
-local Friendly=nil
-if AIFriendly and AIFriendly:IsAlive()then
-Friendly=AIFriendly:GetGroup()
-end
-if Friendly and Friendly:IsAlive()then
-local DefenderTask=self:GetDefenderTask(Friendly)
-if DefenderTask then
-if DefenderTask.Type=="CAP"or DefenderTask.Type=="GCI"then
-if DefenderTask.Target==nil then
-if DefenderTask.Fsm:Is("Returning")or DefenderTask.Fsm:Is("Patrolling")then
-Friendlies=Friendlies or{}
-Friendlies[Friendly]=Friendly
-DefenderCount=DefenderCount+Friendly:GetSize()
-self:F({Friendly=Friendly:GetName(),FriendlyDistance=FriendlyDistance})
-end
-end
-end
-end
-end
-else
-break
-end
-end
-return Friendlies
-end
-function AI_A2A_DISPATCHER:ResourceActivate(DefenderSquadron,DefendersNeeded)
-local SquadronName=DefenderSquadron.Name
-DefendersNeeded=DefendersNeeded or 4
-local DefenderGrouping=DefenderSquadron.Grouping or self.DefenderDefault.Grouping
-DefenderGrouping=(DefenderGrouping<DefendersNeeded)and DefenderGrouping or DefendersNeeded
-if self:IsSquadronVisible(SquadronName)then
-local n=#self.uncontrolled[SquadronName]
-if n>0 then
-local id=math.random(n)
-local Defender=self.uncontrolled[SquadronName][id].group
-Defender:StartUncontrolled()
-DefenderGrouping=self.uncontrolled[SquadronName][id].grouping
-self:AddDefenderToSquadron(DefenderSquadron,Defender,DefenderGrouping)
-table.remove(self.uncontrolled[SquadronName],id)
-return Defender,DefenderGrouping
-else
-return nil,0
-end
-local TemplateID=math.random(1,#DefenderSquadron.Spawn)
-else
-local Spawn=DefenderSquadron.Spawn[math.random(1,#DefenderSquadron.Spawn)]
-if DefenderGrouping then
-Spawn:InitGrouping(DefenderGrouping)
-else
-Spawn:InitGrouping()
-end
-local TakeoffMethod=self:GetSquadronTakeoff(SquadronName)
-local Defender=Spawn:SpawnAtAirbase(DefenderSquadron.Airbase,TakeoffMethod,DefenderSquadron.TakeoffAltitude or self.DefenderDefault.TakeoffAltitude)
-self:AddDefenderToSquadron(DefenderSquadron,Defender,DefenderGrouping)
-return Defender,DefenderGrouping
-end
-return nil,nil
-end
-function AI_A2A_DISPATCHER:onafterCAP(From,Event,To,SquadronName)
-self:F({SquadronName=SquadronName})
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Cap=self.DefenderSquadrons[SquadronName].Cap or{}
-local DefenderSquadron=self:CanCAP(SquadronName)
-if DefenderSquadron then
-local Cap=DefenderSquadron.Cap
-if Cap then
-local DefenderCAP,DefenderGrouping=self:ResourceActivate(DefenderSquadron)
-if DefenderCAP then
-local AI_A2A_Fsm=AI_A2A_CAP:New2(DefenderCAP,Cap.EngageMinSpeed,Cap.EngageMaxSpeed,Cap.EngageFloorAltitude,Cap.EngageCeilingAltitude,Cap.EngageAltType,Cap.Zone,Cap.PatrolMinSpeed,Cap.PatrolMaxSpeed,Cap.PatrolFloorAltitude,Cap.PatrolCeilingAltitude,Cap.PatrolAltType)
-AI_A2A_Fsm:SetDispatcher(self)
-AI_A2A_Fsm:SetHomeAirbase(DefenderSquadron.Airbase)
-AI_A2A_Fsm:SetFuelThreshold(DefenderSquadron.FuelThreshold or self.DefenderDefault.FuelThreshold,60)
-AI_A2A_Fsm:SetDamageThreshold(self.DefenderDefault.DamageThreshold)
-AI_A2A_Fsm:SetDisengageRadius(self.DisengageRadius)
-AI_A2A_Fsm:SetTanker(DefenderSquadron.TankerName or self.DefenderDefault.TankerName)
-if DefenderSquadron.Racetrack or self.DefenderDefault.Racetrack then
-AI_A2A_Fsm:SetRaceTrackPattern(DefenderSquadron.RacetrackLengthMin or self.DefenderDefault.RacetrackLengthMin,
-DefenderSquadron.RacetrackLengthMax or self.DefenderDefault.RacetrackLengthMax,
-DefenderSquadron.RacetrackHeadingMin or self.DefenderDefault.RacetrackHeadingMin,
-DefenderSquadron.RacetrackHeadingMax or self.DefenderDefault.RacetrackHeadingMax,
-DefenderSquadron.RacetrackDurationMin or self.DefenderDefault.RacetrackDurationMin,
-DefenderSquadron.RacetrackDurationMax or self.DefenderDefault.RacetrackDurationMax,
-DefenderSquadron.RacetrackCoordinates or self.DefenderDefault.RacetrackCoordinates)
-end
-AI_A2A_Fsm:Start()
-self:SetDefenderTask(SquadronName,DefenderCAP,"CAP",AI_A2A_Fsm)
-function AI_A2A_Fsm:onafterTakeoff(DefenderGroup,From,Event,To)
-if DefenderGroup and DefenderGroup:IsAlive()then
-self:F({"CAP Takeoff",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2A_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron then
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName.." Wheels up.",DefenderGroup)
-end
-AI_A2A_Fsm:__Patrol(2)
-end
-end
-end
-function AI_A2A_Fsm:onafterPatrolRoute(DefenderGroup,From,Event,To)
-if DefenderGroup and DefenderGroup:IsAlive()then
-self:F({"CAP PatrolRoute",DefenderGroup:GetName()})
-self:GetParent(self).onafterPatrolRoute(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", patrolling.",DefenderGroup)
-end
-Dispatcher:ClearDefenderTaskTarget(DefenderGroup)
-end
-end
-function AI_A2A_Fsm:onafterRTB(DefenderGroup,From,Event,To)
-if DefenderGroup and DefenderGroup:IsAlive()then
-self:F({"CAP RTB",DefenderGroup:GetName()})
-self:GetParent(self).onafterRTB(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName.." returning to base.",DefenderGroup)
-end
-Dispatcher:ClearDefenderTaskTarget(DefenderGroup)
-end
-end
-function AI_A2A_Fsm:onafterHome(Defender,From,Event,To,Action)
-if Defender and Defender:IsAlive()then
-self:F({"CAP Home",Defender:GetName()})
-self:GetParent(self).onafterHome(self,Defender,From,Event,To)
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(Defender)
-if Action and Action=="Destroy"then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,Defender)
-Defender:Destroy()
-end
-if Dispatcher:GetSquadronLanding(Squadron.Name)==AI_A2A_DISPATCHER.Landing.NearAirbase then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,Defender)
-Defender:Destroy()
-Dispatcher:ParkDefender(Squadron)
-end
-end
-end
-end
-end
-end
-end
-function AI_A2A_DISPATCHER:onafterENGAGE(From,Event,To,AttackerDetection,Defenders)
-self:F("ENGAGING Detection ID="..tostring(AttackerDetection.ID))
-if Defenders then
-for DefenderID,Defender in pairs(Defenders)do
-local Fsm=self:GetDefenderTaskFsm(Defender)
-Fsm:EngageRoute(AttackerDetection.Set)
-self:SetDefenderTaskTarget(Defender,AttackerDetection)
-end
-end
-end
-function AI_A2A_DISPATCHER:onafterGCI(From,Event,To,AttackerDetection,DefendersMissing,DefenderFriendlies)
-self:F("GCI Detection ID="..tostring(AttackerDetection.ID))
-self:F({From,Event,To,AttackerDetection.Index,DefendersMissing,DefenderFriendlies})
-local AttackerSet=AttackerDetection.Set
-local AttackerUnit=AttackerSet:GetFirst()
-if AttackerUnit and AttackerUnit:IsAlive()then
-local AttackerCount=AttackerSet:Count()
-local DefenderCount=0
-for DefenderID,DefenderGroup in pairs(DefenderFriendlies or{})do
-local Fsm=self:GetDefenderTaskFsm(DefenderGroup)
-Fsm:__EngageRoute(0.1,AttackerSet)
-self:SetDefenderTaskTarget(DefenderGroup,AttackerDetection)
-DefenderCount=DefenderCount+DefenderGroup:GetSize()
-end
-self:F({DefenderCount=DefenderCount,DefendersMissing=DefendersMissing})
-DefenderCount=DefendersMissing
-local ClosestDistance=0
-local ClosestDefenderSquadronName=nil
-local BreakLoop=false
-while(DefenderCount>0 and not BreakLoop)do
-self:F({DefenderSquadrons=self.DefenderSquadrons})
-for SquadronName,DefenderSquadron in pairs(self.DefenderSquadrons or{})do
-self:F({GCI=DefenderSquadron.Gci})
-for InterceptID,Intercept in pairs(DefenderSquadron.Gci or{})do
-self:F({DefenderSquadron})
-local SpawnCoord=DefenderSquadron.Airbase:GetCoordinate()
-local AttackerCoord=AttackerUnit:GetCoordinate()
-local InterceptCoord=AttackerDetection.InterceptCoord
-self:F({InterceptCoord=InterceptCoord})
-if InterceptCoord then
-local InterceptDistance=SpawnCoord:Get2DDistance(InterceptCoord)
-local AirbaseDistance=SpawnCoord:Get2DDistance(AttackerCoord)
-self:F({InterceptDistance=InterceptDistance,AirbaseDistance=AirbaseDistance,InterceptCoord=InterceptCoord})
-if ClosestDistance==0 or InterceptDistance<ClosestDistance then
-if AirbaseDistance<=self.GciRadius then
-ClosestDistance=InterceptDistance
-ClosestDefenderSquadronName=SquadronName
-end
-end
-end
-end
-end
-if ClosestDefenderSquadronName then
-local DefenderSquadron=self:CanGCI(ClosestDefenderSquadronName)
-if DefenderSquadron then
-local Gci=self.DefenderSquadrons[ClosestDefenderSquadronName].Gci
-if Gci then
-local DefenderOverhead=DefenderSquadron.Overhead or self.DefenderDefault.Overhead
-local DefenderGrouping=DefenderSquadron.Grouping or self.DefenderDefault.Grouping
-local DefendersNeeded=math.ceil(DefenderCount*DefenderOverhead)
-self:F({Overhead=DefenderOverhead,SquadronOverhead=DefenderSquadron.Overhead,DefaultOverhead=self.DefenderDefault.Overhead})
-self:F({Grouping=DefenderGrouping,SquadronGrouping=DefenderSquadron.Grouping,DefaultGrouping=self.DefenderDefault.Grouping})
-self:F({DefendersCount=DefenderCount,DefendersNeeded=DefendersNeeded})
-if DefenderSquadron.ResourceCount and DefendersNeeded>DefenderSquadron.ResourceCount then
-DefendersNeeded=DefenderSquadron.ResourceCount
-BreakLoop=true
-end
-while(DefendersNeeded>0)do
-local DefenderGCI,DefenderGrouping=self:ResourceActivate(DefenderSquadron,DefendersNeeded)
-DefendersNeeded=DefendersNeeded-DefenderGrouping
-if DefenderGCI then
-DefenderCount=DefenderCount-DefenderGrouping/DefenderOverhead
-local Fsm=AI_A2A_GCI:New2(DefenderGCI,Gci.EngageMinSpeed,Gci.EngageMaxSpeed,Gci.EngageFloorAltitude,Gci.EngageCeilingAltitude,Gci.EngageAltType)
-Fsm:SetDispatcher(self)
-Fsm:SetHomeAirbase(DefenderSquadron.Airbase)
-Fsm:SetFuelThreshold(DefenderSquadron.FuelThreshold or self.DefenderDefault.FuelThreshold,60)
-Fsm:SetDamageThreshold(self.DefenderDefault.DamageThreshold)
-Fsm:SetDisengageRadius(self.DisengageRadius)
-Fsm:Start()
-self:SetDefenderTask(ClosestDefenderSquadronName,DefenderGCI,"GCI",Fsm,AttackerDetection)
-function Fsm:onafterTakeoff(DefenderGroup,From,Event,To)
-self:F({"GCI Birth",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-local DefenderTarget=Dispatcher:GetDefenderTaskTarget(DefenderGroup)
-if DefenderTarget then
-if Squadron.Language=="EN"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName.." wheels up.",DefenderGroup)
-elseif Squadron.Language=="RU"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName.." колёса вверх.",DefenderGroup)
-end
-Fsm:EngageRoute(DefenderTarget.Set)
-end
-end
-function Fsm:onafterEngageRoute(DefenderGroup,From,Event,To,AttackSetUnit)
-self:F({"GCI Route",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron and AttackSetUnit:Count()>0 then
-local FirstUnit=AttackSetUnit:GetFirst()
-local Coordinate=FirstUnit:GetCoordinate()
-if Squadron.Language=="EN"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", intercepting bogeys at "..Coordinate:ToStringA2A(DefenderGroup,nil,Squadron.Language),DefenderGroup)
-elseif Squadron.Language=="RU"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", перехватывая боги в "..Coordinate:ToStringA2A(DefenderGroup,nil,Squadron.Language),DefenderGroup)
-elseif Squadron.Language=="DE"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", Eindringlinge abfangen bei"..Coordinate:ToStringA2A(DefenderGroup,nil,Squadron.Language),DefenderGroup)
-end
-end
-self:GetParent(Fsm).onafterEngageRoute(self,DefenderGroup,From,Event,To,AttackSetUnit)
-end
-function Fsm:onafterEngage(DefenderGroup,From,Event,To,AttackSetUnit)
-self:F({"GCI Engage",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron and AttackSetUnit:Count()>0 then
-local FirstUnit=AttackSetUnit:GetFirst()
-local Coordinate=FirstUnit:GetCoordinate()
-if Squadron.Language=="EN"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", engaging bogeys at "..Coordinate:ToStringA2A(DefenderGroup,nil,Squadron.Language),DefenderGroup)
-elseif Squadron.Language=="RU"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", задействуя боги в "..Coordinate:ToStringA2A(DefenderGroup,nil,Squadron.Language),DefenderGroup)
-end
-end
-self:GetParent(Fsm).onafterEngage(self,DefenderGroup,From,Event,To,AttackSetUnit)
-end
-function Fsm:onafterRTB(DefenderGroup,From,Event,To)
-self:F({"GCI RTB",DefenderGroup:GetName()})
-self:GetParent(self).onafterRTB(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron then
-if Squadron.Language=="EN"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName.." returning to base.",DefenderGroup)
-elseif Squadron.Language=="RU"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", возвращение на базу.",DefenderGroup)
-end
-end
-Dispatcher:ClearDefenderTaskTarget(DefenderGroup)
-end
-function Fsm:onafterLostControl(Defender,From,Event,To)
-self:F({"GCI LostControl",Defender:GetName()})
-self:GetParent(self).onafterHome(self,Defender,From,Event,To)
-local Dispatcher=Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(Defender)
-if Defender:IsAboveRunway()then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,Defender)
-Defender:Destroy()
-end
-end
-function Fsm:onafterHome(DefenderGroup,From,Event,To,Action)
-self:F({"GCI Home",DefenderGroup:GetName()})
-self:GetParent(self).onafterHome(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron.Language=="EN"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName.." landing at base.",DefenderGroup)
-elseif Squadron.Language=="RU"and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", посадка на базу.",DefenderGroup)
-end
-if Action and Action=="Destroy"then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,DefenderGroup)
-DefenderGroup:Destroy()
-end
-if Dispatcher:GetSquadronLanding(Squadron.Name)==AI_A2A_DISPATCHER.Landing.NearAirbase then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,DefenderGroup)
-DefenderGroup:Destroy()
-Dispatcher:ParkDefender(Squadron)
-end
-end
-end
-end
-end
-else
-BreakLoop=true
-break
-end
-else
-break
-end
-end
-end
-end
-function AI_A2A_DISPATCHER:EvaluateENGAGE(DetectedItem)
-self:F({DetectedItem.ItemID})
-local DefenderCount=self:CountDefendersEngaged(DetectedItem)
-local DefenderGroups=self:CountDefendersToBeEngaged(DetectedItem,DefenderCount)
-self:F({DefenderCount=DefenderCount})
-if DefenderGroups and DetectedItem.IsDetected==true then
-return DefenderGroups
-end
-return nil
-end
-function AI_A2A_DISPATCHER:EvaluateGCI(DetectedItem)
-self:F({DetectedItem.ItemID})
-local AttackerSet=DetectedItem.Set
-local AttackerCount=AttackerSet:Count()
-local DefenderCount=self:CountDefendersEngaged(DetectedItem)
-local DefendersMissing=AttackerCount-DefenderCount
-self:F({AttackerCount=AttackerCount,DefenderCount=DefenderCount,DefendersMissing=DefendersMissing})
-local Friendlies=self:CountDefendersToBeEngaged(DetectedItem,DefenderCount)
-if DetectedItem.IsDetected==true then
-return DefendersMissing,Friendlies
-end
-return nil,nil
-end
-function AI_A2A_DISPATCHER:Order(DetectedItem)
-local detection=self.Detection
-local ShortestDistance=999999999
-local AttackCoordinate=detection:GetDetectedItemCoordinate(DetectedItem)
-if AttackCoordinate then
-for DefenderSquadronName,DefenderSquadron in pairs(self.DefenderSquadrons)do
-self:T({DefenderSquadron=DefenderSquadron.Name})
-local Airbase=DefenderSquadron.Airbase
-local AirbaseCoordinate=Airbase:GetCoordinate()
-local EvaluateDistance=AttackCoordinate:Get2DDistance(AirbaseCoordinate)
-if EvaluateDistance<=ShortestDistance then
-ShortestDistance=EvaluateDistance
-end
-end
-end
-return ShortestDistance
-end
-function AI_A2A_DISPATCHER:ShowTacticalDisplay(Detection)
-local AreaMsg={}
-local TaskMsg={}
-local ChangeMsg={}
-local TaskReport=REPORT:New()
-local Report=REPORT:New("Tactical Overview:")
-local DefenderGroupCount=0
-for DetectedItemID,DetectedItem in UTILS.spairs(Detection:GetDetectedItems(),function(t,a,b)
-return self:Order(t[a])<self:Order(t[b])
-end)do
-local DetectedItem=DetectedItem
-local DetectedSet=DetectedItem.Set
-local DetectedCount=DetectedSet:Count()
-local DetectedZone=DetectedItem.Zone
-self:F({"Target ID",DetectedItem.ItemID})
-DetectedSet:Flush(self)
-local DetectedID=DetectedItem.ID
-local DetectionIndex=DetectedItem.Index
-local DetectedItemChanged=DetectedItem.Changed
-Report:Add(string.format("\n- Target %s (%s): (#%d) %s",DetectedItem.ItemID,DetectedItem.Index,DetectedItem.Set:Count(),DetectedItem.Set:GetObjectNames()))
-for Defender,DefenderTask in pairs(self:GetDefenderTasks())do
-local Defender=Defender
-if DefenderTask.Target and DefenderTask.Target.Index==DetectedItem.Index then
-if Defender and Defender:IsAlive()then
-DefenderGroupCount=DefenderGroupCount+1
-local Fuel=Defender:GetFuelMin()*100
-local Damage=Defender:GetLife()/Defender:GetLife0()*100
-Report:Add(string.format(" - %s*%d/%d (%s - %s): (#%d) F: %3d, D:%3d - %s",
-Defender:GetName(),
-Defender:GetSize(),
-Defender:GetInitialSize(),
-DefenderTask.Type,
-DefenderTask.Fsm:GetState(),
-Defender:GetSize(),
-Fuel,
-Damage,
-Defender:HasTask()==true and"Executing"or"Idle"))
-end
-end
-end
-end
-Report:Add("\n- No Targets:")
-local TaskCount=0
-for Defender,DefenderTask in pairs(self:GetDefenderTasks())do
-TaskCount=TaskCount+1
-local Defender=Defender
-if not DefenderTask.Target then
-if Defender:IsAlive()then
-local DefenderHasTask=Defender:HasTask()
-local Fuel=Defender:GetFuelMin()*100
-local Damage=Defender:GetLife()/Defender:GetLife0()*100
-DefenderGroupCount=DefenderGroupCount+1
-Report:Add(string.format(" - %s*%d/%d (%s - %s): (#%d) F: %3d, D:%3d - %s",
-Defender:GetName(),
-Defender:GetSize(),
-Defender:GetInitialSize(),
-DefenderTask.Type,
-DefenderTask.Fsm:GetState(),
-Defender:GetSize(),
-Fuel,
-Damage,
-Defender:HasTask()==true and"Executing"or"Idle"))
-end
-end
-end
-Report:Add(string.format("\n- %d Tasks - %d Defender Groups",TaskCount,DefenderGroupCount))
-self:F(Report:Text("\n"))
-trigger.action.outText(Report:Text("\n"),25)
-return true
-end
-function AI_A2A_DISPATCHER:ProcessDetected(Detection)
-local AreaMsg={}
-local TaskMsg={}
-local ChangeMsg={}
-local TaskReport=REPORT:New()
-for AIGroup,DefenderTask in pairs(self:GetDefenderTasks())do
-local AIGroup=AIGroup
-if not AIGroup:IsAlive()then
-local DefenderTaskFsm=self:GetDefenderTaskFsm(AIGroup)
-self:F({Defender=AIGroup:GetName(),DefenderState=DefenderTaskFsm:GetState()})
-if not DefenderTaskFsm:Is("Started")then
-self:ClearDefenderTask(AIGroup)
-end
-else
-if DefenderTask.Target then
-local AttackerItem=Detection:GetDetectedItemByIndex(DefenderTask.Target.Index)
-if not AttackerItem then
-self:F({"Removing obsolete Target:",DefenderTask.Target.Index})
-self:ClearDefenderTaskTarget(AIGroup)
-else
-if DefenderTask.Target.Set then
-local AttackerCount=DefenderTask.Target.Set:Count()
-if AttackerCount==0 then
-self:F({"All Targets destroyed in Target, removing:",DefenderTask.Target.Index})
-self:ClearDefenderTaskTarget(AIGroup)
-end
-end
-end
-end
-end
-end
-local Report=REPORT:New("Tactical Overviews")
-local DefenderGroupCount=0
-for DetectedItemID,DetectedItem in UTILS.spairs(Detection:GetDetectedItems(),function(t,a,b)
-return self:Order(t[a])<self:Order(t[b])
-end)do
-local DetectedItem=DetectedItem
-local DetectedSet=DetectedItem.Set
-local DetectedCount=DetectedSet:Count()
-local DetectedZone=DetectedItem.Zone
-self:F({"Target ID",DetectedItem.ItemID})
-DetectedSet:Flush(self)
-local DetectedID=DetectedItem.ID
-local DetectionIndex=DetectedItem.Index
-local DetectedItemChanged=DetectedItem.Changed
-do
-local Friendlies=self:EvaluateENGAGE(DetectedItem)
-if Friendlies then
-self:F({AIGroups=Friendlies})
-self:ENGAGE(DetectedItem,Friendlies)
-end
-end
-do
-local DefendersMissing,Friendlies=self:EvaluateGCI(DetectedItem)
-if DefendersMissing and DefendersMissing>0 then
-self:F({DefendersMissing=DefendersMissing})
-self:GCI(DetectedItem,DefendersMissing,Friendlies)
-end
-end
-end
-if self.TacticalDisplay then
-self:ShowTacticalDisplay(Detection)
-end
-return true
-end
-end
-do
-function AI_A2A_DISPATCHER:GetPlayerFriendliesNearBy(DetectedItem)
-local DetectedSet=DetectedItem.Set
-local PlayersNearBy=self.Detection:GetPlayersNearBy(DetectedItem)
-local PlayerTypes={}
-local PlayersCount=0
-if PlayersNearBy then
-local DetectedTreatLevel=DetectedSet:CalculateThreatLevelA2G()
-for PlayerUnitName,PlayerUnitData in pairs(PlayersNearBy)do
-local PlayerUnit=PlayerUnitData
-local PlayerName=PlayerUnit:GetPlayerName()
-if PlayerUnit:IsAirPlane()and PlayerName~=nil then
-local FriendlyUnitThreatLevel=PlayerUnit:GetThreatLevel()
-PlayersCount=PlayersCount+1
-local PlayerType=PlayerUnit:GetTypeName()
-PlayerTypes[PlayerName]=PlayerType
-if DetectedTreatLevel<FriendlyUnitThreatLevel+2 then
-end
-end
-end
-end
-local PlayerTypesReport=REPORT:New()
-if PlayersCount>0 then
-for PlayerName,PlayerType in pairs(PlayerTypes)do
-PlayerTypesReport:Add(string.format('"%s" in %s',PlayerName,PlayerType))
-end
-else
-PlayerTypesReport:Add("-")
-end
-return PlayersCount,PlayerTypesReport
-end
-function AI_A2A_DISPATCHER:GetFriendliesNearBy(DetectedItem)
-local DetectedSet=DetectedItem.Set
-local FriendlyUnitsNearBy=self.Detection:GetFriendliesNearBy(DetectedItem)
-local FriendlyTypes={}
-local FriendliesCount=0
-if FriendlyUnitsNearBy then
-local DetectedTreatLevel=DetectedSet:CalculateThreatLevelA2G()
-for FriendlyUnitName,FriendlyUnitData in pairs(FriendlyUnitsNearBy)do
-local FriendlyUnit=FriendlyUnitData
-if FriendlyUnit:IsAirPlane()then
-local FriendlyUnitThreatLevel=FriendlyUnit:GetThreatLevel()
-FriendliesCount=FriendliesCount+1
-local FriendlyType=FriendlyUnit:GetTypeName()
-FriendlyTypes[FriendlyType]=FriendlyTypes[FriendlyType]and(FriendlyTypes[FriendlyType]+1)or 1
-if DetectedTreatLevel<FriendlyUnitThreatLevel+2 then
-end
-end
-end
-end
-local FriendlyTypesReport=REPORT:New()
-if FriendliesCount>0 then
-for FriendlyType,FriendlyTypeCount in pairs(FriendlyTypes)do
-FriendlyTypesReport:Add(string.format("%d of %s",FriendlyTypeCount,FriendlyType))
-end
-else
-FriendlyTypesReport:Add("-")
-end
-return FriendliesCount,FriendlyTypesReport
-end
-function AI_A2A_DISPATCHER:SchedulerCAP(SquadronName)
-self:CAP(SquadronName)
-end
-function AI_A2A_DISPATCHER:AddToSquadron(Squadron,Amount)
-local Squadron=self:GetSquadron(Squadron)
-if Squadron.ResourceCount then
-Squadron.ResourceCount=Squadron.ResourceCount+Amount
-end
-self:T({Squadron=Squadron.Name,SquadronResourceCount=Squadron.ResourceCount})
-end
-function AI_A2A_DISPATCHER:RemoveFromSquadron(Squadron,Amount)
-local Squadron=self:GetSquadron(Squadron)
-if Squadron.ResourceCount then
-Squadron.ResourceCount=Squadron.ResourceCount-Amount
-end
-self:T({Squadron=Squadron.Name,SquadronResourceCount=Squadron.ResourceCount})
-end
-end
-do
-AI_A2A_GCICAP={
-ClassName="AI_A2A_GCICAP",
-Detection=nil,
-}
-function AI_A2A_GCICAP:New(EWRPrefixes,TemplatePrefixes,CapPrefixes,CapLimit,GroupingRadius,EngageRadius,GciRadius,ResourceCount)
-local EWRSetGroup=SET_GROUP:New()
-EWRSetGroup:FilterPrefixes(EWRPrefixes)
-EWRSetGroup:FilterStart()
-local Detection=DETECTION_AREAS:New(EWRSetGroup,GroupingRadius or 30000)
-local self=BASE:Inherit(self,AI_A2A_DISPATCHER:New(Detection))
-self:SetEngageRadius(EngageRadius)
-self:SetGciRadius(GciRadius)
-local EWRFirst=EWRSetGroup:GetFirst()
-local EWRCoalition=EWRFirst:GetCoalition()
-local AirbaseNames={}
-for AirbaseID,AirbaseData in pairs(_DATABASE.AIRBASES)do
-local Airbase=AirbaseData
-local AirbaseName=Airbase:GetName()
-if Airbase:GetCoalition()==EWRCoalition then
-table.insert(AirbaseNames,AirbaseName)
-end
-end
-self.Templates=SET_GROUP:New():FilterPrefixes(TemplatePrefixes):FilterOnce()
-self:T({Airbases=AirbaseNames})
-self:T("Defining Templates for Airbases ...")
-for AirbaseID,AirbaseName in pairs(AirbaseNames)do
-local Airbase=_DATABASE:FindAirbase(AirbaseName)
-local AirbaseName=Airbase:GetName()
-local AirbaseCoord=Airbase:GetCoordinate()
-local AirbaseZone=ZONE_RADIUS:New("Airbase",AirbaseCoord:GetVec2(),3000)
-local Templates=nil
-self:T({Airbase=AirbaseName})
-for TemplateID,Template in pairs(self.Templates:GetSet())do
-local Template=Template
-local TemplateCoord=Template:GetCoordinate()
-if AirbaseZone:IsVec2InZone(TemplateCoord:GetVec2())then
-Templates=Templates or{}
-table.insert(Templates,Template:GetName())
-self:T({Template=Template:GetName()})
-end
-end
-if Templates then
-self:SetSquadron(AirbaseName,AirbaseName,Templates,ResourceCount)
-end
-end
-self.CAPTemplates=SET_GROUP:New()
-self.CAPTemplates:FilterPrefixes(CapPrefixes)
-self.CAPTemplates:FilterOnce()
-self:T("Setting up CAP ...")
-for CAPID,CAPTemplate in pairs(self.CAPTemplates:GetSet())do
-local CAPZone=ZONE_POLYGON:New(CAPTemplate:GetName(),CAPTemplate)
-local AirbaseDistance=99999999
-local AirbaseClosest=nil
-self:T({CAPZoneGroup=CAPID})
-for AirbaseID,AirbaseName in pairs(AirbaseNames)do
-local Airbase=_DATABASE:FindAirbase(AirbaseName)
-local AirbaseName=Airbase:GetName()
-local AirbaseCoord=Airbase:GetCoordinate()
-local Squadron=self.DefenderSquadrons[AirbaseName]
-if Squadron then
-local Distance=AirbaseCoord:Get2DDistance(CAPZone:GetCoordinate())
-self:T({AirbaseDistance=Distance})
-if Distance<AirbaseDistance then
-AirbaseDistance=Distance
-AirbaseClosest=Airbase
-end
-end
-end
-if AirbaseClosest then
-self:T({CAPAirbase=AirbaseClosest:GetName()})
-self:SetSquadronCap(AirbaseClosest:GetName(),CAPZone,6000,10000,500,800,800,1200,"RADIO")
-self:SetSquadronCapInterval(AirbaseClosest:GetName(),CapLimit,300,600,1)
-end
-end
-self:T("Setting up GCI ...")
-for AirbaseID,AirbaseName in pairs(AirbaseNames)do
-local Airbase=_DATABASE:FindAirbase(AirbaseName)
-local AirbaseName=Airbase:GetName()
-local Squadron=self.DefenderSquadrons[AirbaseName]
-self:F({Airbase=AirbaseName})
-if Squadron then
-self:T({GCIAirbase=AirbaseName})
-self:SetSquadronGci(AirbaseName,800,1200)
-end
-end
-self:__Start(5)
-self:HandleEvent(EVENTS.Crash,self.OnEventCrashOrDead)
-self:HandleEvent(EVENTS.Dead,self.OnEventCrashOrDead)
-self:HandleEvent(EVENTS.Land)
-self:HandleEvent(EVENTS.EngineShutdown)
-return self
-end
-function AI_A2A_GCICAP:NewWithBorder(EWRPrefixes,TemplatePrefixes,BorderPrefix,CapPrefixes,CapLimit,GroupingRadius,EngageRadius,GciRadius,ResourceCount)
-local self=AI_A2A_GCICAP:New(EWRPrefixes,TemplatePrefixes,CapPrefixes,CapLimit,GroupingRadius,EngageRadius,GciRadius,ResourceCount)
-if BorderPrefix then
-self:SetBorderZone(ZONE_POLYGON:New(BorderPrefix,GROUP:FindByName(BorderPrefix)))
-end
-return self
-end
-end
-AI_A2G_BAI={
-ClassName="AI_A2G_BAI",
-}
-function AI_A2G_BAI:New2(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local AI_Air=AI_AIR:New(AIGroup)
-local AI_Air_Patrol=AI_AIR_PATROL:New(AI_Air,AIGroup,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local AI_Air_Engage=AI_AIR_ENGAGE:New(AI_Air_Patrol,AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local self=BASE:Inherit(self,AI_Air_Engage)
-return self
-end
-function AI_A2G_BAI:New(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-return self:New2(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,PatrolAltType,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-end
-function AI_A2G_BAI:CreateAttackUnitTasks(AttackSetUnit,DefenderGroup,EngageAltitude)
-local AttackUnitTasks={}
-local AttackSetUnitPerThreatLevel=AttackSetUnit:GetSetPerThreatLevel(10,0)
-for AttackUnitIndex,AttackUnit in ipairs(AttackSetUnitPerThreatLevel or{})do
-if AttackUnit then
-if AttackUnit:IsAlive()and AttackUnit:IsGround()then
-self:T({"BAI Unit:",AttackUnit:GetName()})
-AttackUnitTasks[#AttackUnitTasks+1]=DefenderGroup:TaskAttackUnit(AttackUnit,true,false,nil,nil,EngageAltitude)
-end
-end
-end
-return AttackUnitTasks
-end
-AI_A2G_CAS={
-ClassName="AI_A2G_CAS",
-}
-function AI_A2G_CAS:New2(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local AI_Air=AI_AIR:New(AIGroup)
-local AI_Air_Patrol=AI_AIR_PATROL:New(AI_Air,AIGroup,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local AI_Air_Engage=AI_AIR_ENGAGE:New(AI_Air_Patrol,AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local self=BASE:Inherit(self,AI_Air_Engage)
-return self
-end
-function AI_A2G_CAS:New(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-return self:New2(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,PatrolAltType,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-end
-function AI_A2G_CAS:CreateAttackUnitTasks(AttackSetUnit,DefenderGroup,EngageAltitude)
-local AttackUnitTasks={}
-local AttackSetUnitPerThreatLevel=AttackSetUnit:GetSetPerThreatLevel(10,0)
-for AttackUnitIndex,AttackUnit in ipairs(AttackSetUnitPerThreatLevel or{})do
-if AttackUnit then
-if AttackUnit:IsAlive()and AttackUnit:IsGround()then
-self:T({"CAS Unit:",AttackUnit:GetName()})
-AttackUnitTasks[#AttackUnitTasks+1]=DefenderGroup:TaskAttackUnit(AttackUnit,true,false,nil,nil,EngageAltitude)
-end
-end
-end
-return AttackUnitTasks
-end
-AI_A2G_SEAD={
-ClassName="AI_A2G_SEAD",
-}
-function AI_A2G_SEAD:New2(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local AI_Air=AI_AIR:New(AIGroup)
-local AI_Air_Patrol=AI_AIR_PATROL:New(AI_Air,AIGroup,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local AI_Air_Engage=AI_AIR_ENGAGE:New(AI_Air_Patrol,AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local self=BASE:Inherit(self,AI_Air_Engage)
-return self
-end
-function AI_A2G_SEAD:New(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-return self:New2(AIGroup,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,PatrolAltType,PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-end
-function AI_A2G_SEAD:CreateAttackUnitTasks(AttackSetUnit,DefenderGroup,EngageAltitude)
-local AttackUnitTasks={}
-local AttackSetUnitPerThreatLevel=AttackSetUnit:GetSetPerThreatLevel(10,0)
-for AttackUnitID,AttackUnit in ipairs(AttackSetUnitPerThreatLevel)do
-if AttackUnit then
-if AttackUnit:IsAlive()and AttackUnit:IsGround()then
-local HasRadar=AttackUnit:HasSEAD()
-if HasRadar then
-self:F({"SEAD Unit:",AttackUnit:GetName()})
-AttackUnitTasks[#AttackUnitTasks+1]=DefenderGroup:TaskAttackUnit(AttackUnit,true,false,nil,nil,EngageAltitude)
-end
-end
-end
-end
-return AttackUnitTasks
-end
-do
-AI_A2G_DISPATCHER={
-ClassName="AI_A2G_DISPATCHER",
-Detection=nil,
-}
-AI_A2G_DISPATCHER.DefenseCoordinates={}
-AI_A2G_DISPATCHER.Takeoff=GROUP.Takeoff
-AI_A2G_DISPATCHER.Landing={
-NearAirbase=1,
-AtRunway=2,
-AtEngineShutdown=3,
-}
-AI_A2G_DISPATCHER.DefenseQueue={}
-AI_A2G_DISPATCHER.DefenseApproach={
-Random=1,
-Distance=2,
-}
-function AI_A2G_DISPATCHER:New(Detection)
-local self=BASE:Inherit(self,DETECTION_MANAGER:New(nil,Detection))
-self.Detection=Detection
-self.Detection:FilterCategories(Unit.Category.GROUND_UNIT)
-self.DefenderSquadrons={}
-self.DefenderSpawns={}
-self.DefenderTasks={}
-self.DefenderDefault={}
-self.SetSendPlayerMessages=false
-self:SetDefenseRadius()
-self:SetDefenseLimit(nil)
-self:SetDefenseApproach(AI_A2G_DISPATCHER.DefenseApproach.Random)
-self:SetIntercept(300)
-self:SetDisengageRadius(300000)
-self:SetDefaultTakeoff(AI_A2G_DISPATCHER.Takeoff.Air)
-self:SetDefaultTakeoffInAirAltitude(500)
-self:SetDefaultLanding(AI_A2G_DISPATCHER.Landing.NearAirbase)
-self:SetDefaultOverhead(1)
-self:SetDefaultGrouping(1)
-self:SetDefaultFuelThreshold(0.15,0)
-self:SetDefaultDamageThreshold(0.4)
-self:SetDefaultPatrolTimeInterval(180,600)
-self:SetDefaultPatrolLimit(1)
-self:AddTransition("Started","Assign","Started")
-self:AddTransition("*","Patrol","*")
-self:AddTransition("*","Defend","*")
-self:AddTransition("*","Engage","*")
-self:HandleEvent(EVENTS.Crash,self.OnEventCrashOrDead)
-self:HandleEvent(EVENTS.Dead,self.OnEventCrashOrDead)
-self:HandleEvent(EVENTS.Land)
-self:HandleEvent(EVENTS.EngineShutdown)
-self:HandleEvent(EVENTS.BaseCaptured)
-self:SetTacticalDisplay(false)
-self.DefenderPatrolIndex=0
-self:SetDefenseReactivityMedium()
-self.TakeoffScheduleID=self:ScheduleRepeat(10,10,0,nil,self.ResourceTakeoff,self)
-self:__Start(1)
-return self
-end
-function AI_A2G_DISPATCHER:onafterStart(From,Event,To)
-self:GetParent(self).onafterStart(self,From,Event,To)
-for SquadronName,DefenderSquadron in pairs(self.DefenderSquadrons)do
-DefenderSquadron.Resource={}
-for Resource=1,DefenderSquadron.ResourceCount or 0 do
-self:ResourcePark(DefenderSquadron)
-end
-self:T("Parked resources for squadron "..DefenderSquadron.Name)
-end
-end
-function AI_A2G_DISPATCHER:Lock(DetectedItemIndex)
-self:F({DetectedItemIndex=DetectedItemIndex})
-local DetectedItem=self.Detection:GetDetectedItemByIndex(DetectedItemIndex)
-if DetectedItem then
-self:F({Locked=DetectedItem})
-self.Detection:LockDetectedItem(DetectedItem)
-end
-end
-function AI_A2G_DISPATCHER:Unlock(DetectedItemIndex)
-self:F({DetectedItemIndex=DetectedItemIndex})
-self:F({Index=self.Detection.DetectedItemsByIndex})
-local DetectedItem=self.Detection:GetDetectedItemByIndex(DetectedItemIndex)
-if DetectedItem then
-self:F({Unlocked=DetectedItem})
-self.Detection:UnlockDetectedItem(DetectedItem)
-end
-end
-function AI_A2G_DISPATCHER:SetDefenseLimit(DefenseLimit)
-self:F({DefenseLimit=DefenseLimit})
-self.DefenseLimit=DefenseLimit
-end
-function AI_A2G_DISPATCHER:SetDefenseApproach(DefenseApproach)
-self:F({DefenseApproach=DefenseApproach})
-self._DefenseApproach=DefenseApproach
-end
-function AI_A2G_DISPATCHER:ResourcePark(DefenderSquadron)
-local TemplateID=math.random(1,#DefenderSquadron.Spawn)
-local Spawn=DefenderSquadron.Spawn[TemplateID]
-Spawn:InitGrouping(1)
-local SpawnGroup
-if self:IsSquadronVisible(DefenderSquadron.Name)then
-SpawnGroup=Spawn:SpawnAtAirbase(DefenderSquadron.Airbase,SPAWN.Takeoff.Cold)
-local GroupName=SpawnGroup:GetName()
-DefenderSquadron.Resources=DefenderSquadron.Resources or{}
-DefenderSquadron.Resources[TemplateID]=DefenderSquadron.Resources[TemplateID]or{}
-DefenderSquadron.Resources[TemplateID][GroupName]={}
-DefenderSquadron.Resources[TemplateID][GroupName]=SpawnGroup
-end
-end
-function AI_A2G_DISPATCHER:OnEventBaseCaptured(EventData)
-local AirbaseName=EventData.PlaceName
-self:T("Captured "..AirbaseName)
-for SquadronName,Squadron in pairs(self.DefenderSquadrons)do
-if Squadron.AirbaseName==AirbaseName then
-Squadron.ResourceCount=-999
-Squadron.Captured=true
-self:T("Squadron "..SquadronName.." captured.")
-end
-end
-end
-function AI_A2G_DISPATCHER:OnEventCrashOrDead(EventData)
-self.Detection:ForgetDetectedUnit(EventData.IniUnitName)
-end
-function AI_A2G_DISPATCHER:OnEventLand(EventData)
-self:F("Landed")
-local DefenderUnit=EventData.IniUnit
-local Defender=EventData.IniGroup
-local Squadron=self:GetSquadronFromDefender(Defender)
-if Squadron then
-self:F({SquadronName=Squadron.Name})
-local LandingMethod=self:GetSquadronLanding(Squadron.Name)
-if LandingMethod==AI_A2G_DISPATCHER.Landing.AtRunway then
-local DefenderSize=Defender:GetSize()
-if DefenderSize==1 then
-self:RemoveDefenderFromSquadron(Squadron,Defender)
-end
-DefenderUnit:Destroy()
-self:ResourcePark(Squadron)
-return
-end
-if DefenderUnit:GetLife()~=DefenderUnit:GetLife0()then
-DefenderUnit:Destroy()
-return
-end
-end
-end
-function AI_A2G_DISPATCHER:OnEventEngineShutdown(EventData)
-local DefenderUnit=EventData.IniUnit
-local Defender=EventData.IniGroup
-local Squadron=self:GetSquadronFromDefender(Defender)
-if Squadron then
-self:F({SquadronName=Squadron.Name})
-local LandingMethod=self:GetSquadronLanding(Squadron.Name)
-if LandingMethod==AI_A2G_DISPATCHER.Landing.AtEngineShutdown and
-not DefenderUnit:InAir()then
-local DefenderSize=Defender:GetSize()
-if DefenderSize==1 then
-self:RemoveDefenderFromSquadron(Squadron,Defender)
-end
-DefenderUnit:Destroy()
-self:ResourcePark(Squadron)
-end
-end
-end
-do
-function AI_A2G_DISPATCHER:AddDefenseCoordinate(DefenseCoordinateName,DefenseCoordinate)
-self.DefenseCoordinates[DefenseCoordinateName]=DefenseCoordinate
-end
-function AI_A2G_DISPATCHER:SetDefenseReactivityLow()
-self.DefenseReactivity=0.05
-end
-function AI_A2G_DISPATCHER:SetDefenseReactivityMedium()
-self.DefenseReactivity=0.15
-end
-function AI_A2G_DISPATCHER:SetDefenseReactivityHigh()
-self.DefenseReactivity=0.5
-end
-end
-function AI_A2G_DISPATCHER:SetDisengageRadius(DisengageRadius)
-self.DisengageRadius=DisengageRadius or 300000
-return self
-end
-function AI_A2G_DISPATCHER:SetDefenseRadius(DefenseRadius)
-self.DefenseRadius=DefenseRadius or 40000
-self.Detection:SetAcceptRange(self.DefenseRadius)
-return self
-end
-function AI_A2G_DISPATCHER:SetBorderZone(BorderZone)
-self.Detection:SetAcceptZones(BorderZone)
-return self
-end
-function AI_A2G_DISPATCHER:SetTacticalDisplay(TacticalDisplay)
-self.TacticalDisplay=TacticalDisplay
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultDamageThreshold(DamageThreshold)
-self.DefenderDefault.DamageThreshold=DamageThreshold
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultPatrolTimeInterval(PatrolMinSeconds,PatrolMaxSeconds)
-self.DefenderDefault.PatrolMinSeconds=PatrolMinSeconds
-self.DefenderDefault.PatrolMaxSeconds=PatrolMaxSeconds
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultPatrolLimit(PatrolLimit)
-self.DefenderDefault.PatrolLimit=PatrolLimit
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultEngageLimit(EngageLimit)
-self.DefenderDefault.EngageLimit=EngageLimit
-return self
-end
-function AI_A2G_DISPATCHER:SetIntercept(InterceptDelay)
-self.DefenderDefault.InterceptDelay=InterceptDelay
-local Detection=self.Detection
-Detection:SetIntercept(true,InterceptDelay)
-return self
-end
-function AI_A2G_DISPATCHER:GetDefenderFriendliesNearBy(DetectedItem)
-local DefenderFriendliesNearBy={}
-local DetectionCoordinate=self.Detection:GetDetectedItemCoordinate(DetectedItem)
-local ScanZone=ZONE_RADIUS:New("ScanZone",DetectionCoordinate:GetVec2(),self.DefenseRadius)
-ScanZone:Scan(Object.Category.UNIT,{Unit.Category.AIRPLANE,Unit.Category.HELICOPTER})
-local DefenderUnits=ScanZone:GetScannedUnits()
-for DefenderUnitID,DefenderUnit in pairs(DefenderUnits)do
-local DefenderUnit=UNIT:FindByName(DefenderUnit:getName())
-DefenderFriendliesNearBy[#DefenderFriendliesNearBy+1]=DefenderUnit
-end
-return DefenderFriendliesNearBy
-end
-function AI_A2G_DISPATCHER:GetDefenderTasks()
-return self.DefenderTasks or{}
-end
-function AI_A2G_DISPATCHER:GetDefenderTask(Defender)
-return self.DefenderTasks[Defender]
-end
-function AI_A2G_DISPATCHER:GetDefenderTaskFsm(Defender)
-return self:GetDefenderTask(Defender).Fsm
-end
-function AI_A2G_DISPATCHER:GetDefenderTaskTarget(Defender)
-return self:GetDefenderTask(Defender).Target
-end
-function AI_A2G_DISPATCHER:GetDefenderTaskSquadronName(Defender)
-return self:GetDefenderTask(Defender).SquadronName
-end
-function AI_A2G_DISPATCHER:ClearDefenderTask(Defender)
-if Defender:IsAlive()and self.DefenderTasks[Defender]then
-local Target=self.DefenderTasks[Defender].Target
-local Message="Clearing ("..self.DefenderTasks[Defender].Type..") "
-Message=Message..Defender:GetName()
-if Target then
-Message=Message..(Target and(" from "..Target.Index.." ["..Target.Set:Count().."]"))or""
-end
-self:F({Target=Message})
-end
-self.DefenderTasks[Defender]=nil
-return self
-end
-function AI_A2G_DISPATCHER:ClearDefenderTaskTarget(Defender)
-local DefenderTask=self:GetDefenderTask(Defender)
-if Defender:IsAlive()and DefenderTask then
-local Target=DefenderTask.Target
-local Message="Clearing ("..DefenderTask.Type..") "
-Message=Message..Defender:GetName()
-if Target then
-Message=Message..(Target and(" from "..Target.Index.." ["..Target.Set:Count().."]"))or""
-end
-self:F({Target=Message})
-end
-if Defender and DefenderTask and DefenderTask.Target then
-DefenderTask.Target=nil
-end
-return self
-end
-function AI_A2G_DISPATCHER:SetDefenderTask(SquadronName,Defender,Type,Fsm,Target,Size)
-self:F({SquadronName=SquadronName,Defender=Defender:GetName()})
-self.DefenderTasks[Defender]=self.DefenderTasks[Defender]or{}
-self.DefenderTasks[Defender].Type=Type
-self.DefenderTasks[Defender].Fsm=Fsm
-self.DefenderTasks[Defender].SquadronName=SquadronName
-self.DefenderTasks[Defender].Size=Size
-if Target then
-self:SetDefenderTaskTarget(Defender,Target)
-end
-return self
-end
-function AI_A2G_DISPATCHER:SetDefenderTaskTarget(Defender,AttackerDetection)
-local Message="("..self.DefenderTasks[Defender].Type..") "
-Message=Message..Defender:GetName()
-Message=Message..(AttackerDetection and(" target "..AttackerDetection.Index.." ["..AttackerDetection.Set:Count().."]"))or""
-self:F({AttackerDetection=Message})
-if AttackerDetection then
-self.DefenderTasks[Defender].Target=AttackerDetection
-end
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadron(SquadronName,AirbaseName,TemplatePrefixes,ResourceCount)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-local DefenderSquadron=self.DefenderSquadrons[SquadronName]
-DefenderSquadron.Name=SquadronName
-DefenderSquadron.Airbase=AIRBASE:FindByName(AirbaseName)
-DefenderSquadron.AirbaseName=DefenderSquadron.Airbase:GetName()
-if not DefenderSquadron.Airbase then
-error("Cannot find airbase with name:"..AirbaseName)
-end
-DefenderSquadron.Spawn={}
-if type(TemplatePrefixes)=="string"then
-local SpawnTemplate=TemplatePrefixes
-self.DefenderSpawns[SpawnTemplate]=self.DefenderSpawns[SpawnTemplate]or SPAWN:New(SpawnTemplate)
-DefenderSquadron.Spawn[1]=self.DefenderSpawns[SpawnTemplate]
-else
-for TemplateID,SpawnTemplate in pairs(TemplatePrefixes)do
-self.DefenderSpawns[SpawnTemplate]=self.DefenderSpawns[SpawnTemplate]or SPAWN:New(SpawnTemplate)
-DefenderSquadron.Spawn[#DefenderSquadron.Spawn+1]=self.DefenderSpawns[SpawnTemplate]
-end
-end
-DefenderSquadron.ResourceCount=ResourceCount
-DefenderSquadron.TemplatePrefixes=TemplatePrefixes
-DefenderSquadron.Captured=false
-self:SetSquadronTakeoffInterval(SquadronName,0)
-self:F({Squadron={SquadronName,AirbaseName,TemplatePrefixes,ResourceCount}})
-return self
-end
-function AI_A2G_DISPATCHER:GetSquadron(SquadronName)
-local DefenderSquadron=self.DefenderSquadrons[SquadronName]
-if not DefenderSquadron then
-error("Unknown Squadron:"..SquadronName)
-end
-return DefenderSquadron
-end
-function AI_A2G_DISPATCHER:QuerySquadron(Squadron)
-local Squadron=self:GetSquadron(Squadron)
-if Squadron.ResourceCount then
-self:T2(string.format("%s = %s",Squadron.Name,Squadron.ResourceCount))
-return Squadron.ResourceCount
-end
-self:F({Squadron=Squadron.Name,SquadronResourceCount=Squadron.ResourceCount})
-return nil
-end
-function AI_A2G_DISPATCHER:IsSquadronVisible(SquadronName)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-if DefenderSquadron then
-return DefenderSquadron.Uncontrolled==true
-end
-return nil
-end
-function AI_A2G_DISPATCHER:SetSquadronTakeoffInterval(SquadronName,TakeoffInterval)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-if DefenderSquadron then
-DefenderSquadron.TakeoffInterval=TakeoffInterval or 0
-DefenderSquadron.TakeoffTime=0
-end
-end
-function AI_A2G_DISPATCHER:SetSquadronPatrolInterval(SquadronName,PatrolLimit,LowInterval,HighInterval,Probability,DefenseTaskType)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-local Patrol=DefenderSquadron[DefenseTaskType]
-if Patrol then
-Patrol.LowInterval=LowInterval or 180
-Patrol.HighInterval=HighInterval or 600
-Patrol.Probability=Probability or 1
-Patrol.PatrolLimit=PatrolLimit or 1
-Patrol.Scheduler=Patrol.Scheduler or SCHEDULER:New(self)
-local Scheduler=Patrol.Scheduler
-local ScheduleID=Patrol.ScheduleID
-local Variance=(Patrol.HighInterval-Patrol.LowInterval)/2
-local Repeat=Patrol.LowInterval+Variance
-local Randomization=Variance/Repeat
-local Start=math.random(1,Patrol.HighInterval)
-if ScheduleID then
-Scheduler:Stop(ScheduleID)
-end
-Patrol.ScheduleID=Scheduler:Schedule(self,self.SchedulerPatrol,{SquadronName},Start,Repeat,Randomization)
-else
-error("This squadron does not exist:"..SquadronName)
-end
-end
-function AI_A2G_DISPATCHER:SetSquadronSeadPatrolInterval(SquadronName,PatrolLimit,LowInterval,HighInterval,Probability)
-self:SetSquadronPatrolInterval(SquadronName,PatrolLimit,LowInterval,HighInterval,Probability,"SEAD")
-end
-function AI_A2G_DISPATCHER:SetSquadronCasPatrolInterval(SquadronName,PatrolLimit,LowInterval,HighInterval,Probability)
-self:SetSquadronPatrolInterval(SquadronName,PatrolLimit,LowInterval,HighInterval,Probability,"CAS")
-end
-function AI_A2G_DISPATCHER:SetSquadronBaiPatrolInterval(SquadronName,PatrolLimit,LowInterval,HighInterval,Probability)
-self:SetSquadronPatrolInterval(SquadronName,PatrolLimit,LowInterval,HighInterval,Probability,"BAI")
-end
-function AI_A2G_DISPATCHER:GetPatrolDelay(SquadronName)
-self.DefenderSquadrons[SquadronName]=self.DefenderSquadrons[SquadronName]or{}
-self.DefenderSquadrons[SquadronName].Patrol=self.DefenderSquadrons[SquadronName].Patrol or{}
-local DefenderSquadron=self:GetSquadron(SquadronName)
-local Patrol=self.DefenderSquadrons[SquadronName].Patrol
-if Patrol then
-return math.random(Patrol.LowInterval,Patrol.HighInterval)
-else
-error("This squadron does not exist:"..SquadronName)
-end
-end
-function AI_A2G_DISPATCHER:CanPatrol(SquadronName,DefenseTaskType)
-self:F({SquadronName=SquadronName})
-local DefenderSquadron=self:GetSquadron(SquadronName)
-if DefenderSquadron.Captured==false then
-if(not DefenderSquadron.ResourceCount)or(DefenderSquadron.ResourceCount and DefenderSquadron.ResourceCount>0)then
-local Patrol=DefenderSquadron[DefenseTaskType]
-if Patrol and Patrol.Patrol==true then
-local PatrolCount=self:CountPatrolAirborne(SquadronName,DefenseTaskType)
-self:F({PatrolCount=PatrolCount,PatrolLimit=Patrol.PatrolLimit,PatrolProbability=Patrol.Probability})
-if PatrolCount<Patrol.PatrolLimit then
-local Probability=math.random()
-if Probability<=Patrol.Probability then
-return DefenderSquadron,Patrol
-end
-end
-else
-self:F("No patrol for "..SquadronName)
-end
-end
-end
-return nil
-end
-function AI_A2G_DISPATCHER:CanDefend(SquadronName,DefenseTaskType)
-self:F({SquadronName=SquadronName,DefenseTaskType})
-local DefenderSquadron=self:GetSquadron(SquadronName)
-if DefenderSquadron.Captured==false then
-if(not DefenderSquadron.ResourceCount)or(DefenderSquadron.ResourceCount and DefenderSquadron.ResourceCount>0)then
-if DefenderSquadron[DefenseTaskType]and(DefenderSquadron[DefenseTaskType].Defend==true)then
-return DefenderSquadron,DefenderSquadron[DefenseTaskType]
-end
-end
-end
-return nil
-end
-function AI_A2G_DISPATCHER:SetSquadronEngageLimit(SquadronName,EngageLimit,DefenseTaskType)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-local Defense=DefenderSquadron[DefenseTaskType]
-if Defense then
-Defense.EngageLimit=EngageLimit or 1
-else
-error("This squadron does not exist:"..SquadronName)
-end
-end
-function AI_A2G_DISPATCHER:SetSquadronSead2(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.SEAD=DefenderSquadron.SEAD or{}
-local Sead=DefenderSquadron.SEAD
-Sead.Name=SquadronName
-Sead.EngageMinSpeed=EngageMinSpeed
-Sead.EngageMaxSpeed=EngageMaxSpeed
-Sead.EngageFloorAltitude=EngageFloorAltitude or 500
-Sead.EngageCeilingAltitude=EngageCeilingAltitude or 1000
-Sead.EngageAltType=EngageAltType
-Sead.Defend=true
-self:T({SEAD={SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType}})
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronSead(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude)
-return self:SetSquadronSead2(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,"RADIO")
-end
-function AI_A2G_DISPATCHER:SetSquadronSeadEngageLimit(SquadronName,EngageLimit)
-self:SetSquadronEngageLimit(SquadronName,EngageLimit,"SEAD")
-end
-function AI_A2G_DISPATCHER:SetSquadronSeadPatrol2(SquadronName,Zone,PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.SEAD=DefenderSquadron.SEAD or{}
-local SeadPatrol=DefenderSquadron.SEAD
-SeadPatrol.Name=SquadronName
-SeadPatrol.Zone=Zone
-SeadPatrol.PatrolFloorAltitude=PatrolFloorAltitude
-SeadPatrol.PatrolCeilingAltitude=PatrolCeilingAltitude
-SeadPatrol.EngageFloorAltitude=EngageFloorAltitude
-SeadPatrol.EngageCeilingAltitude=EngageCeilingAltitude
-SeadPatrol.PatrolMinSpeed=PatrolMinSpeed
-SeadPatrol.PatrolMaxSpeed=PatrolMaxSpeed
-SeadPatrol.EngageMinSpeed=EngageMinSpeed
-SeadPatrol.EngageMaxSpeed=EngageMaxSpeed
-SeadPatrol.PatrolAltType=PatrolAltType
-SeadPatrol.EngageAltType=EngageAltType
-SeadPatrol.Patrol=true
-self:SetSquadronPatrolInterval(SquadronName,self.DefenderDefault.PatrolLimit,self.DefenderDefault.PatrolMinSeconds,self.DefenderDefault.PatrolMaxSeconds,1,"SEAD")
-self:T({SEAD={Zone:GetName(),PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType}})
-end
-function AI_A2G_DISPATCHER:SetSquadronSeadPatrol(SquadronName,Zone,FloorAltitude,CeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,EngageMinSpeed,EngageMaxSpeed,AltType)
-self:SetSquadronSeadPatrol2(SquadronName,Zone,PatrolMinSpeed,PatrolMaxSpeed,FloorAltitude,CeilingAltitude,AltType,EngageMinSpeed,EngageMaxSpeed,FloorAltitude,CeilingAltitude,AltType)
-end
-function AI_A2G_DISPATCHER:SetSquadronCas2(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.CAS=DefenderSquadron.CAS or{}
-local Cas=DefenderSquadron.CAS
-Cas.Name=SquadronName
-Cas.EngageMinSpeed=EngageMinSpeed
-Cas.EngageMaxSpeed=EngageMaxSpeed
-Cas.EngageFloorAltitude=EngageFloorAltitude or 500
-Cas.EngageCeilingAltitude=EngageCeilingAltitude or 1000
-Cas.EngageAltType=EngageAltType
-Cas.Defend=true
-self:T({CAS={SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType}})
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronCas(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude)
-return self:SetSquadronCas2(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,"RADIO")
-end
-function AI_A2G_DISPATCHER:SetSquadronCasEngageLimit(SquadronName,EngageLimit)
-self:SetSquadronEngageLimit(SquadronName,EngageLimit,"CAS")
-end
-function AI_A2G_DISPATCHER:SetSquadronCasPatrol2(SquadronName,Zone,PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.CAS=DefenderSquadron.CAS or{}
-local CasPatrol=DefenderSquadron.CAS
-CasPatrol.Name=SquadronName
-CasPatrol.Zone=Zone
-CasPatrol.PatrolFloorAltitude=PatrolFloorAltitude
-CasPatrol.PatrolCeilingAltitude=PatrolCeilingAltitude
-CasPatrol.EngageFloorAltitude=EngageFloorAltitude
-CasPatrol.EngageCeilingAltitude=EngageCeilingAltitude
-CasPatrol.PatrolMinSpeed=PatrolMinSpeed
-CasPatrol.PatrolMaxSpeed=PatrolMaxSpeed
-CasPatrol.EngageMinSpeed=EngageMinSpeed
-CasPatrol.EngageMaxSpeed=EngageMaxSpeed
-CasPatrol.PatrolAltType=PatrolAltType
-CasPatrol.EngageAltType=EngageAltType
-CasPatrol.Patrol=true
-self:SetSquadronPatrolInterval(SquadronName,self.DefenderDefault.PatrolLimit,self.DefenderDefault.PatrolMinSeconds,self.DefenderDefault.PatrolMaxSeconds,1,"CAS")
-self:T({CAS={Zone:GetName(),PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType}})
-end
-function AI_A2G_DISPATCHER:SetSquadronCasPatrol(SquadronName,Zone,FloorAltitude,CeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,EngageMinSpeed,EngageMaxSpeed,AltType)
-self:SetSquadronCasPatrol2(SquadronName,Zone,PatrolMinSpeed,PatrolMaxSpeed,FloorAltitude,CeilingAltitude,AltType,EngageMinSpeed,EngageMaxSpeed,FloorAltitude,CeilingAltitude,AltType)
-end
-function AI_A2G_DISPATCHER:SetSquadronBai2(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.BAI=DefenderSquadron.BAI or{}
-local Bai=DefenderSquadron.BAI
-Bai.Name=SquadronName
-Bai.EngageMinSpeed=EngageMinSpeed
-Bai.EngageMaxSpeed=EngageMaxSpeed
-Bai.EngageFloorAltitude=EngageFloorAltitude or 500
-Bai.EngageCeilingAltitude=EngageCeilingAltitude or 1000
-Bai.EngageAltType=EngageAltType
-Bai.Defend=true
-self:T({BAI={SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType}})
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronBai(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude)
-return self:SetSquadronBai2(SquadronName,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,"RADIO")
-end
-function AI_A2G_DISPATCHER:SetSquadronBaiEngageLimit(SquadronName,EngageLimit)
-self:SetSquadronEngageLimit(SquadronName,EngageLimit,"BAI")
-end
-function AI_A2G_DISPATCHER:SetSquadronBaiPatrol2(SquadronName,Zone,PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.BAI=DefenderSquadron.BAI or{}
-local BaiPatrol=DefenderSquadron.BAI
-BaiPatrol.Name=SquadronName
-BaiPatrol.Zone=Zone
-BaiPatrol.PatrolFloorAltitude=PatrolFloorAltitude
-BaiPatrol.PatrolCeilingAltitude=PatrolCeilingAltitude
-BaiPatrol.EngageFloorAltitude=EngageFloorAltitude
-BaiPatrol.EngageCeilingAltitude=EngageCeilingAltitude
-BaiPatrol.PatrolMinSpeed=PatrolMinSpeed
-BaiPatrol.PatrolMaxSpeed=PatrolMaxSpeed
-BaiPatrol.EngageMinSpeed=EngageMinSpeed
-BaiPatrol.EngageMaxSpeed=EngageMaxSpeed
-BaiPatrol.PatrolAltType=PatrolAltType
-BaiPatrol.EngageAltType=EngageAltType
-BaiPatrol.Patrol=true
-self:SetSquadronPatrolInterval(SquadronName,self.DefenderDefault.PatrolLimit,self.DefenderDefault.PatrolMinSeconds,self.DefenderDefault.PatrolMaxSeconds,1,"BAI")
-self:T({BAI={Zone:GetName(),PatrolMinSpeed,PatrolMaxSpeed,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolAltType,EngageMinSpeed,EngageMaxSpeed,EngageFloorAltitude,EngageCeilingAltitude,EngageAltType}})
-end
-function AI_A2G_DISPATCHER:SetSquadronBaiPatrol(SquadronName,Zone,FloorAltitude,CeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,EngageMinSpeed,EngageMaxSpeed,AltType)
-self:SetSquadronBaiPatrol2(SquadronName,Zone,PatrolMinSpeed,PatrolMaxSpeed,FloorAltitude,CeilingAltitude,AltType,EngageMinSpeed,EngageMaxSpeed,FloorAltitude,CeilingAltitude,AltType)
-end
-function AI_A2G_DISPATCHER:SetDefaultOverhead(Overhead)
-self.DefenderDefault.Overhead=Overhead
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronOverhead(SquadronName,Overhead)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Overhead=Overhead
-return self
-end
-function AI_A2G_DISPATCHER:GetSquadronOverhead(SquadronName)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-return DefenderSquadron.Overhead or self.DefenderDefault.Overhead
-end
-function AI_A2G_DISPATCHER:SetDefaultGrouping(Grouping)
-self.DefenderDefault.Grouping=Grouping
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronGrouping(SquadronName,Grouping)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Grouping=Grouping
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronEngageProbability(SquadronName,EngageProbability)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.EngageProbability=EngageProbability
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultTakeoff(Takeoff)
-self.DefenderDefault.Takeoff=Takeoff
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronTakeoff(SquadronName,Takeoff)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Takeoff=Takeoff
-return self
-end
-function AI_A2G_DISPATCHER:GetDefaultTakeoff()
-return self.DefenderDefault.Takeoff
-end
-function AI_A2G_DISPATCHER:GetSquadronTakeoff(SquadronName)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-return DefenderSquadron.Takeoff or self.DefenderDefault.Takeoff
-end
-function AI_A2G_DISPATCHER:SetDefaultTakeoffInAir()
-self:SetDefaultTakeoff(AI_A2G_DISPATCHER.Takeoff.Air)
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronTakeoffInAir(SquadronName,TakeoffAltitude)
-self:SetSquadronTakeoff(SquadronName,AI_A2G_DISPATCHER.Takeoff.Air)
-if TakeoffAltitude then
-self:SetSquadronTakeoffInAirAltitude(SquadronName,TakeoffAltitude)
-end
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultTakeoffFromRunway()
-self:SetDefaultTakeoff(AI_A2G_DISPATCHER.Takeoff.Runway)
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronTakeoffFromRunway(SquadronName)
-self:SetSquadronTakeoff(SquadronName,AI_A2G_DISPATCHER.Takeoff.Runway)
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultTakeoffFromParkingHot()
-self:SetDefaultTakeoff(AI_A2G_DISPATCHER.Takeoff.Hot)
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronTakeoffFromParkingHot(SquadronName)
-self:SetSquadronTakeoff(SquadronName,AI_A2G_DISPATCHER.Takeoff.Hot)
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultTakeoffFromParkingCold()
-self:SetDefaultTakeoff(AI_A2G_DISPATCHER.Takeoff.Cold)
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronTakeoffFromParkingCold(SquadronName)
-self:SetSquadronTakeoff(SquadronName,AI_A2G_DISPATCHER.Takeoff.Cold)
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultTakeoffInAirAltitude(TakeoffAltitude)
-self.DefenderDefault.TakeoffAltitude=TakeoffAltitude
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronTakeoffInAirAltitude(SquadronName,TakeoffAltitude)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.TakeoffAltitude=TakeoffAltitude
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultLanding(Landing)
-self.DefenderDefault.Landing=Landing
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronLanding(SquadronName,Landing)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.Landing=Landing
-return self
-end
-function AI_A2G_DISPATCHER:GetDefaultLanding()
-return self.DefenderDefault.Landing
-end
-function AI_A2G_DISPATCHER:GetSquadronLanding(SquadronName)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-return DefenderSquadron.Landing or self.DefenderDefault.Landing
-end
-function AI_A2G_DISPATCHER:SetDefaultLandingNearAirbase()
-self:SetDefaultLanding(AI_A2G_DISPATCHER.Landing.NearAirbase)
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronLandingNearAirbase(SquadronName)
-self:SetSquadronLanding(SquadronName,AI_A2G_DISPATCHER.Landing.NearAirbase)
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultLandingAtRunway()
-self:SetDefaultLanding(AI_A2G_DISPATCHER.Landing.AtRunway)
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronLandingAtRunway(SquadronName)
-self:SetSquadronLanding(SquadronName,AI_A2G_DISPATCHER.Landing.AtRunway)
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultLandingAtEngineShutdown()
-self:SetDefaultLanding(AI_A2G_DISPATCHER.Landing.AtEngineShutdown)
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronLandingAtEngineShutdown(SquadronName)
-self:SetSquadronLanding(SquadronName,AI_A2G_DISPATCHER.Landing.AtEngineShutdown)
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultFuelThreshold(FuelThreshold)
-self.DefenderDefault.FuelThreshold=FuelThreshold
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronFuelThreshold(SquadronName,FuelThreshold)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.FuelThreshold=FuelThreshold
-return self
-end
-function AI_A2G_DISPATCHER:SetDefaultTanker(TankerName)
-self.DefenderDefault.TankerName=TankerName
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronTanker(SquadronName,TankerName)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.TankerName=TankerName
-return self
-end
-function AI_A2G_DISPATCHER:SetSquadronRadioFrequency(SquadronName,RadioFrequency,RadioModulation,RadioPower)
-local DefenderSquadron=self:GetSquadron(SquadronName)
-DefenderSquadron.RadioFrequency=RadioFrequency
-DefenderSquadron.RadioModulation=RadioModulation or radio.modulation.AM
-DefenderSquadron.RadioPower=RadioPower or 100
-if DefenderSquadron.RadioQueue then
-DefenderSquadron.RadioQueue:Stop()
-end
-DefenderSquadron.RadioQueue=nil
-DefenderSquadron.RadioQueue=RADIOSPEECH:New(DefenderSquadron.RadioFrequency,DefenderSquadron.RadioModulation)
-DefenderSquadron.RadioQueue.power=DefenderSquadron.RadioPower
-DefenderSquadron.RadioQueue:Start(0.5)
-DefenderSquadron.RadioQueue:SetLanguage(DefenderSquadron.Language)
-end
-function AI_A2G_DISPATCHER:AddDefenderToSquadron(Squadron,Defender,Size)
-self.Defenders=self.Defenders or{}
-local DefenderName=Defender:GetName()
-self.Defenders[DefenderName]=Squadron
-if Squadron.ResourceCount then
-Squadron.ResourceCount=Squadron.ResourceCount-Size
-end
-self:F({DefenderName=DefenderName,SquadronResourceCount=Squadron.ResourceCount})
-end
-function AI_A2G_DISPATCHER:RemoveDefenderFromSquadron(Squadron,Defender)
-self.Defenders=self.Defenders or{}
-local DefenderName=Defender:GetName()
-if Squadron.ResourceCount then
-Squadron.ResourceCount=Squadron.ResourceCount+Defender:GetSize()
-end
-self.Defenders[DefenderName]=nil
-self:F({DefenderName=DefenderName,SquadronResourceCount=Squadron.ResourceCount})
-end
-function AI_A2G_DISPATCHER:GetSquadronFromDefender(Defender)
-self.Defenders=self.Defenders or{}
-local DefenderName=Defender:GetName()
-self:F({DefenderName=DefenderName})
-return self.Defenders[DefenderName]
-end
-function AI_A2G_DISPATCHER:CountPatrolAirborne(SquadronName,DefenseTaskType)
-local PatrolCount=0
-local DefenderSquadron=self.DefenderSquadrons[SquadronName]
-if DefenderSquadron then
-for AIGroup,DefenderTask in pairs(self:GetDefenderTasks())do
-if DefenderTask.SquadronName==SquadronName then
-if DefenderTask.Type==DefenseTaskType then
-if AIGroup:IsAlive()then
-if DefenderTask.Fsm:Is("Patrolling")or DefenderTask.Fsm:Is("Engaging")or DefenderTask.Fsm:Is("Refuelling")
-or DefenderTask.Fsm:Is("Started")then
-PatrolCount=PatrolCount+1
-end
-end
-end
-end
-end
-end
-return PatrolCount
-end
-function AI_A2G_DISPATCHER:CountDefendersEngaged(AttackerDetection,AttackerCount)
-local DefendersEngaged=0
-local DefendersTotal=0
-local AttackerSet=AttackerDetection.Set
-local DefendersMissing=AttackerCount
-local DefenderTasks=self:GetDefenderTasks()
-for DefenderGroup,DefenderTask in pairs(DefenderTasks)do
-local Defender=DefenderGroup
-local DefenderTaskTarget=DefenderTask.Target
-local DefenderSquadronName=DefenderTask.SquadronName
-local DefenderSize=DefenderTask.Size
-if DefenderTask.Target then
-self:F("Defender Group Name: "..Defender:GetName()..", Size: "..DefenderSize)
-DefendersTotal=DefendersTotal+DefenderSize
-if DefenderTaskTarget and DefenderTaskTarget.Index==AttackerDetection.Index then
-local SquadronOverhead=self:GetSquadronOverhead(DefenderSquadronName)
-self:F({SquadronOverhead=SquadronOverhead})
-if DefenderSize then
-DefendersEngaged=DefendersEngaged+DefenderSize
-DefendersMissing=DefendersMissing-DefenderSize/SquadronOverhead
-self:F("Defender Group Name: "..Defender:GetName()..", Size: "..DefenderSize)
-else
-DefendersEngaged=0
-end
-end
-end
-end
-for QueueID,QueueItem in pairs(self.DefenseQueue)do
-local QueueItem=QueueItem
-if QueueItem.AttackerDetection and QueueItem.AttackerDetection.ItemID==AttackerDetection.ItemID then
-DefendersMissing=DefendersMissing-QueueItem.DefendersNeeded/QueueItem.DefenderSquadron.Overhead
-self:F({QueueItemName=QueueItem.Defense,QueueItem_ItemID=QueueItem.AttackerDetection.ItemID,DetectedItem=AttackerDetection.ItemID,DefendersMissing=DefendersMissing})
-end
-end
-self:F({DefenderCount=DefendersEngaged})
-return DefendersTotal,DefendersEngaged,DefendersMissing
-end
-function AI_A2G_DISPATCHER:CountDefenders(AttackerDetection,DefenderCount,DefenderTaskType)
-local Friendlies=nil
-local AttackerSet=AttackerDetection.Set
-local AttackerCount=AttackerSet:Count()
-local DefenderFriendlies=self:GetDefenderFriendliesNearBy(AttackerDetection)
-for FriendlyDistance,DefenderFriendlyUnit in UTILS.spairs(DefenderFriendlies or{})do
-if AttackerCount>DefenderCount then
-local FriendlyGroup=DefenderFriendlyUnit:GetGroup()
-if FriendlyGroup and FriendlyGroup:IsAlive()then
-local DefenderTask=self:GetDefenderTask(FriendlyGroup)
-if DefenderTask then
-if DefenderTaskType==DefenderTask.Type then
-if DefenderTask.Target==nil then
-if DefenderTask.Fsm:Is("Returning")
-or DefenderTask.Fsm:Is("Patrolling")then
-Friendlies=Friendlies or{}
-Friendlies[FriendlyGroup]=FriendlyGroup
-DefenderCount=DefenderCount+FriendlyGroup:GetSize()
-self:F({Friendly=FriendlyGroup:GetName(),FriendlyDistance=FriendlyDistance})
-end
-end
-end
-end
-end
-else
-break
-end
-end
-return Friendlies
-end
-function AI_A2G_DISPATCHER:ResourceActivate(DefenderSquadron,DefendersNeeded)
-local SquadronName=DefenderSquadron.Name
-DefendersNeeded=DefendersNeeded or 4
-local DefenderGrouping=DefenderSquadron.Grouping or self.DefenderDefault.Grouping
-DefenderGrouping=(DefenderGrouping<DefendersNeeded)and DefenderGrouping or DefendersNeeded
-if self:IsSquadronVisible(SquadronName)then
-local TemplateID=math.random(1,#DefenderSquadron.Spawn)
-self:F({DefenderGrouping=DefenderGrouping})
-local DefenderUnitIndex=1
-local DefenderPatrolTemplate=nil
-local DefenderName=nil
-for GroupName,DefenderGroup in pairs(DefenderSquadron.Resources[TemplateID]or{})do
-self:F({GroupName=GroupName})
-local DefenderTemplate=_DATABASE:GetGroupTemplate(GroupName)
-if DefenderUnitIndex==1 then
-DefenderPatrolTemplate=UTILS.DeepCopy(DefenderTemplate)
-self.DefenderPatrolIndex=self.DefenderPatrolIndex+1
-DefenderPatrolTemplate.name=GroupName
-DefenderName=DefenderPatrolTemplate.name
-else
-local DefenderUnitTemplate=DefenderTemplate.units[1]
-DefenderPatrolTemplate.units[DefenderUnitIndex]=DefenderUnitTemplate
-end
-DefenderPatrolTemplate.units[DefenderUnitIndex].name=string.format(DefenderPatrolTemplate.name..'-%02d',DefenderUnitIndex)
-DefenderPatrolTemplate.units[DefenderUnitIndex].unitId=nil
-DefenderUnitIndex=DefenderUnitIndex+1
-DefenderSquadron.Resources[TemplateID][GroupName]=nil
-if DefenderUnitIndex>DefenderGrouping then
-break
-end
-end
-if DefenderPatrolTemplate then
-local TakeoffMethod=self:GetSquadronTakeoff(SquadronName)
-local SpawnGroup=GROUP:Register(DefenderName)
-DefenderPatrolTemplate.lateActivation=nil
-DefenderPatrolTemplate.uncontrolled=nil
-local Takeoff=self:GetSquadronTakeoff(SquadronName)
-DefenderPatrolTemplate.route.points[1].type=GROUPTEMPLATE.Takeoff[Takeoff][1]
-DefenderPatrolTemplate.route.points[1].action=GROUPTEMPLATE.Takeoff[Takeoff][2]
-local Defender=_DATABASE:Spawn(DefenderPatrolTemplate)
-self:AddDefenderToSquadron(DefenderSquadron,Defender,DefenderGrouping)
-Defender:Activate()
-return Defender,DefenderGrouping
-end
-else
-local Spawn=DefenderSquadron.Spawn[math.random(1,#DefenderSquadron.Spawn)]
-if DefenderGrouping then
-Spawn:InitGrouping(DefenderGrouping)
-else
-Spawn:InitGrouping()
-end
-local TakeoffMethod=self:GetSquadronTakeoff(SquadronName)
-local Defender=Spawn:SpawnAtAirbase(DefenderSquadron.Airbase,TakeoffMethod,DefenderSquadron.TakeoffAltitude or self.DefenderDefault.TakeoffAltitude)
-self:AddDefenderToSquadron(DefenderSquadron,Defender,DefenderGrouping)
-return Defender,DefenderGrouping
-end
-return nil,nil
-end
-function AI_A2G_DISPATCHER:onafterPatrol(From,Event,To,SquadronName,DefenseTaskType)
-local DefenderSquadron,Patrol=self:CanPatrol(SquadronName,DefenseTaskType)
-if DefenderSquadron then
-local DefendersNeeded
-local DefendersGrouping=(DefenderSquadron.Grouping or self.DefenderDefault.Grouping)
-if DefenderSquadron.ResourceCount==nil then
-DefendersNeeded=DefendersGrouping
-else
-if DefenderSquadron.ResourceCount>=DefendersGrouping then
-DefendersNeeded=DefendersGrouping
-else
-DefendersNeeded=DefenderSquadron.ResourceCount
-end
-end
-if Patrol then
-self:ResourceQueue(true,DefenderSquadron,DefendersNeeded,Patrol,DefenseTaskType,nil,SquadronName)
-end
-end
-end
-function AI_A2G_DISPATCHER:ResourceQueue(Patrol,DefenderSquadron,DefendersNeeded,Defense,DefenseTaskType,AttackerDetection,SquadronName)
-self:F({DefenderSquadron,DefendersNeeded,Defense,DefenseTaskType,AttackerDetection,SquadronName})
-local DefenseQueueItem={}
-DefenseQueueItem.Patrol=Patrol
-DefenseQueueItem.DefenderSquadron=DefenderSquadron
-DefenseQueueItem.DefendersNeeded=DefendersNeeded
-DefenseQueueItem.Defense=Defense
-DefenseQueueItem.DefenseTaskType=DefenseTaskType
-DefenseQueueItem.AttackerDetection=AttackerDetection
-DefenseQueueItem.SquadronName=SquadronName
-table.insert(self.DefenseQueue,DefenseQueueItem)
-self:F({QueueItems=#self.DefenseQueue})
-end
-function AI_A2G_DISPATCHER:ResourceTakeoff()
-for DefenseQueueID,DefenseQueueItem in pairs(self.DefenseQueue)do
-self:F({DefenseQueueID})
-end
-for SquadronName,Squadron in pairs(self.DefenderSquadrons)do
-if#self.DefenseQueue>0 then
-self:F({SquadronName,Squadron.Name,Squadron.TakeoffTime,Squadron.TakeoffInterval,timer.getTime()})
-local DefenseQueueItem=self.DefenseQueue[1]
-self:F({DefenderSquadron=DefenseQueueItem.DefenderSquadron})
-if DefenseQueueItem.SquadronName==SquadronName then
-if Squadron.TakeoffTime+Squadron.TakeoffInterval<timer.getTime()then
-Squadron.TakeoffTime=timer.getTime()
-if DefenseQueueItem.Patrol==true then
-self:ResourcePatrol(DefenseQueueItem.DefenderSquadron,DefenseQueueItem.DefendersNeeded,DefenseQueueItem.Defense,DefenseQueueItem.DefenseTaskType,DefenseQueueItem.AttackerDetection,DefenseQueueItem.SquadronName)
-else
-self:ResourceEngage(DefenseQueueItem.DefenderSquadron,DefenseQueueItem.DefendersNeeded,DefenseQueueItem.Defense,DefenseQueueItem.DefenseTaskType,DefenseQueueItem.AttackerDetection,DefenseQueueItem.SquadronName)
-end
-table.remove(self.DefenseQueue,1)
-end
-end
-end
-end
-end
-function AI_A2G_DISPATCHER:ResourcePatrol(DefenderSquadron,DefendersNeeded,Patrol,DefenseTaskType,AttackerDetection,SquadronName)
-self:F({DefenderSquadron=DefenderSquadron})
-self:F({DefendersNeeded=DefendersNeeded})
-self:F({Patrol=Patrol})
-self:F({DefenseTaskType=DefenseTaskType})
-self:F({AttackerDetection=AttackerDetection})
-self:F({SquadronName=SquadronName})
-local DefenderGroup,DefenderGrouping=self:ResourceActivate(DefenderSquadron,DefendersNeeded)
-if DefenderGroup then
-local AI_A2G_PATROL={SEAD=AI_A2G_SEAD,BAI=AI_A2G_BAI,CAS=AI_A2G_CAS}
-local AI_A2G_Fsm=AI_A2G_PATROL[DefenseTaskType]:New2(DefenderGroup,Patrol.EngageMinSpeed,Patrol.EngageMaxSpeed,Patrol.EngageFloorAltitude,Patrol.EngageCeilingAltitude,Patrol.EngageAltType,Patrol.Zone,Patrol.PatrolFloorAltitude,Patrol.PatrolCeilingAltitude,Patrol.PatrolMinSpeed,Patrol.PatrolMaxSpeed,Patrol.PatrolAltType)
-AI_A2G_Fsm:SetDispatcher(self)
-AI_A2G_Fsm:SetHomeAirbase(DefenderSquadron.Airbase)
-AI_A2G_Fsm:SetFuelThreshold(DefenderSquadron.FuelThreshold or self.DefenderDefault.FuelThreshold,60)
-AI_A2G_Fsm:SetDamageThreshold(self.DefenderDefault.DamageThreshold)
-AI_A2G_Fsm:SetDisengageRadius(self.DisengageRadius)
-AI_A2G_Fsm:SetTanker(DefenderSquadron.TankerName or self.DefenderDefault.TankerName)
-AI_A2G_Fsm:Start()
-self:SetDefenderTask(SquadronName,DefenderGroup,DefenseTaskType,AI_A2G_Fsm,nil,DefenderGrouping)
-function AI_A2G_Fsm:onafterTakeoff(DefenderGroup,From,Event,To)
-self:F({"Takeoff",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2G_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron then
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", wheels up.",DefenderGroup)
-end
-AI_A2G_Fsm:Patrol()
-end
-end
-function AI_A2G_Fsm:onafterPatrolRoute(DefenderGroup,From,Event,To)
-self:F({"PatrolRoute",DefenderGroup:GetName()})
-self:GetParent(self).onafterPatrolRoute(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron and self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", patrolling.",DefenderGroup)
-end
-Dispatcher:ClearDefenderTaskTarget(DefenderGroup)
-end
-function AI_A2G_Fsm:onafterEngageRoute(DefenderGroup,From,Event,To,AttackSetUnit)
-self:F({"Engage Route",DefenderGroup:GetName()})
-self:GetParent(self).onafterEngageRoute(self,DefenderGroup,From,Event,To,AttackSetUnit)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2G_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron and AttackSetUnit:Count()>0 then
-local FirstUnit=AttackSetUnit:GetFirst()
-local Coordinate=FirstUnit:GetCoordinate()
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", moving on to ground target at "..Coordinate:ToStringA2G(DefenderGroup),DefenderGroup)
-end
-end
-end
-function AI_A2G_Fsm:OnAfterEngage(DefenderGroup,From,Event,To,AttackSetUnit)
-self:F({"Engage Route",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2G_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-local FirstUnit=AttackSetUnit:GetFirst()
-if FirstUnit then
-local Coordinate=FirstUnit:GetCoordinate()
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", engaging ground target at "..Coordinate:ToStringA2G(DefenderGroup),DefenderGroup)
-end
-end
-end
-function AI_A2G_Fsm:onafterRTB(DefenderGroup,From,Event,To)
-self:F({"RTB",DefenderGroup:GetName()})
-self:GetParent(self).onafterRTB(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", returning to base.",DefenderGroup)
-end
-Dispatcher:ClearDefenderTaskTarget(DefenderGroup)
-end
-function AI_A2G_Fsm:onafterLostControl(DefenderGroup,From,Event,To)
-self:F({"LostControl",DefenderGroup:GetName()})
-self:GetParent(self).onafterHome(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2G_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", lost control.")
-end
-if DefenderGroup:IsAboveRunway()then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,DefenderGroup)
-DefenderGroup:Destroy()
-end
-end
-function AI_A2G_Fsm:onafterHome(DefenderGroup,From,Event,To,Action)
-self:F({"Home",DefenderGroup:GetName()})
-self:GetParent(self).onafterHome(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", landing at base.",DefenderGroup)
-end
-if Action and Action=="Destroy"then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,DefenderGroup)
-DefenderGroup:Destroy()
-end
-if Dispatcher:GetSquadronLanding(Squadron.Name)==AI_A2G_DISPATCHER.Landing.NearAirbase then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,DefenderGroup)
-DefenderGroup:Destroy()
-Dispatcher:ResourcePark(Squadron,DefenderGroup)
-end
-end
-end
-end
-function AI_A2G_DISPATCHER:ResourceEngage(DefenderSquadron,DefendersNeeded,Defense,DefenseTaskType,AttackerDetection,SquadronName)
-self:F({DefenderSquadron=DefenderSquadron})
-self:F({DefendersNeeded=DefendersNeeded})
-self:F({Defense=Defense})
-self:F({DefenseTaskType=DefenseTaskType})
-self:F({AttackerDetection=AttackerDetection})
-self:F({SquadronName=SquadronName})
-local DefenderGroup,DefenderGrouping=self:ResourceActivate(DefenderSquadron,DefendersNeeded)
-if DefenderGroup then
-local AI_A2G_ENGAGE={SEAD=AI_A2G_SEAD,BAI=AI_A2G_BAI,CAS=AI_A2G_CAS}
-local AI_A2G_Fsm=AI_A2G_ENGAGE[DefenseTaskType]:New(DefenderGroup,Defense.EngageMinSpeed,Defense.EngageMaxSpeed,Defense.EngageFloorAltitude,Defense.EngageCeilingAltitude,Defense.EngageAltType)
-AI_A2G_Fsm:SetDispatcher(self)
-AI_A2G_Fsm:SetHomeAirbase(DefenderSquadron.Airbase)
-AI_A2G_Fsm:SetFuelThreshold(DefenderSquadron.FuelThreshold or self.DefenderDefault.FuelThreshold,60)
-AI_A2G_Fsm:SetDamageThreshold(self.DefenderDefault.DamageThreshold)
-AI_A2G_Fsm:SetDisengageRadius(self.DisengageRadius)
-AI_A2G_Fsm:Start()
-self:SetDefenderTask(SquadronName,DefenderGroup,DefenseTaskType,AI_A2G_Fsm,AttackerDetection,DefenderGrouping)
-function AI_A2G_Fsm:onafterTakeoff(DefenderGroup,From,Event,To)
-self:F({"Defender Birth",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2G_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-local DefenderTarget=Dispatcher:GetDefenderTaskTarget(DefenderGroup)
-self:F({DefenderTarget=DefenderTarget})
-if DefenderTarget then
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", wheels up.",DefenderGroup)
-end
-AI_A2G_Fsm:EngageRoute(DefenderTarget.Set)
-end
-end
-function AI_A2G_Fsm:onafterEngageRoute(DefenderGroup,From,Event,To,AttackSetUnit)
-self:F({"Engage Route",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2G_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if Squadron then
-local FirstUnit=AttackSetUnit:GetRandomSurely()
-if FirstUnit then
-local Coordinate=FirstUnit:GetCoordinate()
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", on route to ground target at "..Coordinate:ToStringA2G(DefenderGroup),DefenderGroup)
-end
-else
-return
-end
-end
-self:GetParent(self).onafterEngageRoute(self,DefenderGroup,From,Event,To,AttackSetUnit)
-end
-function AI_A2G_Fsm:OnAfterEngage(DefenderGroup,From,Event,To,AttackSetUnit)
-self:F({"Engage Route",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2G_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-local FirstUnit=AttackSetUnit:GetFirst()
-if FirstUnit then
-local Coordinate=FirstUnit:GetCoordinate()
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", engaging ground target at "..Coordinate:ToStringA2G(DefenderGroup),DefenderGroup)
-end
-end
-end
-function AI_A2G_Fsm:onafterRTB(DefenderGroup,From,Event,To)
-self:F({"Defender RTB",DefenderGroup:GetName()})
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", returning to base.",DefenderGroup)
-end
-self:GetParent(self).onafterRTB(self,DefenderGroup,From,Event,To)
-Dispatcher:ClearDefenderTaskTarget(DefenderGroup)
-end
-function AI_A2G_Fsm:onafterLostControl(DefenderGroup,From,Event,To)
-self:F({"Defender LostControl",DefenderGroup:GetName()})
-self:GetParent(self).onafterHome(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=AI_A2G_Fsm:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,"Squadron "..Squadron.Name..", "..DefenderName.." lost control.")
-end
-if DefenderGroup:IsAboveRunway()then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,DefenderGroup)
-DefenderGroup:Destroy()
-end
-end
-function AI_A2G_Fsm:onafterHome(DefenderGroup,From,Event,To,Action)
-self:F({"Defender Home",DefenderGroup:GetName()})
-self:GetParent(self).onafterHome(self,DefenderGroup,From,Event,To)
-local DefenderName=DefenderGroup:GetCallsign()
-local Dispatcher=self:GetDispatcher()
-local Squadron=Dispatcher:GetSquadronFromDefender(DefenderGroup)
-if self.SetSendPlayerMessages then
-Dispatcher:MessageToPlayers(Squadron,DefenderName..", landing at base.",DefenderGroup)
-end
-if Action and Action=="Destroy"then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,DefenderGroup)
-DefenderGroup:Destroy()
-end
-if Dispatcher:GetSquadronLanding(Squadron.Name)==AI_A2G_DISPATCHER.Landing.NearAirbase then
-Dispatcher:RemoveDefenderFromSquadron(Squadron,DefenderGroup)
-DefenderGroup:Destroy()
-Dispatcher:ResourcePark(Squadron,DefenderGroup)
-end
-end
-end
-end
-function AI_A2G_DISPATCHER:onafterEngage(From,Event,To,AttackerDetection,Defenders)
-if Defenders then
-for DefenderID,Defender in pairs(Defenders or{})do
-local Fsm=self:GetDefenderTaskFsm(Defender)
-Fsm:Engage(AttackerDetection.Set)
-self:SetDefenderTaskTarget(Defender,AttackerDetection)
-end
-end
-end
-function AI_A2G_DISPATCHER:HasDefenseLine(DefenseCoordinate,DetectedItem)
-local AttackCoordinate=self.Detection:GetDetectedItemCoordinate(DetectedItem)
-local EvaluateDistance=AttackCoordinate:Get2DDistance(DefenseCoordinate)
-local c1=DefenseCoordinate
-local c2=AttackCoordinate
-local a=c1.z-c2.z
-local b=c2.x-c1.x
-local c=c1.x*c2.z-c2.x*c1.z
-local ok=true
-for AttackItemID,CheckAttackItem in pairs(self.Detection:GetDetectedItems())do
-if AttackItemID~=DetectedItem.ID then
-local CheckAttackCoordinate=self.Detection:GetDetectedItemCoordinate(CheckAttackItem)
-local x=CheckAttackCoordinate.x
-local y=CheckAttackCoordinate.z
-local r=5000
-local IntersectDistance=(math.abs(a*x+b*y+c))/math.sqrt(a*a+b*b)
-self:F({IntersectDistance=IntersectDistance,x=x,y=y})
-local IntersectAttackDistance=CheckAttackCoordinate:Get2DDistance(DefenseCoordinate)
-self:F({IntersectAttackDistance=IntersectAttackDistance,EvaluateDistance=EvaluateDistance})
-if IntersectDistance<r and IntersectAttackDistance<EvaluateDistance then
-ok=false
-break
-end
-end
-end
-return ok
-end
-function AI_A2G_DISPATCHER:onafterDefend(From,Event,To,DetectedItem,DefendersTotal,DefendersEngaged,DefendersMissing,DefenderFriendlies,DefenseTaskType)
-self:F({From,Event,To,DetectedItem.Index,DefendersEngaged=DefendersEngaged,DefendersMissing=DefendersMissing,DefenderFriendlies=DefenderFriendlies})
-DetectedItem.Type=DefenseTaskType
-local AttackerSet=DetectedItem.Set
-local AttackerUnit=AttackerSet:GetFirst()
-if AttackerUnit and AttackerUnit:IsAlive()then
-local AttackerCount=AttackerSet:Count()
-local DefenderCount=0
-for DefenderID,DefenderGroup in pairs(DefenderFriendlies or{})do
-local DefenseCoordinate=DefenderGroup:GetCoordinate()
-local HasDefenseLine=self:HasDefenseLine(DefenseCoordinate,DetectedItem)
-if HasDefenseLine==true then
-local SquadronName=self:GetDefenderTask(DefenderGroup).SquadronName
-local SquadronOverhead=self:GetSquadronOverhead(SquadronName)
-local Fsm=self:GetDefenderTaskFsm(DefenderGroup)
-Fsm:EngageRoute(AttackerSet)
-self:SetDefenderTaskTarget(DefenderGroup,DetectedItem)
-local DefenderGroupSize=DefenderGroup:GetSize()
-DefendersMissing=DefendersMissing-DefenderGroupSize/SquadronOverhead
-DefendersTotal=DefendersTotal+DefenderGroupSize/SquadronOverhead
-end
-if DefendersMissing<=0 then
-break
-end
-end
-self:F({DefenderCount=DefenderCount,DefendersMissing=DefendersMissing})
-DefenderCount=DefendersMissing
-local ClosestDistance=0
-local EngageSquadronName=nil
-local BreakLoop=false
-while(DefenderCount>0 and not BreakLoop)do
-self:F({DefenderSquadrons=self.DefenderSquadrons})
-for SquadronName,DefenderSquadron in UTILS.rpairs(self.DefenderSquadrons or{})do
-if DefenderSquadron[DefenseTaskType]then
-local AirbaseCoordinate=DefenderSquadron.Airbase:GetCoordinate()
-local AttackerCoord=AttackerUnit:GetCoordinate()
-local InterceptCoord=DetectedItem.InterceptCoord
-self:F({InterceptCoord=InterceptCoord})
-if InterceptCoord then
-local InterceptDistance=AirbaseCoordinate:Get2DDistance(InterceptCoord)
-local AirbaseDistance=AirbaseCoordinate:Get2DDistance(AttackerCoord)
-self:F({InterceptDistance=InterceptDistance,AirbaseDistance=AirbaseDistance,InterceptCoord=InterceptCoord})
-if AirbaseDistance<=self.DefenseRadius then
-local HasDefenseLine=self:HasDefenseLine(AirbaseCoordinate,DetectedItem)
-if HasDefenseLine==true then
-local EngageProbability=(DefenderSquadron.EngageProbability or 1)
-local Probability=math.random()
-if Probability<EngageProbability then
-EngageSquadronName=SquadronName
-break
-end
-end
-end
-end
-end
-end
-if EngageSquadronName then
-local DefenderSquadron,Defense=self:CanDefend(EngageSquadronName,DefenseTaskType)
-if Defense then
-local DefenderOverhead=DefenderSquadron.Overhead or self.DefenderDefault.Overhead
-local DefenderGrouping=DefenderSquadron.Grouping or self.DefenderDefault.Grouping
-local DefendersNeeded=math.ceil(DefenderCount*DefenderOverhead)
-self:F({Overhead=DefenderOverhead,SquadronOverhead=DefenderSquadron.Overhead,DefaultOverhead=self.DefenderDefault.Overhead})
-self:F({Grouping=DefenderGrouping,SquadronGrouping=DefenderSquadron.Grouping,DefaultGrouping=self.DefenderDefault.Grouping})
-self:F({DefendersCount=DefenderCount,DefendersNeeded=DefendersNeeded})
-local DefendersLimit=DefenderSquadron.EngageLimit or self.DefenderDefault.EngageLimit
-if DefendersLimit then
-if DefendersTotal>=DefendersLimit then
-DefendersNeeded=0
-BreakLoop=true
-else
-if DefendersTotal+DefendersNeeded>DefendersLimit then
-DefendersNeeded=DefendersLimit-DefendersTotal
-end
-end
-end
-if DefenderSquadron.ResourceCount and DefendersNeeded>DefenderSquadron.ResourceCount then
-DefendersNeeded=DefenderSquadron.ResourceCount
-BreakLoop=true
-end
-while(DefendersNeeded>0)do
-self:ResourceQueue(false,DefenderSquadron,DefendersNeeded,Defense,DefenseTaskType,DetectedItem,EngageSquadronName)
-DefendersNeeded=DefendersNeeded-DefenderGrouping
-DefenderCount=DefenderCount-DefenderGrouping/DefenderOverhead
-end
-else
-BreakLoop=true
-break
-end
-else
-break
-end
-end
-end
-end
-function AI_A2G_DISPATCHER:Evaluate_SEAD(DetectedItem)
-self:F({DetectedItem.ItemID})
-local AttackerSet=DetectedItem.Set
-local AttackerCount=AttackerSet:HasSEAD()
-if(AttackerCount>0)then
-local DefendersTotal,DefendersEngaged,DefendersMissing=self:CountDefendersEngaged(DetectedItem,AttackerCount)
-self:F({AttackerCount=AttackerCount,DefendersTotal=DefendersTotal,DefendersEngaged=DefendersEngaged,DefendersMissing=DefendersMissing})
-local DefenderGroups=self:CountDefenders(DetectedItem,DefendersEngaged,"SEAD")
-if DetectedItem.IsDetected==true then
-return DefendersTotal,DefendersEngaged,DefendersMissing,DefenderGroups
-end
-end
-return 0,0,0
-end
-function AI_A2G_DISPATCHER:Evaluate_CAS(DetectedItem)
-self:F({DetectedItem.ItemID})
-local AttackerSet=DetectedItem.Set
-local AttackerCount=AttackerSet:Count()
-local AttackerRadarCount=AttackerSet:HasSEAD()
-local IsFriendliesNearBy=self.Detection:IsFriendliesNearBy(DetectedItem,Unit.Category.GROUND_UNIT)
-local IsCas=(AttackerRadarCount==0)and(IsFriendliesNearBy==true)
-if IsCas==true then
-local DefendersTotal,DefendersEngaged,DefendersMissing=self:CountDefendersEngaged(DetectedItem,AttackerCount)
-self:F({AttackerCount=AttackerCount,DefendersTotal=DefendersTotal,DefendersEngaged=DefendersEngaged,DefendersMissing=DefendersMissing})
-local DefenderGroups=self:CountDefenders(DetectedItem,DefendersEngaged,"CAS")
-if DetectedItem.IsDetected==true then
-return DefendersTotal,DefendersEngaged,DefendersMissing,DefenderGroups
-end
-end
-return 0,0,0
-end
-function AI_A2G_DISPATCHER:Evaluate_BAI(DetectedItem)
-self:F({DetectedItem.ItemID})
-local AttackerSet=DetectedItem.Set
-local AttackerCount=AttackerSet:Count()
-local AttackerRadarCount=AttackerSet:HasSEAD()
-local IsFriendliesNearBy=self.Detection:IsFriendliesNearBy(DetectedItem,Unit.Category.GROUND_UNIT)
-local IsBai=(AttackerRadarCount==0)and(IsFriendliesNearBy==false)
-if IsBai==true then
-local DefendersTotal,DefendersEngaged,DefendersMissing=self:CountDefendersEngaged(DetectedItem,AttackerCount)
-self:F({AttackerCount=AttackerCount,DefendersTotal=DefendersTotal,DefendersEngaged=DefendersEngaged,DefendersMissing=DefendersMissing})
-local DefenderGroups=self:CountDefenders(DetectedItem,DefendersEngaged,"BAI")
-if DetectedItem.IsDetected==true then
-return DefendersTotal,DefendersEngaged,DefendersMissing,DefenderGroups
-end
-end
-return 0,0,0
-end
-function AI_A2G_DISPATCHER:Keys(DetectedItem)
-self:F({DetectedItem=DetectedItem})
-local AttackCoordinate=self.Detection:GetDetectedItemCoordinate(DetectedItem)
-local ShortestDistance=999999999
-for DefenseCoordinateName,DefenseCoordinate in pairs(self.DefenseCoordinates)do
-local DefenseCoordinate=DefenseCoordinate
-local EvaluateDistance=AttackCoordinate:Get2DDistance(DefenseCoordinate)
-if EvaluateDistance<=ShortestDistance then
-ShortestDistance=EvaluateDistance
-end
-end
-return ShortestDistance
-end
-function AI_A2G_DISPATCHER:Order(DetectedItem)
-local AttackCoordinate=self.Detection:GetDetectedItemCoordinate(DetectedItem)
-local ShortestDistance=999999999
-for DefenseCoordinateName,DefenseCoordinate in pairs(self.DefenseCoordinates)do
-local DefenseCoordinate=DefenseCoordinate
-local EvaluateDistance=AttackCoordinate:Get2DDistance(DefenseCoordinate)
-if EvaluateDistance<=ShortestDistance then
-ShortestDistance=EvaluateDistance
-end
-end
-return ShortestDistance
-end
-function AI_A2G_DISPATCHER:ShowTacticalDisplay(Detection)
-local AreaMsg={}
-local TaskMsg={}
-local ChangeMsg={}
-local TaskReport=REPORT:New()
-local DefenseTotal=0
-local Report=REPORT:New("\nTactical Overview")
-local DefenderGroupCount=0
-local DefendersTotal=0
-for DetectedItemID,DetectedItem in UTILS.spairs(Detection:GetDetectedItems(),function(t,a,b)return self:Order(t[a])<self:Order(t[b])end)do
-if not self.Detection:IsDetectedItemLocked(DetectedItem)==true then
-local DetectedItem=DetectedItem
-local DetectedSet=DetectedItem.Set
-local DetectedCount=DetectedSet:Count()
-local DetectedZone=DetectedItem.Zone
-self:F({"Target ID",DetectedItem.ItemID})
-self:F({DefenseLimit=self.DefenseLimit,DefenseTotal=DefenseTotal})
-DetectedSet:Flush(self)
-local DetectedID=DetectedItem.ID
-local DetectionIndex=DetectedItem.Index
-local DetectedItemChanged=DetectedItem.Changed
-local ThreatLevel=DetectedItem.Set:CalculateThreatLevelA2G()
-Report:Add(string.format(" - %1s%s ( %04s ): ( #%02d - %-4s ) %s",(DetectedItem.IsDetected==true)and"!"or" ",DetectedItem.ItemID,DetectedItem.Index,DetectedItem.Set:Count(),DetectedItem.Type or" --- ",string.rep("■",ThreatLevel)))
-for Defender,DefenderTask in pairs(self:GetDefenderTasks())do
-local Defender=Defender
-if DefenderTask.Target and DefenderTask.Target.Index==DetectedItem.Index then
-if Defender:IsAlive()then
-DefenderGroupCount=DefenderGroupCount+1
-local Fuel=Defender:GetFuelMin()*100
-local Damage=Defender:GetLife()/Defender:GetLife0()*100
-Report:Add(string.format("   - %s ( %s - %s ): ( #%d ) F: %3d, D:%3d - %s",
-Defender:GetName(),
-DefenderTask.Type,
-DefenderTask.Fsm:GetState(),
-Defender:GetSize(),
-Fuel,
-Damage,
-Defender:HasTask()==true and"Executing"or"Idle"))
-end
-end
-end
-end
-end
-Report:Add("\n - No Targets:")
-local TaskCount=0
-for Defender,DefenderTask in pairs(self:GetDefenderTasks())do
-TaskCount=TaskCount+1
-local Defender=Defender
-if not DefenderTask.Target then
-if Defender:IsAlive()then
-local DefenderHasTask=Defender:HasTask()
-local Fuel=Defender:GetFuelMin()*100
-local Damage=Defender:GetLife()/Defender:GetLife0()*100
-DefenderGroupCount=DefenderGroupCount+1
-Report:Add(string.format("   - %s ( %s - %s ): ( #%d ) F: %3d, D:%3d - %s",
-Defender:GetName(),
-DefenderTask.Type,
-DefenderTask.Fsm:GetState(),
-Defender:GetSize(),
-Fuel,
-Damage,
-Defender:HasTask()==true and"Executing"or"Idle"))
-end
-end
-end
-Report:Add(string.format("\n - %d Tasks - %d Defender Groups",TaskCount,DefenderGroupCount))
-Report:Add(string.format("\n - %d Queued Aircraft Launches",#self.DefenseQueue))
-for DefenseQueueID,DefenseQueueItem in pairs(self.DefenseQueue)do
-local DefenseQueueItem=DefenseQueueItem
-Report:Add(string.format("   - %s - %s",DefenseQueueItem.SquadronName,DefenseQueueItem.DefenderSquadron.TakeoffTime,DefenseQueueItem.DefenderSquadron.TakeoffInterval))
-end
-Report:Add(string.format("\n - Squadron Resources: ",#self.DefenseQueue))
-for DefenderSquadronName,DefenderSquadron in pairs(self.DefenderSquadrons)do
-Report:Add(string.format("   - %s - %s",DefenderSquadronName,DefenderSquadron.ResourceCount and tostring(DefenderSquadron.ResourceCount)or"n/a"))
-end
-self:F(Report:Text("\n"))
-trigger.action.outText(Report:Text("\n"),25)
-end
-function AI_A2G_DISPATCHER:ProcessDetected(Detection)
-local AreaMsg={}
-local TaskMsg={}
-local ChangeMsg={}
-local TaskReport=REPORT:New()
-local DefenseTotal=0
-for DefenderGroup,DefenderTask in pairs(self:GetDefenderTasks())do
-local DefenderGroup=DefenderGroup
-local DefenderTaskFsm=self:GetDefenderTaskFsm(DefenderGroup)
-if not DefenderGroup:IsAlive()then
-self:F({Defender=DefenderGroup:GetName(),DefenderState=DefenderTaskFsm:GetState()})
-if not DefenderTaskFsm:Is("Started")then
-self:ClearDefenderTask(DefenderGroup)
-end
-else
-if DefenderTask.Target then
-self:F({TargetIndex=DefenderTask.Target.Index})
-local AttackerItem=Detection:GetDetectedItemByIndex(DefenderTask.Target.Index)
-if not AttackerItem then
-self:F({"Removing obsolete Target:",DefenderTask.Target.Index})
-self:ClearDefenderTaskTarget(DefenderGroup)
-else
-if DefenderTask.Target.Set then
-local TargetCount=DefenderTask.Target.Set:Count()
-if TargetCount==0 then
-self:F({"All Targets destroyed in Target, removing:",DefenderTask.Target.Index})
-self:ClearDefenderTask(DefenderGroup)
-end
-end
-end
-end
-end
-end
-local Report=REPORT:New("\nTactical Overview")
-local DefenderGroupCount=0
-local DefendersTotal=0
-for DetectedDistance,DetectedItem in UTILS.kpairs(Detection:GetDetectedItems(),function(t)return self:Keys(t)end,function(t,a,b)return self:Order(t[a])<self:Order(t[b])end)do
-if not self.Detection:IsDetectedItemLocked(DetectedItem)==true then
-local DetectedItem=DetectedItem
-local DetectedSet=DetectedItem.Set
-local DetectedCount=DetectedSet:Count()
-local DetectedZone=DetectedItem.Zone
-self:F({"Target ID",DetectedItem.ItemID})
-self:F({DefenseLimit=self.DefenseLimit,DefenseTotal=DefenseTotal})
-DetectedSet:Flush(self)
-local DetectedID=DetectedItem.ID
-local DetectionIndex=DetectedItem.Index
-local DetectedItemChanged=DetectedItem.Changed
-local AttackCoordinate=self.Detection:GetDetectedItemCoordinate(DetectedItem)
-local EngageDefenses=nil
-self:F({DetectedDistance=DetectedDistance,DefenseRadius=self.DefenseRadius})
-if DetectedDistance<=self.DefenseRadius then
-self:F({DetectedApproach=self._DefenseApproach})
-if self._DefenseApproach==AI_A2G_DISPATCHER.DefenseApproach.Distance then
-EngageDefenses=true
-self:F({EngageDefenses=EngageDefenses})
-end
-if self._DefenseApproach==AI_A2G_DISPATCHER.DefenseApproach.Random then
-local DistanceProbability=(self.DefenseRadius/DetectedDistance*self.DefenseReactivity)
-local DefenseProbability=math.random()
-self:F({DistanceProbability=DistanceProbability,DefenseProbability=DefenseProbability})
-if DefenseProbability<=DistanceProbability/(300/30)then
-EngageDefenses=true
-end
-end
-end
-self:F({EngageDefenses=EngageDefenses,DefenseLimit=self.DefenseLimit,DefenseTotal=DefenseTotal})
-if(EngageDefenses and(self.DefenseLimit and DefenseTotal<self.DefenseLimit)or not self.DefenseLimit)then
-do
-local DefendersTotal,DefendersEngaged,DefendersMissing,Friendlies=self:Evaluate_SEAD(DetectedItem)
-if DefendersMissing>0 then
-self:F({DefendersTotal=DefendersTotal,DefendersEngaged=DefendersEngaged,DefendersMissing=DefendersMissing})
-self:Defend(DetectedItem,DefendersTotal,DefendersEngaged,DefendersMissing,Friendlies,"SEAD")
-end
-end
-do
-local DefendersTotal,DefendersEngaged,DefendersMissing,Friendlies=self:Evaluate_CAS(DetectedItem)
-if DefendersMissing>0 then
-self:F({DefendersTotal=DefendersTotal,DefendersEngaged=DefendersEngaged,DefendersMissing=DefendersMissing})
-self:Defend(DetectedItem,DefendersTotal,DefendersEngaged,DefendersMissing,Friendlies,"CAS")
-end
-end
-do
-local DefendersTotal,DefendersEngaged,DefendersMissing,Friendlies=self:Evaluate_BAI(DetectedItem)
-if DefendersMissing>0 then
-self:F({DefendersTotal=DefendersTotal,DefendersEngaged=DefendersEngaged,DefendersMissing=DefendersMissing})
-self:Defend(DetectedItem,DefendersTotal,DefendersEngaged,DefendersMissing,Friendlies,"BAI")
-end
-end
-end
-for Defender,DefenderTask in pairs(self:GetDefenderTasks())do
-local Defender=Defender
-if DefenderTask.Target and DefenderTask.Target.Index==DetectedItem.Index then
-DefenseTotal=DefenseTotal+1
-end
-end
-for DefenseQueueID,DefenseQueueItem in pairs(self.DefenseQueue)do
-local DefenseQueueItem=DefenseQueueItem
-if DefenseQueueItem.AttackerDetection and DefenseQueueItem.AttackerDetection.Index and DefenseQueueItem.AttackerDetection.Index==DetectedItem.Index then
-DefenseTotal=DefenseTotal+1
-end
-end
-if self.TacticalDisplay then
-local ThreatLevel=DetectedItem.Set:CalculateThreatLevelA2G()
-Report:Add(string.format(" - %1s%s ( %4s ): ( #%d - %4s ) %s",(DetectedItem.IsDetected==true)and"!"or" ",DetectedItem.ItemID,DetectedItem.Index,DetectedItem.Set:Count(),DetectedItem.Type or" --- ",string.rep("■",ThreatLevel)))
-for Defender,DefenderTask in pairs(self:GetDefenderTasks())do
-local Defender=Defender
-if DefenderTask.Target and DefenderTask.Target.Index==DetectedItem.Index then
-if Defender:IsAlive()then
-DefenderGroupCount=DefenderGroupCount+1
-local Fuel=Defender:GetFuelMin()*100
-local Damage=Defender:GetLife()/Defender:GetLife0()*100
-Report:Add(string.format("   - %s ( %s - %s ): ( #%d ) F: %3d, D:%3d - %s",
-Defender:GetName(),
-DefenderTask.Type,
-DefenderTask.Fsm:GetState(),
-Defender:GetSize(),
-Fuel,
-Damage,
-Defender:HasTask()==true and"Executing"or"Idle"))
-end
-end
-end
-end
-end
-end
-if self.TacticalDisplay then
-Report:Add("\n - No Targets:")
-local TaskCount=0
-for Defender,DefenderTask in pairs(self:GetDefenderTasks())do
-TaskCount=TaskCount+1
-local Defender=Defender
-if not DefenderTask.Target then
-if Defender:IsAlive()then
-local DefenderHasTask=Defender:HasTask()
-local Fuel=Defender:GetFuelMin()*100
-local Damage=Defender:GetLife()/Defender:GetLife0()*100
-DefenderGroupCount=DefenderGroupCount+1
-Report:Add(string.format("   - %s ( %s - %s ): ( #%d ) F: %3d, D:%3d - %s",
-Defender:GetName(),
-DefenderTask.Type,
-DefenderTask.Fsm:GetState(),
-Defender:GetSize(),
-Fuel,
-Damage,
-Defender:HasTask()==true and"Executing"or"Idle"))
-end
-end
-end
-Report:Add(string.format("\n - %d Tasks - %d Defender Groups",TaskCount,DefenderGroupCount))
-Report:Add(string.format("\n - %d Queued Aircraft Launches",#self.DefenseQueue))
-for DefenseQueueID,DefenseQueueItem in pairs(self.DefenseQueue)do
-local DefenseQueueItem=DefenseQueueItem
-Report:Add(string.format("   - %s - %s",DefenseQueueItem.SquadronName,DefenseQueueItem.DefenderSquadron.TakeoffTime,DefenseQueueItem.DefenderSquadron.TakeoffInterval))
-end
-Report:Add(string.format("\n - Squadron Resources: ",#self.DefenseQueue))
-for DefenderSquadronName,DefenderSquadron in pairs(self.DefenderSquadrons)do
-Report:Add(string.format("   - %s - %s",DefenderSquadronName,DefenderSquadron.ResourceCount and tostring(DefenderSquadron.ResourceCount)or"n/a"))
-end
-self:F(Report:Text("\n"))
-trigger.action.outText(Report:Text("\n"),25)
-end
-return true
-end
-end
-do
-function AI_A2G_DISPATCHER:GetPlayerFriendliesNearBy(DetectedItem)
-local DetectedSet=DetectedItem.Set
-local PlayersNearBy=self.Detection:GetPlayersNearBy(DetectedItem)
-local PlayerTypes={}
-local PlayersCount=0
-if PlayersNearBy then
-local DetectedThreatLevel=DetectedSet:CalculateThreatLevelA2G()
-for PlayerUnitName,PlayerUnitData in pairs(PlayersNearBy)do
-local PlayerUnit=PlayerUnitData
-local PlayerName=PlayerUnit:GetPlayerName()
-if PlayerUnit:IsAirPlane()and PlayerName~=nil then
-local FriendlyUnitThreatLevel=PlayerUnit:GetThreatLevel()
-PlayersCount=PlayersCount+1
-local PlayerType=PlayerUnit:GetTypeName()
-PlayerTypes[PlayerName]=PlayerType
-if DetectedThreatLevel<FriendlyUnitThreatLevel+2 then
-end
-end
-end
-end
-local PlayerTypesReport=REPORT:New()
-if PlayersCount>0 then
-for PlayerName,PlayerType in pairs(PlayerTypes)do
-PlayerTypesReport:Add(string.format('"%s" in %s',PlayerName,PlayerType))
-end
-else
-PlayerTypesReport:Add("-")
-end
-return PlayersCount,PlayerTypesReport
-end
-function AI_A2G_DISPATCHER:GetFriendliesNearBy(DetectedItem)
-local DetectedSet=DetectedItem.Set
-local FriendlyUnitsNearBy=self.Detection:GetFriendliesNearBy(DetectedItem)
-local FriendlyTypes={}
-local FriendliesCount=0
-if FriendlyUnitsNearBy then
-local DetectedThreatLevel=DetectedSet:CalculateThreatLevelA2G()
-for FriendlyUnitName,FriendlyUnitData in pairs(FriendlyUnitsNearBy)do
-local FriendlyUnit=FriendlyUnitData
-if FriendlyUnit:IsAirPlane()then
-local FriendlyUnitThreatLevel=FriendlyUnit:GetThreatLevel()
-FriendliesCount=FriendliesCount+1
-local FriendlyType=FriendlyUnit:GetTypeName()
-FriendlyTypes[FriendlyType]=FriendlyTypes[FriendlyType]and(FriendlyTypes[FriendlyType]+1)or 1
-if DetectedThreatLevel<FriendlyUnitThreatLevel+2 then
-end
-end
-end
-end
-local FriendlyTypesReport=REPORT:New()
-if FriendliesCount>0 then
-for FriendlyType,FriendlyTypeCount in pairs(FriendlyTypes)do
-FriendlyTypesReport:Add(string.format("%d of %s",FriendlyTypeCount,FriendlyType))
-end
-else
-FriendlyTypesReport:Add("-")
-end
-return FriendliesCount,FriendlyTypesReport
-end
-function AI_A2G_DISPATCHER:SchedulerPatrol(SquadronName)
-local PatrolTaskTypes={"SEAD","CAS","BAI"}
-local PatrolTaskType=PatrolTaskTypes[math.random(1,3)]
-self:Patrol(SquadronName,PatrolTaskType)
-end
-function AI_A2G_DISPATCHER:SetSendMessages(onoff)
-self.SetSendPlayerMessages=onoff
-end
-end
-function AI_A2G_DISPATCHER:AddToSquadron(Squadron,Amount)
-local Squadron=self:GetSquadron(Squadron)
-if Squadron.ResourceCount then
-Squadron.ResourceCount=Squadron.ResourceCount+Amount
-end
-self:T({Squadron=Squadron.Name,SquadronResourceCount=Squadron.ResourceCount})
-end
-function AI_A2G_DISPATCHER:RemoveFromSquadron(Squadron,Amount)
-local Squadron=self:GetSquadron(Squadron)
-if Squadron.ResourceCount then
-Squadron.ResourceCount=Squadron.ResourceCount-Amount
-end
-self:T({Squadron=Squadron.Name,SquadronResourceCount=Squadron.ResourceCount})
-end
-AI_PATROL_ZONE={
-ClassName="AI_PATROL_ZONE",
-}
-function AI_PATROL_ZONE:New(PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local self=BASE:Inherit(self,FSM_CONTROLLABLE:New())
-self.PatrolZone=PatrolZone
-self.PatrolFloorAltitude=PatrolFloorAltitude
-self.PatrolCeilingAltitude=PatrolCeilingAltitude
-self.PatrolMinSpeed=PatrolMinSpeed
-self.PatrolMaxSpeed=PatrolMaxSpeed
-self.PatrolAltType=PatrolAltType or"BARO"
-self:SetRefreshTimeInterval(30)
-self.CheckStatus=true
-self:ManageFuel(.2,60)
-self:ManageDamage(1)
-self.DetectedUnits={}
-self:SetStartState("None")
-self:AddTransition("*","Stop","Stopped")
-self:AddTransition("None","Start","Patrolling")
-self:AddTransition("Patrolling","Route","Patrolling")
-self:AddTransition("*","Status","*")
-self:AddTransition("*","Detect","*")
-self:AddTransition("*","Detected","*")
-self:AddTransition("*","RTB","Returning")
-self:AddTransition("*","Reset","Patrolling")
-self:AddTransition("*","Eject","*")
-self:AddTransition("*","Crash","Crashed")
-self:AddTransition("*","PilotDead","*")
-return self
-end
-function AI_PATROL_ZONE:SetSpeed(PatrolMinSpeed,PatrolMaxSpeed)
-self:F2({PatrolMinSpeed,PatrolMaxSpeed})
-self.PatrolMinSpeed=PatrolMinSpeed
-self.PatrolMaxSpeed=PatrolMaxSpeed
-end
-function AI_PATROL_ZONE:SetAltitude(PatrolFloorAltitude,PatrolCeilingAltitude)
-self:F2({PatrolFloorAltitude,PatrolCeilingAltitude})
-self.PatrolFloorAltitude=PatrolFloorAltitude
-self.PatrolCeilingAltitude=PatrolCeilingAltitude
-end
-function AI_PATROL_ZONE:SetDetectionOn()
-self:F2()
-self.DetectOn=true
-end
-function AI_PATROL_ZONE:SetDetectionOff()
-self:F2()
-self.DetectOn=false
-end
-function AI_PATROL_ZONE:SetStatusOff()
-self:F2()
-self.CheckStatus=false
-end
-function AI_PATROL_ZONE:SetDetectionActivated()
-self:F2()
-self:ClearDetectedUnits()
-self.DetectActivated=true
-self:__Detect(-self.DetectInterval)
-end
-function AI_PATROL_ZONE:SetDetectionDeactivated()
-self:F2()
-self:ClearDetectedUnits()
-self.DetectActivated=false
-end
-function AI_PATROL_ZONE:SetRefreshTimeInterval(Seconds)
-self:F2()
-if Seconds then
-self.DetectInterval=Seconds
-else
-self.DetectInterval=30
-end
-end
-function AI_PATROL_ZONE:SetDetectionZone(DetectionZone)
-self:F2()
-if DetectionZone then
-self.DetectZone=DetectionZone
-else
-self.DetectZone=nil
-end
-end
-function AI_PATROL_ZONE:GetDetectedUnits()
-self:F2()
-return self.DetectedUnits
-end
-function AI_PATROL_ZONE:ClearDetectedUnits()
-self:F2()
-self.DetectedUnits={}
-end
-function AI_PATROL_ZONE:ManageFuel(PatrolFuelThresholdPercentage,PatrolOutOfFuelOrbitTime)
-self.PatrolFuelThresholdPercentage=PatrolFuelThresholdPercentage
-self.PatrolOutOfFuelOrbitTime=PatrolOutOfFuelOrbitTime
-return self
-end
-function AI_PATROL_ZONE:ManageDamage(PatrolDamageThreshold)
-self.PatrolManageDamage=true
-self.PatrolDamageThreshold=PatrolDamageThreshold
-return self
-end
-function AI_PATROL_ZONE:onafterStart(Controllable,From,Event,To)
-self:F2()
-self:__Route(1)
-self:__Status(60)
-self:SetDetectionActivated()
-self:HandleEvent(EVENTS.PilotDead,self.OnPilotDead)
-self:HandleEvent(EVENTS.Crash,self.OnCrash)
-self:HandleEvent(EVENTS.Ejection,self.OnEjection)
-Controllable:OptionROEHoldFire()
-Controllable:OptionROTVertical()
-self.Controllable:OnReSpawn(
-function(PatrolGroup)
-self:T("ReSpawn")
-self:__Reset(1)
-self:__Route(5)
-end
-)
-self:SetDetectionOn()
-end
-function AI_PATROL_ZONE:onbeforeDetect(Controllable,From,Event,To)
-return self.DetectOn and self.DetectActivated
-end
-function AI_PATROL_ZONE:onafterDetect(Controllable,From,Event,To)
-local Detected=false
-local DetectedTargets=Controllable:GetDetectedTargets()
-for TargetID,Target in pairs(DetectedTargets or{})do
-local TargetObject=Target.object
-if TargetObject and TargetObject:isExist()and TargetObject.id_<50000000 then
-local TargetUnit=UNIT:Find(TargetObject)
-if TargetUnit and TargetUnit:IsAlive()then
-local TargetUnitName=TargetUnit:GetName()
-if self.DetectionZone then
-if TargetUnit:IsInZone(self.DetectionZone)then
-self:T({"Detected ",TargetUnit})
-if self.DetectedUnits[TargetUnit]==nil then
-self.DetectedUnits[TargetUnit]=true
-end
-Detected=true
-end
-else
-if self.DetectedUnits[TargetUnit]==nil then
-self.DetectedUnits[TargetUnit]=true
-end
-Detected=true
-end
-end
-end
-end
-self:__Detect(-self.DetectInterval)
-if Detected==true then
-self:__Detected(1.5)
-end
-end
-function AI_PATROL_ZONE:_NewPatrolRoute(AIControllable)
-local PatrolZone=AIControllable:GetState(AIControllable,"PatrolZone")
-PatrolZone:__Route(1)
-end
-function AI_PATROL_ZONE:onafterRoute(Controllable,From,Event,To)
-self:F2()
-if From=="RTB"then
-return
-end
-local life=self.Controllable:GetLife()or 0
-if self.Controllable:IsAlive()and life>1 then
-local PatrolRoute={}
-if self.Controllable:InAir()==false then
-self:T("Not in the air, finding route path within PatrolZone")
-local CurrentVec2=self.Controllable:GetVec2()
-if not CurrentVec2 then return end
-local CurrentAltitude=self.Controllable:GetAltitude()
-local CurrentPointVec3=COORDINATE:New(CurrentVec2.x,CurrentAltitude,CurrentVec2.y)
-local ToPatrolZoneSpeed=self.PatrolMaxSpeed
-local CurrentRoutePoint=CurrentPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TakeOffParking,
-COORDINATE.WaypointAction.FromParkingArea,
-ToPatrolZoneSpeed,
-true
-)
-PatrolRoute[#PatrolRoute+1]=CurrentRoutePoint
-else
-self:T("In the air, finding route path within PatrolZone")
-local CurrentVec2=self.Controllable:GetVec2()
-if not CurrentVec2 then return end
-local CurrentAltitude=self.Controllable:GetAltitude()
-local CurrentPointVec3=COORDINATE:New(CurrentVec2.x,CurrentAltitude,CurrentVec2.y)
-local ToPatrolZoneSpeed=self.PatrolMaxSpeed
-local CurrentRoutePoint=CurrentPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-ToPatrolZoneSpeed,
-true
-)
-PatrolRoute[#PatrolRoute+1]=CurrentRoutePoint
-end
-local ToTargetVec2=self.PatrolZone:GetRandomVec2()
-self:T2(ToTargetVec2)
-local ToTargetAltitude=math.random(self.PatrolFloorAltitude,self.PatrolCeilingAltitude)
-local ToTargetSpeed=math.random(self.PatrolMinSpeed,self.PatrolMaxSpeed)
-self:T2({self.PatrolMinSpeed,self.PatrolMaxSpeed,ToTargetSpeed})
-local ToTargetPointVec3=COORDINATE:New(ToTargetVec2.x,ToTargetAltitude,ToTargetVec2.y)
-local ToTargetRoutePoint=ToTargetPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-ToTargetSpeed,
-true
-)
-PatrolRoute[#PatrolRoute+1]=ToTargetRoutePoint
-self.Controllable:WayPointInitialize(PatrolRoute)
-self.Controllable:SetState(self.Controllable,"PatrolZone",self)
-self.Controllable:WayPointFunction(#PatrolRoute,1,"AI_PATROL_ZONE:_NewPatrolRoute")
-self.Controllable:WayPointExecute(1,2)
-end
-end
-function AI_PATROL_ZONE:onbeforeStatus()
-return self.CheckStatus
-end
-function AI_PATROL_ZONE:onafterStatus()
-self:F2()
-if self.Controllable and self.Controllable:IsAlive()then
-local RTB=false
-local Fuel=self.Controllable:GetFuelMin()
-if Fuel<self.PatrolFuelThresholdPercentage then
-self:T(self.Controllable:GetName().." is out of fuel:"..Fuel..", RTB!")
-local OldAIControllable=self.Controllable
-local OrbitTask=OldAIControllable:TaskOrbitCircle(math.random(self.PatrolFloorAltitude,self.PatrolCeilingAltitude),self.PatrolMinSpeed)
-local TimedOrbitTask=OldAIControllable:TaskControlled(OrbitTask,OldAIControllable:TaskCondition(nil,nil,nil,nil,self.PatrolOutOfFuelOrbitTime,nil))
-OldAIControllable:SetTask(TimedOrbitTask,10)
-RTB=true
-end
-local Damage=self.Controllable:GetLife()
-if Damage<=self.PatrolDamageThreshold then
-self:T(self.Controllable:GetName().." is damaged:"..Damage..", RTB!")
-RTB=true
-end
-if self:IsInstanceOf("AI_CAS")or self:IsInstanceOf("AI_BAI")then
-local atotal,shells,rockets,bombs,missiles=self.Controllable:GetAmmunition()
-local arelevant=rockets+bombs
-if arelevant==0 or missiles==0 then
-RTB=true
-self:T({total=atotal,shells=shells,rockets=rockets,bombs=bombs,missiles=missiles})
-self:T(self.Controllable:GetName().." is out of ammo, RTB!")
-end
-end
-if RTB==true then
-self:RTB()
-else
-self:__Status(60)
-end
-end
-end
-function AI_PATROL_ZONE:onafterRTB()
-self:F2()
-if self.Controllable and self.Controllable:IsAlive()then
-self:SetDetectionOff()
-self.CheckStatus=false
-local PatrolRoute={}
-local CurrentVec2=self.Controllable:GetVec2()
-if not CurrentVec2 then return end
-local CurrentAltitude=self.Controllable:GetAltitude()
-local CurrentPointVec3=COORDINATE:New(CurrentVec2.x,CurrentAltitude,CurrentVec2.y)
-local ToPatrolZoneSpeed=self.PatrolMaxSpeed
-local CurrentRoutePoint=CurrentPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-ToPatrolZoneSpeed,
-true
-)
-PatrolRoute[#PatrolRoute+1]=CurrentRoutePoint
-self.Controllable:WayPointInitialize(PatrolRoute)
-self.Controllable:WayPointExecute(1,1)
-end
-end
-function AI_PATROL_ZONE:onafterDead()
-self:SetDetectionOff()
-self:SetStatusOff()
-end
-function AI_PATROL_ZONE:OnCrash(EventData)
-if self.Controllable:IsAlive()and EventData.IniDCSGroupName==self.Controllable:GetName()then
-if#self.Controllable:GetUnits()==1 then
-self:__Crash(1,EventData)
-end
-end
-end
-function AI_PATROL_ZONE:OnEjection(EventData)
-if self.Controllable:IsAlive()and EventData.IniDCSGroupName==self.Controllable:GetName()then
-self:__Eject(1,EventData)
-end
-end
-function AI_PATROL_ZONE:OnPilotDead(EventData)
-if self.Controllable:IsAlive()and EventData.IniDCSGroupName==self.Controllable:GetName()then
-self:__PilotDead(1,EventData)
-end
-end
-AI_CAP_ZONE={
-ClassName="AI_CAP_ZONE",
-}
-function AI_CAP_ZONE:New(PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType)
-local self=BASE:Inherit(self,AI_PATROL_ZONE:New(PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType))
-self.Accomplished=false
-self.Engaging=false
-self:AddTransition({"Patrolling","Engaging"},"Engage","Engaging")
-self:AddTransition("Engaging","Fired","Engaging")
-self:AddTransition("*","Destroy","*")
-self:AddTransition("Engaging","Abort","Patrolling")
-self:AddTransition("Engaging","Accomplish","Patrolling")
-return self
-end
-function AI_CAP_ZONE:SetEngageZone(EngageZone)
-self:F2()
-if EngageZone then
-self.EngageZone=EngageZone
-else
-self.EngageZone=nil
-end
-end
-function AI_CAP_ZONE:SetEngageRange(EngageRange)
-self:F2()
-if EngageRange then
-self.EngageRange=EngageRange
-else
-self.EngageRange=nil
-end
-end
-function AI_CAP_ZONE:onafterStart(Controllable,From,Event,To)
-self:GetParent(self).onafterStart(self,Controllable,From,Event,To)
-self:HandleEvent(EVENTS.Dead)
-end
-function AI_CAP_ZONE.EngageRoute(EngageGroup,Fsm)
-EngageGroup:F({"AI_CAP_ZONE.EngageRoute:",EngageGroup:GetName()})
-if EngageGroup:IsAlive()then
-Fsm:__Engage(1)
-end
-end
-function AI_CAP_ZONE:onbeforeEngage(Controllable,From,Event,To)
-if self.Accomplished==true then
-return false
-end
-end
-function AI_CAP_ZONE:onafterDetected(Controllable,From,Event,To)
-if From~="Engaging"then
-local Engage=false
-for DetectedUnit,Detected in pairs(self.DetectedUnits)do
-local DetectedUnit=DetectedUnit
-self:T(DetectedUnit)
-if DetectedUnit:IsAlive()and DetectedUnit:IsAir()then
-Engage=true
-break
-end
-end
-if Engage==true then
-self:F('Detected -> Engaging')
-self:__Engage(1)
-end
-end
-end
-function AI_CAP_ZONE:onafterAbort(Controllable,From,Event,To)
-Controllable:ClearTasks()
-self:__Route(1)
-end
-function AI_CAP_ZONE:onafterEngage(Controllable,From,Event,To)
-if Controllable and Controllable:IsAlive()then
-local EngageRoute={}
-local CurrentVec2=self.Controllable:GetVec2()
-if not CurrentVec2 then return self end
-local CurrentAltitude=self.Controllable:GetAltitude()
-local CurrentPointVec3=COORDINATE:New(CurrentVec2.x,CurrentAltitude,CurrentVec2.y)
-local ToEngageZoneSpeed=self.PatrolMaxSpeed
-local CurrentRoutePoint=CurrentPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-ToEngageZoneSpeed,
-true
-)
-EngageRoute[#EngageRoute+1]=CurrentRoutePoint
-local ToTargetVec2=self.PatrolZone:GetRandomVec2()
-self:T2(ToTargetVec2)
-local ToTargetAltitude=math.random(self.EngageFloorAltitude,self.EngageCeilingAltitude)
-local ToTargetSpeed=math.random(self.PatrolMinSpeed,self.PatrolMaxSpeed)
-self:T2({self.PatrolMinSpeed,self.PatrolMaxSpeed,ToTargetSpeed})
-local ToTargetPointVec3=COORDINATE:New(ToTargetVec2.x,ToTargetAltitude,ToTargetVec2.y)
-local ToPatrolRoutePoint=ToTargetPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-ToTargetSpeed,
-true
-)
-EngageRoute[#EngageRoute+1]=ToPatrolRoutePoint
-Controllable:OptionROEOpenFire()
-Controllable:OptionROTEvadeFire()
-local AttackTasks={}
-for DetectedUnit,Detected in pairs(self.DetectedUnits)do
-local DetectedUnit=DetectedUnit
-self:T({DetectedUnit,DetectedUnit:IsAlive(),DetectedUnit:IsAir()})
-if DetectedUnit:IsAlive()and DetectedUnit:IsAir()then
-if self.EngageZone then
-if DetectedUnit:IsInZone(self.EngageZone)then
-self:F({"Within Zone and Engaging ",DetectedUnit})
-AttackTasks[#AttackTasks+1]=Controllable:TaskAttackUnit(DetectedUnit)
-end
-else
-if self.EngageRange then
-if DetectedUnit:GetPointVec3():Get2DDistance(Controllable:GetPointVec3())<=self.EngageRange then
-self:F({"Within Range and Engaging",DetectedUnit})
-AttackTasks[#AttackTasks+1]=Controllable:TaskAttackUnit(DetectedUnit)
-end
-else
-AttackTasks[#AttackTasks+1]=Controllable:TaskAttackUnit(DetectedUnit)
-end
-end
-else
-self.DetectedUnits[DetectedUnit]=nil
-end
-end
-if#AttackTasks==0 then
-self:F("No targets found -> Going back to Patrolling")
-self:__Abort(1)
-self:__Route(1)
-self:SetDetectionActivated()
-else
-AttackTasks[#AttackTasks+1]=Controllable:TaskFunction("AI_CAP_ZONE.EngageRoute",self)
-EngageRoute[1].task=Controllable:TaskCombo(AttackTasks)
-self:SetDetectionDeactivated()
-end
-Controllable:Route(EngageRoute,0.5)
-end
-end
-function AI_CAP_ZONE:onafterAccomplish(Controllable,From,Event,To)
-self.Accomplished=true
-self:SetDetectionOff()
-end
-function AI_CAP_ZONE:onafterDestroy(Controllable,From,Event,To,EventData)
-if EventData.IniUnit then
-self.DetectedUnits[EventData.IniUnit]=nil
-end
-end
-function AI_CAP_ZONE:OnEventDead(EventData)
-self:F({"EventDead",EventData})
-if EventData.IniDCSUnit then
-if self.DetectedUnits and self.DetectedUnits[EventData.IniUnit]then
-self:__Destroy(1,EventData)
-end
-end
-end
-AI_CAS_ZONE={
-ClassName="AI_CAS_ZONE",
-}
-function AI_CAS_ZONE:New(PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,EngageZone,PatrolAltType)
-local self=BASE:Inherit(self,AI_PATROL_ZONE:New(PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType))
-self.EngageZone=EngageZone
-self.Accomplished=false
-self:SetDetectionZone(self.EngageZone)
-self:AddTransition({"Patrolling","Engaging"},"Engage","Engaging")
-self:AddTransition("Engaging","Target","Engaging")
-self:AddTransition("Engaging","Fired","Engaging")
-self:AddTransition("*","Destroy","*")
-self:AddTransition("Engaging","Abort","Patrolling")
-self:AddTransition("Engaging","Accomplish","Patrolling")
-return self
-end
-function AI_CAS_ZONE:SetEngageZone(EngageZone)
-self:F2()
-if EngageZone then
-self.EngageZone=EngageZone
-else
-self.EngageZone=nil
-end
-end
-function AI_CAS_ZONE:onafterStart(Controllable,From,Event,To)
-self:GetParent(self).onafterStart(self,Controllable,From,Event,To)
-self:HandleEvent(EVENTS.Dead)
-self:SetDetectionDeactivated()
-end
-function AI_CAS_ZONE.EngageRoute(EngageGroup,Fsm)
-EngageGroup:F({"AI_CAS_ZONE.EngageRoute:",EngageGroup:GetName()})
-if EngageGroup:IsAlive()then
-Fsm:__Engage(1,Fsm.EngageSpeed,Fsm.EngageAltitude,Fsm.EngageWeaponExpend,Fsm.EngageAttackQty,Fsm.EngageDirection)
-end
-end
-function AI_CAS_ZONE:onbeforeEngage(Controllable,From,Event,To)
-if self.Accomplished==true then
-return false
-end
-end
-function AI_CAS_ZONE:onafterTarget(Controllable,From,Event,To)
-if Controllable:IsAlive()then
-local AttackTasks={}
-for DetectedUnit,Detected in pairs(self.DetectedUnits)do
-local DetectedUnit=DetectedUnit
-if DetectedUnit:IsAlive()then
-if DetectedUnit:IsInZone(self.EngageZone)then
-if Detected==true then
-self:F({"Target: ",DetectedUnit})
-self.DetectedUnits[DetectedUnit]=false
-local AttackTask=Controllable:TaskAttackUnit(DetectedUnit,false,self.EngageWeaponExpend,self.EngageAttackQty,self.EngageDirection,self.EngageAltitude,nil)
-self.Controllable:PushTask(AttackTask,1)
-end
-end
-else
-self.DetectedUnits[DetectedUnit]=nil
-end
-end
-self:__Target(-10)
-end
-end
-function AI_CAS_ZONE:onafterAbort(Controllable,From,Event,To)
-Controllable:ClearTasks()
-self:__Route(1)
-end
-function AI_CAS_ZONE:onafterEngage(Controllable,From,Event,To,
-EngageSpeed,
-EngageAltitude,
-EngageWeaponExpend,
-EngageAttackQty,
-EngageDirection)
-self:F("onafterEngage")
-self.EngageSpeed=EngageSpeed or 400
-self.EngageAltitude=EngageAltitude or 2000
-self.EngageWeaponExpend=EngageWeaponExpend
-self.EngageAttackQty=EngageAttackQty
-self.EngageDirection=EngageDirection
-if Controllable:IsAlive()then
-Controllable:OptionROEOpenFire()
-Controllable:OptionROTVertical()
-local EngageRoute={}
-local CurrentVec2=self.Controllable:GetVec2()
-local CurrentAltitude=self.Controllable:GetAltitude()
-local CurrentPointVec3=COORDINATE:New(CurrentVec2.x,CurrentAltitude,CurrentVec2.y)
-local ToEngageZoneSpeed=self.PatrolMaxSpeed
-local CurrentRoutePoint=CurrentPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-self.EngageSpeed,
-true
-)
-EngageRoute[#EngageRoute+1]=CurrentRoutePoint
-local AttackTasks={}
-for DetectedUnit,Detected in pairs(self.DetectedUnits)do
-local DetectedUnit=DetectedUnit
-self:T(DetectedUnit)
-if DetectedUnit:IsAlive()then
-if DetectedUnit:IsInZone(self.EngageZone)then
-self:F({"Engaging ",DetectedUnit})
-AttackTasks[#AttackTasks+1]=Controllable:TaskAttackUnit(DetectedUnit,
-true,
-EngageWeaponExpend,
-EngageAttackQty,
-EngageDirection
-)
-end
-else
-self.DetectedUnits[DetectedUnit]=nil
-end
-end
-AttackTasks[#AttackTasks+1]=Controllable:TaskFunction("AI_CAS_ZONE.EngageRoute",self)
-EngageRoute[#EngageRoute].task=Controllable:TaskCombo(AttackTasks)
-local ToTargetVec2=self.EngageZone:GetRandomVec2()
-self:T2(ToTargetVec2)
-local ToTargetPointVec3=COORDINATE:New(ToTargetVec2.x,self.EngageAltitude,ToTargetVec2.y)
-local ToTargetRoutePoint=ToTargetPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-self.EngageSpeed,
-true
-)
-EngageRoute[#EngageRoute+1]=ToTargetRoutePoint
-Controllable:Route(EngageRoute,0.5)
-self:SetRefreshTimeInterval(2)
-self:SetDetectionActivated()
-self:__Target(-2)
-end
-end
-function AI_CAS_ZONE:onafterAccomplish(Controllable,From,Event,To)
-self.Accomplished=true
-self:SetDetectionDeactivated()
-end
-function AI_CAS_ZONE:onafterDestroy(Controllable,From,Event,To,EventData)
-if EventData.IniUnit then
-self.DetectedUnits[EventData.IniUnit]=nil
-end
-end
-function AI_CAS_ZONE:OnEventDead(EventData)
-self:F({"EventDead",EventData})
-if EventData.IniDCSUnit then
-if self.DetectedUnits and self.DetectedUnits[EventData.IniUnit]then
-self:__Destroy(1,EventData)
-end
-end
-end
-AI_BAI_ZONE={
-ClassName="AI_BAI_ZONE",
-}
-function AI_BAI_ZONE:New(PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,EngageZone,PatrolAltType)
-local self=BASE:Inherit(self,AI_PATROL_ZONE:New(PatrolZone,PatrolFloorAltitude,PatrolCeilingAltitude,PatrolMinSpeed,PatrolMaxSpeed,PatrolAltType))
-self.EngageZone=EngageZone
-self.Accomplished=false
-self:SetDetectionZone(self.EngageZone)
-self:SearchOn()
-self:AddTransition({"Patrolling","Engaging"},"Engage","Engaging")
-self:AddTransition("Engaging","Target","Engaging")
-self:AddTransition("Engaging","Fired","Engaging")
-self:AddTransition("*","Destroy","*")
-self:AddTransition("Engaging","Abort","Patrolling")
-self:AddTransition("Engaging","Accomplish","Patrolling")
-return self
-end
-function AI_BAI_ZONE:SetEngageZone(EngageZone)
-self:F2()
-if EngageZone then
-self.EngageZone=EngageZone
-else
-self.EngageZone=nil
-end
-end
-function AI_BAI_ZONE:SearchOnOff(Search)
-self.Search=Search
-return self
-end
-function AI_BAI_ZONE:SearchOff()
-self:SearchOnOff(false)
-return self
-end
-function AI_BAI_ZONE:SearchOn()
-self:SearchOnOff(true)
-return self
-end
-function AI_BAI_ZONE:onafterStart(Controllable,From,Event,To)
-self:GetParent(self).onafterStart(self,Controllable,From,Event,To)
-self:HandleEvent(EVENTS.Dead)
-self:SetDetectionDeactivated()
-end
-function _NewEngageRoute(AIControllable)
-AIControllable:T("NewEngageRoute")
-local EngageZone=AIControllable:GetState(AIControllable,"EngageZone")
-EngageZone:__Engage(1,EngageZone.EngageSpeed,EngageZone.EngageAltitude,EngageZone.EngageWeaponExpend,EngageZone.EngageAttackQty,EngageZone.EngageDirection)
-end
-function AI_BAI_ZONE:onbeforeEngage(Controllable,From,Event,To)
-if self.Accomplished==true then
-return false
-end
-end
-function AI_BAI_ZONE:onafterTarget(Controllable,From,Event,To)
-self:F({"onafterTarget",self.Search,Controllable:IsAlive()})
-if Controllable:IsAlive()then
-local AttackTasks={}
-if self.Search==true then
-for DetectedUnit,Detected in pairs(self.DetectedUnits)do
-local DetectedUnit=DetectedUnit
-if DetectedUnit:IsAlive()then
-if DetectedUnit:IsInZone(self.EngageZone)then
-if Detected==true then
-self:F({"Target: ",DetectedUnit})
-self.DetectedUnits[DetectedUnit]=false
-local AttackTask=Controllable:TaskAttackUnit(DetectedUnit,false,self.EngageWeaponExpend,self.EngageAttackQty,self.EngageDirection,self.EngageAltitude,nil)
-self.Controllable:PushTask(AttackTask,1)
-end
-end
-else
-self.DetectedUnits[DetectedUnit]=nil
-end
-end
-else
-self:F("Attack zone")
-local AttackTask=Controllable:TaskAttackMapObject(
-self.EngageZone:GetPointVec2():GetVec2(),
-true,
-self.EngageWeaponExpend,
-self.EngageAttackQty,
-self.EngageDirection,
-self.EngageAltitude
-)
-self.Controllable:PushTask(AttackTask,1)
-end
-self:__Target(-10)
-end
-end
-function AI_BAI_ZONE:onafterAbort(Controllable,From,Event,To)
-Controllable:ClearTasks()
-self:__Route(1)
-end
-function AI_BAI_ZONE:onafterEngage(Controllable,From,Event,To,
-EngageSpeed,
-EngageAltitude,
-EngageWeaponExpend,
-EngageAttackQty,
-EngageDirection)
-self:F("onafterEngage")
-self.EngageSpeed=EngageSpeed or 400
-self.EngageAltitude=EngageAltitude or 2000
-self.EngageWeaponExpend=EngageWeaponExpend
-self.EngageAttackQty=EngageAttackQty
-self.EngageDirection=EngageDirection
-if Controllable:IsAlive()then
-local EngageRoute={}
-local CurrentVec2=self.Controllable:GetVec2()
-local CurrentAltitude=self.Controllable:GetAltitude()
-local CurrentPointVec3=COORDINATE:New(CurrentVec2.x,CurrentAltitude,CurrentVec2.y)
-local ToEngageZoneSpeed=self.PatrolMaxSpeed
-local CurrentRoutePoint=CurrentPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-self.EngageSpeed,
-true
-)
-EngageRoute[#EngageRoute+1]=CurrentRoutePoint
-local AttackTasks={}
-if self.Search==true then
-for DetectedUnitID,DetectedUnitData in pairs(self.DetectedUnits)do
-local DetectedUnit=DetectedUnitData
-self:T(DetectedUnit)
-if DetectedUnit:IsAlive()then
-if DetectedUnit:IsInZone(self.EngageZone)then
-self:F({"Engaging ",DetectedUnit})
-AttackTasks[#AttackTasks+1]=Controllable:TaskBombing(
-DetectedUnit:GetPointVec2():GetVec2(),
-true,
-EngageWeaponExpend,
-EngageAttackQty,
-EngageDirection,
-EngageAltitude
-)
-end
-else
-self.DetectedUnits[DetectedUnit]=nil
-end
-end
-else
-self:F("Attack zone")
-AttackTasks[#AttackTasks+1]=Controllable:TaskAttackMapObject(
-self.EngageZone:GetPointVec2():GetVec2(),
-true,
-EngageWeaponExpend,
-EngageAttackQty,
-EngageDirection,
-EngageAltitude
-)
-end
-EngageRoute[#EngageRoute].task=Controllable:TaskCombo(AttackTasks)
-local ToTargetVec2=self.EngageZone:GetRandomVec2()
-self:T2(ToTargetVec2)
-local ToTargetPointVec3=COORDINATE:New(ToTargetVec2.x,self.EngageAltitude,ToTargetVec2.y)
-local ToTargetRoutePoint=ToTargetPointVec3:WaypointAir(
-self.PatrolAltType,
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-self.EngageSpeed,
-true
-)
-EngageRoute[#EngageRoute+1]=ToTargetRoutePoint
-Controllable:OptionROEOpenFire()
-Controllable:OptionROTVertical()
-Controllable:WayPointInitialize(EngageRoute)
-Controllable:SetState(Controllable,"EngageZone",self)
-Controllable:WayPointFunction(#EngageRoute,1,"_NewEngageRoute")
-Controllable:WayPointExecute(1)
-self:SetRefreshTimeInterval(2)
-self:SetDetectionActivated()
-self:__Target(-2)
-end
-end
-function AI_BAI_ZONE:onafterAccomplish(Controllable,From,Event,To)
-self.Accomplished=true
-self:SetDetectionDeactivated()
-end
-function AI_BAI_ZONE:onafterDestroy(Controllable,From,Event,To,EventData)
-if EventData.IniUnit then
-self.DetectedUnits[EventData.IniUnit]=nil
-end
-end
-function AI_BAI_ZONE:OnEventDead(EventData)
-self:F({"EventDead",EventData})
-if EventData.IniDCSUnit then
-if self.DetectedUnits and self.DetectedUnits[EventData.IniUnit]then
-self:__Destroy(1,EventData)
-end
-end
-end
-AI_FORMATION={
-ClassName="AI_FORMATION",
-FollowName=nil,
-FollowUnit=nil,
-FollowGroupSet=nil,
-FollowMode=1,
-MODE={
-FOLLOW=1,
-MISSION=2,
-},
-FollowScheduler=nil,
-OptionROE=AI.Option.Air.val.ROE.OPEN_FIRE,
-OptionReactionOnThreat=AI.Option.Air.val.REACTION_ON_THREAT.ALLOW_ABORT_MISSION,
-dtFollow=0.5,
-}
-AI_FORMATION.__Enum={}
-AI_FORMATION.__Enum.Formation={
-None=0,
-Mission=1,
-Line=2,
-Trail=3,
-Stack=4,
-LeftLine=5,
-RightLine=6,
-LeftWing=7,
-RightWing=8,
-Vic=9,
-Box=10,
-}
-AI_FORMATION.__Enum.Mode={
-Mission="M",
-Formation="F",
-Attack="A",
-Reconnaissance="R",
-}
-AI_FORMATION.__Enum.ReportType={
-All="*",
-Airborne="A",
-GroundRadar="R",
-Ground="G",
-}
-function AI_FORMATION:New(FollowUnit,FollowGroupSet,FollowName,FollowBriefing)
-local self=BASE:Inherit(self,FSM_SET:New(FollowGroupSet))
-self:F({FollowUnit,FollowGroupSet,FollowName})
-self.FollowUnit=FollowUnit
-self.FollowGroupSet=FollowGroupSet
-self.FollowGroupSet:ForEachGroup(
-function(FollowGroup)
-FollowGroup:SetState(self,"Mode",self.__Enum.Mode.Formation)
-end
-)
-self:SetFlightModeFormation()
-self:SetFlightRandomization(2)
-self:SetStartState("None")
-self:AddTransition("*","Stop","Stopped")
-self:AddTransition({"None","Stopped"},"Start","Following")
-self:AddTransition("*","FormationLine","*")
-self:AddTransition("*","FormationTrail","*")
-self:AddTransition("*","FormationStack","*")
-self:AddTransition("*","FormationLeftLine","*")
-self:AddTransition("*","FormationRightLine","*")
-self:AddTransition("*","FormationLeftWing","*")
-self:AddTransition("*","FormationRightWing","*")
-self:AddTransition("*","FormationCenterWing","*")
-self:AddTransition("*","FormationVic","*")
-self:AddTransition("*","FormationBox","*")
-self:AddTransition("*","Follow","Following")
-self:FormationLeftLine(500,0,250,250)
-self.FollowName=FollowName
-self.FollowBriefing=FollowBriefing
-self.CT1=0
-self.GT1=0
-self.FollowMode=AI_FORMATION.MODE.MISSION
-return self
-end
-function AI_FORMATION:SetFollowTimeInterval(dt)
-self.dtFollow=dt or 0.5
-return self
-end
-function AI_FORMATION:TestSmokeDirectionVector(SmokeDirection)
-self.SmokeDirectionVector=(SmokeDirection==true)and true or false
-return self
-end
-function AI_FORMATION:onafterFormationLine(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,YSpace,ZStart,ZSpace,Formation)
-self:F({FollowGroupSet,From,Event,To,XStart,XSpace,YStart,YSpace,ZStart,ZSpace,Formation})
-XStart=XStart or self.XStart
-XSpace=XSpace or self.XSpace
-YStart=YStart or self.YStart
-YSpace=YSpace or self.YSpace
-ZStart=ZStart or self.ZStart
-ZSpace=ZSpace or self.ZSpace
-FollowGroupSet:Flush(self)
-local FollowSet=FollowGroupSet:GetSet()
-local i=1
-for FollowID,FollowGroup in pairs(FollowSet)do
-local PointVec3=COORDINATE:New()
-PointVec3:SetX(XStart+i*XSpace)
-PointVec3:SetY(YStart+i*YSpace)
-PointVec3:SetZ(ZStart+i*ZSpace)
-local Vec3=PointVec3:GetVec3()
-FollowGroup:SetState(self,"FormationVec3",Vec3)
-i=i+1
-FollowGroup:SetState(FollowGroup,"Formation",Formation)
-end
-return self
-end
-function AI_FORMATION:onafterFormationTrail(FollowGroupSet,From,Event,To,XStart,XSpace,YStart)
-self:onafterFormationLine(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,0,0,0,self.__Enum.Formation.Trail)
-return self
-end
-function AI_FORMATION:onafterFormationStack(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,YSpace)
-self:onafterFormationLine(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,YSpace,0,0,self.__Enum.Formation.Stack)
-return self
-end
-function AI_FORMATION:onafterFormationLeftLine(FollowGroupSet,From,Event,To,XStart,YStart,ZStart,ZSpace)
-self:onafterFormationLine(FollowGroupSet,From,Event,To,XStart,0,YStart,0,-ZStart,-ZSpace,self.__Enum.Formation.LeftLine)
-return self
-end
-function AI_FORMATION:onafterFormationRightLine(FollowGroupSet,From,Event,To,XStart,YStart,ZStart,ZSpace)
-self:onafterFormationLine(FollowGroupSet,From,Event,To,XStart,0,YStart,0,ZStart,ZSpace,self.__Enum.Formation.RightLine)
-return self
-end
-function AI_FORMATION:onafterFormationLeftWing(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,ZStart,ZSpace)
-self:onafterFormationLine(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,0,-ZStart,-ZSpace,self.__Enum.Formation.LeftWing)
-return self
-end
-function AI_FORMATION:onafterFormationRightWing(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,ZStart,ZSpace)
-self:onafterFormationLine(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,0,ZStart,ZSpace,self.__Enum.Formation.RightWing)
-return self
-end
-function AI_FORMATION:onafterFormationCenterWing(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,YSpace,ZStart,ZSpace)
-local FollowSet=FollowGroupSet:GetSet()
-local i=0
-for FollowID,FollowGroup in pairs(FollowSet)do
-local PointVec3=COORDINATE:New()
-local Side=(i%2==0)and 1 or-1
-local Row=i/2+1
-PointVec3:SetX(XStart+Row*XSpace)
-PointVec3:SetY(YStart)
-PointVec3:SetZ(Side*(ZStart+i*ZSpace))
-local Vec3=PointVec3:GetVec3()
-FollowGroup:SetState(self,"FormationVec3",Vec3)
-i=i+1
-FollowGroup:SetState(FollowGroup,"Formation",self.__Enum.Formation.Vic)
-end
-return self
-end
-function AI_FORMATION:onafterFormationVic(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,YSpace,ZStart,ZSpace)
-self:onafterFormationCenterWing(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,YSpace,ZStart,ZSpace)
-return self
-end
-function AI_FORMATION:onafterFormationBox(FollowGroupSet,From,Event,To,XStart,XSpace,YStart,YSpace,ZStart,ZSpace,ZLevels)
-local FollowSet=FollowGroupSet:GetSet()
-local i=0
-for FollowID,FollowGroup in pairs(FollowSet)do
-local PointVec3=COORDINATE:New()
-local ZIndex=i%ZLevels
-local XIndex=math.floor(i/ZLevels)
-local YIndex=math.floor(i/ZLevels)
-PointVec3:SetX(XStart+XIndex*XSpace)
-PointVec3:SetY(YStart+YIndex*YSpace)
-PointVec3:SetZ(-ZStart-(ZSpace*ZLevels/2)+ZSpace*ZIndex)
-local Vec3=PointVec3:GetVec3()
-FollowGroup:SetState(self,"FormationVec3",Vec3)
-i=i+1
-FollowGroup:SetState(FollowGroup,"Formation",self.__Enum.Formation.Box)
-end
-return self
-end
-function AI_FORMATION:SetFlightRandomization(FlightRandomization)
-self.FlightRandomization=FlightRandomization
-return self
-end
-function AI_FORMATION:GetFlightMode(FollowGroup)
-if FollowGroup then
-FollowGroup:SetState(FollowGroup,"PreviousMode",FollowGroup:GetState(FollowGroup,"Mode"))
-FollowGroup:SetState(FollowGroup,"Mode",self.__Enum.Mode.Mission)
-end
-return FollowGroup:GetState(FollowGroup,"Mode")
-end
-function AI_FORMATION:SetFlightModeMission(FollowGroup)
-if FollowGroup then
-FollowGroup:SetState(FollowGroup,"PreviousMode",FollowGroup:GetState(FollowGroup,"Mode"))
-FollowGroup:SetState(FollowGroup,"Mode",self.__Enum.Mode.Mission)
-else
-self.FollowGroupSet:ForSomeGroupAlive(
-function(FollowGroup)
-FollowGroup:SetState(FollowGroup,"PreviousMode",FollowGroup:GetState(FollowGroup,"Mode"))
-FollowGroup:SetState(FollowGroup,"Mode",self.__Enum.Mode.Mission)
-end
-)
-end
-return self
-end
-function AI_FORMATION:SetFlightModeAttack(FollowGroup)
-if FollowGroup then
-FollowGroup:SetState(FollowGroup,"PreviousMode",FollowGroup:GetState(FollowGroup,"Mode"))
-FollowGroup:SetState(FollowGroup,"Mode",self.__Enum.Mode.Attack)
-else
-self.FollowGroupSet:ForSomeGroupAlive(
-function(FollowGroup)
-FollowGroup:SetState(FollowGroup,"PreviousMode",FollowGroup:GetState(FollowGroup,"Mode"))
-FollowGroup:SetState(FollowGroup,"Mode",self.__Enum.Mode.Attack)
-end
-)
-end
-return self
-end
-function AI_FORMATION:SetFlightModeFormation(FollowGroup)
-if FollowGroup then
-FollowGroup:SetState(FollowGroup,"PreviousMode",FollowGroup:GetState(FollowGroup,"Mode"))
-FollowGroup:SetState(FollowGroup,"Mode",self.__Enum.Mode.Formation)
-else
-self.FollowGroupSet:ForSomeGroupAlive(
-function(FollowGroup)
-FollowGroup:SetState(FollowGroup,"PreviousMode",FollowGroup:GetState(FollowGroup,"Mode"))
-FollowGroup:SetState(FollowGroup,"Mode",self.__Enum.Mode.Formation)
-end
-)
-end
-return self
-end
-function AI_FORMATION:onafterStop(FollowGroupSet,From,Event,To)
-self:E("Stopping formation.")
-end
-function AI_FORMATION:onbeforeFollow(FollowGroupSet,From,Event,To)
-if From=="Stopped"then
-return false
-end
-return true
-end
-function AI_FORMATION:onenterFollowing(FollowGroupSet)
-if self.FollowUnit:IsAlive()then
-local ClientUnit=self.FollowUnit
-local CT1,CT2,CV1,CV2
-CT1=ClientUnit:GetState(self,"CT1")
-local CuVec3=ClientUnit:GetVec3()
-if CT1==nil or CT1==0 then
-ClientUnit:SetState(self,"CV1",CuVec3)
-ClientUnit:SetState(self,"CT1",timer.getTime())
-else
-CT1=ClientUnit:GetState(self,"CT1")
-CT2=timer.getTime()
-CV1=ClientUnit:GetState(self,"CV1")
-CV2=CuVec3
-ClientUnit:SetState(self,"CT1",CT2)
-ClientUnit:SetState(self,"CV1",CV2)
-end
-for _,_group in pairs(FollowGroupSet:GetSet())do
-local group=_group
-if group and group:IsAlive()then
-self:FollowMe(group,ClientUnit,CT1,CV1,CT2,CV2)
-end
-end
-self:__Follow(-self.dtFollow)
-end
-end
-function AI_FORMATION:FollowMe(FollowGroup,ClientUnit,CT1,CV1,CT2,CV2)
-if FollowGroup:GetState(FollowGroup,"Mode")==self.__Enum.Mode.Formation and not self:Is("Stopped")then
-self:T({Mode=FollowGroup:GetState(FollowGroup,"Mode")})
-FollowGroup:OptionROTEvadeFire()
-FollowGroup:OptionROEReturnFire()
-local GroupUnit=FollowGroup:GetUnit(1)
-local GuVec3=GroupUnit:GetVec3()
-local FollowFormation=FollowGroup:GetState(self,"FormationVec3")
-if FollowFormation then
-local FollowDistance=FollowFormation.x
-local GT1=GroupUnit:GetState(self,"GT1")
-if CT1==nil or CT1==0 or GT1==nil or GT1==0 then
-GroupUnit:SetState(self,"GV1",GuVec3)
-GroupUnit:SetState(self,"GT1",timer.getTime())
-else
-local CD=((CV2.x-CV1.x)^2+(CV2.y-CV1.y)^2+(CV2.z-CV1.z)^2)^0.5
-local CT=CT2-CT1
-local CS=(3600/CT)*(CD/1000)/3.6
-local CDv={x=CV2.x-CV1.x,y=CV2.y-CV1.y,z=CV2.z-CV1.z}
-local Ca=math.atan2(CDv.x,CDv.z)
-local GT1=GroupUnit:GetState(self,"GT1")
-local GT2=timer.getTime()
-local GV1=GroupUnit:GetState(self,"GV1")
-local GV2=GuVec3
-GV2.x=GV2.x+math.random(-self.FlightRandomization/2,self.FlightRandomization/2)
-GV2.y=GV2.y+math.random(-self.FlightRandomization/2,self.FlightRandomization/2)
-GV2.z=GV2.z+math.random(-self.FlightRandomization/2,self.FlightRandomization/2)
-GroupUnit:SetState(self,"GT1",GT2)
-GroupUnit:SetState(self,"GV1",GV2)
-local GD=((GV2.x-GV1.x)^2+(GV2.y-GV1.y)^2+(GV2.z-GV1.z)^2)^0.5
-local GT=GT2-GT1
-local GDv={x=GV2.x-CV1.x,y=GV2.y-CV1.y,z=GV2.z-CV1.z}
-local Alpha_T=math.atan2(GDv.x,GDv.z)-math.atan2(CDv.x,CDv.z)
-local Alpha_R=(Alpha_T<0)and Alpha_T+2*math.pi or Alpha_T
-local Position=math.cos(Alpha_R)
-local GD=((GDv.x)^2+(GDv.z)^2)^0.5
-local Distance=GD*Position+-CS*0.5
-local GV={x=GV2.x-CV2.x,y=GV2.y-CV2.y,z=GV2.z-CV2.z}
-local GH2={x=GV2.x,y=CV2.y+FollowFormation.y,z=GV2.z}
-local alpha=math.atan2(GV.x,GV.z)
-local GVx=FollowFormation.z*math.cos(Ca)+FollowFormation.x*math.sin(Ca)
-local GVz=FollowFormation.x*math.cos(Ca)-FollowFormation.z*math.sin(Ca)
-local Inclination=(Distance+FollowFormation.x)/10
-if Inclination<-30 then
-Inclination=-30
-end
-local CVI={
-x=CV2.x+CS*10*math.sin(Ca),
-y=GH2.y+Inclination,
-z=CV2.z+CS*10*math.cos(Ca),
-}
-local DV={x=CV2.x-CVI.x,y=CV2.y-CVI.y,z=CV2.z-CVI.z}
-local DVu={x=DV.x/FollowDistance,y=DV.y,z=DV.z/FollowDistance}
-local GDV={x=CVI.x,y=CVI.y,z=CVI.z}
-local ADDx=FollowFormation.x*math.cos(alpha)-FollowFormation.z*math.sin(alpha)
-local ADDz=FollowFormation.z*math.cos(alpha)+FollowFormation.x*math.sin(alpha)
-local GDV_Formation={
-x=GDV.x-GVx,
-y=GDV.y,
-z=GDV.z-GVz
-}
-if self.SmokeDirectionVector==true then
-trigger.action.smoke(GDV,trigger.smokeColor.Green)
-trigger.action.smoke(GDV_Formation,trigger.smokeColor.White)
-end
-local Time=120
-local Speed=-(Distance+FollowFormation.x)/Time
-if Distance>-10000 then
-Speed=-(Distance+FollowFormation.x)/60
-end
-if Distance>-2500 then
-Speed=-(Distance+FollowFormation.x)/20
-end
-local GS=Speed+CS
-FollowGroup:RouteToVec3(GDV_Formation,GS)
-end
-end
-end
-end
-AI_ESCORT={
-ClassName="AI_ESCORT",
-EscortName=nil,
-EscortUnit=nil,
-EscortGroup=nil,
-EscortMode=1,
-Targets={},
-FollowScheduler=nil,
-ReportTargets=true,
-OptionROE=AI.Option.Air.val.ROE.OPEN_FIRE,
-OptionReactionOnThreat=AI.Option.Air.val.REACTION_ON_THREAT.ALLOW_ABORT_MISSION,
-SmokeDirectionVector=false,
-TaskPoints={}
-}
-AI_ESCORT.Detection=nil
-function AI_ESCORT:New(EscortUnit,EscortGroupSet,EscortName,EscortBriefing)
-local self=BASE:Inherit(self,AI_FORMATION:New(EscortUnit,EscortGroupSet,EscortName,EscortBriefing))
-self:F({EscortUnit,EscortGroupSet})
-self.PlayerUnit=self.FollowUnit
-self.PlayerGroup=self.FollowUnit:GetGroup()
-self.EscortName=EscortName
-self.EscortGroupSet=EscortGroupSet
-self.EscortGroupSet:SetSomeIteratorLimit(8)
-self.EscortBriefing=EscortBriefing
-self.Menu={}
-self.Menu.HoldAtEscortPosition=self.Menu.HoldAtEscortPosition or{}
-self.Menu.HoldAtLeaderPosition=self.Menu.HoldAtLeaderPosition or{}
-self.Menu.Flare=self.Menu.Flare or{}
-self.Menu.Smoke=self.Menu.Smoke or{}
-self.Menu.Targets=self.Menu.Targets or{}
-self.Menu.ROE=self.Menu.ROE or{}
-self.Menu.ROT=self.Menu.ROT or{}
-self.FollowDistance=100
-self.CT1=0
-self.GT1=0
-EscortGroupSet:ForEachGroup(
-function(EscortGroup)
-if not self.PlayerUnit._EscortGroups then
-self.PlayerUnit._EscortGroups={}
-end
-if not self.PlayerUnit._EscortGroups[EscortGroup:GetName()]then
-self.PlayerUnit._EscortGroups[EscortGroup:GetName()]={}
-self.PlayerUnit._EscortGroups[EscortGroup:GetName()].EscortGroup=EscortGroup
-self.PlayerUnit._EscortGroups[EscortGroup:GetName()].EscortName=self.EscortName
-self.PlayerUnit._EscortGroups[EscortGroup:GetName()].Detection=self.Detection
-end
-end
-)
-self:SetFlightReportType(self.__Enum.ReportType.All)
-return self
-end
-function AI_ESCORT:_InitFlightMenus()
-self:SetFlightMenuJoinUp()
-self:SetFlightMenuFormation("Trail")
-self:SetFlightMenuFormation("Stack")
-self:SetFlightMenuFormation("LeftLine")
-self:SetFlightMenuFormation("RightLine")
-self:SetFlightMenuFormation("LeftWing")
-self:SetFlightMenuFormation("RightWing")
-self:SetFlightMenuFormation("Vic")
-self:SetFlightMenuFormation("Box")
-self:SetFlightMenuHoldAtEscortPosition()
-self:SetFlightMenuHoldAtLeaderPosition()
-self:SetFlightMenuFlare()
-self:SetFlightMenuSmoke()
-self:SetFlightMenuROE()
-self:SetFlightMenuROT()
-self:SetFlightMenuTargets()
-self:SetFlightMenuReportType()
-end
-function AI_ESCORT:_InitEscortMenus(EscortGroup)
-EscortGroup.EscortMenu=MENU_GROUP:New(self.PlayerGroup,EscortGroup:GetCallsign(),self.MainMenu)
-self:SetEscortMenuJoinUp(EscortGroup)
-self:SetEscortMenuResumeMission(EscortGroup)
-self:SetEscortMenuHoldAtEscortPosition(EscortGroup)
-self:SetEscortMenuHoldAtLeaderPosition(EscortGroup)
-self:SetEscortMenuFlare(EscortGroup)
-self:SetEscortMenuSmoke(EscortGroup)
-self:SetEscortMenuROE(EscortGroup)
-self:SetEscortMenuROT(EscortGroup)
-self:SetEscortMenuTargets(EscortGroup)
-end
-function AI_ESCORT:_InitEscortRoute(EscortGroup)
-EscortGroup.MissionRoute=EscortGroup:GetTaskRoute()
-end
-function AI_ESCORT:onafterStart(EscortGroupSet)
-self:F()
-EscortGroupSet:ForEachGroup(
-function(EscortGroup)
-EscortGroup:WayPointInitialize()
-EscortGroup:OptionROTVertical()
-EscortGroup:OptionROEOpenFire()
-end
-)
-local LeaderEscort=EscortGroupSet:GetFirst()
-if LeaderEscort then
-local Report=REPORT:New("Escort reporting:")
-Report:Add("Joining Up "..EscortGroupSet:GetUnitTypeNames():Text(", ").." from "..LeaderEscort:GetCoordinate():ToString(self.PlayerUnit))
-LeaderEscort:MessageTypeToGroup(Report:Text(),MESSAGE.Type.Information,self.PlayerUnit)
-end
-self.Detection=DETECTION_AREAS:New(EscortGroupSet,5000)
-self.Detection:InitDetectVisual(true)
-self.Detection:InitDetectIRST(true)
-self.Detection:InitDetectOptical(true)
-self.Detection:InitDetectRadar(true)
-self.Detection:InitDetectRWR(true)
-self.Detection:SetAcceptRange(100000)
-self.Detection:__Start(30)
-self.MainMenu=MENU_GROUP:New(self.PlayerGroup,self.EscortName)
-self.FlightMenu=MENU_GROUP:New(self.PlayerGroup,"Flight",self.MainMenu)
-self:_InitFlightMenus()
-self.EscortGroupSet:ForSomeGroupAlive(
-function(EscortGroup)
-self:_InitEscortMenus(EscortGroup)
-self:_InitEscortRoute(EscortGroup)
-self:SetFlightModeFormation(EscortGroup)
-function EscortGroup:OnEventDeadOrCrash(EventData)
-self:F({"EventDead",EventData})
-self.EscortMenu:Remove()
-end
-EscortGroup:HandleEvent(EVENTS.Dead,EscortGroup.OnEventDeadOrCrash)
-EscortGroup:HandleEvent(EVENTS.Crash,EscortGroup.OnEventDeadOrCrash)
-end
-)
-end
-function AI_ESCORT:onafterStop(EscortGroupSet)
-self:F()
-EscortGroupSet:ForEachGroup(
-function(EscortGroup)
-EscortGroup:WayPointInitialize()
-EscortGroup:OptionROTVertical()
-EscortGroup:OptionROEOpenFire()
-end
-)
-self.Detection:Stop()
-self.MainMenu:Remove()
-end
-function AI_ESCORT:SetDetection(Detection)
-self.Detection=Detection
-self.EscortGroup.Detection=self.Detection
-self.PlayerUnit._EscortGroups[self.EscortGroup:GetName()].Detection=self.EscortGroup.Detection
-Detection:__Start(1)
-end
-function AI_ESCORT:TestSmokeDirectionVector(SmokeDirection)
-self.SmokeDirectionVector=(SmokeDirection==true)and true or false
-end
-function AI_ESCORT:MenusHelicopters(XStart,XSpace,YStart,YSpace,ZStart,ZSpace,ZLevels)
-self:F()
-self.XStart=XStart or 50
-self.XSpace=XSpace or 50
-self.YStart=YStart or 50
-self.YSpace=YSpace or 50
-self.ZStart=ZStart or 50
-self.ZSpace=ZSpace or 50
-self.ZLevels=ZLevels or 10
-self:MenuJoinUp()
-self:MenuFormationTrail(self.XStart,self.XSpace,self.YStart)
-self:MenuFormationStack(self.XStart,self.XSpace,self.YStart,self.YSpace)
-self:MenuFormationLeftLine(self.XStart,self.YStart,self.ZStart,self.ZSpace)
-self:MenuFormationRightLine(self.XStart,self.YStart,self.ZStart,self.ZSpace)
-self:MenuFormationLeftWing(self.XStart,self.XSpace,self.YStart,self.ZStart,self.ZSpace)
-self:MenuFormationRightWing(self.XStart,self.XSpace,self.YStart,self.ZStart,self.ZSpace)
-self:MenuFormationVic(self.XStart,self.XSpace,self.YStart,self.YSpace,self.ZStart,self.ZSpace)
-self:MenuFormationBox(self.XStart,self.XSpace,self.YStart,self.YSpace,self.ZStart,self.ZSpace,self.ZLevels)
-self:MenuHoldAtEscortPosition(30)
-self:MenuHoldAtEscortPosition(100)
-self:MenuHoldAtEscortPosition(500)
-self:MenuHoldAtLeaderPosition(30,500)
-self:MenuFlare()
-self:MenuSmoke()
-self:MenuTargets(60)
-self:MenuAssistedAttack()
-self:MenuROE()
-self:MenuROT()
-return self
-end
-function AI_ESCORT:MenusAirplanes(XStart,XSpace,YStart,YSpace,ZStart,ZSpace,ZLevels)
-self:F()
-self.XStart=XStart or 50
-self.XSpace=XSpace or 50
-self.YStart=YStart or 50
-self.YSpace=YSpace or 50
-self.ZStart=ZStart or 50
-self.ZSpace=ZSpace or 50
-self.ZLevels=ZLevels or 10
-self:MenuJoinUp()
-self:MenuFormationTrail(self.XStart,self.XSpace,self.YStart)
-self:MenuFormationStack(self.XStart,self.XSpace,self.YStart,self.YSpace)
-self:MenuFormationLeftLine(self.XStart,self.YStart,self.ZStart,self.ZSpace)
-self:MenuFormationRightLine(self.XStart,self.YStart,self.ZStart,self.ZSpace)
-self:MenuFormationLeftWing(self.XStart,self.XSpace,self.YStart,self.ZStart,self.ZSpace)
-self:MenuFormationRightWing(self.XStart,self.XSpace,self.YStart,self.ZStart,self.ZSpace)
-self:MenuFormationVic(self.XStart,self.XSpace,self.YStart,self.YSpace,self.ZStart,self.ZSpace)
-self:MenuFormationBox(self.XStart,self.XSpace,self.YStart,self.YSpace,self.ZStart,self.ZSpace,self.ZLevels)
-self:MenuHoldAtEscortPosition(1000,500)
-self:MenuHoldAtLeaderPosition(1000,500)
-self:MenuFlare()
-self:MenuSmoke()
-self:MenuTargets(60)
-self:MenuAssistedAttack()
-self:MenuROE()
-self:MenuROT()
-return self
-end
-function AI_ESCORT:SetFlightMenuFormation(Formation)
-local FormationID="Formation"..Formation
-local MenuFormation=self.Menu[FormationID]
-if MenuFormation then
-local Arguments=MenuFormation.Arguments
-local FlightMenuFormation=MENU_GROUP:New(self.PlayerGroup,"Formation",self.MainMenu)
-local MenuFlightFormationID=MENU_GROUP_COMMAND:New(self.PlayerGroup,Formation,FlightMenuFormation,
-function(self,Formation,...)
-self.EscortGroupSet:ForSomeGroupAlive(
-function(EscortGroup,self,Formation,Arguments)
-if EscortGroup:IsAir()then
-self:E({FormationID=FormationID})
-self[FormationID](self,unpack(Arguments))
-end
-end,self,Formation,Arguments
-)
-end,self,Formation,Arguments
-)
-end
-return self
-end
-function AI_ESCORT:MenuFormation(Formation,...)
-local FormationID="Formation"..Formation
-self.Menu[FormationID]=self.Menu[FormationID]or{}
-self.Menu[FormationID].Arguments=arg
-end
-function AI_ESCORT:MenuFormationTrail(XStart,XSpace,YStart)
-self:MenuFormation("Trail",XStart,XSpace,YStart)
-return self
-end
-function AI_ESCORT:MenuFormationStack(XStart,XSpace,YStart,YSpace)
-self:MenuFormation("Stack",XStart,XSpace,YStart,YSpace)
-return self
-end
-function AI_ESCORT:MenuFormationLeftLine(XStart,YStart,ZStart,ZSpace)
-self:MenuFormation("LeftLine",XStart,YStart,ZStart,ZSpace)
-return self
-end
-function AI_ESCORT:MenuFormationRightLine(XStart,YStart,ZStart,ZSpace)
-self:MenuFormation("RightLine",XStart,YStart,ZStart,ZSpace)
-return self
-end
-function AI_ESCORT:MenuFormationLeftWing(XStart,XSpace,YStart,ZStart,ZSpace)
-self:MenuFormation("LeftWing",XStart,XSpace,YStart,ZStart,ZSpace)
-return self
-end
-function AI_ESCORT:MenuFormationRightWing(XStart,XSpace,YStart,ZStart,ZSpace)
-self:MenuFormation("RightWing",XStart,XSpace,YStart,ZStart,ZSpace)
-return self
-end
-function AI_ESCORT:MenuFormationCenterWing(XStart,XSpace,YStart,YSpace,ZStart,ZSpace)
-self:MenuFormation("CenterWing",XStart,XSpace,YStart,YSpace,ZStart,ZSpace)
-return self
-end
-function AI_ESCORT:MenuFormationVic(XStart,XSpace,YStart,YSpace,ZStart,ZSpace)
-self:MenuFormation("Vic",XStart,XSpace,YStart,YSpace,ZStart,ZSpace)
-return self
-end
-function AI_ESCORT:MenuFormationBox(XStart,XSpace,YStart,YSpace,ZStart,ZSpace,ZLevels)
-self:MenuFormation("Box",XStart,XSpace,YStart,YSpace,ZStart,ZSpace,ZLevels)
-return self
-end
-function AI_ESCORT:SetFlightMenuJoinUp()
-if self.Menu.JoinUp==true then
-local FlightMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",self.FlightMenu)
-local FlightMenuJoinUp=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Join Up",FlightMenuReportNavigation,AI_ESCORT._FlightJoinUp,self)
-end
-end
-function AI_ESCORT:SetEscortMenuJoinUp(EscortGroup)
-if self.Menu.JoinUp==true then
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-local EscortMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",EscortGroup.EscortMenu)
-local EscortMenuJoinUp=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Join Up",EscortMenuReportNavigation,AI_ESCORT._JoinUp,self,EscortGroup)
-end
-end
-end
-function AI_ESCORT:MenuJoinUp()
-self.Menu.JoinUp=true
-return self
-end
-function AI_ESCORT:SetFlightMenuHoldAtEscortPosition()
-for _,MenuHoldAtEscortPosition in pairs(self.Menu.HoldAtEscortPosition or{})do
-local FlightMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",self.FlightMenu)
-local FlightMenuHoldPosition=MENU_GROUP_COMMAND
-:New(
-self.PlayerGroup,
-MenuHoldAtEscortPosition.MenuText,
-FlightMenuReportNavigation,
-AI_ESCORT._FlightHoldPosition,
-self,
-nil,
-MenuHoldAtEscortPosition.Height,
-MenuHoldAtEscortPosition.Speed
-)
-end
-return self
-end
-function AI_ESCORT:SetEscortMenuHoldAtEscortPosition(EscortGroup)
-for _,HoldAtEscortPosition in pairs(self.Menu.HoldAtEscortPosition or{})do
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-local EscortMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",EscortGroup.EscortMenu)
-local EscortMenuHoldPosition=MENU_GROUP_COMMAND
-:New(
-self.PlayerGroup,
-HoldAtEscortPosition.MenuText,
-EscortMenuReportNavigation,
-AI_ESCORT._HoldPosition,
-self,
-EscortGroup,
-EscortGroup,
-HoldAtEscortPosition.Height,
-HoldAtEscortPosition.Speed
-)
-end
-end
-return self
-end
-function AI_ESCORT:MenuHoldAtEscortPosition(Height,Speed,MenuTextFormat)
-self:F({Height,Speed,MenuTextFormat})
-if not Height then
-Height=30
-end
-if not Speed then
-Speed=0
-end
-local MenuText=""
-if not MenuTextFormat then
-if Speed==0 then
-MenuText=string.format("Hold at %d meter",Height)
-else
-MenuText=string.format("Hold at %d meter at %d",Height,Speed)
-end
-else
-if Speed==0 then
-MenuText=string.format(MenuTextFormat,Height)
-else
-MenuText=string.format(MenuTextFormat,Height,Speed)
-end
-end
-self.Menu.HoldAtEscortPosition=self.Menu.HoldAtEscortPosition or{}
-self.Menu.HoldAtEscortPosition[#self.Menu.HoldAtEscortPosition+1]={}
-self.Menu.HoldAtEscortPosition[#self.Menu.HoldAtEscortPosition].Height=Height
-self.Menu.HoldAtEscortPosition[#self.Menu.HoldAtEscortPosition].Speed=Speed
-self.Menu.HoldAtEscortPosition[#self.Menu.HoldAtEscortPosition].MenuText=MenuText
-return self
-end
-function AI_ESCORT:SetFlightMenuHoldAtLeaderPosition()
-for _,MenuHoldAtLeaderPosition in pairs(self.Menu.HoldAtLeaderPosition or{})do
-local FlightMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",self.FlightMenu)
-local FlightMenuHoldAtLeaderPosition=MENU_GROUP_COMMAND
-:New(
-self.PlayerGroup,
-MenuHoldAtLeaderPosition.MenuText,
-FlightMenuReportNavigation,
-AI_ESCORT._FlightHoldPosition,
-self,
-self.PlayerGroup,
-MenuHoldAtLeaderPosition.Height,
-MenuHoldAtLeaderPosition.Speed
-)
-end
-return self
-end
-function AI_ESCORT:SetEscortMenuHoldAtLeaderPosition(EscortGroup)
-for _,HoldAtLeaderPosition in pairs(self.Menu.HoldAtLeaderPosition or{})do
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-local EscortMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",EscortGroup.EscortMenu)
-local EscortMenuHoldAtLeaderPosition=MENU_GROUP_COMMAND
-:New(
-self.PlayerGroup,
-HoldAtLeaderPosition.MenuText,
-EscortMenuReportNavigation,
-AI_ESCORT._HoldPosition,
-self,
-self.PlayerGroup,
-EscortGroup,
-HoldAtLeaderPosition.Height,
-HoldAtLeaderPosition.Speed
-)
-end
-end
-return self
-end
-function AI_ESCORT:MenuHoldAtLeaderPosition(Height,Speed,MenuTextFormat)
-self:F({Height,Speed,MenuTextFormat})
-if not Height then
-Height=30
-end
-if not Speed then
-Speed=0
-end
-local MenuText=""
-if not MenuTextFormat then
-if Speed==0 then
-MenuText=string.format("Rejoin and hold at %d meter",Height)
-else
-MenuText=string.format("Rejoin and hold at %d meter at %d",Height,Speed)
-end
-else
-if Speed==0 then
-MenuText=string.format(MenuTextFormat,Height)
-else
-MenuText=string.format(MenuTextFormat,Height,Speed)
-end
-end
-self.Menu.HoldAtLeaderPosition=self.Menu.HoldAtLeaderPosition or{}
-self.Menu.HoldAtLeaderPosition[#self.Menu.HoldAtLeaderPosition+1]={}
-self.Menu.HoldAtLeaderPosition[#self.Menu.HoldAtLeaderPosition].Height=Height
-self.Menu.HoldAtLeaderPosition[#self.Menu.HoldAtLeaderPosition].Speed=Speed
-self.Menu.HoldAtLeaderPosition[#self.Menu.HoldAtLeaderPosition].MenuText=MenuText
-return self
-end
-function AI_ESCORT:MenuScanForTargets(Height,Seconds,MenuTextFormat)
-self:F({Height,Seconds,MenuTextFormat})
-if self.EscortGroup:IsAir()then
-if not self.EscortMenuScan then
-self.EscortMenuScan=MENU_GROUP:New(self.PlayerGroup,"Scan for targets",self.EscortMenu)
-end
-if not Height then
-Height=100
-end
-if not Seconds then
-Seconds=30
-end
-local MenuText=""
-if not MenuTextFormat then
-if Seconds==0 then
-MenuText=string.format("At %d meter",Height)
-else
-MenuText=string.format("At %d meter for %d seconds",Height,Seconds)
-end
-else
-if Seconds==0 then
-MenuText=string.format(MenuTextFormat,Height)
-else
-MenuText=string.format(MenuTextFormat,Height,Seconds)
-end
-end
-if not self.EscortMenuScanForTargets then
-self.EscortMenuScanForTargets={}
-end
-self.EscortMenuScanForTargets[#self.EscortMenuScanForTargets+1]=MENU_GROUP_COMMAND
-:New(
-self.PlayerGroup,
-MenuText,
-self.EscortMenuScan,
-AI_ESCORT._ScanTargets,
-self,
-30
-)
-end
-return self
-end
-function AI_ESCORT:SetFlightMenuFlare()
-for _,MenuFlare in pairs(self.Menu.Flare or{})do
-local FlightMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",self.FlightMenu)
-local FlightMenuFlare=MENU_GROUP:New(self.PlayerGroup,MenuFlare.MenuText,FlightMenuReportNavigation)
-local FlightMenuFlareGreenFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release green flare",FlightMenuFlare,AI_ESCORT._FlightFlare,self,FLARECOLOR.Green,"Released a green flare!")
-local FlightMenuFlareRedFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release red flare",FlightMenuFlare,AI_ESCORT._FlightFlare,self,FLARECOLOR.Red,"Released a red flare!")
-local FlightMenuFlareWhiteFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release white flare",FlightMenuFlare,AI_ESCORT._FlightFlare,self,FLARECOLOR.White,"Released a white flare!")
-local FlightMenuFlareYellowFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release yellow flare",FlightMenuFlare,AI_ESCORT._FlightFlare,self,FLARECOLOR.Yellow,"Released a yellow flare!")
-end
-return self
-end
-function AI_ESCORT:SetEscortMenuFlare(EscortGroup)
-for _,MenuFlare in pairs(self.Menu.Flare or{})do
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-local EscortMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",EscortGroup.EscortMenu)
-local EscortMenuFlare=MENU_GROUP:New(self.PlayerGroup,MenuFlare.MenuText,EscortMenuReportNavigation)
-local EscortMenuFlareGreen=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release green flare",EscortMenuFlare,AI_ESCORT._Flare,self,EscortGroup,FLARECOLOR.Green,"Released a green flare!")
-local EscortMenuFlareRed=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release red flare",EscortMenuFlare,AI_ESCORT._Flare,self,EscortGroup,FLARECOLOR.Red,"Released a red flare!")
-local EscortMenuFlareWhite=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release white flare",EscortMenuFlare,AI_ESCORT._Flare,self,EscortGroup,FLARECOLOR.White,"Released a white flare!")
-local EscortMenuFlareYellow=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release yellow flare",EscortMenuFlare,AI_ESCORT._Flare,self,EscortGroup,FLARECOLOR.Yellow,"Released a yellow flare!")
-end
-end
-return self
-end
-function AI_ESCORT:MenuFlare(MenuTextFormat)
-self:F()
-local MenuText=""
-if not MenuTextFormat then
-MenuText="Flare"
-else
-MenuText=MenuTextFormat
-end
-self.Menu.Flare=self.Menu.Flare or{}
-self.Menu.Flare[#self.Menu.Flare+1]={}
-self.Menu.Flare[#self.Menu.Flare].MenuText=MenuText
-return self
-end
-function AI_ESCORT:SetFlightMenuSmoke()
-for _,MenuSmoke in pairs(self.Menu.Smoke or{})do
-local FlightMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",self.FlightMenu)
-local FlightMenuSmoke=MENU_GROUP:New(self.PlayerGroup,MenuSmoke.MenuText,FlightMenuReportNavigation)
-local FlightMenuSmokeGreenFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release green smoke",FlightMenuSmoke,AI_ESCORT._FlightSmoke,self,SMOKECOLOR.Green,"Releasing green smoke!")
-local FlightMenuSmokeRedFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release red smoke",FlightMenuSmoke,AI_ESCORT._FlightSmoke,self,SMOKECOLOR.Red,"Releasing red smoke!")
-local FlightMenuSmokeWhiteFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release white smoke",FlightMenuSmoke,AI_ESCORT._FlightSmoke,self,SMOKECOLOR.White,"Releasing white smoke!")
-local FlightMenuSmokeOrangeFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release orange smoke",FlightMenuSmoke,AI_ESCORT._FlightSmoke,self,SMOKECOLOR.Orange,"Releasing orange smoke!")
-local FlightMenuSmokeBlueFlight=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release blue smoke",FlightMenuSmoke,AI_ESCORT._FlightSmoke,self,SMOKECOLOR.Blue,"Releasing blue smoke!")
-end
-return self
-end
-function AI_ESCORT:SetEscortMenuSmoke(EscortGroup)
-for _,MenuSmoke in pairs(self.Menu.Smoke or{})do
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-local EscortMenuReportNavigation=MENU_GROUP:New(self.PlayerGroup,"Navigation",EscortGroup.EscortMenu)
-local EscortMenuSmoke=MENU_GROUP:New(self.PlayerGroup,MenuSmoke.MenuText,EscortMenuReportNavigation)
-local EscortMenuSmokeGreen=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release green smoke",EscortMenuSmoke,AI_ESCORT._Smoke,self,EscortGroup,SMOKECOLOR.Green,"Releasing green smoke!")
-local EscortMenuSmokeRed=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release red smoke",EscortMenuSmoke,AI_ESCORT._Smoke,self,EscortGroup,SMOKECOLOR.Red,"Releasing red smoke!")
-local EscortMenuSmokeWhite=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release white smoke",EscortMenuSmoke,AI_ESCORT._Smoke,self,EscortGroup,SMOKECOLOR.White,"Releasing white smoke!")
-local EscortMenuSmokeOrange=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release orange smoke",EscortMenuSmoke,AI_ESCORT._Smoke,self,EscortGroup,SMOKECOLOR.Orange,"Releasing orange smoke!")
-local EscortMenuSmokeBlue=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Release blue smoke",EscortMenuSmoke,AI_ESCORT._Smoke,self,EscortGroup,SMOKECOLOR.Blue,"Releasing blue smoke!")
-end
-end
-return self
-end
-function AI_ESCORT:MenuSmoke(MenuTextFormat)
-self:F()
-local MenuText=""
-if not MenuTextFormat then
-MenuText="Smoke"
-else
-MenuText=MenuTextFormat
-end
-self.Menu.Smoke=self.Menu.Smoke or{}
-self.Menu.Smoke[#self.Menu.Smoke+1]={}
-self.Menu.Smoke[#self.Menu.Smoke].MenuText=MenuText
-return self
-end
-function AI_ESCORT:SetFlightMenuReportType()
-local FlightMenuReportTargets=MENU_GROUP:New(self.PlayerGroup,"Report targets",self.FlightMenu)
-local MenuStamp=FlightMenuReportTargets:GetStamp()
-local FlightReportType=self:GetFlightReportType()
-if FlightReportType~=self.__Enum.ReportType.All then
-local FlightMenuReportTargetsAll=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Report all targets",FlightMenuReportTargets,AI_ESCORT._FlightSwitchReportTypeAll,self)
-:SetTag("ReportType")
-:SetStamp(MenuStamp)
-end
-if FlightReportType==self.__Enum.ReportType.All or FlightReportType~=self.__Enum.ReportType.Airborne then
-local FlightMenuReportTargetsAirborne=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Report airborne targets",FlightMenuReportTargets,AI_ESCORT._FlightSwitchReportTypeAirborne,self)
-:SetTag("ReportType")
-:SetStamp(MenuStamp)
-end
-if FlightReportType==self.__Enum.ReportType.All or FlightReportType~=self.__Enum.ReportType.GroundRadar then
-local FlightMenuReportTargetsGroundRadar=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Report gound radar targets",FlightMenuReportTargets,AI_ESCORT._FlightSwitchReportTypeGroundRadar,self)
-:SetTag("ReportType")
-:SetStamp(MenuStamp)
-end
-if FlightReportType==self.__Enum.ReportType.All or FlightReportType~=self.__Enum.ReportType.Ground then
-local FlightMenuReportTargetsGround=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Report ground targets",FlightMenuReportTargets,AI_ESCORT._FlightSwitchReportTypeGround,self)
-:SetTag("ReportType")
-:SetStamp(MenuStamp)
-end
-FlightMenuReportTargets:RemoveSubMenus(MenuStamp,"ReportType")
-end
-function AI_ESCORT:SetFlightMenuTargets()
-local FlightMenuReportTargets=MENU_GROUP:New(self.PlayerGroup,"Report targets",self.FlightMenu)
-local FlightMenuReportTargetsNow=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Report targets now!",FlightMenuReportTargets,AI_ESCORT._FlightReportNearbyTargetsNow,self)
-local FlightMenuReportTargetsOn=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Report targets on",FlightMenuReportTargets,AI_ESCORT._FlightSwitchReportNearbyTargets,self,true)
-local FlightMenuReportTargetsOff=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Report targets off",FlightMenuReportTargets,AI_ESCORT._FlightSwitchReportNearbyTargets,self,false)
-self.FlightMenuAttack=MENU_GROUP:New(self.PlayerGroup,"Attack targets",self.FlightMenu)
-local FlightMenuAttackNearby=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Attack nearest targets",self.FlightMenuAttack,AI_ESCORT._FlightAttackNearestTarget,self):SetTag("Attack")
-local FlightMenuAttackNearbyAir=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Attack nearest airborne targets",self.FlightMenuAttack,AI_ESCORT._FlightAttackNearestTarget,self,self.__Enum.ReportType.Air):SetTag("Attack")
-local FlightMenuAttackNearbyGround=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Attack nearest ground targets",self.FlightMenuAttack,AI_ESCORT._FlightAttackNearestTarget,self,self.__Enum.ReportType.Ground):SetTag("Attack")
-for _,MenuTargets in pairs(self.Menu.Targets or{})do
-MenuTargets.FlightReportTargetsScheduler=SCHEDULER:New(self,self._FlightReportTargetsScheduler,{},MenuTargets.Interval,MenuTargets.Interval)
-end
-return self
-end
-function AI_ESCORT:SetEscortMenuTargets(EscortGroup)
-for _,MenuTargets in pairs(self.Menu.Targets or{}or{})do
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-EscortGroup.EscortMenuReportNearbyTargetsNow=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Report targets",EscortGroup.EscortMenu,AI_ESCORT._ReportNearbyTargetsNow,self,EscortGroup,true)
-EscortGroup.ReportTargetsScheduler=SCHEDULER:New(self,self._ReportTargetsScheduler,{EscortGroup},1,MenuTargets.Interval)
-EscortGroup.ResumeScheduler=SCHEDULER:New(self,self._ResumeScheduler,{EscortGroup},1,60)
-end
-end
-return self
-end
-function AI_ESCORT:MenuTargets(Seconds)
-self:F({Seconds})
-if not Seconds then
-Seconds=30
-end
-self.Menu.Targets=self.Menu.Targets or{}
-self.Menu.Targets[#self.Menu.Targets+1]={}
-self.Menu.Targets[#self.Menu.Targets].Interval=Seconds
-return self
-end
-function AI_ESCORT:MenuAssistedAttack()
-self:F()
-self.EscortGroupSet:ForSomeGroupAlive(
-function(EscortGroup)
-if not EscortGroup:IsAir()then
-self.EscortMenuTargetAssistance=MENU_GROUP:New(self.PlayerGroup,"Request assistance from",EscortGroup.EscortMenu)
-end
-end
-)
-return self
-end
-function AI_ESCORT:SetFlightMenuROE()
-for _,MenuROE in pairs(self.Menu.ROE or{})do
-local FlightMenuROE=MENU_GROUP:New(self.PlayerGroup,"Rule Of Engagement",self.FlightMenu)
-local FlightMenuROEHoldFire=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Hold fire",FlightMenuROE,AI_ESCORT._FlightROEHoldFire,self,"Holding weapons!")
-local FlightMenuROEReturnFire=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Return fire",FlightMenuROE,AI_ESCORT._FlightROEReturnFire,self,"Returning fire!")
-local FlightMenuROEOpenFire=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Open Fire",FlightMenuROE,AI_ESCORT._FlightROEOpenFire,self,"Open fire at designated targets!")
-local FlightMenuROEWeaponFree=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Engage all targets",FlightMenuROE,AI_ESCORT._FlightROEWeaponFree,self,"Engaging all targets!")
-end
-return self
-end
-function AI_ESCORT:SetEscortMenuROE(EscortGroup)
-for _,MenuROE in pairs(self.Menu.ROE or{})do
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-local EscortMenuROE=MENU_GROUP:New(self.PlayerGroup,"Rule Of Engagement",EscortGroup.EscortMenu)
-if EscortGroup:OptionROEHoldFirePossible()then
-local EscortMenuROEHoldFire=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Hold fire",EscortMenuROE,AI_ESCORT._ROE,self,EscortGroup,EscortGroup.OptionROEHoldFire,"Holding weapons!")
-end
-if EscortGroup:OptionROEReturnFirePossible()then
-local EscortMenuROEReturnFire=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Return fire",EscortMenuROE,AI_ESCORT._ROE,self,EscortGroup,EscortGroup.OptionROEReturnFire,"Returning fire!")
-end
-if EscortGroup:OptionROEOpenFirePossible()then
-EscortGroup.EscortMenuROEOpenFire=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Open Fire",EscortMenuROE,AI_ESCORT._ROE,self,EscortGroup,EscortGroup.OptionROEOpenFire,"Opening fire on designated targets!!")
-end
-if EscortGroup:OptionROEWeaponFreePossible()then
-EscortGroup.EscortMenuROEWeaponFree=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Engage all targets",EscortMenuROE,AI_ESCORT._ROE,self,EscortGroup,EscortGroup.OptionROEWeaponFree,"Opening fire on targets of opportunity!")
-end
-end
-end
-return self
-end
-function AI_ESCORT:MenuROE()
-self:F()
-self.Menu.ROE=self.Menu.ROE or{}
-self.Menu.ROE[#self.Menu.ROE+1]={}
-return self
-end
-function AI_ESCORT:SetFlightMenuROT()
-for _,MenuROT in pairs(self.Menu.ROT or{})do
-local FlightMenuROT=MENU_GROUP:New(self.PlayerGroup,"Reaction On Threat",self.FlightMenu)
-local FlightMenuROTNoReaction=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Fight until death",FlightMenuROT,AI_ESCORT._FlightROTNoReaction,self,"Fighting until death!")
-local FlightMenuROTPassiveDefense=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Use flares, chaff and jammers",FlightMenuROT,AI_ESCORT._FlightROTPassiveDefense,self,"Defending using jammers, chaff and flares!")
-local FlightMenuROTEvadeFire=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Open fire",FlightMenuROT,AI_ESCORT._FlightROTEvadeFire,self,"Evading on enemy fire!")
-local FlightMenuROTVertical=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Avoid radar and evade fire",FlightMenuROT,AI_ESCORT._FlightROTVertical,self,"Evading on enemy fire with vertical manoeuvres!")
-end
-return self
-end
-function AI_ESCORT:SetEscortMenuROT(EscortGroup)
-for _,MenuROT in pairs(self.Menu.ROT or{})do
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-local EscortMenuROT=MENU_GROUP:New(self.PlayerGroup,"Reaction On Threat",EscortGroup.EscortMenu)
-if not EscortGroup.EscortMenuEvasion then
-if EscortGroup:OptionROTNoReactionPossible()then
-local EscortMenuEvasionNoReaction=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Fight until death",EscortMenuROT,AI_ESCORT._ROT,self,EscortGroup,EscortGroup.OptionROTNoReaction,"Fighting until death!")
-end
-if EscortGroup:OptionROTPassiveDefensePossible()then
-local EscortMenuEvasionPassiveDefense=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Use flares, chaff and jammers",EscortMenuROT,AI_ESCORT._ROT,self,EscortGroup,EscortGroup.OptionROTPassiveDefense,"Defending using jammers, chaff and flares!")
-end
-if EscortGroup:OptionROTEvadeFirePossible()then
-local EscortMenuEvasionEvadeFire=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Open fire",EscortMenuROT,AI_ESCORT._ROT,self,EscortGroup,EscortGroup.OptionROTEvadeFire,"Evading on enemy fire!")
-end
-if EscortGroup:OptionROTVerticalPossible()then
-local EscortMenuOptionEvasionVertical=MENU_GROUP_COMMAND:New(self.PlayerGroup,"Avoid radar and evade fire",EscortMenuROT,AI_ESCORT._ROT,self,EscortGroup,EscortGroup.OptionROTVertical,"Evading on enemy fire with vertical manoeuvres!")
-end
-end
-end
-end
-return self
-end
-function AI_ESCORT:MenuROT(MenuTextFormat)
-self:F(MenuTextFormat)
-self.Menu.ROT=self.Menu.ROT or{}
-self.Menu.ROT[#self.Menu.ROT+1]={}
-return self
-end
-function AI_ESCORT:SetEscortMenuResumeMission(EscortGroup)
-self:F()
-if EscortGroup:IsAir()then
-local EscortGroupName=EscortGroup:GetName()
-EscortGroup.EscortMenuResumeMission=MENU_GROUP:New(self.PlayerGroup,"Resume from",EscortGroup.EscortMenu)
-end
-return self
-end
-function AI_ESCORT:_HoldPosition(OrbitGroup,EscortGroup,OrbitHeight,OrbitSeconds)
-local EscortUnit=self.PlayerUnit
-local OrbitUnit=OrbitGroup:GetUnit(1)
-self:SetFlightModeMission(EscortGroup)
-local PointFrom={}
-local GroupVec3=EscortGroup:GetUnit(1):GetVec3()
-PointFrom={}
-PointFrom.x=GroupVec3.x
-PointFrom.y=GroupVec3.z
-PointFrom.speed=250
-PointFrom.type=AI.Task.WaypointType.TURNING_POINT
-PointFrom.alt=GroupVec3.y
-PointFrom.alt_type=AI.Task.AltitudeType.BARO
-local OrbitPoint=OrbitUnit:GetVec2()
-local PointTo={}
-PointTo.x=OrbitPoint.x
-PointTo.y=OrbitPoint.y
-PointTo.speed=250
-PointTo.type=AI.Task.WaypointType.TURNING_POINT
-PointTo.alt=OrbitHeight
-PointTo.alt_type=AI.Task.AltitudeType.BARO
-PointTo.task=EscortGroup:TaskOrbitCircleAtVec2(OrbitPoint,OrbitHeight,0)
-local Points={PointFrom,PointTo}
-EscortGroup:OptionROEHoldFire()
-EscortGroup:OptionROTPassiveDefense()
-EscortGroup:SetTask(EscortGroup:TaskRoute(Points),1)
-EscortGroup:MessageTypeToGroup("Orbiting at current location.",MESSAGE.Type.Information,EscortUnit:GetGroup())
-end
-function AI_ESCORT:_FlightHoldPosition(OrbitGroup,OrbitHeight,OrbitSeconds)
-local EscortUnit=self.PlayerUnit
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup,OrbitGroup)
-if EscortGroup:IsAir()then
-if OrbitGroup==nil then
-OrbitGroup=EscortGroup
-end
-self:_HoldPosition(OrbitGroup,EscortGroup,OrbitHeight,OrbitSeconds)
-end
-end,OrbitGroup
-)
-end
-function AI_ESCORT:_JoinUp(EscortGroup)
-local EscortUnit=self.PlayerUnit
-self:SetFlightModeFormation(EscortGroup)
-EscortGroup:MessageTypeToGroup("Joining up!",MESSAGE.Type.Information,EscortUnit:GetGroup())
-end
-function AI_ESCORT:_FlightJoinUp()
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-if EscortGroup:IsAir()then
-self:_JoinUp(EscortGroup)
-end
-end
-)
-end
-function AI_ESCORT:_EscortFormationTrail(EscortGroup,XStart,XSpace,YStart)
-self:FormationTrail(XStart,XSpace,YStart)
-end
-function AI_ESCORT:_FlightFormationTrail(XStart,XSpace,YStart)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-if EscortGroup:IsAir()then
-self:_EscortFormationTrail(EscortGroup,XStart,XSpace,YStart)
-end
-end
-)
-end
-function AI_ESCORT:_EscortFormationStack(EscortGroup,XStart,XSpace,YStart,YSpace)
-self:FormationStack(XStart,XSpace,YStart,YSpace)
-end
-function AI_ESCORT:_FlightFormationStack(XStart,XSpace,YStart,YSpace)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-if EscortGroup:IsAir()then
-self:_EscortFormationStack(EscortGroup,XStart,XSpace,YStart,YSpace)
-end
-end
-)
-end
-function AI_ESCORT:_Flare(EscortGroup,Color,Message)
-local EscortUnit=self.PlayerUnit
-EscortGroup:GetUnit(1):Flare(Color)
-EscortGroup:MessageTypeToGroup(Message,MESSAGE.Type.Information,EscortUnit:GetGroup())
-end
-function AI_ESCORT:_FlightFlare(Color,Message)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-if EscortGroup:IsAir()then
-self:_Flare(EscortGroup,Color,Message)
-end
-end
-)
-end
-function AI_ESCORT:_Smoke(EscortGroup,Color,Message)
-local EscortUnit=self.PlayerUnit
-EscortGroup:GetUnit(1):Smoke(Color)
-EscortGroup:MessageTypeToGroup(Message,MESSAGE.Type.Information,EscortUnit:GetGroup())
-end
-function AI_ESCORT:_FlightSmoke(Color,Message)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-if EscortGroup:IsAir()then
-self:_Smoke(EscortGroup,Color,Message)
-end
-end
-)
-end
-function AI_ESCORT:_ReportNearbyTargetsNow(EscortGroup)
-local EscortUnit=self.PlayerUnit
-self:_ReportTargetsScheduler(EscortGroup)
-end
-function AI_ESCORT:_FlightReportNearbyTargetsNow()
-self:_FlightReportTargetsScheduler()
-end
-function AI_ESCORT:_FlightSwitchReportNearbyTargets(ReportTargets)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-if EscortGroup:IsAir()then
-self:_EscortSwitchReportNearbyTargets(EscortGroup,ReportTargets)
-end
-end
-)
-end
-function AI_ESCORT:SetFlightReportType(ReportType)
-self.FlightReportType=ReportType
-end
-function AI_ESCORT:GetFlightReportType()
-return self.FlightReportType
-end
-function AI_ESCORT:_FlightSwitchReportTypeAll()
-self:SetFlightReportType(self.__Enum.ReportType.All)
-self:SetFlightMenuReportType()
-local EscortGroup=self.EscortGroupSet:GetFirst()
-EscortGroup:MessageTypeToGroup("Reporting all targets.",MESSAGE.Type.Information,self.PlayerGroup)
-end
-function AI_ESCORT:_FlightSwitchReportTypeAirborne()
-self:SetFlightReportType(self.__Enum.ReportType.Airborne)
-self:SetFlightMenuReportType()
-local EscortGroup=self.EscortGroupSet:GetFirst()
-EscortGroup:MessageTypeToGroup("Reporting airborne targets.",MESSAGE.Type.Information,self.PlayerGroup)
-end
-function AI_ESCORT:_FlightSwitchReportTypeGroundRadar()
-self:SetFlightReportType(self.__Enum.ReportType.Ground)
-self:SetFlightMenuReportType()
-local EscortGroup=self.EscortGroupSet:GetFirst()
-EscortGroup:MessageTypeToGroup("Reporting ground radar targets.",MESSAGE.Type.Information,self.PlayerGroup)
-end
-function AI_ESCORT:_FlightSwitchReportTypeGround()
-self:SetFlightReportType(self.__Enum.ReportType.Ground)
-self:SetFlightMenuReportType()
-local EscortGroup=self.EscortGroupSet:GetFirst()
-EscortGroup:MessageTypeToGroup("Reporting ground targets.",MESSAGE.Type.Information,self.PlayerGroup)
-end
-function AI_ESCORT:_ScanTargets(ScanDuration)
-local EscortGroup=self.EscortGroup
-local EscortUnit=self.PlayerUnit
-self.FollowScheduler:Stop(self.FollowSchedule)
-if EscortGroup:IsHelicopter()then
-EscortGroup:PushTask(
-EscortGroup:TaskControlled(
-EscortGroup:TaskOrbitCircle(200,20),
-EscortGroup:TaskCondition(nil,nil,nil,nil,ScanDuration,nil)
-),1)
-elseif EscortGroup:IsAirPlane()then
-EscortGroup:PushTask(
-EscortGroup:TaskControlled(
-EscortGroup:TaskOrbitCircle(1000,500),
-EscortGroup:TaskCondition(nil,nil,nil,nil,ScanDuration,nil)
-),1)
-end
-EscortGroup:MessageToClient("Scanning targets for "..ScanDuration.." seconds.",ScanDuration,EscortUnit)
-if self.EscortMode==AI_ESCORT.MODE.FOLLOW then
-self.FollowScheduler:Start(self.FollowSchedule)
-end
-end
-function AI_ESCORT.___Resume(EscortGroup,self)
-self:F({self=self})
-local PlayerGroup=self.PlayerGroup
-EscortGroup:OptionROEHoldFire()
-EscortGroup:OptionROTVertical()
-EscortGroup:SetState(EscortGroup,"Mode",EscortGroup:GetState(EscortGroup,"PreviousMode"))
-if EscortGroup:GetState(EscortGroup,"Mode")==self.__Enum.Mode.Mission then
-EscortGroup:MessageTypeToGroup("Resuming route.",MESSAGE.Type.Information,PlayerGroup)
-else
-EscortGroup:MessageTypeToGroup("Rejoining formation.",MESSAGE.Type.Information,PlayerGroup)
-end
-end
-function AI_ESCORT:_ResumeMission(EscortGroup,WayPoint)
-self:SetFlightModeMission(EscortGroup)
-local WayPoints=EscortGroup.MissionRoute
-self:T(WayPoint,WayPoints)
-for WayPointIgnore=1,WayPoint do
-table.remove(WayPoints,1)
-end
-EscortGroup:SetTask(EscortGroup:TaskRoute(WayPoints),1)
-EscortGroup:MessageTypeToGroup("Resuming mission from waypoint ",MESSAGE.Type.Information,self.PlayerGroup)
-end
-function AI_ESCORT:_AttackTarget(EscortGroup,DetectedItem)
-self:F(EscortGroup)
-self:SetFlightModeAttack(EscortGroup)
-if EscortGroup:IsAir()then
-EscortGroup:OptionROEOpenFire()
-EscortGroup:OptionROTVertical()
-EscortGroup:SetState(EscortGroup,"Escort",self)
-local DetectedSet=self.Detection:GetDetectedItemSet(DetectedItem)
-local Tasks={}
-local AttackUnitTasks={}
-DetectedSet:ForEachUnit(
-function(DetectedUnit,Tasks)
-if DetectedUnit:IsAlive()then
-AttackUnitTasks[#AttackUnitTasks+1]=EscortGroup:TaskAttackUnit(DetectedUnit)
-end
-end,Tasks
-)
-Tasks[#Tasks+1]=EscortGroup:TaskCombo(AttackUnitTasks)
-Tasks[#Tasks+1]=EscortGroup:TaskFunction("AI_ESCORT.___Resume",self)
-EscortGroup:PushTask(
-EscortGroup:TaskCombo(
-Tasks
-),1
-)
-else
-local DetectedSet=self.Detection:GetDetectedItemSet(DetectedItem)
-local Tasks={}
-DetectedSet:ForEachUnit(
-function(DetectedUnit,Tasks)
-if DetectedUnit:IsAlive()then
-Tasks[#Tasks+1]=EscortGroup:TaskFireAtPoint(DetectedUnit:GetVec2(),50)
-end
-end,Tasks
-)
-EscortGroup:PushTask(
-EscortGroup:TaskCombo(
-Tasks
-),1
-)
-end
-local DetectedTargetsReport=REPORT:New("Engaging target:\n")
-local DetectedItemReportSummary=self.Detection:DetectedItemReportSummary(DetectedItem,self.PlayerGroup,_DATABASE:GetPlayerSettings(self.PlayerUnit:GetPlayerName()))
-local ReportSummary=DetectedItemReportSummary:Text(", ")
-DetectedTargetsReport:AddIndent(ReportSummary,"-")
-EscortGroup:MessageTypeToGroup(DetectedTargetsReport:Text(),MESSAGE.Type.Information,self.PlayerGroup)
-end
-function AI_ESCORT:_FlightAttackTarget(DetectedItem)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup,DetectedItem)
-if EscortGroup:IsAir()then
-self:_AttackTarget(EscortGroup,DetectedItem)
-end
-end,DetectedItem
-)
-end
-function AI_ESCORT:_FlightAttackNearestTarget(TargetType)
-self.Detection:Detect()
-self:_FlightReportTargetsScheduler()
-local EscortGroup=self.EscortGroupSet:GetFirst()
-local AttackDetectedItem=nil
-local DetectedItems=self.Detection:GetDetectedItems()
-for DetectedItemIndex,DetectedItem in UTILS.spairs(DetectedItems,function(t,a,b)return self:Distance(self.PlayerUnit,t[a])<self:Distance(self.PlayerUnit,t[b])end)do
-local DetectedItemSet=self.Detection:GetDetectedItemSet(DetectedItem)
-local HasGround=DetectedItemSet:HasGroundUnits()>0
-local HasAir=DetectedItemSet:HasAirUnits()>0
-local FlightReportType=self:GetFlightReportType()
-if(TargetType and TargetType==self.__Enum.ReportType.Ground and HasGround)or
-(TargetType and TargetType==self.__Enum.ReportType.Air and HasAir)or
-(TargetType==nil)then
-AttackDetectedItem=DetectedItem
-break
-end
-end
-if AttackDetectedItem then
-self:_FlightAttackTarget(AttackDetectedItem)
-else
-EscortGroup:MessageTypeToGroup("Nothing to attack!",MESSAGE.Type.Information,self.PlayerGroup)
-end
-end
-function AI_ESCORT:_AssistTarget(EscortGroup,DetectedItem)
-local EscortUnit=self.PlayerUnit
-local DetectedSet=self.Detection:GetDetectedItemSet(DetectedItem)
-local Tasks={}
-DetectedSet:ForEachUnit(
-function(DetectedUnit,Tasks)
-if DetectedUnit:IsAlive()then
-Tasks[#Tasks+1]=EscortGroup:TaskFireAtPoint(DetectedUnit:GetVec2(),50)
-end
-end,Tasks
-)
-EscortGroup:SetTask(
-EscortGroup:TaskCombo(
-Tasks
-),1
-)
-EscortGroup:MessageTypeToGroup("Assisting attack!",MESSAGE.Type.Information,EscortUnit:GetGroup())
-end
-function AI_ESCORT:_ROE(EscortGroup,EscortROEFunction,EscortROEMessage)
-pcall(function()EscortROEFunction(EscortGroup)end)
-EscortGroup:MessageTypeToGroup(EscortROEMessage,MESSAGE.Type.Information,self.PlayerGroup)
-end
-function AI_ESCORT:_FlightROEHoldFire(EscortROEMessage)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-self:_ROE(EscortGroup,EscortGroup.OptionROEHoldFire,EscortROEMessage)
-end
-)
-end
-function AI_ESCORT:_FlightROEOpenFire(EscortROEMessage)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-self:_ROE(EscortGroup,EscortGroup.OptionROEOpenFire,EscortROEMessage)
-end
-)
-end
-function AI_ESCORT:_FlightROEReturnFire(EscortROEMessage)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-self:_ROE(EscortGroup,EscortGroup.OptionROEReturnFire,EscortROEMessage)
-end
-)
-end
-function AI_ESCORT:_FlightROEWeaponFree(EscortROEMessage)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-self:_ROE(EscortGroup,EscortGroup.OptionROEWeaponFree,EscortROEMessage)
-end
-)
-end
-function AI_ESCORT:_ROT(EscortGroup,EscortROTFunction,EscortROTMessage)
-pcall(function()EscortROTFunction(EscortGroup)end)
-EscortGroup:MessageTypeToGroup(EscortROTMessage,MESSAGE.Type.Information,self.PlayerGroup)
-end
-function AI_ESCORT:_FlightROTNoReaction(EscortROTMessage)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-self:_ROT(EscortGroup,EscortGroup.OptionROTNoReaction,EscortROTMessage)
-end
-)
-end
-function AI_ESCORT:_FlightROTPassiveDefense(EscortROTMessage)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-self:_ROT(EscortGroup,EscortGroup.OptionROTPassiveDefense,EscortROTMessage)
-end
-)
-end
-function AI_ESCORT:_FlightROTEvadeFire(EscortROTMessage)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-self:_ROT(EscortGroup,EscortGroup.OptionROTEvadeFire,EscortROTMessage)
-end
-)
-end
-function AI_ESCORT:_FlightROTVertical(EscortROTMessage)
-self.EscortGroupSet:ForEachGroupAlive(
-function(EscortGroup)
-self:_ROT(EscortGroup,EscortGroup.OptionROTVertical,EscortROTMessage)
-end
-)
-end
-function AI_ESCORT:RegisterRoute()
-self:F()
-local EscortGroup=self.EscortGroup
-local TaskPoints=EscortGroup:GetTaskRoute()
-self:T(TaskPoints)
-return TaskPoints
-end
-function AI_ESCORT:_ResumeScheduler(EscortGroup)
-self:F(EscortGroup:GetName())
-if EscortGroup:IsAlive()and self.PlayerUnit:IsAlive()then
-local EscortGroupName=EscortGroup:GetCallsign()
-if EscortGroup.EscortMenuResumeMission then
-EscortGroup.EscortMenuResumeMission:RemoveSubMenus()
-local TaskPoints=EscortGroup.MissionRoute
-for WayPointID,WayPoint in pairs(TaskPoints)do
-local EscortVec3=EscortGroup:GetVec3()
-local Distance=((WayPoint.x-EscortVec3.x)^2+
-(WayPoint.y-EscortVec3.z)^2
-)^0.5/1000
-MENU_GROUP_COMMAND:New(self.PlayerGroup,"Waypoint "..WayPointID.." at "..string.format("%.2f",Distance).."km",EscortGroup.EscortMenuResumeMission,AI_ESCORT._ResumeMission,self,EscortGroup,WayPointID)
-end
-end
-end
-end
-function AI_ESCORT:Distance(PlayerUnit,DetectedItem)
-local DetectedCoordinate=self.Detection:GetDetectedItemCoordinate(DetectedItem)
-local PlayerCoordinate=PlayerUnit:GetCoordinate()
-return DetectedCoordinate:Get3DDistance(PlayerCoordinate)
-end
-function AI_ESCORT:_ReportTargetsScheduler(EscortGroup,Report)
-self:F(EscortGroup:GetName())
-if EscortGroup:IsAlive()and self.PlayerUnit:IsAlive()then
-local EscortGroupName=EscortGroup:GetCallsign()
-local DetectedTargetsReport=REPORT:New("Reporting targets:\n")
-if EscortGroup.EscortMenuTargetAssistance then
-EscortGroup.EscortMenuTargetAssistance:RemoveSubMenus()
-end
-local DetectedItems=self.Detection:GetDetectedItems()
-local ClientEscortTargets=self.Detection
-local TimeUpdate=timer.getTime()
-local EscortMenuAttackTargets=MENU_GROUP:New(self.PlayerGroup,"Attack targets",EscortGroup.EscortMenu)
-local DetectedTargets=false
-for DetectedItemIndex,DetectedItem in UTILS.spairs(DetectedItems,function(t,a,b)return self:Distance(self.PlayerUnit,t[a])<self:Distance(self.PlayerUnit,t[b])end)do
-local DetectedItemSet=self.Detection:GetDetectedItemSet(DetectedItem)
-local HasGround=DetectedItemSet:HasGroundUnits()>0
-local HasGroundRadar=HasGround and DetectedItemSet:HasRadar()>0
-local HasAir=DetectedItemSet:HasAirUnits()>0
-local FlightReportType=self:GetFlightReportType()
-if(FlightReportType==self.__Enum.ReportType.All)or
-(FlightReportType==self.__Enum.ReportType.Airborne and HasAir)or
-(FlightReportType==self.__Enum.ReportType.Ground and HasGround)or
-(FlightReportType==self.__Enum.ReportType.GroundRadar and HasGroundRadar)then
-DetectedTargets=true
-local DetectedMenu=self.Detection:DetectedItemReportMenu(DetectedItem,EscortGroup,_DATABASE:GetPlayerSettings(self.PlayerUnit:GetPlayerName())):Text("\n")
-local DetectedItemReportSummary=self.Detection:DetectedItemReportSummary(DetectedItem,EscortGroup,_DATABASE:GetPlayerSettings(self.PlayerUnit:GetPlayerName()))
-local ReportSummary=DetectedItemReportSummary:Text(", ")
-DetectedTargetsReport:AddIndent(ReportSummary,"-")
-if EscortGroup:IsAir()then
-MENU_GROUP_COMMAND:New(self.PlayerGroup,
-DetectedMenu,
-EscortMenuAttackTargets,
-AI_ESCORT._AttackTarget,
-self,
-EscortGroup,
-DetectedItem
-):SetTag("Escort"):SetTime(TimeUpdate)
-else
-if self.EscortMenuTargetAssistance then
-local MenuTargetAssistance=MENU_GROUP:New(self.PlayerGroup,EscortGroupName,EscortGroup.EscortMenuTargetAssistance)
-MENU_GROUP_COMMAND:New(self.PlayerGroup,
-DetectedMenu,
-MenuTargetAssistance,
-AI_ESCORT._AssistTarget,
-self,
-EscortGroup,
-DetectedItem
-)
-end
-end
-end
-end
-EscortMenuAttackTargets:RemoveSubMenus(TimeUpdate,"Escort")
-if Report then
-if DetectedTargets then
-EscortGroup:MessageTypeToGroup(DetectedTargetsReport:Text("\n"),MESSAGE.Type.Information,self.PlayerGroup)
-else
-EscortGroup:MessageTypeToGroup("No targets detected.",MESSAGE.Type.Information,self.PlayerGroup)
-end
-end
-return true
-end
-return false
-end
-function AI_ESCORT:_FlightReportTargetsScheduler()
-self:F("FlightReportTargetScheduler")
-local EscortGroup=self.EscortGroupSet:GetFirst()
-local DetectedTargetsReport=REPORT:New("Reporting your targets:\n")
-if EscortGroup and(self.PlayerUnit:IsAlive()and EscortGroup:IsAlive())then
-local TimeUpdate=timer.getTime()
-local DetectedItems=self.Detection:GetDetectedItems()
-local DetectedTargets=false
-local ClientEscortTargets=self.Detection
-for DetectedItemIndex,DetectedItem in UTILS.spairs(DetectedItems,function(t,a,b)return self:Distance(self.PlayerUnit,t[a])<self:Distance(self.PlayerUnit,t[b])end)do
-self:F("FlightReportTargetScheduler Targets")
-local DetectedItemSet=self.Detection:GetDetectedItemSet(DetectedItem)
-local HasGround=DetectedItemSet:HasGroundUnits()>0
-local HasGroundRadar=HasGround and DetectedItemSet:HasRadar()>0
-local HasAir=DetectedItemSet:HasAirUnits()>0
-local FlightReportType=self:GetFlightReportType()
-if(FlightReportType==self.__Enum.ReportType.All)or
-(FlightReportType==self.__Enum.ReportType.Airborne and HasAir)or
-(FlightReportType==self.__Enum.ReportType.Ground and HasGround)or
-(FlightReportType==self.__Enum.ReportType.GroundRadar and HasGroundRadar)then
-DetectedTargets=true
-local DetectedItemReportMenu=self.Detection:DetectedItemReportMenu(DetectedItem,self.PlayerGroup,_DATABASE:GetPlayerSettings(self.PlayerUnit:GetPlayerName()))
-local ReportMenuText=DetectedItemReportMenu:Text(", ")
-MENU_GROUP_COMMAND:New(self.PlayerGroup,
-ReportMenuText,
-self.FlightMenuAttack,
-AI_ESCORT._FlightAttackTarget,
-self,
-DetectedItem
-):SetTag("Flight"):SetTime(TimeUpdate)
-local DetectedItemReportSummary=self.Detection:DetectedItemReportSummary(DetectedItem,self.PlayerGroup,_DATABASE:GetPlayerSettings(self.PlayerUnit:GetPlayerName()))
-local ReportSummary=DetectedItemReportSummary:Text(", ")
-DetectedTargetsReport:AddIndent(ReportSummary,"-")
-end
-end
-self.FlightMenuAttack:RemoveSubMenus(TimeUpdate,"Flight")
-if DetectedTargets then
-EscortGroup:MessageTypeToGroup(DetectedTargetsReport:Text("\n"),MESSAGE.Type.Information,self.PlayerGroup)
-end
-return true
-end
-return false
-end
-AI_ESCORT_REQUEST={
-ClassName="AI_ESCORT_REQUEST",
-}
-function AI_ESCORT_REQUEST:New(EscortUnit,EscortSpawn,EscortAirbase,EscortName,EscortBriefing)
-local EscortGroupSet=SET_GROUP:New():FilterDeads():FilterCrashes()
-local self=BASE:Inherit(self,AI_ESCORT:New(EscortUnit,EscortGroupSet,EscortName,EscortBriefing))
-self.EscortGroupSet=EscortGroupSet
-self.EscortSpawn=EscortSpawn
-self.EscortAirbase=EscortAirbase
-self.LeaderGroup=self.PlayerUnit:GetGroup()
-self.Detection=DETECTION_AREAS:New(self.EscortGroupSet,5000)
-self.Detection:__Start(30)
-self.SpawnMode=self.__Enum.Mode.Mission
-return self
-end
-function AI_ESCORT_REQUEST:SpawnEscort()
-local EscortGroup=self.EscortSpawn:SpawnAtAirbase(self.EscortAirbase,SPAWN.Takeoff.Hot)
-self:ScheduleOnce(0.1,
-function(EscortGroup)
-EscortGroup:OptionROTVertical()
-EscortGroup:OptionROEHoldFire()
-self.EscortGroupSet:AddGroup(EscortGroup)
-local LeaderEscort=self.EscortGroupSet:GetFirst()
-local Report=REPORT:New()
-Report:Add("Joining Up "..self.EscortGroupSet:GetUnitTypeNames():Text(", ").." from "..LeaderEscort:GetCoordinate():ToString(self.EscortUnit))
-LeaderEscort:MessageTypeToGroup(Report:Text(),MESSAGE.Type.Information,self.PlayerUnit)
-self:SetFlightModeFormation(EscortGroup)
-self:FormationTrail()
-self:_InitFlightMenus()
-self:_InitEscortMenus(EscortGroup)
-self:_InitEscortRoute(EscortGroup)
-function EscortGroup:OnEventDeadOrCrash(EventData)
-self:F({"EventDead",EventData})
-self.EscortMenu:Remove()
-end
-EscortGroup:HandleEvent(EVENTS.Dead,EscortGroup.OnEventDeadOrCrash)
-EscortGroup:HandleEvent(EVENTS.Crash,EscortGroup.OnEventDeadOrCrash)
-end,EscortGroup
-)
-end
-function AI_ESCORT_REQUEST:onafterStart(EscortGroupSet)
-self:F()
-if not self.MenuRequestEscort then
-self.MainMenu=MENU_GROUP:New(self.PlayerGroup,self.EscortName)
-self.MenuRequestEscort=MENU_GROUP_COMMAND:New(self.LeaderGroup,"Request new escort ",self.MainMenu,
-function()
-self:SpawnEscort()
-end
-)
-end
-self:GetParent(self).onafterStart(self,EscortGroupSet)
-self:HandleEvent(EVENTS.Dead,self.OnEventDeadOrCrash)
-self:HandleEvent(EVENTS.Crash,self.OnEventDeadOrCrash)
-end
-function AI_ESCORT_REQUEST:onafterStop(EscortGroupSet)
-self:F()
-EscortGroupSet:ForEachGroup(
-function(EscortGroup)
-EscortGroup:WayPointInitialize()
-EscortGroup:OptionROTVertical()
-EscortGroup:OptionROEOpenFire()
-end
-)
-self.Detection:Stop()
-self.MainMenu:Remove()
-end
-function AI_ESCORT_REQUEST:SetEscortSpawnMission()
-self.SpawnMode=self.__Enum.Mode.Mission
-end
-AI_ESCORT_DISPATCHER={
-ClassName="AI_ESCORT_DISPATCHER",
-}
-AI_ESCORT_DISPATCHER.AI_Escorts={}
-function AI_ESCORT_DISPATCHER:New(CarrierSet,EscortSpawn,EscortAirbase,EscortName,EscortBriefing)
-local self=BASE:Inherit(self,FSM:New())
-self.CarrierSet=CarrierSet
-self.EscortSpawn=EscortSpawn
-self.EscortAirbase=EscortAirbase
-self.EscortName=EscortName
-self.EscortBriefing=EscortBriefing
-self:SetStartState("Idle")
-self:AddTransition("Monitoring","Monitor","Monitoring")
-self:AddTransition("Idle","Start","Monitoring")
-self:AddTransition("Monitoring","Stop","Idle")
-function self.CarrierSet.OnAfterRemoved(CarrierSet,From,Event,To,CarrierName,Carrier)
-self:F({Carrier=Carrier:GetName()})
-end
-return self
-end
-function AI_ESCORT_DISPATCHER:onafterStart(From,Event,To)
-self:HandleEvent(EVENTS.Birth)
-self:HandleEvent(EVENTS.PlayerLeaveUnit,self.OnEventExit)
-self:HandleEvent(EVENTS.Crash,self.OnEventExit)
-self:HandleEvent(EVENTS.Dead,self.OnEventExit)
-end
-function AI_ESCORT_DISPATCHER:OnEventExit(EventData)
-local PlayerGroupName=EventData.IniGroupName
-local PlayerGroup=EventData.IniGroup
-local PlayerUnit=EventData.IniUnit
-self:T({EscortAirbase=self.EscortAirbase})
-self:T({PlayerGroupName=PlayerGroupName})
-self:T({PlayerGroup=PlayerGroup})
-self:T({FirstGroup=self.CarrierSet:GetFirst()})
-self:T({FindGroup=self.CarrierSet:FindGroup(PlayerGroupName)})
-if self.CarrierSet:FindGroup(PlayerGroupName)then
-if self.AI_Escorts[PlayerGroupName]then
-self.AI_Escorts[PlayerGroupName]:Stop()
-self.AI_Escorts[PlayerGroupName]=nil
-end
-end
-end
-function AI_ESCORT_DISPATCHER:OnEventBirth(EventData)
-local PlayerGroupName=EventData.IniGroupName
-local PlayerGroup=EventData.IniGroup
-local PlayerUnit=EventData.IniUnit
-self:T({EscortAirbase=self.EscortAirbase})
-self:T({PlayerGroupName=PlayerGroupName})
-self:T({PlayerGroup=PlayerGroup})
-self:T({FirstGroup=self.CarrierSet:GetFirst()})
-self:T({FindGroup=self.CarrierSet:FindGroup(PlayerGroupName)})
-if self.CarrierSet:FindGroup(PlayerGroupName)then
-if not self.AI_Escorts[PlayerGroupName]then
-local LeaderUnit=PlayerUnit
-local EscortGroup=self.EscortSpawn:SpawnAtAirbase(self.EscortAirbase,SPAWN.Takeoff.Hot)
-self:T({EscortGroup=EscortGroup})
-self:ScheduleOnce(1,
-function(EscortGroup)
-local EscortSet=SET_GROUP:New()
-EscortSet:AddGroup(EscortGroup)
-self.AI_Escorts[PlayerGroupName]=AI_ESCORT:New(LeaderUnit,EscortSet,self.EscortName,self.EscortBriefing)
-self.AI_Escorts[PlayerGroupName]:FormationTrail(0,100,0)
-if EscortGroup:IsHelicopter()then
-self.AI_Escorts[PlayerGroupName]:MenusHelicopters()
-else
-self.AI_Escorts[PlayerGroupName]:MenusAirplanes()
-end
-self.AI_Escorts[PlayerGroupName]:__Start(0.1)
-end,EscortGroup
-)
-end
-end
-end
-AI_ESCORT_DISPATCHER_REQUEST={
-ClassName="AI_ESCORT_DISPATCHER_REQUEST",
-}
-AI_ESCORT_DISPATCHER_REQUEST.AI_Escorts={}
-function AI_ESCORT_DISPATCHER_REQUEST:New(CarrierSet,EscortSpawn,EscortAirbase,EscortName,EscortBriefing)
-local self=BASE:Inherit(self,FSM:New())
-self.CarrierSet=CarrierSet
-self.EscortSpawn=EscortSpawn
-self.EscortAirbase=EscortAirbase
-self.EscortName=EscortName
-self.EscortBriefing=EscortBriefing
-self:SetStartState("Idle")
-self:AddTransition("Monitoring","Monitor","Monitoring")
-self:AddTransition("Idle","Start","Monitoring")
-self:AddTransition("Monitoring","Stop","Idle")
-function self.CarrierSet.OnAfterRemoved(CarrierSet,From,Event,To,CarrierName,Carrier)
-self:F({Carrier=Carrier:GetName()})
-end
-return self
-end
-function AI_ESCORT_DISPATCHER_REQUEST:onafterStart(From,Event,To)
-self:HandleEvent(EVENTS.Birth)
-self:HandleEvent(EVENTS.PlayerLeaveUnit,self.OnEventExit)
-self:HandleEvent(EVENTS.Crash,self.OnEventExit)
-self:HandleEvent(EVENTS.Dead,self.OnEventExit)
-end
-function AI_ESCORT_DISPATCHER_REQUEST:OnEventExit(EventData)
-local PlayerGroupName=EventData.IniGroupName
-local PlayerGroup=EventData.IniGroup
-local PlayerUnit=EventData.IniUnit
-if self.CarrierSet:FindGroup(PlayerGroupName)then
-if self.AI_Escorts[PlayerGroupName]then
-self.AI_Escorts[PlayerGroupName]:Stop()
-self.AI_Escorts[PlayerGroupName]=nil
-end
-end
-end
-function AI_ESCORT_DISPATCHER_REQUEST:OnEventBirth(EventData)
-local PlayerGroupName=EventData.IniGroupName
-local PlayerGroup=EventData.IniGroup
-local PlayerUnit=EventData.IniUnit
-if self.CarrierSet:FindGroup(PlayerGroupName)then
-if not self.AI_Escorts[PlayerGroupName]then
-local LeaderUnit=PlayerUnit
-self:ScheduleOnce(0.1,
-function()
-self.AI_Escorts[PlayerGroupName]=AI_ESCORT_REQUEST:New(LeaderUnit,self.EscortSpawn,self.EscortAirbase,self.EscortName,self.EscortBriefing)
-self.AI_Escorts[PlayerGroupName]:FormationTrail(0,100,0)
-if PlayerGroup:IsHelicopter()then
-self.AI_Escorts[PlayerGroupName]:MenusHelicopters()
-else
-self.AI_Escorts[PlayerGroupName]:MenusAirplanes()
-end
-self.AI_Escorts[PlayerGroupName]:__Start(0.1)
-end
-)
-end
-end
-end
-AI_CARGO={
-ClassName="AI_CARGO",
-Coordinate=nil,
-Carrier_Cargo={},
-}
-function AI_CARGO:New(Carrier,CargoSet)
-local self=BASE:Inherit(self,FSM_CONTROLLABLE:New(Carrier))
-self.CargoSet=CargoSet
-self.CargoCarrier=Carrier
-self:SetStartState("Unloaded")
-self:AddTransition("Unloaded","Pickup","Unloaded")
-self:AddTransition("*","Load","*")
-self:AddTransition("*","Reload","*")
-self:AddTransition("*","Board","*")
-self:AddTransition("*","Loaded","Loaded")
-self:AddTransition("Loaded","PickedUp","Loaded")
-self:AddTransition("Loaded","Deploy","*")
-self:AddTransition("*","Unload","*")
-self:AddTransition("*","Unboard","*")
-self:AddTransition("*","Unloaded","Unloaded")
-self:AddTransition("Unloaded","Deployed","Unloaded")
-for _,CarrierUnit in pairs(Carrier:GetUnits())do
-local CarrierUnit=CarrierUnit
-CarrierUnit:SetCargoBayWeightLimit()
-end
-self.Transporting=false
-self.Relocating=false
-return self
-end
-function AI_CARGO:IsTransporting()
-return self.Transporting==true
-end
-function AI_CARGO:IsRelocating()
-return self.Relocating==true
-end
-function AI_CARGO:onafterPickup(APC,From,Event,To,Coordinate,Speed,Height,PickupZone)
-self.Transporting=false
-self.Relocating=true
-end
-function AI_CARGO:onafterDeploy(APC,From,Event,To,Coordinate,Speed,Height,DeployZone)
-self.Relocating=false
-self.Transporting=true
-end
-function AI_CARGO:onbeforeLoad(Carrier,From,Event,To,PickupZone)
-self:F({Carrier,From,Event,To})
-local Boarding=false
-local LoadInterval=2
-local LoadDelay=1
-local Carrier_List={}
-local Carrier_Weight={}
-if Carrier and Carrier:IsAlive()then
-self.Carrier_Cargo={}
-for _,CarrierUnit in pairs(Carrier:GetUnits())do
-local CarrierUnit=CarrierUnit
-local CargoBayFreeWeight=CarrierUnit:GetCargoBayFreeWeight()
-self:F({CargoBayFreeWeight=CargoBayFreeWeight})
-Carrier_List[#Carrier_List+1]=CarrierUnit
-Carrier_Weight[CarrierUnit]=CargoBayFreeWeight
-end
-local Carrier_Count=#Carrier_List
-local Carrier_Index=1
-local Loaded=false
-for _,Cargo in UTILS.spairs(self.CargoSet:GetSet(),function(t,a,b)return t[a]:GetWeight()>t[b]:GetWeight()end)do
-local Cargo=Cargo
-self:F({IsUnLoaded=Cargo:IsUnLoaded(),IsDeployed=Cargo:IsDeployed(),Cargo:GetName(),Carrier:GetName()})
-for Carrier_Loop=1,#Carrier_List do
-local CarrierUnit=Carrier_List[Carrier_Index]
-Carrier_Index=Carrier_Index+1
-if Carrier_Index>Carrier_Count then
-Carrier_Index=1
-end
-if Cargo:IsUnLoaded()and not Cargo:IsDeployed()then
-if Cargo:IsInLoadRadius(CarrierUnit:GetCoordinate())then
-self:F({"In radius",CarrierUnit:GetName()})
-local CargoWeight=Cargo:GetWeight()
-local CarrierSpace=Carrier_Weight[CarrierUnit]
-if CarrierSpace>CargoWeight then
-Carrier:RouteStop()
-Cargo:__Board(-LoadDelay,CarrierUnit)
-self:__Board(LoadDelay,Cargo,CarrierUnit,PickupZone)
-LoadDelay=LoadDelay+Cargo:GetCount()*LoadInterval
-self.Carrier_Cargo[Cargo]=CarrierUnit
-Boarding=true
-Carrier_Weight[CarrierUnit]=Carrier_Weight[CarrierUnit]-CargoWeight
-Loaded=true
-break
-else
-self:T(string.format("WARNING: Cargo too heavy for carrier %s. Cargo=%.1f > %.1f free space",tostring(CarrierUnit:GetName()),CargoWeight,CarrierSpace))
-end
-end
-end
-end
-end
-if not Loaded==true then
-self.Relocating=false
-end
-end
-return Boarding
-end
-function AI_CARGO:onbeforeReload(Carrier,From,Event,To)
-self:F({Carrier,From,Event,To})
-local Boarding=false
-local LoadInterval=2
-local LoadDelay=1
-local Carrier_List={}
-local Carrier_Weight={}
-if Carrier and Carrier:IsAlive()then
-for _,CarrierUnit in pairs(Carrier:GetUnits())do
-local CarrierUnit=CarrierUnit
-Carrier_List[#Carrier_List+1]=CarrierUnit
-end
-local Carrier_Count=#Carrier_List
-local Carrier_Index=1
-local Loaded=false
-for Cargo,CarrierUnit in pairs(self.Carrier_Cargo)do
-local Cargo=Cargo
-self:F({IsUnLoaded=Cargo:IsUnLoaded(),IsDeployed=Cargo:IsDeployed(),Cargo:GetName(),Carrier:GetName()})
-for Carrier_Loop=1,#Carrier_List do
-local CarrierUnit=Carrier_List[Carrier_Index]
-Carrier_Index=Carrier_Index+1
-if Carrier_Index>Carrier_Count then
-Carrier_Index=1
-end
-if Cargo:IsUnLoaded()and not Cargo:IsDeployed()then
-Carrier:RouteStop()
-Cargo:__Board(-LoadDelay,CarrierUnit)
-self:__Board(LoadDelay,Cargo,CarrierUnit)
-LoadDelay=LoadDelay+Cargo:GetCount()*LoadInterval
-self.Carrier_Cargo[Cargo]=CarrierUnit
-Boarding=true
-Loaded=true
-end
-end
-end
-if not Loaded==true then
-self.Relocating=false
-end
-end
-return Boarding
-end
-function AI_CARGO:onafterBoard(Carrier,From,Event,To,Cargo,CarrierUnit,PickupZone)
-self:F({Carrier,From,Event,To,Cargo,CarrierUnit:GetName()})
-if Carrier and Carrier:IsAlive()then
-self:F({IsLoaded=Cargo:IsLoaded(),Cargo:GetName(),Carrier:GetName()})
-if not Cargo:IsLoaded()and not Cargo:IsDestroyed()then
-self:__Board(-10,Cargo,CarrierUnit,PickupZone)
-return
-end
-end
-self:__Loaded(0.1,Cargo,CarrierUnit,PickupZone)
-end
-function AI_CARGO:onafterLoaded(Carrier,From,Event,To,Cargo,PickupZone)
-self:F({Carrier,From,Event,To})
-local Loaded=true
-if Carrier and Carrier:IsAlive()then
-for Cargo,CarrierUnit in pairs(self.Carrier_Cargo)do
-local Cargo=Cargo
-self:F({IsLoaded=Cargo:IsLoaded(),IsDestroyed=Cargo:IsDestroyed(),Cargo:GetName(),Carrier:GetName()})
-if not Cargo:IsLoaded()and not Cargo:IsDestroyed()then
-Loaded=false
-end
-end
-end
-if Loaded then
-self:__PickedUp(0.1,PickupZone)
-end
-end
-function AI_CARGO:onafterPickedUp(Carrier,From,Event,To,PickupZone)
-self:F({Carrier,From,Event,To})
-Carrier:RouteResume()
-local HasCargo=false
-if Carrier and Carrier:IsAlive()then
-for Cargo,CarrierUnit in pairs(self.Carrier_Cargo)do
-HasCargo=true
-break
-end
-end
-self.Relocating=false
-if HasCargo then
-self:F("Transporting")
-self.Transporting=true
-end
-end
-function AI_CARGO:onafterUnload(Carrier,From,Event,To,DeployZone,Defend)
-self:F({Carrier,From,Event,To,DeployZone,Defend=Defend})
-local UnboardInterval=5
-local UnboardDelay=5
-if Carrier and Carrier:IsAlive()then
-for _,CarrierUnit in pairs(Carrier:GetUnits())do
-local CarrierUnit=CarrierUnit
-Carrier:RouteStop()
-for _,Cargo in pairs(CarrierUnit:GetCargo())do
-self:F({Cargo=Cargo:GetName(),Isloaded=Cargo:IsLoaded()})
-if Cargo:IsLoaded()then
-Cargo:__UnBoard(UnboardDelay)
-UnboardDelay=UnboardDelay+Cargo:GetCount()*UnboardInterval
-self:__Unboard(UnboardDelay,Cargo,CarrierUnit,DeployZone,Defend)
-if not Defend==true then
-Cargo:SetDeployed(true)
-end
-end
-end
-end
-end
-end
-function AI_CARGO:onafterUnboard(Carrier,From,Event,To,Cargo,CarrierUnit,DeployZone,Defend)
-self:F({Carrier,From,Event,To,Cargo:GetName(),DeployZone=DeployZone,Defend=Defend})
-if Carrier and Carrier:IsAlive()then
-if not Cargo:IsUnLoaded()then
-self:__Unboard(10,Cargo,CarrierUnit,DeployZone,Defend)
-return
-end
-end
-self:Unloaded(Cargo,CarrierUnit,DeployZone,Defend)
-end
-function AI_CARGO:onafterUnloaded(Carrier,From,Event,To,Cargo,CarrierUnit,DeployZone,Defend)
-self:F({Carrier,From,Event,To,Cargo:GetName(),DeployZone=DeployZone,Defend=Defend})
-local AllUnloaded=true
-if Carrier and Carrier:IsAlive()then
-for _,CarrierUnit in pairs(Carrier:GetUnits())do
-local CarrierUnit=CarrierUnit
-local IsEmpty=CarrierUnit:IsCargoEmpty()
-self:T({IsEmpty=IsEmpty})
-if not IsEmpty then
-AllUnloaded=false
-break
-end
-end
-if AllUnloaded==true then
-if DeployZone==true then
-self.Carrier_Cargo={}
-end
-self.CargoCarrier=Carrier
-end
-end
-if AllUnloaded==true then
-self:__Deployed(5,DeployZone,Defend)
-end
-end
-function AI_CARGO:onafterDeployed(Carrier,From,Event,To,DeployZone,Defend)
-self:F({Carrier,From,Event,To,DeployZone=DeployZone,Defend=Defend})
-if not Defend==true then
-self.Transporting=false
-else
-self:F("Defending")
-end
-end
-AI_CARGO_APC={
-ClassName="AI_CARGO_APC",
-Coordinate=nil,
-}
-function AI_CARGO_APC:New(APC,CargoSet,CombatRadius)
-local self=BASE:Inherit(self,AI_CARGO:New(APC,CargoSet))
-self:AddTransition("*","Monitor","*")
-self:AddTransition("*","Follow","Following")
-self:AddTransition("*","Guard","Unloaded")
-self:AddTransition("*","Home","*")
-self:AddTransition("*","Reload","Boarding")
-self:AddTransition("*","Deployed","*")
-self:AddTransition("*","PickedUp","*")
-self:AddTransition("*","Destroyed","Destroyed")
-self:SetCombatRadius(CombatRadius)
-self:SetCarrier(APC)
-return self
-end
-function AI_CARGO_APC:SetCarrier(CargoCarrier)
-self.CargoCarrier=CargoCarrier
-self.CargoCarrier:SetState(self.CargoCarrier,"AI_CARGO_APC",self)
-CargoCarrier:HandleEvent(EVENTS.Dead)
-function CargoCarrier:OnEventDead(EventData)
-self:F({"dead"})
-local AICargoTroops=self:GetState(self,"AI_CARGO_APC")
-self:F({AICargoTroops=AICargoTroops})
-if AICargoTroops then
-self:F({})
-if not AICargoTroops:Is("Loaded")then
-AICargoTroops:Destroyed()
-end
-end
-end
-self.Zone=ZONE_UNIT:New(self.CargoCarrier:GetName().."-Zone",self.CargoCarrier,self.CombatRadius)
-self.Coalition=self.CargoCarrier:GetCoalition()
-self:SetControllable(CargoCarrier)
-self:Guard()
-return self
-end
-function AI_CARGO_APC:SetOffRoad(Offroad,Formation)
-self:SetPickupOffRoad(Offroad,Formation)
-self:SetDeployOffRoad(Offroad,Formation)
-return self
-end
-function AI_CARGO_APC:SetPickupOffRoad(Offroad,Formation)
-self.pickupOffroad=Offroad
-self.pickupFormation=Formation or ENUMS.Formation.Vehicle.OffRoad
-return self
-end
-function AI_CARGO_APC:SetDeployOffRoad(Offroad,Formation)
-self.deployOffroad=Offroad
-self.deployFormation=Formation or ENUMS.Formation.Vehicle.OffRoad
-return self
-end
-function AI_CARGO_APC:FindCarrier(Coordinate,Radius)
-local CoordinateZone=ZONE_RADIUS:New("Zone",Coordinate:GetVec2(),Radius)
-CoordinateZone:Scan({Object.Category.UNIT})
-for _,DCSUnit in pairs(CoordinateZone:GetScannedUnits())do
-local NearUnit=UNIT:Find(DCSUnit)
-self:F({NearUnit=NearUnit})
-if not NearUnit:GetState(NearUnit,"AI_CARGO_APC")then
-local Attributes=NearUnit:GetDesc()
-self:F({Desc=Attributes})
-if NearUnit:HasAttribute("Trucks")then
-return NearUnit:GetGroup()
-end
-end
-end
-return nil
-end
-function AI_CARGO_APC:SetCombatRadius(CombatRadius)
-self.CombatRadius=CombatRadius or 0
-if self.CombatRadius>0 then
-self:__Monitor(-5)
-end
-return self
-end
-function AI_CARGO_APC:FollowToCarrier(Me,APCUnit,CargoGroup)
-local InfantryGroup=CargoGroup:GetGroup()
-self:F({self=self:GetClassNameAndID(),InfantryGroup=InfantryGroup:GetName()})
-if APCUnit:IsAlive()then
-if InfantryGroup:IsPartlyInZone(ZONE_UNIT:New("Radius",APCUnit,25))then
-Me:Guard()
-else
-self:F({InfantryGroup=InfantryGroup:GetName()})
-if InfantryGroup:IsAlive()then
-self:F({InfantryGroup=InfantryGroup:GetName()})
-local Waypoints={}
-local FromCoord=InfantryGroup:GetCoordinate()
-local FromGround=FromCoord:WaypointGround(10,"Diamond")
-self:F({FromGround=FromGround})
-table.insert(Waypoints,FromGround)
-local ToCoord=APCUnit:GetCoordinate():GetRandomCoordinateInRadius(10,5)
-local ToGround=ToCoord:WaypointGround(10,"Diamond")
-self:F({ToGround=ToGround})
-table.insert(Waypoints,ToGround)
-local TaskRoute=InfantryGroup:TaskFunction("AI_CARGO_APC.FollowToCarrier",Me,APCUnit,CargoGroup)
-self:F({Waypoints=Waypoints})
-local Waypoint=Waypoints[#Waypoints]
-InfantryGroup:SetTaskWaypoint(Waypoint,TaskRoute)
-InfantryGroup:Route(Waypoints,1)
-end
-end
-end
-end
-function AI_CARGO_APC:onafterMonitor(APC,From,Event,To)
-self:F({APC,From,Event,To,IsTransporting=self:IsTransporting()})
-if self.CombatRadius>0 then
-if APC and APC:IsAlive()then
-if self.CarrierCoordinate then
-if self:IsTransporting()==true then
-local Coordinate=APC:GetCoordinate()
-if self:Is("Unloaded")or self:Is("Loaded")then
-self.Zone:Scan({Object.Category.UNIT})
-if self.Zone:IsAllInZoneOfCoalition(self.Coalition)then
-if self:Is("Unloaded")then
-self:Reload()
-end
-else
-if self:Is("Loaded")then
-self:__Unload(1,nil,true)
-else
-if self:Is("Unloaded")then
-end
-self:F("I am here"..self:GetCurrentState())
-if self:Is("Following")then
-for Cargo,APCUnit in pairs(self.Carrier_Cargo)do
-local Cargo=Cargo
-local APCUnit=APCUnit
-if Cargo:IsAlive()then
-if not Cargo:IsNear(APCUnit,40)then
-APCUnit:RouteStop()
-self.CarrierStopped=true
-else
-if self.CarrierStopped then
-if Cargo:IsNear(APCUnit,25)then
-APCUnit:RouteResume()
-self.CarrierStopped=nil
-end
-end
-end
-end
-end
-end
-end
-end
-end
-end
-end
-self.CarrierCoordinate=APC:GetCoordinate()
-end
-self:__Monitor(-5)
-end
-end
-function AI_CARGO_APC:onafterFollow(APC,From,Event,To)
-self:F({APC,From,Event,To})
-self:F("Follow")
-if APC and APC:IsAlive()then
-for Cargo,APCUnit in pairs(self.Carrier_Cargo)do
-local Cargo=Cargo
-if Cargo:IsUnLoaded()then
-self:FollowToCarrier(self,APCUnit,Cargo)
-APCUnit:RouteResume()
-end
-end
-end
-end
-function AI_CARGO_APC._Pickup(APC,self,Coordinate,Speed,PickupZone)
-APC:F({"AI_CARGO_APC._Pickup:",APC:GetName()})
-if APC:IsAlive()then
-self:Load(PickupZone)
-end
-end
-function AI_CARGO_APC._Deploy(APC,self,Coordinate,DeployZone)
-APC:F({"AI_CARGO_APC._Deploy:",APC})
-if APC:IsAlive()then
-self:Unload(DeployZone)
-end
-end
-function AI_CARGO_APC:onafterPickup(APC,From,Event,To,Coordinate,Speed,Height,PickupZone)
-if APC and APC:IsAlive()then
-if Coordinate then
-self.RoutePickup=true
-local _speed=Speed or APC:GetSpeedMax()*0.5
-local Waypoints={}
-if self.pickupOffroad then
-Waypoints[1]=APC:GetCoordinate():WaypointGround(Speed,self.pickupFormation)
-Waypoints[2]=Coordinate:WaypointGround(_speed,self.pickupFormation,DCSTasks)
-else
-Waypoints=APC:TaskGroundOnRoad(Coordinate,_speed,ENUMS.Formation.Vehicle.OffRoad,true)
-end
-local TaskFunction=APC:TaskFunction("AI_CARGO_APC._Pickup",self,Coordinate,Speed,PickupZone)
-local Waypoint=Waypoints[#Waypoints]
-APC:SetTaskWaypoint(Waypoint,TaskFunction)
-APC:Route(Waypoints,1)
-else
-AI_CARGO_APC._Pickup(APC,self,Coordinate,Speed,PickupZone)
-end
-self:GetParent(self,AI_CARGO_APC).onafterPickup(self,APC,From,Event,To,Coordinate,Speed,Height,PickupZone)
-end
-end
-function AI_CARGO_APC:onafterDeploy(APC,From,Event,To,Coordinate,Speed,Height,DeployZone)
-if APC and APC:IsAlive()then
-self.RouteDeploy=true
-local speedmax=APC:GetSpeedMax()
-local _speed=Speed or speedmax*0.5
-_speed=math.min(_speed,speedmax)
-local Waypoints={}
-if self.deployOffroad then
-Waypoints[1]=APC:GetCoordinate():WaypointGround(Speed,self.deployFormation)
-Waypoints[2]=Coordinate:WaypointGround(_speed,self.deployFormation,DCSTasks)
-else
-Waypoints=APC:TaskGroundOnRoad(Coordinate,_speed,ENUMS.Formation.Vehicle.OffRoad,true)
-end
-local TaskFunction=APC:TaskFunction("AI_CARGO_APC._Deploy",self,Coordinate,DeployZone)
-local Waypoint=Waypoints[#Waypoints]
-APC:SetTaskWaypoint(Waypoint,TaskFunction)
-APC:Route(Waypoints,1)
-self:GetParent(self,AI_CARGO_APC).onafterDeploy(self,APC,From,Event,To,Coordinate,Speed,Height,DeployZone)
-end
-end
-function AI_CARGO_APC:onafterUnloaded(Carrier,From,Event,To,Cargo,CarrierUnit,DeployZone,Defend)
-self:F({Carrier,From,Event,To,DeployZone=DeployZone,Defend=Defend})
-self:GetParent(self,AI_CARGO_APC).onafterUnloaded(self,Carrier,From,Event,To,Cargo,CarrierUnit,DeployZone,Defend)
-if Defend==true then
-self.Zone:Scan({Object.Category.UNIT})
-if not self.Zone:IsAllInZoneOfCoalition(self.Coalition)then
-local AttackUnits=self.Zone:GetScannedUnits()
-local Move={}
-local CargoGroup=Cargo.CargoObject
-Move[#Move+1]=CargoGroup:GetCoordinate():WaypointGround(70,"Custom")
-for UnitId,AttackUnit in pairs(AttackUnits)do
-local MooseUnit=UNIT:Find(AttackUnit)
-if MooseUnit:GetCoalition()~=CargoGroup:GetCoalition()then
-Move[#Move+1]=MooseUnit:GetCoordinate():WaypointGround(70,"Line abreast")
-self:F({MooseUnit=MooseUnit:GetName(),CargoGroup=CargoGroup:GetName()})
-end
-end
-CargoGroup:RoutePush(Move,0.1)
-end
-end
-end
-function AI_CARGO_APC:onafterDeployed(APC,From,Event,To,DeployZone,Defend)
-self:F({APC,From,Event,To,DeployZone=DeployZone,Defend=Defend})
-self:__Guard(0.1)
-self:GetParent(self,AI_CARGO_APC).onafterDeployed(self,APC,From,Event,To,DeployZone,Defend)
-end
-function AI_CARGO_APC:onafterHome(APC,From,Event,To,Coordinate,Speed,Height,HomeZone)
-if APC and APC:IsAlive()~=nil then
-self.RouteHome=true
-Speed=Speed or APC:GetSpeedMax()*0.5
-local Waypoints=APC:TaskGroundOnRoad(Coordinate,Speed,"Line abreast",true)
-self:F({Waypoints=Waypoints})
-local Waypoint=Waypoints[#Waypoints]
-APC:Route(Waypoints,1)
-end
-end
-AI_CARGO_HELICOPTER={
-ClassName="AI_CARGO_HELICOPTER",
-Coordinate=nil,
-}
-AI_CARGO_QUEUE={}
-function AI_CARGO_HELICOPTER:New(Helicopter,CargoSet)
-local self=BASE:Inherit(self,AI_CARGO:New(Helicopter,CargoSet))
-self.Zone=ZONE_GROUP:New(Helicopter:GetName(),Helicopter,300)
-self:SetStartState("Unloaded")
-self:AddTransition("Unloaded","Pickup","Unloaded")
-self:AddTransition("*","Landed","*")
-self:AddTransition("*","Load","*")
-self:AddTransition("*","Loaded","Loaded")
-self:AddTransition("Loaded","PickedUp","Loaded")
-self:AddTransition("Loaded","Deploy","*")
-self:AddTransition("*","Queue","*")
-self:AddTransition("*","Orbit","*")
-self:AddTransition("*","Destroyed","*")
-self:AddTransition("*","Unload","*")
-self:AddTransition("*","Unloaded","Unloaded")
-self:AddTransition("Unloaded","Deployed","Unloaded")
-self:AddTransition("*","Home","*")
-Helicopter:HandleEvent(EVENTS.Crash,
-function(Helicopter,EventData)
-AI_CARGO_QUEUE[Helicopter]=nil
-end
-)
-Helicopter:HandleEvent(EVENTS.Land,
-function(Helicopter,EventData)
-self:ScheduleOnce(60,
-function(Helicopter)
-AI_CARGO_QUEUE[Helicopter]=nil
-end,Helicopter
-)
-end
-)
-self:SetCarrier(Helicopter)
-self.landingspeed=15
-self.landingheight=5.5
-return self
-end
-function AI_CARGO_HELICOPTER:SetCarrier(Helicopter)
-local AICargo=self
-self.Helicopter=Helicopter
-self.Helicopter:SetState(self.Helicopter,"AI_CARGO_HELICOPTER",self)
-self.RoutePickup=false
-self.RouteDeploy=false
-Helicopter:HandleEvent(EVENTS.Dead)
-Helicopter:HandleEvent(EVENTS.Hit)
-Helicopter:HandleEvent(EVENTS.Land)
-function Helicopter:OnEventDead(EventData)
-local AICargoTroops=self:GetState(self,"AI_CARGO_HELICOPTER")
-self:F({AICargoTroops=AICargoTroops})
-if AICargoTroops then
-self:F({})
-if not AICargoTroops:Is("Loaded")then
-AICargoTroops:Destroyed()
-end
-end
-end
-function Helicopter:OnEventLand(EventData)
-AICargo:Landed()
-end
-self.Coalition=self.Helicopter:GetCoalition()
-self:SetControllable(Helicopter)
-return self
-end
-function AI_CARGO_HELICOPTER:SetLandingSpeedAndHeight(speed,height)
-local _speed=speed or 15
-local _height=height or 5.5
-self.landingheight=_height
-self.landingspeed=_speed
-return self
-end
-function AI_CARGO_HELICOPTER:onafterLanded(Helicopter,From,Event,To)
-self:F({From,Event,To})
-Helicopter:F({Name=Helicopter:GetName()})
-if Helicopter and Helicopter:IsAlive()then
-self:T({Helicopter:GetName(),Height=Helicopter:GetHeight(true),Velocity=Helicopter:GetVelocityKMH()})
-if self.RoutePickup==true then
-if Helicopter:GetHeight(true)<=self.landingheight then
-self:Load(self.PickupZone)
-self.RoutePickup=false
-end
-end
-if self.RouteDeploy==true then
-if Helicopter:GetHeight(true)<=self.landingheight then
-self:Unload(self.DeployZone)
-self.RouteDeploy=false
-end
-end
-end
-end
-function AI_CARGO_HELICOPTER:onafterQueue(Helicopter,From,Event,To,Coordinate,Speed,DeployZone)
-self:F({From,Event,To,Coordinate,Speed,DeployZone})
-local HelicopterInZone=false
-if Helicopter and Helicopter:IsAlive()==true then
-local Distance=Coordinate:DistanceFromPointVec2(Helicopter:GetCoordinate())
-if Distance>2000 then
-self:__Queue(-10,Coordinate,Speed,DeployZone)
-else
-local ZoneFree=true
-for Helicopter,ZoneQueue in pairs(AI_CARGO_QUEUE)do
-local ZoneQueue=ZoneQueue
-if ZoneQueue:IsCoordinateInZone(Coordinate)then
-ZoneFree=false
-end
-end
-self:F({ZoneFree=ZoneFree})
-if ZoneFree==true then
-local ZoneQueue=ZONE_RADIUS:New(Helicopter:GetName(),Coordinate:GetVec2(),100)
-AI_CARGO_QUEUE[Helicopter]=ZoneQueue
-local Route={}
-local CoordinateTo=Coordinate
-local landheight=CoordinateTo:GetLandHeight()
-CoordinateTo.y=landheight+50
-local WaypointTo=CoordinateTo:WaypointAir(
-"RADIO",
-COORDINATE.WaypointType.TurningPoint,
-COORDINATE.WaypointAction.TurningPoint,
-50,
-true
-)
-Route[#Route+1]=WaypointTo
-local Tasks={}
-Tasks[#Tasks+1]=Helicopter:TaskLandAtVec2(CoordinateTo:GetVec2())
-Route[#Route].task=Helicopter:TaskCombo(Tasks)
-Route[#Route+1]=WaypointTo
-Helicopter:Route(Route,0)
-self.DeployZone=DeployZone
-else
-self:__Queue(-10,Coordinate,Speed,DeployZone)
-end
-end
-else
-AI_CARGO_QUEUE[Helicopter]=nil
-end
-end
-function AI_CARGO_HELICOPTER:onafterOrbit(Helicopter,From,Event,To,Coordinate)
-self:F({From,Event,To,Coordinate})
-if Helicopter and Helicopter:IsAlive()then
-local Route={}
-local CoordinateTo=Coordinate
-local landheight=CoordinateTo:GetLandHeight()
-CoordinateTo.y=landheight+50
-local WaypointTo=CoordinateTo:WaypointAir("RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,50,true)
-Route[#Route+1]=WaypointTo
-local Tasks={}
-Tasks[#Tasks+1]=Helicopter:TaskOrbitCircle(math.random(30,80),150,CoordinateTo:GetRandomCoordinateInRadius(800,500))
-Route[#Route].task=Helicopter:TaskCombo(Tasks)
-Route[#Route+1]=WaypointTo
-Helicopter:Route(Route,0)
-end
-end
-function AI_CARGO_HELICOPTER:onafterDeployed(Helicopter,From,Event,To,DeployZone)
-self:F({From,Event,To,DeployZone=DeployZone})
-self:Orbit(Helicopter:GetCoordinate(),50)
-self:ScheduleOnce(30,
-function(Helicopter)
-AI_CARGO_QUEUE[Helicopter]=nil
-end,Helicopter
-)
-self:GetParent(self,AI_CARGO_HELICOPTER).onafterDeployed(self,Helicopter,From,Event,To,DeployZone)
-end
-function AI_CARGO_HELICOPTER:onafterPickup(Helicopter,From,Event,To,Coordinate,Speed,Height,PickupZone)
-self:F({Coordinate,Speed,Height,PickupZone})
-if Helicopter and Helicopter:IsAlive()~=nil then
-Helicopter:Activate()
-self.RoutePickup=true
-Coordinate.y=Height
-local _speed=Speed or Helicopter:GetSpeedMax()*0.5
-local Route={}
-local CoordinateFrom=Helicopter:GetCoordinate()
-local WaypointFrom=CoordinateFrom:WaypointAir("RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,_speed,true)
-local CoordinateTo=Coordinate
-local landheight=CoordinateTo:GetLandHeight()
-CoordinateTo.y=landheight+50
-local WaypointTo=CoordinateTo:WaypointAir("RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,_speed,true)
-Route[#Route+1]=WaypointFrom
-Route[#Route+1]=WaypointTo
-Helicopter:WayPointInitialize(Route)
-local Tasks={}
-Tasks[#Tasks+1]=Helicopter:TaskLandAtVec2(CoordinateTo:GetVec2())
-Route[#Route].task=Helicopter:TaskCombo(Tasks)
-Route[#Route+1]=WaypointTo
-Helicopter:Route(Route,1)
-self.PickupZone=PickupZone
-self:GetParent(self,AI_CARGO_HELICOPTER).onafterPickup(self,Helicopter,From,Event,To,Coordinate,Speed,Height,PickupZone)
-end
-end
-function AI_CARGO_HELICOPTER:_Deploy(AICargoHelicopter,Coordinate,DeployZone)
-AICargoHelicopter:__Queue(-10,Coordinate,100,DeployZone)
-end
-function AI_CARGO_HELICOPTER:onafterDeploy(Helicopter,From,Event,To,Coordinate,Speed,Height,DeployZone)
-self:F({From,Event,To,Coordinate,Speed,Height,DeployZone})
-if Helicopter and Helicopter:IsAlive()~=nil then
-self.RouteDeploy=true
-local Route={}
-Coordinate.y=Height
-local _speed=Speed or Helicopter:GetSpeedMax()*0.5
-local CoordinateFrom=Helicopter:GetCoordinate()
-local WaypointFrom=CoordinateFrom:WaypointAir("RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,_speed,true)
-Route[#Route+1]=WaypointFrom
-Route[#Route+1]=WaypointFrom
-local CoordinateTo=Coordinate
-local landheight=CoordinateTo:GetLandHeight()
-CoordinateTo.y=landheight+50
-local WaypointTo=CoordinateTo:WaypointAir("RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,_speed,true)
-Route[#Route+1]=WaypointTo
-Route[#Route+1]=WaypointTo
-Helicopter:WayPointInitialize(Route)
-local Tasks={}
-Tasks[#Tasks+1]=Helicopter:TaskFunction("AI_CARGO_HELICOPTER._Deploy",self,Coordinate,DeployZone)
-Tasks[#Tasks+1]=Helicopter:TaskOrbitCircle(math.random(30,100),_speed,CoordinateTo:GetRandomCoordinateInRadius(800,500))
-Route[#Route].task=Helicopter:TaskCombo(Tasks)
-Route[#Route+1]=WaypointTo
-Helicopter:Route(Route,0)
-self:GetParent(self,AI_CARGO_HELICOPTER).onafterDeploy(self,Helicopter,From,Event,To,Coordinate,Speed,Height,DeployZone)
-end
-end
-function AI_CARGO_HELICOPTER:onafterHome(Helicopter,From,Event,To,Coordinate,Speed,Height,HomeZone)
-self:F({From,Event,To,Coordinate,Speed,Height})
-if Helicopter and Helicopter:IsAlive()~=nil then
-self.RouteHome=true
-local Route={}
-Height=Height or 50
-Speed=Speed or Helicopter:GetSpeedMax()*0.5
-local CoordinateFrom=Helicopter:GetCoordinate()
-local WaypointFrom=CoordinateFrom:WaypointAir("RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,Speed,true)
-Route[#Route+1]=WaypointFrom
-local CoordinateTo=Coordinate
-local landheight=CoordinateTo:GetLandHeight()
-CoordinateTo.y=landheight+Height
-local WaypointTo=CoordinateTo:WaypointAir("RADIO",COORDINATE.WaypointType.TurningPoint,COORDINATE.WaypointAction.TurningPoint,Speed,true)
-Route[#Route+1]=WaypointTo
-Helicopter:WayPointInitialize(Route)
-local Tasks={}
-Tasks[#Tasks+1]=Helicopter:TaskLandAtVec2(CoordinateTo:GetVec2())
-Route[#Route].task=Helicopter:TaskCombo(Tasks)
-Route[#Route+1]=WaypointTo
-Helicopter:Route(Route,0)
-end
-end
-AI_CARGO_AIRPLANE={
-ClassName="AI_CARGO_AIRPLANE",
-Coordinate=nil,
-}
-function AI_CARGO_AIRPLANE:New(Airplane,CargoSet)
-local self=BASE:Inherit(self,AI_CARGO:New(Airplane,CargoSet))
-self:AddTransition("*","Landed","*")
-self:AddTransition("*","Home","*")
-self:AddTransition("*","Destroyed","Destroyed")
-self:SetCarrier(Airplane)
-return self
-end
-function AI_CARGO_AIRPLANE:SetCarrier(Airplane)
-local AICargo=self
-self.Airplane=Airplane
-self.Airplane:SetState(self.Airplane,"AI_CARGO_AIRPLANE",self)
-self.RoutePickup=false
-self.RouteDeploy=false
-Airplane:HandleEvent(EVENTS.Dead)
-Airplane:HandleEvent(EVENTS.Hit)
-Airplane:HandleEvent(EVENTS.EngineShutdown)
-function Airplane:OnEventDead(EventData)
-local AICargoTroops=self:GetState(self,"AI_CARGO_AIRPLANE")
-self:F({AICargoTroops=AICargoTroops})
-if AICargoTroops then
-self:F({})
-if not AICargoTroops:Is("Loaded")then
-AICargoTroops:Destroyed()
-end
-end
-end
-function Airplane:OnEventHit(EventData)
-local AICargoTroops=self:GetState(self,"AI_CARGO_AIRPLANE")
-if AICargoTroops then
-self:F({OnHitLoaded=AICargoTroops:Is("Loaded")})
-if AICargoTroops:Is("Loaded")or AICargoTroops:Is("Boarding")then
-AICargoTroops:Unload()
-end
-end
-end
-function Airplane:OnEventEngineShutdown(EventData)
-AICargo.Relocating=false
-AICargo:Landed(self.Airplane)
-end
-self.Coalition=self.Airplane:GetCoalition()
-self:SetControllable(Airplane)
-return self
-end
-function AI_CARGO_AIRPLANE:FindCarrier(Coordinate,Radius)
-local CoordinateZone=ZONE_RADIUS:New("Zone",Coordinate:GetVec2(),Radius)
-CoordinateZone:Scan({Object.Category.UNIT})
-for _,DCSUnit in pairs(CoordinateZone:GetScannedUnits())do
-local NearUnit=UNIT:Find(DCSUnit)
-self:F({NearUnit=NearUnit})
-if not NearUnit:GetState(NearUnit,"AI_CARGO_AIRPLANE")then
-local Attributes=NearUnit:GetDesc()
-self:F({Desc=Attributes})
-if NearUnit:HasAttribute("Trucks")then
-self:SetCarrier(NearUnit)
-break
-end
-end
-end
-end
-function AI_CARGO_AIRPLANE:onafterLanded(Airplane,From,Event,To)
-self:F({Airplane,From,Event,To})
-if Airplane and Airplane:IsAlive()~=nil then
-if self.RoutePickup==true then
-self:Load(self.PickupZone)
-end
-if self.RouteDeploy==true then
-self:Unload()
-self.RouteDeploy=false
-end
-end
-end
-function AI_CARGO_AIRPLANE:onafterPickup(Airplane,From,Event,To,Coordinate,Speed,Height,PickupZone)
-if Airplane and Airplane:IsAlive()then
-local airbasepickup=Coordinate:GetClosestAirbase()
-self.PickupZone=PickupZone or ZONE_AIRBASE:New(airbasepickup:GetName())
-local ClosestAirbase,DistToAirbase=Airplane:GetCoordinate():GetClosestAirbase()
-if Airplane:InAir()then
-self.Airbase=nil
-else
-self.Airbase=ClosestAirbase
-end
-local Airbase=self.PickupZone:GetAirbase()
-local Dist=Airbase:GetCoordinate():Get2DDistance(ClosestAirbase:GetCoordinate())
-if Airplane:InAir()or Dist>500 then
-self:Route(Airplane,Airbase,Speed,Height)
-self.Airbase=Airbase
-self.RoutePickup=true
-else
-self.RoutePickup=true
-self:Landed()
-end
-self:GetParent(self,AI_CARGO_AIRPLANE).onafterPickup(self,Airplane,From,Event,To,Coordinate,Speed,Height,self.PickupZone)
-end
-end
-function AI_CARGO_AIRPLANE:onafterDeploy(Airplane,From,Event,To,Coordinate,Speed,Height,DeployZone)
-if Airplane and Airplane:IsAlive()~=nil then
-local Airbase=Coordinate:GetClosestAirbase()
-if DeployZone then
-Airbase=DeployZone:GetAirbase()
-end
-if Airplane:IsAlive()==false then
-Airplane:SetCommand({id='Start',params={}})
-end
-self:Route(Airplane,Airbase,Speed,Height)
-self.RouteDeploy=true
-self.Airbase=Airbase
-self:GetParent(self,AI_CARGO_AIRPLANE).onafterDeploy(self,Airplane,From,Event,To,Coordinate,Speed,Height,DeployZone)
-end
-end
-function AI_CARGO_AIRPLANE:onafterUnload(Airplane,From,Event,To,DeployZone)
-local UnboardInterval=10
-local UnboardDelay=10
-if Airplane and Airplane:IsAlive()then
-for _,AirplaneUnit in pairs(Airplane:GetUnits())do
-local Cargos=AirplaneUnit:GetCargo()
-for CargoID,Cargo in pairs(Cargos)do
-local Angle=180
-local CargoCarrierHeading=Airplane:GetHeading()
-local CargoDeployHeading=((CargoCarrierHeading+Angle)>=360)and(CargoCarrierHeading+Angle-360)or(CargoCarrierHeading+Angle)
-self:T({CargoCarrierHeading,CargoDeployHeading})
-local CargoDeployCoordinate=Airplane:GetPointVec2():Translate(150,CargoDeployHeading)
-Cargo:__UnBoard(UnboardDelay,CargoDeployCoordinate)
-UnboardDelay=UnboardDelay+UnboardInterval
-Cargo:SetDeployed(true)
-self:__Unboard(UnboardDelay,Cargo,AirplaneUnit,DeployZone)
-end
-end
-end
-end
-function AI_CARGO_AIRPLANE:Route(Airplane,Airbase,Speed,Height,Uncontrolled)
-if Airplane and Airplane:IsAlive()then
-local Takeoff=SPAWN.Takeoff.Cold
-local Template=Airplane:GetTemplate()
-if Template==nil then
-return
-end
-local Points={}
-local AirbasePointVec2=Airbase:GetPointVec2()
-local ToWaypoint=AirbasePointVec2:WaypointAir(COORDINATE.WaypointAltType.BARO,"Land","Landing",Speed or Airplane:GetSpeedMax()*0.8,true,Airbase)
-if self.Airbase then
-Template.route.points[2]=ToWaypoint
-Airplane:RespawnAtCurrentAirbase(Template,Takeoff,Uncontrolled)
-else
-local GroupPoint=Airplane:GetVec2()
-local FromWaypoint={}
-FromWaypoint.x=GroupPoint.x
-FromWaypoint.y=GroupPoint.y
-FromWaypoint.type="Turning Point"
-FromWaypoint.action="Turning Point"
-FromWaypoint.speed=Airplane:GetSpeedMax()*0.8
-Points[1]=FromWaypoint
-Points[2]=ToWaypoint
-local PointVec3=Airplane:GetPointVec3()
-Template.x=PointVec3.x
-Template.y=PointVec3.z
-Template.route.points=Points
-local GroupSpawned=Airplane:Respawn(Template)
-end
-end
-end
-function AI_CARGO_AIRPLANE:onafterHome(Airplane,From,Event,To,Coordinate,Speed,Height,HomeZone)
-if Airplane and Airplane:IsAlive()then
-self.RouteHome=true
-local HomeBase=HomeZone:GetAirbase()
-self.Airbase=HomeBase
-self:Route(Airplane,HomeBase,Speed,Height)
-end
-end
-AI_CARGO_SHIP={
-ClassName="AI_CARGO_SHIP",
-Coordinate=nil
-}
-function AI_CARGO_SHIP:New(Ship,CargoSet,CombatRadius,ShippingLane)
-local self=BASE:Inherit(self,AI_CARGO:New(Ship,CargoSet))
-self:AddTransition("*","Monitor","*")
-self:AddTransition("*","Destroyed","Destroyed")
-self:AddTransition("*","Home","*")
-self:SetCombatRadius(0)
-self:SetShippingLane(ShippingLane)
-self:SetCarrier(Ship)
-return self
-end
-function AI_CARGO_SHIP:SetCarrier(CargoCarrier)
-self.CargoCarrier=CargoCarrier
-self.CargoCarrier:SetState(self.CargoCarrier,"AI_CARGO_SHIP",self)
-CargoCarrier:HandleEvent(EVENTS.Dead)
-function CargoCarrier:OnEventDead(EventData)
-self:F({"dead"})
-local AICargoTroops=self:GetState(self,"AI_CARGO_SHIP")
-self:F({AICargoTroops=AICargoTroops})
-if AICargoTroops then
-self:F({})
-if not AICargoTroops:Is("Loaded")then
-AICargoTroops:Destroyed()
-end
-end
-end
-self.Zone=ZONE_UNIT:New(self.CargoCarrier:GetName().."-Zone",self.CargoCarrier,self.CombatRadius)
-self.Coalition=self.CargoCarrier:GetCoalition()
-self:SetControllable(CargoCarrier)
-return self
-end
-function AI_CARGO_SHIP:FindCarrier(Coordinate,Radius)
-local CoordinateZone=ZONE_RADIUS:New("Zone",Coordinate:GetVec2(),Radius)
-CoordinateZone:Scan({Object.Category.UNIT})
-for _,DCSUnit in pairs(CoordinateZone:GetScannedUnits())do
-local NearUnit=UNIT:Find(DCSUnit)
-self:F({NearUnit=NearUnit})
-if not NearUnit:GetState(NearUnit,"AI_CARGO_SHIP")then
-local Attributes=NearUnit:GetDesc()
-self:F({Desc=Attributes})
-if NearUnit:HasAttributes("Trucks")then
-return NearUnit:GetGroup()
-end
-end
-end
-return nil
-end
-function AI_CARGO_SHIP:SetShippingLane(ShippingLane)
-self.ShippingLane=ShippingLane
-return self
-end
-function AI_CARGO_SHIP:SetCombatRadius(CombatRadius)
-self.CombatRadius=CombatRadius or 0
-return self
-end
-function AI_CARGO_SHIP:FollowToCarrier(Me,ShipUnit,CargoGroup)
-local InfantryGroup=CargoGroup:GetGroup()
-self:F({self=self:GetClassNameAndID(),InfantryGroup=InfantryGroup:GetName()})
-if ShipUnit:IsAlive()then
-if InfantryGroup:IsPartlyInZone(ZONE_UNIT:New("Radius",ShipUnit,1000))then
-Me:Guard()
-else
-self:F({InfantryGroup=InfantryGroup:GetName()})
-if InfantryGroup:IsAlive()then
-self:F({InfantryGroup=InfantryGroup:GetName()})
-local Waypoints={}
-local FromCoord=InfantryGroup:GetCoordinate()
-local FromGround=FromCoord:WaypointGround(10,"Diamond")
-self:F({FromGround=FromGround})
-table.insert(Waypoints,FromGround)
-local ToCoord=ShipUnit:GetCoordinate():GetRandomCoordinateInRadius(10,5)
-local ToGround=ToCoord:WaypointGround(10,"Diamond")
-self:F({ToGround=ToGround})
-table.insert(Waypoints,ToGround)
-local TaskRoute=InfantryGroup:TaskFunction("AI_CARGO_SHIP.FollowToCarrier",Me,ShipUnit,CargoGroup)
-self:F({Waypoints=Waypoints})
-local Waypoint=Waypoints[#Waypoints]
-InfantryGroup:SetTaskWaypoint(Waypoint,TaskRoute)
-InfantryGroup:Route(Waypoints,1)
-end
-end
-end
-end
-function AI_CARGO_SHIP:onafterMonitor(Ship,From,Event,To)
-self:F({Ship,From,Event,To,IsTransporting=self:IsTransporting()})
-if self.CombatRadius>0 then
-if Ship and Ship:IsAlive()then
-if self.CarrierCoordinate then
-if self:IsTransporting()==true then
-local Coordinate=Ship:GetCoordinate()
-if self:Is("Unloaded")or self:Is("Loaded")then
-self.Zone:Scan({Object.Category.UNIT})
-if self.Zone:IsAllInZoneOfCoalition(self.Coalition)then
-if self:Is("Unloaded")then
-self:Reload()
-end
-else
-if self:Is("Loaded")then
-self:__Unload(1,nil,true)
-else
-if self:Is("Unloaded")then
-end
-self:F("I am here"..self:GetCurrentState())
-if self:Is("Following")then
-for Cargo,ShipUnit in pairs(self.Carrier_Cargo)do
-local Cargo=Cargo
-local ShipUnit=ShipUnit
-if Cargo:IsAlive()then
-if not Cargo:IsNear(ShipUnit,40)then
-ShipUnit:RouteStop()
-self.CarrierStopped=true
-else
-if self.CarrierStopped then
-if Cargo:IsNear(ShipUnit,25)then
-ShipUnit:RouteResume()
-self.CarrierStopped=nil
-end
-end
-end
-end
-end
-end
-end
-end
-end
-end
-end
-self.CarrierCoordinate=Ship:GetCoordinate()
-end
-self:__Monitor(-5)
-end
-end
-function AI_CARGO_SHIP._Pickup(Ship,self,Coordinate,Speed,PickupZone)
-Ship:F({"AI_CARGO_Ship._Pickup:",Ship:GetName()})
-if Ship:IsAlive()then
-self:Load(PickupZone)
-end
-end
-function AI_CARGO_SHIP._Deploy(Ship,self,Coordinate,DeployZone)
-Ship:F({"AI_CARGO_Ship._Deploy:",Ship})
-if Ship:IsAlive()then
-self:Unload(DeployZone)
-end
-end
-function AI_CARGO_SHIP:onafterPickup(Ship,From,Event,To,Coordinate,Speed,Height,PickupZone)
-if Ship and Ship:IsAlive()then
-AI_CARGO_SHIP._Pickup(Ship,self,Coordinate,Speed,PickupZone)
-self:GetParent(self,AI_CARGO_SHIP).onafterPickup(self,Ship,From,Event,To,Coordinate,Speed,Height,PickupZone)
-end
-end
-function AI_CARGO_SHIP:onafterDeploy(Ship,From,Event,To,Coordinate,Speed,Height,DeployZone)
-if Ship and Ship:IsAlive()then
-Speed=Speed or Ship:GetSpeedMax()*0.8
-local lane=self.ShippingLane
-if lane then
-local Waypoints={}
-for i=1,#lane do
-local coord=lane[i]
-local Waypoint=coord:WaypointGround(_speed)
-table.insert(Waypoints,Waypoint)
-end
-local TaskFunction=Ship:TaskFunction("AI_CARGO_SHIP._Deploy",self,Coordinate,DeployZone)
-local Waypoint=Waypoints[#Waypoints]
-Ship:SetTaskWaypoint(Waypoint,TaskFunction)
-Ship:Route(Waypoints,1)
-self:GetParent(self,AI_CARGO_SHIP).onafterDeploy(self,Ship,From,Event,To,Coordinate,Speed,Height,DeployZone)
-else
-self:E(self.lid.."ERROR: No shipping lane defined for Naval Transport!")
-end
-end
-end
-function AI_CARGO_SHIP:onafterUnload(Ship,From,Event,To,DeployZone,Defend)
-self:F({Ship,From,Event,To,DeployZone,Defend=Defend})
-local UnboardInterval=5
-local UnboardDelay=5
-if Ship and Ship:IsAlive()then
-for _,ShipUnit in pairs(Ship:GetUnits())do
-local ShipUnit=ShipUnit
-Ship:RouteStop()
-for _,Cargo in pairs(ShipUnit:GetCargo())do
-self:F({Cargo=Cargo:GetName(),Isloaded=Cargo:IsLoaded()})
-if Cargo:IsLoaded()then
-local unboardCoord=DeployZone:GetRandomPointVec2()
-Cargo:__UnBoard(UnboardDelay,unboardCoord,1000)
-UnboardDelay=UnboardDelay+Cargo:GetCount()*UnboardInterval
-self:__Unboard(UnboardDelay,Cargo,ShipUnit,DeployZone,Defend)
-if not Defend==true then
-Cargo:SetDeployed(true)
-end
-end
-end
-end
-end
-end
-function AI_CARGO_SHIP:onafterHome(Ship,From,Event,To,Coordinate,Speed,Height,HomeZone)
-if Ship and Ship:IsAlive()then
-self.RouteHome=true
-Speed=Speed or Ship:GetSpeedMax()*0.8
-local lane=self.ShippingLane
-if lane then
-local Waypoints={}
-for i=#lane,1,-1 do
-local coord=lane[i]
-local Waypoint=coord:WaypointGround(_speed)
-table.insert(Waypoints,Waypoint)
-end
-local Waypoint=Waypoints[#Waypoints]
-Ship:Route(Waypoints,1)
-else
-self:E(self.lid.."ERROR: No shipping lane defined for Naval Transport!")
-end
-end
-end
-AI_CARGO_DISPATCHER={
-ClassName="AI_CARGO_DISPATCHER",
-AI_Cargo={},
-PickupCargo={}
-}
-AI_CARGO_DISPATCHER.AI_Cargo={}
-AI_CARGO_DISPATCHER.PickupCargo={}
-function AI_CARGO_DISPATCHER:New(CarrierSet,CargoSet,PickupZoneSet,DeployZoneSet)
-local self=BASE:Inherit(self,FSM:New())
-self.SetCarrier=CarrierSet
-self.SetCargo=CargoSet
-self.PickupZoneSet=PickupZoneSet
-self.DeployZoneSet=DeployZoneSet
-self:SetStartState("Idle")
-self:AddTransition("Monitoring","Monitor","Monitoring")
-self:AddTransition("Idle","Start","Monitoring")
-self:AddTransition("Monitoring","Stop","Idle")
-self:AddTransition("Monitoring","Pickup","Monitoring")
-self:AddTransition("Monitoring","Load","Monitoring")
-self:AddTransition("Monitoring","Loading","Monitoring")
-self:AddTransition("Monitoring","Loaded","Monitoring")
-self:AddTransition("Monitoring","PickedUp","Monitoring")
-self:AddTransition("Monitoring","Transport","Monitoring")
-self:AddTransition("Monitoring","Deploy","Monitoring")
-self:AddTransition("Monitoring","Unload","Monitoring")
-self:AddTransition("Monitoring","Unloading","Monitoring")
-self:AddTransition("Monitoring","Unloaded","Monitoring")
-self:AddTransition("Monitoring","Deployed","Monitoring")
-self:AddTransition("Monitoring","Home","Monitoring")
-self:SetMonitorTimeInterval(30)
-self:SetDeployRadius(500,200)
-self.PickupCargo={}
-self.CarrierHome={}
-function self.SetCarrier.OnAfterRemoved(SetCarrier,From,Event,To,CarrierName,Carrier)
-self:F({Carrier=Carrier:GetName()})
-self.PickupCargo[Carrier]=nil
-self.CarrierHome[Carrier]=nil
-end
-return self
-end
-function AI_CARGO_DISPATCHER:SetMonitorTimeInterval(MonitorTimeInterval)
-self.MonitorTimeInterval=MonitorTimeInterval
-return self
-end
-function AI_CARGO_DISPATCHER:SetHomeZone(HomeZone)
-self.HomeZone=HomeZone
-return self
-end
-function AI_CARGO_DISPATCHER:SetPickupRadius(OuterRadius,InnerRadius)
-OuterRadius=OuterRadius or 0
-InnerRadius=InnerRadius or OuterRadius
-self.PickupOuterRadius=OuterRadius
-self.PickupInnerRadius=InnerRadius
-return self
-end
-function AI_CARGO_DISPATCHER:SetPickupSpeed(MaxSpeed,MinSpeed)
-MaxSpeed=MaxSpeed or 999
-MinSpeed=MinSpeed or MaxSpeed
-self.PickupMinSpeed=MinSpeed
-self.PickupMaxSpeed=MaxSpeed
-return self
-end
-function AI_CARGO_DISPATCHER:SetDeployRadius(OuterRadius,InnerRadius)
-OuterRadius=OuterRadius or 0
-InnerRadius=InnerRadius or OuterRadius
-self.DeployOuterRadius=OuterRadius
-self.DeployInnerRadius=InnerRadius
-return self
-end
-function AI_CARGO_DISPATCHER:SetDeploySpeed(MaxSpeed,MinSpeed)
-MaxSpeed=MaxSpeed or 999
-MinSpeed=MinSpeed or MaxSpeed
-self.DeployMinSpeed=MinSpeed
-self.DeployMaxSpeed=MaxSpeed
-return self
-end
-function AI_CARGO_DISPATCHER:SetPickupHeight(MaxHeight,MinHeight)
-MaxHeight=MaxHeight or 200
-MinHeight=MinHeight or MaxHeight
-self.PickupMinHeight=MinHeight
-self.PickupMaxHeight=MaxHeight
-return self
-end
-function AI_CARGO_DISPATCHER:SetDeployHeight(MaxHeight,MinHeight)
-MaxHeight=MaxHeight or 200
-MinHeight=MinHeight or MaxHeight
-self.DeployMinHeight=MinHeight
-self.DeployMaxHeight=MaxHeight
-return self
-end
-function AI_CARGO_DISPATCHER:onafterMonitor()
-self:F("Carriers")
-self.SetCarrier:Flush()
-for CarrierGroupName,Carrier in pairs(self.SetCarrier:GetSet())do
-local Carrier=Carrier
-if Carrier:IsAlive()~=nil then
-local AI_Cargo=self.AI_Cargo[Carrier]
-if not AI_Cargo then
-self.AI_Cargo[Carrier]=self:AICargo(Carrier,self.SetCargo,self.CombatRadius)
-AI_Cargo=self.AI_Cargo[Carrier]
-function AI_Cargo.OnAfterPickup(AI_Cargo,CarrierGroup,From,Event,To,Coordinate,Speed,Height,PickupZone)
-self:Pickup(CarrierGroup,Coordinate,Speed,Height,PickupZone)
-end
-function AI_Cargo.OnAfterLoad(AI_Cargo,CarrierGroup,From,Event,To,PickupZone)
-self:Load(CarrierGroup,PickupZone)
-end
-function AI_Cargo.OnAfterBoard(AI_Cargo,CarrierGroup,From,Event,To,Cargo,CarrierUnit,PickupZone)
-self:Loading(CarrierGroup,Cargo,CarrierUnit,PickupZone)
-end
-function AI_Cargo.OnAfterLoaded(AI_Cargo,CarrierGroup,From,Event,To,Cargo,CarrierUnit,PickupZone)
-self:Loaded(CarrierGroup,Cargo,CarrierUnit,PickupZone)
-end
-function AI_Cargo.OnAfterPickedUp(AI_Cargo,CarrierGroup,From,Event,To,PickupZone)
-self:PickedUp(CarrierGroup,PickupZone)
-self:Transport(CarrierGroup)
-end
-function AI_Cargo.OnAfterDeploy(AI_Cargo,CarrierGroup,From,Event,To,Coordinate,Speed,Height,DeployZone)
-self:Deploy(CarrierGroup,Coordinate,Speed,Height,DeployZone)
-end
-function AI_Cargo.OnAfterUnload(AI_Cargo,Carrier,From,Event,To,Cargo,CarrierUnit,DeployZone)
-self:Unloading(Carrier,Cargo,CarrierUnit,DeployZone)
-end
-function AI_Cargo.OnAfterUnboard(AI_Cargo,CarrierGroup,From,Event,To,Cargo,CarrierUnit,DeployZone)
-self:Unloading(CarrierGroup,Cargo,CarrierUnit,DeployZone)
-end
-function AI_Cargo.OnAfterUnloaded(AI_Cargo,Carrier,From,Event,To,Cargo,CarrierUnit,DeployZone)
-self:Unloaded(Carrier,Cargo,CarrierUnit,DeployZone)
-end
-function AI_Cargo.OnAfterDeployed(AI_Cargo,Carrier,From,Event,To,DeployZone)
-self:Deployed(Carrier,DeployZone)
-end
-function AI_Cargo.OnAfterHome(AI_Cargo,Carrier,From,Event,To,Coordinate,Speed,Height,HomeZone)
-self:Home(Carrier,Coordinate,Speed,Height,HomeZone)
-end
-end
-self:T({Carrier=CarrierGroupName,IsRelocating=AI_Cargo:IsRelocating(),IsTransporting=AI_Cargo:IsTransporting()})
-if AI_Cargo:IsRelocating()==false and AI_Cargo:IsTransporting()==false then
-local PickupCargo=nil
-local PickupZone=nil
-self.SetCargo:Flush()
-for CargoName,Cargo in UTILS.spairs(self.SetCargo:GetSet(),function(t,a,b)return t[a]:GetWeight()<t[b]:GetWeight()end)do
-local Cargo=Cargo
-self:F({Cargo=Cargo:GetName(),UnLoaded=Cargo:IsUnLoaded(),Deployed=Cargo:IsDeployed(),PickupCargo=self.PickupCargo[Carrier]~=nil})
-if Cargo:IsUnLoaded()==true and Cargo:IsDeployed()==false then
-local CargoCoordinate=Cargo:GetCoordinate()
-local CoordinateFree=true
-PickupZone=self.PickupZoneSet and self.PickupZoneSet:IsCoordinateInZone(CargoCoordinate)
-if not self.PickupZoneSet or PickupZone then
-for CarrierPickup,Coordinate in pairs(self.PickupCargo)do
-if CarrierPickup:IsAlive()==true then
-if CargoCoordinate:Get2DDistance(Coordinate)<=25 then
-self:F({"Coordinate not free for ",Cargo=Cargo:GetName(),Carrier:GetName(),PickupCargo=self.PickupCargo[Carrier]~=nil})
-CoordinateFree=false
-break
-end
-else
-self.PickupCargo[CarrierPickup]=nil
-end
-end
-if CoordinateFree==true then
-local LargestLoadCapacity=0
-for _,Carrier in pairs(Carrier:GetUnits())do
-local LoadCapacity=Carrier:GetCargoBayFreeWeight()
-if LargestLoadCapacity<LoadCapacity then
-LargestLoadCapacity=LoadCapacity
-end
-end
-if LargestLoadCapacity>=Cargo:GetWeight()then
-self.PickupCargo[Carrier]=CargoCoordinate
-PickupCargo=Cargo
-break
-else
-local text=string.format("WARNING: Cargo %s is too heavy to be loaded into transport. Cargo weight %.1f > %.1f load capacity of carrier %s.",
-tostring(Cargo:GetName()),Cargo:GetWeight(),LargestLoadCapacity,tostring(Carrier:GetName()))
-self:T(text)
-end
-end
-end
-end
-end
-if PickupCargo then
-self.CarrierHome[Carrier]=nil
-local PickupCoordinate=PickupCargo:GetCoordinate():GetRandomCoordinateInRadius(self.PickupOuterRadius,self.PickupInnerRadius)
-AI_Cargo:Pickup(PickupCoordinate,math.random(self.PickupMinSpeed,self.PickupMaxSpeed),math.random(self.PickupMinHeight,self.PickupMaxHeight),PickupZone)
-break
-else
-if self.HomeZone then
-if not self.CarrierHome[Carrier]then
-self.CarrierHome[Carrier]=true
-AI_Cargo:Home(self.HomeZone:GetRandomPointVec2(),math.random(self.PickupMinSpeed,self.PickupMaxSpeed),math.random(self.PickupMinHeight,self.PickupMaxHeight),self.HomeZone)
-end
-end
-end
-end
-end
-end
-self:__Monitor(self.MonitorTimeInterval)
-end
-function AI_CARGO_DISPATCHER:onafterStart(From,Event,To)
-self:__Monitor(-1)
-end
-function AI_CARGO_DISPATCHER:onafterTransport(From,Event,To,Carrier,Cargo)
-if self.DeployZoneSet then
-if self.AI_Cargo[Carrier]:IsTransporting()==true then
-local DeployZone=self.DeployZoneSet:GetRandomZone()
-local DeployCoordinate=DeployZone:GetCoordinate():GetRandomCoordinateInRadius(self.DeployOuterRadius,self.DeployInnerRadius)
-self.AI_Cargo[Carrier]:__Deploy(0.1,DeployCoordinate,math.random(self.DeployMinSpeed,self.DeployMaxSpeed),math.random(self.DeployMinHeight,self.DeployMaxHeight),DeployZone)
-end
-end
-self:F({Carrier=Carrier:GetName(),PickupCargo=self.PickupCargo})
-self.PickupCargo[Carrier]=nil
-end
-AI_CARGO_DISPATCHER_APC={
-ClassName="AI_CARGO_DISPATCHER_APC",
-}
-function AI_CARGO_DISPATCHER_APC:New(APCSet,CargoSet,PickupZoneSet,DeployZoneSet,CombatRadius)
-local self=BASE:Inherit(self,AI_CARGO_DISPATCHER:New(APCSet,CargoSet,PickupZoneSet,DeployZoneSet))
-self:SetDeploySpeed(120,70)
-self:SetPickupSpeed(120,70)
-self:SetPickupRadius(0,0)
-self:SetDeployRadius(0,0)
-self:SetPickupHeight()
-self:SetDeployHeight()
-self:SetCombatRadius(CombatRadius)
-return self
-end
-function AI_CARGO_DISPATCHER_APC:AICargo(APC,CargoSet)
-local aicargoapc=AI_CARGO_APC:New(APC,CargoSet,self.CombatRadius)
-aicargoapc:SetDeployOffRoad(self.deployOffroad,self.deployFormation)
-aicargoapc:SetPickupOffRoad(self.pickupOffroad,self.pickupFormation)
-return aicargoapc
-end
-function AI_CARGO_DISPATCHER_APC:SetCombatRadius(CombatRadius)
-self.CombatRadius=CombatRadius or 0
-return self
-end
-function AI_CARGO_DISPATCHER_APC:SetOffRoad(Offroad,Formation)
-self:SetPickupOffRoad(Offroad,Formation)
-self:SetDeployOffRoad(Offroad,Formation)
-return self
-end
-function AI_CARGO_DISPATCHER_APC:SetPickupOffRoad(Offroad,Formation)
-self.pickupOffroad=Offroad
-self.pickupFormation=Formation or ENUMS.Formation.Vehicle.OffRoad
-return self
-end
-function AI_CARGO_DISPATCHER_APC:SetDeployOffRoad(Offroad,Formation)
-self.deployOffroad=Offroad
-self.deployFormation=Formation or ENUMS.Formation.Vehicle.OffRoad
-return self
-end
-AI_CARGO_DISPATCHER_HELICOPTER={
-ClassName="AI_CARGO_DISPATCHER_HELICOPTER",
-}
-function AI_CARGO_DISPATCHER_HELICOPTER:New(HelicopterSet,CargoSet,PickupZoneSet,DeployZoneSet)
-local self=BASE:Inherit(self,AI_CARGO_DISPATCHER:New(HelicopterSet,CargoSet,PickupZoneSet,DeployZoneSet))
-self:SetPickupSpeed(350,150)
-self:SetDeploySpeed(350,150)
-self:SetPickupRadius(40,12)
-self:SetDeployRadius(40,12)
-self:SetPickupHeight(500,200)
-self:SetDeployHeight(500,200)
-return self
-end
-function AI_CARGO_DISPATCHER_HELICOPTER:AICargo(Helicopter,CargoSet)
-local dispatcher=AI_CARGO_HELICOPTER:New(Helicopter,CargoSet)
-dispatcher:SetLandingSpeedAndHeight(27,6)
-return dispatcher
-end
-AI_CARGO_DISPATCHER_AIRPLANE={
-ClassName="AI_CARGO_DISPATCHER_AIRPLANE",
-}
-function AI_CARGO_DISPATCHER_AIRPLANE:New(AirplaneSet,CargoSet,PickupZoneSet,DeployZoneSet)
-local self=BASE:Inherit(self,AI_CARGO_DISPATCHER:New(AirplaneSet,CargoSet,PickupZoneSet,DeployZoneSet))
-self:SetPickupSpeed(1200,600)
-self:SetDeploySpeed(1200,600)
-self:SetPickupRadius(0,0)
-self:SetDeployRadius(0,0)
-self:SetPickupHeight(8000,6000)
-self:SetDeployHeight(8000,6000)
-self:SetMonitorTimeInterval(600)
-return self
-end
-function AI_CARGO_DISPATCHER_AIRPLANE:AICargo(Airplane,CargoSet)
-return AI_CARGO_AIRPLANE:New(Airplane,CargoSet)
-end
-AI_CARGO_DISPATCHER_SHIP={
-ClassName="AI_CARGO_DISPATCHER_SHIP"
-}
-function AI_CARGO_DISPATCHER_SHIP:New(ShipSet,CargoSet,PickupZoneSet,DeployZoneSet,ShippingLane)
-local self=BASE:Inherit(self,AI_CARGO_DISPATCHER:New(ShipSet,CargoSet,PickupZoneSet,DeployZoneSet))
-self:SetPickupSpeed(60,10)
-self:SetDeploySpeed(60,10)
-self:SetPickupRadius(500,6000)
-self:SetDeployRadius(500,6000)
-self:SetPickupHeight(0,0)
-self:SetDeployHeight(0,0)
-self:SetShippingLane(ShippingLane)
-self:SetMonitorTimeInterval(600)
-return self
-end
-function AI_CARGO_DISPATCHER_SHIP:SetShippingLane(ShippingLane)
-self.ShippingLane=ShippingLane
-return self
-end
-function AI_CARGO_DISPATCHER_SHIP:AICargo(Ship,CargoSet)
-return AI_CARGO_SHIP:New(Ship,CargoSet,0,self.ShippingLane)
-end
-do
-ACT_ASSIGN={
-ClassName="ACT_ASSIGN",
-}
-function ACT_ASSIGN:New()
-local self=BASE:Inherit(self,FSM_PROCESS:New("ACT_ASSIGN"))
-self:AddTransition("UnAssigned","Start","Waiting")
-self:AddTransition("Waiting","Assign","Assigned")
-self:AddTransition("Waiting","Reject","Rejected")
-self:AddTransition("*","Fail","Failed")
-self:AddEndState("Assigned")
-self:AddEndState("Rejected")
-self:AddEndState("Failed")
-self:SetStartState("UnAssigned")
-return self
-end
-end
-do
-ACT_ASSIGN_ACCEPT={
-ClassName="ACT_ASSIGN_ACCEPT",
-}
-function ACT_ASSIGN_ACCEPT:New(TaskBriefing)
-local self=BASE:Inherit(self,ACT_ASSIGN:New())
-self.TaskBriefing=TaskBriefing
-return self
-end
-function ACT_ASSIGN_ACCEPT:Init(FsmAssign)
-self.TaskBriefing=FsmAssign.TaskBriefing
-end
-function ACT_ASSIGN_ACCEPT:onafterStart(ProcessUnit,Task,From,Event,To)
-self:__Assign(1)
-end
-function ACT_ASSIGN_ACCEPT:onenterAssigned(ProcessUnit,Task,From,Event,To,TaskGroup)
-self.Task:Assign(ProcessUnit,ProcessUnit:GetPlayerName())
-end
-end
-do
-ACT_ASSIGN_MENU_ACCEPT={
-ClassName="ACT_ASSIGN_MENU_ACCEPT",
-}
-function ACT_ASSIGN_MENU_ACCEPT:New(TaskBriefing)
-local self=BASE:Inherit(self,ACT_ASSIGN:New())
-self.TaskBriefing=TaskBriefing
-return self
-end
-function ACT_ASSIGN_MENU_ACCEPT:Init(TaskBriefing)
-self.TaskBriefing=TaskBriefing
-return self
-end
-function ACT_ASSIGN_MENU_ACCEPT:onafterStart(ProcessUnit,Task,From,Event,To)
-self:GetCommandCenter():MessageToGroup("Task "..self.Task:GetName().." has been assigned to you and your group!\nRead the briefing and use the Radio Menu (F10) / Task ... CONFIRMATION menu to accept or reject the task.\nYou have 2 minutes to accept, or the task assignment will be cancelled!",ProcessUnit:GetGroup(),120)
-local TaskGroup=ProcessUnit:GetGroup()
-self.Menu=MENU_GROUP:New(TaskGroup,"Task "..self.Task:GetName().." CONFIRMATION")
-self.MenuAcceptTask=MENU_GROUP_COMMAND:New(TaskGroup,"Accept task "..self.Task:GetName(),self.Menu,self.MenuAssign,self,TaskGroup)
-self.MenuRejectTask=MENU_GROUP_COMMAND:New(TaskGroup,"Reject task "..self.Task:GetName(),self.Menu,self.MenuReject,self,TaskGroup)
-self:__Reject(120,TaskGroup)
-end
-function ACT_ASSIGN_MENU_ACCEPT:MenuAssign(TaskGroup)
-self:__Assign(-1,TaskGroup)
-end
-function ACT_ASSIGN_MENU_ACCEPT:MenuReject(TaskGroup)
-self:__Reject(-1,TaskGroup)
-end
-function ACT_ASSIGN_MENU_ACCEPT:onafterAssign(ProcessUnit,Task,From,Event,To,TaskGroup)
-self.Menu:Remove()
-end
-function ACT_ASSIGN_MENU_ACCEPT:onafterReject(ProcessUnit,Task,From,Event,To,TaskGroup)
-self:F({TaskGroup=TaskGroup})
-self.Menu:Remove()
-self.Task:RejectGroup(TaskGroup)
-end
-function ACT_ASSIGN_MENU_ACCEPT:onenterAssigned(ProcessUnit,Task,From,Event,To,TaskGroup)
-self.Task:Assign(ProcessUnit,ProcessUnit:GetPlayerName())
-end
-end
-do
-ACT_ROUTE={
-ClassName="ACT_ROUTE",
-}
-function ACT_ROUTE:New()
-local self=BASE:Inherit(self,FSM_PROCESS:New("ACT_ROUTE"))
-self:AddTransition("*","Reset","None")
-self:AddTransition("None","Start","Routing")
-self:AddTransition("*","Report","*")
-self:AddTransition("Routing","Route","Routing")
-self:AddTransition("Routing","Pause","Pausing")
-self:AddTransition("Routing","Arrive","Arrived")
-self:AddTransition("*","Cancel","Cancelled")
-self:AddTransition("Arrived","Success","Success")
-self:AddTransition("*","Fail","Failed")
-self:AddTransition("","","")
-self:AddTransition("","","")
-self:AddEndState("Arrived")
-self:AddEndState("Failed")
-self:AddEndState("Cancelled")
-self:SetStartState("None")
-self:SetRouteMode("C")
-return self
-end
-function ACT_ROUTE:SetMenuCancel(MenuGroup,MenuText,ParentMenu,MenuTime,MenuTag)
-self.CancelMenuGroupCommand=MENU_GROUP_COMMAND:New(
-MenuGroup,
-MenuText,
-ParentMenu,
-self.MenuCancel,
-self
-):SetTime(MenuTime):SetTag(MenuTag)
-ParentMenu:SetTime(MenuTime)
-ParentMenu:Remove(MenuTime,MenuTag)
-return self
-end
-function ACT_ROUTE:SetRouteMode(RouteMode)
-self.RouteMode=RouteMode
-return self
-end
-function ACT_ROUTE:GetRouteText(Controllable)
-local RouteText=""
-local Coordinate=nil
-if self.Coordinate then
-Coordinate=self.Coordinate
-end
-if self.Zone then
-Coordinate=self.Zone:GetPointVec3(self.Altitude)
-Coordinate:SetHeading(self.Heading)
-end
-local Task=self:GetTask()
-local CC=self:GetTask():GetMission():GetCommandCenter()
-if CC then
-if CC:IsModeWWII()then
-local ShortestDistance=0
-local ShortestReferencePoint=nil
-local ShortestReferenceName=""
-self:F({CC.ReferencePoints})
-for ZoneName,Zone in pairs(CC.ReferencePoints)do
-self:F({ZoneName=ZoneName})
-local Zone=Zone
-local ZoneCoord=Zone:GetCoordinate()
-local ZoneDistance=ZoneCoord:Get2DDistance(Coordinate)
-self:F({ShortestDistance,ShortestReferenceName})
-if ShortestDistance==0 or ZoneDistance<ShortestDistance then
-ShortestDistance=ZoneDistance
-ShortestReferencePoint=ZoneCoord
-ShortestReferenceName=CC.ReferenceNames[ZoneName]
-end
-end
-if ShortestReferencePoint then
-RouteText=Coordinate:ToStringFromRP(ShortestReferencePoint,ShortestReferenceName,Controllable)
-end
-else
-RouteText=Coordinate:ToString(Controllable,nil,Task)
-end
-end
-return RouteText
-end
-function ACT_ROUTE:MenuCancel()
-self:F("Cancelled")
-self.CancelMenuGroupCommand:Remove()
-self:__Cancel(1)
-end
-function ACT_ROUTE:onafterStart(ProcessUnit,From,Event,To)
-self:__Route(1)
-end
-function ACT_ROUTE:onfuncHasArrived(ProcessUnit)
-return false
-end
-function ACT_ROUTE:onbeforeRoute(ProcessUnit,From,Event,To)
-if ProcessUnit:IsAlive()then
-local HasArrived=self:onfuncHasArrived(ProcessUnit)
-if self.DisplayCount>=self.DisplayInterval then
-self:T({HasArrived=HasArrived})
-if not HasArrived then
-self:Report()
-end
-self.DisplayCount=1
-else
-self.DisplayCount=self.DisplayCount+1
-end
-if HasArrived then
-self:__Arrive(1)
-else
-self:__Route(1)
-end
-return HasArrived
-end
-return false
-end
-end
-do
-ACT_ROUTE_POINT={
-ClassName="ACT_ROUTE_POINT",
-}
-function ACT_ROUTE_POINT:New(Coordinate,Range)
-local self=BASE:Inherit(self,ACT_ROUTE:New())
-self.Coordinate=Coordinate
-self.Range=Range or 0
-self.DisplayInterval=30
-self.DisplayCount=30
-self.DisplayMessage=true
-self.DisplayTime=10
-return self
-end
-function ACT_ROUTE_POINT:Init(FsmRoute)
-self.Coordinate=FsmRoute.Coordinate
-self.Range=FsmRoute.Range or 0
-self.DisplayInterval=30
-self.DisplayCount=30
-self.DisplayMessage=true
-self.DisplayTime=10
-self:SetStartState("None")
-end
-function ACT_ROUTE_POINT:SetCoordinate(Coordinate)
-self:F2({Coordinate})
-self.Coordinate=Coordinate
-end
-function ACT_ROUTE_POINT:GetCoordinate()
-self:F2({self.Coordinate})
-return self.Coordinate
-end
-function ACT_ROUTE_POINT:SetRange(Range)
-self:F2({Range})
-self.Range=Range or 10000
-end
-function ACT_ROUTE_POINT:GetRange()
-self:F2({self.Range})
-return self.Range
-end
-function ACT_ROUTE_POINT:onfuncHasArrived(ProcessUnit)
-if ProcessUnit:IsAlive()then
-local Distance=self.Coordinate:Get2DDistance(ProcessUnit:GetCoordinate())
-if Distance<=self.Range then
-local RouteText="Task \""..self:GetTask():GetName().."\", you have arrived."
-self:GetCommandCenter():MessageTypeToGroup(RouteText,ProcessUnit:GetGroup(),MESSAGE.Type.Information)
-return true
-end
-end
-return false
-end
-function ACT_ROUTE_POINT:onafterReport(ProcessUnit,From,Event,To)
-local RouteText="Task \""..self:GetTask():GetName().."\", "..self:GetRouteText(ProcessUnit)
-self:GetCommandCenter():MessageTypeToGroup(RouteText,ProcessUnit:GetGroup(),MESSAGE.Type.Update)
-end
-end
-do
-ACT_ROUTE_ZONE={
-ClassName="ACT_ROUTE_ZONE",
-}
-function ACT_ROUTE_ZONE:New(Zone)
-local self=BASE:Inherit(self,ACT_ROUTE:New())
-self.Zone=Zone
-self.DisplayInterval=30
-self.DisplayCount=30
-self.DisplayMessage=true
-self.DisplayTime=10
-return self
-end
-function ACT_ROUTE_ZONE:Init(FsmRoute)
-self.Zone=FsmRoute.Zone
-self.DisplayInterval=30
-self.DisplayCount=30
-self.DisplayMessage=true
-self.DisplayTime=10
-end
-function ACT_ROUTE_ZONE:SetZone(Zone,Altitude,Heading)
-self.Zone=Zone
-self.Altitude=Altitude
-self.Heading=Heading
-end
-function ACT_ROUTE_ZONE:GetZone()
-return self.Zone
-end
-function ACT_ROUTE_ZONE:onfuncHasArrived(ProcessUnit)
-if ProcessUnit:IsInZone(self.Zone)then
-local RouteText="Task \""..self:GetTask():GetName().."\", you have arrived within the zone."
-self:GetCommandCenter():MessageTypeToGroup(RouteText,ProcessUnit:GetGroup(),MESSAGE.Type.Information)
-end
-return ProcessUnit:IsInZone(self.Zone)
-end
-function ACT_ROUTE_ZONE:onafterReport(ProcessUnit,From,Event,To)
-self:F({ProcessUnit=ProcessUnit})
-local RouteText="Task \""..self:GetTask():GetName().."\", "..self:GetRouteText(ProcessUnit)
-self:GetCommandCenter():MessageTypeToGroup(RouteText,ProcessUnit:GetGroup(),MESSAGE.Type.Update)
-end
-end
-do
-ACT_ACCOUNT={
-ClassName="ACT_ACCOUNT",
-TargetSetUnit=nil,
-}
-function ACT_ACCOUNT:New()
-local self=BASE:Inherit(self,FSM_PROCESS:New())
-self:AddTransition("Assigned","Start","Waiting")
-self:AddTransition("*","Wait","Waiting")
-self:AddTransition("*","Report","Report")
-self:AddTransition("*","Event","Account")
-self:AddTransition("Account","Player","AccountForPlayer")
-self:AddTransition("Account","Other","AccountForOther")
-self:AddTransition({"Account","AccountForPlayer","AccountForOther"},"More","Wait")
-self:AddTransition({"Account","AccountForPlayer","AccountForOther"},"NoMore","Accounted")
-self:AddTransition("*","Fail","Failed")
-self:AddEndState("Failed")
-self:SetStartState("Assigned")
-return self
-end
-function ACT_ACCOUNT:onafterStart(ProcessUnit,From,Event,To)
-self:HandleEvent(EVENTS.Dead,self.onfuncEventDead)
-self:HandleEvent(EVENTS.Crash,self.onfuncEventCrash)
-self:HandleEvent(EVENTS.Hit)
-self:__Wait(1)
-end
-function ACT_ACCOUNT:onenterWaiting(ProcessUnit,From,Event,To)
-if self.DisplayCount>=self.DisplayInterval then
-self:Report()
-self.DisplayCount=1
-else
-self.DisplayCount=self.DisplayCount+1
-end
-return true
-end
-function ACT_ACCOUNT:onafterEvent(ProcessUnit,From,Event,To)
-self:__NoMore(1)
-end
-end
-do
-ACT_ACCOUNT_DEADS={
-ClassName="ACT_ACCOUNT_DEADS",
-}
-function ACT_ACCOUNT_DEADS:New()
-local self=BASE:Inherit(self,ACT_ACCOUNT:New())
-self.DisplayInterval=30
-self.DisplayCount=30
-self.DisplayMessage=true
-self.DisplayTime=10
-self.DisplayCategory="HQ"
-return self
-end
-function ACT_ACCOUNT_DEADS:Init(FsmAccount)
-self.Task=self:GetTask()
-self.TaskName=self.Task:GetName()
-end
-function ACT_ACCOUNT_DEADS:onenterReport(ProcessUnit,Task,From,Event,To)
-local MessageText="Your group with assigned "..self.TaskName.." task has "..Task.TargetSetUnit:GetUnitTypesText().." targets left to be destroyed."
-self:GetCommandCenter():MessageTypeToGroup(MessageText,ProcessUnit:GetGroup(),MESSAGE.Type.Information)
-end
-function ACT_ACCOUNT_DEADS:onafterEvent(ProcessUnit,Task,From,Event,To,EventData)
-self:T({ProcessUnit:GetName(),Task:GetName(),From,Event,To,EventData})
-if Task.TargetSetUnit:FindUnit(EventData.IniUnitName)then
-local PlayerName=ProcessUnit:GetPlayerName()
-local PlayerHit=self.PlayerHits and self.PlayerHits[EventData.IniUnitName]
-if PlayerHit==PlayerName then
-self:Player(EventData)
-else
-self:Other(EventData)
-end
-end
-end
-function ACT_ACCOUNT_DEADS:onenterAccountForPlayer(ProcessUnit,Task,From,Event,To,EventData)
-self:T({ProcessUnit:GetName(),Task:GetName(),From,Event,To,EventData})
-local TaskGroup=ProcessUnit:GetGroup()
-Task.TargetSetUnit:Remove(EventData.IniUnitName)
-local MessageText="You have destroyed a target.\nYour group assigned with task "..self.TaskName.." has\n"..Task.TargetSetUnit:Count().." targets ( "..Task.TargetSetUnit:GetUnitTypesText().." ) left to be destroyed."
-self:GetCommandCenter():MessageTypeToGroup(MessageText,ProcessUnit:GetGroup(),MESSAGE.Type.Information)
-local PlayerName=ProcessUnit:GetPlayerName()
-Task:AddProgress(PlayerName,"Destroyed "..EventData.IniTypeName,timer.getTime(),1)
-if Task.TargetSetUnit:Count()>0 then
-self:__More(1)
-else
-self:__NoMore(1)
-end
-end
-function ACT_ACCOUNT_DEADS:onenterAccountForOther(ProcessUnit,Task,From,Event,To,EventData)
-self:T({ProcessUnit:GetName(),Task:GetName(),From,Event,To,EventData})
-local TaskGroup=ProcessUnit:GetGroup()
-Task.TargetSetUnit:Remove(EventData.IniUnitName)
-local MessageText="One of the task targets has been destroyed.\nYour group assigned with task "..self.TaskName.." has\n"..Task.TargetSetUnit:Count().." targets ( "..Task.TargetSetUnit:GetUnitTypesText().." ) left to be destroyed."
-self:GetCommandCenter():MessageTypeToGroup(MessageText,ProcessUnit:GetGroup(),MESSAGE.Type.Information)
-if Task.TargetSetUnit:Count()>0 then
-self:__More(1)
-else
-self:__NoMore(1)
-end
-end
-function ACT_ACCOUNT_DEADS:OnEventHit(EventData)
-self:T({"EventDead",EventData})
-if EventData.IniPlayerName and EventData.TgtDCSUnitName then
-self.PlayerHits=self.PlayerHits or{}
-self.PlayerHits[EventData.TgtDCSUnitName]=EventData.IniPlayerName
-end
-end
-function ACT_ACCOUNT_DEADS:onfuncEventDead(EventData)
-self:T({"EventDead",EventData})
-if EventData.IniDCSUnit then
-self:Event(EventData)
-end
-end
-function ACT_ACCOUNT_DEADS:onfuncEventCrash(EventData)
-self:T({"EventDead",EventData})
-if EventData.IniDCSUnit then
-self:Event(EventData)
-end
-end
-end
-do
-ACT_ASSIST={
-ClassName="ACT_ASSIST",
-}
-function ACT_ASSIST:New()
-local self=BASE:Inherit(self,FSM_PROCESS:New("ACT_ASSIST"))
-self:AddTransition("None","Start","AwaitSmoke")
-self:AddTransition("AwaitSmoke","Next","Smoking")
-self:AddTransition("Smoking","Next","AwaitSmoke")
-self:AddTransition("*","Stop","Success")
-self:AddTransition("*","Fail","Failed")
-self:AddEndState("Failed")
-self:AddEndState("Success")
-self:SetStartState("None")
-return self
-end
-function ACT_ASSIST:onafterStart(ProcessUnit,From,Event,To)
-local ProcessGroup=ProcessUnit:GetGroup()
-local MissionMenu=self:GetMission():GetMenu(ProcessGroup)
-local function MenuSmoke(MenuParam)
-local self=MenuParam.self
-local SmokeColor=MenuParam.SmokeColor
-self.SmokeColor=SmokeColor
-self:__Next(1)
-end
-self.Menu=MENU_GROUP:New(ProcessGroup,"Target acquisition",MissionMenu)
-self.MenuSmokeBlue=MENU_GROUP_COMMAND:New(ProcessGroup,"Drop blue smoke on targets",self.Menu,MenuSmoke,{self=self,SmokeColor=SMOKECOLOR.Blue})
-self.MenuSmokeGreen=MENU_GROUP_COMMAND:New(ProcessGroup,"Drop green smoke on targets",self.Menu,MenuSmoke,{self=self,SmokeColor=SMOKECOLOR.Green})
-self.MenuSmokeOrange=MENU_GROUP_COMMAND:New(ProcessGroup,"Drop Orange smoke on targets",self.Menu,MenuSmoke,{self=self,SmokeColor=SMOKECOLOR.Orange})
-self.MenuSmokeRed=MENU_GROUP_COMMAND:New(ProcessGroup,"Drop Red smoke on targets",self.Menu,MenuSmoke,{self=self,SmokeColor=SMOKECOLOR.Red})
-self.MenuSmokeWhite=MENU_GROUP_COMMAND:New(ProcessGroup,"Drop White smoke on targets",self.Menu,MenuSmoke,{self=self,SmokeColor=SMOKECOLOR.White})
-end
-function ACT_ASSIST:onafterStop(ProcessUnit,From,Event,To)
-self.Menu:Remove()
-end
-end
-do
-ACT_ASSIST_SMOKE_TARGETS_ZONE={
-ClassName="ACT_ASSIST_SMOKE_TARGETS_ZONE",
-}
-function ACT_ASSIST_SMOKE_TARGETS_ZONE:New(TargetSetUnit,TargetZone)
-local self=BASE:Inherit(self,ACT_ASSIST:New())
-self.TargetSetUnit=TargetSetUnit
-self.TargetZone=TargetZone
-return self
-end
-function ACT_ASSIST_SMOKE_TARGETS_ZONE:Init(FsmSmoke)
-self.TargetSetUnit=FsmSmoke.TargetSetUnit
-self.TargetZone=FsmSmoke.TargetZone
-end
-function ACT_ASSIST_SMOKE_TARGETS_ZONE:Init(TargetSetUnit,TargetZone)
-self.TargetSetUnit=TargetSetUnit
-self.TargetZone=TargetZone
-return self
-end
-function ACT_ASSIST_SMOKE_TARGETS_ZONE:onenterSmoking(ProcessUnit,From,Event,To)
-self.TargetSetUnit:ForEachUnit(
-function(SmokeUnit)
-if math.random(1,(100*self.TargetSetUnit:Count())/4)<=100 then
-SCHEDULER:New(self,
-function()
-if SmokeUnit:IsAlive()then
-SmokeUnit:Smoke(self.SmokeColor,150)
-end
-end,{},math.random(10,60)
-)
-end
-end
-)
-end
 end
 SHAPE_BASE={
 ClassName="SHAPE_BASE",
@@ -133153,4059 +123099,6 @@ self:_CheckRadioQueue(dt)
 end
 end
 MSRS.LoadConfigFile()
-COMMANDCENTER={
-ClassName="COMMANDCENTER",
-CommandCenterName="",
-CommandCenterCoalition=nil,
-CommandCenterPositionable=nil,
-Name="",
-ReferencePoints={},
-ReferenceNames={},
-CommunicationMode="80",
-}
-COMMANDCENTER.AutoAssignMethods={
-["Random"]=1,
-["Distance"]=2,
-["Priority"]=3,
-}
-function COMMANDCENTER:New(CommandCenterPositionable,CommandCenterName)
-local self=BASE:Inherit(self,BASE:New())
-self.CommandCenterPositionable=CommandCenterPositionable
-self.CommandCenterName=CommandCenterName or CommandCenterPositionable:GetName()
-self.CommandCenterCoalition=CommandCenterPositionable:GetCoalition()
-self.Missions={}
-self:SetAutoAssignTasks(false)
-self:SetAutoAcceptTasks(true)
-self:SetAutoAssignMethod(COMMANDCENTER.AutoAssignMethods.Distance)
-self:SetFlashStatus(false)
-self:SetMessageDuration(10)
-self:HandleEvent(EVENTS.Birth,
-function(self,EventData)
-if EventData.IniObjectCategory==1 then
-local EventGroup=GROUP:Find(EventData.IniDCSGroup)
-if EventGroup and EventGroup:IsAlive()and self:HasGroup(EventGroup)then
-local CommandCenterMenu=MENU_GROUP:New(EventGroup,self:GetText())
-local MenuReporting=MENU_GROUP:New(EventGroup,"Missions Reports",CommandCenterMenu)
-local MenuMissionsSummary=MENU_GROUP_COMMAND:New(EventGroup,"Missions Status Report",MenuReporting,self.ReportSummary,self,EventGroup)
-local MenuMissionsDetails=MENU_GROUP_COMMAND:New(EventGroup,"Missions Players Report",MenuReporting,self.ReportMissionsPlayers,self,EventGroup)
-local PlayerUnit=EventData.IniUnit
-for MissionID,Mission in pairs(self:GetMissions())do
-local Mission=Mission
-local PlayerGroup=EventData.IniGroup
-Mission:JoinUnit(PlayerUnit,PlayerGroup)
-end
-self:SetMenu()
-end
-end
-end
-)
-self:HandleEvent(EVENTS.MissionEnd,
-function(self,EventData)
-local PlayerUnit=EventData.IniUnit
-for MissionID,Mission in pairs(self:GetMissions())do
-local Mission=Mission
-Mission:Stop()
-end
-end
-)
-self:HandleEvent(EVENTS.PlayerLeaveUnit,
-function(self,EventData)
-local PlayerUnit=EventData.IniUnit
-for MissionID,Mission in pairs(self:GetMissions())do
-local Mission=Mission
-if Mission:IsENGAGED()then
-Mission:AbortUnit(PlayerUnit)
-end
-end
-end
-)
-self:HandleEvent(EVENTS.Crash,
-function(self,EventData)
-local PlayerUnit=EventData.IniUnit
-for MissionID,Mission in pairs(self:GetMissions())do
-local Mission=Mission
-if Mission:IsENGAGED()then
-Mission:CrashUnit(PlayerUnit)
-end
-end
-end
-)
-self:SetMenu()
-_SETTINGS:SetSystemMenu(CommandCenterPositionable)
-self:SetCommandMenu()
-return self
-end
-function COMMANDCENTER:GetName()
-return self.CommandCenterName
-end
-function COMMANDCENTER:GetText()
-return"Command Center ["..self.CommandCenterName.."]"
-end
-function COMMANDCENTER:GetShortText()
-return"CC ["..self.CommandCenterName.."]"
-end
-function COMMANDCENTER:GetCoalition()
-return self.CommandCenterCoalition
-end
-function COMMANDCENTER:GetPositionable()
-return self.CommandCenterPositionable
-end
-function COMMANDCENTER:GetMissions()
-return self.Missions or{}
-end
-function COMMANDCENTER:AddMission(Mission)
-self.Missions[Mission]=Mission
-return Mission
-end
-function COMMANDCENTER:RemoveMission(Mission)
-self.Missions[Mission]=nil
-return Mission
-end
-function COMMANDCENTER:SetReferenceZones(ReferenceZonePrefix)
-local MatchPattern="(.*)#(.*)"
-self:F({MatchPattern=MatchPattern})
-for ReferenceZoneName in pairs(_DATABASE.ZONENAMES)do
-local ZoneName,ReferenceName=string.match(ReferenceZoneName,MatchPattern)
-self:F({ZoneName=ZoneName,ReferenceName=ReferenceName})
-if ZoneName and ReferenceName and ZoneName==ReferenceZonePrefix then
-self.ReferencePoints[ReferenceZoneName]=ZONE:New(ReferenceZoneName)
-self.ReferenceNames[ReferenceZoneName]=ReferenceName
-end
-end
-return self
-end
-function COMMANDCENTER:SetModeWWII()
-self.CommunicationMode="WWII"
-return self
-end
-function COMMANDCENTER:IsModeWWII()
-return self.CommunicationMode=="WWII"
-end
-function COMMANDCENTER:SetMenu()
-self:F2()
-local MenuTime=timer.getTime()
-for MissionID,Mission in pairs(self:GetMissions()or{})do
-local Mission=Mission
-Mission:SetMenu(MenuTime)
-end
-for MissionID,Mission in pairs(self:GetMissions()or{})do
-Mission=Mission
-Mission:RemoveMenu(MenuTime)
-end
-end
-function COMMANDCENTER:GetMenu(TaskGroup)
-local MenuTime=timer.getTime()
-self.CommandCenterMenus=self.CommandCenterMenus or{}
-local CommandCenterMenu
-local CommandCenterText=self:GetText()
-CommandCenterMenu=MENU_GROUP:New(TaskGroup,CommandCenterText):SetTime(MenuTime)
-self.CommandCenterMenus[TaskGroup]=CommandCenterMenu
-if self.AutoAssignTasks==false then
-local AssignTaskMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Assign Task",CommandCenterMenu,self.AssignTask,self,TaskGroup):SetTime(MenuTime):SetTag("AutoTask")
-end
-CommandCenterMenu:Remove(MenuTime,"AutoTask")
-return self.CommandCenterMenus[TaskGroup]
-end
-function COMMANDCENTER:AssignTask(TaskGroup)
-local Tasks={}
-local AssignPriority=99999999
-local AutoAssignMethod=self.AutoAssignMethod
-for MissionID,Mission in pairs(self:GetMissions())do
-local Mission=Mission
-local MissionTasks=Mission:GetGroupTasks(TaskGroup)
-for MissionTaskName,MissionTask in pairs(MissionTasks or{})do
-local MissionTask=MissionTask
-if MissionTask:IsStatePlanned()or MissionTask:IsStateReplanned()or MissionTask:IsStateAssigned()then
-local TaskPriority=MissionTask:GetAutoAssignPriority(self.AutoAssignMethod,self,TaskGroup)
-if TaskPriority<AssignPriority then
-AssignPriority=TaskPriority
-Tasks={}
-end
-if TaskPriority==AssignPriority then
-Tasks[#Tasks+1]=MissionTask
-end
-end
-end
-end
-local Task=Tasks[math.random(1,#Tasks)]
-if Task then
-self:T("Assigning task "..Task:GetName().." using auto assign method "..self.AutoAssignMethod.." to "..TaskGroup:GetName().." with task priority "..AssignPriority)
-if not self.AutoAcceptTasks==true then
-Task:SetAutoAssignMethod(ACT_ASSIGN_MENU_ACCEPT:New(Task.TaskBriefing))
-end
-Task:AssignToGroup(TaskGroup)
-end
-end
-function COMMANDCENTER:SetCommandMenu()
-local MenuTime=timer.getTime()
-if self.CommandCenterPositionable and self.CommandCenterPositionable:IsInstanceOf(GROUP)then
-local CommandCenterText=self:GetText()
-local CommandCenterMenu=MENU_GROUP:New(self.CommandCenterPositionable,CommandCenterText):SetTime(MenuTime)
-if self.AutoAssignTasks==false then
-local AutoAssignTaskMenu=MENU_GROUP_COMMAND:New(self.CommandCenterPositionable,"Assign Task On",CommandCenterMenu,self.SetAutoAssignTasks,self,true):SetTime(MenuTime):SetTag("AutoTask")
-else
-local AutoAssignTaskMenu=MENU_GROUP_COMMAND:New(self.CommandCenterPositionable,"Assign Task Off",CommandCenterMenu,self.SetAutoAssignTasks,self,false):SetTime(MenuTime):SetTag("AutoTask")
-end
-CommandCenterMenu:Remove(MenuTime,"AutoTask")
-end
-end
-function COMMANDCENTER:SetAutoAssignTasks(AutoAssign)
-self.AutoAssignTasks=AutoAssign or false
-if self.AutoAssignTasks==true then
-self.autoAssignTasksScheduleID=self:ScheduleRepeat(10,30,0,nil,self.AssignTasks,self)
-else
-self:ScheduleStop()
-end
-end
-function COMMANDCENTER:SetAutoAcceptTasks(AutoAccept)
-self.AutoAcceptTasks=AutoAccept or false
-end
-function COMMANDCENTER:SetAutoAssignMethod(AutoAssignMethod)
-self.AutoAssignMethod=AutoAssignMethod or COMMANDCENTER.AutoAssignMethods.Random
-end
-function COMMANDCENTER:AssignTasks()
-local GroupSet=self:AddGroups()
-for GroupID,TaskGroup in pairs(GroupSet:GetSet())do
-local TaskGroup=TaskGroup
-if TaskGroup:IsAlive()then
-self:GetMenu(TaskGroup)
-if self:IsGroupAssigned(TaskGroup)then
-else
-if TaskGroup:IsAir()then
-self:AssignTask(TaskGroup)
-end
-end
-end
-end
-end
-function COMMANDCENTER:AddGroups()
-local GroupSet=SET_GROUP:New()
-for MissionID,Mission in pairs(self.Missions)do
-local Mission=Mission
-GroupSet=Mission:AddGroups(GroupSet)
-end
-return GroupSet
-end
-function COMMANDCENTER:IsGroupAssigned(TaskGroup)
-local Assigned=false
-for MissionID,Mission in pairs(self.Missions)do
-local Mission=Mission
-if Mission:IsGroupAssigned(TaskGroup)then
-Assigned=true
-break
-end
-end
-return Assigned
-end
-function COMMANDCENTER:HasGroup(MissionGroup)
-local Has=false
-for MissionID,Mission in pairs(self.Missions)do
-local Mission=Mission
-if Mission:HasGroup(MissionGroup)then
-Has=true
-break
-end
-end
-return Has
-end
-function COMMANDCENTER:MessageToAll(Message)
-self:GetPositionable():MessageToAll(Message,self.MessageDuration,self:GetName())
-end
-function COMMANDCENTER:MessageToGroup(Message,MessageGroup)
-self:GetPositionable():MessageToGroup(Message,self.MessageDuration,MessageGroup,self:GetShortText())
-end
-function COMMANDCENTER:MessageTypeToGroup(Message,MessageGroup,MessageType)
-self:GetPositionable():MessageTypeToGroup(Message,MessageType,MessageGroup,self:GetShortText())
-end
-function COMMANDCENTER:MessageToCoalition(Message)
-local CCCoalition=self:GetPositionable():GetCoalition()
-self:GetPositionable():MessageToCoalition(Message,self.MessageDuration,CCCoalition,self:GetShortText())
-end
-function COMMANDCENTER:MessageTypeToCoalition(Message,MessageType)
-local CCCoalition=self:GetPositionable():GetCoalition()
-self:GetPositionable():MessageTypeToCoalition(Message,MessageType,CCCoalition,self:GetShortText())
-end
-function COMMANDCENTER:ReportSummary(ReportGroup)
-self:F(ReportGroup)
-local Report=REPORT:New()
-local Name=self:GetName()
-Report:Add(string.format('%s - Report Summary Missions',Name))
-for MissionID,Mission in pairs(self.Missions)do
-local Mission=Mission
-Report:Add(" - "..Mission:ReportSummary(ReportGroup))
-end
-self:MessageToGroup(Report:Text(),ReportGroup)
-end
-function COMMANDCENTER:ReportMissionsPlayers(ReportGroup)
-self:F(ReportGroup)
-local Report=REPORT:New()
-Report:Add("Players active in all missions.")
-for MissionID,MissionData in pairs(self.Missions)do
-local Mission=MissionData
-Report:Add(" - "..Mission:ReportPlayersPerTask(ReportGroup))
-end
-self:MessageToGroup(Report:Text(),ReportGroup)
-end
-function COMMANDCENTER:ReportDetails(ReportGroup,Task)
-self:F(ReportGroup)
-local Report=REPORT:New()
-for MissionID,Mission in pairs(self.Missions)do
-local Mission=Mission
-Report:Add(" - "..Mission:ReportDetails())
-end
-self:MessageToGroup(Report:Text(),ReportGroup)
-end
-function COMMANDCENTER:SetFlashStatus(Flash)
-self:F()
-self.FlashStatus=Flash and true
-end
-function COMMANDCENTER:SetMessageDuration(seconds)
-self:F()
-self.MessageDuration=10 or seconds
-end
-MISSION={
-ClassName="MISSION",
-Name="",
-MissionStatus="PENDING",
-AssignedGroups={},
-}
-function MISSION:New(CommandCenter,MissionName,MissionPriority,MissionBriefing,MissionCoalition)
-local self=BASE:Inherit(self,FSM:New())
-self:T({MissionName,MissionPriority,MissionBriefing,MissionCoalition})
-self.CommandCenter=CommandCenter
-CommandCenter:AddMission(self)
-self.Name=MissionName
-self.MissionPriority=MissionPriority
-self.MissionBriefing=MissionBriefing
-self.MissionCoalition=MissionCoalition
-self.Tasks={}
-self.TaskNumber=0
-self.PlayerNames={}
-self:SetStartState("IDLE")
-self:AddTransition("IDLE","Start","ENGAGED")
-self:AddTransition("ENGAGED","Stop","IDLE")
-self:AddTransition("ENGAGED","Complete","COMPLETED")
-self:AddTransition("*","Fail","FAILED")
-self:AddTransition("*","MissionGoals","*")
-CommandCenter:SetMenu()
-return self
-end
-function MISSION:onenterCOMPLETED(From,Event,To)
-self:GetCommandCenter():MessageTypeToCoalition(self:GetText().." has been completed! Good job guys!",MESSAGE.Type.Information)
-end
-function MISSION:GetName()
-return self.Name
-end
-function MISSION:GetText()
-return string.format('Mission "%s (%s)"',self.Name,self.MissionPriority)
-end
-function MISSION:GetShortText()
-return string.format('Mission "%s"',self.Name)
-end
-function MISSION:JoinUnit(PlayerUnit,PlayerGroup)
-self:T({Mission=self:GetName(),PlayerUnit=PlayerUnit,PlayerGroup=PlayerGroup})
-local PlayerUnitAdded=false
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-if Task:JoinUnit(PlayerUnit,PlayerGroup)then
-PlayerUnitAdded=true
-end
-end
-return PlayerUnitAdded
-end
-function MISSION:AbortUnit(PlayerUnit)
-self:F({PlayerUnit=PlayerUnit})
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-local PlayerGroup=PlayerUnit:GetGroup()
-Task:AbortGroup(PlayerGroup)
-end
-return self
-end
-function MISSION:CrashUnit(PlayerUnit)
-self:F({PlayerUnit=PlayerUnit})
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-local PlayerGroup=PlayerUnit:GetGroup()
-Task:CrashGroup(PlayerGroup)
-end
-return self
-end
-function MISSION:AddScoring(Scoring)
-self.Scoring=Scoring
-return self
-end
-function MISSION:GetScoring()
-return self.Scoring
-end
-function MISSION:GetGroups()
-return self:AddGroups()
-end
-function MISSION:AddGroups(GroupSet)
-GroupSet=GroupSet or SET_GROUP:New()
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-GroupSet=Task:AddGroups(GroupSet)
-end
-return GroupSet
-end
-function MISSION:SetMenu(MenuTime)
-self:F({self:GetName(),MenuTime})
-local MenuCount={}
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-local TaskType=Task:GetType()
-MenuCount[TaskType]=MenuCount[TaskType]or 1
-if MenuCount[TaskType]<=10 then
-Task:SetMenu(MenuTime)
-MenuCount[TaskType]=MenuCount[TaskType]+1
-end
-end
-end
-function MISSION:RemoveMenu(MenuTime)
-self:F({self:GetName(),MenuTime})
-for _,Task in pairs(self:GetTasks())do
-local Task=Task
-Task:RemoveMenu(MenuTime)
-end
-end
-do
-function MISSION:IsGroupAssigned(MissionGroup)
-local MissionGroupName=MissionGroup:GetName()
-if self.AssignedGroups[MissionGroupName]==MissionGroup then
-self:T2({"Mission is assigned to:",MissionGroup:GetName()})
-return true
-end
-self:T2({"Mission is not assigned to:",MissionGroup:GetName()})
-return false
-end
-function MISSION:SetGroupAssigned(MissionGroup)
-local MissionName=self:GetName()
-local MissionGroupName=MissionGroup:GetName()
-self.AssignedGroups[MissionGroupName]=MissionGroup
-self:T(string.format("Mission %s is assigned to %s",MissionName,MissionGroupName))
-return self
-end
-function MISSION:ClearGroupAssignment(MissionGroup)
-local MissionName=self:GetName()
-local MissionGroupName=MissionGroup:GetName()
-self.AssignedGroups[MissionGroupName]=nil
-return self
-end
-end
-function MISSION:GetCommandCenter()
-return self.CommandCenter
-end
-function MISSION:RemoveTaskMenu(Task)
-Task:RemoveMenu()
-end
-function MISSION:GetRootMenu(TaskGroup)
-local CommandCenter=self:GetCommandCenter()
-local CommandCenterMenu=CommandCenter:GetMenu(TaskGroup)
-local MissionName=self:GetText()
-self.MissionMenu=MENU_COALITION:New(self.MissionCoalition,MissionName,CommandCenterMenu)
-return self.MissionMenu
-end
-function MISSION:GetMenu(TaskGroup)
-local CommandCenter=self:GetCommandCenter()
-local CommandCenterMenu=CommandCenter:GetMenu(TaskGroup)
-self.MissionGroupMenu=self.MissionGroupMenu or{}
-self.MissionGroupMenu[TaskGroup]=self.MissionGroupMenu[TaskGroup]or{}
-local GroupMenu=self.MissionGroupMenu[TaskGroup]
-local MissionText=self:GetText()
-self.MissionMenu=MENU_GROUP:New(TaskGroup,MissionText,CommandCenterMenu)
-GroupMenu.BriefingMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Mission Briefing",self.MissionMenu,self.MenuReportBriefing,self,TaskGroup)
-GroupMenu.MarkTasks=MENU_GROUP_COMMAND:New(TaskGroup,"Mark Task Locations on Map",self.MissionMenu,self.MarkTargetLocations,self,TaskGroup)
-GroupMenu.TaskReportsMenu=MENU_GROUP:New(TaskGroup,"Task Reports",self.MissionMenu)
-GroupMenu.ReportTasksMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Report Tasks Summary",GroupMenu.TaskReportsMenu,self.MenuReportTasksSummary,self,TaskGroup)
-GroupMenu.ReportPlannedTasksMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Report Planned Tasks",GroupMenu.TaskReportsMenu,self.MenuReportTasksPerStatus,self,TaskGroup,"Planned")
-GroupMenu.ReportAssignedTasksMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Report Assigned Tasks",GroupMenu.TaskReportsMenu,self.MenuReportTasksPerStatus,self,TaskGroup,"Assigned")
-GroupMenu.ReportSuccessTasksMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Report Successful Tasks",GroupMenu.TaskReportsMenu,self.MenuReportTasksPerStatus,self,TaskGroup,"Success")
-GroupMenu.ReportFailedTasksMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Report Failed Tasks",GroupMenu.TaskReportsMenu,self.MenuReportTasksPerStatus,self,TaskGroup,"Failed")
-GroupMenu.ReportHeldTasksMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Report Held Tasks",GroupMenu.TaskReportsMenu,self.MenuReportTasksPerStatus,self,TaskGroup,"Hold")
-GroupMenu.PlayerReportsMenu=MENU_GROUP:New(TaskGroup,"Statistics Reports",self.MissionMenu)
-GroupMenu.ReportMissionHistory=MENU_GROUP_COMMAND:New(TaskGroup,"Report Mission Progress",GroupMenu.PlayerReportsMenu,self.MenuReportPlayersProgress,self,TaskGroup)
-GroupMenu.ReportPlayersPerTaskMenu=MENU_GROUP_COMMAND:New(TaskGroup,"Report Players per Task",GroupMenu.PlayerReportsMenu,self.MenuReportPlayersPerTask,self,TaskGroup)
-return self.MissionMenu
-end
-function MISSION:GetTask(TaskName)
-self:F({TaskName})
-return self.Tasks[TaskName]
-end
-function MISSION:GetNextTaskID(Task)
-self.TaskNumber=self.TaskNumber+1
-return self.TaskNumber
-end
-function MISSION:AddTask(Task)
-local TaskName=Task:GetTaskName()
-self:T({"==> Adding TASK ",MissionName=self:GetName(),TaskName=TaskName})
-self.Tasks[TaskName]=Task
-self:GetCommandCenter():SetMenu()
-return Task
-end
-function MISSION:RemoveTask(Task)
-local TaskName=Task:GetTaskName()
-self:T({"<== Removing TASK ",MissionName=self:GetName(),TaskName=TaskName})
-self:F(TaskName)
-self.Tasks[TaskName]=self.Tasks[TaskName]or{n=0}
-self.Tasks[TaskName]=nil
-Task=nil
-collectgarbage()
-self:GetCommandCenter():SetMenu()
-return nil
-end
-function MISSION:IsCOMPLETED()
-return self:Is("COMPLETED")
-end
-function MISSION:IsIDLE()
-return self:Is("IDLE")
-end
-function MISSION:IsENGAGED()
-return self:Is("ENGAGED")
-end
-function MISSION:IsFAILED()
-return self:Is("FAILED")
-end
-function MISSION:IsHOLD()
-return self:Is("HOLD")
-end
-function MISSION:HasGroup(TaskGroup)
-local Has=false
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-if Task:HasGroup(TaskGroup)then
-Has=true
-break
-end
-end
-return Has
-end
-function MISSION:GetTasksRemaining()
-local TasksRemaining=0
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-if Task:IsStateSuccess()or Task:IsStateFailed()then
-else
-TasksRemaining=TasksRemaining+1
-end
-end
-return TasksRemaining
-end
-function MISSION:GetTaskTypes()
-local TaskTypeList={}
-local TasksRemaining=0
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-local TaskType=Task:GetType()
-TaskTypeList[TaskType]=TaskType
-end
-return TaskTypeList
-end
-function MISSION:AddPlayerName(PlayerName)
-self.PlayerNames=self.PlayerNames or{}
-self.PlayerNames[PlayerName]=PlayerName
-return self
-end
-function MISSION:GetPlayerNames()
-return self.PlayerNames
-end
-function MISSION:ReportBriefing()
-local Report=REPORT:New()
-local Name=self:GetText()
-local Status="<"..self:GetState()..">"
-Report:Add(string.format('%s - %s - Mission Briefing Report',Name,Status))
-Report:Add(self.MissionBriefing)
-return Report:Text()
-end
-function MISSION:ReportPlayersPerTask(ReportGroup)
-local Report=REPORT:New()
-local Name=self:GetText()
-local Status="<"..self:GetState()..">"
-Report:Add(string.format('%s - %s - Players per Task Report',Name,Status))
-local PlayerList={}
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-local PlayerNames=Task:GetPlayerNames()
-for PlayerName,PlayerGroup in pairs(PlayerNames)do
-PlayerList[PlayerName]=Task:GetName()
-end
-end
-for PlayerName,TaskName in pairs(PlayerList)do
-Report:Add(string.format(' - Player (%s): Task "%s"',PlayerName,TaskName))
-end
-return Report:Text()
-end
-function MISSION:ReportPlayersProgress(ReportGroup)
-local Report=REPORT:New()
-local Name=self:GetText()
-local Status="<"..self:GetState()..">"
-Report:Add(string.format('%s - %s - Players per Task Progress Report',Name,Status))
-local PlayerList={}
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-local TaskName=Task:GetName()
-local Goal=Task:GetGoal()
-PlayerList[TaskName]=PlayerList[TaskName]or{}
-if Goal then
-local TotalContributions=Goal:GetTotalContributions()
-local PlayerContributions=Goal:GetPlayerContributions()
-self:F({TotalContributions=TotalContributions,PlayerContributions=PlayerContributions})
-for PlayerName,PlayerContribution in pairs(PlayerContributions)do
-PlayerList[TaskName][PlayerName]=string.format('Player (%s): Task "%s": %d%%',PlayerName,TaskName,PlayerContributions[PlayerName]*100/TotalContributions)
-end
-else
-PlayerList[TaskName]["_"]=string.format('Player (---): Task "%s": %d%%',TaskName,0)
-end
-end
-for TaskName,TaskData in pairs(PlayerList)do
-for PlayerName,TaskText in pairs(TaskData)do
-Report:Add(string.format(' - %s',TaskText))
-end
-end
-return Report:Text()
-end
-function MISSION:MarkTargetLocations(ReportGroup)
-local Report=REPORT:New()
-local Name=self:GetText()
-local Status="<"..self:GetState()..">"
-Report:Add(string.format('%s - %s - All Tasks are marked on the map. Select a Task from the Mission Menu and Join the Task!!!',Name,Status))
-for TaskID,Task in UTILS.spairs(self:GetTasks(),function(t,a,b)return t[a]:ReportOrder(ReportGroup)<t[b]:ReportOrder(ReportGroup)end)do
-local Task=Task
-Task:MenuMarkToGroup(ReportGroup)
-end
-return Report:Text()
-end
-function MISSION:ReportSummary(ReportGroup)
-local Report=REPORT:New()
-local Name=self:GetText()
-local Status="<"..self:GetState()..">"
-Report:Add(string.format('%s - %s - Task Overview Report',Name,Status))
-for TaskID,Task in UTILS.spairs(self:GetTasks(),function(t,a,b)return t[a]:ReportOrder(ReportGroup)<t[b]:ReportOrder(ReportGroup)end)do
-local Task=Task
-Report:Add("- "..Task:ReportSummary(ReportGroup))
-end
-return Report:Text()
-end
-function MISSION:ReportOverview(ReportGroup,TaskStatus)
-self:F({TaskStatus=TaskStatus})
-local Report=REPORT:New()
-local Name=self:GetText()
-local Status="<"..self:GetState()..">"
-Report:Add(string.format('%s - %s - %s Tasks Report',Name,Status,TaskStatus))
-local Tasks=0
-for TaskID,Task in UTILS.spairs(self:GetTasks(),function(t,a,b)return t[a]:ReportOrder(ReportGroup)<t[b]:ReportOrder(ReportGroup)end)do
-local Task=Task
-if Task:Is(TaskStatus)then
-Report:Add(string.rep("-",140))
-Report:Add(Task:ReportOverview(ReportGroup))
-end
-Tasks=Tasks+1
-if Tasks>=8 then
-break
-end
-end
-return Report:Text()
-end
-function MISSION:ReportDetails(ReportGroup)
-local Report=REPORT:New()
-local Name=self:GetText()
-local Status="<"..self:GetState()..">"
-Report:Add(string.format('%s - %s - Task Detailed Report',Name,Status))
-local TasksRemaining=0
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-Report:Add(string.rep("-",140))
-Report:Add(Task:ReportDetails(ReportGroup))
-end
-return Report:Text()
-end
-function MISSION:GetTasks()
-return self.Tasks or{}
-end
-function MISSION:GetGroupTasks(TaskGroup)
-local Tasks={}
-for TaskID,Task in pairs(self:GetTasks())do
-local Task=Task
-if Task:HasGroup(TaskGroup)then
-Tasks[#Tasks+1]=Task
-end
-end
-return Tasks
-end
-function MISSION:MenuReportBriefing(ReportGroup)
-local Report=self:ReportBriefing()
-self:GetCommandCenter():MessageTypeToGroup(Report,ReportGroup,MESSAGE.Type.Briefing)
-end
-function MISSION:MenuMarkTargetLocations(ReportGroup)
-local Report=self:MarkTargetLocations(ReportGroup)
-self:GetCommandCenter():MessageTypeToGroup(Report,ReportGroup,MESSAGE.Type.Overview)
-end
-function MISSION:MenuReportTasksSummary(ReportGroup)
-local Report=self:ReportSummary(ReportGroup)
-self:GetCommandCenter():MessageTypeToGroup(Report,ReportGroup,MESSAGE.Type.Overview)
-end
-function MISSION:MenuReportTasksPerStatus(ReportGroup,TaskStatus)
-local Report=self:ReportOverview(ReportGroup,TaskStatus)
-self:GetCommandCenter():MessageTypeToGroup(Report,ReportGroup,MESSAGE.Type.Overview)
-end
-function MISSION:MenuReportPlayersPerTask(ReportGroup)
-local Report=self:ReportPlayersPerTask()
-self:GetCommandCenter():MessageTypeToGroup(Report,ReportGroup,MESSAGE.Type.Overview)
-end
-function MISSION:MenuReportPlayersProgress(ReportGroup)
-local Report=self:ReportPlayersProgress()
-self:GetCommandCenter():MessageTypeToGroup(Report,ReportGroup,MESSAGE.Type.Overview)
-end
-TASK={
-ClassName="TASK",
-TaskScheduler=nil,
-ProcessClasses={},
-Processes={},
-Players=nil,
-Scores={},
-Menu={},
-SetGroup=nil,
-FsmTemplate=nil,
-Mission=nil,
-CommandCenter=nil,
-TimeOut=0,
-AssignedGroups={},
-}
-function TASK:New(Mission,SetGroupAssign,TaskName,TaskType,TaskBriefing)
-local self=BASE:Inherit(self,FSM_TASK:New(TaskName))
-self:SetStartState("Planned")
-self:AddTransition("Planned","Assign","Assigned")
-self:AddTransition("Assigned","AssignUnit","Assigned")
-self:AddTransition("Assigned","Success","Success")
-self:AddTransition("Assigned","Hold","Hold")
-self:AddTransition("Assigned","Fail","Failed")
-self:AddTransition({"Planned","Assigned"},"Abort","Aborted")
-self:AddTransition("Assigned","Cancel","Cancelled")
-self:AddTransition("Assigned","Goal","*")
-self.Fsm={}
-local Fsm=self:GetUnitProcess()
-Fsm:SetStartState("Planned")
-Fsm:AddProcess("Planned","Accept",ACT_ASSIGN_ACCEPT:New(self.TaskBriefing),{Assigned="Assigned",Rejected="Reject"})
-Fsm:AddTransition("Assigned","Assigned","*")
-self:AddTransition("*","PlayerCrashed","*")
-self:AddTransition("*","PlayerAborted","*")
-self:AddTransition("*","PlayerRejected","*")
-self:AddTransition("*","PlayerDead","*")
-self:AddTransition({"Failed","Aborted","Cancelled"},"Replan","Planned")
-self:AddTransition("*","TimeOut","Cancelled")
-self:F("New TASK "..TaskName)
-self.Processes={}
-self.Mission=Mission
-self.CommandCenter=Mission:GetCommandCenter()
-self.SetGroup=SetGroupAssign
-self:SetType(TaskType)
-self:SetName(TaskName)
-self:SetID(Mission:GetNextTaskID(self))
-self:SetBriefing(TaskBriefing)
-self.TaskInfo=TASKINFO:New(self)
-self.TaskProgress={}
-return self
-end
-function TASK:GetUnitProcess(TaskUnit)
-if TaskUnit then
-return self:GetStateMachine(TaskUnit)
-else
-self.FsmTemplate=self.FsmTemplate or FSM_PROCESS:New()
-return self.FsmTemplate
-end
-end
-function TASK:SetUnitProcess(FsmTemplate)
-self.FsmTemplate=FsmTemplate
-end
-function TASK:JoinUnit(PlayerUnit,PlayerGroup)
-self:F({PlayerUnit=PlayerUnit,PlayerGroup=PlayerGroup})
-local PlayerUnitAdded=false
-local PlayerGroups=self:GetGroups()
-if PlayerGroups:IsIncludeObject(PlayerGroup)then
-if self:IsStatePlanned()or self:IsStateReplanned()then
-end
-if self:IsStateAssigned()then
-local IsGroupAssigned=self:IsGroupAssigned(PlayerGroup)
-self:F({IsGroupAssigned=IsGroupAssigned})
-if IsGroupAssigned then
-self:AssignToUnit(PlayerUnit)
-self:MessageToGroups(PlayerUnit:GetPlayerName().." joined Task "..self:GetName())
-end
-end
-end
-return PlayerUnitAdded
-end
-function TASK:RejectGroup(PlayerGroup)
-local PlayerGroups=self:GetGroups()
-if PlayerGroups:IsIncludeObject(PlayerGroup)then
-if self:IsStatePlanned()then
-local IsGroupAssigned=self:IsGroupAssigned(PlayerGroup)
-if IsGroupAssigned then
-local PlayerName=PlayerGroup:GetUnit(1):GetPlayerName()
-self:GetMission():GetCommandCenter():MessageToGroup("Task "..self:GetName().." has been rejected! We will select another task.",PlayerGroup)
-self:UnAssignFromGroup(PlayerGroup)
-self:PlayerRejected(PlayerGroup:GetUnit(1))
-end
-end
-end
-return self
-end
-function TASK:AbortGroup(PlayerGroup)
-local PlayerGroups=self:GetGroups()
-if PlayerGroups:IsIncludeObject(PlayerGroup)then
-if self:IsStateAssigned()then
-local IsGroupAssigned=self:IsGroupAssigned(PlayerGroup)
-if IsGroupAssigned then
-local PlayerName=PlayerGroup:GetUnit(1):GetPlayerName()
-self:UnAssignFromGroup(PlayerGroup)
-PlayerGroups:Flush(self)
-local IsRemaining=false
-for GroupName,AssignedGroup in pairs(PlayerGroups:GetSet()or{})do
-if self:IsGroupAssigned(AssignedGroup)==true then
-IsRemaining=true
-self:F({Task=self:GetName(),IsRemaining=IsRemaining})
-break
-end
-end
-self:F({Task=self:GetName(),IsRemaining=IsRemaining})
-if IsRemaining==false then
-self:Abort()
-end
-self:PlayerAborted(PlayerGroup:GetUnit(1))
-end
-end
-end
-return self
-end
-function TASK:CrashGroup(PlayerGroup)
-self:F({PlayerGroup=PlayerGroup})
-local PlayerGroups=self:GetGroups()
-if PlayerGroups:IsIncludeObject(PlayerGroup)then
-if self:IsStateAssigned()then
-local IsGroupAssigned=self:IsGroupAssigned(PlayerGroup)
-self:F({IsGroupAssigned=IsGroupAssigned})
-if IsGroupAssigned then
-local PlayerName=PlayerGroup:GetUnit(1):GetPlayerName()
-self:MessageToGroups(PlayerName.." crashed! ")
-self:UnAssignFromGroup(PlayerGroup)
-PlayerGroups:Flush(self)
-local IsRemaining=false
-for GroupName,AssignedGroup in pairs(PlayerGroups:GetSet()or{})do
-if self:IsGroupAssigned(AssignedGroup)==true then
-IsRemaining=true
-self:F({Task=self:GetName(),IsRemaining=IsRemaining})
-break
-end
-end
-self:F({Task=self:GetName(),IsRemaining=IsRemaining})
-if IsRemaining==false then
-self:Abort()
-end
-self:PlayerCrashed(PlayerGroup:GetUnit(1))
-end
-end
-end
-return self
-end
-function TASK:GetMission()
-return self.Mission
-end
-function TASK:GetGroups()
-return self.SetGroup
-end
-function TASK:AddGroups(GroupSet)
-GroupSet=GroupSet or SET_GROUP:New()
-self.SetGroup:ForEachGroup(
-function(GroupItem)
-GroupSet:Add(GroupItem:GetName(),GroupItem)
-end
-)
-return GroupSet
-end
-do
-function TASK:IsGroupAssigned(TaskGroup)
-local TaskGroupName=TaskGroup:GetName()
-if self.AssignedGroups[TaskGroupName]then
-return true
-end
-return false
-end
-function TASK:SetGroupAssigned(TaskGroup)
-local TaskName=self:GetName()
-local TaskGroupName=TaskGroup:GetName()
-self.AssignedGroups[TaskGroupName]=TaskGroup
-self:F(string.format("Task %s is assigned to %s",TaskName,TaskGroupName))
-self:GetMission():SetGroupAssigned(TaskGroup)
-local SetAssignedGroups=self:GetGroups()
-return self
-end
-function TASK:ClearGroupAssignment(TaskGroup)
-local TaskName=self:GetName()
-local TaskGroupName=TaskGroup:GetName()
-self.AssignedGroups[TaskGroupName]=nil
-self:GetMission():ClearGroupAssignment(TaskGroup)
-local SetAssignedGroups=self:GetGroups()
-SetAssignedGroups:ForEachGroup(
-function(AssignedGroup)
-if self:IsGroupAssigned(AssignedGroup)then
-else
-end
-end
-)
-return self
-end
-end
-do
-function TASK:SetAssignMethod(AcceptClass)
-local ProcessTemplate=self:GetUnitProcess()
-ProcessTemplate:SetProcess("Planned","Accept",AcceptClass)
-end
-function TASK:AssignToGroup(TaskGroup)
-self:F(TaskGroup:GetName())
-local TaskGroupName=TaskGroup:GetName()
-local Mission=self:GetMission()
-local CommandCenter=Mission:GetCommandCenter()
-self:SetGroupAssigned(TaskGroup)
-local TaskUnits=TaskGroup:GetUnits()
-for UnitID,UnitData in pairs(TaskUnits)do
-local TaskUnit=UnitData
-local PlayerName=TaskUnit:GetPlayerName()
-self:F(PlayerName)
-if PlayerName~=nil and PlayerName~=""then
-self:AssignToUnit(TaskUnit)
-CommandCenter:MessageToGroup(
-string.format('Task "%s": Briefing for player (%s):\n%s',
-self:GetName(),
-PlayerName,
-self:GetBriefing()
-),TaskGroup
-)
-end
-end
-CommandCenter:SetMenu()
-self:MenuFlashTaskStatus(TaskGroup,self:GetMission():GetCommandCenter().FlashStatus)
-return self
-end
-function TASK:UnAssignFromGroup(TaskGroup)
-self:F2({TaskGroup=TaskGroup:GetName()})
-self:ClearGroupAssignment(TaskGroup)
-local TaskUnits=TaskGroup:GetUnits()
-for UnitID,UnitData in pairs(TaskUnits)do
-local TaskUnit=UnitData
-local PlayerName=TaskUnit:GetPlayerName()
-if PlayerName~=nil and PlayerName~=""then
-self:UnAssignFromUnit(TaskUnit)
-end
-end
-local Mission=self:GetMission()
-local CommandCenter=Mission:GetCommandCenter()
-CommandCenter:SetMenu()
-self:MenuFlashTaskStatus(TaskGroup,false)
-end
-end
-function TASK:HasGroup(FindGroup)
-local SetAttackGroup=self:GetGroups()
-return SetAttackGroup:FindGroup(FindGroup:GetName())
-end
-function TASK:AssignToUnit(TaskUnit)
-self:F(TaskUnit:GetName())
-local FsmTemplate=self:GetUnitProcess()
-local FsmUnit=self:SetStateMachine(TaskUnit,FsmTemplate:Copy(TaskUnit,self))
-FsmUnit:SetStartState("Planned")
-FsmUnit:Accept()
-return self
-end
-function TASK:UnAssignFromUnit(TaskUnit)
-self:F(TaskUnit:GetName())
-self:RemoveStateMachine(TaskUnit)
-self:RemoveTaskControlMenu(TaskUnit)
-return self
-end
-function TASK:SetTimeOut(Timer)
-self:F(Timer)
-self.TimeOut=Timer
-self:__TimeOut(self.TimeOut)
-return self
-end
-function TASK:MessageToGroups(Message)
-self:F({Message=Message})
-local Mission=self:GetMission()
-local CC=Mission:GetCommandCenter()
-for TaskGroupName,TaskGroup in pairs(self.SetGroup:GetSet())do
-TaskGroup=TaskGroup
-if TaskGroup:IsAlive()==true then
-CC:MessageToGroup(Message,TaskGroup,TaskGroup:GetName())
-end
-end
-end
-function TASK:SendBriefingToAssignedGroups()
-self:F2()
-for TaskGroupName,TaskGroup in pairs(self.SetGroup:GetSet())do
-if TaskGroup:IsAlive()then
-if self:IsGroupAssigned(TaskGroup)then
-TaskGroup:Message(self.TaskBriefing,60)
-end
-end
-end
-end
-function TASK:UnAssignFromGroups()
-self:F2()
-for TaskGroupName,TaskGroup in pairs(self.SetGroup:GetSet())do
-if TaskGroup:IsAlive()==true then
-if self:IsGroupAssigned(TaskGroup)then
-self:UnAssignFromGroup(TaskGroup)
-end
-end
-end
-end
-function TASK:HasAliveUnits()
-self:F()
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-if TaskGroup:IsAlive()==true then
-if self:IsStateAssigned()then
-if self:IsGroupAssigned(TaskGroup)then
-for TaskUnitID,TaskUnit in pairs(TaskGroup:GetUnits())do
-if TaskUnit:IsAlive()then
-self:T({HasAliveUnits=true})
-return true
-end
-end
-end
-end
-end
-end
-self:T({HasAliveUnits=false})
-return false
-end
-function TASK:SetMenu(MenuTime)
-self:F({self:GetName(),MenuTime})
-for TaskGroupID,TaskGroupData in pairs(self.SetGroup:GetSet())do
-local TaskGroup=TaskGroupData
-if TaskGroup:IsAlive()==true and TaskGroup:GetPlayerNames()then
-local Mission=self:GetMission()
-local MissionMenu=Mission:GetMenu(TaskGroup)
-if MissionMenu then
-self:SetMenuForGroup(TaskGroup,MenuTime)
-end
-end
-end
-end
-function TASK:SetMenuForGroup(TaskGroup,MenuTime)
-if self:IsStatePlanned()or self:IsStateAssigned()then
-self:SetPlannedMenuForGroup(TaskGroup,MenuTime)
-if self:IsGroupAssigned(TaskGroup)then
-self:SetAssignedMenuForGroup(TaskGroup,MenuTime)
-end
-end
-end
-function TASK:SetPlannedMenuForGroup(TaskGroup,MenuTime)
-self:F(TaskGroup:GetName())
-local Mission=self:GetMission()
-local MissionName=Mission:GetName()
-local MissionMenu=Mission:GetMenu(TaskGroup)
-local TaskType=self:GetType()
-local TaskPlayerCount=self:GetPlayerCount()
-local TaskPlayerString=string.format(" (%dp)",TaskPlayerCount)
-local TaskText=string.format("%s",self:GetName())
-local TaskName=string.format("%s",self:GetName())
-self.MenuPlanned=self.MenuPlanned or{}
-self.MenuPlanned[TaskGroup]=MENU_GROUP_DELAYED:New(TaskGroup,"Join Planned Task",MissionMenu,Mission.MenuReportTasksPerStatus,Mission,TaskGroup,"Planned"):SetTime(MenuTime):SetTag("Tasking")
-local TaskTypeMenu=MENU_GROUP_DELAYED:New(TaskGroup,TaskType,self.MenuPlanned[TaskGroup]):SetTime(MenuTime):SetTag("Tasking")
-local TaskTypeMenu=MENU_GROUP_DELAYED:New(TaskGroup,TaskText,TaskTypeMenu):SetTime(MenuTime):SetTag("Tasking")
-if not Mission:IsGroupAssigned(TaskGroup)then
-local JoinTaskMenu=MENU_GROUP_COMMAND_DELAYED:New(TaskGroup,string.format("Join Task"),TaskTypeMenu,self.MenuAssignToGroup,self,TaskGroup):SetTime(MenuTime):SetTag("Tasking")
-local MarkTaskMenu=MENU_GROUP_COMMAND_DELAYED:New(TaskGroup,string.format("Mark Task Location on Map"),TaskTypeMenu,self.MenuMarkToGroup,self,TaskGroup):SetTime(MenuTime):SetTag("Tasking")
-end
-local ReportTaskMenu=MENU_GROUP_COMMAND_DELAYED:New(TaskGroup,string.format("Report Task Details"),TaskTypeMenu,self.MenuTaskStatus,self,TaskGroup):SetTime(MenuTime):SetTag("Tasking")
-return self
-end
-function TASK:SetAssignedMenuForGroup(TaskGroup,MenuTime)
-self:F({TaskGroup:GetName(),MenuTime})
-local TaskType=self:GetType()
-local TaskPlayerCount=self:GetPlayerCount()
-local TaskPlayerString=string.format(" (%dp)",TaskPlayerCount)
-local TaskText=string.format("%s%s",self:GetName(),TaskPlayerString)
-local TaskName=string.format("%s",self:GetName())
-for UnitName,TaskUnit in pairs(TaskGroup:GetPlayerUnits())do
-local TaskUnit=TaskUnit
-if TaskUnit then
-local MenuControl=self:GetTaskControlMenu(TaskUnit)
-local TaskControl=MENU_GROUP:New(TaskGroup,"Control Task",MenuControl):SetTime(MenuTime):SetTag("Tasking")
-if self:IsStateAssigned()then
-local TaskMenu=MENU_GROUP_COMMAND:New(TaskGroup,string.format("Abort Task"),TaskControl,self.MenuTaskAbort,self,TaskGroup):SetTime(MenuTime):SetTag("Tasking")
-end
-local MarkMenu=MENU_GROUP_COMMAND:New(TaskGroup,string.format("Mark Task Location on Map"),TaskControl,self.MenuMarkToGroup,self,TaskGroup):SetTime(MenuTime):SetTag("Tasking")
-local TaskTypeMenu=MENU_GROUP_COMMAND:New(TaskGroup,string.format("Report Task Details"),TaskControl,self.MenuTaskStatus,self,TaskGroup):SetTime(MenuTime):SetTag("Tasking")
-if not self.FlashTaskStatus then
-local TaskFlashStatusMenu=MENU_GROUP_COMMAND:New(TaskGroup,string.format("Flash Task Details"),TaskControl,self.MenuFlashTaskStatus,self,TaskGroup,true):SetTime(MenuTime):SetTag("Tasking")
-else
-local TaskFlashStatusMenu=MENU_GROUP_COMMAND:New(TaskGroup,string.format("Stop Flash Task Details"),TaskControl,self.MenuFlashTaskStatus,self,TaskGroup,nil):SetTime(MenuTime):SetTag("Tasking")
-end
-end
-end
-return self
-end
-function TASK:RemoveMenu(MenuTime)
-self:F({self:GetName(),MenuTime})
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-if TaskGroup:IsAlive()==true then
-local TaskGroup=TaskGroup
-if TaskGroup:IsAlive()==true and TaskGroup:GetPlayerNames()then
-self:RefreshMenus(TaskGroup,MenuTime)
-end
-end
-end
-end
-function TASK:RefreshMenus(TaskGroup,MenuTime)
-self:F({TaskGroup:GetName(),MenuTime})
-local Mission=self:GetMission()
-local MissionName=Mission:GetName()
-local MissionMenu=Mission:GetMenu(TaskGroup)
-local TaskName=self:GetName()
-self.MenuPlanned=self.MenuPlanned or{}
-local PlannedMenu=self.MenuPlanned[TaskGroup]
-self.MenuAssigned=self.MenuAssigned or{}
-local AssignedMenu=self.MenuAssigned[TaskGroup]
-if PlannedMenu then
-self.MenuPlanned[TaskGroup]=PlannedMenu:Remove(MenuTime,"Tasking")
-PlannedMenu:Set()
-end
-if AssignedMenu then
-self.MenuAssigned[TaskGroup]=AssignedMenu:Remove(MenuTime,"Tasking")
-AssignedMenu:Set()
-end
-end
-function TASK:RemoveAssignedMenuForGroup(TaskGroup)
-self:F()
-local Mission=self:GetMission()
-local MissionName=Mission:GetName()
-local MissionMenu=Mission:GetMenu(TaskGroup)
-if MissionMenu then
-MissionMenu:RemoveSubMenus()
-end
-end
-function TASK:MenuAssignToGroup(TaskGroup)
-self:F("Join Task menu selected")
-self:AssignToGroup(TaskGroup)
-end
-function TASK:MenuMarkToGroup(TaskGroup)
-self:F()
-self:UpdateTaskInfo(self.DetectedItem)
-local TargetCoordinates=self.TaskInfo:GetData("Coordinates")
-if TargetCoordinates then
-for TargetCoordinateID,TargetCoordinate in pairs(TargetCoordinates)do
-local Report=REPORT:New():SetIndent(0)
-self.TaskInfo:Report(Report,"M",TaskGroup,self)
-local MarkText=Report:Text(", ")
-self:F({Coordinate=TargetCoordinate,MarkText=MarkText})
-TargetCoordinate:MarkToGroup(MarkText,TaskGroup)
-end
-else
-local TargetCoordinate=self.TaskInfo:GetData("Coordinate")
-if TargetCoordinate then
-local Report=REPORT:New():SetIndent(0)
-self.TaskInfo:Report(Report,"M",TaskGroup,self)
-local MarkText=Report:Text(", ")
-self:F({Coordinate=TargetCoordinate,MarkText=MarkText})
-TargetCoordinate:MarkToGroup(MarkText,TaskGroup)
-end
-end
-end
-function TASK:MenuTaskStatus(TaskGroup)
-if TaskGroup:IsAlive()then
-local ReportText=self:ReportDetails(TaskGroup)
-self:T(ReportText)
-self:GetMission():GetCommandCenter():MessageTypeToGroup(ReportText,TaskGroup,MESSAGE.Type.Detailed)
-end
-end
-function TASK:MenuFlashTaskStatus(TaskGroup,Flash)
-self.FlashTaskStatus=Flash
-if self.FlashTaskStatus then
-self.FlashTaskScheduler,self.FlashTaskScheduleID=SCHEDULER:New(self,self.MenuTaskStatus,{TaskGroup},0,60)
-else
-if self.FlashTaskScheduler then
-self.FlashTaskScheduler:Stop(self.FlashTaskScheduleID)
-self.FlashTaskScheduler=nil
-self.FlashTaskScheduleID=nil
-end
-end
-end
-function TASK:MenuTaskAbort(TaskGroup)
-self:AbortGroup(TaskGroup)
-end
-function TASK:GetTaskName()
-return self.TaskName
-end
-function TASK:GetTaskBriefing()
-return self.TaskBriefing
-end
-function TASK:GetProcessTemplate(ProcessName)
-local ProcessTemplate=self.ProcessClasses[ProcessName]
-return ProcessTemplate
-end
-function TASK:FailProcesses(TaskUnitName)
-for ProcessID,ProcessData in pairs(self.Processes[TaskUnitName])do
-local Process=ProcessData
-Process.Fsm:Fail()
-end
-end
-function TASK:SetStateMachine(TaskUnit,Fsm)
-self:F2({TaskUnit,self.Fsm[TaskUnit]~=nil,Fsm:GetClassNameAndID()})
-self.Fsm[TaskUnit]=Fsm
-return Fsm
-end
-function TASK:GetStateMachine(TaskUnit)
-self:F2({TaskUnit,self.Fsm[TaskUnit]~=nil})
-return self.Fsm[TaskUnit]
-end
-function TASK:RemoveStateMachine(TaskUnit)
-self:F({TaskUnit=TaskUnit:GetName(),HasFsm=(self.Fsm[TaskUnit]~=nil)})
-if self.Fsm[TaskUnit]then
-self.Fsm[TaskUnit]:Remove()
-self.Fsm[TaskUnit]=nil
-end
-collectgarbage()
-self:F("Garbage Collected, Processes should be finalized now ...")
-end
-function TASK:HasStateMachine(TaskUnit)
-self:F({TaskUnit,self.Fsm[TaskUnit]~=nil})
-return(self.Fsm[TaskUnit]~=nil)
-end
-function TASK:GetScoring()
-return self.Mission:GetScoring()
-end
-function TASK:GetTaskIndex()
-local TaskType=self:GetType()
-local TaskName=self:GetName()
-return TaskType.."."..TaskName
-end
-function TASK:SetName(TaskName)
-self.TaskName=TaskName
-end
-function TASK:GetName()
-return self.TaskName
-end
-function TASK:SetType(TaskType)
-self.TaskType=TaskType
-end
-function TASK:GetType()
-return self.TaskType
-end
-function TASK:SetID(TaskID)
-self.TaskID=TaskID
-end
-function TASK:GetID()
-return self.TaskID
-end
-function TASK:StateSuccess()
-self:SetState(self,"State","Success")
-return self
-end
-function TASK:IsStateSuccess()
-return self:Is("Success")
-end
-function TASK:StateFailed()
-self:SetState(self,"State","Failed")
-return self
-end
-function TASK:IsStateFailed()
-return self:Is("Failed")
-end
-function TASK:StatePlanned()
-self:SetState(self,"State","Planned")
-return self
-end
-function TASK:IsStatePlanned()
-return self:Is("Planned")
-end
-function TASK:StateAborted()
-self:SetState(self,"State","Aborted")
-return self
-end
-function TASK:IsStateAborted()
-return self:Is("Aborted")
-end
-function TASK:StateCancelled()
-self:SetState(self,"State","Cancelled")
-return self
-end
-function TASK:IsStateCancelled()
-return self:Is("Cancelled")
-end
-function TASK:StateAssigned()
-self:SetState(self,"State","Assigned")
-return self
-end
-function TASK:IsStateAssigned()
-return self:Is("Assigned")
-end
-function TASK:StateHold()
-self:SetState(self,"State","Hold")
-return self
-end
-function TASK:IsStateHold()
-return self:Is("Hold")
-end
-function TASK:StateReplanned()
-self:SetState(self,"State","Replanned")
-return self
-end
-function TASK:IsStateReplanned()
-return self:Is("Replanned")
-end
-function TASK:GetStateString()
-return self:GetState(self,"State")
-end
-function TASK:SetBriefing(TaskBriefing)
-self:F(TaskBriefing)
-self.TaskBriefing=TaskBriefing
-return self
-end
-function TASK:GetBriefing()
-return self.TaskBriefing
-end
-function TASK:onenterAssigned(From,Event,To,PlayerUnit,PlayerName)
-if From~="Assigned"then
-local PlayerNames=self:GetPlayerNames()
-local PlayerText=REPORT:New()
-for PlayerName,TaskName in pairs(PlayerNames)do
-PlayerText:Add(PlayerName)
-end
-self:GetMission():GetCommandCenter():MessageToCoalition("Task "..self:GetName().." is assigned to players "..PlayerText:Text(",")..". Good Luck!")
-self:SetGoalTotal()
-if self.Dispatcher then
-self:F("Firing Assign event ")
-self.Dispatcher:Assign(self,PlayerUnit,PlayerName)
-end
-self:GetMission():__Start(1)
-self:__Goal(-10,PlayerUnit,PlayerName)
-self:SetMenu()
-self:F({"--> Task Assigned",TaskName=self:GetName(),Mission=self:GetMission():GetName()})
-self:F({"--> Task Player Names",PlayerNames=PlayerNames})
-end
-end
-function TASK:onenterSuccess(From,Event,To)
-self:F({"<-> Task Replanned",TaskName=self:GetName(),Mission=self:GetMission():GetName()})
-self:F({"<-> Task Player Names",PlayerNames=self:GetPlayerNames()})
-self:GetMission():GetCommandCenter():MessageToCoalition("Task "..self:GetName().." is successful! Good job!")
-self:UnAssignFromGroups()
-self:GetMission():__MissionGoals(1)
-end
-function TASK:onenterAborted(From,Event,To)
-self:F({"<-- Task Aborted",TaskName=self:GetName(),Mission=self:GetMission():GetName()})
-self:F({"<-- Task Player Names",PlayerNames=self:GetPlayerNames()})
-if From~="Aborted"then
-self:GetMission():GetCommandCenter():MessageToCoalition("Task "..self:GetName().." has been aborted! Task may be replanned.")
-self:__Replan(5)
-self:SetMenu()
-end
-end
-function TASK:onenterCancelled(From,Event,To)
-self:F({"<-- Task Cancelled",TaskName=self:GetName(),Mission=self:GetMission():GetName()})
-self:F({"<-- Player Names",PlayerNames=self:GetPlayerNames()})
-if From~="Cancelled"then
-self:GetMission():GetCommandCenter():MessageToCoalition("Task "..self:GetName().." has been cancelled! The tactical situation has changed.")
-self:UnAssignFromGroups()
-self:SetMenu()
-end
-end
-function TASK:onafterReplan(From,Event,To)
-self:F({"Task Replanned",TaskName=self:GetName(),Mission=self:GetMission():GetName()})
-self:F({"Task Player Names",PlayerNames=self:GetPlayerNames()})
-self:GetMission():GetCommandCenter():MessageToCoalition("Replanning Task "..self:GetName()..".")
-self:SetMenu()
-end
-function TASK:onenterFailed(From,Event,To)
-self:F({"Task Failed",TaskName=self:GetName(),Mission=self:GetMission():GetName()})
-self:F({"Task Player Names",PlayerNames=self:GetPlayerNames()})
-self:GetMission():GetCommandCenter():MessageToCoalition("Task "..self:GetName().." has failed!")
-self:UnAssignFromGroups()
-end
-function TASK:onstatechange(From,Event,To)
-if self:IsTrace()then
-end
-if self.Scores[To]then
-local Scoring=self:GetScoring()
-if Scoring then
-self:F({self.Scores[To].ScoreText,self.Scores[To].Score})
-Scoring:_AddMissionScore(self.Mission,self.Scores[To].ScoreText,self.Scores[To].Score)
-end
-end
-end
-function TASK:onenterPlanned(From,Event,To)
-if not self.TimeOut==0 then
-self.__TimeOut(self.TimeOut)
-end
-end
-function TASK:onbeforeTimeOut(From,Event,To)
-if From=="Planned"then
-self:RemoveMenu()
-return true
-end
-return false
-end
-do
-function TASK:SetGoal(Goal)
-self.Goal=Goal
-end
-function TASK:GetGoal()
-return self.Goal
-end
-function TASK:SetDispatcher(Dispatcher)
-self.Dispatcher=Dispatcher
-end
-function TASK:SetDetection(Detection,DetectedItem)
-self:F({DetectedItem,Detection})
-self.Detection=Detection
-self.DetectedItem=DetectedItem
-end
-end
-do
-function TASK:ReportSummary(ReportGroup)
-self:UpdateTaskInfo(self.DetectedItem)
-local Report=REPORT:New()
-Report:Add("Task "..self:GetName())
-Report:Add("State: <"..self:GetState()..">")
-self.TaskInfo:Report(Report,"S",ReportGroup,self)
-return Report:Text(', ')
-end
-function TASK:ReportOverview(ReportGroup)
-self:UpdateTaskInfo(self.DetectedItem)
-local TaskName=self:GetName()
-local Report=REPORT:New()
-self.TaskInfo:Report(Report,"O",ReportGroup,self)
-return Report:Text()
-end
-function TASK:GetPlayerCount()
-local PlayerCount=0
-for TaskGroupID,PlayerGroup in pairs(self:GetGroups():GetSet())do
-local PlayerGroup=PlayerGroup
-if PlayerGroup:IsAlive()==true then
-if self:IsGroupAssigned(PlayerGroup)then
-local PlayerNames=PlayerGroup:GetPlayerNames()
-PlayerCount=PlayerCount+((PlayerNames)and#PlayerNames or 0)
-end
-end
-end
-return PlayerCount
-end
-function TASK:GetPlayerNames()
-local PlayerNameMap={}
-for TaskGroupID,PlayerGroup in pairs(self:GetGroups():GetSet())do
-local PlayerGroup=PlayerGroup
-if PlayerGroup:IsAlive()==true then
-if self:IsGroupAssigned(PlayerGroup)then
-local PlayerNames=PlayerGroup:GetPlayerNames()
-for PlayerNameID,PlayerName in pairs(PlayerNames or{})do
-PlayerNameMap[PlayerName]=PlayerGroup
-end
-end
-end
-end
-return PlayerNameMap
-end
-function TASK:ReportDetails(ReportGroup)
-self:UpdateTaskInfo(self.DetectedItem)
-local Report=REPORT:New():SetIndent(3)
-local Name=self:GetName()
-local Status="<"..self:GetState()..">"
-Report:Add("Task "..Name.." - "..Status.." - Detailed Report")
-local PlayerNames=self:GetPlayerNames()
-local PlayerReport=REPORT:New()
-for PlayerName,PlayerGroup in pairs(PlayerNames)do
-PlayerReport:Add("Players group "..PlayerGroup:GetCallsign()..": "..PlayerName)
-end
-local Players=PlayerReport:Text()
-if Players~=""then
-Report:AddIndent("Players assigned:","-")
-Report:AddIndent(Players)
-end
-self.TaskInfo:Report(Report,"D",ReportGroup,self)
-return Report:Text()
-end
-end
-do
-function TASK:AddProgress(PlayerName,ProgressText,ProgressTime,ProgressPoints)
-self.TaskProgress=self.TaskProgress or{}
-self.TaskProgress[ProgressTime]=self.TaskProgress[ProgressTime]or{}
-self.TaskProgress[ProgressTime].PlayerName=PlayerName
-self.TaskProgress[ProgressTime].ProgressText=ProgressText
-self.TaskProgress[ProgressTime].ProgressPoints=ProgressPoints
-self:GetMission():AddPlayerName(PlayerName)
-return self
-end
-function TASK:GetPlayerProgress(PlayerName)
-local ProgressPlayer=0
-for ProgressTime,ProgressData in pairs(self.TaskProgress)do
-if PlayerName==ProgressData.PlayerName then
-ProgressPlayer=ProgressPlayer+ProgressData.ProgressPoints
-end
-end
-return ProgressPlayer
-end
-function TASK:SetScoreOnProgress(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScoreProcess("Engaging","Account","AccountPlayer","Player "..PlayerName.." has achieved progress.",Score)
-return self
-end
-function TASK:SetScoreOnSuccess(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Success","The task is a success!",Score)
-return self
-end
-function TASK:SetScoreOnFail(PlayerName,Penalty,TaskUnit)
-self:F({PlayerName,Penalty,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Failed","The task is a failure!",Penalty)
-return self
-end
-end
-do
-function TASK:InitTaskControlMenu(TaskUnit)
-self.TaskControlMenuTime=timer.getTime()
-return self.TaskControlMenuTime
-end
-function TASK:GetTaskControlMenu(TaskUnit,TaskName)
-TaskName=TaskName or""
-local TaskGroup=TaskUnit:GetGroup()
-local TaskPlayerCount=TaskGroup:GetPlayerCount()
-if TaskPlayerCount<=1 then
-self.TaskControlMenu=MENU_GROUP:New(TaskUnit:GetGroup(),"Task "..self:GetName().." control"):SetTime(self.TaskControlMenuTime)
-else
-self.TaskControlMenu=MENU_GROUP:New(TaskUnit:GetGroup(),"Task "..self:GetName().." control for "..TaskUnit:GetPlayerName()):SetTime(self.TaskControlMenuTime)
-end
-return self.TaskControlMenu
-end
-function TASK:RemoveTaskControlMenu(TaskUnit)
-if self.TaskControlMenu then
-self.TaskControlMenu:Remove()
-self.TaskControlMenu=nil
-end
-end
-function TASK:RefreshTaskControlMenu(TaskUnit,MenuTime,MenuTag)
-if self.TaskControlMenu then
-self.TaskControlMenu:Remove(MenuTime,MenuTag)
-end
-end
-end
-TASKINFO={
-ClassName="TASKINFO",
-}
-TASKINFO.Detail=""
-function TASKINFO:New(Task)
-local self=BASE:Inherit(self,BASE:New())
-self.Task=Task
-self.VolatileInfo=SET_BASE:New()
-self.PersistentInfo=SET_BASE:New()
-self.Info=self.VolatileInfo
-return self
-end
-function TASKINFO:AddInfo(Key,Data,Order,Detail,Keep,ShowKey,Type)
-self.VolatileInfo:Add(Key,{Data=Data,Order=Order,Detail=Detail,ShowKey=ShowKey,Type=Type})
-if Keep==true then
-self.PersistentInfo:Add(Key,{Data=Data,Order=Order,Detail=Detail,ShowKey=ShowKey,Type=Type})
-end
-return self
-end
-function TASKINFO:GetInfo(Key)
-local Object=self:Get(Key)
-return Object.Data,Object.Order,Object.Detail
-end
-function TASKINFO:GetData(Key)
-local Object=self.Info:Get(Key)
-return Object and Object.Data
-end
-function TASKINFO:AddText(Key,Text,Order,Detail,Keep)
-self:AddInfo(Key,Text,Order,Detail,Keep)
-return self
-end
-function TASKINFO:AddTaskName(Order,Detail,Keep)
-self:AddInfo("TaskName",self.Task:GetName(),Order,Detail,Keep)
-return self
-end
-function TASKINFO:AddCoordinate(Coordinate,Order,Detail,Keep,ShowKey,Name)
-self:AddInfo(Name or"Coordinate",Coordinate,Order,Detail,Keep,ShowKey,"Coordinate")
-return self
-end
-function TASKINFO:GetCoordinate(Name)
-return self:GetData(Name or"Coordinate")
-end
-function TASKINFO:AddCoordinates(Coordinates,Order,Detail,Keep)
-self:AddInfo("Coordinates",Coordinates,Order,Detail,Keep)
-return self
-end
-function TASKINFO:AddThreat(ThreatText,ThreatLevel,Order,Detail,Keep)
-self:AddInfo("Threat"," ["..string.rep("■",ThreatLevel)..string.rep("□",10-ThreatLevel).."]:"..ThreatText,Order,Detail,Keep)
-return self
-end
-function TASKINFO:GetThreat()
-self:GetInfo("Threat")
-return self
-end
-function TASKINFO:AddTargetCount(TargetCount,Order,Detail,Keep)
-self:AddInfo("Counting",string.format("%d",TargetCount),Order,Detail,Keep)
-return self
-end
-function TASKINFO:AddTargets(TargetCount,TargetTypes,Order,Detail,Keep)
-self:AddInfo("Targets",string.format("%d of %s",TargetCount,TargetTypes),Order,Detail,Keep)
-return self
-end
-function TASKINFO:GetTargets()
-self:GetInfo("Targets")
-return self
-end
-function TASKINFO:AddQFEAtCoordinate(Coordinate,Order,Detail,Keep)
-self:AddInfo("QFE",Coordinate,Order,Detail,Keep)
-return self
-end
-function TASKINFO:AddTemperatureAtCoordinate(Coordinate,Order,Detail,Keep)
-self:AddInfo("Temperature",Coordinate,Order,Detail,Keep)
-return self
-end
-function TASKINFO:AddWindAtCoordinate(Coordinate,Order,Detail,Keep)
-self:AddInfo("Wind",Coordinate,Order,Detail,Keep)
-return self
-end
-function TASKINFO:AddCargo(Cargo,Order,Detail,Keep)
-self:AddInfo("Cargo",Cargo,Order,Detail,Keep)
-return self
-end
-function TASKINFO:AddCargoSet(SetCargo,Order,Detail,Keep)
-local CargoReport=REPORT:New()
-CargoReport:Add("")
-SetCargo:ForEachCargo(
-function(Cargo)
-CargoReport:Add(string.format(' - %s (%s) %s - status %s ',Cargo:GetName(),Cargo:GetType(),Cargo:GetTransportationMethod(),Cargo:GetCurrentState()))
-end
-)
-self:AddInfo("Cargo",CargoReport:Text(),Order,Detail,Keep)
-return self
-end
-function TASKINFO:Report(Report,Detail,ReportGroup,Task)
-local Line=0
-local LineReport=REPORT:New()
-if not self.Task:IsStatePlanned()and not self.Task:IsStateAssigned()then
-self.Info=self.PersistentInfo
-end
-for Key,Data in UTILS.spairs(self.Info.Set,function(t,a,b)return t[a].Order<t[b].Order end)do
-if Data.Detail:find(Detail)then
-local Text=""
-local ShowKey=(Data.ShowKey==nil or Data.ShowKey==true)
-if Key=="TaskName"then
-Key=nil
-Text=Data.Data
-elseif Data.Type and Data.Type=="Coordinate"then
-local Coordinate=Data.Data
-Text=Coordinate:ToString(ReportGroup:GetUnit(1),nil,Task)
-elseif Key=="Threat"then
-local DataText=Data.Data
-Text=DataText
-elseif Key=="Counting"then
-local DataText=Data.Data
-Text=DataText
-elseif Key=="Targets"then
-local DataText=Data.Data
-Text=DataText
-elseif Key=="QFE"then
-local Coordinate=Data.Data
-Text=Coordinate:ToStringPressure(ReportGroup:GetUnit(1),nil,Task)
-elseif Key=="Temperature"then
-local Coordinate=Data.Data
-Text=Coordinate:ToStringTemperature(ReportGroup:GetUnit(1),nil,Task)
-elseif Key=="Wind"then
-local Coordinate=Data.Data
-Text=Coordinate:ToStringWind(ReportGroup:GetUnit(1),nil,Task)
-elseif Key=="Cargo"then
-local DataText=Data.Data
-Text=DataText
-elseif Key=="Friendlies"then
-local DataText=Data.Data
-Text=DataText
-elseif Key=="Players"then
-local DataText=Data.Data
-Text=DataText
-else
-local DataText=Data.Data
-if type(DataText)=="string"then
-Text=DataText
-end
-end
-if Line<math.floor(Data.Order/10)then
-if Line==0 then
-Report:AddIndent(LineReport:Text(", "),"-")
-else
-Report:AddIndent(LineReport:Text(", "))
-end
-LineReport=REPORT:New()
-Line=math.floor(Data.Order/10)
-end
-if Text~=""then
-LineReport:Add(((Key and ShowKey==true)and(Key..": ")or"")..Text)
-end
-end
-end
-Report:AddIndent(LineReport:Text(", "))
-end
-do
-TASK_MANAGER={
-ClassName="TASK_MANAGER",
-SetGroup=nil,
-}
-function TASK_MANAGER:New(SetGroup)
-local self=BASE:Inherit(self,FSM:New())
-self.SetGroup=SetGroup
-self:SetStartState("Stopped")
-self:AddTransition("Stopped","StartTasks","Started")
-self:AddTransition("Started","StopTasks","Stopped")
-self:AddTransition("Started","Manage","Started")
-self:AddTransition("Started","Success","Started")
-self:AddTransition("Started","Failed","Started")
-self:AddTransition("Started","Aborted","Started")
-self:AddTransition("Started","Cancelled","Started")
-self:SetRefreshTimeInterval(30)
-return self
-end
-function TASK_MANAGER:onafterStartTasks(From,Event,To)
-self:Manage()
-end
-function TASK_MANAGER:onafterManage(From,Event,To)
-self:__Manage(-self._RefreshTimeInterval)
-self:ManageTasks()
-end
-function TASK_MANAGER:SetRefreshTimeInterval(RefreshTimeInterval)
-self:F2()
-self._RefreshTimeInterval=RefreshTimeInterval
-end
-function TASK_MANAGER:ManageTasks()
-end
-end
-do
-DETECTION_MANAGER={
-ClassName="DETECTION_MANAGER",
-SetGroup=nil,
-Detection=nil,
-}
-DETECTION_MANAGER.CC=nil
-function DETECTION_MANAGER:New(SetGroup,Detection)
-local self=BASE:Inherit(self,FSM:New())
-self.SetGroup=SetGroup
-self.Detection=Detection
-self:SetStartState("Stopped")
-self:AddTransition("Stopped","Start","Started")
-self:AddTransition("Started","Stop","Stopped")
-self:AddTransition("Started","Success","Started")
-self:AddTransition("Started","Failed","Started")
-self:AddTransition("Started","Aborted","Started")
-self:AddTransition("Started","Cancelled","Started")
-self:AddTransition("Started","Report","Started")
-self:SetRefreshTimeInterval(30)
-self:SetReportDisplayTime(25)
-Detection:__Start(3)
-return self
-end
-function DETECTION_MANAGER:onafterStart(From,Event,To)
-self:Report()
-end
-function DETECTION_MANAGER:onafterReport(From,Event,To)
-self:__Report(-self._RefreshTimeInterval)
-self:ProcessDetected(self.Detection)
-end
-function DETECTION_MANAGER:SetRefreshTimeInterval(RefreshTimeInterval)
-self:F2()
-self._RefreshTimeInterval=RefreshTimeInterval
-end
-function DETECTION_MANAGER:SetReportDisplayTime(ReportDisplayTime)
-self:F2()
-self._ReportDisplayTime=ReportDisplayTime
-end
-function DETECTION_MANAGER:GetReportDisplayTime()
-self:F2()
-return self._ReportDisplayTime
-end
-function DETECTION_MANAGER:SetTacticalMenu(DispatcherMainMenuText,DispatcherMenuText)
-local DispatcherMainMenu=MENU_MISSION:New(DispatcherMainMenuText,nil)
-local DispatcherMenu=MENU_MISSION_COMMAND:New(DispatcherMenuText,DispatcherMainMenu,
-function()
-self:ShowTacticalDisplay(self.Detection)
-end
-)
-return self
-end
-function DETECTION_MANAGER:SetCommandCenter(CommandCenter)
-self.CC=CommandCenter
-return self
-end
-function DETECTION_MANAGER:GetCommandCenter()
-return self.CC
-end
-function DETECTION_MANAGER:MessageToPlayers(Squadron,Message,DefenderGroup)
-self:F({Message=Message})
-if self.CC then
-self.CC:MessageToCoalition(Message)
-end
-Message=Message:gsub("°"," degrees ")
-Message=Message:gsub("(%d)%.(%d)","%1 dot %2")
-local RadioQueue=Squadron.RadioQueue
-if RadioQueue then
-local DefenderUnit=DefenderGroup:GetUnit(1)
-if DefenderUnit and DefenderUnit:IsAlive()then
-RadioQueue:SetSenderUnitName(DefenderUnit:GetName())
-end
-RadioQueue:Speak(Message,Squadron.Language)
-end
-return self
-end
-function DETECTION_MANAGER:ProcessDetected(Detection)
-end
-end
-do
-DETECTION_REPORTING={
-ClassName="DETECTION_REPORTING",
-}
-function DETECTION_REPORTING:New(SetGroup,Detection)
-local self=BASE:Inherit(self,DETECTION_MANAGER:New(SetGroup,Detection))
-self:Schedule(1,30)
-return self
-end
-function DETECTION_REPORTING:GetDetectedItemsText(DetectedSet)
-self:F2()
-local MT={}
-local UnitTypes={}
-for DetectedUnitID,DetectedUnitData in pairs(DetectedSet:GetSet())do
-local DetectedUnit=DetectedUnitData
-if DetectedUnit:IsAlive()then
-local UnitType=DetectedUnit:GetTypeName()
-if not UnitTypes[UnitType]then
-UnitTypes[UnitType]=1
-else
-UnitTypes[UnitType]=UnitTypes[UnitType]+1
-end
-end
-end
-for UnitTypeID,UnitType in pairs(UnitTypes)do
-MT[#MT+1]=UnitType.." of "..UnitTypeID
-end
-return table.concat(MT,", ")
-end
-function DETECTION_REPORTING:ProcessDetected(Group,Detection)
-self:F2(Group)
-local DetectedMsg={}
-for DetectedAreaID,DetectedAreaData in pairs(Detection:GetDetectedAreas())do
-local DetectedArea=DetectedAreaData
-DetectedMsg[#DetectedMsg+1]=" - Group #"..DetectedAreaID..": "..self:GetDetectedItemsText(DetectedArea.Set)
-end
-local FACGroup=Detection:GetDetectionGroups()
-FACGroup:MessageToGroup("Reporting detected target groups:\n"..table.concat(DetectedMsg,"\n"),self:GetReportDisplayTime(),Group)
-return true
-end
-end
-do
-TASK_A2G_DISPATCHER={
-ClassName="TASK_A2G_DISPATCHER",
-Mission=nil,
-Detection=nil,
-Tasks={}
-}
-function TASK_A2G_DISPATCHER:New(Mission,SetGroup,Detection)
-local self=BASE:Inherit(self,DETECTION_MANAGER:New(SetGroup,Detection))
-self.Detection=Detection
-self.Mission=Mission
-self.FlashNewTask=true
-self.Detection:FilterCategories({Unit.Category.GROUND_UNIT})
-self:AddTransition("Started","Assign","Started")
-self:__Start(5)
-return self
-end
-function TASK_A2G_DISPATCHER:SetSendMessages(onoff)
-self.FlashNewTask=onoff
-end
-function TASK_A2G_DISPATCHER:EvaluateSEAD(DetectedItem)
-self:F({DetectedItem.ItemID})
-local DetectedSet=DetectedItem.Set
-local DetectedZone=DetectedItem.Zone
-local RadarCount=DetectedSet:HasSEAD()
-if RadarCount>0 then
-local TargetSetUnit=SET_UNIT:New()
-TargetSetUnit:SetDatabase(DetectedSet)
-TargetSetUnit:FilterHasSEAD()
-TargetSetUnit:FilterOnce()
-return TargetSetUnit
-end
-return nil
-end
-function TASK_A2G_DISPATCHER:EvaluateCAS(DetectedItem)
-self:F({DetectedItem.ItemID})
-local DetectedSet=DetectedItem.Set
-local DetectedZone=DetectedItem.Zone
-local GroundUnitCount=DetectedSet:HasGroundUnits()
-local FriendliesNearBy=self.Detection:IsFriendliesNearBy(DetectedItem,Unit.Category.GROUND_UNIT)
-local RadarCount=DetectedSet:HasSEAD()
-if RadarCount==0 and GroundUnitCount>0 and FriendliesNearBy==true then
-local TargetSetUnit=SET_UNIT:New()
-TargetSetUnit:SetDatabase(DetectedSet)
-TargetSetUnit:FilterOnce()
-return TargetSetUnit
-end
-return nil
-end
-function TASK_A2G_DISPATCHER:EvaluateBAI(DetectedItem,FriendlyCoalition)
-self:F({DetectedItem.ItemID})
-local DetectedSet=DetectedItem.Set
-local DetectedZone=DetectedItem.Zone
-local GroundUnitCount=DetectedSet:HasGroundUnits()
-local FriendliesNearBy=self.Detection:IsFriendliesNearBy(DetectedItem,Unit.Category.GROUND_UNIT)
-local RadarCount=DetectedSet:HasSEAD()
-if RadarCount==0 and GroundUnitCount>0 and FriendliesNearBy==false then
-local TargetSetUnit=SET_UNIT:New()
-TargetSetUnit:SetDatabase(DetectedSet)
-TargetSetUnit:FilterOnce()
-return TargetSetUnit
-end
-return nil
-end
-function TASK_A2G_DISPATCHER:RemoveTask(TaskIndex)
-self.Mission:RemoveTask(self.Tasks[TaskIndex])
-self.Tasks[TaskIndex]=nil
-end
-function TASK_A2G_DISPATCHER:EvaluateRemoveTask(Mission,Task,TaskIndex,DetectedItemChanged)
-if Task then
-if(Task:IsStatePlanned()and DetectedItemChanged==true)or Task:IsStateCancelled()then
-self:RemoveTask(TaskIndex)
-end
-end
-return Task
-end
-function TASK_A2G_DISPATCHER:ProcessDetected(Detection)
-self:F()
-local AreaMsg={}
-local TaskMsg={}
-local ChangeMsg={}
-local Mission=self.Mission
-if Mission:IsIDLE()or Mission:IsENGAGED()then
-local TaskReport=REPORT:New()
-for TaskIndex,TaskData in pairs(self.Tasks)do
-local Task=TaskData
-if Task:IsStatePlanned()then
-local DetectedItem=Detection:GetDetectedItemByIndex(TaskIndex)
-if not DetectedItem then
-local TaskText=Task:GetName()
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-if self.FlashNewTask then
-Mission:GetCommandCenter():MessageToGroup(string.format("Obsolete A2G task %s for %s removed.",TaskText,Mission:GetShortText()),TaskGroup)
-end
-end
-Task=self:RemoveTask(TaskIndex)
-end
-end
-end
-for DetectedItemID,DetectedItem in pairs(Detection:GetDetectedItems())do
-local DetectedItem=DetectedItem
-local DetectedSet=DetectedItem.Set
-local DetectedZone=DetectedItem.Zone
-local DetectedItemID=DetectedItem.ID
-local TaskIndex=DetectedItem.Index
-local DetectedItemChanged=DetectedItem.Changed
-self:F({DetectedItemChanged=DetectedItemChanged,DetectedItemID=DetectedItemID,TaskIndex=TaskIndex})
-local Task=self.Tasks[TaskIndex]
-if Task then
-if Task:IsStateAssigned()then
-if DetectedItemChanged==true then
-local TargetsReport=REPORT:New()
-local TargetSetUnit=self:EvaluateSEAD(DetectedItem)
-if TargetSetUnit then
-if Task:IsInstanceOf(TASK_A2G_SEAD)then
-Task:SetTargetSetUnit(TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-TargetsReport:Add(Detection:GetChangeText(DetectedItem))
-else
-Task:Cancel()
-end
-else
-local TargetSetUnit=self:EvaluateCAS(DetectedItem)
-if TargetSetUnit then
-if Task:IsInstanceOf(TASK_A2G_CAS)then
-Task:SetTargetSetUnit(TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-TargetsReport:Add(Detection:GetChangeText(DetectedItem))
-else
-Task:Cancel()
-Task=self:RemoveTask(TaskIndex)
-end
-else
-local TargetSetUnit=self:EvaluateBAI(DetectedItem)
-if TargetSetUnit then
-if Task:IsInstanceOf(TASK_A2G_BAI)then
-Task:SetTargetSetUnit(TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-TargetsReport:Add(Detection:GetChangeText(DetectedItem))
-else
-Task:Cancel()
-Task=self:RemoveTask(TaskIndex)
-end
-end
-end
-end
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-local TargetsText=TargetsReport:Text(", ")
-if(Mission:IsGroupAssigned(TaskGroup))and TargetsText~=""and self.FlashNewTask then
-Mission:GetCommandCenter():MessageToGroup(string.format("Task %s has change of targets:\n %s",Task:GetName(),TargetsText),TaskGroup)
-end
-end
-end
-end
-end
-if Task then
-if Task:IsStatePlanned()then
-if DetectedItemChanged==true then
-if Task:IsInstanceOf(TASK_A2G_SEAD)then
-local TargetSetUnit=self:EvaluateSEAD(DetectedItem)
-if TargetSetUnit then
-Task:SetTargetSetUnit(TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-else
-Task:Cancel()
-Task=self:RemoveTask(TaskIndex)
-end
-else
-if Task:IsInstanceOf(TASK_A2G_CAS)then
-local TargetSetUnit=self:EvaluateCAS(DetectedItem)
-if TargetSetUnit then
-Task:SetTargetSetUnit(TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-else
-Task:Cancel()
-Task=self:RemoveTask(TaskIndex)
-end
-else
-if Task:IsInstanceOf(TASK_A2G_BAI)then
-local TargetSetUnit=self:EvaluateBAI(DetectedItem)
-if TargetSetUnit then
-Task:SetTargetSetUnit(TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-else
-Task:Cancel()
-Task=self:RemoveTask(TaskIndex)
-end
-else
-Task:Cancel()
-Task=self:RemoveTask(TaskIndex)
-end
-end
-end
-end
-end
-end
-if not Task then
-local TargetSetUnit=self:EvaluateSEAD(DetectedItem)
-if TargetSetUnit then
-Task=TASK_A2G_SEAD:New(Mission,self.SetGroup,string.format("SEAD.%03d",DetectedItemID),TargetSetUnit)
-DetectedItem.DesignateMenuName=string.format("SEAD.%03d",DetectedItemID)
-Task:SetDetection(Detection,DetectedItem)
-end
-if not Task then
-local TargetSetUnit=self:EvaluateCAS(DetectedItem)
-if TargetSetUnit then
-Task=TASK_A2G_CAS:New(Mission,self.SetGroup,string.format("CAS.%03d",DetectedItemID),TargetSetUnit)
-DetectedItem.DesignateMenuName=string.format("CAS.%03d",DetectedItemID)
-Task:SetDetection(Detection,DetectedItem)
-end
-if not Task then
-local TargetSetUnit=self:EvaluateBAI(DetectedItem,self.Mission:GetCommandCenter():GetPositionable():GetCoalition())
-if TargetSetUnit then
-Task=TASK_A2G_BAI:New(Mission,self.SetGroup,string.format("BAI.%03d",DetectedItemID),TargetSetUnit)
-DetectedItem.DesignateMenuName=string.format("BAI.%03d",DetectedItemID)
-Task:SetDetection(Detection,DetectedItem)
-end
-end
-end
-if Task then
-self.Tasks[TaskIndex]=Task
-Task:SetTargetZone(DetectedZone)
-Task:SetDispatcher(self)
-Task:UpdateTaskInfo(DetectedItem)
-Mission:AddTask(Task)
-function Task.OnEnterSuccess(Task,From,Event,To)
-self:Success(Task)
-end
-function Task.OnEnterCancelled(Task,From,Event,To)
-self:Cancelled(Task)
-end
-function Task.OnEnterFailed(Task,From,Event,To)
-self:Failed(Task)
-end
-function Task.OnEnterAborted(Task,From,Event,To)
-self:Aborted(Task)
-end
-TaskReport:Add(Task:GetName())
-else
-self:F("This should not happen")
-end
-end
-Detection:AcceptChanges(DetectedItem)
-end
-Mission:GetCommandCenter():SetMenu()
-local TaskText=TaskReport:Text(", ")
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-if(not Mission:IsGroupAssigned(TaskGroup))and TaskText~=""and self.FlashNewTask then
-Mission:GetCommandCenter():MessageToGroup(string.format("%s has tasks %s. Subscribe to a task using the radio menu.",Mission:GetShortText(),TaskText),TaskGroup)
-end
-end
-end
-return true
-end
-end
-do
-TASK_A2G={
-ClassName="TASK_A2G"
-}
-function TASK_A2G:New(Mission,SetGroup,TaskName,TargetSetUnit,TaskType,TaskBriefing)
-local self=BASE:Inherit(self,TASK:New(Mission,SetGroup,TaskName,TaskType,TaskBriefing))
-self:F()
-self.TargetSetUnit=TargetSetUnit
-self.TaskType=TaskType
-local Fsm=self:GetUnitProcess()
-Fsm:AddTransition("Assigned","RouteToRendezVous","RoutingToRendezVous")
-Fsm:AddProcess("RoutingToRendezVous","RouteToRendezVousPoint",ACT_ROUTE_POINT:New(),{Arrived="ArriveAtRendezVous"})
-Fsm:AddProcess("RoutingToRendezVous","RouteToRendezVousZone",ACT_ROUTE_ZONE:New(),{Arrived="ArriveAtRendezVous"})
-Fsm:AddTransition({"Arrived","RoutingToRendezVous"},"ArriveAtRendezVous","ArrivedAtRendezVous")
-Fsm:AddTransition({"ArrivedAtRendezVous","HoldingAtRendezVous"},"Engage","Engaging")
-Fsm:AddTransition({"ArrivedAtRendezVous","HoldingAtRendezVous"},"HoldAtRendezVous","HoldingAtRendezVous")
-Fsm:AddProcess("Engaging","Account",ACT_ACCOUNT_DEADS:New(),{})
-Fsm:AddTransition("Engaging","RouteToTarget","Engaging")
-Fsm:AddProcess("Engaging","RouteToTargetZone",ACT_ROUTE_ZONE:New(),{})
-Fsm:AddProcess("Engaging","RouteToTargetPoint",ACT_ROUTE_POINT:New(),{})
-Fsm:AddTransition("Engaging","RouteToTargets","Engaging")
-Fsm:AddTransition("Rejected","Reject","Aborted")
-Fsm:AddTransition("Failed","Fail","Failed")
-function Fsm:onafterAssigned(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-self:RouteToRendezVous()
-end
-function Fsm:onafterRouteToRendezVous(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Task:GetRendezVousZone(TaskUnit)then
-self:__RouteToRendezVousZone(0.1)
-else
-if Task:GetRendezVousCoordinate(TaskUnit)then
-self:__RouteToRendezVousPoint(0.1)
-else
-self:__ArriveAtRendezVous(0.1)
-end
-end
-end
-function Fsm:OnAfterArriveAtRendezVous(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-self:__Engage(0.1)
-end
-function Fsm:onafterEngage(TaskUnit,Task)
-self:F({self})
-self:__Account(0.1)
-self:__RouteToTarget(0.1)
-self:__RouteToTargets(-10)
-end
-function Fsm:onafterRouteToTarget(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Task:GetTargetZone(TaskUnit)then
-self:__RouteToTargetZone(0.1)
-else
-local TargetUnit=Task.TargetSetUnit:GetFirst()
-if TargetUnit then
-local Coordinate=TargetUnit:GetPointVec3()
-self:T({TargetCoordinate=Coordinate,Coordinate:GetX(),Coordinate:GetY(),Coordinate:GetZ()})
-Task:SetTargetCoordinate(Coordinate,TaskUnit)
-end
-self:__RouteToTargetPoint(0.1)
-end
-end
-function Fsm:onafterRouteToTargets(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-local TargetUnit=Task.TargetSetUnit:GetFirst()
-if TargetUnit then
-Task:SetTargetCoordinate(TargetUnit:GetCoordinate(),TaskUnit)
-end
-self:__RouteToTargets(-10)
-end
-return self
-end
-function TASK_A2G:SetTargetSetUnit(TargetSetUnit)
-self.TargetSetUnit=TargetSetUnit
-end
-function TASK_A2G:GetPlannedMenuText()
-return self:GetStateString().." - "..self:GetTaskName().." ( "..self.TargetSetUnit:GetUnitTypesText().." )"
-end
-function TASK_A2G:SetRendezVousCoordinate(RendezVousCoordinate,RendezVousRange,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteRendezVous=ProcessUnit:GetProcess("RoutingToRendezVous","RouteToRendezVousPoint")
-ActRouteRendezVous:SetCoordinate(RendezVousCoordinate)
-ActRouteRendezVous:SetRange(RendezVousRange)
-end
-function TASK_A2G:GetRendezVousCoordinate(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteRendezVous=ProcessUnit:GetProcess("RoutingToRendezVous","RouteToRendezVousPoint")
-return ActRouteRendezVous:GetCoordinate(),ActRouteRendezVous:GetRange()
-end
-function TASK_A2G:SetRendezVousZone(RendezVousZone,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteRendezVous=ProcessUnit:GetProcess("RoutingToRendezVous","RouteToRendezVousZone")
-ActRouteRendezVous:SetZone(RendezVousZone)
-end
-function TASK_A2G:GetRendezVousZone(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteRendezVous=ProcessUnit:GetProcess("RoutingToRendezVous","RouteToRendezVousZone")
-return ActRouteRendezVous:GetZone()
-end
-function TASK_A2G:SetTargetCoordinate(TargetCoordinate,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetPoint")
-ActRouteTarget:SetCoordinate(TargetCoordinate)
-end
-function TASK_A2G:GetTargetCoordinate(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetPoint")
-return ActRouteTarget:GetCoordinate()
-end
-function TASK_A2G:SetTargetZone(TargetZone,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetZone")
-ActRouteTarget:SetZone(TargetZone)
-end
-function TASK_A2G:GetTargetZone(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetZone")
-return ActRouteTarget:GetZone()
-end
-function TASK_A2G:SetGoalTotal()
-self.GoalTotal=self.TargetSetUnit:CountAlive()
-end
-function TASK_A2G:GetGoalTotal()
-return self.GoalTotal
-end
-function TASK_A2G:ReportOrder(ReportGroup)
-self:UpdateTaskInfo(self.DetectedItem)
-local Coordinate=self.TaskInfo:GetData("Coordinate")
-local Distance=ReportGroup:GetCoordinate():Get2DDistance(Coordinate)
-return Distance
-end
-function TASK_A2G:onafterGoal(TaskUnit,From,Event,To)
-local TargetSetUnit=self.TargetSetUnit
-if TargetSetUnit:CountAlive()==0 then
-self:Success()
-end
-self:__Goal(-10)
-end
-function TASK_A2G:UpdateTaskInfo(DetectedItem)
-if self:IsStatePlanned()or self:IsStateAssigned()then
-local TargetCoordinate=DetectedItem and self.Detection:GetDetectedItemCoordinate(DetectedItem)or self.TargetSetUnit:GetFirst():GetCoordinate()
-self.TaskInfo:AddTaskName(0,"MSOD")
-self.TaskInfo:AddCoordinate(TargetCoordinate,1,"SOD")
-local ThreatLevel,ThreatText
-if DetectedItem then
-ThreatLevel,ThreatText=self.Detection:GetDetectedItemThreatLevel(DetectedItem)
-else
-ThreatLevel,ThreatText=self.TargetSetUnit:CalculateThreatLevelA2G()
-end
-self.TaskInfo:AddThreat(ThreatText,ThreatLevel,10,"MOD",true)
-if self.Detection then
-local DetectedItemsCount=self.TargetSetUnit:CountAlive()
-local ReportTypes=REPORT:New()
-local TargetTypes={}
-for TargetUnitName,TargetUnit in pairs(self.TargetSetUnit:GetSet())do
-local TargetType=self.Detection:GetDetectedUnitTypeName(TargetUnit)
-if not TargetTypes[TargetType]then
-TargetTypes[TargetType]=TargetType
-ReportTypes:Add(TargetType)
-end
-end
-self.TaskInfo:AddTargetCount(DetectedItemsCount,11,"O",true)
-self.TaskInfo:AddTargets(DetectedItemsCount,ReportTypes:Text(", "),20,"D",true)
-else
-local DetectedItemsCount=self.TargetSetUnit:CountAlive()
-local DetectedItemsTypes=self.TargetSetUnit:GetTypeNames()
-self.TaskInfo:AddTargetCount(DetectedItemsCount,11,"O",true)
-self.TaskInfo:AddTargets(DetectedItemsCount,DetectedItemsTypes,20,"D",true)
-end
-self.TaskInfo:AddQFEAtCoordinate(TargetCoordinate,30,"MOD")
-self.TaskInfo:AddTemperatureAtCoordinate(TargetCoordinate,31,"MD")
-self.TaskInfo:AddWindAtCoordinate(TargetCoordinate,32,"MD")
-end
-end
-function TASK_A2G:GetAutoAssignPriority(AutoAssignMethod,CommandCenter,TaskGroup)
-if AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Random then
-return math.random(1,9)
-elseif AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Distance then
-local Coordinate=self.TaskInfo:GetData("Coordinate")
-local Distance=Coordinate:Get2DDistance(CommandCenter:GetPositionable():GetCoordinate())
-self:F({Distance=Distance})
-return math.floor(Distance)
-elseif AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Priority then
-return 1
-end
-return 0
-end
-end
-do
-TASK_A2G_SEAD={
-ClassName="TASK_A2G_SEAD"
-}
-function TASK_A2G_SEAD:New(Mission,SetGroup,TaskName,TargetSetUnit,TaskBriefing)
-local self=BASE:Inherit(self,TASK_A2G:New(Mission,SetGroup,TaskName,TargetSetUnit,"SEAD",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-self:SetBriefing(TaskBriefing or"Execute a Suppression of Enemy Air Defenses.")
-return self
-end
-function TASK_A2G_SEAD:SetScoreOnProgress(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScoreProcess("Engaging","Account","AccountForPlayer","Player "..PlayerName.." has SEADed a target.",Score)
-return self
-end
-function TASK_A2G_SEAD:SetScoreOnSuccess(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Success","All radar emitting targets have been successfully SEADed!",Score)
-return self
-end
-function TASK_A2G_SEAD:SetScoreOnFail(PlayerName,Penalty,TaskUnit)
-self:F({PlayerName,Penalty,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Failed","The SEADing has failed!",Penalty)
-return self
-end
-end
-do
-TASK_A2G_BAI={ClassName="TASK_A2G_BAI"}
-function TASK_A2G_BAI:New(Mission,SetGroup,TaskName,TargetSetUnit,TaskBriefing)
-local self=BASE:Inherit(self,TASK_A2G:New(Mission,SetGroup,TaskName,TargetSetUnit,"BAI",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-self:SetBriefing(TaskBriefing or"Execute a Battlefield Air Interdiction of a group of enemy targets.")
-return self
-end
-function TASK_A2G_BAI:SetScoreOnProgress(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScoreProcess("Engaging","Account","AccountForPlayer","Player "..PlayerName.." has destroyed a target in Battlefield Air Interdiction (BAI).",Score)
-return self
-end
-function TASK_A2G_BAI:SetScoreOnSuccess(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Success","All targets have been successfully destroyed! The Battlefield Air Interdiction (BAI) is a success!",Score)
-return self
-end
-function TASK_A2G_BAI:SetScoreOnFail(PlayerName,Penalty,TaskUnit)
-self:F({PlayerName,Penalty,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Failed","The Battlefield Air Interdiction (BAI) has failed!",Penalty)
-return self
-end
-end
-do
-TASK_A2G_CAS={ClassName="TASK_A2G_CAS"}
-function TASK_A2G_CAS:New(Mission,SetGroup,TaskName,TargetSetUnit,TaskBriefing)
-local self=BASE:Inherit(self,TASK_A2G:New(Mission,SetGroup,TaskName,TargetSetUnit,"CAS",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-self:SetBriefing(TaskBriefing or("Execute a Close Air Support for a group of enemy targets. ".."Beware of friendlies at the vicinity! "))
-return self
-end
-function TASK_A2G_CAS:SetScoreOnProgress(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScoreProcess("Engaging","Account","AccountForPlayer","Player "..PlayerName.." has destroyed a target in Close Air Support (CAS).",Score)
-return self
-end
-function TASK_A2G_CAS:SetScoreOnSuccess(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Success","All targets have been successfully destroyed! The Close Air Support (CAS) was a success!",Score)
-return self
-end
-function TASK_A2G_CAS:SetScoreOnFail(PlayerName,Penalty,TaskUnit)
-self:F({PlayerName,Penalty,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Failed","The Close Air Support (CAS) has failed!",Penalty)
-return self
-end
-end
-do
-TASK_A2A_DISPATCHER={
-ClassName="TASK_A2A_DISPATCHER",
-Mission=nil,
-Detection=nil,
-Tasks={},
-SweepZones={},
-}
-function TASK_A2A_DISPATCHER:New(Mission,SetGroup,Detection)
-local self=BASE:Inherit(self,DETECTION_MANAGER:New(SetGroup,Detection))
-self.Detection=Detection
-self.Mission=Mission
-self.FlashNewTask=false
-self.Detection:FilterCategories(Unit.Category.AIRPLANE,Unit.Category.HELICOPTER)
-self.Detection:InitDetectRadar(true)
-self.Detection:SetRefreshTimeInterval(30)
-self:AddTransition("Started","Assign","Started")
-self:__Start(5)
-return self
-end
-function TASK_A2A_DISPATCHER:SetEngageRadius(EngageRadius)
-self.Detection:SetFriendliesRange(EngageRadius or 100000)
-return self
-end
-function TASK_A2A_DISPATCHER:SetSendMessages(onoff)
-self.FlashNewTask=onoff
-end
-function TASK_A2A_DISPATCHER:EvaluateINTERCEPT(DetectedItem)
-self:F({DetectedItem.ItemID})
-local DetectedSet=DetectedItem.Set
-local DetectedZone=DetectedItem.Zone
-if DetectedItem.IsDetected==true then
-local TargetSetUnit=SET_UNIT:New()
-TargetSetUnit:SetDatabase(DetectedSet)
-TargetSetUnit:FilterOnce()
-return TargetSetUnit
-end
-return nil
-end
-function TASK_A2A_DISPATCHER:EvaluateSWEEP(DetectedItem)
-self:F({DetectedItem.ItemID})
-local DetectedSet=DetectedItem.Set
-local DetectedZone=DetectedItem.Zone
-if DetectedItem.IsDetected==false then
-local TargetSetUnit=SET_UNIT:New()
-TargetSetUnit:SetDatabase(DetectedSet)
-TargetSetUnit:FilterOnce()
-return TargetSetUnit
-end
-return nil
-end
-function TASK_A2A_DISPATCHER:EvaluateENGAGE(DetectedItem)
-self:F({DetectedItem.ItemID})
-local DetectedSet=DetectedItem.Set
-local DetectedZone=DetectedItem.Zone
-local PlayersCount,PlayersReport=self:GetPlayerFriendliesNearBy(DetectedItem)
-if PlayersCount>0 and DetectedItem.IsDetected==true then
-local TargetSetUnit=SET_UNIT:New()
-TargetSetUnit:SetDatabase(DetectedSet)
-TargetSetUnit:FilterOnce()
-return TargetSetUnit
-end
-return nil
-end
-function TASK_A2A_DISPATCHER:EvaluateRemoveTask(Mission,Task,Detection,DetectedItem,DetectedItemIndex,DetectedItemChanged)
-if Task then
-if Task:IsStatePlanned()then
-local TaskName=Task:GetName()
-local TaskType=TaskName:match("(%u+)%.%d+")
-self:T2({TaskType=TaskType})
-local Remove=false
-local IsPlayers=Detection:IsPlayersNearBy(DetectedItem)
-if TaskType=="ENGAGE"then
-if IsPlayers==false then
-Remove=true
-end
-end
-if TaskType=="INTERCEPT"then
-if IsPlayers==true then
-Remove=true
-end
-if DetectedItem.IsDetected==false then
-Remove=true
-end
-end
-if TaskType=="SWEEP"then
-if DetectedItem.IsDetected==true then
-Remove=true
-end
-end
-local DetectedSet=DetectedItem.Set
-if DetectedSet:Count()==0 then
-Remove=true
-end
-if DetectedItemChanged==true or Remove then
-Task=self:RemoveTask(DetectedItemIndex)
-end
-end
-end
-return Task
-end
-function TASK_A2A_DISPATCHER:GetFriendliesNearBy(DetectedItem)
-local DetectedSet=DetectedItem.Set
-local FriendlyUnitsNearBy=self.Detection:GetFriendliesNearBy(DetectedItem,Unit.Category.AIRPLANE)
-local FriendlyTypes={}
-local FriendliesCount=0
-if FriendlyUnitsNearBy then
-local DetectedTreatLevel=DetectedSet:CalculateThreatLevelA2G()
-for FriendlyUnitName,FriendlyUnitData in pairs(FriendlyUnitsNearBy)do
-local FriendlyUnit=FriendlyUnitData
-if FriendlyUnit:IsAirPlane()then
-local FriendlyUnitThreatLevel=FriendlyUnit:GetThreatLevel()
-FriendliesCount=FriendliesCount+1
-local FriendlyType=FriendlyUnit:GetTypeName()
-FriendlyTypes[FriendlyType]=FriendlyTypes[FriendlyType]and(FriendlyTypes[FriendlyType]+1)or 1
-if DetectedTreatLevel<FriendlyUnitThreatLevel+2 then
-end
-end
-end
-end
-local FriendlyTypesReport=REPORT:New()
-if FriendliesCount>0 then
-for FriendlyType,FriendlyTypeCount in pairs(FriendlyTypes)do
-FriendlyTypesReport:Add(string.format("%d of %s",FriendlyTypeCount,FriendlyType))
-end
-else
-FriendlyTypesReport:Add("-")
-end
-return FriendliesCount,FriendlyTypesReport
-end
-function TASK_A2A_DISPATCHER:GetPlayerFriendliesNearBy(DetectedItem)
-local DetectedSet=DetectedItem.Set
-local PlayersNearBy=self.Detection:GetPlayersNearBy(DetectedItem)
-local PlayerTypes={}
-local PlayersCount=0
-if PlayersNearBy then
-local DetectedTreatLevel=DetectedSet:CalculateThreatLevelA2G()
-for PlayerUnitName,PlayerUnitData in pairs(PlayersNearBy)do
-local PlayerUnit=PlayerUnitData
-local PlayerName=PlayerUnit:GetPlayerName()
-if PlayerUnit:IsAirPlane()and PlayerName~=nil then
-local FriendlyUnitThreatLevel=PlayerUnit:GetThreatLevel()
-PlayersCount=PlayersCount+1
-local PlayerType=PlayerUnit:GetTypeName()
-PlayerTypes[PlayerName]=PlayerType
-if DetectedTreatLevel<FriendlyUnitThreatLevel+2 then
-end
-end
-end
-end
-local PlayerTypesReport=REPORT:New()
-if PlayersCount>0 then
-for PlayerName,PlayerType in pairs(PlayerTypes)do
-PlayerTypesReport:Add(string.format('"%s" in %s',PlayerName,PlayerType))
-end
-else
-PlayerTypesReport:Add("-")
-end
-return PlayersCount,PlayerTypesReport
-end
-function TASK_A2A_DISPATCHER:RemoveTask(TaskIndex)
-self.Mission:RemoveTask(self.Tasks[TaskIndex])
-self.Tasks[TaskIndex]=nil
-end
-function TASK_A2A_DISPATCHER:ProcessDetected(Detection)
-self:F()
-local AreaMsg={}
-local TaskMsg={}
-local ChangeMsg={}
-local Mission=self.Mission
-if Mission:IsIDLE()or Mission:IsENGAGED()then
-local TaskReport=REPORT:New()
-for TaskIndex,TaskData in pairs(self.Tasks)do
-local Task=TaskData
-if Task:IsStatePlanned()then
-local DetectedItem=Detection:GetDetectedItemByIndex(TaskIndex)
-if not DetectedItem then
-local TaskText=Task:GetName()
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-Mission:GetCommandCenter():MessageToGroup(string.format("Obsolete A2A task %s for %s removed.",TaskText,Mission:GetShortText()),TaskGroup)
-end
-Task=self:RemoveTask(TaskIndex)
-end
-end
-end
-for DetectedItemID,DetectedItem in pairs(Detection:GetDetectedItems())do
-local DetectedItem=DetectedItem
-local DetectedSet=DetectedItem.Set
-local DetectedCount=DetectedSet:Count()
-local DetectedZone=DetectedItem.Zone
-local DetectedID=DetectedItem.ID
-local TaskIndex=DetectedItem.Index
-local DetectedItemChanged=DetectedItem.Changed
-local Task=self.Tasks[TaskIndex]
-Task=self:EvaluateRemoveTask(Mission,Task,Detection,DetectedItem,TaskIndex,DetectedItemChanged)
-if not Task and DetectedCount>0 then
-local TargetSetUnit=self:EvaluateENGAGE(DetectedItem)
-if TargetSetUnit then
-Task=TASK_A2A_ENGAGE:New(Mission,self.SetGroup,string.format("ENGAGE.%03d",DetectedID),TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-else
-local TargetSetUnit=self:EvaluateINTERCEPT(DetectedItem)
-if TargetSetUnit then
-Task=TASK_A2A_INTERCEPT:New(Mission,self.SetGroup,string.format("INTERCEPT.%03d",DetectedID),TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-else
-local TargetSetUnit=self:EvaluateSWEEP(DetectedItem)
-if TargetSetUnit then
-Task=TASK_A2A_SWEEP:New(Mission,self.SetGroup,string.format("SWEEP.%03d",DetectedID),TargetSetUnit)
-Task:SetDetection(Detection,DetectedItem)
-Task:UpdateTaskInfo(DetectedItem)
-end
-end
-end
-if Task then
-self.Tasks[TaskIndex]=Task
-Task:SetTargetZone(DetectedZone,DetectedItem.Coordinate.y,DetectedItem.Coordinate.Heading)
-Task:SetDispatcher(self)
-Mission:AddTask(Task)
-function Task.OnEnterSuccess(Task,From,Event,To)
-self:Success(Task)
-end
-function Task.OnEnterCancelled(Task,From,Event,To)
-self:Cancelled(Task)
-end
-function Task.OnEnterFailed(Task,From,Event,To)
-self:Failed(Task)
-end
-function Task.OnEnterAborted(Task,From,Event,To)
-self:Aborted(Task)
-end
-TaskReport:Add(Task:GetName())
-else
-self:F("This should not happen")
-end
-end
-if Task then
-local FriendliesCount,FriendliesReport=self:GetFriendliesNearBy(DetectedItem,Unit.Category.AIRPLANE)
-Task.TaskInfo:AddText("Friendlies",string.format("%d ( %s )",FriendliesCount,FriendliesReport:Text(",")),40,"MOD")
-local PlayersCount,PlayersReport=self:GetPlayerFriendliesNearBy(DetectedItem)
-Task.TaskInfo:AddText("Players",string.format("%d ( %s )",PlayersCount,PlayersReport:Text(",")),40,"MOD")
-end
-Detection:AcceptChanges(DetectedItem)
-end
-Mission:GetCommandCenter():SetMenu()
-local TaskText=TaskReport:Text(", ")
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-if(not Mission:IsGroupAssigned(TaskGroup))and TaskText~=""and(self.FlashNewTask)then
-Mission:GetCommandCenter():MessageToGroup(string.format("%s has tasks %s. Subscribe to a task using the radio menu.",Mission:GetShortText(),TaskText),TaskGroup)
-end
-end
-end
-return true
-end
-end
-do
-TASK_A2A={
-ClassName="TASK_A2A"
-}
-function TASK_A2A:New(Mission,SetAttack,TaskName,TargetSetUnit,TaskType,TaskBriefing)
-local self=BASE:Inherit(self,TASK:New(Mission,SetAttack,TaskName,TaskType,TaskBriefing))
-self:F()
-self.TargetSetUnit=TargetSetUnit
-self.TaskType=TaskType
-local Fsm=self:GetUnitProcess()
-Fsm:AddTransition("Assigned","RouteToRendezVous","RoutingToRendezVous")
-Fsm:AddProcess("RoutingToRendezVous","RouteToRendezVousPoint",ACT_ROUTE_POINT:New(),{Arrived="ArriveAtRendezVous"})
-Fsm:AddProcess("RoutingToRendezVous","RouteToRendezVousZone",ACT_ROUTE_ZONE:New(),{Arrived="ArriveAtRendezVous"})
-Fsm:AddTransition({"Arrived","RoutingToRendezVous"},"ArriveAtRendezVous","ArrivedAtRendezVous")
-Fsm:AddTransition({"ArrivedAtRendezVous","HoldingAtRendezVous"},"Engage","Engaging")
-Fsm:AddTransition({"ArrivedAtRendezVous","HoldingAtRendezVous"},"HoldAtRendezVous","HoldingAtRendezVous")
-Fsm:AddProcess("Engaging","Account",ACT_ACCOUNT_DEADS:New(),{})
-Fsm:AddTransition("Engaging","RouteToTarget","Engaging")
-Fsm:AddProcess("Engaging","RouteToTargetZone",ACT_ROUTE_ZONE:New(),{})
-Fsm:AddProcess("Engaging","RouteToTargetPoint",ACT_ROUTE_POINT:New(),{})
-Fsm:AddTransition("Engaging","RouteToTargets","Engaging")
-Fsm:AddTransition("Rejected","Reject","Aborted")
-Fsm:AddTransition("Failed","Fail","Failed")
-function Fsm:OnLeaveAssigned(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-self:SelectAction()
-end
-function Fsm:onafterRouteToRendezVous(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Task:GetRendezVousZone(TaskUnit)then
-self:__RouteToRendezVousZone(0.1)
-else
-if Task:GetRendezVousCoordinate(TaskUnit)then
-self:__RouteToRendezVousPoint(0.1)
-else
-self:__ArriveAtRendezVous(0.1)
-end
-end
-end
-function Fsm:OnAfterArriveAtRendezVous(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-self:__Engage(0.1)
-end
-function Fsm:onafterEngage(TaskUnit,Task)
-self:F({self})
-self:__Account(0.1)
-self:__RouteToTarget(0.1)
-self:__RouteToTargets(-10)
-end
-function Fsm:onafterRouteToTarget(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Task:GetTargetZone(TaskUnit)then
-self:__RouteToTargetZone(0.1)
-else
-local TargetUnit=Task.TargetSetUnit:GetFirst()
-if TargetUnit then
-local Coordinate=TargetUnit:GetPointVec3()
-self:T({TargetCoordinate=Coordinate,Coordinate:GetX(),Coordinate:GetAlt(),Coordinate:GetZ()})
-Task:SetTargetCoordinate(Coordinate,TaskUnit)
-end
-self:__RouteToTargetPoint(0.1)
-end
-end
-function Fsm:onafterRouteToTargets(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-local TargetUnit=Task.TargetSetUnit:GetFirst()
-if TargetUnit then
-Task:SetTargetCoordinate(TargetUnit:GetCoordinate(),TaskUnit)
-end
-self:__RouteToTargets(-10)
-end
-return self
-end
-function TASK_A2A:SetTargetSetUnit(TargetSetUnit)
-self.TargetSetUnit=TargetSetUnit
-end
-function TASK_A2A:GetPlannedMenuText()
-return self:GetStateString().." - "..self:GetTaskName().." ( "..self.TargetSetUnit:GetUnitTypesText().." )"
-end
-function TASK_A2A:SetRendezVousCoordinate(RendezVousCoordinate,RendezVousRange,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteRendezVous=ProcessUnit:GetProcess("RoutingToRendezVous","RouteToRendezVousPoint")
-ActRouteRendezVous:SetCoordinate(RendezVousCoordinate)
-ActRouteRendezVous:SetRange(RendezVousRange)
-end
-function TASK_A2A:GetRendezVousCoordinate(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteRendezVous=ProcessUnit:GetProcess("RoutingToRendezVous","RouteToRendezVousPoint")
-return ActRouteRendezVous:GetCoordinate(),ActRouteRendezVous:GetRange()
-end
-function TASK_A2A:SetRendezVousZone(RendezVousZone,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteRendezVous=ProcessUnit:GetProcess("RoutingToRendezVous","RouteToRendezVousZone")
-ActRouteRendezVous:SetZone(RendezVousZone)
-end
-function TASK_A2A:GetRendezVousZone(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteRendezVous=ProcessUnit:GetProcess("RoutingToRendezVous","RouteToRendezVousZone")
-return ActRouteRendezVous:GetZone()
-end
-function TASK_A2A:SetTargetCoordinate(TargetCoordinate,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetPoint")
-ActRouteTarget:SetCoordinate(TargetCoordinate)
-end
-function TASK_A2A:GetTargetCoordinate(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetPoint")
-return ActRouteTarget:GetCoordinate()
-end
-function TASK_A2A:SetTargetZone(TargetZone,Altitude,Heading,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetZone")
-ActRouteTarget:SetZone(TargetZone,Altitude,Heading)
-end
-function TASK_A2A:GetTargetZone(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetZone")
-return ActRouteTarget:GetZone()
-end
-function TASK_A2A:SetGoalTotal()
-self.GoalTotal=self.TargetSetUnit:Count()
-end
-function TASK_A2A:GetGoalTotal()
-return self.GoalTotal
-end
-function TASK_A2A:ReportOrder(ReportGroup)
-self:UpdateTaskInfo(self.DetectedItem)
-local Coordinate=self.TaskInfo:GetData("Coordinate")
-local Distance=ReportGroup:GetCoordinate():Get2DDistance(Coordinate)
-return Distance
-end
-function TASK_A2A:onafterGoal(TaskUnit,From,Event,To)
-local TargetSetUnit=self.TargetSetUnit
-if TargetSetUnit:Count()==0 then
-self:Success()
-end
-self:__Goal(-10)
-end
-function TASK_A2A:UpdateTaskInfo(DetectedItem)
-if self:IsStatePlanned()or self:IsStateAssigned()then
-local TargetCoordinate=DetectedItem and self.Detection:GetDetectedItemCoordinate(DetectedItem)or self.TargetSetUnit:GetFirst():GetCoordinate()
-self.TaskInfo:AddTaskName(0,"MSOD")
-self.TaskInfo:AddCoordinate(TargetCoordinate,1,"SOD")
-local ThreatLevel,ThreatText
-if DetectedItem then
-ThreatLevel,ThreatText=self.Detection:GetDetectedItemThreatLevel(DetectedItem)
-else
-ThreatLevel,ThreatText=self.TargetSetUnit:CalculateThreatLevelA2G()
-end
-self.TaskInfo:AddThreat(ThreatText,ThreatLevel,10,"MOD",true)
-if self.Detection then
-local DetectedItemsCount=self.TargetSetUnit:Count()
-local ReportTypes=REPORT:New()
-local TargetTypes={}
-for TargetUnitName,TargetUnit in pairs(self.TargetSetUnit:GetSet())do
-local TargetType=self.Detection:GetDetectedUnitTypeName(TargetUnit)
-if not TargetTypes[TargetType]then
-TargetTypes[TargetType]=TargetType
-ReportTypes:Add(TargetType)
-end
-end
-self.TaskInfo:AddTargetCount(DetectedItemsCount,11,"O",true)
-self.TaskInfo:AddTargets(DetectedItemsCount,ReportTypes:Text(", "),20,"D",true)
-else
-local DetectedItemsCount=self.TargetSetUnit:Count()
-local DetectedItemsTypes=self.TargetSetUnit:GetTypeNames()
-self.TaskInfo:AddTargetCount(DetectedItemsCount,11,"O",true)
-self.TaskInfo:AddTargets(DetectedItemsCount,DetectedItemsTypes,20,"D",true)
-end
-end
-end
-function TASK_A2A:GetAutoAssignPriority(AutoAssignMethod,CommandCenter,TaskGroup)
-if AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Random then
-return math.random(1,9)
-elseif AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Distance then
-local Coordinate=self.TaskInfo:GetData("Coordinate")
-local Distance=Coordinate:Get2DDistance(CommandCenter:GetPositionable():GetCoordinate())
-return math.floor(Distance)
-elseif AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Priority then
-return 1
-end
-return 0
-end
-end
-do
-TASK_A2A_INTERCEPT={
-ClassName="TASK_A2A_INTERCEPT"
-}
-function TASK_A2A_INTERCEPT:New(Mission,SetGroup,TaskName,TargetSetUnit,TaskBriefing)
-local self=BASE:Inherit(self,TASK_A2A:New(Mission,SetGroup,TaskName,TargetSetUnit,"INTERCEPT",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-self:SetBriefing(TaskBriefing or"Intercept incoming intruders.\n")
-return self
-end
-function TASK_A2A_INTERCEPT:SetScoreOnProgress(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScoreProcess("Engaging","Account","AccountForPlayer","Player "..PlayerName.." has intercepted a target.",Score)
-return self
-end
-function TASK_A2A_INTERCEPT:SetScoreOnSuccess(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Success","All targets have been successfully intercepted!",Score)
-return self
-end
-function TASK_A2A_INTERCEPT:SetScoreOnFail(PlayerName,Penalty,TaskUnit)
-self:F({PlayerName,Penalty,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Failed","The intercept has failed!",Penalty)
-return self
-end
-end
-do
-TASK_A2A_SWEEP={
-ClassName="TASK_A2A_SWEEP"
-}
-function TASK_A2A_SWEEP:New(Mission,SetGroup,TaskName,TargetSetUnit,TaskBriefing)
-local self=BASE:Inherit(self,TASK_A2A:New(Mission,SetGroup,TaskName,TargetSetUnit,"SWEEP",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-self:SetBriefing(TaskBriefing or"Perform a fighter sweep. Incoming intruders were detected and could be hiding at the location.\n")
-return self
-end
-function TASK_A2A_SWEEP:onafterGoal(TaskUnit,From,Event,To)
-local TargetSetUnit=self.TargetSetUnit
-if TargetSetUnit:Count()==0 then
-self:Success()
-end
-self:__Goal(-10)
-end
-function TASK_A2A_SWEEP:SetScoreOnProgress(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScoreProcess("Engaging","Account","AccountForPlayer","Player "..PlayerName.." has sweeped a target.",Score)
-return self
-end
-function TASK_A2A_SWEEP:SetScoreOnSuccess(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Success","All targets have been successfully sweeped!",Score)
-return self
-end
-function TASK_A2A_SWEEP:SetScoreOnFail(PlayerName,Penalty,TaskUnit)
-self:F({PlayerName,Penalty,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Failed","The sweep has failed!",Penalty)
-return self
-end
-end
-do
-TASK_A2A_ENGAGE={
-ClassName="TASK_A2A_ENGAGE"
-}
-function TASK_A2A_ENGAGE:New(Mission,SetGroup,TaskName,TargetSetUnit,TaskBriefing)
-local self=BASE:Inherit(self,TASK_A2A:New(Mission,SetGroup,TaskName,TargetSetUnit,"ENGAGE",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-self:SetBriefing(TaskBriefing or"Bogeys are nearby! Players close by are ordered to ENGAGE the intruders!\n")
-return self
-end
-function TASK_A2A_ENGAGE:SetScoreOnProgress(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScoreProcess("Engaging","Account","AccountForPlayer","Player "..PlayerName.." has engaged and destroyed a target.",Score)
-return self
-end
-function TASK_A2A_ENGAGE:SetScoreOnSuccess(PlayerName,Score,TaskUnit)
-self:F({PlayerName,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Success","All targets have been successfully engaged!",Score)
-return self
-end
-function TASK_A2A_ENGAGE:SetScoreOnFail(PlayerName,Penalty,TaskUnit)
-self:F({PlayerName,Penalty,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Failed","The target engagement has failed!",Penalty)
-return self
-end
-end
-do
-TASK_CARGO={
-ClassName="TASK_CARGO",
-}
-function TASK_CARGO:New(Mission,SetGroup,TaskName,SetCargo,TaskType,TaskBriefing)
-local self=BASE:Inherit(self,TASK:New(Mission,SetGroup,TaskName,TaskType,TaskBriefing))
-self:F({Mission,SetGroup,TaskName,SetCargo,TaskType})
-self.SetCargo=SetCargo
-self.TaskType=TaskType
-self.SmokeColor=SMOKECOLOR.Red
-self.CargoItemCount={}
-self.CargoLimit=10
-self.DeployZones={}
-self:AddTransition("*","CargoDeployed","*")
-self:AddTransition("*","CargoPickedUp","*")
-local Fsm=self:GetUnitProcess()
-Fsm:AddTransition({"Planned","Assigned","Cancelled","WaitingForCommand","ArrivedAtPickup","ArrivedAtDeploy","Boarded","UnBoarded","Loaded","UnLoaded","Landed","Boarding"},"SelectAction","*")
-Fsm:AddTransition("*","RouteToPickup","RoutingToPickup")
-Fsm:AddProcess("RoutingToPickup","RouteToPickupPoint",ACT_ROUTE_POINT:New(),{Arrived="ArriveAtPickup",Cancelled="CancelRouteToPickup"})
-Fsm:AddTransition("Arrived","ArriveAtPickup","ArrivedAtPickup")
-Fsm:AddTransition("Cancelled","CancelRouteToPickup","Cancelled")
-Fsm:AddTransition("*","RouteToDeploy","RoutingToDeploy")
-Fsm:AddProcess("RoutingToDeploy","RouteToDeployZone",ACT_ROUTE_ZONE:New(),{Arrived="ArriveAtDeploy",Cancelled="CancelRouteToDeploy"})
-Fsm:AddTransition("Arrived","ArriveAtDeploy","ArrivedAtDeploy")
-Fsm:AddTransition("Cancelled","CancelRouteToDeploy","Cancelled")
-Fsm:AddTransition({"ArrivedAtPickup","ArrivedAtDeploy","Landing"},"Land","Landing")
-Fsm:AddTransition("Landing","Landed","Landed")
-Fsm:AddTransition("*","PrepareBoarding","AwaitBoarding")
-Fsm:AddTransition("AwaitBoarding","Board","Boarding")
-Fsm:AddTransition("Boarding","Boarded","Boarded")
-Fsm:AddTransition("*","Load","Loaded")
-Fsm:AddTransition("*","PrepareUnBoarding","AwaitUnBoarding")
-Fsm:AddTransition("AwaitUnBoarding","UnBoard","UnBoarding")
-Fsm:AddTransition("UnBoarding","UnBoarded","UnBoarded")
-Fsm:AddTransition("*","Unload","Unloaded")
-Fsm:AddTransition("*","Planned","Planned")
-Fsm:AddTransition("Deployed","Success","Success")
-Fsm:AddTransition("Rejected","Reject","Aborted")
-Fsm:AddTransition("Failed","Fail","Failed")
-function Fsm:OnAfterAssigned(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-self:SelectAction()
-end
-function Fsm:onafterSelectAction(TaskUnit,Task)
-local TaskUnitName=TaskUnit:GetName()
-local MenuTime=Task:InitTaskControlMenu(TaskUnit)
-local MenuControl=Task:GetTaskControlMenu(TaskUnit)
-Task.SetCargo:ForEachCargo(
-function(Cargo)
-if Cargo:IsAlive()then
-local TaskGroup=TaskUnit:GetGroup()
-if Cargo:IsUnLoaded()then
-local CargoBayFreeWeight=TaskUnit:GetCargoBayFreeWeight()
-local CargoWeight=Cargo:GetWeight()
-self:F({CargoBayFreeWeight=CargoBayFreeWeight})
-if CargoBayFreeWeight>CargoWeight then
-if Cargo:IsInReportRadius(TaskUnit:GetPointVec2())then
-local NotInDeployZones=true
-for DeployZoneName,DeployZone in pairs(Task.DeployZones)do
-if Cargo:IsInZone(DeployZone)then
-NotInDeployZones=false
-end
-end
-if NotInDeployZones then
-if not TaskUnit:InAir()then
-if Cargo:CanBoard()==true then
-if Cargo:IsInLoadRadius(TaskUnit:GetPointVec2())then
-Cargo:Report("Ready for boarding.","board",TaskUnit:GetGroup())
-local BoardMenu=MENU_GROUP:New(TaskGroup,"Board cargo",MenuControl):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),Cargo.Name,BoardMenu,self.MenuBoardCargo,self,Cargo):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-else
-Cargo:Report("Board at "..Cargo:GetCoordinate():ToString(TaskUnit:GetGroup().."."),"reporting",TaskUnit:GetGroup())
-end
-else
-if Cargo:CanLoad()==true then
-if Cargo:IsInLoadRadius(TaskUnit:GetPointVec2())then
-Cargo:Report("Ready for loading.","load",TaskUnit:GetGroup())
-local LoadMenu=MENU_GROUP:New(TaskGroup,"Load cargo",MenuControl):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),Cargo.Name,LoadMenu,self.MenuLoadCargo,self,Cargo):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-else
-Cargo:Report("Load at "..Cargo:GetCoordinate():ToString(TaskUnit:GetGroup()).." within "..Cargo.NearRadius..".","reporting",TaskUnit:GetGroup())
-end
-else
-if Cargo:CanSlingload()==true then
-if Cargo:IsInLoadRadius(TaskUnit:GetPointVec2())then
-Cargo:Report("Ready for sling loading.","slingload",TaskUnit:GetGroup())
-local SlingloadMenu=MENU_GROUP:New(TaskGroup,"Slingload cargo",MenuControl):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),Cargo.Name,SlingloadMenu,self.MenuLoadCargo,self,Cargo):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-else
-Cargo:Report("Slingload at "..Cargo:GetCoordinate():ToString(TaskUnit:GetGroup())..".","reporting",TaskUnit:GetGroup())
-end
-end
-end
-end
-else
-Cargo:ReportResetAll(TaskUnit:GetGroup())
-end
-end
-else
-if not Cargo:IsDeployed()==true then
-local RouteToPickupMenu=MENU_GROUP:New(TaskGroup,"Route to pickup cargo",MenuControl):SetTime(MenuTime):SetTag("Cargo")
-Cargo:ReportResetAll(TaskUnit:GetGroup())
-if Cargo:CanBoard()==true then
-if not Cargo:IsInLoadRadius(TaskUnit:GetPointVec2())then
-local BoardMenu=MENU_GROUP:New(TaskGroup,"Board cargo",RouteToPickupMenu):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),Cargo.Name,BoardMenu,self.MenuRouteToPickup,self,Cargo):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-end
-else
-if Cargo:CanLoad()==true then
-if not Cargo:IsInLoadRadius(TaskUnit:GetPointVec2())then
-local LoadMenu=MENU_GROUP:New(TaskGroup,"Load cargo",RouteToPickupMenu):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),Cargo.Name,LoadMenu,self.MenuRouteToPickup,self,Cargo):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-end
-else
-if Cargo:CanSlingload()==true then
-if not Cargo:IsInLoadRadius(TaskUnit:GetPointVec2())then
-local SlingloadMenu=MENU_GROUP:New(TaskGroup,"Slingload cargo",RouteToPickupMenu):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),Cargo.Name,SlingloadMenu,self.MenuRouteToPickup,self,Cargo):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-end
-end
-end
-end
-end
-end
-end
-for DeployZoneName,DeployZone in pairs(Task.DeployZones)do
-if Cargo:IsInZone(DeployZone)then
-Task:I({CargoIsDeployed=Task.CargoDeployed and"true"or"false"})
-if Cargo:IsDeployed()==false then
-Cargo:SetDeployed(true)
-Task:I({CargoIsAlive=Cargo:IsAlive()and"true"or"false"})
-if Cargo:IsAlive()then
-Task:CargoDeployed(TaskUnit,Cargo,DeployZone)
-end
-end
-end
-end
-end
-if Cargo:IsLoaded()==true and Cargo:IsLoadedInCarrier(TaskUnit)==true then
-if not TaskUnit:InAir()then
-if Cargo:CanUnboard()==true then
-local UnboardMenu=MENU_GROUP:New(TaskGroup,"Unboard cargo",MenuControl):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),Cargo.Name,UnboardMenu,self.MenuUnboardCargo,self,Cargo):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-else
-if Cargo:CanUnload()==true then
-local UnloadMenu=MENU_GROUP:New(TaskGroup,"Unload cargo",MenuControl):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),Cargo.Name,UnloadMenu,self.MenuUnloadCargo,self,Cargo):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-end
-end
-end
-end
-for DeployZoneName,DeployZone in pairs(Task.DeployZones)do
-if not Cargo:IsInZone(DeployZone)then
-local RouteToDeployMenu=MENU_GROUP:New(TaskGroup,"Route to deploy cargo",MenuControl):SetTime(MenuTime):SetTag("Cargo")
-MENU_GROUP_COMMAND:New(TaskUnit:GetGroup(),"Zone "..DeployZoneName,RouteToDeployMenu,self.MenuRouteToDeploy,self,DeployZone):SetTime(MenuTime):SetTag("Cargo"):SetRemoveParent()
-end
-end
-end
-end
-)
-Task:RefreshTaskControlMenu(TaskUnit,MenuTime,"Cargo")
-self:__SelectAction(-1)
-end
-function Fsm:OnLeaveWaitingForCommand(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-end
-function Fsm:MenuBoardCargo(Cargo)
-self:__PrepareBoarding(1.0,Cargo)
-end
-function Fsm:MenuLoadCargo(Cargo)
-self:__Load(1.0,Cargo)
-end
-function Fsm:MenuUnboardCargo(Cargo,DeployZone)
-self:__PrepareUnBoarding(1.0,Cargo,DeployZone)
-end
-function Fsm:MenuUnloadCargo(Cargo,DeployZone)
-self:__Unload(1.0,Cargo,DeployZone)
-end
-function Fsm:MenuRouteToPickup(Cargo)
-self:__RouteToPickup(1.0,Cargo)
-end
-function Fsm:MenuRouteToDeploy(DeployZone)
-self:__RouteToDeploy(1.0,DeployZone)
-end
-function Fsm:onafterRouteToPickup(TaskUnit,Task,From,Event,To,Cargo)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Cargo:IsAlive()then
-self.Cargo=Cargo
-Task:SetCargoPickup(self.Cargo,TaskUnit)
-self:__RouteToPickupPoint(-0.1)
-end
-end
-function Fsm:onafterArriveAtPickup(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if self.Cargo:IsAlive()then
-if TaskUnit:IsAir()then
-Task:GetMission():GetCommandCenter():MessageToGroup("Land",TaskUnit:GetGroup())
-self:__Land(-0.1,"Pickup")
-else
-self:__SelectAction(-0.1)
-end
-end
-end
-function Fsm:onafterCancelRouteToPickup(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-Task:GetMission():GetCommandCenter():MessageToGroup("Cancelled routing to Cargo "..self.Cargo:GetName(),TaskUnit:GetGroup())
-self:__SelectAction(-0.1)
-end
-function Fsm:onafterRouteToDeploy(TaskUnit,Task,From,Event,To,DeployZone)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-self:F(DeployZone)
-self.DeployZone=DeployZone
-Task:SetDeployZone(self.DeployZone,TaskUnit)
-self:__RouteToDeployZone(-0.1)
-end
-function Fsm:onafterArriveAtDeploy(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if TaskUnit:IsAir()then
-Task:GetMission():GetCommandCenter():MessageToGroup("Land",TaskUnit:GetGroup())
-self:__Land(-0.1,"Deploy")
-else
-self:__SelectAction(-0.1)
-end
-end
-function Fsm:onafterCancelRouteToDeploy(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-Task:GetMission():GetCommandCenter():MessageToGroup("Cancelled routing to deploy zone "..self.DeployZone:GetName(),TaskUnit:GetGroup())
-self:__SelectAction(-0.1)
-end
-function Fsm:onafterLand(TaskUnit,Task,From,Event,To,Action)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Action=="Pickup"then
-if self.Cargo:IsAlive()then
-if self.Cargo:IsInReportRadius(TaskUnit:GetPointVec2())then
-if TaskUnit:InAir()then
-self:__Land(-10,Action)
-else
-Task:GetMission():GetCommandCenter():MessageToGroup("Landed at pickup location...",TaskUnit:GetGroup())
-self:__Landed(-0.1,Action)
-end
-else
-self:__RouteToPickup(-0.1,self.Cargo)
-end
-end
-else
-if TaskUnit:IsAlive()then
-if TaskUnit:IsInZone(self.DeployZone)then
-if TaskUnit:InAir()then
-self:__Land(-10,Action)
-else
-Task:GetMission():GetCommandCenter():MessageToGroup("Landed at deploy zone "..self.DeployZone:GetName(),TaskUnit:GetGroup())
-self:__Landed(-0.1,Action)
-end
-else
-self:__RouteToDeploy(-0.1,self.Cargo)
-end
-end
-end
-end
-function Fsm:onafterLanded(TaskUnit,Task,From,Event,To,Action)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Action=="Pickup"then
-if self.Cargo:IsAlive()then
-if self.Cargo:IsInReportRadius(TaskUnit:GetPointVec2())then
-if TaskUnit:InAir()then
-self:__Land(-0.1,Action)
-else
-self:__SelectAction(-0.1)
-end
-else
-self:__RouteToPickup(-0.1,self.Cargo)
-end
-end
-else
-if TaskUnit:IsAlive()then
-if TaskUnit:IsInZone(self.DeployZone)then
-if TaskUnit:InAir()then
-self:__Land(-10,Action)
-else
-self:__SelectAction(-0.1)
-end
-else
-self:__RouteToDeploy(-0.1,self.Cargo)
-end
-end
-end
-end
-function Fsm:onafterPrepareBoarding(TaskUnit,Task,From,Event,To,Cargo)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Cargo and Cargo:IsAlive()then
-self:__Board(-0.1,Cargo)
-end
-end
-function Fsm:onafterBoard(TaskUnit,Task,From,Event,To,Cargo)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-function Cargo:OnEnterLoaded(From,Event,To,TaskUnit,TaskProcess)
-self:F({From,Event,To,TaskUnit,TaskProcess})
-TaskProcess:__Boarded(0.1,self)
-end
-if Cargo:IsAlive()then
-if Cargo:IsInLoadRadius(TaskUnit:GetPointVec2())then
-if TaskUnit:InAir()then
-else
-Cargo:MessageToGroup("Boarding ...",TaskUnit:GetGroup())
-if not Cargo:IsBoarding()then
-Cargo:Board(TaskUnit,nil,self)
-end
-end
-else
-end
-end
-end
-function Fsm:onafterBoarded(TaskUnit,Task,From,Event,To,Cargo)
-local TaskUnitName=TaskUnit:GetName()
-self:F({TaskUnit=TaskUnitName,Task=Task and Task:GetClassNameAndID()})
-Cargo:MessageToGroup("Boarded cargo "..Cargo:GetName(),TaskUnit:GetGroup())
-self:__Load(-0.1,Cargo)
-end
-function Fsm:onafterLoad(TaskUnit,Task,From,Event,To,Cargo)
-local TaskUnitName=TaskUnit:GetName()
-self:F({TaskUnit=TaskUnitName,Task=Task and Task:GetClassNameAndID()})
-if not Cargo:IsLoaded()then
-Cargo:Load(TaskUnit)
-end
-Cargo:MessageToGroup("Loaded cargo "..Cargo:GetName(),TaskUnit:GetGroup())
-TaskUnit:AddCargo(Cargo)
-Task:CargoPickedUp(TaskUnit,Cargo)
-self:SelectAction(-1)
-end
-function Fsm:onafterPrepareUnBoarding(TaskUnit,Task,From,Event,To,Cargo)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID(),From,Event,To,Cargo})
-self.Cargo=Cargo
-self.DeployZone=nil
-if Cargo:IsAlive()then
-for DeployZoneName,DeployZone in pairs(Task.DeployZones)do
-if Cargo:IsInZone(DeployZone)then
-self.DeployZone=DeployZone
-break
-end
-end
-self:__UnBoard(-0.1,Cargo,self.DeployZone)
-end
-end
-function Fsm:onafterUnBoard(TaskUnit,Task,From,Event,To,Cargo,DeployZone)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID(),From,Event,To,Cargo,DeployZone})
-function self.Cargo:OnEnterUnLoaded(From,Event,To,DeployZone,TaskProcess)
-self:F({From,Event,To,DeployZone,TaskProcess})
-TaskProcess:__UnBoarded(-0.1)
-end
-if self.Cargo:IsAlive()then
-self.Cargo:MessageToGroup("UnBoarding ...",TaskUnit:GetGroup())
-if DeployZone then
-self.Cargo:UnBoard(DeployZone:GetCoordinate():GetRandomCoordinateInRadius(25,10),400,self)
-else
-self.Cargo:UnBoard(TaskUnit:GetCoordinate():GetRandomCoordinateInRadius(25,10),400,self)
-end
-end
-end
-function Fsm:onafterUnBoarded(TaskUnit,Task)
-local TaskUnitName=TaskUnit:GetName()
-self:F({TaskUnit=TaskUnitName,Task=Task and Task:GetClassNameAndID()})
-self.Cargo:MessageToGroup("UnBoarded cargo "..self.Cargo:GetName(),TaskUnit:GetGroup())
-self:Unload(self.Cargo)
-end
-function Fsm:onafterUnload(TaskUnit,Task,From,Event,To,Cargo,DeployZone)
-local TaskUnitName=TaskUnit:GetName()
-self:F({TaskUnit=TaskUnitName,Task=Task and Task:GetClassNameAndID()})
-if not Cargo:IsUnLoaded()then
-if DeployZone then
-Cargo:UnLoad(DeployZone:GetCoordinate():GetRandomCoordinateInRadius(25,10),400,self)
-else
-Cargo:UnLoad(TaskUnit:GetCoordinate():GetRandomCoordinateInRadius(25,10),400,self)
-end
-end
-TaskUnit:RemoveCargo(Cargo)
-Cargo:MessageToGroup("Unloaded cargo "..Cargo:GetName(),TaskUnit:GetGroup())
-self:Planned()
-self:__SelectAction(1)
-end
-return self
-end
-function TASK_CARGO:SetCargoLimit(CargoLimit)
-self.CargoLimit=CargoLimit
-return self
-end
-function TASK_CARGO:SetSmokeColor(SmokeColor)
-if SmokeColor==nil then
-self.SmokeColor=SMOKECOLOR.Red
-elseif type(SmokeColor)=="number"then
-self:F2(SmokeColor)
-if SmokeColor>0 and SmokeColor<=5 then
-self.SmokeColor=SMOKECOLOR.SmokeColor
-end
-end
-end
-function TASK_CARGO:GetSmokeColor()
-return self.SmokeColor
-end
-function TASK_CARGO:GetPlannedMenuText()
-return self:GetStateString().." - "..self:GetTaskName().." ( "..self.TargetSetUnit:GetUnitTypesText().." )"
-end
-function TASK_CARGO:GetCargoSet()
-return self.SetCargo
-end
-function TASK_CARGO:GetDeployZones()
-return self.DeployZones
-end
-function TASK_CARGO:SetCargoPickup(Cargo,TaskUnit)
-self:F({Cargo,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local MenuTime=self:InitTaskControlMenu(TaskUnit)
-local MenuControl=self:GetTaskControlMenu(TaskUnit)
-local ActRouteCargo=ProcessUnit:GetProcess("RoutingToPickup","RouteToPickupPoint")
-ActRouteCargo:Reset()
-ActRouteCargo:SetCoordinate(Cargo:GetCoordinate())
-ActRouteCargo:SetRange(Cargo:GetLoadRadius())
-ActRouteCargo:SetMenuCancel(TaskUnit:GetGroup(),"Cancel Routing to Cargo "..Cargo:GetName(),MenuControl,MenuTime,"Cargo")
-ActRouteCargo:Start()
-return self
-end
-function TASK_CARGO:SetDeployZone(DeployZone,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local MenuTime=self:InitTaskControlMenu(TaskUnit)
-local MenuControl=self:GetTaskControlMenu(TaskUnit)
-local ActRouteDeployZone=ProcessUnit:GetProcess("RoutingToDeploy","RouteToDeployZone")
-ActRouteDeployZone:Reset()
-ActRouteDeployZone:SetZone(DeployZone)
-ActRouteDeployZone:SetMenuCancel(TaskUnit:GetGroup(),"Cancel Routing to Deploy Zone"..DeployZone:GetName(),MenuControl,MenuTime,"Cargo")
-ActRouteDeployZone:Start()
-return self
-end
-function TASK_CARGO:AddDeployZone(DeployZone,TaskUnit)
-self.DeployZones[DeployZone:GetName()]=DeployZone
-return self
-end
-function TASK_CARGO:RemoveDeployZone(DeployZone,TaskUnit)
-self.DeployZones[DeployZone:GetName()]=nil
-return self
-end
-function TASK_CARGO:SetDeployZones(DeployZones,TaskUnit)
-for DeployZoneID,DeployZone in pairs(DeployZones or{})do
-self.DeployZones[DeployZone:GetName()]=DeployZone
-end
-return self
-end
-function TASK_CARGO:GetTargetZone(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteTarget=ProcessUnit:GetProcess("Engaging","RouteToTargetZone")
-return ActRouteTarget:GetZone()
-end
-function TASK_CARGO:SetScoreOnProgress(Text,Score,TaskUnit)
-self:F({Text,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScoreProcess("Engaging","Account","Account",Text,Score)
-return self
-end
-function TASK_CARGO:SetScoreOnSuccess(Text,Score,TaskUnit)
-self:F({Text,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Success",Text,Score)
-return self
-end
-function TASK_CARGO:SetScoreOnFail(Text,Penalty,TaskUnit)
-self:F({Text,Score,TaskUnit})
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-ProcessUnit:AddScore("Failed",Text,Penalty)
-return self
-end
-function TASK_CARGO:SetGoalTotal()
-self.GoalTotal=self.SetCargo:Count()
-end
-function TASK_CARGO:GetGoalTotal()
-return self.GoalTotal
-end
-function TASK_CARGO:UpdateTaskInfo()
-if self:IsStatePlanned()or self:IsStateAssigned()then
-self.TaskInfo:AddTaskName(0,"MSOD")
-self.TaskInfo:AddCargoSet(self.SetCargo,10,"SOD",true)
-local Coordinates={}
-for CargoName,Cargo in pairs(self.SetCargo:GetSet())do
-local Cargo=Cargo
-if not Cargo:IsLoaded()then
-Coordinates[#Coordinates+1]=Cargo:GetCoordinate()
-end
-end
-self.TaskInfo:AddCoordinates(Coordinates,1,"M")
-end
-end
-function TASK_CARGO:ReportOrder(ReportGroup)
-return 0
-end
-function TASK_CARGO:GetAutoAssignPriority(AutoAssignMethod,TaskGroup)
-if AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Random then
-return math.random(1,9)
-elseif AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Distance then
-return 0
-elseif AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Priority then
-return 1
-end
-return 0
-end
-end
-do
-TASK_CARGO_TRANSPORT={
-ClassName="TASK_CARGO_TRANSPORT",
-}
-function TASK_CARGO_TRANSPORT:New(Mission,SetGroup,TaskName,SetCargo,TaskBriefing)
-local self=BASE:Inherit(self,TASK_CARGO:New(Mission,SetGroup,TaskName,SetCargo,"Transport",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-local Fsm=self:GetUnitProcess()
-local CargoReport=REPORT:New("Transport Cargo. The following cargo needs to be transported including initial positions:")
-SetCargo:ForEachCargo(
-function(Cargo)
-local CargoType=Cargo:GetType()
-local CargoName=Cargo:GetName()
-local CargoCoordinate=Cargo:GetCoordinate()
-CargoReport:Add(string.format('- "%s" (%s) at %s',CargoName,CargoType,CargoCoordinate:ToStringMGRS()))
-end
-)
-self:SetBriefing(
-TaskBriefing or
-CargoReport:Text()
-)
-return self
-end
-function TASK_CARGO_TRANSPORT:ReportOrder(ReportGroup)
-return 0
-end
-function TASK_CARGO_TRANSPORT:IsAllCargoTransported()
-local CargoSet=self:GetCargoSet()
-local Set=CargoSet:GetSet()
-local DeployZones=self:GetDeployZones()
-local CargoDeployed=true
-for CargoID,CargoData in pairs(Set)do
-local Cargo=CargoData
-self:F({Cargo=Cargo:GetName(),CargoDeployed=Cargo:IsDeployed()})
-if Cargo:IsDeployed()then
-else
-CargoDeployed=false
-end
-end
-self:F({CargoDeployed=CargoDeployed})
-return CargoDeployed
-end
-function TASK_CARGO_TRANSPORT:onafterGoal(TaskUnit,From,Event,To)
-local CargoSet=self.CargoSet
-if self:IsAllCargoTransported()then
-self:Success()
-end
-self:__Goal(-10)
-end
-end
-do
-TASK_CARGO_CSAR={
-ClassName="TASK_CARGO_CSAR",
-}
-function TASK_CARGO_CSAR:New(Mission,SetGroup,TaskName,SetCargo,TaskBriefing)
-local self=BASE:Inherit(self,TASK_CARGO:New(Mission,SetGroup,TaskName,SetCargo,"CSAR",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-self:AddTransition("*","CargoPickedUp","*")
-self:AddTransition("*","CargoDeployed","*")
-self:F({CargoDeployed=self.CargoDeployed~=nil and"true"or"false"})
-local Fsm=self:GetUnitProcess()
-local CargoReport=REPORT:New("Rescue a downed pilot from the following position:")
-SetCargo:ForEachCargo(
-function(Cargo)
-local CargoType=Cargo:GetType()
-local CargoName=Cargo:GetName()
-local CargoCoordinate=Cargo:GetCoordinate()
-CargoReport:Add(string.format('- "%s" (%s) at %s',CargoName,CargoType,CargoCoordinate:ToStringMGRS()))
-end
-)
-self:SetBriefing(
-TaskBriefing or
-CargoReport:Text()
-)
-return self
-end
-function TASK_CARGO_CSAR:ReportOrder(ReportGroup)
-return 0
-end
-function TASK_CARGO_CSAR:IsAllCargoTransported()
-local CargoSet=self:GetCargoSet()
-local Set=CargoSet:GetSet()
-local DeployZones=self:GetDeployZones()
-local CargoDeployed=true
-for CargoID,CargoData in pairs(Set)do
-local Cargo=CargoData
-self:F({Cargo=Cargo:GetName(),CargoDeployed=Cargo:IsDeployed()})
-if Cargo:IsDeployed()then
-else
-CargoDeployed=false
-end
-end
-self:F({CargoDeployed=CargoDeployed})
-return CargoDeployed
-end
-function TASK_CARGO_CSAR:onafterGoal(TaskUnit,From,Event,To)
-local CargoSet=self.CargoSet
-if self:IsAllCargoTransported()then
-self:Success()
-end
-self:__Goal(-10)
-end
-end
-do
-TASK_CARGO_DISPATCHER={
-ClassName="TASK_CARGO_DISPATCHER",
-Mission=nil,
-Tasks={},
-CSAR={},
-CSARSpawned=0,
-Transport={},
-TransportCount=0,
-}
-function TASK_CARGO_DISPATCHER:New(Mission,SetGroup)
-local self=BASE:Inherit(self,TASK_MANAGER:New(SetGroup))
-self.Mission=Mission
-self:AddTransition("Started","Assign","Started")
-self:AddTransition("Started","CargoPickedUp","Started")
-self:AddTransition("Started","CargoDeployed","Started")
-self:SetCSARRadius()
-self:__StartTasks(5)
-self.MaxCSAR=nil
-self.CountCSAR=0
-self:HandleEvent(EVENTS.Ejection)
-return self
-end
-function TASK_CARGO_DISPATCHER:SetCSARZones(SetZonesCSAR)
-self.SetZonesCSAR=SetZonesCSAR
-end
-function TASK_CARGO_DISPATCHER:SetMaxCSAR(MaxCSAR)
-self.MaxCSAR=MaxCSAR
-end
-function TASK_CARGO_DISPATCHER:OnEventEjection(EventData)
-self:F({EventData=EventData})
-if self.CSARTasks==true then
-local CSARCoordinate=EventData.IniUnit:GetCoordinate()
-local CSARCoalition=EventData.IniUnit:GetCoalition()
-local CSARCountry=EventData.IniUnit:GetCountry()
-local CSARHeading=EventData.IniUnit:GetHeading()
-if CSARCoalition==self.Mission:GetCommandCenter():GetCoalition()then
-if not self.SetZonesCSAR or(self.SetZonesCSAR and self.SetZonesCSAR:IsCoordinateInZone(CSARCoordinate))then
-if not self.MaxCSAR or(self.MaxCSAR and self.CountCSAR<self.MaxCSAR)then
-local CSARTaskName=self:AddCSARTask(self.CSARTaskName,CSARCoordinate,CSARHeading,CSARCountry,self.CSARBriefing)
-self:SetCSARDeployZones(CSARTaskName,self.CSARDeployZones)
-self.CountCSAR=self.CountCSAR+1
-end
-end
-end
-end
-return self
-end
-function TASK_CARGO_DISPATCHER:SetDefaultDeployZone(DefaultDeployZone)
-self.DefaultDeployZones={DefaultDeployZone}
-return self
-end
-function TASK_CARGO_DISPATCHER:SetDefaultDeployZones(DefaultDeployZones)
-self.DefaultDeployZones=DefaultDeployZones
-return self
-end
-function TASK_CARGO_DISPATCHER:StartCSARTasks(CSARTaskName,CSARDeployZones,CSARBriefing)
-if not self.CSARTasks then
-self.CSARTasks=true
-self.CSARTaskName=CSARTaskName
-self.CSARDeployZones=CSARDeployZones
-self.CSARBriefing=CSARBriefing
-else
-error("TASK_CARGO_DISPATCHER: The generation of CSAR tasks has already started.")
-end
-return self
-end
-function TASK_CARGO_DISPATCHER:StopCSARTasks()
-if self.CSARTasks then
-self.CSARTasks=nil
-self.CSARTaskName=nil
-self.CSARDeployZones=nil
-self.CSARBriefing=nil
-else
-error("TASK_CARGO_DISPATCHER: The generation of CSAR tasks was not yet started.")
-end
-return self
-end
-function TASK_CARGO_DISPATCHER:AddCSARTask(CSARTaskPrefix,CSARCoordinate,CSARHeading,CSARCountry,CSARBriefing)
-local CSARCoalition=self.Mission:GetCommandCenter():GetCoalition()
-CSARHeading=CSARHeading or 0
-CSARCountry=CSARCountry or self.Mission:GetCommandCenter():GetCountry()
-self.CSARSpawned=self.CSARSpawned+1
-local CSARTaskName=string.format((CSARTaskPrefix or"CSAR")..".%03d",self.CSARSpawned)
-local Template={
-["visible"]=false,
-["hidden"]=false,
-["task"]="Ground Nothing",
-["name"]=string.format("CSAR Pilot#%03d",self.CSARSpawned),
-["x"]=CSARCoordinate.x,
-["y"]=CSARCoordinate.z,
-["units"]=
-{
-[1]=
-{
-["type"]=(CSARCoalition==coalition.side.BLUE)and"Soldier M4"or"Infantry AK",
-["name"]=string.format("CSAR Pilot#%03d-01",self.CSARSpawned),
-["skill"]="Excellent",
-["playerCanDrive"]=false,
-["x"]=CSARCoordinate.x,
-["y"]=CSARCoordinate.z,
-["heading"]=CSARHeading,
-},
-},
-}
-local CSARGroup=GROUP:NewTemplate(Template,CSARCoalition,Group.Category.GROUND,CSARCountry)
-self.CSAR[CSARTaskName]={}
-self.CSAR[CSARTaskName].PilotGroup=CSARGroup
-self.CSAR[CSARTaskName].Briefing=CSARBriefing
-self.CSAR[CSARTaskName].Task=nil
-self.CSAR[CSARTaskName].TaskPrefix=CSARTaskPrefix
-return CSARTaskName
-end
-function TASK_CARGO_DISPATCHER:SetCSARRadius(CSARRadius)
-self.CSARRadius=CSARRadius or 50000
-return self
-end
-function TASK_CARGO_DISPATCHER:SetCSARDeployZone(CSARTaskName,CSARDeployZone)
-if CSARTaskName then
-self.CSAR[CSARTaskName].DeployZones={CSARDeployZone}
-end
-return self
-end
-function TASK_CARGO_DISPATCHER:SetCSARDeployZones(CSARTaskName,CSARDeployZones)
-if CSARTaskName and self.CSAR[CSARTaskName]then
-self.CSAR[CSARTaskName].DeployZones=CSARDeployZones
-end
-return self
-end
-function TASK_CARGO_DISPATCHER:AddTransportTask(TaskPrefix,SetCargo,Briefing,Silent)
-self.TransportCount=self.TransportCount+1
-local verbose=Silent or false
-local TaskName=string.format((TaskPrefix or"Transport")..".%03d",self.TransportCount)
-self.Transport[TaskName]={}
-self.Transport[TaskName].SetCargo=SetCargo
-self.Transport[TaskName].Briefing=Briefing
-self.Transport[TaskName].Task=nil
-self.Transport[TaskName].TaskPrefix=TaskPrefix
-self:ManageTasks(verbose)
-return self.Transport[TaskName]and self.Transport[TaskName].Task
-end
-function TASK_CARGO_DISPATCHER:SetTransportDeployZone(Task,TransportDeployZone)
-if self.Transport[Task.TaskName]then
-self.Transport[Task.TaskName].DeployZones={TransportDeployZone}
-else
-error("Task does not exist")
-end
-self:ManageTasks()
-return self
-end
-function TASK_CARGO_DISPATCHER:SetTransportDeployZones(Task,TransportDeployZones)
-if self.Transport[Task.TaskName]then
-self.Transport[Task.TaskName].DeployZones=TransportDeployZones
-else
-error("Task does not exist")
-end
-self:ManageTasks()
-return self
-end
-function TASK_CARGO_DISPATCHER:EvaluateCSAR(CSARUnit)
-local CSARCargo=CARGO_GROUP:New(CSARUnit,"Pilot",CSARUnit:GetName(),80,1500,10)
-local SetCargo=SET_CARGO:New()
-SetCargo:AddCargosByName(CSARUnit:GetName())
-SetCargo:Flush(self)
-return SetCargo
-end
-function TASK_CARGO_DISPATCHER:ManageTasks(Silent)
-self:F()
-local verbose=Silent and true
-local AreaMsg={}
-local TaskMsg={}
-local ChangeMsg={}
-local Mission=self.Mission
-if Mission:IsIDLE()or Mission:IsENGAGED()then
-local TaskReport=REPORT:New()
-for TaskIndex,TaskData in pairs(self.Tasks)do
-local Task=TaskData
-if Task:IsStatePlanned()then
-end
-end
-for CSARName,CSAR in pairs(self.CSAR)do
-if not CSAR.Task then
-local SetCargo=self:EvaluateCSAR(CSAR.PilotGroup)
-CSAR.Task=TASK_CARGO_CSAR:New(Mission,self.SetGroup,CSARName,SetCargo,CSAR.Briefing)
-CSAR.Task.TaskPrefix=CSAR.TaskPrefix
-Mission:AddTask(CSAR.Task)
-TaskReport:Add(CSARName)
-if CSAR.DeployZones then
-CSAR.Task:SetDeployZones(CSAR.DeployZones or{})
-else
-CSAR.Task:SetDeployZones(self.DefaultDeployZones or{})
-end
-function CSAR.Task.OnAfterCargoPickedUp(Task,From,Event,To,TaskUnit,Cargo)
-self:CargoPickedUp(Task,Task.TaskPrefix,TaskUnit,Cargo)
-end
-function CSAR.Task.OnAfterCargoDeployed(Task,From,Event,To,TaskUnit,Cargo,DeployZone)
-self:CargoDeployed(Task,Task.TaskPrefix,TaskUnit,Cargo,DeployZone)
-end
-end
-end
-for TransportName,Transport in pairs(self.Transport)do
-if not Transport.Task then
-Transport.Task=TASK_CARGO_TRANSPORT:New(Mission,self.SetGroup,TransportName,Transport.SetCargo,Transport.Briefing)
-Transport.Task.TaskPrefix=Transport.TaskPrefix
-Mission:AddTask(Transport.Task)
-TaskReport:Add(TransportName)
-function Transport.Task.OnEnterSuccess(Task,From,Event,To)
-self:Success(Task)
-end
-function Transport.Task.OnEnterCancelled(Task,From,Event,To)
-self:Cancelled(Task)
-end
-function Transport.Task.OnEnterFailed(Task,From,Event,To)
-self:Failed(Task)
-end
-function Transport.Task.OnEnterAborted(Task,From,Event,To)
-self:Aborted(Task)
-end
-function Transport.Task.OnAfterCargoPickedUp(Task,From,Event,To,TaskUnit,Cargo)
-self:CargoPickedUp(Task,Task.TaskPrefix,TaskUnit,Cargo)
-end
-function Transport.Task.OnAfterCargoDeployed(Task,From,Event,To,TaskUnit,Cargo,DeployZone)
-self:CargoDeployed(Task,Task.TaskPrefix,TaskUnit,Cargo,DeployZone)
-end
-end
-if Transport.DeployZones then
-Transport.Task:SetDeployZones(Transport.DeployZones or{})
-else
-Transport.Task:SetDeployZones(self.DefaultDeployZones or{})
-end
-end
-Mission:GetCommandCenter():SetMenu()
-local TaskText=TaskReport:Text(", ")
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-if(not Mission:IsGroupAssigned(TaskGroup))and TaskText~=""and not verbose then
-Mission:GetCommandCenter():MessageToGroup(string.format("%s has tasks %s. Subscribe to a task using the radio menu.",Mission:GetShortText(),TaskText),TaskGroup)
-end
-end
-end
-return true
-end
-end
-do
-TASK_ZONE_GOAL={
-ClassName="TASK_ZONE_GOAL",
-}
-function TASK_ZONE_GOAL:New(Mission,SetGroup,TaskName,ZoneGoal,TaskType,TaskBriefing)
-local self=BASE:Inherit(self,TASK:New(Mission,SetGroup,TaskName,TaskType,TaskBriefing))
-self:F()
-self.ZoneGoal=ZoneGoal
-self.TaskType=TaskType
-local Fsm=self:GetUnitProcess()
-Fsm:AddTransition("Assigned","StartMonitoring","Monitoring")
-Fsm:AddTransition("Monitoring","Monitor","Monitoring",{})
-Fsm:AddProcess("Monitoring","RouteToZone",ACT_ROUTE_ZONE:New(),{})
-Fsm:AddTransition("Rejected","Reject","Aborted")
-Fsm:AddTransition("Failed","Fail","Failed")
-self:SetTargetZone(self.ZoneGoal:GetZone())
-function Fsm:OnAfterAssigned(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-self:__StartMonitoring(0.1)
-self:__RouteToZone(0.1)
-end
-function Fsm:onafterStartMonitoring(TaskUnit,Task)
-self:F({self})
-self:__Monitor(0.1)
-end
-function Fsm:onafterMonitor(TaskUnit,Task)
-self:F({self})
-self:__Monitor(15)
-end
-function Fsm:onafterRouteTo(TaskUnit,Task)
-self:F({TaskUnit=TaskUnit,Task=Task and Task:GetClassNameAndID()})
-if Task:GetTargetZone(TaskUnit)then
-self:__RouteToZone(0.1)
-end
-end
-return self
-end
-function TASK_ZONE_GOAL:SetProtect(ZoneGoal)
-self.ZoneGoal=ZoneGoal
-end
-function TASK_ZONE_GOAL:GetPlannedMenuText()
-return self:GetStateString().." - "..self:GetTaskName().." ( "..self.ZoneGoal:GetZoneName().." )"
-end
-function TASK_ZONE_GOAL:SetTargetZone(TargetZone,TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteZone=ProcessUnit:GetProcess("Monitoring","RouteToZone")
-ActRouteZone:SetZone(TargetZone)
-end
-function TASK_ZONE_GOAL:GetTargetZone(TaskUnit)
-local ProcessUnit=self:GetUnitProcess(TaskUnit)
-local ActRouteZone=ProcessUnit:GetProcess("Monitoring","RouteToZone")
-return ActRouteZone:GetZone()
-end
-function TASK_ZONE_GOAL:SetGoalTotal(GoalTotal)
-self.GoalTotal=GoalTotal
-end
-function TASK_ZONE_GOAL:GetGoalTotal()
-return self.GoalTotal
-end
-end
-do
-TASK_CAPTURE_ZONE={
-ClassName="TASK_CAPTURE_ZONE",
-}
-function TASK_CAPTURE_ZONE:New(Mission,SetGroup,TaskName,ZoneGoalCoalition,TaskBriefing)
-local self=BASE:Inherit(self,TASK_ZONE_GOAL:New(Mission,SetGroup,TaskName,ZoneGoalCoalition,"CAPTURE",TaskBriefing))
-self:F()
-Mission:AddTask(self)
-self.TaskCoalition=ZoneGoalCoalition:GetCoalition()
-self.TaskCoalitionName=ZoneGoalCoalition:GetCoalitionName()
-self.TaskZoneName=ZoneGoalCoalition:GetZoneName()
-ZoneGoalCoalition:MonitorDestroyedUnits()
-self:SetBriefing(
-TaskBriefing or
-"Capture Zone "..self.TaskZoneName
-)
-self:UpdateTaskInfo(true)
-self:SetGoal(self.ZoneGoal.Goal)
-return self
-end
-function TASK_CAPTURE_ZONE:UpdateTaskInfo(Persist)
-Persist=Persist or false
-local ZoneCoordinate=self.ZoneGoal:GetZone():GetCoordinate()
-self.TaskInfo:AddTaskName(0,"MSOD",Persist)
-self.TaskInfo:AddCoordinate(ZoneCoordinate,1,"SOD",Persist)
-local SetUnit=self.ZoneGoal:GetScannedSetUnit()
-local ThreatLevel,ThreatText=SetUnit:CalculateThreatLevelA2G()
-local ThreatCount=SetUnit:Count()
-self.TaskInfo:AddThreat(ThreatText,ThreatLevel,20,"MOD",Persist)
-self.TaskInfo:AddInfo("Remaining Units",ThreatCount,21,"MOD",Persist,true)
-if self.Dispatcher then
-local DefenseTaskCaptureDispatcher=self.Dispatcher:GetDefenseTaskCaptureDispatcher()
-if DefenseTaskCaptureDispatcher then
-for TaskName,CaptureZone in pairs(DefenseTaskCaptureDispatcher.Zones or{})do
-local Task=CaptureZone.Task
-if Task and Task:IsStateAssigned()then
-self.TaskInfo:AddInfo("Defense Player Zone",Task.ZoneGoal:GetName(),30,"MOD",Persist)
-self.TaskInfo:AddCoordinate(Task.ZoneGoal:GetZone():GetCoordinate(),31,"MOD",Persist,false,"Defense Player Coordinate")
-end
-end
-end
-local DefenseAIA2GDispatcher=self.Dispatcher:GetDefenseAIA2GDispatcher()
-if DefenseAIA2GDispatcher then
-for Defender,Task in pairs(DefenseAIA2GDispatcher:GetDefenderTasks()or{})do
-local DetectedItem=DefenseAIA2GDispatcher:GetDefenderTaskTarget(Defender)
-if DetectedItem then
-local DetectedZone=DefenseAIA2GDispatcher.Detection:GetDetectedItemZone(DetectedItem)
-if DetectedZone then
-self.TaskInfo:AddInfo("Defense AI Zone",DetectedZone:GetName(),40,"MOD",Persist)
-self.TaskInfo:AddCoordinate(DetectedZone:GetCoordinate(),41,"MOD",Persist,false,"Defense AI Coordinate")
-end
-end
-end
-end
-end
-end
-function TASK_CAPTURE_ZONE:ReportOrder(ReportGroup)
-local Coordinate=self.TaskInfo:GetCoordinate()
-local Distance=ReportGroup:GetCoordinate():Get2DDistance(Coordinate)
-return Distance
-end
-function TASK_CAPTURE_ZONE:OnAfterGoal(From,Event,To,PlayerUnit,PlayerName)
-self:F({PlayerUnit=PlayerUnit,Achieved=self.ZoneGoal.Goal:IsAchieved()})
-if self.ZoneGoal then
-if self.ZoneGoal.Goal:IsAchieved()then
-local TotalContributions=self.ZoneGoal.Goal:GetTotalContributions()
-local PlayerContributions=self.ZoneGoal.Goal:GetPlayerContributions()
-self:F({TotalContributions=TotalContributions,PlayerContributions=PlayerContributions})
-for PlayerName,PlayerContribution in pairs(PlayerContributions)do
-local Scoring=self:GetScoring()
-if Scoring then
-Scoring:_AddMissionGoalScore(self.Mission,PlayerName,"Zone "..self.ZoneGoal:GetZoneName().." captured",PlayerContribution*200/TotalContributions)
-end
-end
-self:Success()
-end
-end
-self:__Goal(-10,PlayerUnit,PlayerName)
-end
-function TASK_CAPTURE_ZONE:GetAutoAssignPriority(AutoAssignMethod,CommandCenter,TaskGroup,AutoAssignReference)
-if AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Random then
-return math.random(1,9)
-elseif AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Distance then
-local Coordinate=self.TaskInfo:GetCoordinate()
-local Distance=Coordinate:Get2DDistance(CommandCenter:GetPositionable():GetCoordinate())
-return math.floor(Distance)
-elseif AutoAssignMethod==COMMANDCENTER.AutoAssignMethods.Priority then
-return 1
-end
-return 0
-end
-end
-do
-TASK_CAPTURE_DISPATCHER={
-ClassName="TASK_CAPTURE_DISPATCHER",
-Mission=nil,
-Tasks={},
-Zones={},
-ZoneCount=0,
-}
-TASK_CAPTURE_DISPATCHER.AI_A2G_Dispatcher=nil
-function TASK_CAPTURE_DISPATCHER:New(Mission,SetGroup)
-local self=BASE:Inherit(self,TASK_MANAGER:New(SetGroup))
-self.Mission=Mission
-self.FlashNewTask=false
-self:AddTransition("Started","Assign","Started")
-self:AddTransition("Started","ZoneCaptured","Started")
-self:__StartTasks(5)
-return self
-end
-function TASK_CAPTURE_DISPATCHER:SetDefenseTaskCaptureDispatcher(DefenseTaskCaptureDispatcher)
-self.DefenseTaskCaptureDispatcher=DefenseTaskCaptureDispatcher
-end
-function TASK_CAPTURE_DISPATCHER:GetDefenseTaskCaptureDispatcher()
-return self.DefenseTaskCaptureDispatcher
-end
-function TASK_CAPTURE_DISPATCHER:SetDefenseAIA2GDispatcher(DefenseAIA2GDispatcher)
-self.DefenseAIA2GDispatcher=DefenseAIA2GDispatcher
-end
-function TASK_CAPTURE_DISPATCHER:GetDefenseAIA2GDispatcher()
-return self.DefenseAIA2GDispatcher
-end
-function TASK_CAPTURE_DISPATCHER:AddCaptureZoneTask(TaskPrefix,CaptureZone,Briefing)
-local TaskName=TaskPrefix or"Capture"
-if self.Zones[TaskName]then
-self.ZoneCount=self.ZoneCount+1
-TaskName=string.format("%s.%03d",TaskName,self.ZoneCount)
-end
-self.Zones[TaskName]={}
-self.Zones[TaskName].CaptureZone=CaptureZone
-self.Zones[TaskName].Briefing=Briefing
-self.Zones[TaskName].Task=nil
-self.Zones[TaskName].TaskPrefix=TaskPrefix
-self:ManageTasks()
-return self.Zones[TaskName]and self.Zones[TaskName].Task
-end
-function TASK_CAPTURE_DISPATCHER:Link_AI_A2G_Dispatcher(AI_A2G_Dispatcher)
-self.AI_A2G_Dispatcher=AI_A2G_Dispatcher
-AI_A2G_Dispatcher.Detection:LockDetectedItems()
-return self
-end
-function TASK_CAPTURE_DISPATCHER:ManageTasks()
-self:F()
-local AreaMsg={}
-local TaskMsg={}
-local ChangeMsg={}
-local Mission=self.Mission
-if Mission:IsIDLE()or Mission:IsENGAGED()then
-local TaskReport=REPORT:New()
-for TaskIndex,TaskData in pairs(self.Tasks)do
-local Task=TaskData
-if Task:IsStatePlanned()then
-end
-end
-for TaskName,CaptureZone in pairs(self.Zones)do
-if not CaptureZone.Task then
-CaptureZone.Task=TASK_CAPTURE_ZONE:New(Mission,self.SetGroup,TaskName,CaptureZone.CaptureZone,CaptureZone.Briefing)
-CaptureZone.Task.TaskPrefix=CaptureZone.TaskPrefix
-Mission:AddTask(CaptureZone.Task)
-TaskReport:Add(TaskName)
-CaptureZone.Task:SetDispatcher(self)
-CaptureZone.Task:UpdateTaskInfo()
-function CaptureZone.Task.OnEnterAssigned(Task,From,Event,To)
-if self.AI_A2G_Dispatcher then
-self.AI_A2G_Dispatcher:Unlock(Task.TaskZoneName)
-end
-CaptureZone.Task:UpdateTaskInfo()
-CaptureZone.Task.ZoneGoal.Attacked=true
-end
-function CaptureZone.Task.OnEnterSuccess(Task,From,Event,To)
-if self.AI_A2G_Dispatcher then
-self.AI_A2G_Dispatcher:Lock(Task.TaskZoneName)
-end
-CaptureZone.Task:UpdateTaskInfo()
-CaptureZone.Task.ZoneGoal.Attacked=false
-end
-function CaptureZone.Task.OnEnterCancelled(Task,From,Event,To)
-self:Cancelled(Task)
-if self.AI_A2G_Dispatcher then
-self.AI_A2G_Dispatcher:Lock(Task.TaskZoneName)
-end
-CaptureZone.Task:UpdateTaskInfo()
-CaptureZone.Task.ZoneGoal.Attacked=false
-end
-function CaptureZone.Task.OnEnterFailed(Task,From,Event,To)
-self:Failed(Task)
-if self.AI_A2G_Dispatcher then
-self.AI_A2G_Dispatcher:Lock(Task.TaskZoneName)
-end
-CaptureZone.Task:UpdateTaskInfo()
-CaptureZone.Task.ZoneGoal.Attacked=false
-end
-function CaptureZone.Task.OnEnterAborted(Task,From,Event,To)
-self:Aborted(Task)
-if self.AI_A2G_Dispatcher then
-self.AI_A2G_Dispatcher:Lock(Task.TaskZoneName)
-end
-CaptureZone.Task:UpdateTaskInfo()
-CaptureZone.Task.ZoneGoal.Attacked=false
-end
-function CaptureZone.Task.OnAfterCaptured(Task,From,Event,To,TaskUnit)
-self:Captured(Task,Task.TaskPrefix,TaskUnit)
-if self.AI_A2G_Dispatcher then
-self.AI_A2G_Dispatcher:Lock(Task.TaskZoneName)
-end
-CaptureZone.Task:UpdateTaskInfo()
-CaptureZone.Task.ZoneGoal.Attacked=false
-end
-end
-end
-Mission:GetCommandCenter():SetMenu()
-local TaskText=TaskReport:Text(", ")
-for TaskGroupID,TaskGroup in pairs(self.SetGroup:GetSet())do
-if(not Mission:IsGroupAssigned(TaskGroup))and TaskText~=""and(not self.FlashNewTask)then
-Mission:GetCommandCenter():MessageToGroup(string.format("%s has tasks %s. Subscribe to a task using the radio menu.",Mission:GetShortText(),TaskText),TaskGroup)
-end
-end
-end
-return true
-end
-end
 NAVFIX={
 ClassName="NAVFIX",
 verbose=0,
@@ -137857,7 +123750,6 @@ _SCHEDULEDISPATCHER=SCHEDULEDISPATCHER:New()
 _DATABASE=DATABASE:New()
 _SETTINGS=SETTINGS:Set()
 _SETTINGS:SetPlayerMenuOn()
-_DATABASE:_RegisterCargos()
 _DATABASE:_RegisterZones()
 _DATABASE:_RegisterAirbases()
 function printf(text,...)
