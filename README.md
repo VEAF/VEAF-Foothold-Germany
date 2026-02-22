@@ -1,10 +1,10 @@
-# VEAF Foothold Germany v4.1.6
+# VEAF Foothold Germany v4.1.9
 
 ## Presentation
 
 This is a modification of the original Foothold Germany mission by Leka, that I adapted to make it load all the script files and config directly from the server.
 
-**Done using the latest version updated on 2026.02.11.**
+**Done using the latest version updated on 2026.02.22.**
 
 ## Update
 
