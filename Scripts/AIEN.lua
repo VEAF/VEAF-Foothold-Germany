@@ -8803,6 +8803,15 @@ local function groupHasInfantryUnits(group)
     return false
 end
 
+local function isDismountedGroupName(groupName)
+    if type(groupName) ~= "string" then
+        return false
+    end
+    local lowerName = string.lower(groupName)
+    return string.find(lowerName, "_dismounted_", 1, true) ~= nil
+        or string.find(lowerName, "dismounted", 1, true) ~= nil
+end
+
 local function isZoneDelegationLocked(zoneName)
     if not zoneName then
         return false
@@ -14532,7 +14541,11 @@ end
                                     if choosenAct ~= "ac_fireMissionOnShooter" then
                                         if AIEN.config.firemissions == true then
                                             if shooter and shooter:getPoint() and position then
-                                                counterBatteryDone = counterBattery(position, shooter:getPoint(), group:getCoalition()) == true
+                                                if s_cat ~= 0 then
+                                                    counterBatteryDone = counterBattery(position, shooter:getPoint(), group:getCoalition()) == true
+                                                elseif AIEN.config.AIEN_debugProcessDetail == true then
+                                                    env.info(("AIEN.event_hit, skipping counterBattery for airplane shooter"))
+                                                end
                                             end
                                         end
                                     end
@@ -14559,22 +14572,25 @@ end
 
                                                 for _, gName in ipairs(z1.built) do
                                                     local gObj = Group.getByName(gName)
-                                                    if gObj and gObj:isExist() and gObj:getCoalition() == group:getCoalition() and gObj:getName() ~= group:getName() and not groupHasInfantryUnits(gObj) then
-                                                        local gid = gObj:getID()
-                                                        if not underAttack[gid] then
-                                                            local gData = groundgroupsDb[gid]
-                                                            if gData and gData.tasked == false and gData.sa and gData.sa.pos and gData.sa.cls and gData.sa.cls ~= "SAM" and gData.sa.cls ~= "SHORAD" and gData.sa.cls ~= "ARTY" and gData.sa.cls ~= "MLRS" then
-                                                                local dist = getDist(gData.sa.pos, o_pos)
-                                                                if dist < AIEN.config.supportDistance then
-                                                                    local base = supportCounterAirClasses[gData.class] or 0
-                                                                    if base > 0 then
-                                                                        local score = base * 10000 - dist
-                                                                        if not bestScore1 or score > bestScore1 then
-                                                                            bestGroup2, bestScore2 = bestGroup1, bestScore1
-                                                                            bestGroup1, bestScore1 = gObj, score
-                                                                        elseif not bestScore2 or score > bestScore2 then
-                                                                            if not bestGroup1 or gObj:getName() ~= bestGroup1:getName() then
-                                                                                bestGroup2, bestScore2 = gObj, score
+                                                    if gObj and gObj:isExist() and gObj:getCoalition() == group:getCoalition() then
+                                                        local candidateName = gObj:getName()
+                                                        if candidateName ~= group:getName() and not isDismountedGroupName(candidateName) and not groupHasInfantryUnits(gObj) then
+                                                            local gid = gObj:getID()
+                                                            if not underAttack[gid] then
+                                                                local gData = groundgroupsDb[gid]
+                                                                if gData and gData.tasked == false and gData.class ~= "INF" and gData.class ~= "MANPADS" and gData.sa and gData.sa.pos and gData.sa.cls and gData.sa.cls ~= "SAM" and gData.sa.cls ~= "SHORAD" and gData.sa.cls ~= "ARTY" and gData.sa.cls ~= "MLRS" then
+                                                                    local dist = getDist(gData.sa.pos, o_pos)
+                                                                    if dist < AIEN.config.supportDistance then
+                                                                        local base = supportCounterAirClasses[gData.class] or 0
+                                                                        if base > 0 then
+                                                                            local score = base * 10000 - dist
+                                                                            if not bestScore1 or score > bestScore1 then
+                                                                                bestGroup2, bestScore2 = bestGroup1, bestScore1
+                                                                                bestGroup1, bestScore1 = gObj, score
+                                                                            elseif not bestScore2 or score > bestScore2 then
+                                                                                if not bestGroup1 or gObj:getName() ~= bestGroup1:getName() then
+                                                                                    bestGroup2, bestScore2 = gObj, score
+                                                                                end
                                                                             end
                                                                         end
                                                                     end
@@ -14645,22 +14661,25 @@ end
 
                                                 for _, gName in ipairs(z1.built) do
                                                     local gObj = Group.getByName(gName)
-                                                    if gObj and gObj:isExist() and gObj:getCoalition() == group:getCoalition() and gObj:getName() ~= group:getName() and not groupHasInfantryUnits(gObj) then
-                                                        local gid = gObj:getID()
-                                                        if not underAttack[gid] then
-                                                            local gData = groundgroupsDb[gid]
-                                                            if gData and gData.tasked == false and gData.sa and gData.sa.pos and gData.sa.cls and gData.sa.cls ~= "SAM" and gData.sa.cls ~= "SHORAD" and gData.sa.cls ~= "ARTY" and gData.sa.cls ~= "MLRS" then
-                                                                local dist = getDist(gData.sa.pos, a_pos)
-                                                                if dist < maxRange then
-                                                                    local base = supportGroundClasses[gData.class] or 0
-                                                                    if base > 0 then
-                                                                        local score = base * 10000 - dist
-                                                                        if not bestScore1 or score > bestScore1 then
-                                                                            bestGroup2, bestScore2 = bestGroup1, bestScore1
-                                                                            bestGroup1, bestScore1 = gObj, score
-                                                                        elseif not bestScore2 or score > bestScore2 then
-                                                                            if not bestGroup1 or gObj:getName() ~= bestGroup1:getName() then
-                                                                                bestGroup2, bestScore2 = gObj, score
+                                                    if gObj and gObj:isExist() and gObj:getCoalition() == group:getCoalition() then
+                                                        local candidateName = gObj:getName()
+                                                        if candidateName ~= group:getName() and not isDismountedGroupName(candidateName) and not groupHasInfantryUnits(gObj) then
+                                                            local gid = gObj:getID()
+                                                            if not underAttack[gid] then
+                                                                local gData = groundgroupsDb[gid]
+                                                                if gData and gData.tasked == false and gData.class ~= "INF" and gData.class ~= "MANPADS" and gData.sa and gData.sa.pos and gData.sa.cls and gData.sa.cls ~= "SAM" and gData.sa.cls ~= "SHORAD" and gData.sa.cls ~= "ARTY" and gData.sa.cls ~= "MLRS" then
+                                                                    local dist = getDist(gData.sa.pos, a_pos)
+                                                                    if dist < maxRange then
+                                                                        local base = supportGroundClasses[gData.class] or 0
+                                                                        if base > 0 then
+                                                                            local score = base * 10000 - dist
+                                                                            if not bestScore1 or score > bestScore1 then
+                                                                                bestGroup2, bestScore2 = bestGroup1, bestScore1
+                                                                                bestGroup1, bestScore1 = gObj, score
+                                                                            elseif not bestScore2 or score > bestScore2 then
+                                                                                if not bestGroup1 or gObj:getName() ~= bestGroup1:getName() then
+                                                                                    bestGroup2, bestScore2 = gObj, score
+                                                                                end
                                                                             end
                                                                         end
                                                                     end

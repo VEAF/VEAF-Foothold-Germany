@@ -73916,7 +73916,7 @@ CTLD.UnitTypeCapabilities={
 ["Hercules"]={type="Hercules",crates=true,troops=true,cratelimit=7,trooplimit=64,length=25,cargoweightlimit=19000},
 ["C-130J-30"]={type="C-130J-30",crates=true,troops=true,cratelimit=7,trooplimit=64,length=35,cargoweightlimit=21500},
 ["UH-60L"]={type="UH-60L",crates=true,troops=true,cratelimit=2,trooplimit=20,length=16,cargoweightlimit=3500},
-["UH-60L_DAP"]={type="UH-60L_DAP",crates=false,troops=true,cratelimit=0,trooplimit=2,length=16,cargoweightlimit=500},
+["UH-60L_DAP"]={type="UH-60L_DAP",crates=false,troops=true,cratelimit=2,trooplimit=2,length=16,cargoweightlimit=3500},
 ["MH-60R"]={type="MH-60R",crates=true,troops=true,cratelimit=2,trooplimit=20,length=16,cargoweightlimit=3500},
 ["SH-60B"]={type="SH-60B",crates=true,troops=true,cratelimit=2,trooplimit=20,length=16,cargoweightlimit=3500},
 ["AH-64D_BLK_II"]={type="AH-64D_BLK_II",crates=false,troops=true,cratelimit=0,trooplimit=2,length=17,cargoweightlimit=200},
@@ -74326,9 +74326,9 @@ self.DynamicCargo[event.IniDynamicCargoName]=nil
 end
 return self
 end
-function CTLD:IsC130J(Unit)
+function CTLD:IsC130J(Unit,IgnoreUseC130Flag)
 if not Unit then return false end
-if not self.UseC130LoadAndUnload then return false end
+if not IgnoreUseC130Flag and not self.UseC130LoadAndUnload then return false end
 self.C130JUnits=self.C130JUnits or{}
 local unitname=Unit:GetName()or"none"
 return self.C130JUnits[unitname]==true
@@ -74923,6 +74923,20 @@ local isHook=self:IsHook(Unit)
 local cgotype=cargoObj:GetType()or nil
 local suppressGetAndLoad=(self.enableChinookGCLoading==true)and(cgotype==CTLD_CARGO.Enum.STATIC)
 local canPartiallyLoad=((not capacityCrates or capacityCrates>=1)and(not maxMassCrates or maxMassCrates>=1))
+if suppressGetAndLoad or isHerc then
+if canLoad then
+MENU_GROUP_COMMAND:New(Group,"1",parentMenu,self._GetCrateQuantity,self,Group,Unit,cargoObj,1)
+else
+local msg
+if maxMassSets and(not capacitySets or capacitySets>=1)and maxMassSets<1 then
+msg="Weight limit reached"
+else
+msg="Crate limit reached"
+end
+MENU_GROUP_COMMAND:New(Group,msg,parentMenu,self._SendMessage,self,msg,10,false,Group)
+end
+return self
+end
 if canLoad and not isHerc and not suppressGetAndLoad then
 MENU_GROUP_COMMAND:New(Group,"Get",parentMenu,self._GetCrateQuantity,self,Group,Unit,cargoObj,1)
 MENU_GROUP_COMMAND:New(Group,"Get and Load",parentMenu,self._GetAndLoad,self,Group,Unit,cargoObj,1)
@@ -75247,7 +75261,7 @@ local cratealias=string.format("%s-%d",cratename,math.random(1,100000))
 local CCat,CType,CShape=Cargo:GetStaticTypeAndShape()
 local basetype=CType or self.basetype or"container_cargo"
 CCat=CCat or"Cargos"
-if not isstatic and self:IsC130J(Unit)then
+if not isstatic and self:IsC130J(Unit,true)then
 if Cargo.C130TypeName then
 basetype=Cargo.C130TypeName
 elseif self.C130basetype and(not CType or CType==self.basetype)then

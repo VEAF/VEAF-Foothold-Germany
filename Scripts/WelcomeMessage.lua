@@ -8,6 +8,7 @@ static = STATIC:FindByName("EventMan", true)
 atisZones = {}
 
 allZones = {}
+local allZoneSet = {}
 local allZoneObjects = {}
 local atisAirbaseObjects = {}
 local atisZoneByAirbaseName = {}
@@ -49,10 +50,29 @@ end
 
 local function InitAllZones()
     allZones = BuildAllZonesFromFootholdZones()
+    allZoneSet = {}
     allZoneObjects = {}
     for _, zoneName in ipairs(allZones) do
+        allZoneSet[zoneName] = true
         allZoneObjects[zoneName] = ZONE:New(zoneName)
     end
+end
+
+function RegisterWelcomeZone(zoneName)
+    if type(zoneName) ~= "string" or zoneName == "" then
+        return false
+    end
+
+    if not allZoneSet[zoneName] then
+        table.insert(allZones, zoneName)
+        allZoneSet[zoneName] = true
+    end
+
+    if not allZoneObjects[zoneName] then
+        allZoneObjects[zoneName] = ZONE:New(zoneName)
+    end
+
+    return allZoneObjects[zoneName] ~= nil
 end
 
 

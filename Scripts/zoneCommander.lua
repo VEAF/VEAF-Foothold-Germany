@@ -3783,6 +3783,18 @@ do
 		self.groupTankerSignatures[groupId] = nil
 	end
 
+	function BattleCommander:_removeDynamicControlMenuForGroup(groupId)
+		self.groupDynamicMenus = self.groupDynamicMenus or {}
+		self.groupDynamicSignatures = self.groupDynamicSignatures or {}
+		self:_removeTankerMenuForGroup(groupId)
+		local handle = self.groupDynamicMenus[groupId]
+		if handle then
+			missionCommands.removeItemForGroup(groupId, handle)
+		end
+		self.groupDynamicMenus[groupId] = nil
+		self.groupDynamicSignatures[groupId] = nil
+	end
+
 	function BattleCommander:_groupHasHumanPlayer(groupObj)
 		if not groupObj or not groupObj.isExist or not groupObj:isExist() then return false end
 		local sz = groupObj:getSize() or 0
@@ -3818,16 +3830,227 @@ do
 		return false
 	end
 
-	function BattleCommander:refreshTankerControlMenusForBlue(force)
-		self.groupTankerMenus = self.groupTankerMenus or {}
-		self.groupTankerSignatures = self.groupTankerSignatures or {}
+	function BattleCommander:refreshDynamicControlMenusForBlue(force)
+		self.groupDynamicMenus = self.groupDynamicMenus or {}
+		self.groupDynamicSignatures = self.groupDynamicSignatures or {}
 		local seen = {}
 		local groups = coalition.getGroups(2) or {}
 		for _, g in pairs(groups) do
 			if g and g:isExist() then
 				local gid = g:getID()
 				seen[gid] = true
-				self:refreshTankerControlMenuForGroup(gid, g, force)
+				self:refreshDynamicControlMenuForGroup(gid, g, force)
+			end
+		end
+		for gid, _ in pairs(self.groupDynamicMenus) do
+			if not seen[gid] then
+				self:_removeDynamicControlMenuForGroup(gid)
+				self:_removeTankerMenuForGroup(gid)
+			end
+		end
+	end
+
+	function BattleCommander:refreshDynamicControlMenuForGroup(groupId, groupObj, force)
+		self.groupDynamicMenus = self.groupDynamicMenus or {}
+		self.groupDynamicSignatures = self.groupDynamicSignatures or {}
+
+		if not groupObj or not groupObj.isExist or not groupObj:isExist() then
+			self:_removeDynamicControlMenuForGroup(groupId)
+			self:_removeTankerMenuForGroup(groupId)
+			return
+		end
+		if groupObj:getCoalition() ~= 2 then
+			self:_removeDynamicControlMenuForGroup(groupId)
+			self:_removeTankerMenuForGroup(groupId)
+			return
+		end
+		if not self:_groupHasHumanPlayer(groupObj) then
+			self:_removeDynamicControlMenuForGroup(groupId)
+			self:_removeTankerMenuForGroup(groupId)
+			return
+		end
+
+		local hasNonTankerDynamic = capActive or casActive or seadActive or decoyActive or bomberActive or StructureActive
+		local isHeloGroup = (self._groupIsHelicopter and self:_groupIsHelicopter(groupObj)) or false
+		local hasEligibleTankerController = false
+		local rank = (self._getGroupRank and self:_getGroupRank(groupId, groupObj)) or 0
+		local reqArco = (self._getTankerRequiredRank and self:_getTankerRequiredRank("dynamicarco")) or 0
+		local reqTexaco = (self._getTankerRequiredRank and self:_getTankerRequiredRank("dynamictexaco")) or 0
+		if (ArcoActive or TexacoActive) and not isHeloGroup then
+			hasEligibleTankerController = (ArcoActive and rank >= reqArco) or (TexacoActive and rank >= reqTexaco)
+		end
+
+		if not (hasNonTankerDynamic or hasEligibleTankerController) then
+			self:_removeDynamicControlMenuForGroup(groupId)
+			self:_removeTankerMenuForGroup(groupId)
+			return
+		end
+
+		local signature = table.concat({
+			tostring(capActive), tostring(casActive), tostring(seadActive),
+			tostring(decoyActive), tostring(bomberActive), tostring(StructureActive),
+			tostring(ArcoActive), tostring(TexacoActive),
+			tostring(isHeloGroup), tostring(rank),
+			tostring(reqArco), tostring(reqTexaco),
+			tostring(hasEligibleTankerController),
+		}, "|")
+
+		if not force and self.groupDynamicMenus[groupId] and self.groupDynamicSignatures[groupId] == signature then
+			self:refreshTankerControlMenuForGroup(groupId, groupObj, false, self.groupDynamicMenus[groupId])
+			return
+		end
+
+		self:_removeDynamicControlMenuForGroup(groupId)
+		local rootMenu = missionCommands.addSubMenuForGroup(groupId, "Dynamic Control")
+		self.groupDynamicMenus[groupId] = rootMenu
+		self.groupDynamicSignatures[groupId] = signature
+		self:refreshTankerControlMenuForGroup(groupId, groupObj, true, rootMenu)
+
+
+		local function orderedCapZonesForGroup()
+			local zones = (self.getZones and self:getZones()) or {}
+			local c = {}
+			for _, v in ipairs(zones) do
+				if v.active
+				and ((v.side == 2) or (v.side == 0 and (not v.NeutralAtStart or v.firstCaptureByRed)))
+				and (not v.isHidden)
+				and (not v.suspended) then
+					local suf = WaypointList and WaypointList[v.zone]
+					local wp = suf and tonumber(tostring(suf):match("%d+"))
+					c[#c+1] = { z = v, wp = wp, disp = (wp and (v.zone .. suf) or v.zone) }
+				end
+			end
+			table.sort(c, function(a, b)
+				if a.wp and b.wp then return a.wp < b.wp end
+				if a.wp then return true end
+				if b.wp then return false end
+				return a.z.zone < b.z.zone
+			end)
+			return c
+		end
+
+		if capActive then
+			local capSubMenu = missionCommands.addSubMenuForGroup(groupId, "CAP Control", rootMenu)
+
+			local zoneMenu = missionCommands.addSubMenuForGroup(groupId, "CAP: Reposition by Zone", capSubMenu)
+			local count = 0
+			local sub1
+			for _, wrap in ipairs(orderedCapZonesForGroup()) do
+				local v = wrap.z
+				local zoneSubMenu
+				count = count + 1
+				if count < 10 then
+					zoneSubMenu = missionCommands.addSubMenuForGroup(groupId, wrap.disp, zoneMenu)
+				elseif count == 10 then
+					sub1 = missionCommands.addSubMenuForGroup(groupId, "More", zoneMenu)
+					zoneSubMenu = missionCommands.addSubMenuForGroup(groupId, wrap.disp, sub1)
+				elseif count % 9 == 1 then
+					sub1 = missionCommands.addSubMenuForGroup(groupId, "More", sub1)
+					zoneSubMenu = missionCommands.addSubMenuForGroup(groupId, wrap.disp, sub1)
+				else
+					zoneSubMenu = missionCommands.addSubMenuForGroup(groupId, wrap.disp, sub1)
+				end
+				for _, headingName in ipairs({"Orbit","Hot 360","Hot 045","Hot 090","Hot 135","Hot 180","Hot 225","Hot 270","Hot 315"}) do
+					if headingName == "Orbit" then
+						missionCommands.addCommandForGroup(groupId, headingName, zoneSubMenu, function()
+							local zone = ZONE:FindByName(v.zone)
+							if not zone then return end
+							local coord = zone:GetCoordinate()
+							setCapRacetrack(coord, 045, 0, v.zone)
+							MESSAGE:New("CAP is en route to " .. v.zone .. ".", 20):ToAll()
+						end)
+					else
+						local headingVal = capHeadings[headingName]
+						local headingMenu = missionCommands.addSubMenuForGroup(groupId, headingName, zoneSubMenu)
+						for _, legName in ipairs({"Orbit","10 NM Leg","20 NM Leg","30 NM Leg","40 NM Leg","50 NM Leg"}) do
+							local legVal = capLegs[legName]
+							missionCommands.addCommandForGroup(groupId, legName, headingMenu, function()
+								local zone = ZONE:FindByName(v.zone)
+								if not zone then return end
+								local coord = zone:GetCoordinate()
+								setCapRacetrack(coord, headingVal, legVal)
+								MESSAGE:New("CAP is repositioning at " .. v.zone .. " with a new racetrack, heading " .. headingVal .. "Â°, " .. tostring(legVal) .. " miles leg.", 20):ToAll()
+							end)
+						end
+					end
+				end
+			end
+
+			local posMenu = missionCommands.addSubMenuForGroup(groupId, "CAP: Reposition by Position", capSubMenu)
+			for _, dirName in ipairs({"Reposition 360", "Reposition 045", "Reposition 090", "Reposition 135", "Reposition 180", "Reposition 225", "Reposition 270", "Reposition 315"}) do
+				local dirVal = capPositionDirections[dirName]
+				local dirMenu = missionCommands.addSubMenuForGroup(groupId, dirName, posMenu)
+				for _, distName in ipairs({"0 NM", "10 NM", "20 NM", "30 NM", "40 NM", "50 NM", "60 NM", "70 NM", "80 NM", "90 NM", "100 NM"}) do
+					local distVal = capPositionDistances[distName]
+					local distMenu = missionCommands.addSubMenuForGroup(groupId, distName, dirMenu)
+					for _, headingName in ipairs({"Orbit","Hot 360","Hot 045","Hot 090","Hot 135","Hot 180","Hot 225","Hot 270","Hot 315"}) do
+						if headingName == "Orbit" then
+							missionCommands.addCommandForGroup(groupId, headingName, distMenu, function()
+								if capGroup then
+									local offsetCoord = capGroup:GetCoordinate():Translate(UTILS.NMToMeters(distVal), dirVal, true)
+									setCapRacetrack(offsetCoord, 045, 0)
+									MESSAGE:New("CAP is about to " .. dirName .. " for " .. distName .. " and orbit.", 20):ToAll()
+								end
+							end)
+						else
+							local headingVal = capHeadings[headingName]
+							local headingMenu = missionCommands.addSubMenuForGroup(groupId, headingName, distMenu)
+							for _, legName in ipairs({"Orbit", "10 NM Leg", "20 NM Leg", "30 NM Leg", "40 NM Leg", "50 NM Leg"}) do
+								local legVal = capLegs[legName]
+								missionCommands.addCommandForGroup(groupId, legName, headingMenu, function()
+									if capGroup then
+										local offsetCoord = capGroup:GetCoordinate():Translate(UTILS.NMToMeters(distVal), dirVal, true)
+										setCapRacetrack(offsetCoord, headingVal, legVal)
+										MESSAGE:New("CAP is about to " .. dirName .. " " .. distName .. " with a new racetrack, heading " .. headingVal .. "Â°, " .. tostring(legVal) .. " miles leg.", 20):ToAll()
+									end
+								end)
+							end
+						end
+					end
+				end
+			end
+			missionCommands.addCommandForGroup(groupId, "CAP: Hold Racetrack", capSubMenu, function()
+				if capGroup then
+					capGroup:SwitchROE(2)
+				end
+				MESSAGE:New("CAP is set to (Engage If Engaged)", 15):ToAll()
+			end)
+			missionCommands.addCommandForGroup(groupId, "CAP: Flightsweep", capSubMenu, function()
+				if capGroup then
+					capGroup:SwitchROE(1)
+				end
+				MESSAGE:New("CAP set to Engage All", 15):ToAll()
+			end)
+			missionCommands.addCommandForGroup(groupId, "CAP: Destroy", capSubMenu, despawnCap)
+		end
+		if casActive then
+			missionCommands.addCommandForGroup(groupId, "CAS: Destroy", rootMenu, despawnCas)
+		end
+		if bomberActive then
+			missionCommands.addCommandForGroup(groupId, "Bomber: Destroy", rootMenu, despawnBomber)
+		end
+		if seadActive then
+			missionCommands.addCommandForGroup(groupId, "SEAD: Destroy", rootMenu, despawnSead)
+		end
+		if decoyActive then
+			missionCommands.addCommandForGroup(groupId, "DECOY: Destroy", rootMenu, despawnDecoy)
+		end
+		if StructureActive then
+			missionCommands.addCommandForGroup(groupId, "Building strike: Destroy", rootMenu, despawnStructure)
+		end
+	end
+
+	function BattleCommander:refreshTankerControlMenusForBlue(force)
+		self.groupTankerMenus = self.groupTankerMenus or {}
+		self.groupTankerSignatures = self.groupTankerSignatures or {}
+		self.groupDynamicMenus = self.groupDynamicMenus or {}
+		local seen = {}
+		local groups = coalition.getGroups(2) or {}
+		for _, g in pairs(groups) do
+			if g and g:isExist() then
+				local gid = g:getID()
+				seen[gid] = true
+				self:refreshTankerControlMenuForGroup(gid, g, force, self.groupDynamicMenus[gid])
 			end
 		end
 		for gid, _ in pairs(self.groupTankerMenus) do
@@ -3837,9 +4060,10 @@ do
 		end
 	end
 
-	function BattleCommander:refreshTankerControlMenuForGroup(groupId, groupObj, force)
+	function BattleCommander:refreshTankerControlMenuForGroup(groupId, groupObj, force, parentMenu)
 		self.groupTankerMenus = self.groupTankerMenus or {}
 		self.groupTankerSignatures = self.groupTankerSignatures or {}
+		self.groupDynamicMenus = self.groupDynamicMenus or {}
 
 		if not groupObj or not groupObj.isExist or not groupObj:isExist() then
 			self:_removeTankerMenuForGroup(groupId)
@@ -3886,11 +4110,12 @@ do
 		end
 
 		self:_removeTankerMenuForGroup(groupId)
-		if not capControlMenu then
+		local rootMenu = parentMenu or self.groupDynamicMenus[groupId]
+		if not rootMenu then
 			return
 		end
 
-		local tankersMenu = missionCommands.addSubMenuForGroup(groupId, "Dynamic Tankers", capControlMenu)
+		local tankersMenu = missionCommands.addSubMenuForGroup(groupId, "Tankers Control", rootMenu)
 		self.groupTankerMenus[groupId] = tankersMenu
 		self.groupTankerSignatures[groupId] = signature
 
@@ -4389,6 +4614,9 @@ function BattleCommander:addShopItem(coalition,id,ammount,prio,reqRank)
 
 		if allZones then
 			allZones[#allZones + 1] = FName
+		end
+		if type(RegisterWelcomeZone) == "function" then
+			RegisterWelcomeZone(FName)
 		end
 
 		  if supplyZones then
@@ -4892,7 +5120,7 @@ function BattleCommander:refreshShopMenuForGroup(groupId, groupObj)
 	local track   = self.groupSupportMenus[groupId].items
 	local shopData = self.shops[coalition]
 	if not shopData then
-		self:refreshTankerControlMenuForGroup(groupId, groupObj)
+		self:refreshDynamicControlMenuForGroup(groupId, groupObj, false)
 		return
 	end
 
@@ -4936,7 +5164,7 @@ function BattleCommander:refreshShopMenuForGroup(groupId, groupObj)
 			track[#track+1] = h
 		end
 	end
-	self:refreshTankerControlMenuForGroup(groupId, groupObj)
+	self:refreshDynamicControlMenuForGroup(groupId, groupObj, false)
 end
 
 	
@@ -9456,6 +9684,7 @@ function BattleCommander:startRewardPlayerContribution(defaultReward, rewards)
 	self.rewards = rewards
 	self.defaultReward = defaultReward
 	self.lossPenaltyArmByPlayer = self.lossPenaltyArmByPlayer or {}
+	self.lossPenaltySkipByPlayer = self.lossPenaltySkipByPlayer or {}
 	local ev = {}
 	ev.context = self
 	ev.rewards = rewards
@@ -9631,6 +9860,10 @@ function BattleCommander:startRewardPlayerContribution(defaultReward, rewards)
 							local tgtName = (event.target.getName and event.target:getName()) or 'Unknown'
 							local tgtPlayer = (event.target.getPlayerName and event.target:getPlayerName()) or nil
 							if not (tgtPlayer and tgtPlayer ~= '' and tgtPlayer == pname) then
+								if tgtPlayer and tgtPlayer ~= '' then
+									self.context.lossPenaltySkipByPlayer = self.context.lossPenaltySkipByPlayer or {}
+									self.context.lossPenaltySkipByPlayer[tgtPlayer] = true
+								end
 								local msg = '!! FRIENDLY FIRE !!\n['..pname..'] killed friendly '..(tgtPlayer and tgtPlayer ~= '' and ('player: '..tgtPlayer) or ('unit: '..tgtName))
 
 								if RankingSystem == true then
@@ -10103,27 +10336,40 @@ function BattleCommander:startRewardPlayerContribution(defaultReward, rewards)
 					local armed = self.context.lossPenaltyArmByPlayer and self.context.lossPenaltyArmByPlayer[pname] == true
 					self.context.lossPenaltyArmByPlayer[pname] = nil
 					if armed then
-						if CreditLosewhenKilled == true then
-							local amount = CreditLosewhenKilledAmount or 100
-							self.context:addFunds(side,-amount)
-							trigger.action.outTextForCoalition(side,'['..pname..'] aircraft lost, -'..amount..' credits',10)
-						end
-						if RankingSystem == true and RankLoseWhenKilled == true then
-							local amount = RankLoseWhenKilledAmount or 100
-							local before = self.context:getPlayerRank(pname)
-							if amount > 0 then
-								self.context:addPlayerRankCredits(pname, -amount)
-								self.context:saveRanksToDisk()
-								trigger.action.outTextForCoalition(side, '['..pname..'] aircraft lost, -'..amount..' rank points', 10)
-								local after = self.context:getPlayerRank(pname)
-								if after < before then
-									local name = self.context:getRankName(after)
-									trigger.action.outTextForCoalition(side, pname..' has been demoted to '..name..'.', 12)
-									local g = un and un.getGroup and un:getGroup()
-									if g and g:isExist() then self.context:refreshShopMenuForGroup(g:getID(), g) end
+						local ctx = self.context
+						local lostPlayer = pname
+						local lostSide = side
+						local lostUnit = unit
+						SCHEDULER:New(nil, function()
+							local skip = ctx.lossPenaltySkipByPlayer and ctx.lossPenaltySkipByPlayer[lostPlayer] == true
+							if ctx.lossPenaltySkipByPlayer then
+								ctx.lossPenaltySkipByPlayer[lostPlayer] = nil
+							end
+							if skip then
+								return
+							end
+							if CreditLosewhenKilled == true then
+								local amount = CreditLosewhenKilledAmount or 100
+								ctx:addFunds(lostSide,-amount)
+								trigger.action.outTextForCoalition(lostSide,'['..lostPlayer..'] aircraft lost, -'..amount..' credits',10)
+							end
+							if RankingSystem == true and RankLoseWhenKilled == true then
+								local amount = RankLoseWhenKilledAmount or 100
+								local before = ctx:getPlayerRank(lostPlayer)
+								if amount > 0 then
+									ctx:addPlayerRankCredits(lostPlayer, -amount)
+									ctx:saveRanksToDisk()
+									trigger.action.outTextForCoalition(lostSide, '['..lostPlayer..'] aircraft lost, -'..amount..' rank points', 10)
+									local after = ctx:getPlayerRank(lostPlayer)
+									if after < before then
+										local name = ctx:getRankName(after)
+										trigger.action.outTextForCoalition(lostSide, lostPlayer..' has been demoted to '..name..'.', 12)
+										local g = lostUnit and lostUnit.getGroup and lostUnit:getGroup()
+										if g and g:isExist() then ctx:refreshShopMenuForGroup(g:getID(), g) end
+									end
 								end
 							end
-						end
+						end, {}, 2, 0)
 					end
 				end
 			end
@@ -15639,7 +15885,7 @@ function GroupCommander:shouldSpawn(ignore)
 		end
 	end
 
-	if self.side == 1 and (self.unitCategory == plane or self.unitCategory == heli) and self.zoneCommander.BlueIsNear and not force then
+	if self.side == 1 and self.zoneCommander.BlueIsNear and not force then
 		self:_enterHangar(false)
 		return false
 	end
@@ -17492,6 +17738,8 @@ LogisticCommander.AllowedFlightTimeReward = AllowedFlightTimeReward or {
 		obj.csarSmokeTick = {}
 		obj.csarNextTick = {}
 		obj.csarLastAutoDrop = {}
+		obj.csarHostileGroupsByPilotObject = {}
+		obj.carriedPilotHostileGroups = {}
 		obj.csarApproachNear = 3000
 		obj.csarExtractDistance = 650
 		obj.csarLoadDistance = 20
@@ -17825,6 +18073,101 @@ end
 		end
 	end
 
+	function LogisticCommander:_appendUniqueCsarHostileGroup(list, groupName)
+		if type(list) ~= 'table' then return end
+		if type(groupName) ~= 'string' or groupName == '' then return end
+		for _, existing in ipairs(list) do
+			if existing == groupName then
+				return
+			end
+		end
+		list[#list + 1] = groupName
+	end
+
+	function LogisticCommander:_bindCsarHostilesToPilot(pid, pilotData, hostileGroupNames)
+		if type(hostileGroupNames) ~= 'table' or #hostileGroupNames == 0 then return end
+		if pilotData then
+			pilotData.csarHostileGroups = pilotData.csarHostileGroups or {}
+			for _, groupName in ipairs(hostileGroupNames) do
+				self:_appendUniqueCsarHostileGroup(pilotData.csarHostileGroups, groupName)
+			end
+		end
+		if pid then
+			self.csarHostileGroupsByPilotObject = self.csarHostileGroupsByPilotObject or {}
+			self.csarHostileGroupsByPilotObject[pid] = self.csarHostileGroupsByPilotObject[pid] or {}
+			for _, groupName in ipairs(hostileGroupNames) do
+				self:_appendUniqueCsarHostileGroup(self.csarHostileGroupsByPilotObject[pid], groupName)
+			end
+		end
+	end
+
+	function LogisticCommander:trackCsarHostilesForRescuedPilot(groupid, pid, pilotData)
+		local toCarry = {}
+		if pilotData and type(pilotData.csarHostileGroups) == 'table' then
+			for _, groupName in ipairs(pilotData.csarHostileGroups) do
+				self:_appendUniqueCsarHostileGroup(toCarry, groupName)
+			end
+		end
+		if pid then
+			self.csarHostileGroupsByPilotObject = self.csarHostileGroupsByPilotObject or {}
+			local byPid = self.csarHostileGroupsByPilotObject[pid]
+			if type(byPid) == 'table' then
+				for _, groupName in ipairs(byPid) do
+					self:_appendUniqueCsarHostileGroup(toCarry, groupName)
+				end
+			end
+			self.csarHostileGroupsByPilotObject[pid] = nil
+		end
+		if #toCarry > 0 then
+			self.carriedPilotHostileGroups = self.carriedPilotHostileGroups or {}
+			self.carriedPilotHostileGroups[groupid] = self.carriedPilotHostileGroups[groupid] or {}
+			for _, groupName in ipairs(toCarry) do
+				self:_appendUniqueCsarHostileGroup(self.carriedPilotHostileGroups[groupid], groupName)
+			end
+			if pilotData then
+				pilotData.csarHostileGroups = toCarry
+			end
+		end
+	end
+
+	function LogisticCommander:destroyCsarHostileGroups(groupNames)
+		if type(groupNames) ~= 'table' then return 0 end
+		local destroyed = 0
+		local seen = {}
+		for _, groupName in ipairs(groupNames) do
+			if type(groupName) == 'string' and groupName ~= '' and not seen[groupName] then
+				seen[groupName] = true
+				local hostileGroup = Group.getByName(groupName)
+				if hostileGroup and hostileGroup:isExist() then
+					local alive = false
+					local units = hostileGroup:getUnits()
+					if units then
+						for _, unit in pairs(units) do
+							if unit and unit:isExist() and (unit:getLife() or 0) > 0 then
+								alive = true
+								break
+							end
+						end
+					end
+					if alive then
+						hostileGroup:destroy()
+						destroyed = destroyed + 1
+					end
+				end
+			end
+		end
+		return destroyed
+	end
+
+	function LogisticCommander:cleanupCarriedCsarHostiles(groupid)
+		local groups = self.carriedPilotHostileGroups and self.carriedPilotHostileGroups[groupid]
+		local destroyed = self:destroyCsarHostileGroups(groups)
+		if self.carriedPilotHostileGroups then
+			self.carriedPilotHostileGroups[groupid] = nil
+		end
+		return destroyed
+	end
+
 	function LogisticCommander:loadPilot(groupname)
 		local gr=Group.getByName(groupname)
 		local groupid=gr:getID()
@@ -17852,6 +18195,7 @@ end
 					self.carriedPilotData[groupid]=self.carriedPilotData[groupid] or {}
 					local pid=v:getObjectID()
 					local pilotData=landedPilotOwners[pid]
+					self:trackCsarHostilesForRescuedPilot(groupid, pid, pilotData)
 					if pilotData then
 						table.insert(self.carriedPilotData[groupid],pilotData)
 						landedPilotOwners[pid]=nil
@@ -17896,6 +18240,7 @@ end
 							trigger.action.outTextForCoalition(un:getCoalition(),"["..playerName.."] dropped off "..table.concat(dropped,", ")..".",5)
 						end
 					end
+					self:cleanupCarriedCsarHostiles(groupid)
 					self.carriedPilotData[groupid]=nil
 					self.carriedPilots[groupid]=0
 					trigger.action.setUnitInternalCargo(un:getName(),0)
@@ -18295,6 +18640,7 @@ end
 				trigger.action.outTextForGroup(groupid, "At max capacity", 8)
 				return false
 			end
+			self:trackCsarHostilesForRescuedPilot(groupid, pid, pilotData)
 			self.carriedPilots[groupid] = current + 1
 			self.carriedPilotData[groupid] = self.carriedPilotData[groupid] or {}
 			if pilotData then table.insert(self.carriedPilotData[groupid], pilotData) end
@@ -18762,6 +19108,9 @@ end
 					landedPilotOwners[pid]=nil
 					self.csarPilotDataByObject[pid]=nil
 					ejectedPilotOwners[pid]=nil
+					if self.csarHostileGroupsByPilotObject then
+						self.csarHostileGroupsByPilotObject[pid]=nil
+					end
 					self.csarAssignedGroup[pid]=nil
 					self.csarRouteIssued[pid]=nil
 					self.csarNextTick[pid]=nil
@@ -18813,6 +19162,24 @@ function LogisticCommander:init()
 								end, v, timer.getTime() + 0.1)
 								break
 							end
+						end
+						if event.initiator and event.initiator:isExist() then
+							event.initiator:destroy()
+						end
+						return
+					end
+					if PVE_Only and un:getCoalition() == 1 then
+						for i, v in pairs(plist) do
+							if net.get_name(v) == player then
+								net.send_chat_to("PVP mode is disabled. Red coalition slots are not available.", v)
+								timer.scheduleFunction(function(param, time)
+									net.force_player_slot(param, 0, '')
+								end, v, timer.getTime() + 0.1)
+								break
+							end
+						end
+						if gr and gr:isExist() then
+							trigger.action.outTextForGroup(gr:getID(), "PVP mode is disabled.", 5)
 						end
 						if event.initiator and event.initiator:isExist() then
 							event.initiator:destroy()
@@ -19285,6 +19652,7 @@ function LogisticCommander:init()
 			local coalitionSide = event.initiator:getCoalition()
 			local pilotObjectID=event.initiator and event.initiator:getObjectID()
 			local hostileEnemyMessageAt = nil
+			local hostileSpawnedGroupNames = {}
 			ejectedPilotOwnersByAircraft = ejectedPilotOwnersByAircraft or {}
 			local list = aircraftID and ejectedPilotOwnersByAircraft[aircraftID]
 			local pilotData = list and table.remove(list,1) or nil
@@ -19442,6 +19810,14 @@ function LogisticCommander:init()
 											local spawned = SPAWN:NewWithAlias(templateName, alias):InitCoalition(coalition.side.RED):InitValidateAndRepositionGroundUnits(true):SpawnFromPointVec3(spawnCoord)
 											if spawned then
 												anySpawned = true
+												local spawnedGroupName = alias
+												if spawned.GetName then
+													local resolvedName = spawned:GetName()
+													if resolvedName and resolvedName ~= '' then
+														spawnedGroupName = resolvedName
+													end
+												end
+												self.context:_appendUniqueCsarHostileGroup(hostileSpawnedGroupNames, spawnedGroupName)
 											end
 										end
 									end
@@ -19491,6 +19867,10 @@ function LogisticCommander:init()
 			local newPilotObj = spawnDownedPilot()
 			local pilotObj = newPilotObj or event.initiator
 			local newObjectID = pilotObj and pilotObj:getObjectID()
+			self.context:_bindCsarHostilesToPilot(pilotObjectID, pilotData, hostileSpawnedGroupNames)
+			if newObjectID and newObjectID ~= pilotObjectID then
+				self.context:_bindCsarHostilesToPilot(newObjectID, pilotData, hostileSpawnedGroupNames)
+			end
 			if pilotData then
 				self.csarPilotDataByObject = self.csarPilotDataByObject or {}
 				if pilotObjectID then
@@ -20818,7 +21198,6 @@ function setCapRacetrack(coord, heading, leg, zone)
 		CapMissionOrbit2:SetROE(2)
 		capGroup:AddMission(CapMissionOrbit2)
 		function CapMissionOrbit2:OnAfterExecuting(From, Event, To)
-			CapMissionOrbit2:SetMissionSpeed(330)
 			if zone then
 				trigger.action.outTextForCoalition(2, "CAP: Orbiting at " .. zone, 10)
 			else
@@ -20833,10 +21212,9 @@ function setCapRacetrack(coord, heading, leg, zone)
 		CapMission2:SetEngageDetected(40, {"Air"})
 		CapMission2:SetROT(2)
 		CapMission2:SetROE(2)
-		CapMission2:SetMissionSpeed(450)
+		CapMission2:SetMissionSpeed(600)
 		capGroup:AddMission(CapMission2)
 		function CapMission2:OnAfterExecuting(From, Event, To)
-		CapMission2:SetMissionSpeed(400)
 			if zone then
 				trigger.action.outTextForCoalition(2, "CAP: Racetrack at " .. zone .. " with heading " .. heading .. "° and leg distance " .. leg .. " NM", 10)
 			else
@@ -21188,395 +21566,8 @@ function findClosestBlueZoneOutside(targetZoneName,minDistNM)
 end
 -- cap
 function buildCapControlMenu()
-    if capControlMenu then
-        missionCommands.removeItemForCoalition(2, capControlMenu)
-        capControlMenu = nil
-    end
-
-	local hasNonTankerDynamic = capActive or casActive or seadActive or decoyActive or bomberActive or StructureActive
-	local hasEligibleTankerController = false
-	if bc and (ArcoActive or TexacoActive) then
-		local reqArco = (bc._getTankerRequiredRank and bc:_getTankerRequiredRank("dynamicarco")) or 0
-		local reqTexaco = (bc._getTankerRequiredRank and bc:_getTankerRequiredRank("dynamictexaco")) or 0
-		local groups = coalition.getGroups(2) or {}
-		for _, g in pairs(groups) do
-			if g and g:isExist() and bc._groupHasHumanPlayer and bc:_groupHasHumanPlayer(g) then
-				local isHeloGroup = (bc._groupIsHelicopter and bc:_groupIsHelicopter(g)) or false
-				if not isHeloGroup then
-					local gid = g:getID()
-					local rank = (bc._getGroupRank and bc:_getGroupRank(gid, g)) or 0
-					if (ArcoActive and rank >= reqArco) or (TexacoActive and rank >= reqTexaco) then
-						hasEligibleTankerController = true
-						break
-					end
-				end
-			end
-		end
-	end
-
-    capControlMenu = missionCommands.addSubMenuForCoalition(2, "Dynamic Control")
-    if not (hasNonTankerDynamic or hasEligibleTankerController) then
-        if capControlMenu then
-            missionCommands.removeItemForCoalition(2, capControlMenu)
-            capControlMenu = nil
-        end
-		if bc and bc.refreshTankerControlMenusForBlue then
-			bc:refreshTankerControlMenusForBlue(true)
-		end
-        return
-    end
-
-    if destroyCasMenuItem then
-        missionCommands.removeItemForCoalition(2, destroyCasMenuItem)
-        destroyCasMenuItem = nil
-    end
-    if casActive then
-        destroyCasMenuItem = missionCommands.addCommandForCoalition(2, "CAS: Destroy", capControlMenu, despawnCas)
-    end
-
-    if destroyBomberMenuItem then
-        missionCommands.removeItemForCoalition(2, destroyBomberMenuItem)
-        destroyBomberMenuItem = nil
-    end
-    if bomberActive then
-        destroyBomberMenuItem = missionCommands.addCommandForCoalition(2, "Bomber: Destroy", capControlMenu, despawnBomber)
-    end
-
-    if destroySeadMenuItem then
-        missionCommands.removeItemForCoalition(2, destroySeadMenuItem)
-        destroySeadMenuItem = nil
-    end
-    if seadActive then
-        destroySeadMenuItem = missionCommands.addCommandForCoalition(2, "SEAD: Destroy", capControlMenu, despawnSead)
-    end
-
-    if destroyDecoyMenuItem then
-        missionCommands.removeItemForCoalition(2, destroyDecoyMenuItem)
-        destroyDecoyMenuItem = nil
-    end
-    if decoyActive then
-        destroyDecoyMenuItem = missionCommands.addCommandForCoalition(2, "DECOY: Destroy", capControlMenu, despawnDecoy)
-    end
-
-    if destroyStructureMenuItem then
-        missionCommands.removeItemForCoalition(2, destroyStructureMenuItem)
-        destroyStructureMenuItem = nil
-    end
-    if StructureActive then
-        destroyStructureMenuItem = missionCommands.addCommandForCoalition(2, "Building strike: Destroy", capControlMenu, despawnStructure)
-    end
-
-    if capActive then
-        local capSubMenu = missionCommands.addSubMenuForCoalition(2, "CAP Control", capControlMenu)
-        missionCommands.addCommandForCoalition(2, "CAP: Destroy", capSubMenu, despawnCap)
-        missionCommands.addCommandForCoalition(2, "CAP: Hold Racetrack", capSubMenu, function()
-            if capGroup then
-                capGroup:SwitchROE(2)
-            end
-            MESSAGE:New("CAP is set to (Engage If Engaged)", 15):ToAll()
-        end)
-        missionCommands.addCommandForCoalition(2, "CAP: Flightsweep", capSubMenu, function()
-            if capGroup then
-                capGroup:SwitchROE(1)
-            end
-            MESSAGE:New("CAP set to Engage All", 15):ToAll()
-        end)
-
-        local zoneMenu = missionCommands.addSubMenuForCoalition(2, "CAP: Reposition by Zone", capSubMenu)
-        local count = 0
-        local sub1
-        for _, wrap in ipairs(orderedZones(2, nil, true)) do
-            local v = wrap.z
-            local zoneSubMenu
-            count = count + 1
-            if count < 10 then
-                zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, zoneMenu)
-            elseif count == 10 then
-                sub1 = missionCommands.addSubMenuForCoalition(2, "More", zoneMenu)
-                zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-            elseif count % 9 == 1 then
-                sub1 = missionCommands.addSubMenuForCoalition(2, "More", sub1)
-                zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-            else
-                zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-            end
-            for _, headingName in ipairs({"Orbit","Hot 360","Hot 045","Hot 090","Hot 135","Hot 180","Hot 225","Hot 270","Hot 315"}) do
-                if headingName == "Orbit" then
-                    missionCommands.addCommandForCoalition(2, headingName, zoneSubMenu, function()
-                        local zone = ZONE:FindByName(v.zone)
-                        if not zone then return end
-                        local coord = zone:GetCoordinate()
-                        setCapRacetrack(coord, 045, 0, v.zone)
-                        MESSAGE:New("CAP is en route to " .. v.zone .. ".", 20):ToAll()
-                    end)
-                else
-                    local headingVal = capHeadings[headingName]
-                    local headingMenu = missionCommands.addSubMenuForCoalition(2, headingName, zoneSubMenu)
-                    for _, legName in ipairs({"Orbit","10 NM Leg","20 NM Leg","30 NM Leg","40 NM Leg","50 NM Leg"}) do
-                        local legVal = capLegs[legName]
-                        missionCommands.addCommandForCoalition(2, legName, headingMenu, function()
-                            local zone = ZONE:FindByName(v.zone)
-                            if not zone then return end
-                            local coord = zone:GetCoordinate()
-                            setCapRacetrack(coord, headingVal, legVal)
-                            MESSAGE:New("CAP is repositioning at " .. v.zone .. " with a new racetrack, heading " .. headingVal .. "°, " .. tostring(legVal) .. " miles leg.", 20):ToAll()
-                        end)
-                    end
-                end
-            end
-        end
-
-        local posMenu = missionCommands.addSubMenuForCoalition(2, "CAP: Reposition by Position", capSubMenu)
-        for _, dirName in ipairs({"Reposition 360", "Reposition 045", "Reposition 090", "Reposition 135", "Reposition 180", "Reposition 225", "Reposition 270", "Reposition 315"}) do
-            local dirVal = capPositionDirections[dirName]
-            local dirMenu = missionCommands.addSubMenuForCoalition(2, dirName, posMenu)
-            for _, distName in ipairs({"0 NM", "10 NM", "20 NM", "30 NM", "40 NM", "50 NM", "60 NM", "70 NM", "80 NM", "90 NM", "100 NM"}) do
-                local distVal = capPositionDistances[distName]
-                local distMenu = missionCommands.addSubMenuForCoalition(2, distName, dirMenu)
-                for _, headingName in ipairs({"Orbit","Hot 360","Hot 045","Hot 090","Hot 135","Hot 180","Hot 225","Hot 270","Hot 315"}) do
-                    if headingName == "Orbit" then
-                        missionCommands.addCommandForCoalition(2, headingName, distMenu, function()
-                            if capGroup then
-                                local offsetCoord = capGroup:GetCoordinate():Translate(UTILS.NMToMeters(distVal), dirVal, true)
-                                setCapRacetrack(offsetCoord, 045, 0)
-                                MESSAGE:New("CAP is about to " .. dirName .. " for " .. distName .. " and orbit.", 20):ToAll()
-                            end
-                        end)
-                    else
-                        local headingVal = capHeadings[headingName]
-                        local headingMenu = missionCommands.addSubMenuForCoalition(2, headingName, distMenu)
-                        for _, legName in ipairs({"Orbit", "10 NM Leg", "20 NM Leg", "30 NM Leg", "40 NM Leg", "50 NM Leg"}) do
-                            local legVal = capLegs[legName]
-                            missionCommands.addCommandForCoalition(2, legName, headingMenu, function()
-                                if capGroup then
-                                    local offsetCoord = capGroup:GetCoordinate():Translate(UTILS.NMToMeters(distVal), dirVal, true)
-                                    setCapRacetrack(offsetCoord, headingVal, legVal)
-                                    MESSAGE:New("CAP is about to " .. dirName .. " " .. distName .. " with a new racetrack, heading " .. headingVal .. "°, " .. tostring(legVal) .. " miles leg.", 20):ToAll()
-                                end
-                            end)
-                        end
-                    end
-                end
-            end
-        end
-    end
-	if false then -- legacy coalition tanker menu; replaced by rank-gated group menus
-	local tankersMenu
-	if ArcoActive or TexacoActive or arcoUnlocked or texacoUnlocked then
-		tankersMenu = missionCommands.addSubMenuForCoalition(2, "Dynamic Tankers", capControlMenu)
-	end
-	if arcoUnlocked and not ArcoActive then
-		missionCommands.addCommandForCoalition(2, "Arco: Spawn at Saved Station", tankersMenu, function()
-			local st = _getTankerState("arco")
-			local heading = tonumber(st.heading) or 45
-			local leg = tonumber(st.leg) or 0
-			local zone = st.zone or "saved position"
-			if st.x and st.z then
-				local coord = COORDINATE:New(st.x, UTILS.FeetToMeters(18000), st.z)
-				spawnArcoAt(coord, heading, leg, zone)
-			elseif zone and ZONE:FindByName(zone) then
-				spawnArcoAt(zone, heading, leg)
-			else
-				buildArcoMenu()
-				MESSAGE:New("Arco has no saved station yet. Select a spawn zone.", 15):ToAll()
-			end
-		end)
-		missionCommands.addCommandForCoalition(2, "Arco: Spawn by Zone", tankersMenu, buildArcoMenu)
-	end
-	if ArcoActive then
-		local zoneMenu = missionCommands.addSubMenuForCoalition(2, "Arco (Drogue): Move to Zone", tankersMenu)
-		local count = 0
-		local sub1
-		for _, wrap in ipairs(orderedZones(2, nil, false)) do
-			local v = wrap.z
-			local zoneSubMenu
-			count = count + 1
-			if count < 10 then
-				zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, zoneMenu)
-			elseif count == 10 then
-				sub1 = missionCommands.addSubMenuForCoalition(2, "More", zoneMenu)
-				zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-			elseif count % 9 == 1 then
-				sub1 = missionCommands.addSubMenuForCoalition(2, "More", sub1)
-				zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-			else
-				zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-			end
-			for _, headingName in ipairs({"Orbit","Hot 360","Hot 045","Hot 090","Hot 135","Hot 180","Hot 225","Hot 270","Hot 315"}) do
-				if headingName == "Orbit" then
-					missionCommands.addCommandForCoalition(2, headingName, zoneSubMenu, function()
-						local zone = ZONE:FindByName(v.zone)
-						if not zone then return end
-						local coord = zone:GetCoordinate()
-						if ArcoRepositionCheckAndSet(coord, 045, 0, v.zone) then
-							MESSAGE:New("Arco is en route to " .. v.zone .. ".", 20):ToAll()
-						end
-					end)
-				else
-					local headingVal = capHeadings[headingName]
-					local headingMenu = missionCommands.addSubMenuForCoalition(2, headingName, zoneSubMenu)
-					for _, legName in ipairs({"Orbit","10 NM Leg","20 NM Leg","30 NM Leg","40 NM Leg","50 NM Leg"}) do
-						local legVal = capLegs[legName]
-						missionCommands.addCommandForCoalition(2, legName, headingMenu, function()
-							local zone = ZONE:FindByName(v.zone)
-							if not zone then return end
-							local coord = zone:GetCoordinate()
-							if ArcoRepositionCheckAndSet(coord, headingVal, legVal) then
-								MESSAGE:New("Arco is repositioning to " .. v.zone .. " with a new racetrack, heading " .. headingVal .. "°, " .. tostring(legVal) .. " miles leg.", 20):ToAll()
-							end
-						end)
-					end
-				end
-			end
-		end
-
-		local posMenu = missionCommands.addSubMenuForCoalition(2, "Arco (Drogue): Move by Position", tankersMenu)
-		for _, dirName in ipairs({"Reposition 360", "Reposition 045", "Reposition 090", "Reposition 135", "Reposition 180", "Reposition 225", "Reposition 270", "Reposition 315"}) do
-			local dirVal = capPositionDirections[dirName]
-			local dirMenu = missionCommands.addSubMenuForCoalition(2, dirName, posMenu)
-			for _, distName in ipairs({"0 NM", "10 NM", "20 NM", "30 NM", "40 NM", "50 NM", "60 NM", "70 NM", "80 NM", "90 NM", "100 NM"}) do
-				local distVal = capPositionDistances[distName]
-				local distMenu = missionCommands.addSubMenuForCoalition(2, distName, dirMenu)
-				for _, headingName in ipairs({"Orbit","Hot 360","Hot 045","Hot 090","Hot 135","Hot 180","Hot 225","Hot 270","Hot 315"}) do
-					if headingName == "Orbit" then
-						missionCommands.addCommandForCoalition(2, headingName, distMenu, function()
-							if ArcoGroup then
-								local offsetCoord = ArcoGroup:GetCoordinate():Translate(UTILS.NMToMeters(distVal), dirVal, true)
-								if ArcoRepositionCheckAndSet(offsetCoord, 045, 0) then
-									MESSAGE:New("Arco is about to " .. dirName .. " for " .. distName .. " and orbit.", 20):ToAll()
-								end
-							end
-						end)
-					else
-						local headingVal = capHeadings[headingName]
-						local headingMenu = missionCommands.addSubMenuForCoalition(2, headingName, distMenu)
-						for _, legName in ipairs({"Orbit","10 NM Leg","20 NM Leg","30 NM Leg","40 NM Leg","50 NM Leg"}) do
-							local legVal = capLegs[legName]
-							missionCommands.addCommandForCoalition(2, legName, headingMenu, function()
-								if ArcoGroup then
-									local offsetCoord = ArcoGroup:GetCoordinate():Translate(UTILS.NMToMeters(distVal), dirVal, true)
-									if ArcoRepositionCheckAndSet(offsetCoord, headingVal, legVal) then
-										MESSAGE:New("Arco is about to " .. dirName .. " " .. distName .. " with a new racetrack, heading " .. headingVal .. "°, " .. tostring(legVal) .. " miles leg.", 20):ToAll()
-									end
-								end
-							end)
-							
-						end
-					end
-				end
-			end
-		end
-		--missionCommands.addCommandForCoalition(2, "Arco: Destroy", tankersMenu, despawnArco)
-	end
-	if texacoUnlocked and not TexacoActive then
-		missionCommands.addCommandForCoalition(2, "Texaco: Spawn at Saved Station", tankersMenu, function()
-			local st = _getTankerState("texaco")
-			local heading = tonumber(st.heading) or 45
-			local leg = tonumber(st.leg) or 0
-			local zone = st.zone or "saved position"
-			if st.x and st.z then
-				local coord = COORDINATE:New(st.x, UTILS.FeetToMeters(16000), st.z)
-				spawnTexacoAt(coord, heading, leg, zone)
-			elseif zone and ZONE:FindByName(zone) then
-				spawnTexacoAt(zone, heading, leg)
-			else
-				buildTexacoMenu()
-				MESSAGE:New("Texaco has no saved station yet. Select a spawn zone.", 15):ToAll()
-			end
-		end)
-		missionCommands.addCommandForCoalition(2, "Texaco: Spawn by Zone", tankersMenu, buildTexacoMenu)
-	end
-	if TexacoActive then
-		local zoneMenu = missionCommands.addSubMenuForCoalition(2, "Texaco (Boom): Move to Zone", tankersMenu)
-		local count = 0
-		local sub1
-		for _, wrap in ipairs(orderedZones(2, nil, false)) do
-			local v = wrap.z
-			local zoneSubMenu
-			count = count + 1
-			if count < 10 then
-				zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, zoneMenu)
-			elseif count == 10 then
-				sub1 = missionCommands.addSubMenuForCoalition(2, "More", zoneMenu)
-				zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-			elseif count % 9 == 1 then
-				sub1 = missionCommands.addSubMenuForCoalition(2, "More", sub1)
-				zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-			else
-				zoneSubMenu = missionCommands.addSubMenuForCoalition(2, wrap.disp, sub1)
-			end
-			for _, headingName in ipairs({"Orbit","Hot 360","Hot 045","Hot 090","Hot 135","Hot 180","Hot 225","Hot 270","Hot 315"}) do
-				if headingName == "Orbit" then
-					missionCommands.addCommandForCoalition(2, headingName, zoneSubMenu, function()
-						local zone = ZONE:FindByName(v.zone)
-						if not zone then return end
-						local coord = zone:GetCoordinate()
-						if TexacoRepositionCheckAndSet(coord, 045, 0, v.zone) then
-							MESSAGE:New("Texaco is en route to " .. v.zone .. ".", 20):ToAll()
-						end
-					end)
-				else
-					local headingVal = capHeadings[headingName]
-					local headingMenu = missionCommands.addSubMenuForCoalition(2, headingName, zoneSubMenu)
-					for _, legName in ipairs({"Orbit","10 NM Leg","20 NM Leg","30 NM Leg","40 NM Leg","50 NM Leg"}) do
-						local legVal = capLegs[legName]
-						missionCommands.addCommandForCoalition(2, legName, headingMenu, function()
-							local zone = ZONE:FindByName(v.zone)
-							if not zone then return end
-							local coord = zone:GetCoordinate()
-							if TexacoRepositionCheckAndSet(coord, headingVal, legVal) then
-								MESSAGE:New("Texaco is repositioning to " .. v.zone .. " with a new racetrack, heading " .. headingVal .. "°, " .. tostring(legVal) .. " miles leg.", 20):ToAll()
-							end
-						end)
-					end
-				end
-			end
-		end
-
-		local posMenu = missionCommands.addSubMenuForCoalition(2, "Texaco (Boom): Move by Position", tankersMenu)
-		for _, dirName in ipairs({"Reposition 360", "Reposition 045", "Reposition 090", "Reposition 135", "Reposition 180", "Reposition 225", "Reposition 270", "Reposition 315"}) do
-			local dirVal = capPositionDirections[dirName]
-			local dirMenu = missionCommands.addSubMenuForCoalition(2, dirName, posMenu)
-			for _, distName in ipairs({"0 NM", "10 NM", "20 NM", "30 NM", "40 NM", "50 NM", "60 NM", "70 NM", "80 NM", "90 NM", "100 NM"}) do
-				local distVal = capPositionDistances[distName]
-				local distMenu = missionCommands.addSubMenuForCoalition(2, distName, dirMenu)
-				for _, headingName in ipairs({"Orbit","Hot 360","Hot 045","Hot 090","Hot 135","Hot 180","Hot 225","Hot 270","Hot 315"}) do
-					if headingName == "Orbit" then
-						missionCommands.addCommandForCoalition(2, headingName, distMenu, function()
-							if TexacoGroup then
-								local offsetCoord = TexacoGroup:GetCoordinate():Translate(UTILS.NMToMeters(distVal), dirVal, true)
-								if TexacoRepositionCheckAndSet(offsetCoord, 045, 0) then
-									MESSAGE:New("Texaco is about to " .. dirName .. " for " .. distName .. " and orbit.", 20):ToAll()
-								end
-							end
-						end)
-					else
-						local headingVal = capHeadings[headingName]
-						local headingMenu = missionCommands.addSubMenuForCoalition(2, headingName, distMenu)
-						for _, legName in ipairs({"Orbit","10 NM Leg","20 NM Leg","30 NM Leg","40 NM Leg","50 NM Leg"}) do
-							local legVal = capLegs[legName]
-							missionCommands.addCommandForCoalition(2, legName, headingMenu, function()
-								if TexacoGroup then
-									local offsetCoord = TexacoGroup:GetCoordinate():Translate(UTILS.NMToMeters(distVal), dirVal, true)
-									if TexacoRepositionCheckAndSet(offsetCoord, headingVal, legVal) then
-										MESSAGE:New("Texaco is about to " .. dirName .. " " .. distName .. " with a new racetrack, heading " .. headingVal .. "°, " .. tostring(legVal) .. " miles leg.", 20):ToAll()
-									end
-								end
-							end)
-						end
-					end
-				end
-			end
-		end
-		--missionCommands.addCommandForCoalition(2, "Texaco: Destroy", tankersMenu, despawnTexaco)
-	end
-	end
-
-	if bc and bc.refreshTankerControlMenusForBlue then
-		bc:refreshTankerControlMenusForBlue(true)
-	end
+    bc:refreshDynamicControlMenusForBlue(true)
 end
-
 
 
 function spawnCapAt(zoneName, heading, leg)
@@ -21662,8 +21653,6 @@ function spawnCapAt(zoneName, heading, leg)
 
 	capSpawnIndex = capSpawnIndex + 1
 end
-
-
 
 	function buildCapMenu()
 		if capParentMenu then
@@ -22581,48 +22570,48 @@ end
 --trigger.action.outTextForCoalition(2,"", 10)
 --trigger.action.outText("", 10)
 
-
-function checkGroupState(groupName)
-    if not groupName or not bc or not bc.zones then return end
-    for _, z in ipairs(bc.zones) do
-        if z.groups then
-            for _, g in ipairs(z.groups) do
-                if g.name == groupName then
-                    env.info("Group ["..groupName.."] state: "..tostring(g.state))
-                    return
-                end
-            end
-        end
+--[[ function ZoneByGroup(name)
+  for _, z in ipairs(bc.zones) do
+    for _, b in pairs(z.built or {}) do
+      if b == name then return z.zone end
     end
-    env.info("GroupCommander not found: "..tostring(groupName))
+    for _, g in ipairs(z.groups or {}) do
+      if g.name == name then return z.zone end
+    end
+  end
+  return nil
 end
 
---checkGroupState("Taftanaz-attack-Duhur-Cas")
+local z = ZoneByGroup("Red SAM SHORAD Pantsir S1 #2")
+env.info("zone=" .. tostring(z)) ]]
 
+function checkGroupState(groupName)
+	local zoneName, _, g = GetGroupCommanderZoneByName(groupName, {verbose=false})
+	if g then
+		env.info("Group ["..tostring(groupName).."] zone: "..tostring(zoneName).." state: "..tostring(g.state))
+		return
+	end
+	if zoneName then
+		env.info("Group ["..tostring(groupName).."] current zone: "..tostring(zoneName))
+		return
+	end
+	env.info("GroupCommander not found: "..tostring(groupName))
+end
 
--- Start Mantis efter 10 Seconds.
 
 SCHEDULER:New(nil, function()
---if IsGroupActive("AWACS_RED") then
-	--FootholdMantis = MANTIS:New("Foothold MANTIS","Red SAM","Red EWR",nil,"red",true,"AWACS_RED")
---else
-	FootholdMantis = MANTIS:New("Foothold MANTIS","Red SAM","Red EWR",nil,"red",true,nil)
---end
+
+FootholdMantis = MANTIS:New("Foothold MANTIS","Red SAM","Red EWR",nil,"red",true,nil)
+
 FootholdMantis:SetSAMRange(110)
 FootholdMantis:SetDetectInterval(10)
 FootholdMantis:SetAccousticDetectionOn(3000)
---FootholdMantis:SetSmokeDecoy(true)
 ZoneTable_Mantis = SET_ZONE:New():FilterPrefixes("Scoot"):FilterStart()
 FootholdMantis:AddScootZones(ZoneTable_Mantis, 3, true, "Cone")
 FootholdMantis.autorelocate = true
 FootholdMantis:Start()
 end, {}, 3)
 
-
---FootholdMantis:Debug(true)
---[[ BASE:TraceOn()
-BASE:TraceClass("AUFTRAG")
-BASE:TraceClass("FLIGHTGROUP") ]]
 
 WarehouseExtraAirbases = WarehouseExtraAirbases or {}
 WarehousePersistence = WarehousePersistence or {}

@@ -138,37 +138,37 @@ Foothold_ctld:AddUnits("FV-101 Scorpion",{"CTLD_CARGO_Scorpion"}, CTLD_CARGO.Enu
 
 local function addStaticFromType(name, typeName, mass, subCategory, unitTypes, displayName) return Foothold_ctld:AddStaticsCargoFromType(name, typeName, mass, nil, subCategory, true, nil, unitTypes, nil, nil, nil, displayName) end
 
-addStaticFromType("Zone supplies C-130J", "iso_container_small", 5000, "Zone supplies", {"C-130J-30"}, "Zone supplies")
-addStaticFromType("Zone supplies CH-47", "cds_crate", 4000, "Zone supplies", {"CH-47Fbl1"}, "Zone supplies")
+addStaticFromType("Zone supplies C-130J", "iso_container_small", 4000, "Zone supplies", {"C-130J-30"}, "Zone supplies")
+addStaticFromType("Zone supplies CH-47", "cds_crate", 3500, "Zone supplies", {"CH-47Fbl1"}, "Zone supplies")
 addStaticFromType("Zone supplies UH-1H", "ammo_cargo", 500, "Zone supplies", {"UH-1H"}, "Zone supplies")
 addStaticFromType("Zone supplies MI-8", "ammo_cargo", 3000, "Zone supplies", {"Mi-8MT"}, "Zone supplies")
 addStaticFromType("Zone supplies Blackhawk", "ammo_cargo", 2000, "Zone supplies", {"UH-60L_DAP","UH-60L"}, "Zone supplies")
 addStaticFromType("Zone supplies Mi-24P", "ammo_cargo", 500, "Zone supplies", {"Mi-24P"}, "Zone supplies")
 
-addStaticFromType("10 of everything CH-47", "cds_crate", 4000, "Warehouse", {"CH-47Fbl1"}, "10 of everything")
-addStaticFromType("10 of everything MI-8", "cds_crate", 4000, "Warehouse", {"Mi-8MT"}, "10 of everything")
+addStaticFromType("10 of everything CH-47", "cds_crate", 3500, "Warehouse", {"CH-47Fbl1"}, "10 of everything")
+addStaticFromType("10 of everything MI-8", "cds_crate", 3500, "Warehouse", {"Mi-8MT"}, "10 of everything")
 addStaticFromType("10 A/A Missiles", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 A/A Missiles")
 addStaticFromType("10 A/G Missiles", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 A/G Missiles")
 addStaticFromType("10 A/G Rockets", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 A/G Rockets")
 addStaticFromType("10 A/G Bombs", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 A/G Bombs")
 addStaticFromType("10 (Plane fuel tanks) and pylons", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 (Plane fuel tanks) and pylons")
 
-addStaticFromType("50 of everything", "iso_container", 10000, "Warehouse", {"C-130J-30"}, "50 of everything")
-addStaticFromType("50 A/A Missiles", "iso_container_small", 3000, "Warehouse", {"C-130J-30"}, "50 A/A Missiles")
+addStaticFromType("50 of everything", "iso_container", 8000, "Warehouse", {"C-130J-30"}, "50 of everything")
+addStaticFromType("50 A/A Missiles", "iso_container_small", 2000, "Warehouse", {"C-130J-30"}, "50 A/A Missiles")
 addStaticFromType("50 A/G Missiles", "iso_container_small", 2000, "Warehouse", {"C-130J-30"}, "50 A/G Missiles")
 addStaticFromType("50 A/G Rockets", "iso_container_small", 2000, "Warehouse", {"C-130J-30"}, "50 A/G Rockets")
-addStaticFromType("50 A/G Bombs", "iso_container_small", 3000, "Warehouse", {"C-130J-30"}, "50 A/G Bombs")
+addStaticFromType("50 A/G Bombs", "iso_container_small", 2000, "Warehouse", {"C-130J-30"}, "50 A/G Bombs")
 addStaticFromType("50 Plane fuel-tanks and pylons", "iso_container_small", 2000, "Warehouse", {"C-130J-30"}, "50 Plane fuel-tanks and pylons")
-addStaticFromType("25 of everything", "iso_container_small", 6000, "Warehouse", {"C-130J-30"}, "25 of everything")
-addStaticFromType("25 A/A Missiles", "cds_crate", 1500, "Warehouse", {"C-130J-30"}, "25 A/A Missiles")
+addStaticFromType("25 of everything", "iso_container_small", 4000, "Warehouse", {"C-130J-30"}, "25 of everything")
+addStaticFromType("25 A/A Missiles", "cds_crate", 1000, "Warehouse", {"C-130J-30"}, "25 A/A Missiles")
 addStaticFromType("25 A/G Missiles", "cds_crate", 1000, "Warehouse", {"C-130J-30"}, "25 A/G Missiles")
 addStaticFromType("25 A/G Rockets", "cds_crate", 1000, "Warehouse", {"C-130J-30"}, "25 A/G Rockets")
-addStaticFromType("25 A/G Bombs", "cds_crate", 1500, "Warehouse", {"C-130J-30"}, "25 A/G Bombs")
+addStaticFromType("25 A/G Bombs", "cds_crate", 1000, "Warehouse", {"C-130J-30"}, "25 A/G Bombs")
 addStaticFromType("25 Plane fuel-tanks and pylons", "cds_crate", 1000, "Warehouse", {"C-130J-30"}, "25 Plane fuel-tanks and pylons")
 
 if AllowMods and not Era=="Coldwar" then
-addStaticFromType("25 Modded weapons", "cds_crate", 1500, "Warehouse", {"C-130J-30"}, "25 Modded weapons")
-addStaticFromType("50 Modded weapons", "iso_container_small", 3000, "Warehouse", {"C-130J-30"}, "50 Modded weapons")
+addStaticFromType("25 Modded weapons", "cds_crate", 1000, "Warehouse", {"C-130J-30"}, "25 Modded weapons")
+addStaticFromType("50 Modded weapons", "iso_container_small", 2000, "Warehouse", {"C-130J-30"}, "50 Modded weapons")
 addStaticFromType("10 Modded weapons", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 Modded weapons")
 end
 ---------------------------------------------------------------------------
@@ -1355,7 +1355,7 @@ end
 
 local function finalizeZoneSupplyDelivery(key, entry, zoneName, verb, statLabel, reward)
   c130SupplyLogOnce(entry, key, "_fhLogDeliver", "DELIVER", string.format("zone=%s verb=%s", tostring(zoneName), tostring(verb)))
-  sendZoneSupplyMessage(entry, string.format("[Zone supplies %s %s.", verb, zoneName))
+  sendZoneSupplyMessage(entry, string.format("Zone supplies %s %s.", verb, zoneName))
   local pname = resolveZoneSupplyPlayer(entry)
   if pname and bc.playerContributions[2][pname] ~= nil then
     bc:addContribution(pname, 2, reward)
@@ -1906,7 +1906,7 @@ zoneSupplyApplyOne = function(key)
       if sObj and sObj.IsAlive and sObj:IsAlive() then
         zoneSupplyEnqueueRemoval(sObj,0)
       end
-      sendZoneSupplyMessage(entry, string.format("[CTLD] %s returned to %s.", meta.label or "Supplies", zoneName))
+      sendZoneSupplyMessage(entry, string.format("%s returned to %s.", meta.label or "Supplies", zoneName))
       zoneSupplyCrates[key] = nil
     end
     return
@@ -2280,7 +2280,7 @@ function BuildAFARP(Coordinate, stamp)
   if Era=="Coldwar" then
       UTILS.SpawnFARPAndFunctionalStatics(FName, coord, ENUMS.FARPType.INVISIBLE, Foothold_ctld.coalition, country.id.USA, FarpNameNumber, FARPFreq, radio.modulation.AM, nil, nil, nil, 10000, 0,0,nil, true, true, 3, 80, 80)
   else
-      UTILS.SpawnFARPAndFunctionalStatics(FName, coord, ENUMS.FARPType.INVISIBLE, Foothold_ctld.coalition, country.id.USA, FarpNameNumber, FARPFreq, radio.modulation.AM, nil, nil, nil, 10000, 0,0,nil, true, true, 3, 80, 80)
+      UTILS.SpawnFARPAndFunctionalStatics(FName, coord, ENUMS.FARPType.INVISIBLE, Foothold_ctld.coalition, country.id.USA, FarpNameNumber, FARPFreq, radio.modulation.AM, nil, nil, nil, 10000, 0,10000,nil, true, true, 3, 80, 80)
   end
   Foothold_ctld:AddCTLDZone(FName, CTLD.CargoZoneType.LOAD, SMOKECOLOR.Blue, true, false)
   MESSAGE:New(string.format("%s in operation!", FName), 15):ToBlue()

@@ -1017,8 +1017,17 @@ zones.hannover:addGroups({
 })
 
 zones.fassberg:addGroups({
-	GroupCommander:new({name='Fassberg-attack-patrol-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Braunschweig', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Fassberg-patrol-Fassberg-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Braunschweig', Altitude = CapAltitude()}),
 	GroupCommander:new({name='Fassberg-patrol-Mahlwinkel-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Mahlwinkel', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Fassberg-attack-Mahlwinkel-Cap', mission='attack', template='CapPlaneTemplate', MissionType='CAP', targetzone='Mahlwinkel', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Fassberg-attack-Mahlwinkel-Cas', mission='attack', template='CasPlaneTemplate', MissionType='CAS', targetzone='Mahlwinkel', Altitude = CasAltitude()}),
+	GroupCommander:new({name='Fassberg-attack-Mahlwinkel-Sead', mission='attack', template='SeadPlaneTemplate', MissionType='SEAD', targetzone='Mahlwinkel', Altitude = SeadAltitude()}),
+
+	GroupCommander:new({name='Fassberg-patrol-Neuruppin-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Neuruppin', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Fassberg-attack-Neuruppin-Cap', mission='attack', template='CapPlaneTemplate', MissionType='CAP', targetzone='Neuruppin', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Fassberg-attack-Neuruppin-Cas', mission='attack', template='CasPlaneTemplate', MissionType='CAS', targetzone='Neuruppin', Altitude = CasAltitude()}),
+	GroupCommander:new({name='Fassberg-attack-Neuruppin-Sead', mission='attack', template='SeadPlaneTemplate', MissionType='SEAD', targetzone='Neuruppin', Altitude = SeadAltitude()}),
+
 	GroupCommander:new({name='Fassberg-supply-Hannover', mission='supply', template='HeloSupplyTemplate', targetzone='Hannover'}),
 	GroupCommander:new({name='Fassberg-supply-Scheessel', mission='supply', template='HeloSupplyTemplate', targetzone='Scheessel'}),
 	GroupCommander:new({name='Fassberg-supply-Bremen', mission='supply', template='PlaneSupplyTemplate', targetzone='Bremen'}),
@@ -1074,6 +1083,8 @@ zones.alteslager:addGroups({
     GroupCommander:new({name='Altes Lager-supply-Briest', mission='supply', template='HeloSupplyTemplate', targetzone='Briest'}),
     GroupCommander:new({name='Altes Lager-supply-Wundsdorf FARP', mission='supply', template='HeloSupplyTemplate', targetzone='Wundsdorf FARP'}),
     GroupCommander:new({name='Altes Lager-patrol-Schkeuditz-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Schkeuditz', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Altes Lager-attack-Schkeuditz-Cap', mission='attack', template='CapPlaneTemplate', MissionType='CAP', targetzone='Schkeuditz', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Altes Lager-attack-Schkeuditz-Cas', mission='attack', template='CasPlaneTemplate', MissionType='CAS', targetzone='Schkeuditz', Altitude = CasAltitude()}),
     GroupCommander:new({name='Altes-Lager-attack-Schkeuditz', mission='attack', template='CasHeloTemplate',MissionType='CAS', targetzone='Schkeuditz'}),
 	GroupCommander:new({name='Altes Lager-attack-Wundsdorf FARP-CasHelo', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Wundsdorf FARP'}),
 })
@@ -1102,6 +1113,11 @@ zones.tegel:addGroups({
 zones.werneuchen:addGroups({
     GroupCommander:new({name='Werneuchen-supply-Tegel', mission='supply', template='HeloSupplyTemplate', targetzone='Tegel'}),
     GroupCommander:new({name='Werneuchen-attack-Tegel', mission='attack', template='AttackConvoy', targetzone='Tegel', type='surface', diceChance = 50}),
+	GroupCommander:new({name='werneuchen-attack-Zerbst-Cas', mission='attack', template='CasPlaneTemplate', MissionType='CAS', targetzone='Zerbst', Altitude = CasAltitude()}),
+	GroupCommander:new({name='werneuchen-attack-Zerbst-Sead', mission='attack', template='SeadPlaneTemplate', MissionType='SEAD', targetzone='Zerbst', Altitude = SeadAltitude()}),
+	GroupCommander:new({name='werneuchen-attack-Zerbst-Cap', mission='attack', template='CapPlaneTemplate', MissionType='CAP', targetzone='Zerbst', Altitude = CapAltitude()}),
+	GroupCommander:new({name='werneuchen-attack-Zerbst-helocas', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Wundsdorf FARP'}),
+
 })
 
 
@@ -1114,28 +1130,53 @@ zones.neuruppin:addGroups({
 	GroupCommander:new({name='Neuruppin-attack-Larz-CasHelo', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Larz'}),
 	GroupCommander:new({name='Neuruppin-attack-Tegel-CasHelo', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Tegel'}),
 	GroupCommander:new({name='Neuruppin-attack-Templin-CasHelo', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Templin'}),
+	GroupCommander:new({name='Neuruppin-attack-Templin-cap', mission='attack', template='CapPlaneTemplate', MissionType='CAP', targetzone='Templin', Altitude = CapAltitude()}), -- new
+	GroupCommander:new({name='Neuruppin-patrol-Templin-cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Templin', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Neuruppin-patrol-Neuruppin-cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Neuruppin', Altitude = CapAltitude()}),
 })
 
 zones.templin:addGroups({
     GroupCommander:new({name='Templin-supply-Neuruppin', mission='supply', template='HeloSupplyTemplate', targetzone='Neuruppin'}),
 	GroupCommander:new({name='Templin-attack-Neuruppin-CasHelo', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Neuruppin'}),
-})
+	GroupCommander:new({name='Templin-attack-Altes-Lager-cas', mission='attack', template='CasPlaneTemplate', MissionType='CAS', targetzone='Altes Lager', Altitude = CasAltitude()}),
+	GroupCommander:new({name='Templin-attack-Tegel-cas', mission='attack', template='CasPlaneTemplate', MissionType='CAS', targetzone='Tegel', Altitude = CasAltitude()}),
+	GroupCommander:new({name='Templin-attack-Altes-Lager-cap', mission='attack', template='CapPlaneTemplate', MissionType='CAP', targetzone='Altes Lager', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Templin-patrol-Altes-Lager-cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Altes Lager', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Templin-patrol-Mahlwinkel-cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Mahlwinkel', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Templin-attack-Mahlwinkel-cap', mission='attack', template='CapPlaneTemplate', MissionType='CAP', targetzone='Mahlwinkel', Altitude = CapAltitude()}),
 
+	GroupCommander:new({name='Templin-patrol-Briest-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Briest', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Templin-attack-Briest-Cap', mission='attack', template='CapPlaneTemplate', MissionType='CAP', targetzone='Briest', Altitude = CapAltitude()}),
+	GroupCommander:new({name='Templin-attack-Briest-Cas', mission='attack', template='CasPlaneTemplate', MissionType='CAS', targetzone='Briest', Altitude = CasAltitude()}),
+	GroupCommander:new({name='Templin-attack-Briest-Sead', mission='attack', template='SeadPlaneTemplate', MissionType='SEAD', targetzone='Briest', Altitude = SeadAltitude()}),
+
+})
 
 zones.larz:addGroups({
     GroupCommander:new({name='Larz-supply-Parchim', mission='supply', template='HeloSupplyTemplate', targetzone='Parchim'}),
     GroupCommander:new({name='Larz-supply-Neuruppin', mission='supply', template='HeloSupplyTemplate', targetzone='Neuruppin'}),
     GroupCommander:new({name='Larz-supply-Neubrandenburg', mission='supply', template='HeloSupplyTemplate', targetzone='Neubrandenburg'}),
     GroupCommander:new({name='Larz-patrol-Mahlwinkel-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Mahlwinkel', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Larz-patrol-Templin-Cap', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Templin', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Larz-attack-Templin-CasHelo', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Templin'}),
 	GroupCommander:new({name='Larz-attack-Neubrandenburg-CasHelo', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Neubrandenburg'}),
 	GroupCommander:new({name='Larz-attack-Neuruppin-CasHelo', mission='attack', template='CasHeloTemplate', MissionType='CAS', targetzone='Neuruppin'}),
+    
+	GroupCommander:new({name='Larz-attack-Mahlwinkel-Sead', mission='attack', template='SeadPlaneTemplate', MissionType='SEAD', targetzone='Mahlwinkel', Altitude = SeadAltitude()}),
+	GroupCommander:new({name='Larz-attack-Werneuchen-Sead', mission='attack', template='SeadPlaneTemplate', MissionType='SEAD', targetzone='Werneuchen', Altitude = SeadAltitude()}),
+	GroupCommander:new({name='Larz-attack-Zerbst-Sead', mission='attack', template='SeadPlaneTemplate', MissionType='SEAD', targetzone='Zerbst', Altitude = SeadAltitude()}),
+
 })
 
 zones.parchim:addGroups({
     GroupCommander:new({name='Parchim-supply-Larz', mission='supply', template='HeloSupplyTemplate', targetzone='Larz'}),
     GroupCommander:new({name='Parchim-patrol-Parchim', mission='patrol', template='CapPlaneTemplate', MissionType='CAP', targetzone='Parchim', Altitude = CapAltitude()}),
     GroupCommander:new({name='Parchim-attack-Larz-Cas', mission='attack', template='CasPlaneTemplate',MissionType='CAS', targetzone='Larz', diceChance = 50, Altitude = CasAltitude()}),
-    GroupCommander:new({name='Parchim-supply-SAM-Kilo', mission='supply', template='SupplyConvoy', targetzone='SAM-Kilo',type='surface', spawnDelayFactor = 2})
+    GroupCommander:new({name='Parchim-supply-SAM-Kilo', mission='supply', template='SupplyConvoy', targetzone='SAM-Kilo',type='surface', spawnDelayFactor = 2}),
+    GroupCommander:new({name='Parchim-attack-Mahlwinkel', mission='attack', template='CasPlaneTemplate', targetzone='Mahlwinkel', Altitude = CasAltitude()}),
+    GroupCommander:new({name='Parchim-patrol-Mahlwinkel', mission='patrol', template='CapPlaneTemplate', targetzone='Mahlwinkel', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Parchim-patrol-Briest', mission='patrol', template='CapPlaneTemplate', targetzone='Briest', Altitude = CapAltitude()}),
+    GroupCommander:new({name='Parchim-attack-Briest', mission='attack', template='CapPlaneTemplate', targetzone='Briest', Altitude = CapAltitude()}),
 })
 
 zones.neubrandenburg:addGroups({
