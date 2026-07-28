@@ -1,0 +1,4 @@
+# Foothold's Lua and the unpacked DCS mission are third-party / generated content:
+# keep them byte-for-byte so a checkout does not rewrite line endings, and so diffs
+# between Lekaa's releases show real changes only.
+* -text

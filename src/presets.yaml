@@ -1,242 +1,212 @@
-radios_collection: # Lists all the radios definitions
-  blue_radios:
-    radio_uhf_30: # defines a specific radio configuration
-      title: UHF # name of the radio; used in the exported kneeboard PNG
-      type: uhf # will condition the frequency picked up in the channels directory
-      channels: # the list of channels defined on this radio
-        01: 
-          title: Guard/UHF
-          channel: Guard
-        02: 
-          title: Home
-          freq: 255.00
-        03: 
-          title: Tactical
-          freq: 265
-        04: 
-          title: Alternate
-          freq: 255.00
-        05: 
-        06: 
-        07: 
-        08: 
-        09: 
-          title: Tanker MAIN-Airforce
-          freq: 266
-        10: 
-          title: Tanker SEC-Airforce
-          freq: 259
-        11: 
-          title: Tanker MAIN-Navy
-          freq: 260
-        12: 
-          title: Tanker SEC-Navy
-          freq: 268
-        13: 
-          title: Tanker OVERHEAD-Navy
-          freq: 253
-        14: 
-          title: AWACS
-          freq: 255
-        15: 
-        16: 
-        17: 
-        18: 
-        19: 
-        20: 
-        21: 
-        22: 
-        23: 
-        24: 
-        25: 
-        26: 
-        27: 
-        28: 
-        29: 
-        30: 
+# presets.yaml — shared radio presets for the VEAF Foothold missions.
+#
+# Copy this file to <mission-folder>/src/presets.yaml. It is deliberately
+# map-agnostic (channel lists reference callsigns and literal frequencies, never
+# airfields), so the same file serves all ten Foothold maps.
+#
+# Written as a PRESET PLAN (ADR 0010): declare each Radio role's channel list once
+# and the build projects it onto every aircraft's physical radios, honouring each
+# type's quirks (channel-0 rotation, reserved slots, radio fusion, per-channel
+# modulation). This replaces the previous hand-written radios_collection /
+# presets_collection layers, which needed one collection per airframe quirk and
+# handed ten types channels outside their radios' bands.
+#
+# Radio roles and their band:
+#   primary_1      uhf   first V/UHF radio
+#   primary_2      vhf   second V/UHF radio; also the warbirds' single radio
+#   fm_supplement  fm    FM on top of two V/UHF radios (attack aircraft)
+#   fm_substitute  fm    FM as the second radio (helicopters)
+#   fm_secondary   fm    a further supplemental FM (e.g. OH-58D); defaults to a copy
+#                        of fm_supplement, so it is not restated here
+#
+# A channel whose alias has no frequency in the role's band is dropped from that
+# list — reported by `validate`, silent under `build`.
 
-    radio_vhf_30:
-      title: VHF 
-      type: vhf
-      channels:
-        01: Guard
-        02: Archer
-        03: Arctic
-        04: Astro
-        05: Nickel
-        06: Nitro
-        07: Ninja
-        08: Pinder
-        09: Bengal
-        10: Blade
-        11: Gordon
-        12: Gypsy
-        13: Gunstar
-        14: Leica
-        15: Lucid
-        16: Lusty
-        17: Lion
-
-    radio_fm_30:
-      title: FM 
-      type: fm
-      channels:
-        01: 30.000
-        02: 31.000
-        03: 32.000
-        04: 33.000
-        05: Archer
-        06: Arctic
-        07: Astro
-        08: Nickel
-        09: Nitro
-        10: Ninja
-        11: Pinder
-        12: Bengal
-        13: Blade
-        14: Gordon
-        15: Gypsy
-        16: Gunstar
-        17: Leica
-        18: Lucid
-        19: Lusty
-        20: Lion
-        21: 50.000
-        22: 51.000
-        23: 52.000
-        24: 53.000
-        25: 54.000
-        26: 55.000
-        27: 56.000
-        28: 57.000
-        29: 58.000
-        30: 59.000
-
-    radio_uhf_10:
-      title: UHF 10 channels # name of the radio; used in the exported kneeboard PNG
-      type: uhf # will condition the frequency picked up in the channels directory
-      channels: # the list of channels defined on this radio
-        01:
-          title: Home
-          freq: 255.00
-        02:
-          title: Alternate
-          freq: 255.00
-        03: 
-          title: Tactical
-          freq: 265
-        04: 
-        05: 
-        06: 
-        07: 
-        08: 
-        09: 
-        10: 
-
-    radio_fm_01_10:
-      title: FM1 channels 01-10
-      type: fm
-      channels:
-        01: 30.000
-        02: 31.000
-        03: 32.000
-        04: 33.000
-        05: Archer
-        06: Arctic
-        07: Astro
-        08: Nickel
-        09: Nitro
-        10: Ninja
-
-    radio_fm_11_20:
-      title: FM1 channels 11-20 
-      type: fm
-      channels:
-        01: Pinder
-        02: Bengal
-        03: Blade
-        04: Gordon
-        05: Gypsy
-        06: Gunstar
-        07: Leica
-        08: Lucid
-        09: Lusty
-        10: Lion
-
-presets_collection: # Lists all the presets collections
-  blue_presets: # one of the presets collections
-    modern_blue_uhf_vhf_fm: 
-      title: Blue coalition - classic UHF/VHF/FM # name of the presets collection; used in the exported kneeboard PNG
-      radios:
-        radio_1: radio_uhf_30
-
-        radio_2: radio_vhf_30
-
-        radio_3: radio_fm_30
-
-    modern_blue_vhf_uhf_fm:
-      title: Blue coalition - A-10 # inverted VHF/UHF/FM
-      radios:
-        radio_1: radio_vhf_30
-
-        radio_2: radio_uhf_30
-
-        radio_3: radio_fm_30
-
-    modern_blue_fm_uhf:
-      title: Blue coalition - CH-47 # FM/UHF
-      radios:
-        radio_1: radio_fm_30
-
-        radio_2: radio_uhf_30
-
-    modern_blue_uhf_vhf_fm1_fm2: 
-      title: Blue coalition - classic UHF/VHF with two FM radios # name of the presets collection; used in the exported kneeboard PNG
-      radios:
-        radio_1: radio_uhf_30
-
-        radio_2: radio_vhf_30
-
-        radio_3: radio_fm_30
-        
-        radio_4: radio_fm_30
-
-    modern_blue_apache:
-      title: Blue coalition - AH-64D # special radio on this special bird
-      radios:
-        radio_1: radio_vhf_30
-
-        radio_2: radio_uhf_10
-
-        radio_3: radio_fm_01_10
-
-        radio_4: radio_fm_11_20
-       
-    modern_blue_gazelle:
-      title: Blue coalition - SA-342s # special radio for Gazelles
-      radios:
-        radio_1: radio_fm_01_10
-
-presets_assignments: # defines which presets collection to use for each coalition
+channel_lists:
   blue:
-    plane: 
-      all: modern_blue_uhf_vhf_fm
-      A-10C_2: modern_blue_vhf_uhf_fm
-      MiG-15bis: empty
-    helicopter:
-      all: modern_blue_uhf_vhf_fm
-      CH-47Fbl1: modern_blue_fm_uhf
-      AH-64D_BLK_II: modern_blue_apache
-      OH58D: modern_blue_uhf_vhf_fm1_fm2
-      Mi-8MT: empty
-      Mi-24P: empty
-      SA342L: modern_blue_gazelle
-      SA342Mistral: modern_blue_gazelle
-      SA342M: modern_blue_gazelle
-      SA342Minigun: modern_blue_gazelle
 
+    # ── First V/UHF radio ──────────────────────────────────────────────────────
+    # Foothold's own UHF plan: literal frequencies, not the airfield aliases.
+    # The gaps (05-08, 15-30) are intentional — they keep Guard on 01 and the
+    # tanker block on 09-14 whatever the airframe.
+    primary_1: &uhf_channels
+      01:
+        title: Guard/UHF
+        channel: Guard
+      02:
+        title: Home
+        freq: 255.00
+      03:
+        title: Tactical
+        freq: 265
+      04:
+        title: Alternate
+        freq: 255.00
+      05:
+      06:
+      07:
+      08:
+      09:
+        title: Tanker MAIN-Airforce
+        freq: 266
+      10:
+        title: Tanker SEC-Airforce
+        freq: 259
+      11:
+        title: Tanker MAIN-Navy
+        freq: 260
+      12:
+        title: Tanker SEC-Navy
+        freq: 268
+      13:
+        title: Tanker OVERHEAD-Navy
+        freq: 253
+      14:
+        title: AWACS
+        freq: 255
+      15:
+      16:
+      17:
+      18:
+      19:
+      20:
+      21:
+      22:
+      23:
+      24:
+      25:
+      26:
+      27:
+      28:
+      29:
+      30:
+
+    # ── Second V/UHF radio (and the warbirds' single radio) ────────────────────
+    # Guard plus the flight callsigns, on their VHF frequencies.
+    primary_2: &vhf_channels
+      01: Guard
+      02: Archer
+      03: Arctic
+      04: Astro
+      05: Nickel
+      06: Nitro
+      07: Ninja
+      08: Pinder
+      09: Bengal
+      10: Blade
+      11: Gordon
+      12: Gypsy
+      13: Gunstar
+      14: Leica
+      15: Lucid
+      16: Lusty
+      17: Lion
+
+    # ── FM on top of two V/UHF radios (attack aircraft) ────────────────────────
+    # Literal 30-33, the flight callsigns on their FM frequencies, then 50-59.
+    fm_supplement: &fm_channels
+      01: 30.000
+      02: 31.000
+      03: 32.000
+      04: 33.000
+      05: Archer
+      06: Arctic
+      07: Astro
+      08: Nickel
+      09: Nitro
+      10: Ninja
+      11: Pinder
+      12: Bengal
+      13: Blade
+      14: Gordon
+      15: Gypsy
+      16: Gunstar
+      17: Leica
+      18: Lucid
+      19: Lusty
+      20: Lion
+      21: 50.000
+      22: 51.000
+      23: 52.000
+      24: 53.000
+      25: 54.000
+      26: 55.000
+      27: 56.000
+      28: 57.000
+      29: 58.000
+      30: 59.000
+
+    # ── FM as the second radio (helicopters) ───────────────────────────────────
+    # Same channels as fm_supplement (YAML anchor above): a helicopter crew and an
+    # A-10 crew must be able to talk to each other on the same numbered channel.
+    fm_substitute: *fm_channels
+
+  # Foothold's red side is AI-only: no presets to inject.
+  red: {}
+
+# ── Legacy override layer — Flaming Cliffs and other types the packer cannot reach ──
+#
+# The preset plan above projects onto each aircraft's PHYSICAL radios, which the build
+# reads from `dcs-radio-specs.yaml`. That file (auto-generated from the DCS datamine)
+# covers 87 types but **no Flaming Cliffs aircraft** — Su-27, Su-25T, Su-25, MiG-29A/S/G,
+# J-11A, A-10A, F-15C, Su-33 are all absent — so the packer produces nothing for them and
+# they would ship with no radio presets at all.
+#
+# ADR 0010 keeps the old layers as the manual-override path for exactly this case: an
+# explicit assignment for a type always wins over the projection. The channel lists are
+# reused verbatim through YAML anchors, so there is ONE place to edit a frequency.
+#
+# Remove a type from `presets_assignments` below as soon as it appears in
+# dcs-radio-specs.yaml — the projection then handles it properly, ADF radios included.
+
+radios_collection:
+  blue_radios:
+    radio_uhf:
+      title: UHF
+      type: uhf
+      channels: *uhf_channels
+    radio_vhf:
+      title: VHF
+      type: vhf
+      channels: *vhf_channels
+    radio_fm:
+      title: FM
+      type: fm
+      channels: *fm_channels
+
+presets_collection:
+  blue_presets:
+    legacy_uhf_vhf_fm:
+      title: Blue coalition - UHF/VHF/FM
+      radios:
+        radio_1: radio_uhf
+        radio_2: radio_vhf
+        radio_3: radio_fm
+
+# Manual overrides. An explicit assignment for a type always wins over the
+# channel_lists projection above (ADR 0010) — this block is where an airframe the
+# packer gets wrong would be pinned down. Empty of aircraft entries on purpose:
+# the projection handles the A-10's inverted radios, the Apache, the Gazelles, the
+# CH-47, the OH-58D's second FM and the Mi-24P's channel-0 rotation, all of which
+# previously needed a hand-written collection here.
+presets_assignments:
+  blue:
+    plane:
+      # Flaming Cliffs (absent from dcs-radio-specs.yaml — see above).
+      Su-27: legacy_uhf_vhf_fm
+      Su-25T: legacy_uhf_vhf_fm
+      Su-25: legacy_uhf_vhf_fm
+      Su-33: legacy_uhf_vhf_fm
+      MiG-29A: legacy_uhf_vhf_fm
+      MiG-29S: legacy_uhf_vhf_fm
+      MiG-29G: legacy_uhf_vhf_fm
+      J-11A: legacy_uhf_vhf_fm
+      A-10A: legacy_uhf_vhf_fm
+      F-15C: legacy_uhf_vhf_fm
+      # Also absent from the specs.
+      F-14BU: legacy_uhf_vhf_fm
   red:
-    all: 
+    all:
       all: none
 
 channels_collection: # Lists all the radio channels available on the map
