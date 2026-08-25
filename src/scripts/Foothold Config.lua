@@ -74,9 +74,12 @@ FootholdConfigTrackedTableNames = {
 }
 -- Add new top-level scalar settings here so an omitted external setting triggers the warning.
 FootholdConfigTrackedScalarNames = {
-    "ZoneSelfRepairAndUpgradeTime",
     "PlayerZoneSuppliesConsumeStock",
     "RadioMenuStopSupplies",
+    "ZoneCaptureBuildSeconds",
+    "NormalSupplyCapacity",
+    "WarehouseSupplyCapacity",
+    "CTLDSupplyCapacity",
 }
 
 local function applyExternalConfigWithFallbackWarning()
@@ -396,6 +399,17 @@ end
 -- ONLY VALID ON CAUCASUS, PERSIAN GULF, SYRIA AND AFGHANISTAN.
 -- if false, the mission will start from the other end. Carrier zone will be disabled.
 StartNormal = true
+
+-- SYRIA ONLY.
+-- If true while StartNormal is true, the campaign starts from Incirlik instead of Akrotiri.
+-- @gui label="Start From Incirlik" disabledWhen="StartNormal:false"
+StartFromIncirlik = false
+
+-- SYRIA ONLY.
+-- If true, removes the southern Syria zones from the campaign.
+-- Current campaign progress is kept. If later set to false, the southern zones return using their default setup state.
+-- @gui label="Remove Southern Syria"
+RemoveSouthSyria = false
  
 -- When the mission is completed, if you want the server to restart automatically and reset everything, then set this to true.
 -- If false, you will have a menu where you can choose to restart the mission. 
@@ -417,7 +431,7 @@ PVE_Only = false -- If true, players can not spawn in red coalition zones.
 -- (not compatible with Coldwar/Gulfwar).
 -- Keep in mind, adding mods midsession, while there is a save file, those weapons will not be added to current saved airbases.
 -- this will be filled through time, from the AutoFillResources.
-AllowMods = false -- Should NOT be used with coldwar era.
+AllowMods = false -- Should NOT be used with the Coldwar or Gulfwar era.
 
 -- If true, when players die their coalition loses 100 credits per death.
 CreditLosewhenKilled = false
@@ -881,9 +895,9 @@ CallsignOverrides = {
 
 -- Choose to have the option to get escorted by 2 jets. Recommended to A10 / C-130J, Harrier.
 -- set to true for escort option available once spawned, false for no escort option.
--- escortType: 1 = Hornet (F-18C in Coldwar with AIM-7),
---             2 = Viper (F-15C in Coldwar with AIM-7)
---             3 = MIG29S with R-77 (MiG-29A in Coldwar with R-27ET)
+-- escortType: 1 = Hornet (F-18C in Coldwar or Gulfwar with AIM-7),
+--             2 = Viper (F-15C in Coldwar or Gulfwar with AIM-7)
+--             3 = MIG29S with R-77 (MiG-29A in Coldwar or Gulfwar with R-27ET)
 -- The third value is how many feet above the player the escort follows.
 -- Use 0 for the same altitude, or 1000 through 10000 in 1000-foot steps.
 -- @gui installPolicy="mergeRows"
@@ -918,6 +932,26 @@ EscortTakeoffFromGround = true -- If true, the escort will takeoff from the grou
 -- Neutral zones start without weapons; you must bring them or wait for AI delivery.
 WarehouseLogistics = true
 
+-- How many seconds a neutral-zone capture takes after a valid delivery arrives.
+-- Set to 0 to capture immediately.
+-- @gui label="Neutral Zone Capture Time" editor="seconds"
+ZoneCaptureBuildSeconds = 120
+
+-- How many ready supplies a normal zone produces before automatic production pauses.
+-- Player-delivered supplies can still be stored above this amount.
+-- @gui label="Normal Zone Supply Capacity" validValues="1=1 | 2=2 | 3=3"
+NormalSupplyCapacity = 1
+
+-- How many ready supplies a [WH] zone produces before automatic production pauses.
+-- Player-delivered supplies can still be stored above this amount.
+-- @gui label="Warehouse Supply Capacity" validValues="3=3 | 4=4 | 5=5 | 6=6"
+WarehouseSupplyCapacity = 6
+
+-- How many supplies a newly created CTLD FARP starts with.
+-- Player-delivered supplies can still be stored above this amount.
+-- @gui label="CTLD FARP Starting Supplies" validValues="1=1 | 2=2 | 3=3"
+CTLDSupplyCapacity = 1
+
 -- Supply mission and ready-supply production speed scaling.
 -- This multiplier affects AI supply mission timers and ready-supply production times.
 -- 1.0 = normal speed
@@ -929,8 +963,19 @@ WarehouseLogistics = true
 -- @gui label="Supply Speed Scaling" editor="sideMultiplier" min="0.10" max="5.00" step="0.05" timePreviewRed="Normal zone:1200" timePreviewBlue="Normal zone:1200 | [WH]:600"
 GlobalSettings.supplyDifficultyScaling = { [1]=1.0, [2]=1.0 }
 
--- Time in seconds for zones to repair or upgrade its own zone using one ready supply.
-ZoneSelfRepairAndUpgradeTime = 300
+-- Scales repair, rebuild, and installation time after supplies are available.
+-- 0.5 = twice as fast
+-- 1.0 = normal speed
+-- 1.5 = 50% slower
+--
+-- Red normal speed: 1 minute per unit, 3 minutes per SR/TR/STR, maximum 20 minutes.
+-- Blue normal speed: 15 minute normal-zone base or 5 minute [WH] base + 2 minutes per unit or 3 minutes per SR/TR/STR, maximum 20 minutes.
+-- Blue has a base time because Blue zones consume supplies directly from their own storage.
+-- Red has no base time here because Red must first wait for supplies delivered from another zone.
+-- Player, CTLD, airdropped, zsup3, and supplies2 supplies skip the Blue base time.
+-- Supply production, dispatch, and travel times are not changed by this setting.
+-- @gui label="Repair Time Scaling" editor="sideMultiplier" min="0.10" max="5.00" step="0.05" timePreviewRed="Unit:60 | SR/TR/STR:180 | Maximum:1200" timePreviewBlue="Normal base:900 | [WH] base:300 | Expedited base:0 | Unit:120 | SR/TR/STR:180 | Maximum:1200"
+GlobalSettings.repairDifficultyScaling = { [1]=1, [2]=1 }
 
 -- If true, player-picked Zone supplies consume one ready supply package from the campaign zone.
 -- Returned or removed cargo restores that package; destroyed or delivered cargo does not.
@@ -1064,7 +1109,7 @@ ShopPrices = {
 	intel         = 150,  -- Satellite Intel (60 min)
 	zinf          = 500,  -- Add infantry squad to zone
 	zsam          = 2000, -- Add Hawk/Nasams system to a zone
-	zlogc         = 2000, -- Make a zone logistic center
+	zlogc         = 5000, -- Make a zone logistic center
 	zsup3         = 750,  -- Add 3 supplies to a zone
 	zwh50         = 500,  -- Resupply warehouse with 50
 	zarm          = 1000, -- Add armor group to a zone
@@ -1170,6 +1215,8 @@ CTLDPrices = {
   ["Platoon 32"]             = { price = 200, reqRank = 1 },
   ["Anti-Air Soldiers"]      = { price = 100, reqRank = 1 },
   ["Mortar Squad"]           = { price = 100, reqRank = 1 },
+  ["Zone Spy"]               = { price = 100, reqRank = 2 },
+  ["Demolition Team"]        = { price = 100, reqRank = 2 },
   ["Mephisto"]               = { price = 250, reqRank = 2 },
   ["Humvee"]                 = { price = 250, reqRank = 1 },
   ["Bradly"]                 = { price = 250, reqRank = 1 },
@@ -1214,6 +1261,8 @@ MAX_AT_SPAWN = {
     ["Platoon 32"]              = 0,
     ["Anti-Air Soldiers"]       = 2,
     ["Mortar Squad"]            = 2,
+    ["Zone Spy"]                = 0,
+    ["Demolition Team"]         = 0,
     ["Linebacker"]              = 2,
     ["Vulcan"]                  = 2,
     ["HAWK System"]             = 3,
@@ -1473,8 +1522,8 @@ phaseCycleTimerIdle = 0.5      -- Relaxed cadence when idle. Raise to 0.8-1.0 if
 -- Aircraft / Weapons
 -- ============================================================================
 
--- In this list, you can either remove or add what is allowed in the coldwar era.
--- @gui label="Allowed Aircraft" installPolicy="mergeRows" editor="bucket" visibleWhen="Era:Coldwar"
+-- In this list, you can either remove or add what is allowed in the Coldwar or Gulfwar era.
+-- @gui label="Allowed Aircraft" installPolicy="mergeRows" newItemPolicy="commentWhenVisible" editor="bucket" visibleWhen="Era:Coldwar|Gulfwar"
 allowedPlanes = {
     "A-10A",
     "A-10C",
@@ -1568,8 +1617,8 @@ allowedPlanes = {
     "UH-60L_DAP",
 }
 
--- In this list, you can either remove or add what is allowed for the (RED SIDE) in the coldwar era.
--- @gui label="Allowed RED Aircraft" installPolicy="mergeRows" editor="bucket" visibleWhen="Era:Coldwar"
+-- In this list, you can either remove or add what is allowed for the (RED SIDE) in the Coldwar or Gulfwar era.
+-- @gui label="Allowed RED Aircraft" installPolicy="mergeRows" newItemPolicy="commentWhenVisible" editor="bucket" visibleWhen="Era:Coldwar|Gulfwar"
 allowedPlanesRed = {
     "A-10A",
     "A-10C",
@@ -1663,7 +1712,7 @@ allowedPlanesRed = {
 }
 
 -- In this list, you can either remove or add what is allowed for BLUE warehouses in the Vietnam era.
--- @gui label="Vietnam Allowed Aircraft" installPolicy="mergeRows" editor="bucket" visibleWhen="Era:Vietnam"
+-- @gui label="Vietnam Allowed Aircraft" installPolicy="mergeRows" newItemPolicy="commentWhenVisible" editor="bucket" visibleWhen="Era:Vietnam"
 allowedPlanesVietnam = {
     "A-4E-C",
     "Bronco-OV-10A",
@@ -1693,7 +1742,7 @@ allowedPlanesVietnam = {
 }
 
 -- In this list, you can either remove or add what is allowed for RED warehouses in the Vietnam era.
--- @gui label="Vietnam Allowed RED Aircraft" installPolicy="mergeRows" editor="bucket" visibleWhen="Era:Vietnam"
+-- @gui label="Vietnam Allowed RED Aircraft" installPolicy="mergeRows" newItemPolicy="commentWhenVisible" editor="bucket" visibleWhen="Era:Vietnam"
 allowedPlanesRedVietnam = {
     "Mi-8MT",
     "MiG-15bis",
@@ -1758,9 +1807,9 @@ restockAircraft = {
     "T-45",
 }
 
--- In the coldwar era, you can add or remove what to restrict
+-- In the Coldwar or Gulfwar era, you can add or remove what to restrict
 -- Add "--" if you want to ALLOW a weapon, otherwise the weapon in the list below are removed from the warehouse.
--- @gui label="Cold War Restricted Weapons" installPolicy="mergeRows" editor="bucket" visibleWhen="Era:Coldwar"
+-- @gui label="Cold War / Gulf War Restricted Weapons" installPolicy="mergeRows" newItemPolicy="commentWhenVisible" editor="bucket" visibleWhen="Era:Coldwar|Gulfwar"
 restrictedWeapons = {
     -- Apache Radar
     "weapons.containers.ah-64d_radar",
@@ -1854,7 +1903,7 @@ restrictedWeapons = {
 
 -- In the Vietnam era, you can add or remove what to restrict.
 -- Add "--" if you want to ALLOW a weapon, otherwise weapons in the list below are removed from the warehouse.
--- @gui label="Vietnam Restricted Weapons" installPolicy="mergeRows" editor="bucket" visibleWhen="Era:Vietnam"
+-- @gui label="Vietnam Restricted Weapons" installPolicy="mergeRows" newItemPolicy="commentWhenVisible" editor="bucket" visibleWhen="Era:Vietnam"
 restrictedWeaponsVietnam = {
     -- Guided weapon pods
     --"weapons.containers.HB_ORD_Pave_Spike",
@@ -1934,7 +1983,7 @@ restrictedWeaponsVietnam = {
 }
 
 -- This list can be used to add weapons you want to forbidd, This will forbidd all in the table in Modern era as well.
--- For coldwar, you can still rely on restrictedWeapons.
+-- For Coldwar or Gulfwar, you can still rely on restrictedWeapons.
 -- @gui label="Forbidden Weapons All Eras" editor="bucket"
 ForbiddWeaponsInAllEra = {
     "weapons.bombs.RN-24", -- Nukes for the Mig-21

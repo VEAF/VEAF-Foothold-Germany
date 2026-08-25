@@ -64,28 +64,28 @@ local CTLD_MENU_LABEL_KEYS = {
     ["SAM Addon"] = "CTLD_MENU_SAM_ADDON",
     ["FARP"] = "CTLD_MENU_FARP",
     ["Humvee scout"] = "CTLD_MENU_HUMVEE_SCOUT",
-    ["10 of everything"] = "CTLD_MENU_10_EVERYTHING",
+    ["15 of everything"] = "CTLD_MENU_15_EVERYTHING",
     ["25 of everything"] = "CTLD_MENU_25_EVERYTHING",
     ["50 of everything"] = "CTLD_MENU_50_EVERYTHING",
-    ["10 A/A Missiles"] = "CTLD_MENU_10_AA_MISSILES",
+    ["15 A/A Missiles"] = "CTLD_MENU_15_AA_MISSILES",
     ["25 A/A Missiles"] = "CTLD_MENU_25_AA_MISSILES",
     ["50 A/A Missiles"] = "CTLD_MENU_50_AA_MISSILES",
-    ["10 A/G Missiles"] = "CTLD_MENU_10_AG_MISSILES",
+    ["15 A/G Missiles"] = "CTLD_MENU_15_AG_MISSILES",
     ["25 A/G Missiles"] = "CTLD_MENU_25_AG_MISSILES",
     ["50 A/G Missiles"] = "CTLD_MENU_50_AG_MISSILES",
-    ["10 A/G Rockets"] = "CTLD_MENU_10_AG_ROCKETS",
+    ["15 A/G Rockets"] = "CTLD_MENU_15_AG_ROCKETS",
     ["25 A/G Rockets"] = "CTLD_MENU_25_AG_ROCKETS",
     ["50 A/G Rockets"] = "CTLD_MENU_50_AG_ROCKETS",
-    ["10 A/G Bombs"] = "CTLD_MENU_10_AG_BOMBS",
+    ["15 A/G Bombs"] = "CTLD_MENU_15_AG_BOMBS",
     ["25 A/G Bombs"] = "CTLD_MENU_25_AG_BOMBS",
     ["50 A/G Bombs"] = "CTLD_MENU_50_AG_BOMBS",
-    ["10 (Plane fuel tanks) and pylons"] = "CTLD_MENU_10_FUEL_TANKS_PYLONS",
+    ["15 (Plane fuel tanks) and pylons"] = "CTLD_MENU_15_FUEL_TANKS_PYLONS",
     ["25 Plane fuel-tanks and pylons"] = "CTLD_MENU_25_FUEL_TANKS_PYLONS",
     ["50 Plane fuel-tanks and pylons"] = "CTLD_MENU_50_FUEL_TANKS_PYLONS",
-    ["10 Modded weapons"] = "CTLD_MENU_10_MODDED_WEAPONS",
+    ["15 Modded weapons"] = "CTLD_MENU_15_MODDED_WEAPONS",
     ["25 Modded weapons"] = "CTLD_MENU_25_MODDED_WEAPONS",
     ["50 Modded weapons"] = "CTLD_MENU_50_MODDED_WEAPONS",
-    ["10 Mods"] = "CTLD_MENU_10_MODDED_WEAPONS",
+    ["15 Mods"] = "CTLD_MENU_15_MODDED_WEAPONS",
     ["25 Mods"] = "CTLD_MENU_25_MODDED_WEAPONS",
     ["50 Mods"] = "CTLD_MENU_50_MODDED_WEAPONS",
 }
@@ -180,6 +180,8 @@ local CTLDPriceDefaults = {
   ["Platoon 32"]             = { price = 200, reqRank = 1 },
   ["Anti-Air Soldiers"]      = { price = 100, reqRank = 1 },
   ["Mortar Squad"]           = { price = 100, reqRank = 1 },
+  ["Zone Spy"]               = { price = 100, reqRank = 2 },
+  ["Demolition Team"]        = { price = 100, reqRank = 2 },
   ["Mephisto"]               = { price = 250, reqRank = 2 },
   ["Humvee"]                 = { price = 250, reqRank = 1 },
   ["Bradly"]                 = { price = 250, reqRank = 1 },
@@ -230,9 +232,12 @@ Foothold_ctld:AddTroopsCargo("Platoon 16",{"CTLD_TROOPS_Platon16"},CTLD_CARGO.En
 Foothold_ctld:AddTroopsCargo("Platoon 32",{"CTLD_TROOPS_Platon1"},CTLD_CARGO.Enum.TROOPS,32,80,10)
 Foothold_ctld:AddTroopsCargo("Mortar Squad",{"CTLD_TROOPS_MRS"},CTLD_CARGO.Enum.TROOPS,6,80,10)
 Foothold_ctld:AddTroopsCargo("Engineer soldier",{"CTLD_TROOPS_Engineers"},CTLD_CARGO.Enum.ENGINEERS,1,80,10)
-
+Foothold_ctld:AddTroopsCargo("Zone Spy",{"CTLD_TROOPS_SPY"},CTLD_CARGO.Enum.TROOPS,1,80,10,nil,true)
+if UseStatics then
+Foothold_ctld:AddTroopsCargo("Demolition Team",{"CTLD_TROOPS_DEMO"},CTLD_CARGO.Enum.TROOPS,2,80,10,nil,true)
+end
 if Era ~= "Vietnam" then
-Foothold_ctld:AddTroopsCargo("Anti-Air Soldiers",{"CTLD_TROOPS_AA"},CTLD_CARGO.Enum.TROOPS,5,80,10)
+Foothold_ctld:AddTroopsCargo("Anti-Air Soldiers",{"CTLD_TROOPS_AA"},CTLD_CARGO.Enum.TROOPS,5,80,10,nil,true)
 end
 -- vehicles and fobs
 if Era ~= "Vietnam" then
@@ -293,15 +298,15 @@ addStaticFromType("Zone supplies MI-8", "ammo_cargo", 2300, "Zone supplies", {"M
 addStaticFromType("Zone supplies Blackhawk", "ammo_cargo", 2000, "Zone supplies", {"UH-60L_DAP","UH-60L"}, "Zone supplies")
 addStaticFromType("Zone supplies Mi-24P", "ammo_cargo", 500, "Zone supplies", {"Mi-24P"}, "Zone supplies")
 
-addStaticFromType("10 of everything CH-47", "cds_crate", 3500, "Warehouse", {"CH-47Fbl1"}, "10 of everything")
-addStaticFromType("10 of everything MI-8", "cds_crate", 3500, "Warehouse", {"Mi-8MT"}, "10 of everything")
-addStaticFromType("10 of everything Blackhawk", "cds_crate", 2000, "Warehouse", {"UH-60L_DAP","UH-60L"}, "10 of everything")
+addStaticFromType("15 of everything CH-47", "cds_crate", 3500, "Warehouse", {"CH-47Fbl1"}, "15 of everything")
+addStaticFromType("15 of everything MI-8", "cds_crate", 3500, "Warehouse", {"Mi-8MT"}, "15 of everything")
+addStaticFromType("15 of everything Blackhawk", "ammo_cargo", 2000, "Warehouse", {"UH-60L_DAP","UH-60L"}, "15 of everything")
 
-addStaticFromType("10 A/A Missiles", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 A/A Missiles")
-addStaticFromType("10 A/G Missiles", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 A/G Missiles")
-addStaticFromType("10 A/G Rockets", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 A/G Rockets")
-addStaticFromType("10 A/G Bombs", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 A/G Bombs")
-addStaticFromType("10 (Plane fuel tanks) and pylons", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 (Plane fuel tanks) and pylons")
+addStaticFromType("15 A/A Missiles", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "15 A/A Missiles")
+addStaticFromType("15 A/G Missiles", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "15 A/G Missiles")
+addStaticFromType("15 A/G Rockets", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "15 A/G Rockets")
+addStaticFromType("15 A/G Bombs", "ammo_cargo", 1000, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "15 A/G Bombs")
+addStaticFromType("15 (Plane fuel tanks) and pylons", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "15 (Plane fuel tanks) and pylons")
 
 addStaticFromType("50 of everything", "iso_container", 8000, "Warehouse", {"C-130J-30"}, "50 of everything")
 addStaticFromType("50 A/A Missiles", "iso_container_small", 2000, "Warehouse", {"C-130J-30"}, "50 A/A Missiles")
@@ -319,7 +324,7 @@ addStaticFromType("25 Plane fuel-tanks and pylons", "cds_crate", 1000, "Warehous
 if AllowMods and Era == "Modern" then
 addStaticFromType("25 Modded weapons", "cds_crate", 1000, "Warehouse", {"C-130J-30"}, "25 Modded weapons")
 addStaticFromType("50 Modded weapons", "iso_container_small", 2000, "Warehouse", {"C-130J-30"}, "50 Modded weapons")
-addStaticFromType("10 Modded weapons", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "10 Modded weapons")
+addStaticFromType("15 Modded weapons", "ammo_cargo", 500, "Warehouse", {"CH-47Fbl1","UH-1H","Mi-8MT","Mi-24P","UH-60L_DAP","UH-60L"}, "15 Modded weapons")
 end
 ---------------------------------------------------------------------------
 -- Zone Supply: Cargo Types
@@ -357,6 +362,8 @@ MAX_AT_SPAWN = MAX_AT_SPAWN or {
     ["Platoon 32"]              = 0,
     ["Anti-Air Soldiers"]       = 2,
     ["Mortar Squad"]            = 2,
+    ["Zone Spy"]                = 0,
+    ["Demolition Team"]         = 0,
     ["Linebacker"]              = 2,
     ["Vulcan"]                  = 2,
     ["HAWK System"]             = 3,
@@ -440,7 +447,7 @@ function addCTLDZonesForBlueControlled(zoneName)
             if not zoneObj.active then
                 Foothold_ctld:DeactivateZone(zoneName, CTLD.CargoZoneType.LOAD)
                 Foothold_ctld:DeactivateZone(zoneName, CTLD.CargoZoneType.MOVE)
-            elseif zoneObj.wasBlue then
+            elseif zoneObj.side == 2 then
                 --env.info("Activating LOAD for zone: " .. tostring(zoneName))
                 Foothold_ctld:ActivateZone(zoneName, CTLD.CargoZoneType.LOAD)
                 Foothold_ctld:DeactivateZone(zoneName, CTLD.CargoZoneType.MOVE)
@@ -457,7 +464,7 @@ function addCTLDZonesForBlueControlled(zoneName)
                 if not zoneObj.active then
                     Foothold_ctld:DeactivateZone(zName, CTLD.CargoZoneType.LOAD)
                     Foothold_ctld:DeactivateZone(zName, CTLD.CargoZoneType.MOVE)
-                elseif zoneObj.wasBlue then
+                elseif zoneObj.side == 2 then
                     --BASE:I("Activating LOAD for zone: " .. tostring(zName))
                     Foothold_ctld:ActivateZone(zName, CTLD.CargoZoneType.LOAD)
                     Foothold_ctld:DeactivateZone(zName, CTLD.CargoZoneType.MOVE)
@@ -1222,14 +1229,14 @@ end
 
 
 local WAREHOUSE_SUPPLY_TYPES = {
-  ["10 of everything CH-47"]              = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS"}, amount = 10, reward = 150, label = "10 of everything" },
-  ["10 of everything MI-8"]               = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS"}, amount = 10, reward = 150, label = "10 of everything" },
-  ["10 of everything Blackhawk"]          = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS"}, amount = 10, reward = 150, label = "10 of everything" },
-  ["10 A/A Missiles"]                     = { categories = { "AA_MISSILES" },                 amount = 10, reward = 30, label = "10 A/A Missiles" },
-  ["10 A/G Missiles"]                     = { categories = { "AG_MISSILES" },                 amount = 10, reward = 30, label = "10 A/G Missiles" },
-  ["10 A/G Rockets"]                      = { categories = { "AG_ROCKETS" },                  amount = 10, reward = 30, label = "10 A/G Rockets" },
-  ["10 A/G Bombs"]                        = { categories = { "AG_GUIDED_BOMBS" ,"AG_BOMBS"},  amount = 10, reward = 30, label = "10 A/G Bombs" },
-  ["10 (Plane fuel tanks) and pylons"]    = { categories = { "FUEL_TANKS","MISC"},            amount = 10, reward = 30, label = "10 (Plane fuel tanks) and pylons" },
+  ["15 of everything CH-47"]              = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS"}, amount = 15, reward = 150, label = "15 of everything" },
+  ["15 of everything MI-8"]               = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS"}, amount = 15, reward = 150, label = "15 of everything" },
+  ["15 of everything Blackhawk"]          = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS"}, amount = 15, reward = 150, label = "15 of everything" },
+  ["15 A/A Missiles"]                     = { categories = { "AA_MISSILES" },                 amount = 15, reward = 30, label = "15 A/A Missiles" },
+  ["15 A/G Missiles"]                     = { categories = { "AG_MISSILES" },                 amount = 15, reward = 30, label = "15 A/G Missiles" },
+  ["15 A/G Rockets"]                      = { categories = { "AG_ROCKETS" },                  amount = 15, reward = 30, label = "15 A/G Rockets" },
+  ["15 A/G Bombs"]                        = { categories = { "AG_GUIDED_BOMBS" ,"AG_BOMBS"},  amount = 15, reward = 30, label = "15 A/G Bombs" },
+  ["15 (Plane fuel tanks) and pylons"]    = { categories = { "FUEL_TANKS","MISC"},            amount = 15, reward = 30, label = "15 (Plane fuel tanks) and pylons" },
   
   ["50 of everything"]                    = { categories = { "AG_MISSILES","AG_ROCKETS","AG_BOMBS","AG_GUIDED_BOMBS","AA_MISSILES","MISC","FUEL_TANKS" }, amount = 50, reward = 150, label = "50 of everything" },
   ["50 A/A Missiles"]                     = { categories = { "AA_MISSILES" },        amount = 50, reward = 50, label = "50 A/A Missiles" },
@@ -1244,19 +1251,19 @@ local WAREHOUSE_SUPPLY_TYPES = {
   ["25 A/G Rockets"]                      = { categories = { "AG_ROCKETS" },         amount = 25, reward = 15, label = "25 A/G Rockets" },
   ["25 A/G Bombs"]                        = { categories = { "AG_GUIDED_BOMBS", "AG_BOMBS" },    amount = 25, reward = 15, label = "25 A/G Bombs" },
   ["25 Plane fuel-tanks and pylons"]      = { categories = {"FUEL_TANKS", "MISC" },  amount = 25, reward = 15, label = "25 Plane fuel-tanks and pylons" },
-  ["10 Modded weapons"]                   = { categories = { "MODS" }, amount = 10, reward = 30, label = "10 Modded weapons" },
+  ["15 Modded weapons"]                   = { categories = { "MODS" }, amount = 15, reward = 30, label = "15 Modded weapons" },
   ["25 Modded weapons"]                   = { categories = { "MODS" }, amount = 25, reward = 15, label = "25 Modded weapons" },
   ["50 Modded weapons"]                   = { categories = { "MODS" }, amount = 50, reward = 30, label = "50 Modded weapons" },
 }
 
 if AllowMods and Era == "Modern" then
-  WAREHOUSE_SUPPLY_TYPES["10 Mods"] = { categories = { "MODS" }, amount = 10, reward = 30, label = "10 Mods" }
+  WAREHOUSE_SUPPLY_TYPES["15 Mods"] = { categories = { "MODS" }, amount = 15, reward = 30, label = "15 Mods" }
   WAREHOUSE_SUPPLY_TYPES["25 Mods"] = { categories = { "MODS" }, amount = 25, reward = 15, label = "25 Mods" }
   WAREHOUSE_SUPPLY_TYPES["50 Mods"] = { categories = { "MODS" }, amount = 50, reward = 30, label = "50 Mods" }
 
-  table.insert(WAREHOUSE_SUPPLY_TYPES["10 of everything CH-47"].categories, "MODS")
-  table.insert(WAREHOUSE_SUPPLY_TYPES["10 of everything MI-8"].categories, "MODS")
-  table.insert(WAREHOUSE_SUPPLY_TYPES["10 of everything Blackhawk"].categories, "MODS")
+  table.insert(WAREHOUSE_SUPPLY_TYPES["15 of everything CH-47"].categories, "MODS")
+  table.insert(WAREHOUSE_SUPPLY_TYPES["15 of everything MI-8"].categories, "MODS")
+  table.insert(WAREHOUSE_SUPPLY_TYPES["15 of everything Blackhawk"].categories, "MODS")
   table.insert(WAREHOUSE_SUPPLY_TYPES["25 of everything"].categories, "MODS")
   table.insert(WAREHOUSE_SUPPLY_TYPES["50 of everything"].categories, "MODS")
 end
@@ -1337,7 +1344,7 @@ function Foothold_ctld:RegisterFarpSupplyStorage(farpName, supplyTextId, initial
   if not farp then
     farp = registerFarpSupplyRecord({
       name = farpName,
-      supplyStock = math.max(0, math.floor(tonumber(initialStock) or 1)),
+      supplyStock = math.max(0, math.floor(tonumber(initialStock) or CTLDSupplyCapacity)),
     })
   end
   farp.supplyTextId = supplyTextId
@@ -1407,6 +1414,1066 @@ local function getSupplyZoneWrapper(name)
   supplyZoneWrapperCache[name] = z or false
   return z
 end
+
+-- SPY_TEAM_PURE_BEGIN
+Foothold_ctld.SpyTeam = {
+  CARGO_NAME = "Zone Spy",
+  ROUTE_SPEED_KMH = 36,
+  CONTROLLER_SPEED_MPS = 10,
+  INTEL_SECONDS = 60 * 60,
+}
+
+function Foothold_ctld.SpyTeam.SelectNearestEnemyZone(candidates, maxRange, redSide)
+  local best = nil
+  for _, candidate in ipairs(candidates or {}) do
+    if candidate.side == redSide and candidate.distance <= maxRange then
+      local candidateName = candidate.zoneObject.zone
+      local bestName = best and best.zoneObject.zone or nil
+      if not best
+        or candidate.distance < best.distance
+        or (candidate.distance == best.distance and candidateName < bestName)
+      then
+        best = candidate
+      end
+    end
+  end
+  return best
+end
+-- SPY_TEAM_PURE_END
+
+-- DEMOLITION_TEAM_PURE_BEGIN
+local Demolition = {
+  CARGO_NAME = "Demolition Team",
+  ROUTE_SPEED_KMH = 36,
+  CONTROLLER_SPEED_MPS = 10,
+  WAYPOINT_STANDOFF_M = 35,
+  PLANT_REACH_M = 150,
+  FUSE_SECONDS = 120,
+  PLANNING_SPEED_MPS = 3.5,
+  ESCAPE_BOUNDARY_MARGIN_M = 25,
+  ESCAPE_CONFIRM_EXTRA_M = 200,
+  ESCAPE_TASK_EARLY_M = 160,
+  ESCAPE_RAY_COUNT = 16,
+  REWARD = 50,
+}
+
+function Demolition.ExplosionPower(currentLife)
+  local life = math.max(0, tonumber(currentLife) or 0)
+  return math.max(100, math.ceil(((life * 0.45) / 50)) * 50)
+end
+
+function Demolition.DistanceSquared(a, b)
+  local dx = (a.x or 0) - (b.x or 0)
+  local dz = (a.z or a.y or 0) - (b.z or b.y or 0)
+  return dx * dx + dz * dz
+end
+
+function Demolition.SafetyRadius(power)
+  local value = math.max(0, tonumber(power) or 0)
+  local anchors = {
+    { power = 100, radius = 200 },
+    { power = 450, radius = 300 },
+    { power = 750, radius = 350 },
+    { power = 1800, radius = 450 },
+  }
+  if value <= anchors[1].power then return anchors[1].radius end
+  for index = 2, #anchors do
+    local upper = anchors[index]
+    if value <= upper.power then
+      local lower = anchors[index - 1]
+      local fraction = (value - lower.power) / (upper.power - lower.power)
+      return lower.radius + (upper.radius - lower.radius) * fraction
+    end
+  end
+  return 450 + 50 * math.sqrt((value - 1800) / 1800)
+end
+
+function Demolition.BuildHazards(charges)
+  local hazards, totalPower = {}, 0
+  local weightedX, weightedY, weightedZ = 0, 0, 0
+  for _, charge in ipairs(charges or {}) do
+    local power = math.max(0, tonumber(charge.power) or 0)
+    local point = charge.point
+    hazards[#hazards + 1] = {
+      point = point,
+      power = power,
+      radius = Demolition.SafetyRadius(power),
+    }
+    totalPower = totalPower + power
+    weightedX = weightedX + (point.x or 0) * power
+    weightedY = weightedY + (point.y or 0) * power
+    weightedZ = weightedZ + (point.z or point.y or 0) * power
+  end
+  if totalPower <= 0 then return hazards, nil, 0 end
+  local centroid = {
+    x = weightedX / totalPower,
+    y = weightedY / totalPower,
+    z = weightedZ / totalPower,
+  }
+  hazards[#hazards + 1] = {
+    point = centroid,
+    power = totalPower,
+    radius = Demolition.SafetyRadius(totalPower),
+    aggregate = true,
+  }
+  return hazards, centroid, totalPower
+end
+
+function Demolition.Direction(fromPoint, toPoint)
+  local dx = (toPoint.x or 0) - (fromPoint.x or 0)
+  local dz = (toPoint.z or toPoint.y or 0) - (fromPoint.z or fromPoint.y or 0)
+  local distance = math.sqrt(dx * dx + dz * dz)
+  if distance <= 0 then return nil, 0 end
+  return { x = dx / distance, y = 0, z = dz / distance }, distance
+end
+
+function Demolition.EscapeCandidate(origin, direction, hazards, nextPoint, tag)
+  local farthestExit = 0
+  for _, hazard in ipairs(hazards) do
+    local ox = (origin.x or 0) - (hazard.point.x or 0)
+    local oz = (origin.z or origin.y or 0) - (hazard.point.z or hazard.point.y or 0)
+    local projection = ox * direction.x + oz * direction.z
+    local c = ox * ox + oz * oz - hazard.radius * hazard.radius
+    local discriminant = projection * projection - c
+    if discriminant >= 0 then
+      local root = math.sqrt(discriminant)
+      local entryDistance = -projection - root
+      local exitDistance = -projection + root
+      if c >= -0.001 and exitDistance > 0.001 and (entryDistance > 0.001 or projection < 0) then
+        return nil
+      end
+      if c < 0 and exitDistance > farthestExit then
+        farthestExit = exitDistance
+      end
+    end
+  end
+
+  local boundaryDistance = farthestExit + Demolition.ESCAPE_BOUNDARY_MARGIN_M
+  local confirmationDistance = boundaryDistance + Demolition.ESCAPE_CONFIRM_EXTRA_M
+  local boundaryPoint = {
+    x = origin.x + direction.x * boundaryDistance,
+    y = origin.y or 0,
+    z = (origin.z or origin.y or 0) + direction.z * boundaryDistance,
+  }
+  local confirmationPoint = {
+    x = origin.x + direction.x * confirmationDistance,
+    y = origin.y or 0,
+    z = (origin.z or origin.y or 0) + direction.z * confirmationDistance,
+  }
+  local expectedTravel = math.max(0, confirmationDistance - Demolition.ESCAPE_TASK_EARLY_M)
+  local feasible = expectedTravel / Demolition.PLANNING_SPEED_MPS <= Demolition.FUSE_SECONDS
+  local score = confirmationDistance
+  if nextPoint then
+    score = score + 0.35 * math.sqrt(Demolition.DistanceSquared(confirmationPoint, nextPoint))
+  end
+  if not feasible then score = score + 1000000 end
+  return {
+    tag = tag,
+    direction = direction,
+    boundaryPoint = boundaryPoint,
+    confirmationPoint = confirmationPoint,
+    confirmationDistance = confirmationDistance,
+    feasible = feasible,
+    score = score,
+  }
+end
+
+function Demolition.PlanEscape(origin, charges, nextPoint)
+  local hazards, centroid = Demolition.BuildHazards(charges)
+  local nextDirection, nextDistance = nil, 0
+  if nextPoint then nextDirection, nextDistance = Demolition.Direction(origin, nextPoint) end
+  if nextDirection then
+    local exact = Demolition.EscapeCandidate(origin, nextDirection, hazards, nextPoint, "next")
+    if exact and exact.feasible and nextDistance >= exact.confirmationDistance then
+      exact.direct = true
+      exact.hazards = hazards
+      return exact
+    end
+  end
+
+  local candidates = {}
+  local awayDirection = centroid and Demolition.Direction(centroid, origin) or nil
+  if not awayDirection then awayDirection = { x = 1, y = 0, z = 0 } end
+  candidates[#candidates + 1] = { direction = awayDirection, tag = "away" }
+  for index = 0, Demolition.ESCAPE_RAY_COUNT - 1 do
+    local angle = (2 * math.pi * index) / Demolition.ESCAPE_RAY_COUNT
+    candidates[#candidates + 1] = {
+      direction = { x = math.cos(angle), y = 0, z = math.sin(angle) },
+      tag = "ray-" .. tostring(index),
+    }
+  end
+
+  local best = nil
+  for _, row in ipairs(candidates) do
+    local candidate = Demolition.EscapeCandidate(origin, row.direction, hazards, nextPoint, row.tag)
+    if candidate and (not best or candidate.score < best.score) then best = candidate end
+  end
+  if not best then
+    best = Demolition.EscapeCandidate(origin, awayDirection, {}, nextPoint, "away")
+  end
+  best.direct = false
+  best.hazards = hazards
+  return best
+end
+
+function Demolition.PlantPoint(fromPoint, targetPoint)
+  local dx = (targetPoint.x or 0) - (fromPoint.x or 0)
+  local dz = (targetPoint.z or targetPoint.y or 0) - (fromPoint.z or fromPoint.y or 0)
+  local distance = math.sqrt(dx * dx + dz * dz)
+  if distance <= 0 then
+    return { x = targetPoint.x, y = targetPoint.y or 0, z = targetPoint.z or targetPoint.y or 0 }
+  end
+  local standoff = math.min(Demolition.WAYPOINT_STANDOFF_M, distance)
+  return {
+    x = targetPoint.x - (dx / distance) * standoff,
+    y = targetPoint.y or 0,
+    z = (targetPoint.z or targetPoint.y or 0) - (dz / distance) * standoff,
+  }
+end
+
+function Demolition.OrderNearest(originPoint, targetRows)
+  local remaining, ordered = {}, {}
+  for _, row in ipairs(targetRows or {}) do
+    remaining[#remaining + 1] = row
+  end
+  local cursor = originPoint
+  while #remaining > 0 do
+    local bestIndex, bestDistance = 1, math.huge
+    for index, row in ipairs(remaining) do
+      local distance = Demolition.DistanceSquared(cursor, row.point)
+      if distance < bestDistance or (distance == bestDistance and row.name < remaining[bestIndex].name) then
+        bestIndex, bestDistance = index, distance
+      end
+    end
+    local row = table.remove(remaining, bestIndex)
+    ordered[#ordered + 1] = row
+    cursor = row.point
+  end
+  return ordered
+end
+
+function Demolition.BalancedQuotas(targetCount, teamCount)
+  local quotas = {}
+  if teamCount <= 0 then return quotas end
+  local base = math.floor(targetCount / teamCount)
+  local extra = targetCount % teamCount
+  for index = 1, teamCount do
+    quotas[index] = base + (index <= extra and 1 or 0)
+  end
+  return quotas
+end
+
+function Demolition.CanCapture(cargoName, defaultCanCapture)
+  if cargoName == Demolition.CARGO_NAME or cargoName == Foothold_ctld.SpyTeam.CARGO_NAME then return false end
+  return defaultCanCapture == true
+end
+-- DEMOLITION_TEAM_PURE_END
+
+-- DEMOLITION_TEAM_RUNTIME_BEGIN
+Demolition.Charges = Demolition.Charges or {}
+
+function Demolition.FindEntry(groupName)
+  for _, entry in ipairs(TroopUnits) do
+    if entry.groupName == groupName then return entry end
+  end
+  return nil
+end
+
+-- SPECIAL_TEAM_EXTRACTION_BEGIN
+Foothold_ctld.SpecialTeams = Foothold_ctld.SpecialTeams or {}
+
+function Foothold_ctld.SpecialTeams.NearestZoneName(coordinate)
+  local bestName, bestDistance = nil, math.huge
+  for _, zoneObject in ipairs(bc:getZones()) do
+    local wrapper = getSupplyZoneWrapper(zoneObject.zone)
+    if wrapper then
+      local distance = coordinate:Get2DDistance(wrapper:GetCoordinate())
+      if distance < bestDistance or (distance == bestDistance and zoneObject.zone < bestName) then
+        bestName = zoneObject.zone
+        bestDistance = distance
+      end
+    end
+  end
+  return bestName or L10N:Get("COMMON_UNKNOWN")
+end
+
+function Foothold_ctld.SpecialTeams.RouteToExtraction(entry, state, teamKind, speed)
+  state.extractionAnnounced = false
+  local route = {
+    entry.Group:GetCoordinate():WaypointGround(speed, "Diamond"),
+    COORDINATE:NewFromVec3(state.dropPoint):WaypointGround(
+      speed,
+      "Diamond",
+      {
+        entry.Group:TaskFunction(
+          "Foothold_ctld.SpecialTeamExtractionWaypoint",
+          entry.groupName,
+          teamKind,
+          state.routeGeneration
+        )
+      }
+    ),
+  }
+  entry.Group:RouteResume()
+  entry.Group:Route(route, 1)
+  return true
+end
+
+function Foothold_ctld.SpecialTeamExtractionWaypoint(missionGroup, teamGroupName, teamKind, generation)
+  local entry = Demolition.FindEntry(teamGroupName)
+  if not entry or not missionGroup:IsAlive() then return end
+  local state = teamKind == "spy" and entry.Spy or teamKind == "demo" and entry.Demo or nil
+  if not state
+    or state.routeGeneration ~= generation
+    or state.status ~= "returning"
+    or state.extractionAnnounced
+  then
+    return
+  end
+
+  state.extractionAnnounced = true
+  state.status = "ready-extraction"
+  missionGroup:RouteStop()
+
+  local coordinate = missionGroup:GetCoordinate()
+  local point = coordinate:GetVec3()
+  local zoneName = Foothold_ctld.SpecialTeams.NearestZoneName(coordinate)
+  local mgrs = coordinate:ToStringMGRS():gsub("^MGRS%s*", "")
+  local messageKey = teamKind == "spy" and "CTLD_SPY_READY_EXTRACTION" or "CTLD_DEMO_READY_EXTRACTION"
+  trigger.action.outTextForCoalition(
+    coalition.side.BLUE,
+    L10N:Format(messageKey, zoneName, mgrs),
+    15
+  )
+
+  local smokePoint = {
+    x = point.x + 30.48,
+    y = land.getHeight({ x = point.x + 30.48, y = point.z }),
+    z = point.z,
+  }
+  trigger.action.smoke(smokePoint, trigger.smokeColor.Blue)
+end
+-- SPECIAL_TEAM_EXTRACTION_END
+
+-- SPY_TEAM_RUNTIME_BEGIN
+function Foothold_ctld.SpyTeam.Initialize(entry, deployer, ownerPlayerName, ownerGroupName, dropPoint)
+  entry.Spy = {
+    deployer = deployer,
+    ownerPlayerName = ownerPlayerName,
+    ownerGroupName = ownerGroupName,
+    dropPoint = dropPoint,
+    targetZoneName = nil,
+    status = "new",
+    routeGeneration = 0,
+    activated = false,
+    extractionAnnounced = false,
+  }
+  return entry.Spy
+end
+
+function Foothold_ctld.SpyTeam.SelectZone(groupCoordinate)
+  local range = Foothold_ctld.movetroopsdistance or 5000
+  local candidates = {}
+  for _, zoneObject in ipairs(bc:getZones()) do
+    local wrapper = getSupplyZoneWrapper(zoneObject.zone)
+    if wrapper then
+      local insideZone = wrapper:IsCoordinateInZone(groupCoordinate)
+      candidates[#candidates + 1] = {
+        zoneObject = zoneObject,
+        wrapper = wrapper,
+        side = zoneObject.side,
+        distance = insideZone and 0 or groupCoordinate:Get2DDistance(wrapper:GetCoordinate()),
+      }
+    end
+  end
+  return Foothold_ctld.SpyTeam.SelectNearestEnemyZone(candidates, range, coalition.side.RED), range
+end
+
+function Foothold_ctld.SpyTeam.SetSpeed(entry)
+  entry.Group:GetDCSObject():getController():setSpeed(Foothold_ctld.SpyTeam.CONTROLLER_SPEED_MPS, false)
+end
+
+function Foothold_ctld.SpyTeam.RouteHome(entry)
+  entry.Spy.routeGeneration = entry.Spy.routeGeneration + 1
+  entry.Spy.status = "returning"
+  Foothold_ctld.SpecialTeams.RouteToExtraction(
+    entry,
+    entry.Spy,
+    "spy",
+    Foothold_ctld.SpyTeam.ROUTE_SPEED_KMH
+  )
+  Foothold_ctld.SpyTeam.SetSpeed(entry)
+  return true
+end
+
+function Foothold_ctld.SpyTeam.Start(entry)
+  local candidate, range = Foothold_ctld.SpyTeam.SelectZone(entry.Group:GetCoordinate())
+  if not candidate then
+    entry.Spy.status = "ready-extraction"
+    messageCtldToGroup(
+      entry.Spy.deployer,
+      "CTLD_DEMO_NO_ENEMY_ZONE",
+      15,
+      math.floor(range + 0.5)
+    )
+    return false
+  end
+
+  entry.Spy.targetZoneName = candidate.zoneObject.zone
+  entry.Spy.status = "ingress"
+  entry.Group:RouteGroundTo(
+    candidate.wrapper:GetCoordinate(),
+    Foothold_ctld.SpyTeam.ROUTE_SPEED_KMH,
+    "Diamond",
+    1
+  )
+  Foothold_ctld.SpyTeam.SetSpeed(entry)
+  return true
+end
+
+function Foothold_ctld.SpyTeam.HandleEnteredZone(entry, zoneObject)
+  if entry.Spy.activated or entry.Spy.targetZoneName ~= zoneObject.zone then return false end
+  if zoneObject.side ~= coalition.side.RED then
+    Foothold_ctld.SpyTeam.RouteHome(entry)
+    return false
+  end
+
+  entry.Group:RouteStop()
+  entry.Spy.activated = true
+  startZoneIntel(zoneObject.zone, Foothold_ctld.SpyTeam.INTEL_SECONDS, coalition.side.BLUE)
+  trigger.action.outTextForCoalition(
+    coalition.side.BLUE,
+    L10N:Format("CTLD_SPY_INTEL_ACTIVE", zoneObject.zone),
+    15
+  )
+  Foothold_ctld.SpyTeam.RouteHome(entry)
+  return true
+end
+-- SPY_TEAM_RUNTIME_END
+
+function Demolition.StaticIsAlive(targetName)
+  local target = StaticObject.getByName(targetName)
+  return target and target:isExist() and target:getLife() > 0 and target or nil
+end
+
+function Demolition.LivingTargets(zoneObject)
+  local targets = {}
+  for _, builtName in pairs(zoneObject.built or {}) do
+    local target = Demolition.StaticIsAlive(builtName)
+    if target then
+      targets[#targets + 1] = { name = builtName, point = target:getPoint() }
+    end
+  end
+  table.sort(targets, function(a, b) return a.name < b.name end)
+  return targets
+end
+
+function Demolition.SelectZone(groupCoordinate)
+  local range = Foothold_ctld.movetroopsdistance or 5000
+  local hadEnemyZone = false
+  local candidates = {}
+  for _, zoneObject in ipairs(bc:getZones()) do
+    if zoneObject.side == coalition.side.RED then
+      local wrapper = getSupplyZoneWrapper(zoneObject.zone)
+      if wrapper then
+        local distance = groupCoordinate:Get2DDistance(wrapper:GetCoordinate())
+        if distance <= range then
+          hadEnemyZone = true
+          local targets = Demolition.LivingTargets(zoneObject)
+          if #targets > 0 then
+            candidates[#candidates + 1] = {
+              zone = zoneObject,
+              distance = distance,
+              targets = targets,
+            }
+          end
+        end
+      end
+    end
+  end
+  table.sort(candidates, function(a, b)
+    if a.distance == b.distance then return a.zone.zone < b.zone.zone end
+    return a.distance < b.distance
+  end)
+  return candidates[1], hadEnemyZone, range
+end
+
+function Demolition.SetSpeed(entry)
+  local dcsGroup = entry.Group:GetDCSObject()
+  dcsGroup:getController():setSpeed(Demolition.CONTROLLER_SPEED_MPS, false)
+end
+
+function Demolition.LivingUnitPoints(entry)
+  local points = {}
+  for _, unit in ipairs(entry.Group:GetDCSObject():getUnits()) do
+    if unit:isExist() and unit:getLife() > 0 then
+      points[#points + 1] = unit:getPoint()
+    end
+  end
+  return points
+end
+
+function Demolition.TargetWithinPlantReach(unitPoints, targetPoint)
+  local reachSquared = Demolition.PLANT_REACH_M * Demolition.PLANT_REACH_M
+  for _, point in ipairs(unitPoints) do
+    if Demolition.DistanceSquared(point, targetPoint) <= reachSquared then return true end
+  end
+  return false
+end
+
+function Demolition.AssignmentContains(entry, targetName)
+  for _, target in ipairs(entry.Demo.assignedTargets or {}) do
+    if target.name == targetName then return true end
+  end
+  return false
+end
+
+function Demolition.RemoveAssignment(entry, targetName)
+  for index = #(entry.Demo.assignedTargets or {}), 1, -1 do
+    if entry.Demo.assignedTargets[index].name == targetName then
+      table.remove(entry.Demo.assignedTargets, index)
+    end
+  end
+  entry.Demo.currentTarget = entry.Demo.assignedTargets[1] and entry.Demo.assignedTargets[1].name or nil
+end
+
+function Demolition.TargetHasLiveCharge(targetName)
+  local charge = Demolition.Charges[targetName]
+  return charge and not charge.cancelled and not charge.resolved or false
+end
+
+function Demolition.AssignEscapeRoute(entry, batch, nextTarget)
+  local plan = batch.escapePlan
+  entry.Demo.routeGeneration = entry.Demo.routeGeneration + 1
+  entry.Demo.currentTarget = nextTarget and nextTarget.name or nil
+  entry.Demo.status = "active"
+  batch.routeGeneration = entry.Demo.routeGeneration
+
+  local route = {
+    entry.Group:GetCoordinate():WaypointGround(Demolition.ROUTE_SPEED_KMH, "Diamond"),
+    COORDINATE:NewFromVec3(plan.confirmationPoint):WaypointGround(
+      Demolition.ROUTE_SPEED_KMH,
+      "Diamond",
+      {
+        entry.Group:TaskFunction(
+          "Foothold_ctld.DemolitionEscapeWaypoint",
+          entry.groupName,
+          batch.id,
+          batch.routeGeneration
+        )
+      }
+    ),
+  }
+  entry.Group:Route(route, 1)
+  Demolition.SetSpeed(entry)
+  return true
+end
+
+function Demolition.AssignRoute(entry, targetRows)
+  local origin = entry.Group:GetCoordinate():GetVec3()
+  local ordered = {}
+  for _, target in ipairs(targetRows or {}) do
+    ordered[#ordered + 1] = target
+  end
+  if #ordered == 0 then return Demolition.RouteHome(entry) end
+
+  entry.Demo.routeGeneration = entry.Demo.routeGeneration + 1
+  entry.Demo.assignedTargets = ordered
+  entry.Demo.currentTarget = ordered[1].name
+  entry.Demo.status = "active"
+  local generation = entry.Demo.routeGeneration
+  local route = { entry.Group:GetCoordinate():WaypointGround(Demolition.ROUTE_SPEED_KMH, "Diamond") }
+  local target = ordered[1]
+  local plantPoint = Demolition.PlantPoint(origin, target.point)
+  route[#route + 1] = COORDINATE:NewFromVec3(plantPoint):WaypointGround(
+    Demolition.ROUTE_SPEED_KMH,
+    "Diamond",
+    {
+      entry.Group:TaskFunction(
+        "Foothold_ctld.DemolitionPlantWaypoint",
+        entry.groupName,
+        entry.Demo.targetZoneName,
+        target.name,
+        generation
+      )
+    }
+  )
+
+  entry.Group:Route(route, 1)
+  Demolition.SetSpeed(entry)
+  return true
+end
+
+function Demolition.RouteReserve(entry, targetRow)
+  entry.Demo.routeGeneration = entry.Demo.routeGeneration + 1
+  entry.Demo.assignedTargets = {}
+  entry.Demo.currentTarget = nil
+  entry.Demo.status = "reserve"
+  entry.Group:RouteGroundTo(
+    COORDINATE:NewFromVec3(targetRow.point),
+    Demolition.ROUTE_SPEED_KMH,
+    "Diamond",
+    1
+  )
+  Demolition.SetSpeed(entry)
+  return true
+end
+
+function Demolition.RouteHome(entry)
+  entry.Demo.routeGeneration = entry.Demo.routeGeneration + 1
+  entry.Demo.assignedTargets = {}
+  entry.Demo.currentTarget = nil
+  entry.Demo.status = "returning"
+  Foothold_ctld.SpecialTeams.RouteToExtraction(
+    entry,
+    entry.Demo,
+    "demo",
+    Demolition.ROUTE_SPEED_KMH
+  )
+  Demolition.SetSpeed(entry)
+  return true
+end
+
+function Demolition.CancelCharges(entry)
+  if entry.Demo.activeBatch and not entry.Demo.activeBatch.resolved then
+    entry.Demo.activeBatch.cancelled = true
+  end
+  for _, charge in pairs(entry.Demo.planted or {}) do
+    if not charge.resolved then charge.cancelled = true end
+  end
+end
+
+function Demolition.OwnerIsEligible(charge)
+  if not charge.ownerPlayerName or not charge.ownerGroupName then return false end
+  local ownerGroup = Group.getByName(charge.ownerGroupName)
+  if not ownerGroup then return false end
+  for _, unit in ipairs(ownerGroup:getUnits()) do
+    if unit:isExist()
+      and unit:getLife() > 0
+      and unit:getPlayerName() == charge.ownerPlayerName
+    then
+      return true
+    end
+  end
+  return false
+end
+
+function Demolition.BatchClearance(entry, batch)
+  local unitPoints = Demolition.LivingUnitPoints(entry)
+  if #unitPoints == 0 then return 0, math.huge end
+  local minimumMargin = math.huge
+  for _, unitPoint in ipairs(unitPoints) do
+    for _, hazard in ipairs(batch.hazards or {}) do
+      local margin = math.sqrt(Demolition.DistanceSquared(unitPoint, hazard.point)) - hazard.radius
+      if margin < minimumMargin then minimumMargin = margin end
+    end
+  end
+  return #unitPoints, minimumMargin
+end
+
+function Demolition.ResolveBatchIfComplete(batch)
+  if batch.resolved then return true end
+  for _, charge in ipairs(batch.charges or {}) do
+    if not charge.resolved then return false end
+  end
+  batch.resolved = true
+
+  local entry = Demolition.FindEntry(batch.teamGroupName)
+  if not entry or not entry.Demo or entry.Demo.activeBatch ~= batch then return true end
+  entry.Demo.activeBatch = nil
+  if not entry.Group:IsAlive()
+    or entry.Demo.status ~= "active"
+    or bc:getZoneByName(batch.zoneName).side ~= coalition.side.RED
+  then
+    return true
+  end
+
+  local remaining = {}
+  for _, row in ipairs(entry.Demo.assignedTargets or {}) do
+    local target = Demolition.StaticIsAlive(row.name)
+    if target and not Demolition.TargetHasLiveCharge(row.name) then
+      remaining[#remaining + 1] = { name = row.name, point = target:getPoint() }
+    end
+  end
+  local ordered = Demolition.OrderNearest(entry.Group:GetCoordinate():GetVec3(), remaining)
+  if #ordered > 0 then
+    Demolition.AssignRoute(entry, ordered)
+  else
+    Demolition.RouteHome(entry)
+  end
+  return true
+end
+
+function Demolition.ConfirmCharge(charge)
+  if charge.resolved then return nil end
+  charge.resolved = true
+  if not charge.cancelled and charge.detonated then
+    local target = StaticObject.getByName(charge.targetName)
+    local destroyed = not target or not target:isExist() or target:getLife() <= 0
+    if destroyed and Demolition.OwnerIsEligible(charge) then
+      bc:addContribution(charge.ownerPlayerName, coalition.side.BLUE, Demolition.REWARD)
+      bc:addTempStat(charge.ownerPlayerName, "Demolition kill", 1)
+      bc:recordCareerStat(charge.ownerPlayerName, bc.CAREER_STAT.DemolitionKills, 1)
+    end
+  end
+  Demolition.ResolveBatchIfComplete(charge.batch)
+  return nil
+end
+
+function Demolition.TryDetonateBatch(batch)
+  if batch.resolved or batch.detonated or not batch.fuseElapsed then return nil end
+  local zoneObject = bc:getZoneByName(batch.zoneName)
+  if batch.cancelled or zoneObject.side ~= coalition.side.RED then
+    batch.cancelled = true
+    for _, charge in ipairs(batch.charges or {}) do
+      charge.cancelled = true
+      charge.resolved = true
+    end
+    Demolition.ResolveBatchIfComplete(batch)
+    return nil
+  end
+
+  local entry = Demolition.FindEntry(batch.teamGroupName)
+  if entry and entry.Group and entry.Group:IsAlive() then
+    local livingCount, minimumMargin = Demolition.BatchClearance(entry, batch)
+    if livingCount > 0 and minimumMargin < 0 then return nil end
+  end
+
+  local armed = {}
+  for _, charge in ipairs(batch.charges or {}) do
+    if charge.cancelled then
+      charge.resolved = true
+    elseif Demolition.StaticIsAlive(charge.targetName) then
+      armed[#armed + 1] = charge
+    else
+      charge.resolved = true
+    end
+  end
+  batch.detonated = true
+  for _, charge in ipairs(armed) do
+    charge.detonated = true
+    trigger.action.explosion(charge.point, charge.power)
+    timer.scheduleFunction(Demolition.ConfirmCharge, charge, timer.getTime() + 1)
+  end
+  Demolition.ResolveBatchIfComplete(batch)
+  return nil
+end
+
+function Demolition.FuseBatch(batch)
+  if batch.resolved then return nil end
+  batch.fuseElapsed = true
+  return Demolition.TryDetonateBatch(batch)
+end
+
+function Demolition.RefreshPendingBatch(entry)
+  local batch = entry.Demo and entry.Demo.activeBatch or nil
+  if batch and batch.fuseElapsed and not batch.resolved then
+    Demolition.TryDetonateBatch(batch)
+  end
+end
+
+function Foothold_ctld.DemolitionEscapeWaypoint(missionGroup, teamGroupName, batchId, generation)
+  local entry = Demolition.FindEntry(teamGroupName)
+  if not entry or not entry.Demo or not missionGroup:IsAlive() then return end
+  local batch = entry.Demo.activeBatch
+  if not batch or batch.id ~= batchId or batch.resolved then return end
+  if entry.Demo.status ~= "active" or entry.Demo.routeGeneration ~= generation then return end
+  local livingCount, minimumMargin = Demolition.BatchClearance(entry, batch)
+  if livingCount > 0 and minimumMargin >= 0 then
+    batch.escapeConfirmed = true
+    if batch.fuseElapsed then Demolition.TryDetonateBatch(batch) end
+  end
+end
+
+function Demolition.ReservePlantingBatch(entry, zoneName, primaryTargetName, generation)
+  local unitPoints = Demolition.LivingUnitPoints(entry)
+  if #unitPoints == 0 then return nil end
+
+  local ordered = {}
+  for _, row in ipairs(entry.Demo.assignedTargets or {}) do
+    if row.name == primaryTargetName then ordered[#ordered + 1] = row end
+  end
+  for _, row in ipairs(entry.Demo.assignedTargets or {}) do
+    if row.name ~= primaryTargetName then ordered[#ordered + 1] = row end
+  end
+
+  local candidates = {}
+  for _, row in ipairs(ordered) do
+    local target = Demolition.StaticIsAlive(row.name)
+    if target and not Demolition.TargetHasLiveCharge(row.name) then
+      local point = target:getPoint()
+      if row.name == primaryTargetName or Demolition.TargetWithinPlantReach(unitPoints, point) then
+        candidates[#candidates + 1] = {
+          name = row.name,
+          target = target,
+          point = point,
+          power = Demolition.ExplosionPower(target:getLife()),
+        }
+      end
+    end
+  end
+  if not candidates[1] or candidates[1].name ~= primaryTargetName then return nil end
+
+  local batch = {
+    id = string.format("%s:%s:%d:%.3f", entry.groupName, primaryTargetName, generation, timer.getTime()),
+    teamGroupName = entry.groupName,
+    zoneName = zoneName,
+    plantedAt = timer.getTime(),
+    charges = {},
+    cancelled = false,
+    detonated = false,
+    resolved = false,
+  }
+  for _, row in ipairs(candidates) do
+    local charge = {
+      id = batch.id .. ":" .. row.name,
+      targetName = row.name,
+      zoneName = zoneName,
+      teamGroupName = entry.groupName,
+      ownerPlayerName = entry.Demo.ownerPlayerName,
+      ownerGroupName = entry.Demo.ownerGroupName,
+      point = row.point,
+      power = row.power,
+      batch = batch,
+      cancelled = false,
+      detonated = false,
+      resolved = false,
+    }
+    batch.charges[#batch.charges + 1] = charge
+  end
+
+  for _, charge in ipairs(batch.charges) do
+    entry.Demo.planted[charge.targetName] = charge
+    Demolition.Charges[charge.targetName] = charge
+  end
+  for _, charge in ipairs(batch.charges) do
+    Demolition.RemoveAssignment(entry, charge.targetName)
+  end
+  return batch
+end
+
+function Foothold_ctld.DemolitionPlantWaypoint(missionGroup, teamGroupName, zoneName, targetName, generation)
+  local entry = Demolition.FindEntry(teamGroupName)
+  if not entry or not entry.Demo then return end
+  if not missionGroup:IsAlive() then return end
+  if entry.Demo.status ~= "active" then return end
+  if entry.Demo.routeGeneration ~= generation then return end
+  if bc:getZoneByName(zoneName).side ~= coalition.side.RED then return end
+  if not Demolition.AssignmentContains(entry, targetName) then return end
+
+  if Demolition.TargetHasLiveCharge(targetName) then
+    Demolition.RemoveAssignment(entry, targetName)
+    if #entry.Demo.assignedTargets == 0 then Demolition.RouteHome(entry) end
+    return
+  end
+
+  if not Demolition.StaticIsAlive(targetName) then
+    Demolition.RemoveAssignment(entry, targetName)
+    if #entry.Demo.assignedTargets == 0 then Demolition.RouteHome(entry) end
+    return
+  end
+
+  local batch = Demolition.ReservePlantingBatch(entry, zoneName, targetName, generation)
+  if not batch then return end
+  local nextTarget = entry.Demo.assignedTargets[1]
+  batch.escapePlan = Demolition.PlanEscape(
+    entry.Group:GetCoordinate():GetVec3(),
+    batch.charges,
+    nextTarget and nextTarget.point or nil
+  )
+  batch.hazards = batch.escapePlan.hazards
+  entry.Demo.activeBatch = batch
+  trigger.action.outTextForCoalition(
+    coalition.side.BLUE,
+    L10N:Format("CTLD_DEMO_PLANTING", zoneName),
+    15
+  )
+  timer.scheduleFunction(Demolition.FuseBatch, batch, batch.plantedAt + Demolition.FUSE_SECONDS)
+  Demolition.AssignEscapeRoute(entry, batch, nextTarget)
+end
+
+function Demolition.AssignmentsEqual(left, right)
+  if #(left or {}) ~= #(right or {}) then return false end
+  for index, target in ipairs(left or {}) do
+    if not right[index] or right[index].name ~= target.name then return false end
+  end
+  return true
+end
+
+function Demolition.IsWorkStatus(status)
+  return status == "ingress" or status == "reserve" or status == "active"
+end
+
+function Demolition.Start(entry)
+  local candidate, hadEnemyZone, range = Demolition.SelectZone(entry.Group:GetCoordinate())
+  if not candidate then
+    entry.Demo.status = "ready-extraction"
+    if hadEnemyZone then
+      messageCtldToGroup(entry.Demo.deployer, "CTLD_DEMO_NO_STRUCTURE_TARGETS", 15)
+    else
+      messageCtldToGroup(entry.Demo.deployer, "CTLD_DEMO_NO_ENEMY_ZONE", 15, math.floor(range + 0.5))
+    end
+    return false
+  end
+
+  entry.Demo.targetZoneName = candidate.zone.zone
+  local hasOtherTeam = false
+  for _, other in ipairs(TroopUnits) do
+    if other ~= entry
+      and other.Demo
+      and other.Demo.targetZoneName == entry.Demo.targetZoneName
+      and other.Group
+      and other.Group:IsAlive()
+      and Demolition.IsWorkStatus(other.Demo.status)
+    then
+      hasOtherTeam = true
+      break
+    end
+  end
+
+  if not hasOtherTeam then
+    local ordered = Demolition.OrderNearest(entry.Group:GetCoordinate():GetVec3(), candidate.targets)
+    return Demolition.AssignRoute(entry, ordered)
+  end
+
+  entry.Demo.status = "reserve"
+  local targetZone = getSupplyZoneWrapper(entry.Demo.targetZoneName)
+  if entry.Group:IsPartlyOrCompletelyInZone(targetZone) then
+    Demolition.RebalanceZone(entry.Demo.targetZoneName)
+    return true
+  end
+
+  local provisional = Demolition.OrderNearest(entry.Group:GetCoordinate():GetVec3(), candidate.targets)[1]
+  return Demolition.RouteReserve(entry, provisional)
+end
+
+function Demolition.RebalanceZone(zoneName)
+  local zoneObject = bc:getZoneByName(zoneName)
+  if zoneObject.side ~= coalition.side.RED then return false end
+  local targetZone = getSupplyZoneWrapper(zoneName)
+
+  local teams = {}
+  for _, entry in ipairs(TroopUnits) do
+    if entry.Demo
+      and entry.Demo.targetZoneName == zoneName
+      and entry.Group
+      and entry.Group:IsAlive()
+      and Demolition.IsWorkStatus(entry.Demo.status)
+      and (entry.Demo.status ~= "reserve" or entry.Group:IsPartlyOrCompletelyInZone(targetZone))
+    then
+      teams[#teams + 1] = entry
+    end
+  end
+  table.sort(teams, function(a, b)
+    if a.Timestamp == b.Timestamp then return a.groupName < b.groupName end
+    return a.Timestamp < b.Timestamp
+  end)
+  if #teams == 0 then return false end
+
+  local targets = Demolition.LivingTargets(zoneObject)
+  local targetByName = {}
+  for _, target in ipairs(targets) do targetByName[target.name] = target end
+
+  local retained = {}
+  local retainedNames = {}
+  local retainedCount = 0
+  for index, entry in ipairs(teams) do
+    local targetName = entry.Demo.currentTarget
+    if targetName
+      and targetByName[targetName]
+      and not retainedNames[targetName]
+      and not Demolition.TargetHasLiveCharge(targetName)
+    then
+      retained[index] = targetByName[targetName]
+      retainedNames[targetName] = true
+      retainedCount = retainedCount + 1
+    end
+  end
+
+  local remaining = {}
+  for _, target in ipairs(targets) do
+    if not retainedNames[target.name] and not Demolition.TargetHasLiveCharge(target.name) then
+      remaining[#remaining + 1] = target
+    end
+  end
+
+  local quotas = Demolition.BalancedQuotas(retainedCount + #remaining, #teams)
+  for index, entry in ipairs(teams) do
+    local wasReserve = entry.Demo.status == "reserve"
+    local oldAssignments = entry.Demo.assignedTargets or {}
+    local assignments = {}
+    local origin = entry.Group:GetCoordinate():GetVec3()
+    if retained[index] then
+      assignments[#assignments + 1] = retained[index]
+      origin = retained[index].point
+    end
+
+    local needed = math.max(0, quotas[index] - #assignments)
+    local nearest = Demolition.OrderNearest(origin, remaining)
+    for nearestIndex = 1, math.min(needed, #nearest) do
+      local chosen = nearest[nearestIndex]
+      assignments[#assignments + 1] = chosen
+      for remainingIndex = #remaining, 1, -1 do
+        if remaining[remainingIndex].name == chosen.name then
+          table.remove(remaining, remainingIndex)
+          break
+        end
+      end
+    end
+
+    local hasActiveBatch = entry.Demo.activeBatch and not entry.Demo.activeBatch.resolved
+    if hasActiveBatch then
+      entry.Demo.status = "active"
+      entry.Demo.assignedTargets = assignments
+      entry.Demo.currentTarget = assignments[1] and assignments[1].name or nil
+    elseif #assignments == 0 then
+      if wasReserve then
+        sendCtldToGroupOrCoalition(entry.Demo.deployer, "CTLD_DEMO_NO_STRUCTURE_TARGETS", 15)
+      end
+      Demolition.RouteHome(entry)
+    elseif wasReserve or not Demolition.AssignmentsEqual(oldAssignments, assignments) then
+      Demolition.AssignRoute(entry, assignments)
+    else
+      entry.Demo.status = "active"
+      entry.Demo.assignedTargets = assignments
+      entry.Demo.currentTarget = assignments[1].name
+    end
+  end
+  return true
+end
+
+function Demolition.HandleZoneState(entry, zoneObject)
+  if zoneObject.side == coalition.side.NEUTRAL then
+    entry.Group:RouteStop()
+    entry.Demo.routeGeneration = entry.Demo.routeGeneration + 1
+    Demolition.CancelCharges(entry)
+    entry.Demo.assignedTargets = {}
+    entry.Demo.currentTarget = nil
+    entry.Demo.status = "neutral-hold"
+    return "held"
+  end
+
+  if zoneObject.side == coalition.side.BLUE then
+    if entry.Demo.refunded then return "refunded" end
+    entry.Demo.routeGeneration = entry.Demo.routeGeneration + 1
+    Demolition.CancelCharges(entry)
+    entry.Demo.assignedTargets = {}
+    entry.Demo.currentTarget = nil
+    entry.Demo.refunded = true
+    entry.Demo.status = "refunded"
+    Foothold_ctld:AddStockTroops(entry.CargoName, 1)
+    sendCtldToGroupOrCoalition(entry.Demo.deployer, "CTLD_TROOPS_RETURNED_TO_BASE", 10)
+    entry.Group:Destroy()
+    return "refunded"
+  end
+
+  if zoneObject.side == coalition.side.RED and entry.Demo.status == "neutral-hold" then
+    Demolition.RouteHome(entry)
+    return "returning"
+  end
+  return entry.Demo.status
+end
+-- DEMOLITION_TEAM_RUNTIME_END
 
 ---------------------------------------------------------------------------
 -- C-130 Auto Build (Load/Unload)
@@ -1495,6 +2562,7 @@ local function resolveC130AutoBuildOwner(setId, vec3)
   set.playerName = playerName
   set.groupName = groupName
   set.unitName = unitName
+  set.aircraftId = bc:getCareerAircraftId(bestClient:GetTypeName())
   for _, key in ipairs(set.crates) do
     local entry = c130AutoBuildCrates[key]
     if entry then
@@ -1524,11 +2592,13 @@ end
 
 local function registerC130AutoBuildSet(groupName, playerName, unitName, pickupZone, cargoItems)
   local setId = string.format("C130AUTO-%s-%d", groupName or "GROUP", math.random(1, 1e9))
+  local carrierUnit = unitName and Unit.getByName(unitName) or nil
   local setData = {
     id = setId,
     groupName = groupName,
     playerName = playerName,
     unitName = unitName,
+    aircraftId = carrierUnit and bc:getCareerAircraftId(carrierUnit:getTypeName()) or nil,
     pickupZone = pickupZone,
     crates = {},
     required = 0,
@@ -1699,6 +2769,7 @@ local function UpdateC130AttachDetachState(Entry, Key, CoordinatesVec3, UnitObje
 
   if Entry.detached and (not InAir) and Delta3D <= AttachDistance then
     Entry.detached = false
+    Entry._careerAirdropped = nil
     Entry._loggedC130Detached = false
     Entry._loggedC130Unloaded = false
     Entry._c130Stable = 0
@@ -1836,7 +2907,7 @@ local function zoneSupplyPickupDebitKey(Group, Unit)
   return nil
 end
 
-local function queueZoneSupplyPickupDebit(Group, Unit, cargoName, sourceZoneName, quantity)
+local function queueZoneSupplyPickupDebit(Group, Unit, cargoName, sourceZoneName, quantity, expeditedQuantity)
   local key = zoneSupplyPickupDebitKey(Group, Unit)
   if not key then return end
   local queue = Foothold_ctld.ZoneSupplyPickupDebits[key]
@@ -1848,6 +2919,7 @@ local function queueZoneSupplyPickupDebit(Group, Unit, cargoName, sourceZoneName
     cargoName = cargoName,
     sourceZone = sourceZoneName,
     remaining = quantity,
+    expeditedRemaining = math.max(0, math.min(quantity, expeditedQuantity or 0)),
   }
 end
 
@@ -1858,11 +2930,15 @@ local function claimZoneSupplyPickupDebit(unitName, groupName, cargoName)
 
   for index, debit in ipairs(queue) do
     if debit.cargoName == cargoName and (debit.remaining or 0) > 0 then
+      local expeditedRemaining = math.max(0, debit.expeditedRemaining or 0)
+      local ordinaryRemaining = math.max(0, debit.remaining - expeditedRemaining)
+      local expedited = ordinaryRemaining < 1 and expeditedRemaining > 0
       debit.remaining = debit.remaining - 1
+      if expedited then debit.expeditedRemaining = expeditedRemaining - 1 end
       local sourceZone = debit.sourceZone
       if debit.remaining <= 0 then table.remove(queue, index) end
       if #queue == 0 then Foothold_ctld.ZoneSupplyPickupDebits[key] = nil end
-      return sourceZone
+      return sourceZone, expedited
     end
   end
   return nil
@@ -1878,12 +2954,13 @@ local function refundPlayerZoneSupplyStock(EntryOrCargo)
     local sourceZone = sourceZoneName and bc:getZoneByName(sourceZoneName) or nil
     if not sourceZone or not sourceZone.active or sourceZone.side ~= coalition.side.BLUE
       or sourceZone._regularSupplyStockSide ~= coalition.side.BLUE
-      or not sourceZone:_regularSupplyHasRouteForSide(coalition.side.BLUE)
     then
       return false
     end
 
-    if not sourceZone:_restorePlayerRegularSupplyStock(1, coalition.side.BLUE, timer.getAbsTime()) then
+    if not sourceZone:_restorePlayerRegularSupplyStock(
+      1, coalition.side.BLUE, timer.getAbsTime(), EntryOrCargo._zoneSupplySourceExpedited == true and 1 or 0)
+    then
       return false
     end
   end
@@ -1923,6 +3000,8 @@ local function BuildTrackedZoneSupplyEntry(CargoItem, StaticObject, PickupZoneNa
     groupId = GroupId,
     playerName = PlayerName,
     unitName = UnitName,
+    aircraftId = CarrierUnitObject and CarrierUnitObject.isExist and CarrierUnitObject:isExist()
+      and bc:getCareerAircraftId(CarrierUnitObject:getTypeName()) or nil,
     _unitObj = CarrierUnitObject,
     _unitDim = UnitDimensions,
     _isC130 = IsC130,
@@ -1939,6 +3018,7 @@ local function BuildTrackedZoneSupplyEntry(CargoItem, StaticObject, PickupZoneNa
     cargoName = CargoName,
     _zoneSupplySourceConsumed = CargoItem._zoneSupplySourceConsumed == true,
     _zoneSupplySourceZone = CargoItem._zoneSupplySourceZone,
+    _zoneSupplySourceExpedited = CargoItem._zoneSupplySourceExpedited == true,
     createdAt = timer.getTime(),
     wasAirborne = false,
     _wasUnloaded = false,
@@ -1965,10 +3045,11 @@ local function RegisterTrackedSupplyCargo(CargoItem, PickupZoneName, GroupName, 
   CargoItem._zoneSupplyPlayer = PlayerName
 
   if DeliveryType == "zone" and CargoItem._zoneSupplySourceConsumed ~= true then
-    local sourceZoneName = claimZoneSupplyPickupDebit(UnitName, GroupName, CargoName)
+    local sourceZoneName, sourceExpedited = claimZoneSupplyPickupDebit(UnitName, GroupName, CargoName)
     if sourceZoneName then
       CargoItem._zoneSupplySourceConsumed = true
       CargoItem._zoneSupplySourceZone = sourceZoneName
+      CargoItem._zoneSupplySourceExpedited = sourceExpedited == true
     end
   end
 
@@ -2231,6 +3312,7 @@ for key, entry in pairs(c130AutoBuildCrates) do
             playerName = set.playerName,
             groupName = set.groupName,
             unitName = set.unitName,
+            aircraftId = set.aircraftId,
           }
 
           timer.scheduleFunction(function()
@@ -2455,9 +3537,9 @@ local function getStrictSmartWarehouseDelta(itemName, baseDelta)
 end
 
 local function grantZoneBundle(zoneName)
-  local bundle = WAREHOUSE_SUPPLY_TYPES["10 of everything CH-47"] or WAREHOUSE_SUPPLY_TYPES["10 of everything MI-8"] or WAREHOUSE_SUPPLY_TYPES["10 of everything Blackhawk"]
+  local bundle = WAREHOUSE_SUPPLY_TYPES["15 of everything CH-47"] or WAREHOUSE_SUPPLY_TYPES["15 of everything MI-8"] or WAREHOUSE_SUPPLY_TYPES["15 of everything Blackhawk"]
   if not bundle then return end
-  adjustWarehouseStockAtZone(zoneName, bundle.amount or 10, bundle.categories)
+  adjustWarehouseStockAtZone(zoneName, 10, bundle.categories)
 end
 
 
@@ -2705,6 +3787,7 @@ local function zoneSupplyC130OneShotConfirm(arg, time)
   end
 
   entry._wasUnloaded = true
+  entry._careerAirdropped = true
   entry._c130AglConfirm = nil
   refreshZoneSupplyOnboardForEntry(entry)
   c130SupplyLogOnce(entry, key, "_fhLogUnloaded", "UNLOADED", string.format("agl=%.2f", agl))
@@ -2758,6 +3841,49 @@ local function resolveZoneSupplyPlayer(entry)
   return nil
 end
 
+function Foothold_ctld:_resolveCareerAircraftId(unitObject)
+  if not unitObject then return nil end
+  local typeName = nil
+  if unitObject.GetTypeName then
+    typeName = unitObject:GetTypeName()
+  elseif unitObject.getTypeName then
+    typeName = unitObject:getTypeName()
+  end
+  return typeName and bc:getCareerAircraftId(typeName) or nil
+end
+
+function Foothold_ctld:_recordCareerAction(playerName, unitObject, statId, aircraftMetricId, amount, aircraftId)
+  if not playerName or playerName == "" then return end
+  bc:recordCareerStat(playerName, statId, amount)
+  local resolvedAircraftId = aircraftId or self:_resolveCareerAircraftId(unitObject)
+  if resolvedAircraftId and aircraftMetricId then
+    bc:recordCareerAircraftStat(playerName, resolvedAircraftId, aircraftMetricId, amount)
+  end
+end
+
+function Foothold_ctld:_recordCareerSupply(entry, destinationStatId, warehouse)
+  local playerName = resolveZoneSupplyPlayer(entry)
+  if not playerName then return end
+  local unitObject = ResolveTrackedCarrierUnit(entry, false)
+  if unitObject and not unitObject:isExist() then unitObject = nil end
+  local aircraftId = entry.aircraftId or self:_resolveCareerAircraftId(unitObject)
+  local airdropped = entry._careerAirdropped
+  if airdropped == nil then
+    airdropped = unitObject and Utils.isInAir(unitObject) or false
+  end
+
+  self:_recordCareerAction(playerName, unitObject, bc.CAREER_STAT.SupplyUnitsDelivered, bc.CAREER_AIRCRAFT_METRIC.SupplyUnitsDelivered, 1, aircraftId)
+  if destinationStatId then
+    bc:recordCareerStat(playerName, destinationStatId, 1)
+  end
+  if airdropped then
+    self:_recordCareerAction(playerName, unitObject, bc.CAREER_STAT.AirdroppedSupplyUnits, bc.CAREER_AIRCRAFT_METRIC.AirdroppedSupplyUnits, 1, aircraftId)
+  end
+  if warehouse then
+    self:_recordCareerAction(playerName, unitObject, bc.CAREER_STAT.WarehouseDeliveries, bc.CAREER_AIRCRAFT_METRIC.WarehouseDeliveries, 1, aircraftId)
+  end
+end
+
 local CTLD_REASON_KEYS = {
   ["enemy zone"] = "CTLD_REASON_ENEMY_ZONE",
   ["neutral zone timeout"] = "CTLD_REASON_NEUTRAL_ZONE_TIMEOUT",
@@ -2777,6 +3903,7 @@ local CTLD_ZONE_SUPPLY_ACTION_KEYS = {
 local CTLD_TROOP_ZONE_ACTION_KEYS = {
   captured = "CTLD_TROOP_ZONE_CAPTURED",
   upgraded = "CTLD_TROOP_ZONE_UPGRADED",
+  stocked = "CTLD_TROOP_ZONE_STOCKED",
   ["captured and upgraded"] = "CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED",
 }
 
@@ -2994,6 +4121,7 @@ local function finalizeZoneSupplyDelivery(key, entry, zoneName, verb, statLabel,
   local text = T:Format("CTLD_ZONE_SUPPLIES_DELIVERED", verbText, zoneName)
   sendZoneSupplyMessage(entry, text)
   local pname = resolveZoneSupplyPlayer(entry)
+  Foothold_ctld:_recordCareerSupply(entry, bc.CAREER_STAT.ZoneSupplyUnits, false)
   if pname and bc.playerContributions[2][pname] ~= nil then
     bc:addContribution(pname, 2, reward)
     bc:addTempStat(pname, statLabel, 1)
@@ -3010,6 +4138,41 @@ local function finalizeZoneSupplyDelivery(key, entry, zoneName, verb, statLabel,
   end
   removeTrackedZoneSupply(key)
 end
+
+function completePendingBlueCtldSupply(zoneObj, payload, succeeded)
+  if not succeeded then return end
+  grantZoneBundle(zoneObj.zone)
+  local grp = resolveZoneSupplyGroup(payload.groupName)
+  local T = grp and getCtldGroupTranslator(grp) or getFootholdLocalization():ForLocale()
+  local joinedCapture = payload.joinedCapture == true
+  local action = joinedCapture and "stocked" or "captured"
+  local actionArgs = joinedCapture and {
+    math.max(0, math.floor(tonumber(zoneObj._regularSupplyReady) or 0)),
+    zoneObj:_regularSupplyMaxStock(),
+  } or nil
+  local text = T:Format("CTLD_ZONE_SUPPLIES_DELIVERED", ctldZoneSupplyActionText(T, action, actionArgs), zoneObj.zone)
+  if grp then
+    MESSAGE:New(text, 15):ToGroup(grp)
+  else
+    MESSAGE:New(text, 15):ToBlue()
+  end
+  local pname = payload.playerName
+  if pname then
+    Foothold_ctld:_recordCareerAction(pname, nil, bc.CAREER_STAT.SupplyUnitsDelivered,
+      bc.CAREER_AIRCRAFT_METRIC.SupplyUnitsDelivered, 1, payload.careerAircraftId)
+    bc:recordCareerStat(pname, bc.CAREER_STAT.ZoneSupplyUnits, 1)
+    if payload.careerAirdropped == true then
+      Foothold_ctld:_recordCareerAction(pname, nil, bc.CAREER_STAT.AirdroppedSupplyUnits,
+        bc.CAREER_AIRCRAFT_METRIC.AirdroppedSupplyUnits, 1, payload.careerAircraftId)
+    end
+  end
+  if pname and bc.playerContributions[coalition.side.BLUE][pname] ~= nil then
+    bc:addContribution(pname, coalition.side.BLUE, joinedCapture and 150 or ZONE_SUPPLY_CAPTURE_REWARD)
+    bc:addTempStat(pname, joinedCapture and "Zone supply delivery" or "Zone capture", 1)
+  end
+end
+
+bc:registerPendingCaptureHandler("blue_ctld_capture_delivery", completePendingBlueCtldSupply)
 
 processZoneSupplyDeliveries = function()
   if not next(zoneSupplyCrates) then return 0 end
@@ -3103,6 +4266,9 @@ processZoneSupplyDeliveries = function()
                   local inAir = unitObj and unitObj.isExist and unitObj:isExist() and unitObj:inAir()
                   local ground = land.getHeight({ x = vec3.x, y = vec3.z })
                   local agl = vec3.y - ground
+                  if inAir ~= nil and entry._careerAirdropped == nil then
+                    entry._careerAirdropped = inAir == true
+                  end
 
                   if not inAir then
                     if agl <= ZONE_SUPPLY_C130_LANDED_AGL then
@@ -3119,6 +4285,7 @@ processZoneSupplyDeliveries = function()
                     end
                   else
                     if agl <= ZONE_SUPPLY_C130_LANDED_AGL and not entry._c130OneShotScheduled then
+                      entry._careerAirdropped = true
                       entry._c130OneShotScheduled = true
                       timer.scheduleFunction(zoneSupplyC130OneShotConfirm, { key = key, prev = { x = vec3.x, y = vec3.y, z = vec3.z } }, timer.getTime() + ZONE_SUPPLY_C130_ONESHOT_DELAY)
                     end
@@ -3186,6 +4353,9 @@ processZoneSupplyDeliveries = function()
                   end
                 end
                 if ok then
+                  if inAir ~= nil and entry._careerAirdropped == nil then
+                    entry._careerAirdropped = inAir == true
+                  end
                   local settleOk = true
                   if dim and dim.ropelength == 0 and inAir and speed2 and speed2 > 9 then
                     local ground = land.getHeight({ x = vec3.x, y = vec3.z })
@@ -3542,6 +4712,7 @@ zoneSupplyApplyOne = function(key)
 
   if farpSupplyRecord then
     addBuiltFarpSupplyStock(farpSupplyRecord, 1)
+    Foothold_ctld:_recordCareerSupply(entry, bc.CAREER_STAT.FarpSupplyUnits, false)
     local staticObj = (entry.cargo and entry.cargo.GetPositionable and entry.cargo:GetPositionable()) or entry.static
     if staticObj and staticObj.IsAlive and staticObj:IsAlive() then
       zoneSupplyEnqueueRemoval(staticObj, 0)
@@ -3608,6 +4779,7 @@ zoneSupplyApplyOne = function(key)
     end
     c130SupplyLogOnce(entry, key, "_fhLogDeliver", "DELIVER", string.format("zone=%s verb=warehouse", tostring(zoneName)))
     if not (entry.pickupZone and zoneName == entry.pickupZone) then
+      Foothold_ctld:_recordCareerSupply(entry, nil, true)
       local pname = resolveZoneSupplyPlayer(entry)
       local reward = meta.reward or ((meta.categories and #meta.categories > 1) and 100 or 50)
       if pname then
@@ -3627,15 +4799,59 @@ zoneSupplyApplyOne = function(key)
   end
 
   -- IMPORTANT: re-evaluate side NOW (may have changed after a previous crate captured).
+  if zoneObj._pendingCaptureRestore then return end
   if zoneObj.side == 0 then
-    zoneObj:capture(2)
-    grantZoneBundle(zoneName)
-    finalizeZoneSupplyDelivery(key, entry, zoneName, "captured", "Zone capture", ZONE_SUPPLY_CAPTURE_REWARD)
+    local staticName = getZoneSupplyStaticName(staticObj)
+    local dcsStatic = staticName and StaticObject.getByName(staticName) or nil
+    if not dcsStatic or not dcsStatic:isExist() then
+      zoneSupplyDestroyNow(key, entry, zoneName, "not available")
+      return
+    end
+    local joinedCapture = zoneObj.pendingCapture ~= nil
+    local pname = resolveZoneSupplyPlayer(entry)
+    local carrierUnit = ResolveTrackedCarrierUnit(entry, false)
+    local careerAircraftId = entry.aircraftId or Foothold_ctld:_resolveCareerAircraftId(carrierUnit)
+    local careerAirdropped = entry._careerAirdropped
+    if careerAirdropped == nil then
+      careerAirdropped = carrierUnit and carrierUnit:isExist() and Utils.isInAir(carrierUnit) or false
+    end
+    local accepted, captureStatus = zoneObj:startPendingCapture(coalition.side.BLUE, {
+      kind = "static",
+      name = staticName,
+      position = dcsStatic:getPoint(),
+      staticType = dcsStatic:getTypeName(),
+      country = dcsStatic:getCountry(),
+      destroyOnFinish = true,
+      tombstone = true,
+      delivery = {
+        handler = "blue_ctld_capture_delivery",
+        payload = {
+          groupName = entry.groupName,
+          playerName = pname,
+          joinedCapture = joinedCapture,
+          careerAircraftId = careerAircraftId,
+          careerAirdropped = careerAirdropped == true,
+        },
+      },
+    })
+    if accepted then
+      c130SupplyLogOnce(entry, key, "_fhLogDeliver", "DELIVER", string.format("zone=%s verb=capturing", tostring(zoneName)))
+      simulateLandingForEntryIfOnGround(entry, zoneName)
+      if captureStatus ~= "completed" then
+        local grp = resolveZoneSupplyGroup(entry.groupName)
+        local T = grp and getCtldGroupTranslator(grp) or getFootholdLocalization():ForLocale()
+        local actionKey = captureStatus == "started" and "CTLD_ZONE_SUPPLY_ACTION_CAPTURING" or "CTLD_ZONE_SUPPLY_ACTION_QUEUED"
+        sendZoneSupplyMessage(entry, T:Format("CTLD_ZONE_SUPPLIES_DELIVERED", T:Get(actionKey), zoneName))
+      end
+      removeTrackedZoneSupply(key)
+    else
+      zoneSupplyDestroyNow(key, entry, zoneName, "not available")
+    end
     return
   end
 
   local now = timer.getAbsTime()
-  zoneObj:_addImportedRegularSupplyStock(1, now)
+  zoneObj:_addExpeditedRegularSupplyStock(1, now)
   local maximum = zoneObj:_regularSupplyMaxStock()
   local ready = math.max(0, math.floor(tonumber(zoneObj._regularSupplyReady) or 0))
   grantZoneBundle(zoneName)
@@ -3925,7 +5141,7 @@ function BuildAFARP(Coordinate, stamp)
   local saveName = nil
   local saveSeq = nil
   local withZell = false
-  local supplyStock = 1
+  local supplyStock = math.max(0, math.floor(tonumber(CTLDSupplyCapacity) or 1))
   if type(stamp) == "table" then
     saveName = stamp.name
     saveSeq = stamp.seq or stamp.timestamp
@@ -4078,6 +5294,28 @@ local function resolveCtldBuildRewardPlayer(Group, Unit)
   return nil
 end
 
+function Foothold_ctld:_recordBuildCareer(Group, Unit, statId, aircraftMetricId)
+  local playerName = resolveCtldBuildRewardPlayer(Group, Unit)
+  if not playerName then return end
+  local aircraftId = self:_resolveCareerAircraftId(Unit)
+  local groupName = Group and Group.GetName and Group:GetName() or nil
+  local owner = groupName and ctldBuildRewardHelperOwners[groupName] or nil
+  if owner and owner.aircraftId then
+    aircraftId = owner.aircraftId
+  end
+  self:_recordCareerAction(playerName, Unit, statId, aircraftMetricId, 1, aircraftId)
+end
+
+function Foothold_ctld:_recordAirdroppedBuildCareer(Group, Unit, airDefense)
+  local groupName = Group and Group.GetName and Group:GetName() or nil
+  local owner = groupName and ctldBuildRewardHelperOwners[groupName] or nil
+  if not owner then return end
+  self:_recordCareerAction(owner.playerName, Unit, bc.CAREER_STAT.AirdroppedBuilds, bc.CAREER_AIRCRAFT_METRIC.AirdroppedBuilds, 1, owner.aircraftId)
+  if airDefense then
+    self:_recordCareerAction(owner.playerName, Unit, bc.CAREER_STAT.AirdroppedAirDefenseBuilds, bc.CAREER_AIRCRAFT_METRIC.AirdroppedAirDefenseBuilds, 1, owner.aircraftId)
+  end
+end
+
 local function awardCtldBuildReward(Group, Unit, rewardDef)
   if not rewardDef then return end
   local playerName = resolveCtldBuildRewardPlayer(Group, Unit)
@@ -4132,6 +5370,9 @@ function Foothold_ctld:OnAfterCratesBuild(From, Event, To, Group, Unit, Vehicle)
         Vehicle:Destroy(false)
         BuildAFARP(Coord, { zell = true })
         if Group then
+          self:_recordBuildCareer(Group, Unit, bc.CAREER_STAT.CtldBuilds, bc.CAREER_AIRCRAFT_METRIC.CtldBuilds)
+          self:_recordBuildCareer(Group, Unit, bc.CAREER_STAT.FarpsBuilt, nil)
+          self:_recordAirdroppedBuildCareer(Group, Unit, false)
           awardCtldBuildReward(Group, Unit, CTLD_BUILD_REWARD_BY_CARGO["FARP"])
         end
         return
@@ -4142,6 +5383,9 @@ function Foothold_ctld:OnAfterCratesBuild(From, Event, To, Group, Unit, Vehicle)
         Vehicle:Destroy(false)
         BuildAFARP(Coord)
         if Group then
+          self:_recordBuildCareer(Group, Unit, bc.CAREER_STAT.CtldBuilds, bc.CAREER_AIRCRAFT_METRIC.CtldBuilds)
+          self:_recordBuildCareer(Group, Unit, bc.CAREER_STAT.FarpsBuilt, nil)
+          self:_recordAirdroppedBuildCareer(Group, Unit, false)
           awardCtldBuildReward(Group, Unit, CTLD_BUILD_REWARD_BY_CARGO["FARP"])
         end
         return
@@ -4190,11 +5434,18 @@ function Foothold_ctld:OnAfterCratesBuild(From, Event, To, Group, Unit, Vehicle)
       end
       local merged = samMergeTryMergeComponentIntoNearbySystem(self, Group, Vehicle, cargoName, mergeRole, mergeProfile, mergeDistanceOverride)
       if merged then
+        self:_recordBuildCareer(Group, Unit, bc.CAREER_STAT.CtldUpgrades, nil)
+        self:_recordAirdroppedBuildCareer(Group, Unit, true)
         awardCtldBuildReward(Group, Unit, CTLD_MERGE_REWARD_BY_PROFILE[mergeProfile.key])
         return
       end
     end
 
+    self:_recordBuildCareer(Group, Unit, bc.CAREER_STAT.CtldBuilds, bc.CAREER_AIRCRAFT_METRIC.CtldBuilds)
+    self:_recordAirdroppedBuildCareer(Group, Unit, CTLD_BUILD_REWARD_BY_CARGO[cargoName] ~= nil)
+    if CTLD_BUILD_REWARD_BY_CARGO[cargoName] then
+      self:_recordBuildCareer(Group, Unit, bc.CAREER_STAT.AirDefenseBuilt, nil)
+    end
     awardCtldBuildReward(Group, Unit, CTLD_BUILD_REWARD_BY_CARGO[cargoName])
 
     local maxTimestamp = 0
@@ -4381,21 +5632,16 @@ function Foothold_ctld:CanGetCrates(Group, Unit, Cargo, number, drop, pack, quie
         return false
       end
 
-      queueZoneSupplyPickupDebit(Group, Unit, cname, pickupZone, requestedSets)
+      queueZoneSupplyPickupDebit(Group, Unit, cname, pickupZone, requestedSets, 0)
       return true
     end
 
     if PlayerZoneSuppliesConsumeStock ~= true then return true end
     if not sourceZone then return true end
 
-    local now = timer.getAbsTime()
-    sourceZone:_updateRegularSupplyStock(now)
-    local ready = math.max(0, math.floor(tonumber(sourceZone._regularSupplyReady) or 0))
-    local reserved = math.max(0, math.floor(tonumber(sourceZone._regularSupplyPendingStock) or 0))
-    local available = math.max(0, ready - reserved)
-    if not sourceZone.active or sourceZone.side ~= coalition.side.BLUE
-      or sourceZone._regularSupplyStockSide ~= coalition.side.BLUE or available < requestedSets
-    then
+    local consumed, available, expeditedConsumed = sourceZone:_consumePlayerRegularSupplyStock(
+      requestedSets, coalition.side.BLUE, timer.getAbsTime())
+    if not consumed then
       local T = (Group and Group.IsAlive and Group:IsAlive()) and getCtldGroupTranslator(Group) or getFootholdLocalization():ForLocale()
       local label = ctldLocalizedCargoLabel(T, "Zone supplies")
       local reasonText = ctldReasonText(T, ctldReasonToken("CTLD_REASON_INSUFFICIENT_STOCK", label))
@@ -4403,10 +5649,7 @@ function Foothold_ctld:CanGetCrates(Group, Unit, Cargo, number, drop, pack, quie
       return false
     end
 
-    sourceZone._regularSupplyReady = ready - requestedSets
-    sourceZone._regularSupplyLastUpdateAt = now
-    sourceZone:updateLabel(coalition.side.BLUE)
-    queueZoneSupplyPickupDebit(Group, Unit, cname, pickupZone, requestedSets)
+    queueZoneSupplyPickupDebit(Group, Unit, cname, pickupZone, requestedSets, expeditedConsumed)
     return true
   end
 
@@ -4697,6 +5940,7 @@ function Foothold_ctld:OnAfterCratesPickedUp(From, Event, To, Group, Unit, Cargo
       entry.detached = false
       entry.wasAirborne = true
       entry._wasUnloaded = false
+      entry._careerAirdropped = nil
       refreshZoneSupplyOnboardForEntry(entry)
     end
   end
@@ -4917,7 +6161,7 @@ function LoadFARPS()
         end
         local supplyStock = tonumber(supplyField)
         if supplyStock == nil then
-          supplyStock = 1
+          supplyStock = math.max(0, math.floor(tonumber(CTLDSupplyCapacity) or 1))
         else
           supplyStock = math.max(0, math.floor(supplyStock))
         end
@@ -4928,7 +6172,7 @@ function LoadFARPS()
         local dy = tonumber(d)
         if a and b and cx and dy then
           -- Current format: seq;name;x;y;zell;lat;lon;supplyStock;
-          -- Rows saved before supplyStock was added start with 1 supply.
+          -- Rows saved before supplyStock was added use the configured CTLD starting supply amount.
           entries[#entries + 1] = { seq = a, name = tostring(b), x = cx, y = dy, zell = hasZell, supplyStock = supplyStock }
         elseif a and bx and cy then
           -- Previous format: seq;x;y;
@@ -5302,7 +6546,13 @@ for i,_t in ipairs(LoadedGroups) do
   local skipRestore, nearestEnemyName, nearestEnemyNm = bc:_restorePointTooFarFromEnemy(groupPoint, 80)
   local cr=self:_FindCratesCargoObject(cName)
   local tr=self:_FindTroopsCargoObject(cName)
-  if skipRestore then
+  local captureObjectState = bc:isPendingCaptureObject(gName)
+  if captureObjectState == "active" then
+    self:I(string.format("[RESTORE] pending capture group retained=%s cargo=%s", gName, cName))
+  elseif captureObjectState == "consumed" then
+    self:I(string.format("[RESTORE] consumed capture group removed=%s cargo=%s", gName, cName))
+    if _t.Group:IsAlive() then _t.Group:Destroy() end
+  elseif skipRestore then
     self:I(string.format("[RESTORE] skip loaded group=%s cargo=%s nearestEnemy=%s dist=%.1fNm limit=80.0Nm", gName, cName, tostring(nearestEnemyName), nearestEnemyNm or -1))
     if cr then
       self:AddStockCrates(cName, 1)
@@ -5371,6 +6621,53 @@ for _, zoneObj in ipairs(bc:getZones()) do
   zoneSet:AddZone(mooseZone)
 end
 
+zoneSet.deployedTroopTriggerInitialized = false
+
+function zoneSet:PruneDeadDeployedTroops()
+  local deadGroupNames = {}
+  for groupName, troopGroup in pairs(deployedTroopsSet:GetSet()) do
+    if not troopGroup or not troopGroup:IsAlive() then
+      deadGroupNames[#deadGroupNames + 1] = groupName
+    end
+  end
+
+  for _, groupName in ipairs(deadGroupNames) do
+    deployedTroops[groupName] = nil
+    deployedTroopsSet:RemoveGroupsByName(groupName)
+    zoneCaptureInfo[groupName] = nil
+  end
+
+  return next(deployedTroopsSet:GetSet()) ~= nil
+end
+
+function zoneSet:StartDeployedTroopTrigger()
+  if not self.deployedTroopTriggerInitialized then
+    self:Trigger(deployedTroopsSet)
+    self.deployedTroopTriggerInitialized = true
+  elseif self:GetState() == "TriggerStopped" then
+    self:TriggerStart()
+    self:_TriggerCheck(true)
+    self:__TriggerRunCheck(self.Checktime)
+  else
+    self:_TriggerCheck(true)
+  end
+end
+
+function zoneSet:onafterTriggerRunCheck(From, Event, To)
+  if self:GetState() == "TriggerStopped" then
+    return self
+  end
+
+  if not self:PruneDeadDeployedTroops() then
+    self:TriggerStop()
+    return self
+  end
+
+  self:_TriggerCheck()
+  self:__TriggerRunCheck(self.Checktime)
+  return self
+end
+
 function playRandomSound(Group, soundCategory)
     local sounds = {
         unload = {
@@ -5409,6 +6706,10 @@ function Foothold_ctld:OnAfterTroopsPickedUp(From, Event, To, Group, Unit, Cargo
                 end
                 local oldestIdx, victim, oldestTs = selectOldestUnit(TroopUnits, cargoName, predicate)
                 if oldestIdx and victim then
+                    if victim.Demo then
+                        victim.Demo.refunded = true
+                        victim.Demo.status = "refunded"
+                    end
                     Foothold_ctld:AddStockTroops(cargoName, 1)
                     self:I(string.format("[RESERVE] DELETE oldest troop %s ts=%f (group=%s) after load",
                         cargoName, oldestTs, victim.groupName))
@@ -5484,10 +6785,18 @@ function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troop
     if troopGroup and troopGroup:IsAlive() then
         local troopGroupName = troopGroup:GetName()
         local currentTime = timer.getTime()
+        local careerPlayerName = Unit and Unit.GetPlayerName and Unit:GetPlayerName() or nil
+        local careerAircraftId = self:_resolveCareerAircraftId(Unit)
+        local careerDropRecorded = false
+        local function recordAcceptedCareerDrop()
+            if careerDropRecorded or not careerPlayerName then return end
+            careerDropRecorded = true
+            self:_recordCareerAction(careerPlayerName, Unit, bc.CAREER_STAT.TroopDrops, bc.CAREER_AIRCRAFT_METRIC.TroopDrops, 1, careerAircraftId)
+        end
         
         deployedTroops[troopGroupName] = troopGroup
         deployedTroopsSet:AddGroup(troopGroup)
-        zoneSet:Trigger(deployedTroopsSet)
+        zoneSet:StartDeployedTroopTrigger()
 
         if Group and Group:IsAlive() then
             playRandomSound(Group, "unload")
@@ -5508,7 +6817,7 @@ function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troop
                     cargoName = cargoData:GetName()
                     stock = cargoData:GetStock()
                     cargoType = cargoData.CargoType
-                    canCaptureZone = cargoTypeCanCaptureZone(cargoType)
+                    canCaptureZone = Demolition.CanCapture(cargoName, cargoTypeCanCaptureZone(cargoType))
                     break
                 end
             end
@@ -5528,6 +6837,8 @@ function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troop
             if group.groupName == troopGroupName then
                 group.Timestamp = newTimestamp
                 group.Stock = stock
+                group.Group = troopGroup
+                group.CargoName = cargoName
                 groupExists = true
                 break
             end
@@ -5536,6 +6847,7 @@ function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troop
             table.insert(TroopUnits, {
                 groupName = troopGroupName,
                 Timestamp = newTimestamp,
+                Group = troopGroup,
                 CargoName = cargoName,
                 Stock = stock
             })
@@ -5544,6 +6856,33 @@ function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troop
             if g.CargoName == cargoName then
                 g.Stock = stock
             end
+        end
+
+        local trackedEntry = Demolition.FindEntry(troopGroupName)
+        if cargoName == Demolition.CARGO_NAME then
+            trackedEntry.Demo = {
+                deployer = Group,
+                ownerPlayerName = careerPlayerName,
+                ownerGroupName = Group:GetName(),
+                dropPoint = troopGroup:GetCoordinate():GetVec3(),
+                targetZoneName = nil,
+                status = "ingress",
+                routeGeneration = 0,
+                assignedTargets = {},
+                currentTarget = nil,
+                planted = {},
+                refunded = false,
+                deathReported = false,
+                extractionAnnounced = false,
+            }
+        elseif cargoName == Foothold_ctld.SpyTeam.CARGO_NAME then
+            Foothold_ctld.SpyTeam.Initialize(
+                trackedEntry,
+                Group,
+                careerPlayerName,
+                Group:GetName(),
+                troopGroup:GetCoordinate():GetVec3()
+            )
         end
 
         local oldestUnit = nil
@@ -5560,6 +6899,10 @@ function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troop
             end
         end
         if oldestUnit then
+            if oldestUnit.Demo then
+                oldestUnit.Demo.refunded = true
+                oldestUnit.Demo.status = "refunded"
+            end
             Foothold_ctld:AddStockTroops(oldestUnit.CargoName, 1)
             local dcsGroup = GROUP:FindByName(oldestUnit.groupName)
             if dcsGroup and dcsGroup:IsAlive() then
@@ -5582,13 +6925,61 @@ function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troop
             end
         end
 
+        if cargoName == Demolition.CARGO_NAME then
+            zoneCaptureInfo[troopGroupName] = {
+                troopGroup = troopGroup,
+                zoneName = nil,
+                deployer = Group,
+                cargoName = cargoName,
+                cargoType = cargoType,
+                canCaptureZone = false,
+                pickupZoneName = Group._lastPickupZone,
+                careerPlayerName = careerPlayerName,
+                careerAircraftId = careerAircraftId,
+            }
+            recordAcceptedCareerDrop()
+            Demolition.Start(trackedEntry)
+            for _, zoneData in ipairs(currentZones) do
+                if trackedEntry.Demo.targetZoneName == zoneData.zoneName then
+                    zoneCaptureInfo[troopGroupName].zoneName = zoneData.zoneName
+                    break
+                end
+            end
+            return
+        end
+
+        if cargoName == Foothold_ctld.SpyTeam.CARGO_NAME then
+            zoneCaptureInfo[troopGroupName] = {
+                troopGroup = troopGroup,
+                zoneName = nil,
+                deployer = Group,
+                cargoName = cargoName,
+                cargoType = cargoType,
+                canCaptureZone = false,
+                pickupZoneName = Group._lastPickupZone,
+                careerPlayerName = careerPlayerName,
+                careerAircraftId = careerAircraftId,
+            }
+            recordAcceptedCareerDrop()
+            Foothold_ctld.SpyTeam.Start(trackedEntry)
+            for _, zoneData in ipairs(currentZones) do
+                if trackedEntry.Spy.targetZoneName == zoneData.zoneName then
+                    zoneCaptureInfo[troopGroupName].zoneName = zoneData.zoneName
+                    Foothold_ctld.SpyTeam.HandleEnteredZone(trackedEntry, zoneData.zoneObject)
+                    break
+                end
+            end
+            return
+        end
+
         if #currentZones > 0 then
             for _, zoneData in ipairs(currentZones) do
                 local currentZone = zoneData.zoneObject
                 local zoneName    = zoneData.zoneName
 
                 if not currentZone then
-                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = Group and Group._lastPickupZone or nil }
+                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = Group and Group._lastPickupZone or nil, careerPlayerName = careerPlayerName, careerAircraftId = careerAircraftId }
+                    recordAcceptedCareerDrop()
                     return
                 end
                 if currentZone.side == 2 then
@@ -5603,26 +6994,29 @@ function Foothold_ctld:OnAfterTroopsDeployed(From, Event, To, Group, Unit, Troop
                         zoneCaptureInfo[troopGroupName] = nil
                         return
                     end
-                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = pickupZoneName }
+                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = pickupZoneName, careerPlayerName = careerPlayerName, careerAircraftId = careerAircraftId }
+                    recordAcceptedCareerDrop()
                     CaptureZoneIfNeutral()
                     return
                 end
                 if currentZone.side == 1 then
-                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = Group and Group._lastPickupZone or nil }
+                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = Group and Group._lastPickupZone or nil, careerPlayerName = careerPlayerName, careerAircraftId = careerAircraftId }
+                    recordAcceptedCareerDrop()
                     return
                 end
                 if currentZone.side == 0 then
-                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = Group and Group._lastPickupZone or nil }
+                    zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = zoneName, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = Group and Group._lastPickupZone or nil, careerPlayerName = careerPlayerName, careerAircraftId = careerAircraftId }
+                    recordAcceptedCareerDrop()
                     CaptureZoneIfNeutral()
                 end
             end
         else
-            zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = nil, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = Group and Group._lastPickupZone or nil }
+            zoneCaptureInfo[troopGroupName] = { troopGroup = troopGroup, zoneName = nil, deployer = Group, cargoName = cargoName, cargoType = cargoType, canCaptureZone = canCaptureZone, pickupZoneName = Group and Group._lastPickupZone or nil, careerPlayerName = careerPlayerName, careerAircraftId = careerAircraftId }
+            recordAcceptedCareerDrop()
         end
     end
 end
 function zoneSet:OnAfterEnteredZone(From, Event, To, EnteredGroup, Zone)
-  trigger.action.outText(L10N:Format("CTLD_TROOP_GROUP_ENTERED_ZONE", Zone:GetName()), 10)
     local troopGroup = EnteredGroup
     if troopGroup and troopGroup:IsAlive() then
         local troopGroupName = troopGroup:GetName()
@@ -5642,17 +7036,57 @@ function zoneSet:OnAfterEnteredZone(From, Event, To, EnteredGroup, Zone)
             end
             zoneCaptureInfo[troopGroupName].cargoName = cname
         end
+        if zoneCaptureInfo[troopGroupName].cargoName == Demolition.CARGO_NAME then
+            trigger.action.outText(L10N:Format("CTLD_DEMO_ENTERED_ZONE", zoneName), 10)
+        elseif zoneCaptureInfo[troopGroupName].cargoName == Foothold_ctld.SpyTeam.CARGO_NAME then
+            -- Spy entry messaging is emitted only when its selected Red zone activates Intel.
+        else
+            trigger.action.outText(L10N:Format("CTLD_TROOP_GROUP_ENTERED_ZONE", zoneName), 10)
+        end
         if zoneCaptureInfo[troopGroupName].cargoType == nil then
             zoneCaptureInfo[troopGroupName].cargoType = getCargoTypeByName(zoneCaptureInfo[troopGroupName].cargoName)
         end
         if zoneCaptureInfo[troopGroupName].canCaptureZone == nil then
-            zoneCaptureInfo[troopGroupName].canCaptureZone = cargoTypeCanCaptureZone(zoneCaptureInfo[troopGroupName].cargoType)
+            zoneCaptureInfo[troopGroupName].canCaptureZone = Demolition.CanCapture(
+                zoneCaptureInfo[troopGroupName].cargoName,
+                cargoTypeCanCaptureZone(zoneCaptureInfo[troopGroupName].cargoType)
+            )
         end
         if zoneCaptureInfo[troopGroupName].pickupZoneName == nil then
             local dep = zoneCaptureInfo[troopGroupName].deployer
             if dep and dep._lastPickupZone then
                 zoneCaptureInfo[troopGroupName].pickupZoneName = dep._lastPickupZone
             end
+        end
+
+        local trackedEntry = Demolition.FindEntry(troopGroupName)
+        if zoneCaptureInfo[troopGroupName].cargoName == Foothold_ctld.SpyTeam.CARGO_NAME then
+            if trackedEntry and trackedEntry.Spy then
+                zoneCaptureInfo[troopGroupName].zoneName = trackedEntry.Spy.targetZoneName
+                if trackedEntry.Spy.targetZoneName == zoneName and currentZone then
+                    Foothold_ctld.SpyTeam.HandleEnteredZone(trackedEntry, currentZone)
+                end
+            end
+            return
+        end
+        if zoneCaptureInfo[troopGroupName].cargoName == Demolition.CARGO_NAME then
+            if trackedEntry
+              and trackedEntry.Demo
+              and trackedEntry.Demo.targetZoneName == zoneName
+              and currentZone
+            then
+                if currentZone.side == coalition.side.RED then
+                    Demolition.RebalanceZone(zoneName)
+                else
+                    local result = Demolition.HandleZoneState(trackedEntry, currentZone)
+                    if result == "refunded" then
+                        deployedTroops[troopGroupName] = nil
+                        deployedTroopsSet:RemoveGroupsByName(troopGroupName)
+                        zoneCaptureInfo[troopGroupName] = nil
+                    end
+                end
+            end
+            return
         end
 
         if zoneCaptureInfo[troopGroupName].canCaptureZone and currentZone and (currentZone.side == 2 or currentZone.side == 0) then
@@ -5663,6 +7097,38 @@ end
 
 local captureRunning = false
 local captureQueued  = false
+
+function completePendingBlueCtldTroop(zoneObj, payload, succeeded)
+    local troopGroupName = payload.groupName
+    if succeeded then
+        local pname = payload.playerName
+        local joinedCapture = payload.joinedCapture == true
+        if joinedCapture then
+            Foothold_ctld:_recordCareerAction(pname, nil, bc.CAREER_STAT.SupplyUnitsDelivered,
+                bc.CAREER_AIRCRAFT_METRIC.SupplyUnitsDelivered, 1, payload.careerAircraftId)
+            if pname then bc:recordCareerStat(pname, bc.CAREER_STAT.ZoneSupplyUnits, 1) end
+        else
+            Foothold_ctld:_recordCareerAction(pname, nil, bc.CAREER_STAT.TroopCaptures, nil, 1, payload.careerAircraftId)
+        end
+        if pname and bc.playerContributions[coalition.side.BLUE][pname] ~= nil then
+            local rewardKey = joinedCapture and "Zone supply delivery" or "Zone capture"
+            local reward = (bc.rewards[rewardKey] or (joinedCapture and 150 or 200)) * 0.5
+            bc:addContribution(pname, coalition.side.BLUE, reward)
+            bc:addTempStat(pname, joinedCapture and "Zone supply delivery (troops)" or "Zone capture (troops)", 1)
+            local T = getFootholdLocalization():ForLocale()
+            local action = joinedCapture and "stocked" or "captured"
+            trigger.action.outTextForCoalition(coalition.side.BLUE,
+                T:Format("CTLD_TROOP_ZONE_EVENT_LINE", pname, ctldTroopZoneActionText(T, action), zoneObj.zone), 20)
+        end
+    end
+    if troopGroupName then
+        deployedTroops[troopGroupName] = nil
+        deployedTroopsSet:RemoveGroupsByName(troopGroupName)
+        zoneCaptureInfo[troopGroupName] = nil
+    end
+end
+
+bc:registerPendingCaptureHandler("blue_ctld_troop_capture", completePendingBlueCtldTroop)
 
 
 function CaptureZoneIfNeutral()
@@ -5710,6 +7176,8 @@ function CaptureZoneIfNeutral()
                         verb = 'captured and upgraded'
                     elseif ev.captured then
                         verb = 'captured'
+                    elseif ev.stocked then
+                        verb = 'stocked'
                     else
                         verb = 'upgraded'
                     end
@@ -5729,7 +7197,7 @@ function CaptureZoneIfNeutral()
                             if not Utils.isInAir(playerUnit) then
                                 local didLand = false
                                 for _, zoneData in ipairs(zones) do
-                                    if ((2 == zoneData.side) or (zoneData.wasBlue)) and Utils.isInZone(playerUnit, zoneData.zone) then
+                                    if zoneData.side == 2 and Utils.isInZone(playerUnit, zoneData.zone) then
                                         if not landedThisRun[pname] then
                                             local pnameCap = pname
                                             local unitCap = playerUnit
@@ -5781,8 +7249,8 @@ function CaptureZoneIfNeutral()
             local wait = delay
             if wait == nil then
                 wait = 5
-            elseif wait < 0 then
-                wait = 0
+            elseif wait <= 0 then
+                wait = 0.1
             end
             timer.scheduleFunction(function() processNextGroup(index + 1) end, {}, timer.getTime() + wait)
         end
@@ -5799,6 +7267,18 @@ function CaptureZoneIfNeutral()
             return
         end
 
+        local captureObjectState = bc:isPendingCaptureObject(troopGroupName)
+        if captureObjectState == "active" then
+            zoneCaptureInfo[troopGroupName] = nil
+            scheduleNext(0)
+            return
+        elseif captureObjectState == "consumed" then
+            troopGroup:Destroy()
+            cleanupDeployment(troopGroupName)
+            scheduleNext(0)
+            return
+        end
+
         local zoneName = data.zoneName
         if not zoneName then
             scheduleNext(5)
@@ -5812,7 +7292,28 @@ function CaptureZoneIfNeutral()
         end
         if data.canCaptureZone == nil then
             data.cargoType = data.cargoType or getCargoTypeByName(data.cargoName)
-            data.canCaptureZone = cargoTypeCanCaptureZone(data.cargoType)
+            data.canCaptureZone = Demolition.CanCapture(data.cargoName, cargoTypeCanCaptureZone(data.cargoType))
+        end
+        if data.cargoName == Foothold_ctld.SpyTeam.CARGO_NAME then
+            scheduleNext(5)
+            return
+        end
+        if data.cargoName == Demolition.CARGO_NAME then
+            local trackedEntry = Demolition.FindEntry(troopGroupName)
+            if trackedEntry
+              and trackedEntry.Demo
+              and trackedEntry.Demo.targetZoneName == zoneName
+              and troopGroup:IsPartlyOrCompletelyInZone(getSupplyZoneWrapper(zoneName))
+            then
+                local result = Demolition.HandleZoneState(trackedEntry, currentZone)
+                if result == "refunded" then
+                    cleanupDeployment(troopGroupName)
+                    scheduleNext(1)
+                    return
+                end
+            end
+            scheduleNext(5)
+            return
         end
         if data.canCaptureZone ~= true then
             if currentZone.side == 2 then
@@ -5842,42 +7343,60 @@ function CaptureZoneIfNeutral()
             return
         end
 
-        local pname
+        local careerPname = data.careerPlayerName
+        local pname = nil
+        local pilot = nil
         if data.deployer and data.deployer:IsAlive() then
-            local pilot = data.deployer:GetUnits()[1]
+            pilot = data.deployer:GetUnits()[1]
             if pilot and pilot:GetPlayerName() then pname = pilot:GetPlayerName() end
         end
+        local careerOwner = pname or careerPname
+        local careerAircraftId = Foothold_ctld:_resolveCareerAircraftId(pilot) or data.careerAircraftId
 
         if currentZone.side == 0 and currentZone.active then
-            currentZone:capture(2)
-            troopGroup:Destroy()
-            if pname and bc.playerContributions[2][pname] ~= nil then
-              local reward = (bc.rewards['Zone capture'] or 200) * 0.5
-                bc:addContribution(pname, 2, reward)
-                bc:addTempStat(pname, 'Zone capture (troops)', 1)
-                noteEvent(zoneName, pname, 'captured', reward)
+            local joinedCapture = currentZone.pendingCapture ~= nil
+            local cargoObj = data.cargoName and Foothold_ctld:_FindTroopsCargoObject(data.cargoName) or nil
+            local templates = cargoObj and cargoObj:GetTemplates() or nil
+            local accepted = currentZone:startPendingCapture(coalition.side.BLUE, {
+                kind = "group",
+                name = troopGroupName,
+                template = templates and templates[1] or nil,
+                position = troopGroup:GetCoordinate():GetVec3(),
+                heading = troopGroup:GetHeading() or 0,
+                destroyOnFinish = true,
+                tombstone = true,
+                stopGroup = true,
+                delivery = {
+                    handler = "blue_ctld_troop_capture",
+                    payload = {
+                        groupName = troopGroupName,
+                        playerName = careerOwner,
+                        careerAircraftId = careerAircraftId,
+                        joinedCapture = joinedCapture,
+                    },
+                },
+            })
+            if accepted then
+                zoneCaptureInfo[troopGroupName] = nil
+                scheduleNext(0)
+                return
             end
-            cleanupDeployment(troopGroupName)
             scheduleNext(5)
             return
         elseif currentZone.side == 2 then
-            local need = currentZone:canRecieveSupply() or false
-            if need then
-                currentZone:upgrade()
-                troopGroup:Destroy()
-                if pname and bc.playerContributions[2][pname] ~= nil then
-                  local reward = (bc.rewards['Zone upgrade'] or 100) * 0.5
-                    bc:addContribution(pname, 2, reward)
-                    bc:addTempStat(pname, 'Zone upgrade (troops)', 1)
-                    noteEvent(zoneName, pname, 'upgraded', reward)
-                end
-                cleanupDeployment(troopGroupName)
-                scheduleNext(5)
-                return
-            end
+            bc:_applyRegularSupplyDelivery(currentZone, coalition.side.BLUE, timer.getAbsTime(), true)
+            Foothold_ctld:_recordCareerAction(careerOwner, pilot, bc.CAREER_STAT.SupplyUnitsDelivered,
+                bc.CAREER_AIRCRAFT_METRIC.SupplyUnitsDelivered, 1, careerAircraftId)
+            if careerOwner then bc:recordCareerStat(careerOwner, bc.CAREER_STAT.ZoneSupplyUnits, 1) end
             troopGroup:Destroy()
+            if pname and bc.playerContributions[2][pname] ~= nil then
+                local reward = (bc.rewards['Zone supply delivery'] or 150) * 0.5
+                bc:addContribution(pname, 2, reward)
+                bc:addTempStat(pname, 'Zone supply delivery (troops)', 1)
+                noteEvent(zoneName, pname, 'stocked', reward)
+            end
             cleanupDeployment(troopGroupName)
-            scheduleNext(1)
+            scheduleNext(5)
             return
         elseif not currentZone.active then
             troopGroup:Destroy()
@@ -5948,6 +7467,32 @@ local function RefillMissingWithCountTable()
         end
       end
     end
+  end
+
+  local touchedZones = {}
+  for _, entry in ipairs(TroopUnits) do
+    local demo = entry.Demo
+    if demo and not demo.deathReported and demo.status ~= "refunded" then
+      Demolition.RefreshPendingBatch(entry)
+      local alive = entry.Group and entry.Group:IsAlive()
+      if not alive then
+        local extracted = entry.Group and (entry.Group.ExtractTime or 0) > 0
+        demo.status = extracted and "extracted" or "killed"
+        demo.deathReported = true
+        if not extracted then
+          local displayZone = demo.targetZoneName or L10N:Get("COMMON_UNKNOWN")
+          trigger.action.outTextForCoalition(
+            coalition.side.BLUE,
+            L10N:Format("CTLD_DEMO_KILLED", displayZone),
+            15
+          )
+        end
+        if demo.targetZoneName then touchedZones[demo.targetZoneName] = true end
+      end
+    end
+  end
+  for zoneName in pairs(touchedZones) do
+    Demolition.RebalanceZone(zoneName)
   end
 end
 

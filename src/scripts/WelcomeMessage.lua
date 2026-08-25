@@ -1813,6 +1813,7 @@ function SpawnEscortFromGround(clientGroup, templateName, alias, onSpawn)
     local parkingIds = PickCachedParkingIdsForAirbase(homebase, terminalType, freeSpots, need)
     local spawned = nil
     if parkingIds then
+        bc:_prepareBlueAiWarehouseSpawn(templateName, homebase)
         spawned = sp:SpawnAtParkingSpot(homebase, parkingIds, SPAWN.Takeoff.Hot)
     end
 
@@ -1835,6 +1836,9 @@ function EscortClientGroup(clientGroup)
     local function OnEscortSpawn(g)
         local escortGroup = FLIGHTGROUP:New(g)
         local playerInAir = IsPlayerGroupInAir(clientGroup)
+        if escortHomeBase then
+            escortGroup:SetHomebase(escortHomeBase)
+        end
         escortGroup:GetGroup():CommandSetUnlimitedFuel(true):SetOptionRadarUsingForContinousSearch(true):SetOptionWaypointPassReport(false)
         escortGroups[groupName] = escortGroup
         if playerInAir then
@@ -2156,7 +2160,12 @@ function EscortAbort(group)
     local escortGroup = escortGroups[group:GetName()]
     if escortGroup then
         escortPendingJoin[group:GetName()] = nil
-        escortGroup:CancelAllMissions()
+        RemoveEscortMenu(group)
+        if escortGroup.homebase then
+            escortGroup:RTB(escortGroup.homebase)
+        else
+            escortGroup:CancelAllMissions()
+        end
         MESSAGE:New(T:Get("WELCOME_ESCORT_RTB"), 20):ToGroup(group)
     else
         MESSAGE:New(T:Get("WELCOME_ESCORT_NOT_FOUND"), 10):ToGroup(group)
@@ -2179,6 +2188,7 @@ function static:OnEventRefueling(EventData)
             side = EventData.IniCoalition,
             fuel = EventData.IniUnit:GetFuel(),
             fuelMassMax = EventData.IniUnit:GetDesc().fuelMassMax,
+            aircraftId = bc:getCareerAircraftId(EventData.IniUnit:GetTypeName()),
         }
         return
     end
@@ -2198,6 +2208,7 @@ function static:OnEventRefueling(EventData)
                         side = playerUnit:getCoalition(),
                         fuel = playerUnit:getFuel(),
                         fuelMassMax = playerUnit:getDesc().fuelMassMax,
+                        aircraftId = bc:getCareerAircraftId(playerUnit:getTypeName()),
                     }
                 end
             end
@@ -2222,6 +2233,19 @@ function static:OnEventRefuelingStop(EventData)
         return
     end
 
+    local gainedWholeLbs = math.floor(gainedLbs)
+    local careerCrew = bc:getMulticrewPlayersNow(refuelStart.playerName)
+    local careerSeen = {}
+    for _, crewName in ipairs(careerCrew) do
+        if not careerSeen[crewName] then
+            careerSeen[crewName] = true
+            bc:recordCareerStat(crewName, bc.CAREER_STAT.FuelReceivedLbs, gainedWholeLbs)
+            if refuelStart.aircraftId then
+                bc:recordCareerAircraftStat(crewName, refuelStart.aircraftId, bc.CAREER_AIRCRAFT_METRIC.FuelReceivedLbs, gainedWholeLbs)
+            end
+        end
+    end
+
     local reward = math.floor(gainedLbs / 100) * RefuelReward
     if reward <= 0 then
         return
@@ -2231,12 +2255,11 @@ function static:OnEventRefuelingStop(EventData)
         return
     end
 
-    bc:addContribution(refuelStart.playerName, refuelStart.side, reward)
+    bc:addContribution(refuelStart.playerName, refuelStart.side, reward, careerCrew)
 
     if not refuelStatAwardedByPlayer[refuelStart.playerName] then
-        local crew = bc:getMulticrewPlayersNow(refuelStart.playerName)
-        for i=1,#crew do
-            local n = crew[i]
+        for i=1,#careerCrew do
+            local n = careerCrew[i]
             bc:addTempStat(n, "Refueling", 1)
             refuelStatAwardedByPlayer[n] = true
         end
@@ -2328,6 +2351,8 @@ function static:OnEventPlayerLeaveUnit(EventData)
             bc:markSeadMissionPlayerUnavailable(playerName)
         if EventData.id == EVENTS.PlayerLeaveUnit then
             local side = playerUnit:GetCoalition()
+            bc:finishCareerFlightForPlayer(playerName, playerUnit:GetName())
+            bc:_resetCareerAirKillStreaks(playerName)
             bc.lossPenaltyArmByPlayer[playerName] = nil
             if bc.playerContributions and bc.playerContributions[side] then
                 bc.playerContributions[side][playerName] = 0
@@ -2407,6 +2432,11 @@ function static:OnEventPlayerLeaveUnit(EventData)
                     local groupId = bc.groupByPlayer and bc.groupByPlayer[playerName]
                     bc:markCasMissionPlayerUnavailable(playerName)
                     bc:markSeadMissionPlayerUnavailable(playerName)
+                    bc:_resetCareerAirKillStreaks(playerName)
+                    if bc.playerContributions and bc.playerContributions[coalition.side.BLUE] then
+                        bc.playerContributions[coalition.side.BLUE][playerName] = 0
+                    end
+                    bc:resetTempStats(playerName, true)
                     cleanupEscortForGroupName(gname)
                     if groupId then
                         lc:pruneGroupMenus(groupId, gname)

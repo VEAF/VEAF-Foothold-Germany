@@ -26,11 +26,17 @@ custom_scripts:
     - path: src/scripts/COLDWAR_SETUP.lua
     - path: src/scripts/WelcomeMessage.lua
     - path: src/scripts/Zeus.lua
+      delay_seconds: 1
     - path: src/scripts/EWRS.lua
+      delay_seconds: 1
     - path: "src/scripts/Foothold CTLD.lua"
+      delay_seconds: 1
     - path: src/scripts/Foothold_CTLD_Red.lua
+      delay_seconds: 1
     - path: src/scripts/Splash_Damage.lua
+      delay_seconds: 1
     - path: src/scripts/AIEN.lua
+      delay_seconds: 12
 
 # Native load triggers detected in the source .miz. The build removes these
 # so the scripts above are not loaded twice.

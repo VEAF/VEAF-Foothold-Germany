@@ -2381,7 +2381,7 @@ mission =
                     type = "CH-47Fbl1",
                     skill = "Client",
                     AddPropAircraft = {
-                      DustProtectionDevices = false,
+                      DustProtectionDevices = true,
                       NetCrewControlPriority = 0,
                     },
                     alt = 494,
@@ -137112,11 +137112,11 @@ AutoHoldPosition(gr:getName())",
                 task = "CAS",
                 communication = true,
                 dynSpawnTemplate = true,
-                frequency = 127.5,
+                frequency = 266,
                 hidden = false,
                 modulation = 0,
                 password = "6naVB4pA-QF:D2_T96BqmiHuMItFO4RocM0gQQO8RSZFpoBfj1Wq4xI",
-                radioSet = false,
+                radioSet = true,
                 route = {
                   points = {
                     [1] = {
@@ -138296,26 +138296,26 @@ AutoHoldPosition(gr:getName())",
                     Radio = {
                       [1] = {
                         channels = {
-                          [1] = 127.5,
-                          [2] = 135,
-                          [3] = 136,
+                          [1] = 266,
+                          [2] = 305,
+                          [3] = 264,
                           [4] = 265,
-                          [5] = 125,
-                          [6] = 121,
-                          [7] = 141,
+                          [5] = 256,
+                          [6] = 254,
+                          [7] = 250,
                           [8] = 270,
-                          [9] = 126,
-                          [10] = 133,
-                          [11] = 130,
-                          [12] = 129,
-                          [13] = 123,
-                          [14] = 131,
-                          [15] = 134,
-                          [16] = 132,
-                          [17] = 138,
-                          [18] = 122,
-                          [19] = 124,
-                          [20] = 137,
+                          [9] = 257,
+                          [10] = 255,
+                          [11] = 262,
+                          [12] = 259,
+                          [13] = 268,
+                          [14] = 269,
+                          [15] = 260,
+                          [16] = 263,
+                          [17] = 261,
+                          [18] = 267,
+                          [19] = 251,
+                          [20] = 253,
                         },
                         channelsNames = {},
                         modulations = {},
@@ -169564,6 +169564,141 @@ AutoHoldPosition(gr:getName())",
                 visible = false,
                 x = -546793.03430079,
                 y = -446434.19525066,
+              },
+              [33] = {
+                groupId = 1563,
+                name = "CTLD_TROOPS_DEMO",
+                task = "Ground Nothing",
+                hidden = false,
+                lateActivation = true,
+                route = {
+                  points = {
+                    [1] = {
+                      name = "CTLD_TROOPS_DEMO",
+                      type = "Turning Point",
+                      task = {
+                        id = "ComboTask",
+                        params = {
+                          tasks = {},
+                        },
+                      },
+                      action = "Off Road",
+                      alt = 443,
+                      alt_type = "BARO",
+                      ETA = 0,
+                      ETA_locked = true,
+                      formation_template = "",
+                      speed = 0,
+                      speed_locked = true,
+                      x = -512526.70048824,
+                      y = -619555.39721271,
+                    },
+                  },
+                  routeRelativeTOT = true,
+                  spans = {},
+                },
+                start_time = 0,
+                tasks = {},
+                taskSelected = true,
+                uncontrollable = false,
+                units = {
+                  [1] = {
+                    unitId = 4672,
+                    name = "CTLD_TROOPS_DEMO-1",
+                    type = "Soldier M4",
+                    skill = "Average",
+                    coldAtStart = false,
+                    heading = 0,
+                    livery_id = "us-2",
+                    playerCanDrive = false,
+                    x = -512526.70048824,
+                    y = -619555.39721271,
+                  },
+                  [2] = {
+                    unitId = 4673,
+                    name = "CTLD_TROOPS_DEMO-2",
+                    type = "Soldier M4",
+                    skill = "Average",
+                    coldAtStart = false,
+                    heading = 0,
+                    livery_id = "us-2",
+                    playerCanDrive = false,
+                    x = -512546.70048824,
+                    y = -619555.39721271,
+                  },
+                },
+                visible = false,
+                x = -512526.70048824,
+                y = -619555.39721271,
+              },
+              [34] = {
+                groupId = 1564,
+                name = "CTLD_TROOPS_SPY",
+                task = "Ground Nothing",
+                hidden = false,
+                lateActivation = true,
+                route = {
+                  points = {
+                    [1] = {
+                      name = "CTLD_TROOPS_SPY",
+                      type = "Turning Point",
+                      task = {
+                        id = "ComboTask",
+                        params = {
+                          tasks = {
+                            [1] = {
+                              id = "WrappedAction",
+                              auto = false,
+                              enabled = true,
+                              number = 1,
+                              params = {
+                                action = {
+                                  id = "SetInvisible",
+                                  params = {
+                                    value = true,
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                      action = "Off Road",
+                      alt = 443,
+                      alt_type = "BARO",
+                      ETA = 0,
+                      ETA_locked = true,
+                      formation_template = "",
+                      speed = 0,
+                      speed_locked = true,
+                      x = -512521.46556234,
+                      y = -619682.25920991,
+                    },
+                  },
+                  routeRelativeTOT = true,
+                  spans = {},
+                },
+                start_time = 0,
+                tasks = {},
+                taskSelected = true,
+                uncontrollable = false,
+                units = {
+                  [1] = {
+                    unitId = 4674,
+                    name = "CTLD_TROOPS_SPY-1",
+                    type = "Soldier M4",
+                    skill = "Average",
+                    coldAtStart = false,
+                    heading = 0,
+                    livery_id = "us-2",
+                    playerCanDrive = false,
+                    x = -512521.46556234,
+                    y = -619682.25920991,
+                  },
+                },
+                visible = false,
+                x = -512521.46556234,
+                y = -619682.25920991,
               },
             },
           },
@@ -243982,60 +244117,6 @@ bc:engageZone('Fulda',gr:getName())",
                       x = -340275.3955512,
                       y = -370612.20289263,
                     },
-                    [2] = {
-                      type = "Turning Point",
-                      task = {
-                        id = "ComboTask",
-                        params = {
-                          tasks = {},
-                        },
-                      },
-                      action = "Turning Point",
-                      alt = 6096,
-                      alt_type = "BARO",
-                      ETA = 132.67292354705,
-                      ETA_locked = false,
-                      formation_template = "",
-                      speed = 256.94444444444,
-                      speed_locked = true,
-                      x = -325119.70088801,
-                      y = -401147.48977945,
-                    },
-                    [3] = {
-                      type = "Turning Point",
-                      task = {
-                        id = "ComboTask",
-                        params = {
-                          tasks = {
-                            [1] = {
-                              id = "WrappedAction",
-                              auto = false,
-                              enabled = true,
-                              number = 1,
-                              params = {
-                                action = {
-                                  id = "Script",
-                                  params = {
-                                    command = "local gr = ...\
-gr:destroy()",
-                                  },
-                                },
-                              },
-                            },
-                          },
-                        },
-                      },
-                      action = "Turning Point",
-                      alt = 6096,
-                      alt_type = "BARO",
-                      ETA = 309.529718351,
-                      ETA_locked = false,
-                      formation_template = "",
-                      speed = 256.94444444444,
-                      speed_locked = true,
-                      x = -346031.04449384,
-                      y = -360802.41845169,
-                    },
                   },
                   routeRelativeTOT = true,
                 },
@@ -244069,20 +244150,11 @@ gr:destroy()",
                         [1] = {
                           CLSID = "{ECM_POD_L_175V}",
                         },
-                        [10] = {
-                          CLSID = "{X-29T}",
-                        },
-                        [11] = {
-                          CLSID = "{B4C01D60-A8A3-4237-BD72-CA7655BC0FE9}",
-                        },
-                        [12] = {
-                          CLSID = "{ECM_POD_L_175V}",
-                        },
                         [2] = {
-                          CLSID = "{B4C01D60-A8A3-4237-BD72-CA7655BC0FE9}",
+                          CLSID = "{FBC29BFE-3D24-4C64-B81D-941239D12249}",
                         },
                         [3] = {
-                          CLSID = "{X-31P}",
+                          CLSID = "{X-29T}",
                         },
                         [4] = {
                           CLSID = "{X-29T}",
@@ -244090,11 +244162,26 @@ gr:destroy()",
                         [5] = {
                           CLSID = "{X-31P}",
                         },
+                        [6] = {
+                          CLSID = "{E8069896-8435-4B90-95C0-01A03AE6E400}",
+                        },
+                        [7] = {
+                          CLSID = "{E8069896-8435-4B90-95C0-01A03AE6E400}",
+                        },
                         [8] = {
                           CLSID = "{X-31P}",
                         },
                         [9] = {
                           CLSID = "{X-29T}",
+                        },
+                        [10] = {
+                          CLSID = "{X-29T}",
+                        },
+                        [11] = {
+                          CLSID = "{FBC29BFE-3D24-4C64-B81D-941239D12249}",
+                        },
+                        [12] = {
+                          CLSID = "{ECM_POD_L_175V}",
                         },
                       },
                     },
@@ -244128,17 +244215,8 @@ gr:destroy()",
                         [1] = {
                           CLSID = "{ECM_POD_L_175V}",
                         },
-                        [10] = {
-                          CLSID = "{X-29T}",
-                        },
-                        [11] = {
-                          CLSID = "{B4C01D60-A8A3-4237-BD72-CA7655BC0FE9}",
-                        },
-                        [12] = {
-                          CLSID = "{ECM_POD_L_175V}",
-                        },
                         [2] = {
-                          CLSID = "{B4C01D60-A8A3-4237-BD72-CA7655BC0FE9}",
+                          CLSID = "{FBC29BFE-3D24-4C64-B81D-941239D12249}",
                         },
                         [3] = {
                           CLSID = "{X-29T}",
@@ -244149,11 +244227,26 @@ gr:destroy()",
                         [5] = {
                           CLSID = "{X-31P}",
                         },
+                        [6] = {
+                          CLSID = "{E8069896-8435-4B90-95C0-01A03AE6E400}",
+                        },
+                        [7] = {
+                          CLSID = "{E8069896-8435-4B90-95C0-01A03AE6E400}",
+                        },
                         [8] = {
                           CLSID = "{X-31P}",
                         },
                         [9] = {
                           CLSID = "{X-29T}",
+                        },
+                        [10] = {
+                          CLSID = "{X-29T}",
+                        },
+                        [11] = {
+                          CLSID = "{FBC29BFE-3D24-4C64-B81D-941239D12249}",
+                        },
+                        [12] = {
+                          CLSID = "{ECM_POD_L_175V}",
                         },
                       },
                     },
@@ -244187,17 +244280,8 @@ gr:destroy()",
                         [1] = {
                           CLSID = "{ECM_POD_L_175V}",
                         },
-                        [10] = {
-                          CLSID = "{X-29T}",
-                        },
-                        [11] = {
-                          CLSID = "{B4C01D60-A8A3-4237-BD72-CA7655BC0FE9}",
-                        },
-                        [12] = {
-                          CLSID = "{ECM_POD_L_175V}",
-                        },
                         [2] = {
-                          CLSID = "{B4C01D60-A8A3-4237-BD72-CA7655BC0FE9}",
+                          CLSID = "{FBC29BFE-3D24-4C64-B81D-941239D12249}",
                         },
                         [3] = {
                           CLSID = "{X-29T}",
@@ -244206,13 +244290,28 @@ gr:destroy()",
                           CLSID = "{X-29T}",
                         },
                         [5] = {
-                          CLSID = "{X-29T}",
+                          CLSID = "{X-31P}",
+                        },
+                        [6] = {
+                          CLSID = "{E8069896-8435-4B90-95C0-01A03AE6E400}",
+                        },
+                        [7] = {
+                          CLSID = "{E8069896-8435-4B90-95C0-01A03AE6E400}",
                         },
                         [8] = {
-                          CLSID = "{X-29T}",
+                          CLSID = "{X-31P}",
                         },
                         [9] = {
                           CLSID = "{X-29T}",
+                        },
+                        [10] = {
+                          CLSID = "{X-29T}",
+                        },
+                        [11] = {
+                          CLSID = "{FBC29BFE-3D24-4C64-B81D-941239D12249}",
+                        },
+                        [12] = {
+                          CLSID = "{ECM_POD_L_175V}",
                         },
                       },
                     },
@@ -245138,60 +245237,6 @@ trigger.action.outTextForCoalition(2,'Enemy cargo plane has landed',15)",
                       speed_locked = true,
                       x = -343916.336482,
                       y = -372055.61876641,
-                    },
-                    [2] = {
-                      type = "Turning Point",
-                      task = {
-                        id = "ComboTask",
-                        params = {
-                          tasks = {},
-                        },
-                      },
-                      action = "Turning Point",
-                      alt = 6096,
-                      alt_type = "BARO",
-                      ETA = 163.52642513585,
-                      ETA_locked = false,
-                      formation_template = "",
-                      speed = 210.69444444444,
-                      speed_locked = true,
-                      x = -326780.06376261,
-                      y = -401945.98183992,
-                    },
-                    [3] = {
-                      type = "Turning Point",
-                      task = {
-                        id = "ComboTask",
-                        params = {
-                          tasks = {
-                            [1] = {
-                              id = "WrappedAction",
-                              auto = false,
-                              enabled = true,
-                              number = 1,
-                              params = {
-                                action = {
-                                  id = "Script",
-                                  params = {
-                                    command = "local gr = ...\
-gr:destroy()",
-                                  },
-                                },
-                              },
-                            },
-                          },
-                        },
-                      },
-                      action = "Turning Point",
-                      alt = 6096,
-                      alt_type = "BARO",
-                      ETA = 386.2187333514,
-                      ETA_locked = false,
-                      formation_template = "",
-                      speed = 210.69444444444,
-                      speed_locked = true,
-                      x = -350046.39919319,
-                      y = -361200.83423103,
                     },
                   },
                   routeRelativeTOT = true,
@@ -270598,7 +270643,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
       [11] = 47,
     },
   },
-  currentKey = 21448346,
+  currentKey = 21596136,
   date = {
     Day = 1,
     Month = 9,
@@ -276410,16 +276455,16 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
       mmint = 1,
       prob = 100,
     },
-    EZ42_FIXED_LAMP_DEFECTIVE = {
-      id = "EZ42_FIXED_LAMP_DEFECTIVE",
+    EZ42_Fixed_LAMP_DEFECTIVE = {
+      id = "EZ42_Fixed_LAMP_DEFECTIVE",
       enable = false,
       hh = 0,
       mm = 0,
       mmint = 1,
       prob = 100,
     },
-    EZ42_Fixed_LAMP_DEFECTIVE = {
-      id = "EZ42_Fixed_LAMP_DEFECTIVE",
+    EZ42_FIXED_LAMP_DEFECTIVE = {
+      id = "EZ42_FIXED_LAMP_DEFECTIVE",
       enable = false,
       hh = 0,
       mm = 0,
@@ -284692,11 +284737,11 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
     },
   },
   map = {
-    centerX = -398733.50923483,
+    centerX = -407164.76170321,
     centerY = -700000,
     zoom = 738786.27968338,
   },
-  maxDictId = 257,
+  maxDictId = 258,
   pictureFileNameB = {
     [1] = "ResKey_ImageBriefing_99",
   },
@@ -284734,7 +284779,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
       [3] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_256\"));a_do_script_file(getValueResourceByKey(\"ResKey_Action_257\"));a_do_script_file(getValueResourceByKey(\"ResKey_Action_236\"));",
       [4] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_21\"));a_do_script_file(getValueResourceByKey(\"ResKey_Action_212\"));a_do_script_file(getValueResourceByKey(\"ResKey_Action_223\"));a_do_script_file(getValueResourceByKey(\"ResKey_Action_243\"));a_do_script_file(getValueResourceByKey(\"ResKey_Action_125\")); mission.trig.func[4]=nil;",
       [5] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_130\")); mission.trig.func[5]=nil;",
-      [6] = "a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_29\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_30\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_32\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_33\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_34\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_36\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_37\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_38\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_39\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_40\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_41\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_42\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_43\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_44\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_45\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_46\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_52\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_77\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_147\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_148\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_149\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_150\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_151\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_152\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_153\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_154\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_155\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_156\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_157\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_158\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_159\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_249\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_179\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_190\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_191\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_247\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_248\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_250\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_255\"), 0); mission.trig.func[6]=nil;",
+      [6] = "a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_29\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_30\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_32\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_33\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_34\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_36\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_37\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_38\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_39\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_40\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_41\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_42\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_43\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_44\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_45\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_46\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_52\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_77\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_147\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_148\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_149\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_150\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_151\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_152\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_153\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_154\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_155\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_156\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_157\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_158\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_159\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_249\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_179\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_190\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_191\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_247\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_248\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_250\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_255\"), 0);a_out_sound_c(1, getValueResourceByKey(\"ResKey_Action_258\"), 0); mission.trig.func[6]=nil;",
       [7] = "a_end_mission(\"blue\", getValueDictByKey(\"DictKey_ActionText_82\"), 0); mission.trig.func[7]=nil;",
     },
     conditions = {
@@ -300173,58 +300218,6 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         y = -718191.25,
       },
       [853] = {
-        zoneId = 25475,
-        name = "StrikeTarget1",
-        type = 2,
-        color = {
-          [1] = 1,
-          [2] = 1,
-          [3] = 0.50196078431373,
-          [4] = 0.14901960784314,
-        },
-        heading = 0,
-        hidden = false,
-        properties = {
-          [1] = {
-            key = "ROLE",
-            value = "",
-          },
-          [2] = {
-            key = "VALUE",
-            value = "",
-          },
-          [3] = {
-            key = "OBJECT ID",
-            value = "78269080",
-          },
-          [4] = {
-            key = "NAME",
-            value = "us_border_station",
-          },
-        },
-        radius = 16.222925070456,
-        verticies = {
-          [1] = {
-            x = -272219.55043104,
-            y = -740660.26759749,
-          },
-          [2] = {
-            x = -272198.90758411,
-            y = -740670.19302501,
-          },
-          [3] = {
-            x = -272188.94956896,
-            y = -740649.48240251,
-          },
-          [4] = {
-            x = -272209.59241589,
-            y = -740639.55697499,
-          },
-        },
-        x = -272204.25,
-        y = -740654.875,
-      },
-      [854] = {
         zoneId = 25476,
         name = "HannoverSupply",
         type = 2,
@@ -300276,7 +300269,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -188955.8125,
         y = -731572,
       },
-      [855] = {
+      [854] = {
         zoneId = 25483,
         name = "NaziReunion",
         type = 2,
@@ -300328,7 +300321,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -53827.10546875,
         y = -783876.4375,
       },
-      [856] = {
+      [855] = {
         zoneId = 25897,
         name = "Bornholm-land-0",
         type = 0,
@@ -300345,7 +300338,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 58459.014154385,
         y = -363406.91398438,
       },
-      [857] = {
+      [856] = {
         zoneId = 25898,
         name = "Bornholm-land-1",
         type = 0,
@@ -300362,7 +300355,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 58381.767258498,
         y = -363251.54734633,
       },
-      [858] = {
+      [857] = {
         zoneId = 25899,
         name = "Sturup-land-0",
         type = 0,
@@ -300379,7 +300372,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 119712.54634051,
         y = -445325.83240371,
       },
-      [859] = {
+      [858] = {
         zoneId = 25900,
         name = "Sturup-land-1",
         type = 0,
@@ -300396,7 +300389,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 119400.78184327,
         y = -445326.9431693,
       },
-      [860] = {
+      [859] = {
         zoneId = 25901,
         name = "Kastrup City-lland-0",
         type = 0,
@@ -300413,7 +300406,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 133808.21829655,
         y = -489420.90752547,
       },
-      [861] = {
+      [860] = {
         zoneId = 25902,
         name = "Kastrup City-lland-1",
         type = 0,
@@ -300430,7 +300423,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 133831.74572206,
         y = -489969.00410083,
       },
-      [862] = {
+      [861] = {
         zoneId = 26316,
         name = "Sturup-land-2",
         type = 0,
@@ -300447,7 +300440,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 119152.83633269,
         y = -445312.89122914,
       },
-      [863] = {
+      [862] = {
         zoneId = 26730,
         name = "Striketarget2",
         type = 2,
@@ -300499,7 +300492,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -490838.1875,
         y = -891081.125,
       },
-      [864] = {
+      [863] = {
         zoneId = 27144,
         name = "Frankfurt-sam-1",
         type = 0,
@@ -300516,7 +300509,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -440648.52422114,
         y = -856411.85095838,
       },
-      [865] = {
+      [864] = {
         zoneId = 27145,
         name = "Frankfurt-sam-2",
         type = 0,
@@ -300533,7 +300526,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -442015.43095187,
         y = -855333.5511181,
       },
-      [866] = {
+      [865] = {
         zoneId = 27146,
         name = "Hahn-sam-0",
         type = 0,
@@ -300550,7 +300543,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -436095.2586482,
         y = -949127.64569661,
       },
-      [867] = {
+      [866] = {
         zoneId = 27147,
         name = "Hahn-sam-1",
         type = 0,
@@ -300567,7 +300560,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -438802.568956,
         y = -947043.35445378,
       },
-      [868] = {
+      [867] = {
         zoneId = 27148,
         name = "Mendig-sam-0",
         type = 0,
@@ -300584,7 +300577,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -390767.63036344,
         y = -935813.14662473,
       },
-      [869] = {
+      [868] = {
         zoneId = 27149,
         name = "Mendig-sam-1",
         type = 0,
@@ -300601,7 +300594,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -392158.3252587,
         y = -934637.98452234,
       },
-      [870] = {
+      [869] = {
         zoneId = 27150,
         name = "Mendig-sam-2",
         type = 0,
@@ -300618,7 +300611,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -393924.47001553,
         y = -935890.90384299,
       },
-      [871] = {
+      [870] = {
         zoneId = 27151,
         name = "Mendig-sam-3",
         type = 0,
@@ -300635,7 +300628,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -393586.05028896,
         y = -936725.50286792,
       },
-      [872] = {
+      [871] = {
         zoneId = 27152,
         name = "Mendig North FARP-sam-0",
         type = 0,
@@ -300652,7 +300645,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -387417.88295339,
         y = -926245.52932032,
       },
-      [873] = {
+      [872] = {
         zoneId = 27153,
         name = "Bitburg-sam-0",
         type = 0,
@@ -300669,7 +300662,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -428666.63121241,
         y = -997075.50123419,
       },
-      [874] = {
+      [873] = {
         zoneId = 27154,
         name = "Spangdahlem-sam-0",
         type = 0,
@@ -300686,7 +300679,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -425977.89832766,
         y = -989613.02604626,
       },
-      [875] = {
+      [874] = {
         zoneId = 27155,
         name = "Ramstein-sam-0",
         type = 0,
@@ -300703,7 +300696,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -497484.30011266,
         y = -935861.68652811,
       },
-      [876] = {
+      [875] = {
         zoneId = 27156,
         name = "Bad Durkheim-sam-0",
         type = 0,
@@ -300720,7 +300713,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -501751.2632858,
         y = -892014.69665573,
       },
-      [877] = {
+      [876] = {
         zoneId = 27157,
         name = "Bad Durkheim-sam-1",
         type = 0,
@@ -300737,7 +300730,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -501248.70492482,
         y = -890733.43541489,
       },
-      [878] = {
+      [877] = {
         zoneId = 27158,
         name = "Walldorf FARP-sam-0",
         type = 0,
@@ -300754,7 +300747,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -526565.06519535,
         y = -859632.42694226,
       },
-      [879] = {
+      [878] = {
         zoneId = 27159,
         name = "Giebelstadt-sam-0",
         type = 0,
@@ -300771,7 +300764,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -502992.32723441,
         y = -758727.22958729,
       },
-      [880] = {
+      [879] = {
         zoneId = 27160,
         name = "Giebelstadt-sam-1",
         type = 0,
@@ -300788,7 +300781,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -504464.7474088,
         y = -760407.15761554,
       },
-      [881] = {
+      [880] = {
         zoneId = 27161,
         name = "Gelnhausen-sam-0",
         type = 0,
@@ -300805,7 +300798,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -435471.06965112,
         y = -807383.30987032,
       },
-      [882] = {
+      [881] = {
         zoneId = 27162,
         name = "Gelnhausen-sam-1",
         type = 0,
@@ -300822,7 +300815,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -434166.54567208,
         y = -809423.40656028,
       },
-      [883] = {
+      [882] = {
         zoneId = 27163,
         name = "Gelnhausen-sam-2",
         type = 0,
@@ -300839,7 +300832,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -433352.40350032,
         y = -808595.71792976,
       },
-      [884] = {
+      [883] = {
         zoneId = 27164,
         name = "Laubach FARP-sam-0",
         type = 0,
@@ -300856,7 +300849,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -397659.53854911,
         y = -805164.49885278,
       },
-      [885] = {
+      [884] = {
         zoneId = 27165,
         name = "Fulda-sam-0",
         type = 0,
@@ -300873,7 +300866,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -401016.67664775,
         y = -769150.60653669,
       },
-      [886] = {
+      [885] = {
         zoneId = 27166,
         name = "Fulda-sam-1",
         type = 0,
@@ -300890,7 +300883,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -401137.98558234,
         y = -767561.09322994,
       },
-      [887] = {
+      [886] = {
         zoneId = 27167,
         name = "Fulda-sam-2",
         type = 0,
@@ -300907,7 +300900,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -402685.0564911,
         y = -767926.92999778,
       },
-      [888] = {
+      [887] = {
         zoneId = 27168,
         name = "Fulda-sam-3",
         type = 0,
@@ -300924,7 +300917,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -402647.74478095,
         y = -768907.95496228,
       },
-      [889] = {
+      [888] = {
         zoneId = 27169,
         name = "Fulda-sam-4",
         type = 0,
@@ -300941,7 +300934,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -402087.15908695,
         y = -768654.96336661,
       },
-      [890] = {
+      [889] = {
         zoneId = 27170,
         name = "Salzungen FARP-sam-0",
         type = 0,
@@ -300958,7 +300951,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -378485.20900629,
         y = -723047.25374133,
       },
-      [891] = {
+      [890] = {
         zoneId = 27171,
         name = "Salzungen FARP-sam-1",
         type = 0,
@@ -300975,7 +300968,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -378720.35244175,
         y = -722400.90806076,
       },
-      [892] = {
+      [891] = {
         zoneId = 27172,
         name = "Salzungen FARP-sam-2",
         type = 0,
@@ -300992,7 +300985,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -378030.31113926,
         y = -724128.70449841,
       },
-      [893] = {
+      [892] = {
         zoneId = 27173,
         name = "Bindersleben-sam-0",
         type = 0,
@@ -301009,7 +301002,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -365142.30051665,
         y = -668718.49130795,
       },
-      [894] = {
+      [893] = {
         zoneId = 27174,
         name = "Bindersleben-sam-1",
         type = 0,
@@ -301026,7 +301019,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -367257.90419585,
         y = -667587.07855882,
       },
-      [895] = {
+      [894] = {
         zoneId = 27175,
         name = "Bindersleben-sam-2",
         type = 0,
@@ -301043,7 +301036,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -367012.05173992,
         y = -669837.1063357,
       },
-      [896] = {
+      [895] = {
         zoneId = 27176,
         name = "Bindersleben-sam-3",
         type = 0,
@@ -301060,7 +301053,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -365249.66411116,
         y = -667698.52571768,
       },
-      [897] = {
+      [896] = {
         zoneId = 27178,
         name = "Naumburg FARP-sam-0",
         type = 0,
@@ -301077,7 +301070,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -357534.0598901,
         y = -609541.72459769,
       },
-      [898] = {
+      [897] = {
         zoneId = 27179,
         name = "Naumburg FARP-sam-1",
         type = 0,
@@ -301094,7 +301087,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -356984.14585738,
         y = -610634.80664274,
       },
-      [899] = {
+      [898] = {
         zoneId = 27180,
         name = "Naumburg FARP-sam-2",
         type = 0,
@@ -301111,7 +301104,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -355388.65664237,
         y = -608577.66554039,
       },
-      [900] = {
+      [899] = {
         zoneId = 27181,
         name = "Naumburg FARP-sam-3",
         type = 0,
@@ -301128,7 +301121,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -354994.22329907,
         y = -608854.14936303,
       },
-      [901] = {
+      [900] = {
         zoneId = 27183,
         name = "Schkeuditz-sam-0",
         type = 0,
@@ -301145,7 +301138,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -329213.00046513,
         y = -574937.51958362,
       },
-      [902] = {
+      [901] = {
         zoneId = 27184,
         name = "Schkeuditz-sam-1",
         type = 0,
@@ -301162,7 +301155,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -329243.81117335,
         y = -575621.75189773,
       },
-      [903] = {
+      [902] = {
         zoneId = 27185,
         name = "Schkeuditz-sam-2",
         type = 0,
@@ -301179,7 +301172,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -327241.41803024,
         y = -573895.96012147,
       },
-      [904] = {
+      [903] = {
         zoneId = 27186,
         name = "Schkeuditz-sam-3",
         type = 0,
@@ -301196,7 +301189,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -327182.66698602,
         y = -574286.65456556,
       },
-      [905] = {
+      [904] = {
         zoneId = 27188,
         name = "Zerbst-sam-0",
         type = 0,
@@ -301213,7 +301206,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -263855.26786366,
         y = -571120.30307589,
       },
-      [906] = {
+      [905] = {
         zoneId = 27189,
         name = "Zerbst-sam-1",
         type = 0,
@@ -301230,7 +301223,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -264335.75080627,
         y = -570763.760963,
       },
-      [907] = {
+      [906] = {
         zoneId = 27190,
         name = "Zerbst-sam-2",
         type = 0,
@@ -301247,7 +301240,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -262176.81904166,
         y = -572543.10203472,
       },
-      [908] = {
+      [907] = {
         zoneId = 27191,
         name = "Zerbst-sam-3",
         type = 0,
@@ -301264,7 +301257,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -262500.97541575,
         y = -573359.61963681,
       },
-      [909] = {
+      [908] = {
         zoneId = 27192,
         name = "Zerbst-sam-4",
         type = 0,
@@ -301281,7 +301274,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -264656.91956485,
         y = -572443.75944597,
       },
-      [910] = {
+      [909] = {
         zoneId = 27193,
         name = "Altes Lager-sam-0",
         type = 0,
@@ -301298,7 +301291,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -271826.51406044,
         y = -515264.40610609,
       },
-      [911] = {
+      [910] = {
         zoneId = 27194,
         name = "Altes Lager-sam-1",
         type = 0,
@@ -301315,7 +301308,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -272369.42519807,
         y = -515106.92043257,
       },
-      [912] = {
+      [911] = {
         zoneId = 27195,
         name = "Altes Lager-sam-2",
         type = 0,
@@ -301332,7 +301325,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -271024.63209983,
         y = -515594.37492431,
       },
-      [913] = {
+      [912] = {
         zoneId = 27196,
         name = "Altes Lager-sam-3",
         type = 0,
@@ -301349,7 +301342,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -271348.18186426,
         y = -515360.005956,
       },
-      [914] = {
+      [913] = {
         zoneId = 27197,
         name = "Wundsdorf FARP-sam-0",
         type = 0,
@@ -301366,7 +301359,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -255562.20545855,
         y = -477064.17591797,
       },
-      [915] = {
+      [914] = {
         zoneId = 27198,
         name = "Wundsdorf FARP-sam-1",
         type = 0,
@@ -301383,7 +301376,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -255216.90557497,
         y = -477329.92141661,
       },
-      [916] = {
+      [915] = {
         zoneId = 27199,
         name = "Wundsdorf FARP-sam-2",
         type = 0,
@@ -301400,7 +301393,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -255943.05091838,
         y = -477688.7624721,
       },
-      [917] = {
+      [916] = {
         zoneId = 27200,
         name = "Tegel-sam-0",
         type = 0,
@@ -301417,7 +301410,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -209122.26852445,
         y = -487838.74175927,
       },
-      [918] = {
+      [917] = {
         zoneId = 27201,
         name = "Tegel-sam-1",
         type = 0,
@@ -301434,7 +301427,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -211841.85859103,
         y = -486950.4895089,
       },
-      [919] = {
+      [918] = {
         zoneId = 27202,
         name = "Werneuchen-sam-0",
         type = 0,
@@ -301451,7 +301444,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -207565.70722496,
         y = -453559.56728599,
       },
-      [920] = {
+      [919] = {
         zoneId = 27203,
         name = "Werneuchen-sam-1",
         type = 0,
@@ -301468,7 +301461,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -206919.29921421,
         y = -452371.37221421,
       },
-      [921] = {
+      [920] = {
         zoneId = 27204,
         name = "Werneuchen-sam-2",
         type = 0,
@@ -301485,7 +301478,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -205656.34569967,
         y = -455469.93726589,
       },
-      [922] = {
+      [921] = {
         zoneId = 27205,
         name = "Neuruppin-sam-0",
         type = 0,
@@ -301502,7 +301495,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -165203.8338277,
         y = -516981.59427295,
       },
-      [923] = {
+      [922] = {
         zoneId = 27206,
         name = "Neuruppin-sam-1",
         type = 0,
@@ -301519,7 +301512,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -164792.76511263,
         y = -517789.22333456,
       },
-      [924] = {
+      [923] = {
         zoneId = 27207,
         name = "Neuruppin-sam-2",
         type = 0,
@@ -301536,7 +301529,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -163311.95683594,
         y = -516250.83859668,
       },
-      [925] = {
+      [924] = {
         zoneId = 27208,
         name = "Templin-sam-0",
         type = 0,
@@ -301553,7 +301546,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -157953.61283362,
         y = -463721.72885892,
       },
-      [926] = {
+      [925] = {
         zoneId = 27209,
         name = "Larz-sam-0",
         type = 0,
@@ -301570,7 +301563,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -122926.86312182,
         y = -513239.78224475,
       },
-      [927] = {
+      [926] = {
         zoneId = 27210,
         name = "Larz-sam-1",
         type = 0,
@@ -301587,7 +301580,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -121940.23017958,
         y = -512582.48378272,
       },
-      [928] = {
+      [927] = {
         zoneId = 27211,
         name = "Larz-sam-2",
         type = 0,
@@ -301604,7 +301597,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -122952.55546577,
         y = -511985.7511712,
       },
-      [929] = {
+      [928] = {
         zoneId = 27212,
         name = "Larz-sam-3",
         type = 0,
@@ -301621,7 +301614,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -122364.07844491,
         y = -513666.76453223,
       },
-      [930] = {
+      [929] = {
         zoneId = 27213,
         name = "Neubrandenburg-sam-0",
         type = 0,
@@ -301638,7 +301631,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -94190.971038604,
         y = -473639.38646622,
       },
-      [931] = {
+      [930] = {
         zoneId = 27214,
         name = "Neubrandenburg-8",
         type = 0,
@@ -301655,7 +301648,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -94036.598507071,
         y = -472920.53245167,
       },
-      [932] = {
+      [931] = {
         zoneId = 27215,
         name = "Neubrandenburg-12",
         type = 0,
@@ -301672,7 +301665,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -94554.94007739,
         y = -471971.28041927,
       },
-      [933] = {
+      [932] = {
         zoneId = 27216,
         name = "Neubrandenburg-16",
         type = 0,
@@ -301689,7 +301682,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -93982.890826291,
         y = -471684.00677789,
       },
-      [934] = {
+      [933] = {
         zoneId = 27217,
         name = "Neubrandenburg-17",
         type = 0,
@@ -301706,7 +301699,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -95148.222597636,
         y = -475107.55917367,
       },
-      [935] = {
+      [934] = {
         zoneId = 27218,
         name = "Neubrandenburg-18",
         type = 0,
@@ -301723,7 +301716,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -96112.462820013,
         y = -474659.16248994,
       },
-      [936] = {
+      [935] = {
         zoneId = 27219,
         name = "Neubrandenburg-sam-1",
         type = 0,
@@ -301740,7 +301733,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -94206.19627938,
         y = -474990.33312869,
       },
-      [937] = {
+      [936] = {
         zoneId = 27220,
         name = "Neubrandenburg-sam-2",
         type = 0,
@@ -301757,7 +301750,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -93122.306411842,
         y = -473964.89133327,
       },
-      [938] = {
+      [937] = {
         zoneId = 27221,
         name = "Garz-sam-0",
         type = 0,
@@ -301774,7 +301767,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -69885.432980424,
         y = -415998.48662916,
       },
-      [939] = {
+      [938] = {
         zoneId = 27222,
         name = "Garz-sam-1",
         type = 0,
@@ -301791,7 +301784,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -70022.828289558,
         y = -415522.03515394,
       },
-      [940] = {
+      [939] = {
         zoneId = 27223,
         name = "Garz-sam-2",
         type = 0,
@@ -301808,7 +301801,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -69770.19820502,
         y = -416553.60799913,
       },
-      [941] = {
+      [940] = {
         zoneId = 27224,
         name = "Garz-sam-3",
         type = 0,
@@ -301825,7 +301818,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -68585.788361846,
         y = -414543.32655995,
       },
-      [942] = {
+      [941] = {
         zoneId = 27225,
         name = "Garz-sam-4",
         type = 0,
@@ -301842,7 +301835,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -68367.589458536,
         y = -415867.56818004,
       },
-      [943] = {
+      [942] = {
         zoneId = 27226,
         name = "Peenemunde--sam-0",
         type = 0,
@@ -301859,7 +301852,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -36411.449046891,
         y = -434836.62699365,
       },
-      [944] = {
+      [943] = {
         zoneId = 27227,
         name = "Peenemunde--sam-1",
         type = 0,
@@ -301876,7 +301869,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -35453.740668576,
         y = -435640.21522779,
       },
-      [945] = {
+      [944] = {
         zoneId = 27228,
         name = "Peenemunde--sam-2",
         type = 0,
@@ -301893,7 +301886,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -37098.831409995,
         y = -434744.2378909,
       },
-      [946] = {
+      [945] = {
         zoneId = 27229,
         name = "Peenemunde--sam-3",
         type = 0,
@@ -301910,7 +301903,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -35086.125734434,
         y = -435751.34909555,
       },
-      [947] = {
+      [946] = {
         zoneId = 27230,
         name = "Peenemunde--sam-4",
         type = 0,
@@ -301927,7 +301920,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -35782.2352355,
         y = -434923.68872684,
       },
-      [948] = {
+      [947] = {
         zoneId = 27231,
         name = "Tutow-sam-0",
         type = 0,
@@ -301944,7 +301937,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -60162.315602124,
         y = -476135.80594134,
       },
-      [949] = {
+      [948] = {
         zoneId = 27232,
         name = "Tutow-sam-1",
         type = 0,
@@ -301961,7 +301954,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -59708.701741123,
         y = -475726.96100518,
       },
-      [950] = {
+      [949] = {
         zoneId = 27233,
         name = "Tutow-sam-2",
         type = 0,
@@ -301978,7 +301971,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -59334.271462391,
         y = -475851.37984388,
       },
-      [951] = {
+      [950] = {
         zoneId = 27234,
         name = "Tutow-sam-3",
         type = 0,
@@ -301995,7 +301988,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -58532.007409883,
         y = -473243.12770156,
       },
-      [952] = {
+      [951] = {
         zoneId = 27235,
         name = "Bornholm-sam-0",
         type = 0,
@@ -302012,7 +302005,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 59573.905331017,
         y = -360945.24740718,
       },
-      [953] = {
+      [952] = {
         zoneId = 27236,
         name = "Bornholm-sam-1",
         type = 0,
@@ -302029,7 +302022,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 60168.067784065,
         y = -361608.72881308,
       },
-      [954] = {
+      [953] = {
         zoneId = 27237,
         name = "Bornholm-sam-2",
         type = 0,
@@ -302046,7 +302039,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 59153.747596362,
         y = -361819.51501666,
       },
-      [955] = {
+      [954] = {
         zoneId = 27238,
         name = "Sturup-sam-0",
         type = 0,
@@ -302063,7 +302056,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 119430.54530669,
         y = -444138.8909405,
       },
-      [956] = {
+      [955] = {
         zoneId = 27239,
         name = "Sturup-sam-1",
         type = 0,
@@ -302080,7 +302073,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 119633.06945746,
         y = -446711.39016209,
       },
-      [957] = {
+      [956] = {
         zoneId = 27240,
         name = "Sturup-sam-2",
         type = 0,
@@ -302097,7 +302090,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 118770.89175374,
         y = -446474.73026429,
       },
-      [958] = {
+      [957] = {
         zoneId = 27241,
         name = "Kastrup City-sam-0",
         type = 0,
@@ -302114,7 +302107,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 129975.44798871,
         y = -492888.8268412,
       },
-      [959] = {
+      [958] = {
         zoneId = 27242,
         name = "Kastrup City-sam-1",
         type = 0,
@@ -302131,7 +302124,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 130102.81589478,
         y = -494469.17452177,
       },
-      [960] = {
+      [959] = {
         zoneId = 27243,
         name = "Kastrup City-sam-2",
         type = 0,
@@ -302148,7 +302141,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 130616.50086554,
         y = -491904.98742192,
       },
-      [961] = {
+      [960] = {
         zoneId = 27244,
         name = "Laage-sam-0",
         type = 0,
@@ -302165,7 +302158,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -50244.85387538,
         y = -537230.39774137,
       },
-      [962] = {
+      [961] = {
         zoneId = 27245,
         name = "Laage-sam-1",
         type = 0,
@@ -302182,7 +302175,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -50572.045771058,
         y = -537851.83130009,
       },
-      [963] = {
+      [962] = {
         zoneId = 27246,
         name = "Laage-sam-2",
         type = 0,
@@ -302199,7 +302192,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -52930.161174827,
         y = -537889.52165362,
       },
-      [964] = {
+      [963] = {
         zoneId = 27247,
         name = "Lubeck-sam-0",
         type = 0,
@@ -302216,7 +302209,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -52010.012532308,
         y = -640797.40151804,
       },
-      [965] = {
+      [964] = {
         zoneId = 27248,
         name = "Lubeck-sam-1",
         type = 0,
@@ -302233,7 +302226,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -51624.679383255,
         y = -639667.69796628,
       },
-      [966] = {
+      [965] = {
         zoneId = 27250,
         name = "Hamburg-sam-0",
         type = 0,
@@ -302250,7 +302243,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -60853.98399418,
         y = -694877.31700797,
       },
-      [967] = {
+      [966] = {
         zoneId = 27251,
         name = "Hamburg-sam-1",
         type = 0,
@@ -302267,7 +302260,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -59835.757403254,
         y = -694630.37542266,
       },
-      [968] = {
+      [967] = {
         zoneId = 27252,
         name = "Bremen-land-3",
         type = 0,
@@ -302284,7 +302277,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -115057.18554274,
         y = -783033.0683442,
       },
-      [969] = {
+      [968] = {
         zoneId = 27253,
         name = "Bremen-land-4",
         type = 0,
@@ -302301,7 +302294,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -115899.71604659,
         y = -781906.14894529,
       },
-      [970] = {
+      [969] = {
         zoneId = 27254,
         name = "Scheessel-sam-0",
         type = 0,
@@ -302318,7 +302311,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -109651.83027029,
         y = -732445.60536976,
       },
-      [971] = {
+      [970] = {
         zoneId = 27255,
         name = "Scheessel-sam-1",
         type = 0,
@@ -302335,7 +302328,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -111098.44723725,
         y = -732983.34440195,
       },
-      [972] = {
+      [971] = {
         zoneId = 27256,
         name = "Scheessel-sam-2",
         type = 0,
@@ -302352,7 +302345,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -112154.54360339,
         y = -733291.81856272,
       },
-      [973] = {
+      [972] = {
         zoneId = 27257,
         name = "Fassberg-sam-0",
         type = 0,
@@ -302369,7 +302362,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -144216.19168358,
         y = -690110.82881973,
       },
-      [974] = {
+      [973] = {
         zoneId = 27259,
         name = "Hannover-sam-1",
         type = 0,
@@ -302386,7 +302379,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -191328.13951247,
         y = -732406.03548673,
       },
-      [975] = {
+      [974] = {
         zoneId = 27260,
         name = "Braunschweig-10",
         type = 0,
@@ -302403,7 +302396,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -212059.34848415,
         y = -675647.31259977,
       },
-      [976] = {
+      [975] = {
         zoneId = 27679,
         name = "MahlwinkelWarehouse",
         type = 2,
@@ -302455,7 +302448,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -218318.46875,
         y = -588985.21452638,
       },
-      [977] = {
+      [976] = {
         zoneId = 28093,
         name = "Arty-Mahlwinkel-Zerbst-0",
         type = 0,
@@ -302472,7 +302465,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -247576.48337063,
         y = -578295.64928444,
       },
-      [978] = {
+      [977] = {
         zoneId = 28094,
         name = "Arty-Mahlwinkel-Zerbst-1",
         type = 0,
@@ -302489,7 +302482,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -249343.89856746,
         y = -577042.66147181,
       },
-      [979] = {
+      [978] = {
         zoneId = 28508,
         name = "Arty-Templin-Neuruppin-0",
         type = 0,
@@ -302506,7 +302499,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -163469.71667267,
         y = -512941.52055646,
       },
-      [980] = {
+      [979] = {
         zoneId = 28509,
         name = "Arty-Templin-Neuruppin-1",
         type = 0,
@@ -302523,7 +302516,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -163261.28489779,
         y = -513012.84494253,
       },
-      [981] = {
+      [980] = {
         zoneId = 29336,
         name = "Arty-Mendig-Hahn-0",
         type = 0,
@@ -302540,7 +302533,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -423107.17240706,
         y = -945325.38476547,
       },
-      [982] = {
+      [981] = {
         zoneId = 29337,
         name = "Arty-Mendig-Hahn-1",
         type = 0,
@@ -302557,7 +302550,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -423061.18708588,
         y = -948375.22863905,
       },
-      [983] = {
+      [982] = {
         zoneId = 29338,
         name = "Arty-Laubach FARP-Frankfurt-0",
         type = 0,
@@ -302574,7 +302567,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -429094.98765848,
         y = -844769.8554203,
       },
-      [984] = {
+      [983] = {
         zoneId = 29339,
         name = "Arty-Laubach FARP-Frankfurt-1",
         type = 0,
@@ -302591,7 +302584,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -427987.06321624,
         y = -839425.93183699,
       },
-      [985] = {
+      [984] = {
         zoneId = 29753,
         name = "Arty-Wundsdorf FARP-Altes Lager-0",
         type = 0,
@@ -302608,7 +302601,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -270953.39417252,
         y = -510708.30283049,
       },
-      [986] = {
+      [985] = {
         zoneId = 29754,
         name = "Arty-Wundsdorf FARP-Altes Lager-1",
         type = 0,
@@ -302625,7 +302618,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -267986.93706191,
         y = -513094.78041167,
       },
-      [987] = {
+      [986] = {
         zoneId = 29755,
         name = "Wismar",
         type = 0,
@@ -302642,7 +302635,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -45721.518620657,
         y = -587533.67468129,
       },
-      [988] = {
+      [987] = {
         zoneId = 29756,
         name = "Wismar-1",
         type = 0,
@@ -302659,7 +302652,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -47211.413792321,
         y = -587473.18872291,
       },
-      [989] = {
+      [988] = {
         zoneId = 29757,
         name = "Wismar-2",
         type = 0,
@@ -302676,7 +302669,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -47248.689433175,
         y = -588566.01624663,
       },
-      [990] = {
+      [989] = {
         zoneId = 29758,
         name = "Wismar-3",
         type = 0,
@@ -302693,7 +302686,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -46478.218980486,
         y = -588444.10043269,
       },
-      [991] = {
+      [990] = {
         zoneId = 29759,
         name = "Wismar-4",
         type = 0,
@@ -302710,7 +302703,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -46422.787038843,
         y = -588740.63331229,
       },
-      [992] = {
+      [991] = {
         zoneId = 29760,
         name = "Wismar-5",
         type = 0,
@@ -302727,7 +302720,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -45399.851484737,
         y = -588437.9433589,
       },
-      [993] = {
+      [992] = {
         zoneId = 29761,
         name = "Wismar-6",
         type = 0,
@@ -302744,7 +302737,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -44715.698254887,
         y = -587733.88481612,
       },
-      [994] = {
+      [993] = {
         zoneId = 29762,
         name = "Wismar-7",
         type = 0,
@@ -302761,7 +302754,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -44330.759429065,
         y = -586706.33672373,
       },
-      [995] = {
+      [994] = {
         zoneId = 29763,
         name = "Wismar-8",
         type = 0,
@@ -302778,7 +302771,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -43864.801121078,
         y = -587436.02814641,
       },
-      [996] = {
+      [995] = {
         zoneId = 29764,
         name = "Wismar-9",
         type = 0,
@@ -302795,7 +302788,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -46884.854078784,
         y = -586824.09111756,
       },
-      [997] = {
+      [996] = {
         zoneId = 29765,
         name = "Wismar-10",
         type = 0,
@@ -302812,7 +302805,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -45889.587939685,
         y = -586023.44334242,
       },
-      [998] = {
+      [997] = {
         zoneId = 29766,
         name = "Wismar-11",
         type = 0,
@@ -302829,7 +302822,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -45323.316250384,
         y = -585713.69525568,
       },
-      [999] = {
+      [998] = {
         zoneId = 29767,
         name = "Wismar-12",
         type = 0,
@@ -302846,7 +302839,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -44136.143128111,
         y = -587789.15928167,
       },
-      [1000] = {
+      [999] = {
         zoneId = 29768,
         name = "Wismar-sam-0",
         type = 0,
@@ -302863,7 +302856,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -46468.797801536,
         y = -587001.51474352,
       },
-      [1001] = {
+      [1000] = {
         zoneId = 29769,
         name = "Wismar-land-forced-0",
         type = 0,
@@ -302880,7 +302873,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -45863.574591795,
         y = -587188.16290477,
       },
-      [1002] = {
+      [1001] = {
         zoneId = 30183,
         name = "Wismar-land-forced-1",
         type = 0,
@@ -302897,7 +302890,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -45860.027889962,
         y = -587672.65560256,
       },
-      [1003] = {
+      [1002] = {
         zoneId = 30597,
         name = "Red Army Camp",
         type = 2,
@@ -302932,7 +302925,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -186390.07827727,
         y = -610768.22453338,
       },
-      [1004] = {
+      [1003] = {
         zoneId = 30598,
         name = "Red Army Camp-1",
         type = 0,
@@ -302949,7 +302942,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185894.1807668,
         y = -612635.23843598,
       },
-      [1005] = {
+      [1004] = {
         zoneId = 30599,
         name = "Red Army Camp-2",
         type = 0,
@@ -302966,7 +302959,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -182680.79906339,
         y = -613565.00070419,
       },
-      [1006] = {
+      [1005] = {
         zoneId = 30600,
         name = "Red Army Camp-3",
         type = 0,
@@ -302983,7 +302976,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -186877.70557182,
         y = -608740.20479538,
       },
-      [1007] = {
+      [1006] = {
         zoneId = 30601,
         name = "Red Army Camp-4",
         type = 0,
@@ -303000,7 +302993,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -183181.18810339,
         y = -611559.25240302,
       },
-      [1008] = {
+      [1007] = {
         zoneId = 30602,
         name = "Red Army Camp-5",
         type = 0,
@@ -303017,7 +303010,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185101.68697289,
         y = -613452.48988565,
       },
-      [1009] = {
+      [1008] = {
         zoneId = 30603,
         name = "Red Army Camp-6",
         type = 0,
@@ -303034,7 +303027,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185322.92342823,
         y = -610759.35879109,
       },
-      [1010] = {
+      [1009] = {
         zoneId = 30604,
         name = "Red Army Camp-7",
         type = 0,
@@ -303051,7 +303044,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -183870.38857757,
         y = -607231.68857399,
       },
-      [1011] = {
+      [1010] = {
         zoneId = 30605,
         name = "Red Army Camp-8",
         type = 0,
@@ -303068,7 +303061,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -186722.92077785,
         y = -609787.28649999,
       },
-      [1012] = {
+      [1011] = {
         zoneId = 30606,
         name = "Red Army Camp-9",
         type = 0,
@@ -303085,7 +303078,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -186940.55487628,
         y = -611192.42481652,
       },
-      [1013] = {
+      [1012] = {
         zoneId = 30607,
         name = "Red Army Camp-10",
         type = 0,
@@ -303102,7 +303095,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -187820.9262524,
         y = -608927.47289443,
       },
-      [1014] = {
+      [1013] = {
         zoneId = 30608,
         name = "Red Army Camp-11",
         type = 0,
@@ -303119,7 +303112,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -186869.46252846,
         y = -609248.77311245,
       },
-      [1015] = {
+      [1014] = {
         zoneId = 30609,
         name = "Red Army Camp-12",
         type = 0,
@@ -303136,7 +303129,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -189932.39570406,
         y = -607516.202369,
       },
-      [1016] = {
+      [1015] = {
         zoneId = 30610,
         name = "Red Army Camp-13",
         type = 0,
@@ -303153,7 +303146,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -186701.18357869,
         y = -613425.38784924,
       },
-      [1017] = {
+      [1016] = {
         zoneId = 30611,
         name = "Red Army Camp-14",
         type = 0,
@@ -303170,7 +303163,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -187429.2128911,
         y = -611469.94753736,
       },
-      [1018] = {
+      [1017] = {
         zoneId = 30612,
         name = "Red Army Camp-15",
         type = 0,
@@ -303187,7 +303180,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -187285.59695395,
         y = -609085.0254263,
       },
-      [1019] = {
+      [1018] = {
         zoneId = 30613,
         name = "Red Army Camp-16",
         type = 0,
@@ -303204,7 +303197,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -187994.55697141,
         y = -610277.95590874,
       },
-      [1020] = {
+      [1019] = {
         zoneId = 30614,
         name = "Red Army Camp-17",
         type = 0,
@@ -303221,7 +303214,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -189174.75673118,
         y = -610264.32065073,
       },
-      [1021] = {
+      [1020] = {
         zoneId = 30615,
         name = "Red Army Camp-18",
         type = 0,
@@ -303238,7 +303231,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -189776.25570673,
         y = -613240.34724063,
       },
-      [1022] = {
+      [1021] = {
         zoneId = 30616,
         name = "Red Army Camp-19",
         type = 0,
@@ -303255,7 +303248,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -183357.81815911,
         y = -609570.56880054,
       },
-      [1023] = {
+      [1022] = {
         zoneId = 30617,
         name = "Red Army Camp-20",
         type = 0,
@@ -303272,7 +303265,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -187416.95751653,
         y = -615027.3007438,
       },
-      [1024] = {
+      [1023] = {
         zoneId = 30618,
         name = "Red Army Camp-21",
         type = 0,
@@ -303289,7 +303282,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184881.46560278,
         y = -609381.75599783,
       },
-      [1025] = {
+      [1024] = {
         zoneId = 31032,
         name = "SAM-Mike",
         type = 0,
@@ -303306,7 +303299,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22028.350221035,
         y = -463860.91485245,
       },
-      [1026] = {
+      [1025] = {
         zoneId = 31446,
         name = "Arty-Wismar-Lubeck-0",
         type = 0,
@@ -303323,7 +303316,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -48569.712379671,
         y = -627440.39543066,
       },
-      [1027] = {
+      [1026] = {
         zoneId = 31447,
         name = "Arty-Wismar-Lubeck-1",
         type = 0,
@@ -303340,7 +303333,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -48908.515691747,
         y = -627826.95589552,
       },
-      [1028] = {
+      [1027] = {
         zoneId = 31448,
         name = "Arty-Lubeck-Wismar-0",
         type = 0,
@@ -303357,7 +303350,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -49843.142063026,
         y = -599123.93768101,
       },
-      [1029] = {
+      [1028] = {
         zoneId = 31449,
         name = "Arty-Lubeck-Wismar-1",
         type = 0,
@@ -303374,7 +303367,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -50388.04262609,
         y = -599879.04109662,
       },
-      [1030] = {
+      [1029] = {
         zoneId = 31450,
         name = "Arty-Lubeck-Wismar-2",
         type = 0,
@@ -303391,59 +303384,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -41445.010344484,
         y = -597271.40282298,
       },
-      [1031] = {
-        zoneId = 31451,
-        name = "Propaganda",
-        type = 2,
-        color = {
-          [1] = 1,
-          [2] = 1,
-          [3] = 0.50196078431373,
-          [4] = 0.14901960784314,
-        },
-        heading = 0,
-        hidden = false,
-        properties = {
-          [1] = {
-            key = "ROLE",
-            value = "",
-          },
-          [2] = {
-            key = "VALUE",
-            value = "",
-          },
-          [3] = {
-            key = "OBJECT ID",
-            value = "79882029",
-          },
-          [4] = {
-            key = "NAME",
-            value = "us_border_station",
-          },
-        },
-        radius = 16.222925070456,
-        verticies = {
-          [1] = {
-            x = -226539.22662812,
-            y = -661893.16083936,
-          },
-          [2] = {
-            x = -226558.56195265,
-            y = -661905.44035345,
-          },
-          [3] = {
-            x = -226546.24212188,
-            y = -661924.83916064,
-          },
-          [4] = {
-            x = -226526.90679735,
-            y = -661912.55964655,
-          },
-        },
-        x = -226542.734375,
-        y = -661909,
-      },
-      [1032] = {
+      [1030] = {
         zoneId = 31452,
         name = "Insurgency Camp",
         type = 2,
@@ -303478,7 +303419,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -115404.7588911,
         y = -608972.5417492,
       },
-      [1033] = {
+      [1031] = {
         zoneId = 31453,
         name = "Insurgency Camp-1",
         type = 0,
@@ -303495,7 +303436,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -116112.04387151,
         y = -606624.14159808,
       },
-      [1034] = {
+      [1032] = {
         zoneId = 31454,
         name = "Insurgency Camp-2",
         type = 0,
@@ -303512,7 +303453,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -114447.31708604,
         y = -606603.1911761,
       },
-      [1035] = {
+      [1033] = {
         zoneId = 31455,
         name = "Insurgency Camp-3",
         type = 0,
@@ -303529,7 +303470,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -111996.39452125,
         y = -608783.3165797,
       },
-      [1036] = {
+      [1034] = {
         zoneId = 31456,
         name = "Insurgency Camp-4",
         type = 0,
@@ -303546,7 +303487,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -111639.28211913,
         y = -611786.74968543,
       },
-      [1037] = {
+      [1035] = {
         zoneId = 31457,
         name = "Insurgency Camp-5",
         type = 0,
@@ -303563,7 +303504,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -115922.96762951,
         y = -609773.28895099,
       },
-      [1038] = {
+      [1036] = {
         zoneId = 31458,
         name = "Insurgency camp-6",
         type = 0,
@@ -303580,7 +303521,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -113100.39720624,
         y = -606462.29125114,
       },
-      [1039] = {
+      [1037] = {
         zoneId = 31459,
         name = "Insurgency Camp-7",
         type = 0,
@@ -303597,7 +303538,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -114078.70876699,
         y = -605600.44535238,
       },
-      [1040] = {
+      [1038] = {
         zoneId = 31460,
         name = "Insurgency Camp-8",
         type = 0,
@@ -303614,7 +303555,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -115287.44548156,
         y = -605755.19719586,
       },
-      [1041] = {
+      [1039] = {
         zoneId = 31461,
         name = "Insurgency camp-9",
         type = 0,
@@ -303631,7 +303572,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -114925.17134461,
         y = -605653.14659346,
       },
-      [1042] = {
+      [1040] = {
         zoneId = 31462,
         name = "Insurgency Camp-10",
         type = 0,
@@ -303648,7 +303589,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -115020.98763671,
         y = -609782.74692177,
       },
-      [1043] = {
+      [1041] = {
         zoneId = 31463,
         name = "Insurgency Camp-11",
         type = 0,
@@ -303665,7 +303606,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -114605.75225135,
         y = -610154.18864693,
       },
-      [1044] = {
+      [1042] = {
         zoneId = 31464,
         name = "Insurgency Camp-12",
         type = 0,
@@ -303682,7 +303623,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -115106.16747429,
         y = -610624.08590864,
       },
-      [1045] = {
+      [1043] = {
         zoneId = 31465,
         name = "Insurgency Camp-13",
         type = 0,
@@ -303699,7 +303640,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -114583.97555676,
         y = -605275.0130465,
       },
-      [1046] = {
+      [1044] = {
         zoneId = 31466,
         name = "Insurgency Camp-14",
         type = 0,
@@ -303716,59 +303657,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -111032.40277239,
         y = -609367.5151373,
       },
-      [1047] = {
-        zoneId = 31891,
-        name = "Striketarget3",
-        type = 2,
-        color = {
-          [1] = 1,
-          [2] = 1,
-          [3] = 0.50196078431373,
-          [4] = 0.14901960784314,
-        },
-        heading = 0,
-        hidden = false,
-        properties = {
-          [1] = {
-            key = "ROLE",
-            value = "",
-          },
-          [2] = {
-            key = "VALUE",
-            value = "",
-          },
-          [3] = {
-            key = "OBJECT ID",
-            value = "77891147",
-          },
-          [4] = {
-            key = "NAME",
-            value = "market_big",
-          },
-        },
-        radius = 103.89819507507,
-        verticies = {
-          [1] = {
-            x = -316087.98698189,
-            y = -467510.52477352,
-          },
-          [2] = {
-            x = -316056.96163887,
-            y = -467611.44331487,
-          },
-          [3] = {
-            x = -315885.88801811,
-            y = -467558.85022648,
-          },
-          [4] = {
-            x = -315916.91336113,
-            y = -467457.93168513,
-          },
-        },
-        x = -315986.9375,
-        y = -467534.6875,
-      },
-      [1048] = {
+      [1045] = {
         zoneId = 32720,
         name = "Östersjön",
         type = 2,
@@ -303803,7 +303692,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 59736.292116232,
         y = -441286.08105332,
       },
-      [1049] = {
+      [1046] = {
         zoneId = 32721,
         name = "Östersjön-1",
         type = 0,
@@ -303820,7 +303709,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 64984.379753199,
         y = -466632.38737617,
       },
-      [1050] = {
+      [1047] = {
         zoneId = 32722,
         name = "Östersjön-2",
         type = 0,
@@ -303837,7 +303726,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 51121.980857856,
         y = -463900.74608812,
       },
-      [1051] = {
+      [1048] = {
         zoneId = 32723,
         name = "Östersjön-3",
         type = 0,
@@ -303854,7 +303743,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 66844.799899546,
         y = -444175.75492673,
       },
-      [1052] = {
+      [1049] = {
         zoneId = 32724,
         name = "Östersjön-4",
         type = 0,
@@ -303871,7 +303760,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 54230.679274196,
         y = -445283.36728322,
       },
-      [1053] = {
+      [1050] = {
         zoneId = 32725,
         name = "Östersjön-5",
         type = 0,
@@ -303888,7 +303777,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 47548.612893836,
         y = -410014.3571907,
       },
-      [1054] = {
+      [1051] = {
         zoneId = 32726,
         name = "Östersjön-6",
         type = 0,
@@ -303905,7 +303794,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 60685.419232047,
         y = -453873.98583965,
       },
-      [1055] = {
+      [1052] = {
         zoneId = 32727,
         name = "Östersjön-7",
         type = 0,
@@ -303922,7 +303811,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 65313.126770514,
         y = -403517.42138087,
       },
-      [1056] = {
+      [1053] = {
         zoneId = 32728,
         name = "Östersjön-8",
         type = 0,
@@ -303939,7 +303828,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 69417.624833641,
         y = -424522.23112462,
       },
-      [1057] = {
+      [1054] = {
         zoneId = 32729,
         name = "Östersjön-9",
         type = 0,
@@ -303956,7 +303845,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 46548.06986391,
         y = -428310.00116648,
       },
-      [1058] = {
+      [1055] = {
         zoneId = 32730,
         name = "Östersjön-10",
         type = 0,
@@ -303973,7 +303862,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 41045.083199319,
         y = -468117.32028567,
       },
-      [1059] = {
+      [1056] = {
         zoneId = 32731,
         name = "Östersjön-11",
         type = 0,
@@ -303990,7 +303879,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 40780.040883261,
         y = -395111.17125804,
       },
-      [1060] = {
+      [1057] = {
         zoneId = 32732,
         name = "Östersjön-12",
         type = 0,
@@ -304007,7 +303896,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 58054.314708056,
         y = -418661.90766362,
       },
-      [1061] = {
+      [1058] = {
         zoneId = 32733,
         name = "Östersjön-13",
         type = 0,
@@ -304024,7 +303913,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 53988.053214005,
         y = -395803.42962396,
       },
-      [1062] = {
+      [1059] = {
         zoneId = 32734,
         name = "Östersjön-14",
         type = 0,
@@ -304041,7 +303930,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 74320.196243946,
         y = -452376.75864283,
       },
-      [1063] = {
+      [1060] = {
         zoneId = 32735,
         name = "Östersjön-15",
         type = 0,
@@ -304058,7 +303947,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 42117.093588525,
         y = -446677.11250154,
       },
-      [1064] = {
+      [1061] = {
         zoneId = 33149,
         name = "Östersjön-16",
         type = 0,
@@ -304075,7 +303964,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 68740.867232978,
         y = -485653.71543763,
       },
-      [1065] = {
+      [1062] = {
         zoneId = 33150,
         name = "Östersjön-17",
         type = 0,
@@ -304092,7 +303981,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 41495.788979604,
         y = -489096.4486374,
       },
-      [1066] = {
+      [1063] = {
         zoneId = 33151,
         name = "Östersjön-18",
         type = 0,
@@ -304109,7 +303998,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 76471.670790148,
         y = -410048.60701516,
       },
-      [1067] = {
+      [1064] = {
         zoneId = 33152,
         name = "Östersjön-19",
         type = 0,
@@ -304126,7 +304015,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 75762.166052247,
         y = -434257.21833373,
       },
-      [1068] = {
+      [1065] = {
         zoneId = 33153,
         name = "Östersjön-20",
         type = 0,
@@ -304143,7 +304032,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 81287.136732453,
         y = -467375.24125842,
       },
-      [1069] = {
+      [1066] = {
         zoneId = 33154,
         name = "Östersjön-21",
         type = 0,
@@ -304160,7 +304049,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 55775.77143251,
         y = -485043.58546952,
       },
-      [1070] = {
+      [1067] = {
         zoneId = 33155,
         name = "Östersjön-22",
         type = 0,
@@ -304177,7 +304066,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 83072.110020702,
         y = -420537.98460148,
       },
-      [1071] = {
+      [1068] = {
         zoneId = 33156,
         name = "Östersjön-23",
         type = 0,
@@ -304194,7 +304083,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 80802.816520857,
         y = -486514.92994526,
       },
-      [1072] = {
+      [1069] = {
         zoneId = 33570,
         name = "HiddenGround6",
         type = 0,
@@ -304211,7 +304100,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -533468.26119721,
         y = -1023420.263508,
       },
-      [1073] = {
+      [1070] = {
         zoneId = 33984,
         name = "HiddenGround7",
         type = 0,
@@ -304228,7 +304117,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -533997.32907443,
         y = -1023131.6772918,
       },
-      [1074] = {
+      [1071] = {
         zoneId = 34398,
         name = "HiddenGround8",
         type = 0,
@@ -304245,7 +304134,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -534435.2029845,
         y = -1022933.3872276,
       },
-      [1075] = {
+      [1072] = {
         zoneId = 34812,
         name = "HiddenGround9",
         type = 0,
@@ -304262,7 +304151,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -535007.54189283,
         y = -1022643.4101248,
       },
-      [1076] = {
+      [1073] = {
         zoneId = 35226,
         name = "HiddenGround10",
         type = 0,
@@ -304279,7 +304168,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -535504.32104224,
         y = -1022356.3173056,
       },
-      [1077] = {
+      [1074] = {
         zoneId = 35640,
         name = "HiddenGround11",
         type = 0,
@@ -304296,7 +304185,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -533001.53620373,
         y = -1022179.9071131,
       },
-      [1078] = {
+      [1075] = {
         zoneId = 35641,
         name = "HiddenGround12",
         type = 0,
@@ -304313,7 +304202,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -533473.81038111,
         y = -1021937.5680554,
       },
-      [1079] = {
+      [1076] = {
         zoneId = 35642,
         name = "HiddenGround13",
         type = 0,
@@ -304330,7 +304219,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -533958.40674802,
         y = -1021552.5836336,
       },
-      [1080] = {
+      [1077] = {
         zoneId = 36056,
         name = "HiddenGround14",
         type = 0,
@@ -304347,7 +304236,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -534486.80738116,
         y = -1021288.0810375,
       },
-      [1081] = {
+      [1078] = {
         zoneId = 36470,
         name = "HiddenGround15",
         type = 0,
@@ -304364,7 +304253,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -534984.51027326,
         y = -1020959.7769092,
       },
-      [1082] = {
+      [1079] = {
         zoneId = 36884,
         name = "Östersjön-1-Edge",
         type = 0,
@@ -304381,7 +304270,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 68339.434751423,
         y = -406563.89512858,
       },
-      [1083] = {
+      [1080] = {
         zoneId = 36885,
         name = "Östersjön-2-Edge",
         type = 0,
@@ -304398,7 +304287,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 57728.228745655,
         y = -392491.15593363,
       },
-      [1084] = {
+      [1081] = {
         zoneId = 36886,
         name = "Östersjön-3-Edge",
         type = 0,
@@ -304415,7 +304304,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 70491.931168971,
         y = -441340.13381142,
       },
-      [1085] = {
+      [1082] = {
         zoneId = 36887,
         name = "Östersjön-4-Edge",
         type = 0,
@@ -304432,7 +304321,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 77418.805257948,
         y = -493537.44407615,
       },
-      [1086] = {
+      [1083] = {
         zoneId = 37715,
         name = "Sturup-1-Edge",
         type = 0,
@@ -304449,7 +304338,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 113681.1794753,
         y = -410507.35621851,
       },
-      [1087] = {
+      [1084] = {
         zoneId = 38129,
         name = "Sturup-2-Edge",
         type = 0,
@@ -304466,7 +304355,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 108946.54154754,
         y = -447034.86112949,
       },
-      [1088] = {
+      [1085] = {
         zoneId = 38545,
         name = "SamCharlieWarehouse",
         type = 2,
@@ -304518,7 +304407,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -377270.03125,
         y = -723392.75,
       },
-      [1089] = {
+      [1086] = {
         zoneId = 38546,
         name = "SamBravoWarehouse",
         type = 2,
@@ -304570,7 +304459,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -433532.875,
         y = -807637.0625,
       },
-      [1090] = {
+      [1087] = {
         zoneId = 38549,
         name = "SamDeltaWarehouse",
         type = 2,
@@ -304622,7 +304511,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -328372.5,
         y = -573841.625,
       },
-      [1091] = {
+      [1088] = {
         zoneId = 38551,
         name = "SamLimaWarehouse",
         type = 2,
@@ -304674,7 +304563,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -51067.96484375,
         y = -534987.1875,
       },
-      [1092] = {
+      [1089] = {
         zoneId = 38966,
         name = "ParchimSupply",
         type = 2,
@@ -304726,7 +304615,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -102683.828125,
         y = -574198.5625,
       },
-      [1093] = {
+      [1090] = {
         zoneId = 38967,
         name = "SamJuliettWarehouse",
         type = 2,
@@ -304778,7 +304667,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -165364.46875,
         y = -514759.03125,
       },
-      [1094] = {
+      [1091] = {
         zoneId = 38968,
         name = "AccurateMaps",
         type = 2,
@@ -304830,111 +304719,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -514658.09375,
         y = -771125.25,
       },
-      [1095] = {
-        zoneId = 38975,
-        name = "TotallyCivilian",
-        type = 2,
-        color = {
-          [1] = 1,
-          [2] = 1,
-          [3] = 1,
-          [4] = 0.15,
-        },
-        heading = 0,
-        hidden = false,
-        properties = {
-          [1] = {
-            key = "ROLE",
-            value = "",
-          },
-          [2] = {
-            key = "VALUE",
-            value = "",
-          },
-          [3] = {
-            key = "OBJECT ID",
-            value = "94347504",
-          },
-          [4] = {
-            key = "NAME",
-            value = "industrial_eu_01",
-          },
-        },
-        radius = 36.542205717876,
-        verticies = {
-          [1] = {
-            x = -97420.217976421,
-            y = -656362.91614662,
-          },
-          [2] = {
-            x = -97484.33490225,
-            y = -656338.52424309,
-          },
-          [3] = {
-            x = -97493.297648579,
-            y = -656362.08385338,
-          },
-          [4] = {
-            x = -97429.18072275,
-            y = -656386.47575691,
-          },
-        },
-        x = -97456.7578125,
-        y = -656362.5,
-      },
-      [1096] = {
-        zoneId = 38976,
-        name = "ArtilleryAarehouse",
-        type = 2,
-        color = {
-          [1] = 1,
-          [2] = 1,
-          [3] = 1,
-          [4] = 0.15,
-        },
-        heading = 0,
-        hidden = false,
-        properties = {
-          [1] = {
-            key = "ROLE",
-            value = "",
-          },
-          [2] = {
-            key = "VALUE",
-            value = "",
-          },
-          [3] = {
-            key = "OBJECT ID",
-            value = "75546902",
-          },
-          [4] = {
-            key = "NAME",
-            value = "stock",
-          },
-        },
-        radius = 50.346087015748,
-        verticies = {
-          [1] = {
-            x = -412428.56976919,
-            y = -871225.33384663,
-          },
-          [2] = {
-            x = -412350.69610858,
-            y = -871226.11579382,
-          },
-          [3] = {
-            x = -412350.05523081,
-            y = -871162.29115337,
-          },
-          [4] = {
-            x = -412427.92889142,
-            y = -871161.50920618,
-          },
-        },
-        x = -412389.3125,
-        y = -871193.8125,
-      },
-      [1097] = {
+      [1092] = {
         zoneId = 38992,
         name = "Committee",
         type = 2,
@@ -304986,7 +304771,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -75104.8515625,
         y = -689009.6875,
       },
-      [1098] = {
+      [1093] = {
         zoneId = 39406,
         name = "Mendig-road-0",
         type = 0,
@@ -305003,7 +304788,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -393111.77308564,
         y = -934556.43088917,
       },
-      [1099] = {
+      [1094] = {
         zoneId = 39407,
         name = "Mendig North FARP-4",
         type = 0,
@@ -305020,7 +304805,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -388681.51450781,
         y = -926619.78412699,
       },
-      [1100] = {
+      [1095] = {
         zoneId = 39408,
         name = "Mendig North FARP-5",
         type = 0,
@@ -305037,7 +304822,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -389208.63047248,
         y = -926757.74698057,
       },
-      [1101] = {
+      [1096] = {
         zoneId = 39409,
         name = "Mendig North FARP-6",
         type = 0,
@@ -305054,7 +304839,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -388977.73158842,
         y = -926404.5985111,
       },
-      [1102] = {
+      [1097] = {
         zoneId = 39410,
         name = "SAM-Alpha-LN-1",
         type = 0,
@@ -305071,7 +304856,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473541.889712,
         y = -952995.500069,
       },
-      [1103] = {
+      [1098] = {
         zoneId = 39411,
         name = "SAM-Alpha-LN-2",
         type = 0,
@@ -305088,7 +304873,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473297.430426,
         y = -952932.027425,
       },
-      [1104] = {
+      [1099] = {
         zoneId = 39412,
         name = "SAM-Alpha-LN-3",
         type = 0,
@@ -305105,7 +304890,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473578.680091,
         y = -952930.482855,
       },
-      [1105] = {
+      [1100] = {
         zoneId = 39413,
         name = "SAM-Alpha-LN-4",
         type = 0,
@@ -305122,7 +304907,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473289.079701,
         y = -952852.732933,
       },
-      [1106] = {
+      [1101] = {
         zoneId = 39414,
         name = "SAM-Alpha-LN-5",
         type = 0,
@@ -305139,7 +304924,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473567.83807,
         y = -952835.303068,
       },
-      [1107] = {
+      [1102] = {
         zoneId = 39415,
         name = "SAM-Alpha-LN-6",
         type = 0,
@@ -305156,7 +304941,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473332.960789,
         y = -952788.819895,
       },
-      [1108] = {
+      [1103] = {
         zoneId = 39416,
         name = "SAM-Alpha-SENSOR-1",
         type = 0,
@@ -305173,7 +304958,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473341.668321,
         y = -952866.039633,
       },
-      [1109] = {
+      [1104] = {
         zoneId = 39417,
         name = "SAM-Alpha-SENSOR-2",
         type = 0,
@@ -305190,7 +304975,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473460.963185,
         y = -952845.916722,
       },
-      [1110] = {
+      [1105] = {
         zoneId = 39418,
         name = "SAM-Alpha-SUPPORT-1",
         type = 0,
@@ -305207,7 +304992,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473498.604002,
         y = -952995.030945,
       },
-      [1111] = {
+      [1106] = {
         zoneId = 39419,
         name = "SAM-Alpha-SUPPORT-2",
         type = 0,
@@ -305224,7 +305009,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473504.70091,
         y = -952960.301974,
       },
-      [1112] = {
+      [1107] = {
         zoneId = 39420,
         name = "SAM-Alpha-SUPPORT-3",
         type = 0,
@@ -305241,7 +305026,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473489.186106,
         y = -952894.473597,
       },
-      [1113] = {
+      [1108] = {
         zoneId = 39421,
         name = "SAM-Alpha-SUPPORT-4",
         type = 0,
@@ -305258,7 +305043,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473449.263283,
         y = -952892.837149,
       },
-      [1114] = {
+      [1109] = {
         zoneId = 39422,
         name = "SAM-Alpha-SUPPORT-5",
         type = 0,
@@ -305275,7 +305060,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473580.40398,
         y = -952883.54549,
       },
-      [1115] = {
+      [1110] = {
         zoneId = 39423,
         name = "SAM-Alpha-SUPPORT-6",
         type = 0,
@@ -305292,7 +305077,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -473516.828859,
         y = -952880.200791,
       },
-      [1116] = {
+      [1111] = {
         zoneId = 39424,
         name = "SAM-Bravo-LN-1",
         type = 0,
@@ -305309,7 +305094,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -433848.52527,
         y = -822947.675087,
       },
-      [1117] = {
+      [1112] = {
         zoneId = 39425,
         name = "SAM-Bravo-LN-2",
         type = 0,
@@ -305326,7 +305111,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -433947.365327,
         y = -822942.06647946,
       },
-      [1118] = {
+      [1113] = {
         zoneId = 39426,
         name = "SAM-Bravo-LN-3",
         type = 0,
@@ -305343,7 +305128,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -433832.680958,
         y = -822883.998019,
       },
-      [1119] = {
+      [1114] = {
         zoneId = 39427,
         name = "SAM-Bravo-LN-4",
         type = 0,
@@ -305360,7 +305145,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -434097.928839,
         y = -822871.276551,
       },
-      [1120] = {
+      [1115] = {
         zoneId = 39428,
         name = "SAM-Bravo-LN-5",
         type = 0,
@@ -305377,7 +305162,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -434142.242153,
         y = -822822.259559,
       },
-      [1121] = {
+      [1116] = {
         zoneId = 39429,
         name = "SAM-Bravo-LN-6",
         type = 0,
@@ -305394,7 +305179,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -434137.23881,
         y = -822754.289926,
       },
-      [1122] = {
+      [1117] = {
         zoneId = 39430,
         name = "SAM-Bravo-SENSOR-1",
         type = 0,
@@ -305411,7 +305196,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -434026.758148,
         y = -822843.477401,
       },
-      [1123] = {
+      [1118] = {
         zoneId = 39431,
         name = "SAM-Bravo-SENSOR-2",
         type = 0,
@@ -305428,7 +305213,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -434080.746514,
         y = -822795.991056,
       },
-      [1124] = {
+      [1119] = {
         zoneId = 39432,
         name = "SAM-Bravo-SUPPORT-1",
         type = 0,
@@ -305445,7 +305230,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -433974.570474,
         y = -822879.305723,
       },
-      [1125] = {
+      [1120] = {
         zoneId = 39433,
         name = "SAM-Charlie-LN-1",
         type = 0,
@@ -305462,7 +305247,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386388.873862,
         y = -730147.813633,
       },
-      [1126] = {
+      [1121] = {
         zoneId = 39434,
         name = "SAM-Charlie-LN-2",
         type = 0,
@@ -305479,7 +305264,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386315.744159,
         y = -729995.414944,
       },
-      [1127] = {
+      [1122] = {
         zoneId = 39435,
         name = "SAM-Charlie-LN-3",
         type = 0,
@@ -305496,7 +305281,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386462.49966258,
         y = -729917.94287765,
       },
-      [1128] = {
+      [1123] = {
         zoneId = 39436,
         name = "SAM-Charlie-LN-4",
         type = 0,
@@ -305513,7 +305298,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -387066.42392311,
         y = -729527.72385081,
       },
-      [1129] = {
+      [1124] = {
         zoneId = 39437,
         name = "SAM-Charlie-LN-5",
         type = 0,
@@ -305530,7 +305315,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386917.963838,
         y = -729438.589751,
       },
-      [1130] = {
+      [1125] = {
         zoneId = 39438,
         name = "SAM-Charlie-LN-6",
         type = 0,
@@ -305547,7 +305332,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386102.290438,
         y = -729424.357271,
       },
-      [1131] = {
+      [1126] = {
         zoneId = 39439,
         name = "SAM-Charlie-LN-7",
         type = 0,
@@ -305564,7 +305349,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386365.063099,
         y = -729184.889008,
       },
-      [1132] = {
+      [1127] = {
         zoneId = 39440,
         name = "SAM-Charlie-SENSOR-1",
         type = 0,
@@ -305581,7 +305366,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386825.290015,
         y = -729578.993808,
       },
-      [1133] = {
+      [1128] = {
         zoneId = 39441,
         name = "SAM-Charlie-SENSOR-2",
         type = 0,
@@ -305598,7 +305383,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386336.94685775,
         y = -729383.47293459,
       },
-      [1134] = {
+      [1129] = {
         zoneId = 39442,
         name = "SAM-Charlie-SENSOR-3",
         type = 0,
@@ -305615,7 +305400,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386169.118746,
         y = -729239.544384,
       },
-      [1135] = {
+      [1130] = {
         zoneId = 39443,
         name = "SAM-Charlie-SUPPORT-1",
         type = 0,
@@ -305632,7 +305417,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386454.51264828,
         y = -729979.00859074,
       },
-      [1136] = {
+      [1131] = {
         zoneId = 39444,
         name = "SAM-Charlie-SUPPORT-2",
         type = 0,
@@ -305649,7 +305434,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386932.774979,
         y = -729577.852223,
       },
-      [1137] = {
+      [1132] = {
         zoneId = 39445,
         name = "SAM-Charlie-SUPPORT-3",
         type = 0,
@@ -305666,7 +305451,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386242.398296,
         y = -729307.689165,
       },
-      [1138] = {
+      [1133] = {
         zoneId = 39446,
         name = "SAM-Delta-LN-1-285",
         type = 0,
@@ -305683,7 +305468,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340474.19659478,
         y = -551129.77355002,
       },
-      [1139] = {
+      [1134] = {
         zoneId = 39447,
         name = "SAM-Delta-LN-2-230",
         type = 0,
@@ -305700,7 +305485,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340557.45641601,
         y = -551123.27849972,
       },
-      [1140] = {
+      [1135] = {
         zoneId = 39448,
         name = "SAM-Delta-LN-3-360",
         type = 0,
@@ -305717,7 +305502,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340426.83001304,
         y = -551067.02909118,
       },
-      [1141] = {
+      [1136] = {
         zoneId = 39449,
         name = "SAM-Delta-LN-4-050",
         type = 0,
@@ -305734,7 +305519,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340455.78003706,
         y = -550987.5211019,
       },
-      [1142] = {
+      [1137] = {
         zoneId = 39450,
         name = "SAM-Delta-LN-5-085",
         type = 0,
@@ -305751,7 +305536,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340543.40581994,
         y = -550987.52656613,
       },
-      [1143] = {
+      [1138] = {
         zoneId = 39451,
         name = "SAM-Delta-SENSOR-1",
         type = 0,
@@ -305768,7 +305553,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340531.7806208,
         y = -551035.68759638,
       },
-      [1144] = {
+      [1139] = {
         zoneId = 39452,
         name = "SAM-Delta-C2-1",
         type = 0,
@@ -305785,7 +305570,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340517.534604,
         y = -551107.784294,
       },
-      [1145] = {
+      [1140] = {
         zoneId = 39453,
         name = "SAM-Delta-C2-2-145",
         type = 0,
@@ -305802,7 +305587,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340608.68744891,
         y = -551085.03419654,
       },
-      [1146] = {
+      [1141] = {
         zoneId = 39454,
         name = "SAM-Delta-SUPPORT-1",
         type = 0,
@@ -305819,7 +305604,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340513.51193248,
         y = -551140.81754893,
       },
-      [1147] = {
+      [1142] = {
         zoneId = 39455,
         name = "SAM-Delta-SUPPORT-2",
         type = 0,
@@ -305836,7 +305621,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340568.382444,
         y = -551073.537747,
       },
-      [1148] = {
+      [1143] = {
         zoneId = 39456,
         name = "SAM-Delta-SUPPORT-3",
         type = 0,
@@ -305853,7 +305638,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340475.918392,
         y = -551022.251019,
       },
-      [1149] = {
+      [1144] = {
         zoneId = 39457,
         name = "SAM-Delta-SUPPORT-4",
         type = 0,
@@ -305870,7 +305655,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340565.916736,
         y = -551012.881329,
       },
-      [1150] = {
+      [1145] = {
         zoneId = 39458,
         name = "SAM-Delta-SUPPORT-5",
         type = 0,
@@ -305887,7 +305672,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340544.607674,
         y = -550943.502555,
       },
-      [1151] = {
+      [1146] = {
         zoneId = 39459,
         name = "SAM-Echo-LN-1-260",
         type = 0,
@@ -305904,7 +305689,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219208.30444074,
         y = -597155.28231487,
       },
-      [1152] = {
+      [1147] = {
         zoneId = 39460,
         name = "SAM-Echo-LN-323",
         type = 0,
@@ -305921,7 +305706,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219135.22203348,
         y = -597125.76669698,
       },
-      [1153] = {
+      [1148] = {
         zoneId = 39461,
         name = "SAM-Echo-LN-3-291",
         type = 0,
@@ -305938,7 +305723,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219276.25070956,
         y = -597107.243079,
       },
-      [1154] = {
+      [1149] = {
         zoneId = 39462,
         name = "SAM-Echo-LN-4-110",
         type = 0,
@@ -305955,7 +305740,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219300.60296818,
         y = -597046.68177355,
       },
-      [1155] = {
+      [1150] = {
         zoneId = 39463,
         name = "SAM-Echo-LN-5-290",
         type = 0,
@@ -305972,7 +305757,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219119.80452922,
         y = -597042.89221741,
       },
-      [1156] = {
+      [1151] = {
         zoneId = 39464,
         name = "SAM-Echo-LN-6-111",
         type = 0,
@@ -305989,7 +305774,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219143.55594959,
         y = -596984.3467832,
       },
-      [1157] = {
+      [1152] = {
         zoneId = 39465,
         name = "SAM-Echo-SENSOR-1",
         type = 0,
@@ -306006,7 +305791,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219209.315715,
         y = -597046.051799,
       },
-      [1158] = {
+      [1153] = {
         zoneId = 39466,
         name = "SAM-Echo-SENSOR-2",
         type = 0,
@@ -306023,7 +305808,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219191.53112001,
         y = -597087.56292963,
       },
-      [1159] = {
+      [1154] = {
         zoneId = 39467,
         name = "SAM-Echo-SENSOR-3",
         type = 0,
@@ -306040,7 +305825,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219236.29883139,
         y = -596979.61774186,
       },
-      [1160] = {
+      [1155] = {
         zoneId = 39468,
         name = "SAM-Echo-SUPPORT-1",
         type = 0,
@@ -306057,7 +305842,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219215.1472591,
         y = -597095.8303079,
       },
-      [1161] = {
+      [1156] = {
         zoneId = 39469,
         name = "SAM-Echo-SUPPORT-2",
         type = 0,
@@ -306074,7 +305859,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219172.193827,
         y = -597078.386012,
       },
-      [1162] = {
+      [1157] = {
         zoneId = 39470,
         name = "SAM-Foxtrot-LN-1",
         type = 0,
@@ -306091,7 +305876,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173286.497491,
         y = -751269.247925,
       },
-      [1163] = {
+      [1158] = {
         zoneId = 39471,
         name = "SAM-Foxtrot-LN-2",
         type = 0,
@@ -306108,7 +305893,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173195.58932611,
         y = -751238.19860774,
       },
-      [1164] = {
+      [1159] = {
         zoneId = 39472,
         name = "SAM-Foxtrot-LN-3",
         type = 0,
@@ -306125,7 +305910,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173152.28560532,
         y = -751178.09409135,
       },
-      [1165] = {
+      [1160] = {
         zoneId = 39473,
         name = "SAM-Foxtrot-LN-4",
         type = 0,
@@ -306142,7 +305927,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173427.88399154,
         y = -751075.87494479,
       },
-      [1166] = {
+      [1161] = {
         zoneId = 39474,
         name = "SAM-Foxtrot-LN-5",
         type = 0,
@@ -306159,7 +305944,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173387.92357815,
         y = -751009.93137758,
       },
-      [1167] = {
+      [1162] = {
         zoneId = 39475,
         name = "SAM-Foxtrot-LN-6",
         type = 0,
@@ -306176,7 +305961,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173311.62445831,
         y = -750982.87128767,
       },
-      [1168] = {
+      [1163] = {
         zoneId = 39476,
         name = "SAM-Foxtrot-SENSOR-1",
         type = 0,
@@ -306193,7 +305978,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173224.41422241,
         y = -751197.54199272,
       },
-      [1169] = {
+      [1164] = {
         zoneId = 39477,
         name = "SAM-Foxtrot-SENSOR-2",
         type = 0,
@@ -306210,7 +305995,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173224.268853,
         y = -751116.897397,
       },
-      [1170] = {
+      [1165] = {
         zoneId = 39478,
         name = "SAM-Foxtrot-SENSOR-3",
         type = 0,
@@ -306227,7 +306012,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173353.73443155,
         y = -751049.37530406,
       },
-      [1171] = {
+      [1166] = {
         zoneId = 39479,
         name = "SAM-Foxtrot-SUPPORT-1",
         type = 0,
@@ -306244,7 +306029,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173228.395142,
         y = -751254.493374,
       },
-      [1172] = {
+      [1167] = {
         zoneId = 39480,
         name = "SAM-Foxtrot-SUPPORT-2",
         type = 0,
@@ -306261,7 +306046,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173321.563935,
         y = -751073.804013,
       },
-      [1173] = {
+      [1168] = {
         zoneId = 39481,
         name = "SAM-Golf-LN-1",
         type = 0,
@@ -306278,7 +306063,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185106.81189444,
         y = -762724.70460575,
       },
-      [1174] = {
+      [1169] = {
         zoneId = 39482,
         name = "SAM-Golf-LN-2",
         type = 0,
@@ -306295,7 +306080,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184872.67323914,
         y = -762674.71182476,
       },
-      [1175] = {
+      [1170] = {
         zoneId = 39483,
         name = "SAM-Golf-LN-3",
         type = 0,
@@ -306312,7 +306097,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184901.13693952,
         y = -762515.10839515,
       },
-      [1176] = {
+      [1171] = {
         zoneId = 39484,
         name = "SAM-Golf-LN-4",
         type = 0,
@@ -306329,7 +306114,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185150.72856784,
         y = -762660.75168541,
       },
-      [1177] = {
+      [1172] = {
         zoneId = 39485,
         name = "SAM-Golf-LN-5",
         type = 0,
@@ -306346,7 +306131,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185144.14221285,
         y = -762581.55637301,
       },
-      [1178] = {
+      [1173] = {
         zoneId = 39486,
         name = "SAM-Golf-LN-6",
         type = 0,
@@ -306363,7 +306148,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184863.64800571,
         y = -762579.40783052,
       },
-      [1179] = {
+      [1174] = {
         zoneId = 39487,
         name = "SAM-Golf-LN-7-280",
         type = 0,
@@ -306380,7 +306165,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184975.75459927,
         y = -762684.94925434,
       },
-      [1180] = {
+      [1175] = {
         zoneId = 39488,
         name = "SAM-Golf-SENSOR-1",
         type = 0,
@@ -306397,7 +306182,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185099.648703,
         y = -762646.794509,
       },
-      [1181] = {
+      [1176] = {
         zoneId = 39489,
         name = "SAM-Golf-SENSOR-2",
         type = 0,
@@ -306414,7 +306199,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184914.395625,
         y = -762590.34346,
       },
-      [1182] = {
+      [1177] = {
         zoneId = 39490,
         name = "SAM-Golf-SENSOR-3",
         type = 0,
@@ -306431,7 +306216,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184987.462786,
         y = -762558.095709,
       },
-      [1183] = {
+      [1178] = {
         zoneId = 39491,
         name = "SAM-Golf-SUPPORT-1",
         type = 0,
@@ -306448,7 +306233,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185061.48245603,
         y = -762656.94328686,
       },
-      [1184] = {
+      [1179] = {
         zoneId = 39492,
         name = "SAM-Golf-SUPPORT-2",
         type = 0,
@@ -306465,7 +306250,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184919.87120905,
         y = -762640.31624514,
       },
-      [1185] = {
+      [1180] = {
         zoneId = 39493,
         name = "SAM-Hotel-LN-1",
         type = 0,
@@ -306482,7 +306267,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97666.172072,
         y = -755668.686439,
       },
-      [1186] = {
+      [1181] = {
         zoneId = 39494,
         name = "SAM-Hotel-LN-2",
         type = 0,
@@ -306499,7 +306284,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97613.099013,
         y = -755630.580107,
       },
-      [1187] = {
+      [1182] = {
         zoneId = 39495,
         name = "SAM-Hotel-LN-3",
         type = 0,
@@ -306516,7 +306301,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97738.111036,
         y = -755600.379345,
       },
-      [1188] = {
+      [1183] = {
         zoneId = 39496,
         name = "SAM-Hotel-LN-4",
         type = 0,
@@ -306533,7 +306318,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97804.090521,
         y = -755448.944054,
       },
-      [1189] = {
+      [1184] = {
         zoneId = 39497,
         name = "SAM-Hotel-LN-5",
         type = 0,
@@ -306550,7 +306335,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97806.50753,
         y = -755381.639636,
       },
-      [1190] = {
+      [1185] = {
         zoneId = 39498,
         name = "SAM-Hotel-LN-6",
         type = 0,
@@ -306567,7 +306352,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97758.225556,
         y = -755334.804703,
       },
-      [1191] = {
+      [1186] = {
         zoneId = 39499,
         name = "SAM-Hotel-SENSOR-1",
         type = 0,
@@ -306584,7 +306369,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97743.721542,
         y = -755401.920968,
       },
-      [1192] = {
+      [1187] = {
         zoneId = 39500,
         name = "SAM-Hotel-C2-1",
         type = 0,
@@ -306601,7 +306386,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97667.236358378,
         y = -755609.80205046,
       },
-      [1193] = {
+      [1188] = {
         zoneId = 39501,
         name = "SAM-Hotel-C2-2",
         type = 0,
@@ -306618,7 +306403,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97779.899339,
         y = -755522.517792,
       },
-      [1194] = {
+      [1189] = {
         zoneId = 39502,
         name = "SAM-Hotel-SUPPORT-1",
         type = 0,
@@ -306635,7 +306420,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97622.370872876,
         y = -755674.4585002,
       },
-      [1195] = {
+      [1190] = {
         zoneId = 39503,
         name = "SAM-Hotel-SUPPORT-2",
         type = 0,
@@ -306652,7 +306437,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97779.496851,
         y = -755414.393316,
       },
-      [1196] = {
+      [1191] = {
         zoneId = 39504,
         name = "SAM-Hotel-SUPPORT-3",
         type = 0,
@@ -306669,7 +306454,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97764.697952,
         y = -755368.648658,
       },
-      [1197] = {
+      [1192] = {
         zoneId = 39505,
         name = "SAM-Hotel-SUPPORT-4",
         type = 0,
@@ -306686,7 +306471,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97726.574052,
         y = -755355.348891,
       },
-      [1198] = {
+      [1193] = {
         zoneId = 39506,
         name = "SAM-Hotel-SUPPORT-5",
         type = 0,
@@ -306703,7 +306488,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97780.862777,
         y = -755352.471341,
       },
-      [1199] = {
+      [1194] = {
         zoneId = 39507,
         name = "SAM-India-LN-1-325",
         type = 0,
@@ -306720,7 +306505,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213866.05169457,
         y = -521344.08476841,
       },
-      [1200] = {
+      [1195] = {
         zoneId = 39508,
         name = "SAM-India-LN-2-265",
         type = 0,
@@ -306737,7 +306522,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213815.70517362,
         y = -521340.03089413,
       },
-      [1201] = {
+      [1196] = {
         zoneId = 39509,
         name = "SAM-India-LN-270",
         type = 0,
@@ -306754,7 +306539,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213983.79555593,
         y = -521326.56646378,
       },
-      [1202] = {
+      [1197] = {
         zoneId = 39510,
         name = "SAM-India-LN-4-85",
         type = 0,
@@ -306771,7 +306556,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213810.708195,
         y = -521276.000637,
       },
-      [1203] = {
+      [1198] = {
         zoneId = 39511,
         name = "SAM-India-LN-5-090",
         type = 0,
@@ -306788,7 +306573,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213979.80229967,
         y = -521265.14096033,
       },
-      [1204] = {
+      [1199] = {
         zoneId = 39512,
         name = "SAM-India-LN-6-55",
         type = 0,
@@ -306805,7 +306590,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213851.134429,
         y = -521202.688814,
       },
-      [1205] = {
+      [1200] = {
         zoneId = 39513,
         name = "SAM-India-LN-7-120",
         type = 0,
@@ -306822,7 +306607,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213929.57230896,
         y = -521196.76689783,
       },
-      [1206] = {
+      [1201] = {
         zoneId = 39514,
         name = "SAM-India-SENSOR-1",
         type = 0,
@@ -306839,7 +306624,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213898.918525,
         y = -521346.106601,
       },
-      [1207] = {
+      [1202] = {
         zoneId = 39515,
         name = "SAM-India-SENSOR-2",
         type = 0,
@@ -306856,7 +306641,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213897.45483432,
         y = -521301.99090885,
       },
-      [1208] = {
+      [1203] = {
         zoneId = 39516,
         name = "SAM-India-SENSOR-3",
         type = 0,
@@ -306873,7 +306658,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213893.596193,
         y = -521254.015764,
       },
-      [1209] = {
+      [1204] = {
         zoneId = 39517,
         name = "SAM-India-SUPPORT-1",
         type = 0,
@@ -306890,7 +306675,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213851.52802959,
         y = -521287.14365303,
       },
-      [1210] = {
+      [1205] = {
         zoneId = 39518,
         name = "SAM-India-SUPPORT-2",
         type = 0,
@@ -306907,7 +306692,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213934.704263,
         y = -521269.49641,
       },
-      [1211] = {
+      [1206] = {
         zoneId = 39519,
         name = "SAM-Juliett-LN-1",
         type = 0,
@@ -306924,7 +306709,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180064.274354,
         y = -520922.350764,
       },
-      [1212] = {
+      [1207] = {
         zoneId = 39520,
         name = "SAM-Juliett-LN-2",
         type = 0,
@@ -306941,7 +306726,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -179988.144517,
         y = -520912.057761,
       },
-      [1213] = {
+      [1208] = {
         zoneId = 39521,
         name = "SAM-Juliett-LN-3",
         type = 0,
@@ -306958,7 +306743,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180117.518094,
         y = -520856.176108,
       },
-      [1214] = {
+      [1209] = {
         zoneId = 39522,
         name = "SAM-Juliett-LN-4",
         type = 0,
@@ -306975,7 +306760,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -179947.787867,
         y = -520838.0243,
       },
-      [1215] = {
+      [1210] = {
         zoneId = 39523,
         name = "SAM-Juliett-LN-5",
         type = 0,
@@ -306992,7 +306777,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180122.908675,
         y = -520794.329986,
       },
-      [1216] = {
+      [1211] = {
         zoneId = 39524,
         name = "SAM-Juliett-LN-6",
         type = 0,
@@ -307009,7 +306794,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180074.394386,
         y = -520780.078354,
       },
-      [1217] = {
+      [1212] = {
         zoneId = 39525,
         name = "SAM-Juliett-LN-7",
         type = 0,
@@ -307026,7 +306811,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -179954.580754,
         y = -520774.553267,
       },
-      [1218] = {
+      [1213] = {
         zoneId = 39526,
         name = "SAM-Juliett-SENSOR-1",
         type = 0,
@@ -307043,7 +306828,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180034.4190707,
         y = -520816.532044,
       },
-      [1219] = {
+      [1214] = {
         zoneId = 39527,
         name = "SAM-Juliett-SENSOR-2",
         type = 0,
@@ -307060,7 +306845,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180008.959301,
         y = -520774.128607,
       },
-      [1220] = {
+      [1215] = {
         zoneId = 39528,
         name = "SAM-Juliett-SENSOR-3",
         type = 0,
@@ -307077,7 +306862,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180042.17607936,
         y = -520752.59716159,
       },
-      [1221] = {
+      [1216] = {
         zoneId = 39529,
         name = "SAM-Juliett-SUPPORT-1",
         type = 0,
@@ -307094,7 +306879,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -179974.899723,
         y = -520858.567823,
       },
-      [1222] = {
+      [1217] = {
         zoneId = 39530,
         name = "SAM-Juliett-SUPPORT-2",
         type = 0,
@@ -307111,7 +306896,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180075.04041,
         y = -520857.283662,
       },
-      [1223] = {
+      [1218] = {
         zoneId = 39531,
         name = "SAM-Kilo-LN-1-330",
         type = 0,
@@ -307128,7 +306913,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99215.279005601,
         y = -583935.0121252,
       },
-      [1224] = {
+      [1219] = {
         zoneId = 39532,
         name = "SAM-Kilo-LN-2",
         type = 0,
@@ -307145,7 +306930,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99139.41831,
         y = -583919.015968,
       },
-      [1225] = {
+      [1220] = {
         zoneId = 39533,
         name = "SAM-Kilo-LN-3-250",
         type = 0,
@@ -307162,7 +306947,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99272.997693502,
         y = -583875.57157,
       },
-      [1226] = {
+      [1221] = {
         zoneId = 39534,
         name = "SAM-Kilo-LN-4-340",
         type = 0,
@@ -307179,7 +306964,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99107.849628866,
         y = -583840.909221,
       },
-      [1227] = {
+      [1222] = {
         zoneId = 39535,
         name = "SAM-Kilo-LN-5-45",
         type = 0,
@@ -307196,7 +306981,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99172.329402314,
         y = -583781.96016969,
       },
-      [1228] = {
+      [1223] = {
         zoneId = 39536,
         name = "SAM-Kilo-SENSOR-1",
         type = 0,
@@ -307213,7 +306998,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99196.10743,
         y = -583827.424425,
       },
-      [1229] = {
+      [1224] = {
         zoneId = 39537,
         name = "SAM-Kilo-C2-1",
         type = 0,
@@ -307230,7 +307015,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99233.354764,
         y = -583886.160386,
       },
-      [1230] = {
+      [1225] = {
         zoneId = 39538,
         name = "SAM-Kilo-C2-2-100",
         type = 0,
@@ -307247,7 +307032,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99286.240947229,
         y = -583813.25622463,
       },
-      [1231] = {
+      [1226] = {
         zoneId = 39539,
         name = "SAM-Kilo-SUPPORT-1",
         type = 0,
@@ -307264,7 +307049,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99142.200846,
         y = -583866.124348,
       },
-      [1232] = {
+      [1227] = {
         zoneId = 39540,
         name = "SAM-Kilo-SUPPORT-2",
         type = 0,
@@ -307281,7 +307066,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99151.46204806,
         y = -583811.4201428,
       },
-      [1233] = {
+      [1228] = {
         zoneId = 39541,
         name = "SAM-Kilo-SUPPORT-3",
         type = 0,
@@ -307298,7 +307083,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99207.35212,
         y = -583785.909115,
       },
-      [1234] = {
+      [1229] = {
         zoneId = 39542,
         name = "SAM-Kilo-SUPPORT-4",
         type = 0,
@@ -307315,7 +307100,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99238.643808,
         y = -583761.92910087,
       },
-      [1235] = {
+      [1230] = {
         zoneId = 39543,
         name = "SAM-Kilo-SUPPORT-5",
         type = 0,
@@ -307332,7 +307117,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99143.242550046,
         y = -583747.207538,
       },
-      [1236] = {
+      [1231] = {
         zoneId = 39544,
         name = "SAM-Lima-LN-1",
         type = 0,
@@ -307349,7 +307134,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39907.667076,
         y = -529137.284256,
       },
-      [1237] = {
+      [1232] = {
         zoneId = 39545,
         name = "SAM-Lima-LN-2",
         type = 0,
@@ -307366,7 +307151,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39852.558199,
         y = -529041.210126,
       },
-      [1238] = {
+      [1233] = {
         zoneId = 39546,
         name = "SAM-Lima-LN-3",
         type = 0,
@@ -307383,7 +307168,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39884.983224065,
         y = -528966.57130159,
       },
-      [1239] = {
+      [1234] = {
         zoneId = 39547,
         name = "SAM-Lima-LN-4",
         type = 0,
@@ -307400,7 +307185,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40602.549872131,
         y = -528868.39713104,
       },
-      [1240] = {
+      [1235] = {
         zoneId = 39548,
         name = "SAM-Lima-LN-5",
         type = 0,
@@ -307417,7 +307202,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40502.794689359,
         y = -528732.82618512,
       },
-      [1241] = {
+      [1236] = {
         zoneId = 39549,
         name = "SAM-Lima-LN-6",
         type = 0,
@@ -307434,7 +307219,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40630.754682657,
         y = -528626.85297729,
       },
-      [1242] = {
+      [1237] = {
         zoneId = 39550,
         name = "SAM-Lima-SENSOR-1",
         type = 0,
@@ -307451,7 +307236,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39864.438906,
         y = -528354.698869,
       },
-      [1243] = {
+      [1238] = {
         zoneId = 39551,
         name = "SAM-Lima-SENSOR-2",
         type = 0,
@@ -307468,7 +307253,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39999.573184,
         y = -528236.507706,
       },
-      [1244] = {
+      [1239] = {
         zoneId = 39552,
         name = "SAM-Lima-SENSOR-3",
         type = 0,
@@ -307485,7 +307270,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39984.427482,
         y = -528199.338286,
       },
-      [1245] = {
+      [1240] = {
         zoneId = 39553,
         name = "SAM-Lima-C2-1",
         type = 0,
@@ -307502,7 +307287,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40186.484733,
         y = -528211.547649,
       },
-      [1246] = {
+      [1241] = {
         zoneId = 39554,
         name = "SAM-Lima-SUPPORT-1",
         type = 0,
@@ -307519,7 +307304,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39874.58243,
         y = -529083.023784,
       },
-      [1247] = {
+      [1242] = {
         zoneId = 39555,
         name = "SAM-Lima-SUPPORT-2",
         type = 0,
@@ -307536,7 +307321,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39851.518625,
         y = -529005.707106,
       },
-      [1248] = {
+      [1243] = {
         zoneId = 39556,
         name = "SAM-Lima-SUPPORT-3",
         type = 0,
@@ -307553,7 +307338,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40058.252137888,
         y = -529002.44955779,
       },
-      [1249] = {
+      [1244] = {
         zoneId = 39557,
         name = "SAM-Lima-SUPPORT-4",
         type = 0,
@@ -307570,7 +307355,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40663.229835,
         y = -528661.156242,
       },
-      [1250] = {
+      [1245] = {
         zoneId = 39558,
         name = "SAM-Lima-SUPPORT-5",
         type = 0,
@@ -307587,7 +307372,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40672.793477,
         y = -528647.885887,
       },
-      [1251] = {
+      [1246] = {
         zoneId = 39559,
         name = "SAM-Lima-SUPPORT-6",
         type = 0,
@@ -307604,7 +307389,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39887.412621,
         y = -528314.458542,
       },
-      [1252] = {
+      [1247] = {
         zoneId = 39560,
         name = "SAM-Lima-SUPPORT-7",
         type = 0,
@@ -307621,7 +307406,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40137.207088,
         y = -528265.018251,
       },
-      [1253] = {
+      [1248] = {
         zoneId = 39561,
         name = "SAM-Lima-SUPPORT-8",
         type = 0,
@@ -307638,7 +307423,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39974.216819,
         y = -528232.759047,
       },
-      [1254] = {
+      [1249] = {
         zoneId = 39562,
         name = "SAM-Mike-LN-8-250",
         type = 0,
@@ -307655,7 +307440,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22330.094635792,
         y = -464087.01327379,
       },
-      [1255] = {
+      [1250] = {
         zoneId = 39563,
         name = "SAM-Mike-LN-2-300",
         type = 0,
@@ -307672,7 +307457,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22412.432443945,
         y = -464072.85451213,
       },
-      [1256] = {
+      [1251] = {
         zoneId = 39564,
         name = "SAM-Mike-LN-3-020",
         type = 0,
@@ -307689,7 +307474,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22441.062350776,
         y = -463999.2509486,
       },
-      [1257] = {
+      [1252] = {
         zoneId = 39565,
         name = "SAM-Mike-LN-4",
         type = 0,
@@ -307706,7 +307491,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22306.529766,
         y = -463950.240248,
       },
-      [1258] = {
+      [1253] = {
         zoneId = 39566,
         name = "SAM-Mike-LN-5--070",
         type = 0,
@@ -307723,7 +307508,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22392.143128809,
         y = -463930.72503839,
       },
-      [1259] = {
+      [1254] = {
         zoneId = 39567,
         name = "SAM-Mike-SENSOR-1",
         type = 0,
@@ -307740,7 +307525,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22332.219621158,
         y = -463998.64190827,
       },
-      [1260] = {
+      [1255] = {
         zoneId = 39568,
         name = "SAM-Mike-C2-1",
         type = 0,
@@ -307757,7 +307542,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22423.338554449,
         y = -463956.95085755,
       },
-      [1261] = {
+      [1256] = {
         zoneId = 39569,
         name = "SAM-Mike-C2-2",
         type = 0,
@@ -307774,7 +307559,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22359.869073575,
         y = -464061.50223151,
       },
-      [1262] = {
+      [1257] = {
         zoneId = 39570,
         name = "SAM-Mike-SUPPORT-1",
         type = 0,
@@ -307791,7 +307576,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22371.60217,
         y = -464092.372503,
       },
-      [1263] = {
+      [1258] = {
         zoneId = 39571,
         name = "SAM-Mike-SUPPORT-2",
         type = 0,
@@ -307808,7 +307593,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22302.446255,
         y = -464040.354757,
       },
-      [1264] = {
+      [1259] = {
         zoneId = 39572,
         name = "SAM-Mike-SUPPORT-3",
         type = 0,
@@ -307825,7 +307610,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22290.579949,
         y = -463980.819293,
       },
-      [1265] = {
+      [1260] = {
         zoneId = 39573,
         name = "SAM-Mike-SUPPORT-4",
         type = 0,
@@ -307842,7 +307627,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22332.848116,
         y = -463933.503031,
       },
-      [1266] = {
+      [1261] = {
         zoneId = 39574,
         name = "SAM-Mike-SUPPORT-5",
         type = 0,
@@ -307859,7 +307644,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22294.977654,
         y = -463908.375173,
       },
-      [1267] = {
+      [1262] = {
         zoneId = 39988,
         name = "SAM-Delta-LN-6-200",
         type = 0,
@@ -307876,7 +307661,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340582.12176826,
         y = -551039.06625359,
       },
-      [1268] = {
+      [1263] = {
         zoneId = 39989,
         name = "SAM-Delta-LN-7-142",
         type = 0,
@@ -307893,7 +307678,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340504.27251551,
         y = -550952.0342299,
       },
-      [1269] = {
+      [1264] = {
         zoneId = 39990,
         name = "SAM-Delta-SENSOR-2",
         type = 0,
@@ -307910,7 +307695,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340572.93176737,
         y = -550967.72068581,
       },
-      [1270] = {
+      [1265] = {
         zoneId = 39991,
         name = "SAM-Delta-SENSOR-3",
         type = 0,
@@ -307927,7 +307712,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340476.6412284,
         y = -551080.56253035,
       },
-      [1271] = {
+      [1266] = {
         zoneId = 39992,
         name = "SAM-Foxtrot-LN-7-39",
         type = 0,
@@ -307944,7 +307729,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173339.4847211,
         y = -751183.80070233,
       },
-      [1272] = {
+      [1267] = {
         zoneId = 39995,
         name = "SAM-Mike-LN-6-160",
         type = 0,
@@ -307961,7 +307746,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22335.574914695,
         y = -463908.11741715,
       },
-      [1273] = {
+      [1268] = {
         zoneId = 39996,
         name = "SAM-Mike-LN-7",
         type = 0,
@@ -307978,7 +307763,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22281.390735931,
         y = -464015.13221536,
       },
-      [1274] = {
+      [1269] = {
         zoneId = 39998,
         name = "SAM-Mike-SENSOR-2",
         type = 0,
@@ -307995,7 +307780,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22398.288883708,
         y = -464025.30671999,
       },
-      [1275] = {
+      [1270] = {
         zoneId = 39999,
         name = "SAM-Mike-SENSOR-3",
         type = 0,
@@ -308012,7 +307797,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22276.423186786,
         y = -463953.26927452,
       },
-      [1276] = {
+      [1271] = {
         zoneId = 40000,
         name = "SAM-Lima-LN-7",
         type = 0,
@@ -308029,7 +307814,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40085.867273042,
         y = -529104.11614022,
       },
-      [1277] = {
+      [1272] = {
         zoneId = 40002,
         name = "SAM-Hotel-LN-7",
         type = 0,
@@ -308046,7 +307831,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97732.635200676,
         y = -755473.00197717,
       },
-      [1278] = {
+      [1273] = {
         zoneId = 40003,
         name = "SAM-Hotel-SENSOR-2",
         type = 0,
@@ -308063,7 +307848,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97714.517257805,
         y = -755541.25183562,
       },
-      [1279] = {
+      [1274] = {
         zoneId = 40004,
         name = "SAM-Hotel-SENSOR-3",
         type = 0,
@@ -308080,7 +307865,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -97717.765607122,
         y = -755523.09068005,
       },
-      [1280] = {
+      [1275] = {
         zoneId = 40005,
         name = "SAM-Kilo-LN-6-100",
         type = 0,
@@ -308097,7 +307882,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99120.774038633,
         y = -583779.30021551,
       },
-      [1281] = {
+      [1276] = {
         zoneId = 40006,
         name = "SAM-Kilo-LN-7-160",
         type = 0,
@@ -308114,7 +307899,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99237.025656435,
         y = -583795.82957397,
       },
-      [1282] = {
+      [1277] = {
         zoneId = 40007,
         name = "SAM-Kilo-SENSOR-2",
         type = 0,
@@ -308131,7 +307916,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99186.444388681,
         y = -583887.02193157,
       },
-      [1283] = {
+      [1278] = {
         zoneId = 40008,
         name = "SAM-Kilo-SENSOR-3",
         type = 0,
@@ -308148,7 +307933,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99211.939593856,
         y = -583758.32418203,
       },
-      [1284] = {
+      [1279] = {
         zoneId = 40009,
         name = "SAM-Delta-1",
         type = 0,
@@ -308165,7 +307950,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340550.9049044,
         y = -551011.22998069,
       },
-      [1285] = {
+      [1280] = {
         zoneId = 40010,
         name = "SAM-Delta-2",
         type = 0,
@@ -308182,7 +307967,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340459.49756644,
         y = -551035.22216117,
       },
-      [1286] = {
+      [1281] = {
         zoneId = 40011,
         name = "SAM-Echo-1",
         type = 0,
@@ -308199,7 +307984,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219239.40753193,
         y = -597074.36275734,
       },
-      [1287] = {
+      [1282] = {
         zoneId = 40012,
         name = "SAM-Echo-2",
         type = 0,
@@ -308216,7 +308001,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219172.11400812,
         y = -597021.56259252,
       },
-      [1288] = {
+      [1283] = {
         zoneId = 40013,
         name = "SAM-Foxtrot-1",
         type = 0,
@@ -308233,7 +308018,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173295.63133199,
         y = -751037.4159559,
       },
-      [1289] = {
+      [1284] = {
         zoneId = 40014,
         name = "SAM-Foxtrot-2",
         type = 0,
@@ -308250,7 +308035,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173276.56169819,
         y = -751216.26422244,
       },
-      [1290] = {
+      [1285] = {
         zoneId = 40015,
         name = "SAM-Golf-1",
         type = 0,
@@ -308267,7 +308052,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185098.85079803,
         y = -762600.42049762,
       },
-      [1291] = {
+      [1286] = {
         zoneId = 40016,
         name = "SAM-Golf-2",
         type = 0,
@@ -308284,7 +308069,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184867.40613524,
         y = -762621.78611014,
       },
-      [1292] = {
+      [1287] = {
         zoneId = 40017,
         name = "SAM-India-1",
         type = 0,
@@ -308301,7 +308086,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213892.29884355,
         y = -521225.87448974,
       },
-      [1293] = {
+      [1288] = {
         zoneId = 40018,
         name = "SAM-India-2",
         type = 0,
@@ -308318,7 +308103,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213901.77450683,
         y = -521370.63926964,
       },
-      [1294] = {
+      [1289] = {
         zoneId = 40019,
         name = "SAM-Juliett-1",
         type = 0,
@@ -308335,7 +308120,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180029.91004443,
         y = -520895.26787566,
       },
-      [1295] = {
+      [1290] = {
         zoneId = 40020,
         name = "SAM-Juliett-2",
         type = 0,
@@ -308352,7 +308137,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180040.17332573,
         y = -520778.10635653,
       },
-      [1296] = {
+      [1291] = {
         zoneId = 40021,
         name = "SAM-Kilo-1",
         type = 0,
@@ -308369,7 +308154,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99250.177992729,
         y = -583828.41772053,
       },
-      [1297] = {
+      [1292] = {
         zoneId = 40022,
         name = "SAM-Kilo-2",
         type = 0,
@@ -308386,7 +308171,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -99098.637862274,
         y = -583803.86986886,
       },
-      [1298] = {
+      [1293] = {
         zoneId = 40023,
         name = "SAM-Lima-1",
         type = 0,
@@ -308403,7 +308188,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -40562.091741251,
         y = -528788.94669611,
       },
-      [1299] = {
+      [1294] = {
         zoneId = 40024,
         name = "SAM-Lima-2",
         type = 0,
@@ -308420,7 +308205,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -39928.020610199,
         y = -528323.8451512,
       },
-      [1300] = {
+      [1295] = {
         zoneId = 40025,
         name = "SAM-Mike-1",
         type = 0,
@@ -308437,7 +308222,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22365.388543204,
         y = -463965.40507446,
       },
-      [1301] = {
+      [1296] = {
         zoneId = 40026,
         name = "SAM-Mike-2",
         type = 0,
@@ -308454,7 +308239,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22399.183196889,
         y = -463977.30212399,
       },
-      [1302] = {
+      [1297] = {
         zoneId = 40027,
         name = "HiddenSweden-1",
         type = 0,
@@ -308471,7 +308256,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 101860.25833396,
         y = -451910.78663904,
       },
-      [1303] = {
+      [1298] = {
         zoneId = 40028,
         name = "HiddenSweden-2",
         type = 0,
@@ -308488,7 +308273,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 101845.35409008,
         y = -451409.5782093,
       },
-      [1304] = {
+      [1299] = {
         zoneId = 40029,
         name = "HiddenSweden-SAM-1",
         type = 0,
@@ -308505,7 +308290,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 101819.43917108,
         y = -451657.00522978,
       },
-      [1305] = {
+      [1300] = {
         zoneId = 40030,
         name = "HiddenSweden-SAM-2",
         type = 0,
@@ -308522,7 +308307,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 106938.23703334,
         y = -403827.41031729,
       },
-      [1306] = {
+      [1301] = {
         zoneId = 40444,
         name = "HiddenSweden-3",
         type = 0,
@@ -308539,7 +308324,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 106879.78299408,
         y = -404343.21831176,
       },
-      [1307] = {
+      [1302] = {
         zoneId = 40445,
         name = "HiddenSweden-4",
         type = 0,
@@ -308556,7 +308341,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 106976.83338688,
         y = -403342.85272451,
       },
-      [1308] = {
+      [1303] = {
         zoneId = 40859,
         name = "SAM-Charlie-C2-0",
         type = 0,
@@ -308573,7 +308358,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -386254.18064574,
         y = -729657.88457418,
       },
-      [1309] = {
+      [1304] = {
         zoneId = 40861,
         name = "SAM-Bravo-C2-1",
         type = 0,
@@ -308590,7 +308375,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -433888.23848201,
         y = -822905.3181096,
       },
-      [1310] = {
+      [1305] = {
         zoneId = 40862,
         name = "SAM-Bravo-SUPPORT-2",
         type = 0,
@@ -308607,7 +308392,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -433924.84902486,
         y = -822904.9952215,
       },
-      [1311] = {
+      [1306] = {
         zoneId = 40863,
         name = "SAM-Bravo-SUPPORT-3",
         type = 0,
@@ -308624,7 +308409,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -434019.62910052,
         y = -822914.3838139,
       },
-      [1312] = {
+      [1307] = {
         zoneId = 40864,
         name = "SAM-Bravo-SUPPORT-4",
         type = 0,
@@ -308641,7 +308426,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -434072.16051038,
         y = -822759.02496347,
       },
-      [1313] = {
+      [1308] = {
         zoneId = 40865,
         name = "SAM-Echo-SENSOR-4",
         type = 0,
@@ -308658,7 +308443,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219183.97701982,
         y = -597111.15265923,
       },
-      [1314] = {
+      [1309] = {
         zoneId = 40866,
         name = "SAM-Echo-LN-7-55",
         type = 0,
@@ -308675,7 +308460,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219193.33402883,
         y = -596996.283753,
       },
-      [1315] = {
+      [1310] = {
         zoneId = 40867,
         name = "SAM-Echo-LN-8-330",
         type = 0,
@@ -308692,7 +308477,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219255.4225005,
         y = -597021.73316263,
       },
-      [1316] = {
+      [1311] = {
         zoneId = 40868,
         name = "SAM-Delta-SUPPORT-6",
         type = 0,
@@ -308709,7 +308494,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340462.02629495,
         y = -551075.425858,
       },
-      [1317] = {
+      [1312] = {
         zoneId = 40869,
         name = "SAM-Delta-C2-3",
         type = 0,
@@ -308726,7 +308511,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -340513.34375434,
         y = -550991.40800905,
       },
-      [1318] = {
+      [1313] = {
         zoneId = 41283,
         name = "SAM-Echo-C2-1",
         type = 0,
@@ -308743,7 +308528,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219153.14974174,
         y = -597094.75505565,
       },
-      [1319] = {
+      [1314] = {
         zoneId = 41284,
         name = "SAM-Echo-C2-2",
         type = 0,
@@ -308760,7 +308545,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219252.60563377,
         y = -597053.7034711,
       },
-      [1320] = {
+      [1315] = {
         zoneId = 41285,
         name = "SAM-Echo-C2-3",
         type = 0,
@@ -308777,7 +308562,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219215.39935429,
         y = -596973.50326869,
       },
-      [1321] = {
+      [1316] = {
         zoneId = 41286,
         name = "SAM-Echo-C2-4",
         type = 0,
@@ -308794,7 +308579,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219130.07262998,
         y = -597082.08865113,
       },
-      [1322] = {
+      [1317] = {
         zoneId = 41287,
         name = "SAM-Juliett-C2-1",
         type = 0,
@@ -308811,7 +308596,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180026.11974463,
         y = -520928.88486855,
       },
-      [1323] = {
+      [1318] = {
         zoneId = 41288,
         name = "SAM-Juliett-C2-2",
         type = 0,
@@ -308828,7 +308613,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -180077.10574731,
         y = -520881.43102871,
       },
-      [1324] = {
+      [1319] = {
         zoneId = 41289,
         name = "SAM-Juliett-C2-3",
         type = 0,
@@ -308845,7 +308630,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -179976.66946493,
         y = -520747.05526865,
       },
-      [1325] = {
+      [1320] = {
         zoneId = 41290,
         name = "SAM-Juliett-SENSOR-4",
         type = 0,
@@ -308862,7 +308647,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -179993.1052329,
         y = -520801.75925664,
       },
-      [1326] = {
+      [1321] = {
         zoneId = 41291,
         name = "SAM-India-LN-8-207",
         type = 0,
@@ -308879,7 +308664,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213933.18600564,
         y = -521338.37277639,
       },
-      [1327] = {
+      [1322] = {
         zoneId = 41292,
         name = "SAM-India-C2-1",
         type = 0,
@@ -308896,7 +308681,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213841.46453333,
         y = -521367.28110034,
       },
-      [1328] = {
+      [1323] = {
         zoneId = 41293,
         name = "SAM-India-C2-2",
         type = 0,
@@ -308913,7 +308698,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213842.53521199,
         y = -521248.19783993,
       },
-      [1329] = {
+      [1324] = {
         zoneId = 41294,
         name = "SAM-India-C2-3",
         type = 0,
@@ -308930,7 +308715,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213889.16921607,
         y = -521192.64151364,
       },
-      [1330] = {
+      [1325] = {
         zoneId = 41295,
         name = "SAM-India-C2-4",
         type = 0,
@@ -308947,7 +308732,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213952.6961502,
         y = -521230.23423122,
       },
-      [1331] = {
+      [1326] = {
         zoneId = 41296,
         name = "SAM-India-SUPPORT-3",
         type = 0,
@@ -308964,7 +308749,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -213944.13072088,
         y = -521312.91441702,
       },
-      [1332] = {
+      [1327] = {
         zoneId = 41710,
         name = "SAM-Golf-SUPPORT-3",
         type = 0,
@@ -308981,7 +308766,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184931.11225126,
         y = -762538.76777873,
       },
-      [1333] = {
+      [1328] = {
         zoneId = 41711,
         name = "SAM-Foxtrot-SENSOR-4",
         type = 0,
@@ -308998,7 +308783,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173245.38843435,
         y = -751070.52026497,
       },
-      [1334] = {
+      [1329] = {
         zoneId = 41712,
         name = "SAM-Foxtrot-SUPPORT-3",
         type = 0,
@@ -309015,7 +308800,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173265.41458044,
         y = -751107.31627322,
       },
-      [1335] = {
+      [1330] = {
         zoneId = 41713,
         name = "SAM-Foxtrot-SUPPORT-4",
         type = 0,
@@ -309032,7 +308817,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173385.89708532,
         y = -751080.7775593,
       },
-      [1336] = {
+      [1331] = {
         zoneId = 41714,
         name = "SAM-Foxtrot-SUPPORT-5",
         type = 0,
@@ -309049,7 +308834,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173244.57436337,
         y = -750954.59655756,
       },
-      [1337] = {
+      [1332] = {
         zoneId = 41715,
         name = "SAM-Mike-LN-1",
         type = 0,
@@ -309066,7 +308851,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = 22270.582844139,
         y = -464063.93600071,
       },
-      [1338] = {
+      [1333] = {
         zoneId = 42129,
         name = "SAM-Foxtrot-LN-7-222",
         type = 0,
@@ -309083,7 +308868,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -173303.96902932,
         y = -751154.78193819,
       },
-      [1339] = {
+      [1334] = {
         zoneId = 42543,
         name = "SAM-Golf-LN-8-105",
         type = 0,
@@ -309100,7 +308885,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -184984.70913288,
         y = -762646.86924063,
       },
-      [1340] = {
+      [1335] = {
         zoneId = 42544,
         name = "SAM-Golf-3",
         type = 0,
@@ -309117,7 +308902,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185034.03216436,
         y = -762488.44833502,
       },
-      [1341] = {
+      [1336] = {
         zoneId = 42545,
         name = "SAM-Golf-4",
         type = 0,
@@ -309134,7 +308919,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -185044.82358834,
         y = -762805.2751973,
       },
-      [1342] = {
+      [1337] = {
         zoneId = 42546,
         name = "HiddenGround3-shorad-0",
         type = 0,
@@ -309151,7 +308936,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -348479.51854161,
         y = -643091.93700833,
       },
-      [1343] = {
+      [1338] = {
         zoneId = 42547,
         name = "HiddenGround3-shorad-1",
         type = 0,
@@ -309168,7 +308953,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -346145.33450321,
         y = -568282.85582027,
       },
-      [1344] = {
+      [1339] = {
         zoneId = 42548,
         name = "HiddenGround4-shorad-0",
         type = 0,
@@ -309185,7 +308970,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -233544.7939394,
         y = -470678.35193945,
       },
-      [1345] = {
+      [1340] = {
         zoneId = 42549,
         name = "HiddenGround5-shorad-0",
         type = 0,
@@ -309202,7 +308987,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -127166.06508982,
         y = -482920.01292378,
       },
-      [1346] = {
+      [1341] = {
         zoneId = 42550,
         name = "HiddenGround5-shorad-1",
         type = 0,
@@ -309219,7 +309004,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -141397.70316728,
         y = -538958.21723671,
       },
-      [1347] = {
+      [1342] = {
         zoneId = 42551,
         name = "HiddenGround5-shorad-2",
         type = 0,
@@ -309236,7 +309021,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -78338.737442745,
         y = -457648.97169622,
       },
-      [1348] = {
+      [1343] = {
         zoneId = 42552,
         name = "HiddenGround5-shorad-3",
         type = 0,
@@ -309253,7 +309038,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -61461.828001626,
         y = -446614.74320307,
       },
-      [1349] = {
+      [1344] = {
         zoneId = 42553,
         name = "HiddenGround5-shorad-4",
         type = 0,
@@ -309270,7 +309055,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -92479.645895362,
         y = -415446.71575059,
       },
-      [1350] = {
+      [1345] = {
         zoneId = 42554,
         name = "HiddenGround5-shorad-5",
         type = 0,
@@ -309287,7 +309072,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -196497.9969808,
         y = -634371.22017791,
       },
-      [1351] = {
+      [1346] = {
         zoneId = 42555,
         name = "HiddenGround5-shorad-6",
         type = 0,
@@ -309304,7 +309089,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -208954.9104956,
         y = -719592.57106064,
       },
-      [1352] = {
+      [1347] = {
         zoneId = 42556,
         name = "HiddenGround5-sam-0",
         type = 0,
@@ -309321,7 +309106,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -140281.10981331,
         y = -656294.56578969,
       },
-      [1353] = {
+      [1348] = {
         zoneId = 42557,
         name = "HiddenGround5-sam-1",
         type = 0,
@@ -309338,7 +309123,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -133120.64728902,
         y = -578840.54845277,
       },
-      [1354] = {
+      [1349] = {
         zoneId = 42558,
         name = "HiddenGround5-sam-2",
         type = 0,
@@ -309355,7 +309140,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -165765.45962617,
         y = -618346.48947218,
       },
-      [1355] = {
+      [1350] = {
         zoneId = 42559,
         name = "HiddenGround5-sam-3",
         type = 0,
@@ -309372,7 +309157,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -77359.95536928,
         y = -489559.58139739,
       },
-      [1356] = {
+      [1351] = {
         zoneId = 42560,
         name = "HiddenGround5-sam-4",
         type = 0,
@@ -309389,7 +309174,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -116390.21319108,
         y = -435635.89925442,
       },
-      [1357] = {
+      [1352] = {
         zoneId = 42561,
         name = "HiddenGround6-shorad-0",
         type = 0,
@@ -309406,7 +309191,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -482822.29335231,
         y = -944064.32233931,
       },
-      [1358] = {
+      [1353] = {
         zoneId = 42562,
         name = "HiddenGround10-shorad-0",
         type = 0,
@@ -309423,7 +309208,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -239901.88508734,
         y = -491254.41995111,
       },
-      [1359] = {
+      [1354] = {
         zoneId = 42563,
         name = "HiddenGround10-shorad-1",
         type = 0,
@@ -309440,7 +309225,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -215919.36023901,
         y = -483303.34624009,
       },
-      [1360] = {
+      [1355] = {
         zoneId = 42977,
         name = "SAM-Echo-3",
         type = 0,
@@ -309457,7 +309242,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219237.53139946,
         y = -597118.34744762,
       },
-      [1361] = {
+      [1356] = {
         zoneId = 42978,
         name = "SAM-Echo-4",
         type = 0,
@@ -309474,7 +309259,7 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         x = -219274.38998142,
         y = -597061.25015338,
       },
-      [1362] = {
+      [1357] = {
         zoneId = 42979,
         name = "SAM-Echo-5",
         type = 0,
@@ -309490,6 +309275,266 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         radius = 4.8768,
         x = -219290.96696112,
         y = -597006.47159903,
+      },
+      [1358] = {
+        zoneId = 43393,
+        name = "Striketarget3",
+        type = 2,
+        color = {
+          [1] = 1,
+          [2] = 1,
+          [3] = 0,
+          [4] = 0.14901960784314,
+        },
+        heading = 0,
+        hidden = false,
+        properties = {
+          [1] = {
+            key = "ROLE",
+            value = "",
+          },
+          [2] = {
+            key = "VALUE",
+            value = "",
+          },
+          [3] = {
+            key = "OBJECT ID",
+            value = "77891147",
+          },
+          [4] = {
+            key = "NAME",
+            value = "market_big",
+          },
+        },
+        radius = 103.89819507507,
+        verticies = {
+          [1] = {
+            x = -316087.98698189,
+            y = -467510.52477352,
+          },
+          [2] = {
+            x = -316056.96163887,
+            y = -467611.44331487,
+          },
+          [3] = {
+            x = -315885.88801811,
+            y = -467558.85022648,
+          },
+          [4] = {
+            x = -315916.91336113,
+            y = -467457.93168513,
+          },
+        },
+        x = -315986.9375,
+        y = -467534.6875,
+      },
+      [1359] = {
+        zoneId = 43394,
+        name = "ArtilleryAarehouse",
+        type = 2,
+        color = {
+          [1] = 1,
+          [2] = 1,
+          [3] = 1,
+          [4] = 0.15,
+        },
+        heading = 0,
+        hidden = false,
+        properties = {
+          [1] = {
+            key = "ROLE",
+            value = "",
+          },
+          [2] = {
+            key = "VALUE",
+            value = "",
+          },
+          [3] = {
+            key = "OBJECT ID",
+            value = "75546902",
+          },
+          [4] = {
+            key = "NAME",
+            value = "stock",
+          },
+        },
+        radius = 50.346087015748,
+        verticies = {
+          [1] = {
+            x = -412428.56976919,
+            y = -871225.33384663,
+          },
+          [2] = {
+            x = -412350.69610858,
+            y = -871226.11579382,
+          },
+          [3] = {
+            x = -412350.05523081,
+            y = -871162.29115337,
+          },
+          [4] = {
+            x = -412427.92889142,
+            y = -871161.50920618,
+          },
+        },
+        x = -412389.3125,
+        y = -871193.8125,
+      },
+      [1360] = {
+        zoneId = 43396,
+        name = "Propaganda",
+        type = 2,
+        color = {
+          [1] = 1,
+          [2] = 1,
+          [3] = 0,
+          [4] = 0.14901960784314,
+        },
+        heading = 0,
+        hidden = false,
+        properties = {
+          [1] = {
+            key = "ROLE",
+            value = "",
+          },
+          [2] = {
+            key = "VALUE",
+            value = "",
+          },
+          [3] = {
+            key = "OBJECT ID",
+            value = "79882029",
+          },
+          [4] = {
+            key = "NAME",
+            value = "us_border_station",
+          },
+        },
+        radius = 16.222925070456,
+        verticies = {
+          [1] = {
+            x = -226539.22662812,
+            y = -661893.16083936,
+          },
+          [2] = {
+            x = -226558.56195265,
+            y = -661905.44035345,
+          },
+          [3] = {
+            x = -226546.24212188,
+            y = -661924.83916064,
+          },
+          [4] = {
+            x = -226526.90679735,
+            y = -661912.55964655,
+          },
+        },
+        x = -226542.734375,
+        y = -661909,
+      },
+      [1361] = {
+        zoneId = 43397,
+        name = "TotallyCivilian",
+        type = 2,
+        color = {
+          [1] = 1,
+          [2] = 1,
+          [3] = 1,
+          [4] = 0.15,
+        },
+        heading = 0,
+        hidden = false,
+        properties = {
+          [1] = {
+            key = "ROLE",
+            value = "",
+          },
+          [2] = {
+            key = "VALUE",
+            value = "",
+          },
+          [3] = {
+            key = "OBJECT ID",
+            value = "94347504",
+          },
+          [4] = {
+            key = "NAME",
+            value = "industrial_eu_01",
+          },
+        },
+        radius = 36.542205717876,
+        verticies = {
+          [1] = {
+            x = -97420.217976421,
+            y = -656362.91614662,
+          },
+          [2] = {
+            x = -97484.33490225,
+            y = -656338.52424309,
+          },
+          [3] = {
+            x = -97493.297648579,
+            y = -656362.08385338,
+          },
+          [4] = {
+            x = -97429.18072275,
+            y = -656386.47575691,
+          },
+        },
+        x = -97456.7578125,
+        y = -656362.5,
+      },
+      [1362] = {
+        zoneId = 43398,
+        name = "StrikeTarget1",
+        type = 2,
+        color = {
+          [1] = 1,
+          [2] = 1,
+          [3] = 0,
+          [4] = 0.14901960784314,
+        },
+        heading = 0,
+        hidden = false,
+        properties = {
+          [1] = {
+            key = "ROLE",
+            value = "",
+          },
+          [2] = {
+            key = "VALUE",
+            value = "",
+          },
+          [3] = {
+            key = "OBJECT ID",
+            value = "78269080",
+          },
+          [4] = {
+            key = "NAME",
+            value = "us_border_station",
+          },
+        },
+        radius = 16.222925070456,
+        verticies = {
+          [1] = {
+            x = -272219.55043104,
+            y = -740660.26759749,
+          },
+          [2] = {
+            x = -272198.90758411,
+            y = -740670.19302501,
+          },
+          [3] = {
+            x = -272188.94956896,
+            y = -740649.48240251,
+          },
+          [4] = {
+            x = -272209.59241589,
+            y = -740639.55697499,
+          },
+        },
+        x = -272204.25,
+        y = -740654.875,
       },
     },
   },
@@ -309877,6 +309922,12 @@ bc:fireAtZone('Larz',gr:getName(),true,1,3)",
         [41] = {
           countrylist = 1,
           file = "ResKey_Action_255",
+          predicate = "a_out_sound_c",
+          start_delay = 0,
+        },
+        [42] = {
+          countrylist = 1,
+          file = "ResKey_Action_258",
           predicate = "a_out_sound_c",
           start_delay = 0,
         },

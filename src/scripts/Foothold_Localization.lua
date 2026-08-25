@@ -656,6 +656,7 @@ Reward 500
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "%s strategic bomber on route to %s.\nEscort the bomber along the route. Enemy will likely intercept.",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "Escort is in position with %s.\nBomber preparing to push in %s.",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "Escort is in position with %s.\nEscort credit in %s.",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "Escort confirmed with %s. Clear any threats.",
 	STRATEGIC_BOMBER_RTB_TO           = "%s RTB to %s.",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s escorted %s home safely\ncredit %d each - land to redeem",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s escorted %s home safely\ncredit %d - land to redeem",
@@ -709,6 +710,54 @@ Lat long Decimal Minutes: N 36°12.050' E 37°09.695'
 Elevation 1287 feet]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "New strike mission: Strike on enemy hideout",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "Strike mission ended: Strike on enemy hideout",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "Strike enemy communication tower",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[We have intercepted enemy communications transmitting from this location.
+Take out the communication tower.
+
+Reward: 1000
+
+MGRS: 36 S WF 81960 24650
+Lat long: N 36°21'48" E 33°54'48"
+Lat long Precise: N 36°21'48.47" E 33°54'48.89"
+Lat long Decimal Minutes: N 36°21.807' E 33°54.814'
+Elevation 361 feet]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "New strike mission: Strike enemy communication tower",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "Strike mission ended: Strike enemy communication tower",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "Strike enemy communications relay",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[Enemy communications have been traced to a second relay tower.
+Destroy it to disrupt their network.
+
+Reward: 1000
+
+MGRS: 37 S CB 09839 49242
+Lat long: N 37°28'13" E 36°50'58"
+Lat long Precise: N 37°28'13.88" E 36°50'58.56"
+Lat long Decimal Minutes: N 37°28.231' E 36°50.976'
+Elevation 2887 feet]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "Warning: The tower is guarded by an SA-2 surface-to-air missile site.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "New strike mission: Strike enemy communications relay",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "Strike mission ended: Strike enemy communications relay",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "Deep strike at Konya",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[Conduct a deep strike at Konya and destroy both strategic targets.
+The target area is heavily guarded by an %s surface-to-air missile site.
+
+Reward: 2000
+
+Target 1
+MGRS: 36 S VG 52091 90581
+Lat long: N 37°51'41" E 32°27'19"
+Lat long Precise: N 37°51'41.17" E 32°27'19.27"
+Lat long Decimal Minutes: N 37°51.686' E 32°27.321'
+Elevation 3406 feet
+
+Target 2
+MGRS: 36 S VG 52142 90600
+Lat long: N 37°51'41" E 32°27'21"
+Lat long Precise: N 37°51'41.82" E 32°27'21.35"
+Lat long Decimal Minutes: N 37°51.697' E 32°27.355'
+Elevation 3406 feet]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "New strike mission: Deep strike at Konya",
+	SYRIA_MISSION_STRIKE_KONYA_END = "Strike mission ended: Deep strike at Konya",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "Strike on Taftanaz supply warehouse",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[Taftanaz supply warehouse has been found,
 Take it out to halt the supplies going from there.
@@ -954,6 +1003,8 @@ Reward: 1000]],
 	STATS_MENU_RANK_HELP               = "Rank Help",
 	STATS_MENU_BUDGET_OVERVIEW         = "Budget Overview",
 	STATS_MENU_AI_LOGISTICS            = "AI Logistics (Currently %s)",
+	STATS_MENU_AI_LOGISTICS_ON         = "On",
+	STATS_MENU_AI_LOGISTICS_OFF        = "Off",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "Enable AI Logistics",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "Disable AI Logistics",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "BLUE AI logistics are now enabled.",
@@ -972,6 +1023,7 @@ Reward: 1000]],
 	STATS_LABEL_SHIP                   = "Ship",
 	STATS_LABEL_SAM                    = "SAM",
 	STATS_LABEL_STRUCTURE              = "Structure",
+	STATS_LABEL_DEMOLITION_KILL        = "Demolition kill",
 	STATS_LABEL_DEATHS                 = "Deaths",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "Captured by enemy",
 	STATS_LABEL_ZONE_CAPTURE           = "Zone capture",
@@ -980,6 +1032,89 @@ Reward: 1000]],
 	STATS_LABEL_POINTS                 = "Points",
 	STATS_LABEL_POINTS_SPENT           = "Points spent",
 	STATS_LABEL_FLIGHT_TIME            = "Flight time",
+	STATS_LABEL_ACHIEVEMENT            = "Achievement bonus",
+	CAREER_MENU_ROOT                   = "Career",
+	CAREER_MENU_OVERVIEW               = "Career Overview",
+	CAREER_MENU_FLIGHT_PROGRESS        = "Flight Achievements",
+	CAREER_MENU_COMBAT_PROGRESS        = "Combat Achievements",
+	CAREER_MENU_LOGISTICS_PROGRESS     = "Logistics Achievements",
+	CAREER_MENU_AIRCRAFT               = "Aircraft Career",
+	CAREER_VALUE_DURATION              = "%dh %02dm",
+	CAREER_VALUE_LBS                   = "%d lb",
+	CAREER_VALUE_CREDITS               = "%d credits",
+	CAREER_SCOPE_AIRCRAFT              = "Aircraft",
+	CAREER_ACHIEVEMENT_CONTEXT_GLOBAL  = "%s: %s",
+	CAREER_ACHIEVEMENT_CONTEXT         = "%s - %s: %s",
+	CAREER_ACHIEVEMENT_CONTEXT_COUNT_GLOBAL = "%s %s",
+	CAREER_ACHIEVEMENT_CONTEXT_COUNT   = "%s - %s %s",
+	CAREER_ACHIEVEMENT_PUBLIC_HEADER   = "ACHIEVEMENT UNLOCKED - %s",
+	CAREER_ACHIEVEMENT_PUBLIC_LINE     = "%s - %s",
+	CAREER_PROGRESS_CURRENT_NEXT       = "%s: %s - %s (%d/%d); next \"%s\" at %s",
+	CAREER_PROGRESS_NEXT               = "%s: %s (%d/%d); next \"%s\" at %s",
+	CAREER_PROGRESS_COMPLETE           = "%s: %s - %s (%d/%d); ladder complete",
+	CAREER_PROGRESS_FLIGHT_TITLE       = "[Flight achievements: %d/%d]",
+	CAREER_PROGRESS_COMBAT_TITLE       = "[Combat achievements: %d/%d]",
+	CAREER_PROGRESS_LOGISTICS_TITLE    = "[Logistics achievements: %d/%d]",
+	CAREER_OVERVIEW_HEADER             = "[Career: %s]",
+	CAREER_OVERVIEW_ACHIEVEMENTS       = "Lifetime achievements: %d/%d",
+	CAREER_OVERVIEW_FLIGHT             = "Flight: %s (fixed-wing %s, helicopter %s)",
+	CAREER_OVERVIEW_SORTIES            = "Sorties: %d takeoffs, %d landings, %d ship launches, %d ship landings, %d Hornet/Tomcat CVN landings",
+	CAREER_OVERVIEW_KILLS              = "Kills: %d total (air %d, helo %d, ground %d [fixed-wing %d, helicopter %d], SAM %d, ship %d, structure %d, infantry %d)",
+	CAREER_OVERVIEW_STREAKS            = "Air-kill streaks: fixed-wing %d/%d, helicopter %d/%d (current/best)",
+	CAREER_OVERVIEW_FRIENDLY           = "Misfortune: %d friendly kills, %d ejections, %d pilot deaths",
+	CAREER_OVERVIEW_FUEL               = "Fuel received: %s",
+	CAREER_OVERVIEW_SUPPLY             = "Supplies: %d total (zone %d, FARP %d, air-dropped %d, weapon resupply %d)",
+	CAREER_OVERVIEW_BUILDS             = "Builds: %d total, %d upgrades, %d FARPs, %d air-defense, %d air-dropped, %d air-dropped air-defense",
+	CAREER_OVERVIEW_TROOPS             = "Troops: %d drops, %d captures, %d zone upgrades; pilot rescues %d",
+	CAREER_OVERVIEW_SPENDING           = "Procurement: %s across %d purchases",
+	CAREER_AIRCRAFT_HEADER             = "[Aircraft career: %s]",
+	CAREER_AIRCRAFT_NONE               = "No aircraft career activity recorded yet.",
+	CAREER_AIRCRAFT_LINE               = "%s: %s | kills %d | landings %d | ship landings %d | supply %d | air-drops %d | builds %d | achievements %d/%d",
+	CAREER_AIRCRAFT_TARAWA_SUFFIX      = " | Tarawa landings %d",
+	CAREER_STAT_FLIGHT_TIME             = "Flight time",
+	CAREER_STAT_FIXED_WING_TIME         = "Fixed-wing time",
+	CAREER_STAT_HELICOPTER_TIME         = "Helicopter time",
+	CAREER_STAT_TAKEOFFS                = "Takeoffs",
+	CAREER_STAT_LANDINGS                = "Landings",
+	CAREER_STAT_CARRIER_TAKEOFFS        = "Carrier takeoffs",
+	CAREER_STAT_CARRIER_LANDINGS        = "Carrier landings",
+	CAREER_STAT_SHIP_LANDINGS           = "Ship landings",
+	CAREER_STAT_CONVENTIONAL_CARRIER    = "Hornet/Tomcat CVN landings",
+	CAREER_STAT_TARAWA_LANDINGS         = "Tarawa landings",
+	CAREER_STAT_EJECTIONS               = "Ejections",
+	CAREER_STAT_PILOT_DEATHS            = "Pilot deaths",
+	CAREER_STAT_FUEL_RECEIVED           = "Fuel received",
+	CAREER_STAT_TOTAL_KILLS             = "Total kills",
+	CAREER_STAT_AIR_KILLS               = "Air kills",
+	CAREER_STAT_HELO_KILLS              = "Helicopter kills",
+	CAREER_STAT_FIXED_WING_STREAK       = "Fixed-wing air-kill streak",
+	CAREER_STAT_HELICOPTER_STREAK       = "Helicopter air-kill streak",
+	CAREER_STAT_GROUND_KILLS            = "Ground kills",
+	CAREER_STAT_FIXED_WING_GROUND_KILLS = "Fixed-wing ground kills",
+	CAREER_STAT_HELICOPTER_GROUND_KILLS = "Helicopter ground kills",
+	CAREER_STAT_SAM_KILLS               = "SAM kills",
+	CAREER_STAT_SHIP_KILLS              = "Ship kills",
+	CAREER_STAT_STRUCTURE_KILLS         = "Structure kills",
+	CAREER_STAT_DEMOLITION_KILLS        = "Demolition kills",
+	CAREER_STAT_INFANTRY_KILLS          = "Infantry kills",
+	CAREER_STAT_FRIENDLY_KILLS          = "Friendly kills",
+	CAREER_STAT_SUPPLY_DELIVERED        = "Supplies delivered",
+	CAREER_STAT_ZONE_SUPPLY             = "Zone supplies",
+	CAREER_STAT_FARP_SUPPLY             = "FARP supplies",
+	CAREER_STAT_AIRDROPPED_SUPPLY       = "Air-dropped supplies",
+	CAREER_STAT_WAREHOUSE_DELIVERIES    = "Weapon resupply deliveries",
+	CAREER_STAT_CTLD_BUILDS             = "CTLD builds",
+	CAREER_STAT_CTLD_UPGRADES           = "CTLD upgrades",
+	CAREER_STAT_FARPS_BUILT             = "FARPs built",
+	CAREER_STAT_AIR_DEFENSE_BUILT       = "Air-defense systems built",
+	CAREER_STAT_TROOP_DROPS             = "Troop drops",
+	CAREER_STAT_TROOP_CAPTURES          = "Troop captures",
+	CAREER_STAT_TROOP_ZONE_UPGRADES     = "Troop zone upgrades",
+	CAREER_STAT_PILOT_RESCUES           = "Pilot rescues",
+	CAREER_STAT_AIRDROPPED_BUILDS       = "Air-dropped builds",
+	CAREER_STAT_AIRDROPPED_AIR_DEFENSE  = "Air-dropped air-defense builds",
+	CAREER_STAT_LIFETIME_SPENT          = "Lifetime credits spent",
+	CAREER_STAT_PURCHASES               = "Purchases",
 
 	-- ============================================================
 	-- Mission Text
@@ -1003,6 +1138,7 @@ Reward: 1000]],
 	MISSION_CAS_DESCRIPTION_EMPTY      = "Support ground operations at %s.\nCoalition progress: %d/%d ground targets destroyed.",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "Support ground operations at %s.\nCoalition progress: %d/%d ground targets destroyed.\n\n%s",
 	MISSION_CAS_START                  = "New CAS mission at %s: Destroy %d enemy ground targets.",
+	MISSION_CAS_END                    = "Mission ended: CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] completed the CAS mission!\nReward pending: %d credits (land to redeem).",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] and [%s] completed the CAS mission!\nReward pending: %d credits each (land to redeem).",
 	MISSION_CAS_COMPLETED_GROUP        = "CAS mission completed!\nPending rewards:\n%s\nLand to redeem.",
@@ -1208,6 +1344,9 @@ Elevation %d feet]],
 	-- Zone Admin / Labels
 	-- ============================================================
 	ZONE_LABEL_MISSION                 = "Mission!",
+	ZONE_CAPTURE_PROGRESS              = "Capturing: %d%%",
+	ZONE_CAPTURE_STARTED_FRIENDLY      = "Capturing %s...",
+	ZONE_CAPTURE_STARTED_ENEMY         = "Enemy is capturing %s",
 	ZONE_LABEL_REPAIRING_PERCENT       = "Repairing %d%%",
 	ZONE_LABEL_UPGRADING_PERCENT       = "Upgrading %d%%",
 	ZONE_MISSION_TAG_ATTACK            = "Attack",
@@ -1234,6 +1373,7 @@ Elevation %d feet]],
 	ZONE_FAILED_SPAWN_REPLACEMENT_GROUP = "Failed to spawn replacement group: %s",
 	ZONE_FAILED_SPAWN_GROUP_FOR_UPGRADE = "Failed to spawn group for upgrade: %s",
 	ZONE_LOST_GROUP                    = "%s lost group %s",
+	ZONE_ENEMY_FORCES_SURRENDERED      = "Enemy forces at %s have given up and fled.",
 	ZONE_NOW_NEUTRAL                   = "%s is now neutral",
 	ZONE_LOST_BY_BLUE                  = "We have lost %s!",
 	ZONE_WARNING_UNKNOWN_TARGETZONE    = "WARNING: unknown targetzone=%s in group=%s zone=%s",
@@ -1416,6 +1556,7 @@ Elevation %d feet]],
 	JOINT_MENU_JOIN_ANOTHER            = "Join another player",
 	JOINT_MENU_CODE                    = "code %s",
 	JOINT_MENU_REQUEST_PLAYER          = "Request joint with player",
+	JOINT_MENU_JOIN_PARTY              = "Join %s's Party (%d/%d)",
 	JOINT_MENU_PENDING_REQUESTS        = "Pending joint requests",
 	JOINT_MENU_NO_PLAYERS              = "No available players",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "No pending requests",
@@ -1434,10 +1575,10 @@ Elevation %d feet]],
 	JOINT_REQUEST_DENIED_BY            = "%s denied your joint mission request",
 	JOINT_REQUEST_EXPIRED              = "Joint mission request expired",
 	JOINT_REQUEST_TARGET_BUSY          = "%s is already in a joint mission",
-	JOINT_REQUEST_REQUESTER_BUSY       = "You are already in a joint mission",
+	JOINT_REQUEST_REQUESTER_BUSY       = "Your joint mission is full",
 	JOINT_REQUEST_NOT_AVAILABLE        = "That player is no longer available",
 	JOINT_STAT_SUFFIX                  = " (Joint mission)",
-	JOINT_HELP_REQUESTS                = "Joint missions lets two players get up to double the mission credit rewards.\n\nHow it works:\n- Open \"Request joint with player\" and select a player.\n- The selected player gets a pending request and has 120 seconds to accept or deny.\n- Credits will be rewarded to both for missions. Not any regular kills.\n- Valid for CAS, CAP, Bomb runway, Strike missions.\n- If your partner is dead/despawned, you will still keep your earnings plus the extra reward.",
+	JOINT_HELP_REQUESTS                = "Joint missions let parties of two to four players share mission credit rewards.\n\nHow it works:\n- Open \"Request joint with player\" and select a solo player or an open party.\n- The selected player gets a pending request and has 120 seconds to accept or deny.\n- Eligible party members receive mission credits. Regular kills are not shared.\n- Valid for CAS, CAP, Bomb runway, and Strike missions.\n- Only active, surviving party members receive Joint mission rewards.",
 	JOINT_HELP                         = "Joint missions lets two players get up to double the rewards of the mission credits.\n\nHow it works:\n• Host selects \"Invite to joint mission\" to receive a 4-digit code.\n• Teammate opens \"Join another player\" and enters the code.\n• Credits will be rewarded to both for missions. Not any regular kills.\n• Valid for CAS, CAP, Bomb runway, Strike missions.\n• If your partner is dead/despawned, you will still keep your earnings plus the extra reward.\n• Same-coalition only.",
 
 	-- ============================================================
@@ -1528,6 +1669,8 @@ Elevation %d feet]],
 	CTLD_SAM_MERGE_COMPLETE            = "%s merge complete: added %s to nearby system.",
 	CTLD_ZONE_SUPPLIES_DESTROYED       = "[CTLD] Zone supplies destroyed in %s (%s).",
 	CTLD_ZONE_SUPPLIES_DELIVERED       = "Zone supplies %s %s.",
+	CTLD_ZONE_SUPPLY_ACTION_CAPTURING  = "capture started at",
+	CTLD_ZONE_SUPPLY_ACTION_QUEUED     = "queued until capture completes at",
 	CTLD_ZONE_SUPPLY_ACTION_CAPTURED   = "captured",
 	CTLD_ZONE_SUPPLY_ACTION_UPGRADED   = "upgraded",
 	CTLD_ZONE_SUPPLY_ACTION_STOCKED    = "stocked (%d/%d ready) at",
@@ -1551,24 +1694,31 @@ Elevation %d feet]],
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Humvee scout",
 	CTLD_MENU_10_EVERYTHING            = "10 of everything",
+	CTLD_MENU_15_EVERYTHING            = "15 of everything",
 	CTLD_MENU_25_EVERYTHING            = "25 of everything",
 	CTLD_MENU_50_EVERYTHING            = "50 of everything",
 	CTLD_MENU_10_AA_MISSILES           = "10 A/A Missiles",
+	CTLD_MENU_15_AA_MISSILES           = "15 A/A Missiles",
 	CTLD_MENU_25_AA_MISSILES           = "25 A/A Missiles",
 	CTLD_MENU_50_AA_MISSILES           = "50 A/A Missiles",
 	CTLD_MENU_10_AG_MISSILES           = "10 A/G Missiles",
+	CTLD_MENU_15_AG_MISSILES           = "15 A/G Missiles",
 	CTLD_MENU_25_AG_MISSILES           = "25 A/G Missiles",
 	CTLD_MENU_50_AG_MISSILES           = "50 A/G Missiles",
 	CTLD_MENU_10_AG_ROCKETS            = "10 A/G Rockets",
+	CTLD_MENU_15_AG_ROCKETS            = "15 A/G Rockets",
 	CTLD_MENU_25_AG_ROCKETS            = "25 A/G Rockets",
 	CTLD_MENU_50_AG_ROCKETS            = "50 A/G Rockets",
 	CTLD_MENU_10_AG_BOMBS              = "10 A/G Bombs",
+	CTLD_MENU_15_AG_BOMBS              = "15 A/G Bombs",
 	CTLD_MENU_25_AG_BOMBS              = "25 A/G Bombs",
 	CTLD_MENU_50_AG_BOMBS              = "50 A/G Bombs",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 (Plane fuel tanks) and pylons",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 (Plane fuel tanks) and pylons",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 Plane fuel-tanks and pylons",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 Plane fuel-tanks and pylons",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 Modded weapons",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 Modded weapons",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 Modded weapons",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 Modded weapons",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s returned to %s.",
@@ -1582,9 +1732,18 @@ Elevation %d feet]],
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD will not Save/load. Please, De-Sanitize DCS missionscripting.lua.\n\nfunctionality disabled.",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "Engineers have returned to base!",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "Troops have returned to base!",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "No enemy zones detected within %d meters. Ready for extraction.",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "No structure targets in nearby enemy zone. Ready for extraction.",
+	CTLD_DEMO_PLANTING                 = "Demolition Team is planting bombs on Structure in %s. Detonating in 120 seconds.",
+	CTLD_DEMO_KILLED                   = "Demolition Team was killed in %s.",
+	CTLD_DEMO_ENTERED_ZONE             = "Demolition Team entered %s.",
+	CTLD_SPY_INTEL_ACTIVE              = "Zone Spy paid local contacts for information in %s. Intel is active for 60 minutes. Returning to the drop point for extraction.",
+	CTLD_SPY_READY_EXTRACTION          = "Zone Spy is ready for extraction near %s. MGRS: %s.",
+	CTLD_DEMO_READY_EXTRACTION         = "Demolition Team is ready for extraction near %s. MGRS: %s.",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "Troop group entered zone: %s",
 	CTLD_TROOP_ZONE_CAPTURED           = "captured",
 	CTLD_TROOP_ZONE_UPGRADED           = "upgraded",
+	CTLD_TROOP_ZONE_STOCKED            = "stocked",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "captured and upgraded",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d credits.",
@@ -2585,6 +2744,7 @@ Belohnung 500
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "%s strategischer Bomber ist unterwegs nach %s.\nEskortiere den Bomber entlang der Route. Der Feind wird wahrscheinlich abfangen.",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "Eskorte ist bei %s in Position.\nBomber bereitet Push in %s vor.",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "Eskorte ist bei %s in Position.\nEskortencredit in %s.",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "Eskorte mit %s bestätigt. Beseitige alle Bedrohungen.",
 	STRATEGIC_BOMBER_RTB_TO           = "%s RTB nach %s.",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s hat %s sicher zurück eskortiert\nCredit %d je Spieler - landen zum Einlösen",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s hat %s sicher zurück eskortiert\nCredit %d - landen zum Einlösen",
@@ -2638,6 +2798,54 @@ Lat long Decimal Minutes: N 36°12.050' E 37°09.695'
 Höhe 1287 Fuß]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "Neue Angriffsmission: Angriff auf feindliches Versteck",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "Angriffsmission beendet: Angriff auf feindliches Versteck",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "Feindlichen Kommunikationsturm angreifen",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[Wir haben feindliche Funkübertragungen von diesem Standort abgefangen.
+Zerstöre den Kommunikationsturm.
+
+Belohnung: 1000
+
+MGRS: 36 S WF 81960 24650
+Breitengrad/Längengrad: N 36°21'48" E 33°54'48"
+Präzise: N 36°21'48.47" E 33°54'48.89"
+Dezimalminuten: N 36°21.807' E 33°54.814'
+Höhe 361 Fuß]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "Neue Angriffsmission: Feindlichen Kommunikationsturm angreifen",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "Angriffsmission beendet: Feindlichen Kommunikationsturm angreifen",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "Feindliches Kommunikationsrelais angreifen",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[Feindliche Kommunikation wurde zu einem zweiten Relaisturm zurückverfolgt.
+Zerstöre ihn, um ihr Netzwerk zu stören.
+
+Belohnung: 1000
+
+MGRS: 37 S CB 09839 49242
+Breitengrad/Längengrad: N 37°28'13" E 36°50'58"
+Präzise: N 37°28'13.88" E 36°50'58.56"
+Dezimalminuten: N 37°28.231' E 36°50.976'
+Höhe 2887 Fuß]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "Warnung: Der Turm wird von einer SA-2-Flugabwehrraketenstellung geschützt.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "Neue Angriffsmission: Feindliches Kommunikationsrelais angreifen",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "Angriffsmission beendet: Feindliches Kommunikationsrelais angreifen",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "Tiefenangriff auf Konya",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[Führen Sie einen Tiefenangriff auf Konya durch und zerstören Sie beide strategischen Ziele.
+Das Zielgebiet wird stark von einer %s-Flugabwehrraketenstellung geschützt.
+
+Belohnung: 2000
+
+Ziel 1
+MGRS: 36 S VG 52091 90581
+Breitengrad/Längengrad: N 37°51'41" E 32°27'19"
+Präzise: N 37°51'41.17" E 32°27'19.27"
+Dezimalminuten: N 37°51.686' E 32°27.321'
+Höhe 3406 Fuß
+
+Ziel 2
+MGRS: 36 S VG 52142 90600
+Breitengrad/Längengrad: N 37°51'41" E 32°27'21"
+Präzise: N 37°51'41.82" E 32°27'21.35"
+Dezimalminuten: N 37°51.697' E 32°27.355'
+Höhe 3406 Fuß]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "Neue Angriffsmission: Tiefenangriff auf Konya",
+	SYRIA_MISSION_STRIKE_KONYA_END = "Angriffsmission beendet: Tiefenangriff auf Konya",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "Angriff auf Versorgungslager Taftanaz",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[Versorgungslager Taftanaz wurde gefunden.
 Schalte es aus, um die Versorgung von dort zu stoppen.
@@ -2883,6 +3091,8 @@ Belohnung: 1000]],
 	STATS_MENU_RANK_HELP               = "Ranghilfe",
 	STATS_MENU_BUDGET_OVERVIEW         = "Budgetübersicht",
 	STATS_MENU_AI_LOGISTICS            = "KI-Logistik (Aktuell %s)",
+	STATS_MENU_AI_LOGISTICS_ON         = "an",
+	STATS_MENU_AI_LOGISTICS_OFF        = "aus",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "KI-Logistik aktivieren",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "KI-Logistik deaktivieren",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "Die BLAUE KI-Logistik ist jetzt aktiviert.",
@@ -2901,6 +3111,8 @@ Belohnung: 1000]],
 	STATS_LABEL_SHIP                   = "Schiff",
 	STATS_LABEL_SAM                    = "SAM",
 	STATS_LABEL_STRUCTURE              = "Struktur",
+	STATS_LABEL_DEMOLITION_KILL        = "Sprengziel zerstört",
+	CAREER_STAT_DEMOLITION_KILLS       = "Durch Sprengkommando zerstörte Strukturen",
 	STATS_LABEL_DEATHS                 = "Tode",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "Vom Feind gefangen",
 	STATS_LABEL_ZONE_CAPTURE           = "Zoneneroberung",
@@ -2932,6 +3144,7 @@ Belohnung: 1000]],
 	MISSION_CAS_DESCRIPTION_EMPTY      = "Unterstütze die Bodenoperationen bei %s.\nKoalitionsfortschritt: %d/%d Bodenziele zerstört.",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "Unterstütze die Bodenoperationen bei %s.\nKoalitionsfortschritt: %d/%d Bodenziele zerstört.\n\n%s",
 	MISSION_CAS_START                  = "Neue CAS-Mission bei %s: Zerstöre %d feindliche Bodenziele.",
+	MISSION_CAS_END                    = "Mission beendet: CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] hat die CAS-Mission abgeschlossen!\nBelohnung ausstehend: %d Kredits (landen, um einzulösen).",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] und [%s] haben die CAS-Mission abgeschlossen!\nBelohnung ausstehend: jeweils %d Kredits (landen, um einzulösen).",
 	MISSION_CAS_COMPLETED_GROUP        = "CAS-Mission abgeschlossen!\nAusstehende Belohnungen:\n%s\nLanden, um sie einzulösen.",
@@ -3360,6 +3573,7 @@ Höhe %d Fuß]],
 	JOINT_MENU_JOIN_ANOTHER            = "Anderem Spieler beitreten",
 	JOINT_MENU_CODE                    = "Code %s",
 	JOINT_MENU_REQUEST_PLAYER          = "Gemeinsame Mission mit Spieler anfragen",
+	JOINT_MENU_JOIN_PARTY              = "Gruppe von %s beitreten (%d/%d)",
 	JOINT_MENU_PENDING_REQUESTS        = "Ausstehende gemeinsame Anfragen",
 	JOINT_MENU_NO_PLAYERS              = "Keine Spieler verfügbar",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "Keine ausstehenden Anfragen",
@@ -3378,10 +3592,10 @@ Höhe %d Fuß]],
 	JOINT_REQUEST_DENIED_BY            = "%s hat deine Anfrage für gemeinsame Mission abgelehnt",
 	JOINT_REQUEST_EXPIRED              = "Anfrage für gemeinsame Mission abgelaufen",
 	JOINT_REQUEST_TARGET_BUSY          = "%s ist bereits in einer gemeinsamen Mission",
-	JOINT_REQUEST_REQUESTER_BUSY       = "Du bist bereits in einer gemeinsamen Mission",
+	JOINT_REQUEST_REQUESTER_BUSY       = "Deine gemeinsame Mission ist voll",
 	JOINT_REQUEST_NOT_AVAILABLE        = "Dieser Spieler ist nicht mehr verfügbar",
 	JOINT_STAT_SUFFIX                  = " (gemeinsame Mission)",
-	JOINT_HELP_REQUESTS                = "Gemeinsame Missionen erlauben zwei Spielern, bis zur doppelten Belohnung an Missions-Kredits zu erhalten.\n\nSo funktioniert es:\n- Öffne \"Gemeinsame Mission mit Spieler anfragen\" und wähle einen Spieler aus.\n- Der ausgewählte Spieler erhält eine ausstehende Anfrage und hat 120 Sekunden Zeit, sie anzunehmen oder abzulehnen.\n- Credits werden beiden Spielern für Missionen gutgeschrieben, nicht für normale Abschüsse.\n- Gültig für CAS, CAP, Bomb runway und Schlagmissionen.\n- Wenn dein Partner tot/despawnt ist, behältst du deine Einnahmen plus die Zusatzbelohnung.",
+	JOINT_HELP_REQUESTS                = "Gemeinsame Missionen ermöglichen Gruppen von zwei bis vier Spielern, Missions-Credits zu teilen.\n\nSo funktioniert es:\n- Öffne \"Gemeinsame Mission mit Spieler anfragen\" und wähle einen einzelnen Spieler oder eine offene Gruppe aus.\n- Der ausgewählte Spieler erhält eine ausstehende Anfrage und hat 120 Sekunden Zeit, sie anzunehmen oder abzulehnen.\n- Berechtigte Gruppenmitglieder erhalten Missions-Credits. Normale Abschüsse werden nicht geteilt.\n- Gültig für CAS, CAP, Bomb runway und Schlagmissionen.\n- Nur aktive, überlebende Gruppenmitglieder erhalten Belohnungen für gemeinsame Missionen.",
 	JOINT_HELP                         = "Gemeinsame Missionen erlauben zwei Spielern, bis zur doppelten Belohnung an Missions-Kredits zu erhalten.\n\nSo funktioniert es:\n• Der Host wählt \"Zur gemeinsamen Mission einladen\" und erhält einen 4-stelligen Code.\n• Der Teamkamerad öffnet \"Anderem Spieler beitreten\" und gibt den Code ein.\n• Kredits werden beiden für Missionen gutgeschrieben, nicht für normale Abschüsse.\n• Gültig für CAS, CAP, Bomb runway und Schlagmissionen.\n• Wenn dein Partner tot/despawnt ist, behältst du deine Einnahmen plus die Zusatzbelohnung.\n• Nur innerhalb derselben Koalition.",
 
 	-- ============================================================
@@ -3480,24 +3694,31 @@ Höhe %d Fuß]],
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Humvee-Aufklärer",
 	CTLD_MENU_10_EVERYTHING            = "10 von allem",
+	CTLD_MENU_15_EVERYTHING            = "15 von allem",
 	CTLD_MENU_25_EVERYTHING            = "25 von allem",
 	CTLD_MENU_50_EVERYTHING            = "50 von allem",
 	CTLD_MENU_10_AA_MISSILES           = "10 A/A-Raketen",
+	CTLD_MENU_15_AA_MISSILES           = "15 A/A-Raketen",
 	CTLD_MENU_25_AA_MISSILES           = "25 A/A-Raketen",
 	CTLD_MENU_50_AA_MISSILES           = "50 A/A-Raketen",
 	CTLD_MENU_10_AG_MISSILES           = "10 A/G-Lenkflugkörper",
+	CTLD_MENU_15_AG_MISSILES           = "15 A/G-Lenkflugkörper",
 	CTLD_MENU_25_AG_MISSILES           = "25 A/G-Lenkflugkörper",
 	CTLD_MENU_50_AG_MISSILES           = "50 A/G-Lenkflugkörper",
 	CTLD_MENU_10_AG_ROCKETS            = "10 A/G-Raketen",
+	CTLD_MENU_15_AG_ROCKETS            = "15 A/G-Raketen",
 	CTLD_MENU_25_AG_ROCKETS            = "25 A/G-Raketen",
 	CTLD_MENU_50_AG_ROCKETS            = "50 A/G-Raketen",
 	CTLD_MENU_10_AG_BOMBS              = "10 A/G-Bomben",
+	CTLD_MENU_15_AG_BOMBS              = "15 A/G-Bomben",
 	CTLD_MENU_25_AG_BOMBS              = "25 A/G-Bomben",
 	CTLD_MENU_50_AG_BOMBS              = "50 A/G-Bomben",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 Flugzeug-Zusatztanks und Pylone",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 Flugzeug-Zusatztanks und Pylone",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 Flugzeug-Zusatztanks und Pylone",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 Flugzeug-Zusatztanks und Pylone",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 Mod-Waffen",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 Mod-Waffen",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 Mod-Waffen",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 Mod-Waffen",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s nach %s zurückgebracht.",
@@ -3511,9 +3732,18 @@ Höhe %d Fuß]],
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD wird nicht speichern/laden. Bitte DCS missionscripting.lua de-sanitizen.\n\nFunktionalität deaktiviert.",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "Pioniere sind zur Basis zurückgekehrt!",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "Truppen sind zur Basis zurückgekehrt!",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "Keine feindlichen Zonen innerhalb von %d Metern erkannt. Bereit zur Evakuierung.",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "Keine Strukturziele in einer nahegelegenen feindlichen Zone. Bereit zur Evakuierung.",
+	CTLD_DEMO_PLANTING                 = "Das Sprengkommando bringt Sprengladungen an einer Struktur in %s an. Detonation in 120 Sekunden.",
+	CTLD_DEMO_KILLED                   = "Das Sprengkommando wurde in %s vernichtet.",
+	CTLD_DEMO_ENTERED_ZONE             = "Das Sprengkommando ist in %s eingetroffen.",
+	CTLD_SPY_INTEL_ACTIVE              = "Der Zonenspion hat in %s lokale Kontakte für Informationen bezahlt. Die Aufklärung ist 60 Minuten lang aktiv. Er kehrt zur Evakuierung zum Absetzpunkt zurück.",
+	CTLD_SPY_READY_EXTRACTION          = "Der Zonenspion ist nahe %s zur Evakuierung bereit. MGRS: %s.",
+	CTLD_DEMO_READY_EXTRACTION         = "Das Sprengkommando ist nahe %s zur Evakuierung bereit. MGRS: %s.",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "Truppengruppe hat Zone betreten: %s",
 	CTLD_TROOP_ZONE_CAPTURED           = "erobert",
 	CTLD_TROOP_ZONE_UPGRADED           = "verbessert",
+	CTLD_TROOP_ZONE_STOCKED            = "versorgt",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "erobert und verbessert",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s]: %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d Kredits.",
@@ -4514,6 +4744,7 @@ Récompense 500
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "Le bombardier stratégique %s est en route vers %s.\nEscortez le bombardier le long de la route. L'ennemi tentera probablement une interception.",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "L'escorte est en position avec %s.\nLe bombardier se prépare à pousser dans %s.",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "L'escorte est en position avec %s.\nCrédit d'escorte dans %s.",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "Escorte confirmée avec %s. Éliminez toute menace.",
 	STRATEGIC_BOMBER_RTB_TO           = "%s retourne à %s.",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "Escorte terminée par %s pour %s\ncrédit %d chacun - atterrir pour encaisser",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "Escorte terminée par %s pour %s\ncrédit %d - atterrir pour encaisser",
@@ -4567,6 +4798,54 @@ Lat long Decimal Minutes: N 36°12.050' E 37°09.695'
 Altitude 1287 pieds]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "Nouvelle mission de frappe : Frappe sur cache ennemie",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "Mission de frappe terminée : Frappe sur cache ennemie",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "Frappe sur la tour de communication ennemie",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[Nous avons intercepté des communications ennemies émises depuis cette position.
+Détruisez la tour de communication.
+
+Récompense : 1000
+
+MGRS : 36 S WF 81960 24650
+Lat./long. : N 36°21'48" E 33°54'48"
+Lat./long. précise : N 36°21'48.47" E 33°54'48.89"
+Minutes décimales : N 36°21.807' E 33°54.814'
+Altitude : 361 pieds]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "Nouvelle mission de frappe : Tour de communication ennemie",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "Mission de frappe terminée : Tour de communication ennemie",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "Frappe sur le relais de communication ennemi",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[Des communications ennemies ont été localisées vers une deuxième tour relais.
+Détruisez-la pour perturber leur réseau.
+
+Récompense : 1000
+
+MGRS : 37 S CB 09839 49242
+Lat./long. : N 37°28'13" E 36°50'58"
+Lat./long. précise : N 37°28'13.88" E 36°50'58.56"
+Minutes décimales : N 37°28.231' E 36°50.976'
+Altitude : 2887 pieds]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "Attention : la tour est protégée par un site de missiles sol-air SA-2.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "Nouvelle mission de frappe : Relais de communication ennemi",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "Mission de frappe terminée : Relais de communication ennemi",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "Frappe en profondeur à Konya",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[Effectuez une frappe en profondeur à Konya et détruisez les deux objectifs stratégiques.
+La zone cible est fortement protégée par un site de missiles sol-air %s.
+
+Récompense : 2000
+
+Objectif 1
+MGRS : 36 S VG 52091 90581
+Lat./long. : N 37°51'41" E 32°27'19"
+Lat./long. précise : N 37°51'41.17" E 32°27'19.27"
+Minutes décimales : N 37°51.686' E 32°27.321'
+Altitude : 3406 pieds
+
+Objectif 2
+MGRS : 36 S VG 52142 90600
+Lat./long. : N 37°51'41" E 32°27'21"
+Lat./long. précise : N 37°51'41.82" E 32°27'21.35"
+Minutes décimales : N 37°51.697' E 32°27.355'
+Altitude : 3406 pieds]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "Nouvelle mission de frappe : Frappe en profondeur à Konya",
+	SYRIA_MISSION_STRIKE_KONYA_END = "Mission de frappe terminée : Frappe en profondeur à Konya",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "Frappe sur entrepôt de ravitaillement de Taftanaz",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[L'entrepôt de ravitaillement de Taftanaz a été trouvé,
 détruisez-le pour stopper les ravitaillements venant de là.
@@ -4812,6 +5091,8 @@ Récompense : 1000]],
 	STATS_MENU_RANK_HELP               = "Aide rang",
 	STATS_MENU_BUDGET_OVERVIEW         = "Aperçu du budget",
 	STATS_MENU_AI_LOGISTICS            = "Logistique IA (Actuellement %s)",
+	STATS_MENU_AI_LOGISTICS_ON         = "activée",
+	STATS_MENU_AI_LOGISTICS_OFF        = "désactivée",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "Activer la logistique IA",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "Désactiver la logistique IA",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "La logistique IA BLEUE est maintenant activée.",
@@ -4830,6 +5111,8 @@ Récompense : 1000]],
 	STATS_LABEL_SHIP                   = "Navire",
 	STATS_LABEL_SAM                    = "SAM",
 	STATS_LABEL_STRUCTURE              = "Structure",
+	STATS_LABEL_DEMOLITION_KILL        = "Destruction par démolition",
+	CAREER_STAT_DEMOLITION_KILLS       = "Destructions par démolition",
 	STATS_LABEL_DEATHS                 = "Morts",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "Capturé par l'ennemi",
 	STATS_LABEL_ZONE_CAPTURE           = "Capture de zone",
@@ -4861,6 +5144,7 @@ Récompense : 1000]],
 	MISSION_CAS_DESCRIPTION_EMPTY      = "Soutenez les opérations au sol à %s.\nProgression de la coalition : %d/%d cibles au sol détruites.",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "Soutenez les opérations au sol à %s.\nProgression de la coalition : %d/%d cibles au sol détruites.\n\n%s",
 	MISSION_CAS_START                  = "Nouvelle mission CAS à %s : détruisez %d cibles terrestres ennemies.",
+	MISSION_CAS_END                    = "Mission terminée : CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] a terminé la mission CAS!\nRécompense en attente : %d crédits (atterrissez pour la récupérer).",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] et [%s] ont terminé la mission CAS!\nRécompense en attente : %d crédits chacun (atterrissez pour la récupérer).",
 	MISSION_CAS_COMPLETED_GROUP        = "Mission CAS terminée !\nRécompenses en attente :\n%s\nAtterrissez pour les récupérer.",
@@ -5289,6 +5573,7 @@ Altitude %d pieds]],
 	JOINT_MENU_JOIN_ANOTHER            = "Rejoindre un autre joueur",
 	JOINT_MENU_CODE                    = "code %s",
 	JOINT_MENU_REQUEST_PLAYER          = "Demander une mission conjointe",
+	JOINT_MENU_JOIN_PARTY              = "Rejoindre le groupe de %s (%d/%d)",
 	JOINT_MENU_PENDING_REQUESTS        = "Demandes conjointes en attente",
 	JOINT_MENU_NO_PLAYERS              = "Aucun joueur disponible",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "Aucune demande en attente",
@@ -5307,10 +5592,10 @@ Altitude %d pieds]],
 	JOINT_REQUEST_DENIED_BY            = "%s a refusé votre demande de mission conjointe",
 	JOINT_REQUEST_EXPIRED              = "Demande de mission conjointe expirée",
 	JOINT_REQUEST_TARGET_BUSY          = "%s est déjà en mission conjointe",
-	JOINT_REQUEST_REQUESTER_BUSY       = "Vous êtes déjà en mission conjointe",
+	JOINT_REQUEST_REQUESTER_BUSY       = "Votre mission conjointe est complète",
 	JOINT_REQUEST_NOT_AVAILABLE        = "Ce joueur n'est plus disponible",
 	JOINT_STAT_SUFFIX                  = " (mission conjointe)",
-	JOINT_HELP_REQUESTS                = "Les missions conjointes permettent à deux joueurs d'obtenir jusqu'au double des récompenses en crédits de mission.\n\nFonctionnement :\n- Ouvrez \"Demander une mission conjointe\" et sélectionnez un joueur.\n- Le joueur sélectionné reçoit une demande en attente et a 120 secondes pour accepter ou refuser.\n- Les crédits seront attribués aux deux joueurs pour les missions, pas pour les éliminations normales.\n- Valable pour CAS, CAP, Bomb runway et les missions de frappe.\n- Si votre partenaire est mort/despawné, vous conservez vos gains plus la récompense supplémentaire.",
+	JOINT_HELP_REQUESTS                = "Les missions conjointes permettent à des groupes de deux à quatre joueurs de partager les crédits de mission.\n\nFonctionnement :\n- Ouvrez \"Demander une mission conjointe\" et sélectionnez un joueur seul ou un groupe ouvert.\n- Le joueur sélectionné reçoit une demande en attente et a 120 secondes pour accepter ou refuser.\n- Les membres éligibles du groupe reçoivent les crédits de mission. Les éliminations normales ne sont pas partagées.\n- Valable pour CAS, CAP, Bomb runway et les missions de frappe.\n- Seuls les membres actifs et survivants reçoivent les récompenses de mission conjointe.",
 	JOINT_HELP                         = "Les missions conjointes permettent à deux joueurs d'obtenir jusqu'au double des récompenses en crédits de mission.\n\nFonctionnement :\n• L'hôte choisit \"Inviter à la mission conjointe\" pour recevoir un code à 4 chiffres.\n• Le coéquipier ouvre \"Rejoindre un autre joueur\" et saisit le code.\n• Les crédits seront attribués aux deux joueurs pour les missions, pas pour les éliminations normales.\n• Valable pour CAS, CAP, Bomb runway et les missions de frappe.\n• Si votre partenaire est mort/despawné, vous conservez vos gains plus la récompense supplémentaire.\n• Même coalition uniquement.",
 
 	-- ============================================================
@@ -5409,24 +5694,31 @@ Altitude %d pieds]],
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Humvee éclaireur",
 	CTLD_MENU_10_EVERYTHING            = "10 de tout",
+	CTLD_MENU_15_EVERYTHING            = "15 de tout",
 	CTLD_MENU_25_EVERYTHING            = "25 de tout",
 	CTLD_MENU_50_EVERYTHING            = "50 de tout",
 	CTLD_MENU_10_AA_MISSILES           = "10 missiles A/A",
+	CTLD_MENU_15_AA_MISSILES           = "15 missiles A/A",
 	CTLD_MENU_25_AA_MISSILES           = "25 missiles A/A",
 	CTLD_MENU_50_AA_MISSILES           = "50 missiles A/A",
 	CTLD_MENU_10_AG_MISSILES           = "10 missiles A/G",
+	CTLD_MENU_15_AG_MISSILES           = "15 missiles A/G",
 	CTLD_MENU_25_AG_MISSILES           = "25 missiles A/G",
 	CTLD_MENU_50_AG_MISSILES           = "50 missiles A/G",
 	CTLD_MENU_10_AG_ROCKETS            = "10 roquettes A/G",
+	CTLD_MENU_15_AG_ROCKETS            = "15 roquettes A/G",
 	CTLD_MENU_25_AG_ROCKETS            = "25 roquettes A/G",
 	CTLD_MENU_50_AG_ROCKETS            = "50 roquettes A/G",
 	CTLD_MENU_10_AG_BOMBS              = "10 bombes A/G",
+	CTLD_MENU_15_AG_BOMBS              = "15 bombes A/G",
 	CTLD_MENU_25_AG_BOMBS              = "25 bombes A/G",
 	CTLD_MENU_50_AG_BOMBS              = "50 bombes A/G",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 réservoirs externes et pylônes",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 réservoirs externes et pylônes",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 réservoirs externes et pylônes",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 réservoirs externes et pylônes",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 armes mod",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 armes mod",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 armes mod",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 armes mod",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s retourné à %s.",
@@ -5440,9 +5732,18 @@ Altitude %d pieds]],
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD ne pourra pas sauvegarder/charger. Veuillez dé-sanitiser DCS missionscripting.lua.\n\nfonctionnalité désactivée.",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "Les ingénieurs sont retournés à la base!",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "Les troupes sont retournées à la base!",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "Aucune zone ennemie détectée dans un rayon de %d mètres. Prêt pour l'extraction.",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "Aucune structure cible dans une zone ennemie proche. Prêt pour l'extraction.",
+	CTLD_DEMO_PLANTING                 = "L'équipe de démolition pose des charges sur une structure à %s. Détonation dans 120 secondes.",
+	CTLD_DEMO_KILLED                   = "L'équipe de démolition a été éliminée à %s.",
+	CTLD_DEMO_ENTERED_ZONE             = "L'équipe de démolition est entrée dans %s.",
+	CTLD_SPY_INTEL_ACTIVE              = "L'espion de zone a payé des contacts locaux pour obtenir des informations à %s. Le renseignement est actif pendant 60 minutes. Il retourne au point de dépose pour extraction.",
+	CTLD_SPY_READY_EXTRACTION          = "L'espion de zone est prêt à être extrait près de %s. MGRS : %s.",
+	CTLD_DEMO_READY_EXTRACTION         = "L'équipe de démolition est prête à être extraite près de %s. MGRS : %s.",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "Groupe de troupes entré dans la zone : %s",
 	CTLD_TROOP_ZONE_CAPTURED           = "capturé",
 	CTLD_TROOP_ZONE_UPGRADED           = "amélioré",
+	CTLD_TROOP_ZONE_STOCKED            = "ravitaillé",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "capturé et amélioré",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d crédits.",
@@ -6443,6 +6744,7 @@ Se requieren 2000 libras]],
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "El bombardero estratégico %s está en ruta hacia %s.\nEscolta al bombardero durante la ruta. Es probable que el enemigo intercepte.",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "La escolta está en posición con %s.\nEl bombardero se prepara para avanzar en %s.",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "La escolta está en posición con %s.\nCrédito de escolta en %s.",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "Escolta confirmada con %s. Elimina cualquier amenaza.",
 	STRATEGIC_BOMBER_RTB_TO           = "%s RTB a %s.",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s escoltó a %s de vuelta con seguridad\ncrédito %d cada uno - aterriza para cobrar",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s escoltó a %s de vuelta con seguridad\ncrédito %d - aterriza para cobrar",
@@ -6496,6 +6798,54 @@ Lat long Decimal Minutes: N 36°12.050' E 37°09.695'
 Elevación 1287 pies]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "Nueva misión de ataque: Ataque al escondite enemigo",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "Misión de ataque terminada: Ataque al escondite enemigo",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "Ataque a la torre de comunicaciones enemiga",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[Hemos interceptado comunicaciones enemigas emitidas desde esta posición.
+Destruye la torre de comunicaciones.
+
+Recompensa: 1000
+
+MGRS: 36 S WF 81960 24650
+Lat./long.: N 36°21'48" E 33°54'48"
+Lat./long. precisa: N 36°21'48.47" E 33°54'48.89"
+Minutos decimales: N 36°21.807' E 33°54.814'
+Elevación: 361 pies]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "Nueva misión de ataque: Torre de comunicaciones enemiga",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "Misión de ataque terminada: Torre de comunicaciones enemiga",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "Ataque al repetidor de comunicaciones enemigo",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[Las comunicaciones enemigas han sido rastreadas hasta una segunda torre repetidora.
+Destrúyela para interrumpir su red.
+
+Recompensa: 1000
+
+MGRS: 37 S CB 09839 49242
+Lat./long.: N 37°28'13" E 36°50'58"
+Lat./long. precisa: N 37°28'13.88" E 36°50'58.56"
+Minutos decimales: N 37°28.231' E 36°50.976'
+Elevación: 2887 pies]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "Advertencia: la torre está protegida por un emplazamiento de misiles tierra-aire SA-2.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "Nueva misión de ataque: Repetidor de comunicaciones enemigo",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "Misión de ataque terminada: Repetidor de comunicaciones enemigo",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "Ataque en profundidad en Konya",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[Realiza un ataque en profundidad en Konya y destruye ambos objetivos estratégicos.
+La zona objetivo está fuertemente protegida por un emplazamiento de misiles tierra-aire %s.
+
+Recompensa: 2000
+
+Objetivo 1
+MGRS: 36 S VG 52091 90581
+Lat./long.: N 37°51'41" E 32°27'19"
+Lat./long. precisa: N 37°51'41.17" E 32°27'19.27"
+Minutos decimales: N 37°51.686' E 32°27.321'
+Elevación: 3406 pies
+
+Objetivo 2
+MGRS: 36 S VG 52142 90600
+Lat./long.: N 37°51'41" E 32°27'21"
+Lat./long. precisa: N 37°51'41.82" E 32°27'21.35"
+Minutos decimales: N 37°51.697' E 32°27.355'
+Elevación: 3406 pies]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "Nueva misión de ataque: Ataque en profundidad en Konya",
+	SYRIA_MISSION_STRIKE_KONYA_END = "Misión de ataque terminada: Ataque en profundidad en Konya",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "Ataque al almacén de suministros de Taftanaz",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[Se ha encontrado el almacén de suministros de Taftanaz,
 destrúyelo para detener los suministros que salen de allí.
@@ -6741,6 +7091,8 @@ Recompensa: 1000]],
 	STATS_MENU_RANK_HELP               = "Ayuda de rango",
 	STATS_MENU_BUDGET_OVERVIEW         = "Resumen de presupuesto",
 	STATS_MENU_AI_LOGISTICS            = "Logística de IA (Actualmente %s)",
+	STATS_MENU_AI_LOGISTICS_ON         = "activada",
+	STATS_MENU_AI_LOGISTICS_OFF        = "desactivada",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "Activar la logística de IA",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "Desactivar la logística de IA",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "La logística de IA AZUL ahora está activada.",
@@ -6759,6 +7111,8 @@ Recompensa: 1000]],
 	STATS_LABEL_SHIP                   = "Barco",
 	STATS_LABEL_SAM                    = "SAM",
 	STATS_LABEL_STRUCTURE              = "Estructura",
+	STATS_LABEL_DEMOLITION_KILL        = "Baja por demolición",
+	CAREER_STAT_DEMOLITION_KILLS       = "Bajas por demolición",
 	STATS_LABEL_DEATHS                 = "Muertes",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "Capturado por enemigo",
 	STATS_LABEL_ZONE_CAPTURE           = "Captura de zona",
@@ -6790,6 +7144,7 @@ Recompensa: 1000]],
 	MISSION_CAS_DESCRIPTION_EMPTY      = "Apoya las operaciones terrestres en %s.\nProgreso de la coalición: %d/%d objetivos terrestres destruidos.",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "Apoya las operaciones terrestres en %s.\nProgreso de la coalición: %d/%d objetivos terrestres destruidos.\n\n%s",
 	MISSION_CAS_START                  = "Nueva misión CAS en %s: destruye %d objetivos terrestres enemigos.",
+	MISSION_CAS_END                    = "Misión terminada: CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] completó la misión CAS!\nRecompensa pendiente: %d créditos (aterriza para reclamarla).",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] y [%s] completaron la misión CAS!\nRecompensa pendiente: %d créditos cada uno (aterricen para reclamarla).",
 	MISSION_CAS_COMPLETED_GROUP        = "¡Misión CAS completada!\nRecompensas pendientes:\n%s\nAterricen para reclamarlas.",
@@ -7218,6 +7573,7 @@ Elevación %d pies]],
 	JOINT_MENU_JOIN_ANOTHER            = "Unirse a otro jugador",
 	JOINT_MENU_CODE                    = "código %s",
 	JOINT_MENU_REQUEST_PLAYER          = "Solicitar misión conjunta",
+	JOINT_MENU_JOIN_PARTY              = "Unirse al grupo de %s (%d/%d)",
 	JOINT_MENU_PENDING_REQUESTS        = "Solicitudes conjuntas pendientes",
 	JOINT_MENU_NO_PLAYERS              = "No hay jugadores disponibles",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "No hay solicitudes pendientes",
@@ -7236,10 +7592,10 @@ Elevación %d pies]],
 	JOINT_REQUEST_DENIED_BY            = "%s rechazó tu solicitud de misión conjunta",
 	JOINT_REQUEST_EXPIRED              = "Solicitud de misión conjunta expirada",
 	JOINT_REQUEST_TARGET_BUSY          = "%s ya está en una misión conjunta",
-	JOINT_REQUEST_REQUESTER_BUSY       = "Ya estás en una misión conjunta",
+	JOINT_REQUEST_REQUESTER_BUSY       = "Tu misión conjunta está completa",
 	JOINT_REQUEST_NOT_AVAILABLE        = "Ese jugador ya no está disponible",
 	JOINT_STAT_SUFFIX                  = " (misión conjunta)",
-	JOINT_HELP_REQUESTS                = "Las misiones conjuntas permiten que dos jugadores reciban hasta el doble de créditos de misión.\n\nCómo funciona:\n- Abre \"Solicitar misión conjunta\" y selecciona un jugador.\n- El jugador seleccionado recibe una solicitud pendiente y tiene 120 segundos para aceptar o rechazar.\n- Los créditos se otorgarán a ambos por misiones, no por bajas normales.\n- Válido para CAS, CAP, Bomb runway y misiones de ataque.\n- Si tu compañero está muerto/despawneado, conservarás tus ganancias más la recompensa adicional.",
+	JOINT_HELP_REQUESTS                = "Las misiones conjuntas permiten que grupos de dos a cuatro jugadores compartan los créditos de misión.\n\nCómo funciona:\n- Abre \"Solicitar misión conjunta\" y selecciona un jugador solo o un grupo abierto.\n- El jugador seleccionado recibe una solicitud pendiente y tiene 120 segundos para aceptar o rechazar.\n- Los miembros elegibles del grupo reciben créditos de misión. Las bajas normales no se comparten.\n- Válido para CAS, CAP, Bomb runway y misiones de ataque.\n- Solo los miembros activos y supervivientes reciben recompensas de misión conjunta.",
 	JOINT_HELP                         = "Las misiones conjuntas permiten que dos jugadores reciban hasta el doble de créditos de misión.\n\nCómo funciona:\n• El anfitrión selecciona \"Invitar a misión conjunta\" para recibir un código de 4 dígitos.\n• El compañero abre \"Unirse a otro jugador\" e introduce el código.\n• Los créditos se otorgarán a ambos por misiones, no por bajas normales.\n• Válido para CAS, CAP, Bomb runway y misiones de ataque.\n• Si tu compañero está muerto/despawneado, conservarás tus ganancias más la recompensa adicional.\n• Solo para la misma coalición.",
 
 	-- ============================================================
@@ -7341,24 +7697,31 @@ Elevación %d pies]],
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Humvee explorador",
 	CTLD_MENU_10_EVERYTHING            = "10 de todo",
+	CTLD_MENU_15_EVERYTHING            = "15 de todo",
 	CTLD_MENU_25_EVERYTHING            = "25 de todo",
 	CTLD_MENU_50_EVERYTHING            = "50 de todo",
 	CTLD_MENU_10_AA_MISSILES           = "10 misiles A/A",
+	CTLD_MENU_15_AA_MISSILES           = "15 misiles A/A",
 	CTLD_MENU_25_AA_MISSILES           = "25 misiles A/A",
 	CTLD_MENU_50_AA_MISSILES           = "50 misiles A/A",
 	CTLD_MENU_10_AG_MISSILES           = "10 misiles A/G",
+	CTLD_MENU_15_AG_MISSILES           = "15 misiles A/G",
 	CTLD_MENU_25_AG_MISSILES           = "25 misiles A/G",
 	CTLD_MENU_50_AG_MISSILES           = "50 misiles A/G",
 	CTLD_MENU_10_AG_ROCKETS            = "10 cohetes A/G",
+	CTLD_MENU_15_AG_ROCKETS            = "15 cohetes A/G",
 	CTLD_MENU_25_AG_ROCKETS            = "25 cohetes A/G",
 	CTLD_MENU_50_AG_ROCKETS            = "50 cohetes A/G",
 	CTLD_MENU_10_AG_BOMBS              = "10 bombas A/G",
+	CTLD_MENU_15_AG_BOMBS              = "15 bombas A/G",
 	CTLD_MENU_25_AG_BOMBS              = "25 bombas A/G",
 	CTLD_MENU_50_AG_BOMBS              = "50 bombas A/G",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 depósitos externos y pilones",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 depósitos externos y pilones",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 depósitos externos y pilones",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 depósitos externos y pilones",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 armas de mods",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 armas de mods",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 armas de mods",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 armas de mods",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s devuelto a %s.",
@@ -7372,9 +7735,18 @@ Elevación %d pies]],
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD no podrá guardar/cargar. Des-sanitiza DCS missionscripting.lua.\n\nfuncionalidad desactivada.",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "¡Los ingenieros han regresado a la base!",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "¡Las tropas han regresado a la base!",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "No se detectaron zonas enemigas en un radio de %d metros. Listo para la extracción.",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "No hay objetivos estructurales en una zona enemiga cercana. Listo para la extracción.",
+	CTLD_DEMO_PLANTING                 = "El equipo de demolición está colocando cargas en una estructura de %s. Detonación en 120 segundos.",
+	CTLD_DEMO_KILLED                   = "El equipo de demolición fue eliminado en %s.",
+	CTLD_DEMO_ENTERED_ZONE             = "El equipo de demolición entró en %s.",
+	CTLD_SPY_INTEL_ACTIVE              = "El espía de zona pagó a contactos locales por información en %s. La inteligencia estará activa durante 60 minutos. Regresa al punto de despliegue para la extracción.",
+	CTLD_SPY_READY_EXTRACTION          = "El espía de zona está listo para la extracción cerca de %s. MGRS: %s.",
+	CTLD_DEMO_READY_EXTRACTION         = "El equipo de demolición está listo para la extracción cerca de %s. MGRS: %s.",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "Grupo de tropas entró en la zona: %s",
 	CTLD_TROOP_ZONE_CAPTURED           = "capturado",
 	CTLD_TROOP_ZONE_UPGRADED           = "mejorado",
+	CTLD_TROOP_ZONE_STOCKED            = "abasteció",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "capturado y mejorado",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d créditos.",
@@ -8375,6 +8747,7 @@ MGRS: 38 T MP 68815 48119
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "Стратегический бомбардировщик %s идет к %s.\nСопровождайте бомбардировщик по маршруту. Противник, скорее всего, попытается перехват.",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "Эскорт в позиции с %s.\nБомбардировщик готовится к отправке через %s.",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "Эскорт в позиции с %s.\nКредит сопровождения через %s.",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "Эскорт с %s подтвержден. Устраните все угрозы.",
 	STRATEGIC_BOMBER_RTB_TO           = "%s возвращается на %s.",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s сопроводили %s домой\nкредитов %d каждому - приземлитесь для получения",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s сопроводил %s домой\nкредитов %d - приземлитесь для получения",
@@ -8428,6 +8801,54 @@ Lat long Decimal Minutes: N 36°12.050' E 37°09.695'
 Высота 1287 футов]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "Новая ударная миссия: Удар по вражескому укрытию",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "Ударная миссия завершена: Удар по вражескому укрытию",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "Удар по вражеской вышке связи",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[Мы перехватили вражеские радиопередачи, исходящие из этой точки.
+Уничтожьте вышку связи.
+
+Награда: 1000
+
+MGRS: 36 S WF 81960 24650
+Широта/долгота: N 36°21'48" E 33°54'48"
+Точные координаты: N 36°21'48.47" E 33°54'48.89"
+Десятичные минуты: N 36°21.807' E 33°54.814'
+Высота: 361 фут]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "Новая ударная миссия: Вражеская вышка связи",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "Ударная миссия завершена: Вражеская вышка связи",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "Удар по вражеской ретрансляционной вышке",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[Вражеские передачи были отслежены до второй ретрансляционной вышки.
+Уничтожьте её, чтобы нарушить работу их сети.
+
+Награда: 1000
+
+MGRS: 37 S CB 09839 49242
+Широта/долгота: N 37°28'13" E 36°50'58"
+Точные координаты: N 37°28'13.88" E 36°50'58.56"
+Десятичные минуты: N 37°28.231' E 36°50.976'
+Высота: 2887 футов]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "Внимание: вышка прикрыта позицией зенитно-ракетного комплекса SA-2.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "Новая ударная миссия: Вражеская ретрансляционная вышка",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "Ударная миссия завершена: Вражеская ретрансляционная вышка",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "Глубокий удар по Конье",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[Нанесите глубокий удар по Конье и уничтожьте обе стратегические цели.
+Целевой район хорошо защищён зенитным ракетным комплексом %s.
+
+Награда: 2000
+
+Цель 1
+MGRS: 36 S VG 52091 90581
+Широта/долгота: N 37°51'41" E 32°27'19"
+Точные координаты: N 37°51'41.17" E 32°27'19.27"
+Десятичные минуты: N 37°51.686' E 32°27.321'
+Высота: 3406 футов
+
+Цель 2
+MGRS: 36 S VG 52142 90600
+Широта/долгота: N 37°51'41" E 32°27'21"
+Точные координаты: N 37°51'41.82" E 32°27'21.35"
+Десятичные минуты: N 37°51.697' E 32°27.355'
+Высота: 3406 футов]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "Новая ударная миссия: Глубокий удар по Конье",
+	SYRIA_MISSION_STRIKE_KONYA_END = "Ударная миссия завершена: Глубокий удар по Конье",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "Удар по складу снабжения Taftanaz",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[Обнаружен склад снабжения Taftanaz.
 Уничтожьте его, чтобы остановить снабжение оттуда.
@@ -8673,6 +9094,8 @@ Lat long Decimal Minutes: N 34°32.513' E 39°20.328'
 	STATS_MENU_RANK_HELP               = "Помощь по рангам",
 	STATS_MENU_BUDGET_OVERVIEW         = "Обзор бюджета",
 	STATS_MENU_AI_LOGISTICS            = "Логистика ИИ (сейчас: %s)",
+	STATS_MENU_AI_LOGISTICS_ON         = "включена",
+	STATS_MENU_AI_LOGISTICS_OFF        = "выключена",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "Включить логистику ИИ",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "Отключить логистику ИИ",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "Логистика ИИ СИНИХ теперь включена.",
@@ -8691,6 +9114,8 @@ Lat long Decimal Minutes: N 34°32.513' E 39°20.328'
 	STATS_LABEL_SHIP                   = "Корабль",
 	STATS_LABEL_SAM                    = "SAM",
 	STATS_LABEL_STRUCTURE              = "Сооружение",
+	STATS_LABEL_DEMOLITION_KILL        = "Уничтожение подрывом",
+	CAREER_STAT_DEMOLITION_KILLS       = "Уничтожения подрывом",
 	STATS_LABEL_DEATHS                 = "Смерти",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "Захвачен противником",
 	STATS_LABEL_ZONE_CAPTURE           = "Захват зоны",
@@ -8722,6 +9147,7 @@ Lat long Decimal Minutes: N 34°32.513' E 39°20.328'
 	MISSION_CAS_DESCRIPTION_EMPTY      = "Поддержите наземную операцию в районе %s.\nПрогресс коалиции: уничтожено %d/%d наземных целей.",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "Поддержите наземную операцию в районе %s.\nПрогресс коалиции: уничтожено %d/%d наземных целей.\n\n%s",
 	MISSION_CAS_START                  = "Новая миссия CAS в районе %s: уничтожьте %d наземных целей противника.",
+	MISSION_CAS_END                    = "Миссия завершена: CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] завершил миссию CAS!\nНаграда ожидает: %d кредитов (приземлитесь, чтобы получить).",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] и [%s] завершили миссию CAS!\nНаграда ожидает: по %d кредитов каждому (приземлитесь, чтобы получить).",
 	MISSION_CAS_COMPLETED_GROUP        = "Миссия CAS завершена!\nОжидающие награды:\n%s\nПриземлитесь, чтобы получить их.",
@@ -9150,6 +9576,7 @@ MGRS: %s
 	JOINT_MENU_JOIN_ANOTHER            = "Присоединиться к другому игроку",
 	JOINT_MENU_CODE                    = "код %s",
 	JOINT_MENU_REQUEST_PLAYER          = "Запросить совместное задание",
+	JOINT_MENU_JOIN_PARTY              = "Присоединиться к группе %s (%d/%d)",
 	JOINT_MENU_PENDING_REQUESTS        = "Ожидающие совместные запросы",
 	JOINT_MENU_NO_PLAYERS              = "Нет доступных игроков",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "Нет ожидающих запросов",
@@ -9168,10 +9595,10 @@ MGRS: %s
 	JOINT_REQUEST_DENIED_BY            = "%s отклонил ваш запрос на совместное задание",
 	JOINT_REQUEST_EXPIRED              = "Запрос на совместное задание истёк",
 	JOINT_REQUEST_TARGET_BUSY          = "%s уже участвует в совместном задании",
-	JOINT_REQUEST_REQUESTER_BUSY       = "Вы уже участвуете в совместном задании",
+	JOINT_REQUEST_REQUESTER_BUSY       = "Ваша совместная группа заполнена",
 	JOINT_REQUEST_NOT_AVAILABLE        = "Этот игрок больше недоступен",
 	JOINT_STAT_SUFFIX                  = " (совместное задание)",
-	JOINT_HELP_REQUESTS                = "Совместные задания позволяют двум игрокам получить до двойной награды в кредитах за миссию.\n\nКак это работает:\n- Откройте \"Запросить совместное задание\" и выберите игрока.\n- Выбранный игрок получит ожидающий запрос и 120 секунд на принятие или отказ.\n- Кредиты выдаются обоим за задания, но не за обычные уничтожения.\n- Действует для CAS, CAP, Bomb runway и ударных миссий.\n- Если ваш напарник погиб или исчез, вы сохраните свой заработок плюс дополнительную награду.",
+	JOINT_HELP_REQUESTS                = "Совместные задания позволяют группам из двух–четырёх игроков делить награды за миссию.\n\nКак это работает:\n- Откройте \"Запросить совместное задание\" и выберите одиночного игрока или открытую группу.\n- Выбранный игрок получит ожидающий запрос и 120 секунд на принятие или отказ.\n- Подходящие участники группы получают кредиты за миссию. Обычные уничтожения не распределяются.\n- Действует для CAS, CAP, Bomb runway и ударных миссий.\n- Награды за совместную миссию получают только активные выжившие участники группы.",
 	JOINT_HELP                         = "Совместные задания позволяют двум игрокам получить до двойной награды в кредитах за миссию.\n\nКак это работает:\n• Хост выбирает \"Пригласить в совместное задание\", чтобы получить 4-значный код.\n• Напарник открывает \"Присоединиться к другому игроку\" и вводит код.\n• Кредиты выдаются обоим за задания, но не за обычные уничтожения.\n• Действует для CAS, CAP, Bomb runway и ударных миссий.\n• Если ваш напарник погиб или исчез, вы сохраните свой заработок плюс дополнительную награду.\n• Только для одной коалиции.",
 
 	-- ============================================================
@@ -9273,24 +9700,31 @@ MGRS: %s
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Разведывательный Humvee",
 	CTLD_MENU_10_EVERYTHING            = "10 всего",
+	CTLD_MENU_15_EVERYTHING            = "15 всего",
 	CTLD_MENU_25_EVERYTHING            = "25 всего",
 	CTLD_MENU_50_EVERYTHING            = "50 всего",
 	CTLD_MENU_10_AA_MISSILES           = "10 ракет A/A",
+	CTLD_MENU_15_AA_MISSILES           = "15 ракет A/A",
 	CTLD_MENU_25_AA_MISSILES           = "25 ракет A/A",
 	CTLD_MENU_50_AA_MISSILES           = "50 ракет A/A",
 	CTLD_MENU_10_AG_MISSILES           = "10 ракет A/G",
+	CTLD_MENU_15_AG_MISSILES           = "15 ракет A/G",
 	CTLD_MENU_25_AG_MISSILES           = "25 ракет A/G",
 	CTLD_MENU_50_AG_MISSILES           = "50 ракет A/G",
 	CTLD_MENU_10_AG_ROCKETS            = "10 НАР A/G",
+	CTLD_MENU_15_AG_ROCKETS            = "15 НАР A/G",
 	CTLD_MENU_25_AG_ROCKETS            = "25 НАР A/G",
 	CTLD_MENU_50_AG_ROCKETS            = "50 НАР A/G",
 	CTLD_MENU_10_AG_BOMBS              = "10 бомб A/G",
+	CTLD_MENU_15_AG_BOMBS              = "15 бомб A/G",
 	CTLD_MENU_25_AG_BOMBS              = "25 бомб A/G",
 	CTLD_MENU_50_AG_BOMBS              = "50 бомб A/G",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 подвесных баков и пилонов",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 подвесных баков и пилонов",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 подвесных баков и пилонов",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 подвесных баков и пилонов",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 оружия из модов",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 оружия из модов",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 оружия из модов",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 оружия из модов",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s возвращены в %s.",
@@ -9304,9 +9738,18 @@ MGRS: %s
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD не будет сохранять/загружать. Пожалуйста, де-санитизируйте DCS missionscripting.lua.\n\nфункциональность отключена.",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "Инженеры вернулись на базу!",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "Войска вернулись на базу!",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "В радиусе %d метров вражеские зоны не обнаружены. Готовы к эвакуации.",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "В ближайшей вражеской зоне нет структурных целей. Готовы к эвакуации.",
+	CTLD_DEMO_PLANTING                 = "Подрывная группа устанавливает заряды на сооружении в зоне %s. Взрыв через 120 секунд.",
+	CTLD_DEMO_KILLED                   = "Подрывная группа уничтожена в зоне %s.",
+	CTLD_DEMO_ENTERED_ZONE             = "Подрывная группа вошла в зону %s.",
+	CTLD_SPY_INTEL_ACTIVE              = "Зональный разведчик заплатил местным информаторам за сведения в зоне %s. Разведданные активны в течение 60 минут. Возвращается к месту высадки для эвакуации.",
+	CTLD_SPY_READY_EXTRACTION          = "Зональный разведчик готов к эвакуации возле %s. MGRS: %s.",
+	CTLD_DEMO_READY_EXTRACTION         = "Подрывная группа готова к эвакуации возле %s. MGRS: %s.",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "Группа войск вошла в зону: %s",
 	CTLD_TROOP_ZONE_CAPTURED           = "захватил",
 	CTLD_TROOP_ZONE_UPGRADED           = "улучшил",
+	CTLD_TROOP_ZONE_STOCKED            = "пополнил запасы",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "захватил и улучшил",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d кредитов.",
@@ -10307,6 +10750,7 @@ Requer 2000 libras]],
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "O bombardeiro estratégico %s está em rota para %s.\nEscolte o bombardeiro ao longo da rota. O inimigo provavelmente tentará interceptar.",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "A escolta está em posição com %s.\nO bombardeiro se prepara para avançar em %s.",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "A escolta está em posição com %s.\nCrédito de escolta em %s.",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "Escolta confirmada com %s. Elimine todas as ameaças.",
 	STRATEGIC_BOMBER_RTB_TO           = "%s RTB para %s.",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s escoltou %s de volta com segurança\n%d créditos para cada - pouse para resgatar",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s escoltou %s de volta com segurança\n%d créditos - pouse para resgatar",
@@ -10360,6 +10804,54 @@ Latitude/longitude em minutos decimais: N 36°12.050' E 37°09.695'
 Elevação 1287 pés]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "Nova missão de ataque: ataque ao esconderijo inimigo",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "Missão de ataque encerrada: ataque ao esconderijo inimigo",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "Ataque à torre de comunicação inimiga",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[Interceptamos comunicações inimigas transmitidas desta posição.
+Destrua a torre de comunicação.
+
+Recompensa: 1000
+
+MGRS: 36 S WF 81960 24650
+Latitude/longitude: N 36°21'48" E 33°54'48"
+Coordenadas precisas: N 36°21'48.47" E 33°54'48.89"
+Minutos decimais: N 36°21.807' E 33°54.814'
+Elevação: 361 pés]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "Nova missão de ataque: Torre de comunicação inimiga",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "Missão de ataque encerrada: Torre de comunicação inimiga",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "Ataque ao retransmissor de comunicações inimigo",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[Comunicações inimigas foram rastreadas até uma segunda torre retransmissora.
+Destrua-a para interromper a rede inimiga.
+
+Recompensa: 1000
+
+MGRS: 37 S CB 09839 49242
+Latitude/longitude: N 37°28'13" E 36°50'58"
+Coordenadas precisas: N 37°28'13.88" E 36°50'58.56"
+Minutos decimais: N 37°28.231' E 36°50.976'
+Elevação: 2887 pés]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "Aviso: a torre é protegida por uma posição de mísseis superfície-ar SA-2.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "Nova missão de ataque: Retransmissor de comunicações inimigo",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "Missão de ataque encerrada: Retransmissor de comunicações inimigo",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "Ataque em profundidade a Konya",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[Realize um ataque em profundidade a Konya e destrua os dois alvos estratégicos.
+A área-alvo é fortemente protegida por um sistema de mísseis superfície-ar %s.
+
+Recompensa: 2000
+
+Alvo 1
+MGRS: 36 S VG 52091 90581
+Latitude/longitude: N 37°51'41" E 32°27'19"
+Coordenadas precisas: N 37°51'41.17" E 32°27'19.27"
+Minutos decimais: N 37°51.686' E 32°27.321'
+Elevação: 3406 pés
+
+Alvo 2
+MGRS: 36 S VG 52142 90600
+Latitude/longitude: N 37°51'41" E 32°27'21"
+Coordenadas precisas: N 37°51'41.82" E 32°27'21.35"
+Minutos decimais: N 37°51.697' E 32°27.355'
+Elevação: 3406 pés]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "Nova missão de ataque: Ataque em profundidade a Konya",
+	SYRIA_MISSION_STRIKE_KONYA_END = "Missão de ataque encerrada: Ataque em profundidade a Konya",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "Ataque ao armazém de suprimentos de Taftanaz",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[Armazém de suprimentos de Taftanaz encontrado,
 destrua-o para interromper os suprimentos que saem dali.
@@ -10605,6 +11097,8 @@ Recompensa: 1000]],
 	STATS_MENU_RANK_HELP               = "Ajuda de patente",
 	STATS_MENU_BUDGET_OVERVIEW         = "Visão geral do orçamento",
 	STATS_MENU_AI_LOGISTICS            = "Logística da IA (Atualmente %s)",
+	STATS_MENU_AI_LOGISTICS_ON         = "ativa",
+	STATS_MENU_AI_LOGISTICS_OFF        = "desativada",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "Ativar logística da IA",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "Desativar logística da IA",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "A logística da IA AZUL está ativada.",
@@ -10623,6 +11117,8 @@ Recompensa: 1000]],
 	STATS_LABEL_SHIP                   = "Navio",
 	STATS_LABEL_SAM                    = "SAM",
 	STATS_LABEL_STRUCTURE              = "Estrutura",
+	STATS_LABEL_DEMOLITION_KILL        = "Destruição por demolição",
+	CAREER_STAT_DEMOLITION_KILLS       = "Destruições por demolição",
 	STATS_LABEL_DEATHS                 = "Mortes",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "Capturado pelo inimigo",
 	STATS_LABEL_ZONE_CAPTURE           = "Captura de zona",
@@ -10654,6 +11150,7 @@ Recompensa: 1000]],
 	MISSION_CAS_DESCRIPTION_EMPTY      = "Apoie as operações terrestres em %s.\nProgresso da coalizão: %d/%d alvos terrestres destruídos.",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "Apoie as operações terrestres em %s.\nProgresso da coalizão: %d/%d alvos terrestres destruídos.\n\n%s",
 	MISSION_CAS_START                  = "Nova missão CAS em %s: destrua %d alvos terrestres inimigos.",
+	MISSION_CAS_END                    = "Missão encerrada: CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] concluiu a missão CAS!\nRecompensa pendente: %d créditos (pouse para resgatar).",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] e [%s] concluíram a missão CAS!\nRecompensa pendente: %d créditos para cada (pouse para resgatar).",
 	MISSION_CAS_COMPLETED_GROUP        = "Missão CAS concluída!\nRecompensas pendentes:\n%s\nPousem para resgatar.",
@@ -11082,6 +11579,7 @@ Elevação %d pés]],
 	JOINT_MENU_JOIN_ANOTHER            = "Entrar com outro jogador",
 	JOINT_MENU_CODE                    = "código %s",
 	JOINT_MENU_REQUEST_PLAYER          = "Solicitar missão conjunta",
+	JOINT_MENU_JOIN_PARTY              = "Entrar no grupo de %s (%d/%d)",
 	JOINT_MENU_PENDING_REQUESTS        = "Solicitações conjuntas pendentes",
 	JOINT_MENU_NO_PLAYERS              = "Nenhum jogador disponível",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "Nenhuma solicitação pendente",
@@ -11100,10 +11598,10 @@ Elevação %d pés]],
 	JOINT_REQUEST_DENIED_BY            = "%s recusou sua solicitação de missão conjunta",
 	JOINT_REQUEST_EXPIRED              = "Solicitação de missão conjunta expirada",
 	JOINT_REQUEST_TARGET_BUSY          = "%s já está em uma missão conjunta",
-	JOINT_REQUEST_REQUESTER_BUSY       = "Você já está em uma missão conjunta",
+	JOINT_REQUEST_REQUESTER_BUSY       = "Sua missão conjunta está cheia",
 	JOINT_REQUEST_NOT_AVAILABLE        = "Esse jogador não está mais disponível",
 	JOINT_STAT_SUFFIX                  = " (missão conjunta)",
-	JOINT_HELP_REQUESTS                = "Missões conjuntas permitem que dois jogadores recebam até o dobro das recompensas em créditos da missão.\n\nComo funciona:\n- Abra \"Solicitar missão conjunta\" e selecione um jogador.\n- O jogador selecionado recebe uma solicitação pendente e tem 120 segundos para aceitar ou recusar.\n- Os créditos serão concedidos a ambos por missões. Não por abates normais.\n- Válido para CAS, CAP, Bomb runway e missões de ataque.\n- Se seu parceiro estiver morto/despawnado, você ainda mantém seus ganhos mais a recompensa extra.",
+	JOINT_HELP_REQUESTS                = "Missões conjuntas permitem que grupos de dois a quatro jogadores compartilhem os créditos da missão.\n\nComo funciona:\n- Abra \"Solicitar missão conjunta\" e selecione um jogador solo ou um grupo aberto.\n- O jogador selecionado recebe uma solicitação pendente e tem 120 segundos para aceitar ou recusar.\n- Os membros elegíveis do grupo recebem créditos da missão. Abates normais não são compartilhados.\n- Válido para CAS, CAP, Bomb runway e missões de ataque.\n- Somente membros ativos e sobreviventes recebem recompensas de missão conjunta.",
 	JOINT_HELP                         = "Missões conjuntas permitem que dois jogadores recebam até o dobro das recompensas em créditos da missão.\n\nComo funciona:\n• O host seleciona \"Convidar para missão conjunta\" para receber um código de 4 dígitos.\n• O companheiro abre \"Entrar com outro jogador\" e insere o código.\n• Os créditos serão concedidos a ambos por missões. Não por abates normais.\n• Válido para CAS, CAP, Bomb runway e missões de ataque.\n• Se seu parceiro estiver morto/despawnado, você ainda mantém seus ganhos mais a recompensa extra.\n• Apenas mesma coalizão.",
 
 	-- ============================================================
@@ -11202,24 +11700,31 @@ Elevação %d pés]],
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Humvee de reconhecimento",
 	CTLD_MENU_10_EVERYTHING            = "10 de tudo",
+	CTLD_MENU_15_EVERYTHING            = "15 de tudo",
 	CTLD_MENU_25_EVERYTHING            = "25 de tudo",
 	CTLD_MENU_50_EVERYTHING            = "50 de tudo",
 	CTLD_MENU_10_AA_MISSILES           = "10 mísseis A/A",
+	CTLD_MENU_15_AA_MISSILES           = "15 mísseis A/A",
 	CTLD_MENU_25_AA_MISSILES           = "25 mísseis A/A",
 	CTLD_MENU_50_AA_MISSILES           = "50 mísseis A/A",
 	CTLD_MENU_10_AG_MISSILES           = "10 mísseis A/G",
+	CTLD_MENU_15_AG_MISSILES           = "15 mísseis A/G",
 	CTLD_MENU_25_AG_MISSILES           = "25 mísseis A/G",
 	CTLD_MENU_50_AG_MISSILES           = "50 mísseis A/G",
 	CTLD_MENU_10_AG_ROCKETS            = "10 foguetes A/G",
+	CTLD_MENU_15_AG_ROCKETS            = "15 foguetes A/G",
 	CTLD_MENU_25_AG_ROCKETS            = "25 foguetes A/G",
 	CTLD_MENU_50_AG_ROCKETS            = "50 foguetes A/G",
 	CTLD_MENU_10_AG_BOMBS              = "10 bombas A/G",
+	CTLD_MENU_15_AG_BOMBS              = "15 bombas A/G",
 	CTLD_MENU_25_AG_BOMBS              = "25 bombas A/G",
 	CTLD_MENU_50_AG_BOMBS              = "50 bombas A/G",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 tanques externos e pilones",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 tanques externos e pilones",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 tanques externos e pilones",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 tanques externos e pilones",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 armas de mods",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 armas de mods",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 armas de mods",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 armas de mods",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s retornou para %s.",
@@ -11233,9 +11738,18 @@ Elevação %d pés]],
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD não vai salvar/carregar. Por favor, faça De-Sanitize no DCS missionscripting.lua.\n\nfuncionalidade desativada.",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "Engenheiros retornaram à base!",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "Tropas retornaram à base!",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "Nenhuma zona inimiga detectada em um raio de %d metros. Pronto para extração.",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "Nenhum alvo estrutural em uma zona inimiga próxima. Pronto para extração.",
+	CTLD_DEMO_PLANTING                 = "A equipe de demolição está instalando cargas em uma estrutura em %s. Detonação em 120 segundos.",
+	CTLD_DEMO_KILLED                   = "A equipe de demolição foi eliminada em %s.",
+	CTLD_DEMO_ENTERED_ZONE             = "A equipe de demolição entrou em %s.",
+	CTLD_SPY_INTEL_ACTIVE              = "O espião de zona pagou a contatos locais por informações em %s. A inteligência ficará ativa por 60 minutos. Está retornando ao ponto de desembarque para extração.",
+	CTLD_SPY_READY_EXTRACTION          = "O espião de zona está pronto para extração perto de %s. MGRS: %s.",
+	CTLD_DEMO_READY_EXTRACTION         = "A equipe de demolição está pronta para extração perto de %s. MGRS: %s.",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "Grupo de tropas entrou na zona: %s",
 	CTLD_TROOP_ZONE_CAPTURED           = "capturada",
 	CTLD_TROOP_ZONE_UPGRADED           = "melhorada",
+	CTLD_TROOP_ZONE_STOCKED            = "abasteceu",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "capturada e melhorada",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d créditos.",
@@ -12236,6 +12750,7 @@ Rakım 507 fit
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "%s stratejik bombardıman uçağı %s hedefine ilerliyor.\nBombardıman uçağına rota boyunca eskortluk edin. Düşman muhtemelen önleme yapacak.",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "%s ile eskort pozisyonda.\nBombardıman uçağı %s içinde ilerlemeye hazırlanıyor.",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "%s ile eskort pozisyonda.\n%s içinde eskort kredisi kazanılır.",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "%s ile eskort onaylandı. Tüm tehditleri etkisiz hale getirin.",
 	STRATEGIC_BOMBER_RTB_TO           = "%s %s bölgesine RTB yapıyor.",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s, %s uçağına güvenli dönüş eskortu yaptı\nkişi başı %d kredi - almak için iniş yap",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s, %s uçağına güvenli dönüş eskortu yaptı\n%d kredi - almak için iniş yap",
@@ -12289,6 +12804,54 @@ Enlem/boylam ondalık dakika: N 36°12.050' E 37°09.695'
 Rakım 1287 fit]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "Yeni saldırı görevi: düşman sığınağına saldırı",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "Saldırı görevi sona erdi: düşman sığınağına saldırı",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "Düşman iletişim kulesine saldırı",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[Bu konumdan yayınlanan düşman iletişimini tespit ettik.
+İletişim kulesini yok edin.
+
+Ödül: 1000
+
+MGRS: 36 S WF 81960 24650
+Enlem/boylam: N 36°21'48" E 33°54'48"
+Hassas koordinatlar: N 36°21'48.47" E 33°54'48.89"
+Ondalık dakika: N 36°21.807' E 33°54.814'
+Rakım: 361 fit]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "Yeni saldırı görevi: Düşman iletişim kulesi",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "Saldırı görevi sona erdi: Düşman iletişim kulesi",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "Düşman iletişim aktarma kulesine saldırı",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[Düşman iletişimi ikinci bir aktarma kulesine kadar izlendi.
+Ağlarını bozmak için kuleyi yok edin.
+
+Ödül: 1000
+
+MGRS: 37 S CB 09839 49242
+Enlem/boylam: N 37°28'13" E 36°50'58"
+Hassas koordinatlar: N 37°28'13.88" E 36°50'58.56"
+Ondalık dakika: N 37°28.231' E 36°50.976'
+Rakım: 2887 fit]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "Uyarı: Kule bir SA-2 karadan havaya füze mevzisi tarafından korunuyor.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "Yeni saldırı görevi: Düşman iletişim aktarma kulesi",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "Saldırı görevi sona erdi: Düşman iletişim aktarma kulesi",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "Konya'ya derin taarruz",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[Konya'ya derin bir taarruz düzenleyin ve iki stratejik hedefi de yok edin.
+Hedef bölge, %s hava savunma füze sistemi tarafından yoğun şekilde korunuyor.
+
+Ödül: 2000
+
+Hedef 1
+MGRS: 36 S VG 52091 90581
+Enlem/boylam: N 37°51'41" E 32°27'19"
+Hassas koordinatlar: N 37°51'41.17" E 32°27'19.27"
+Ondalık dakika: N 37°51.686' E 32°27.321'
+Rakım: 3406 fit
+
+Hedef 2
+MGRS: 36 S VG 52142 90600
+Enlem/boylam: N 37°51'41" E 32°27'21"
+Hassas koordinatlar: N 37°51'41.82" E 32°27'21.35"
+Ondalık dakika: N 37°51.697' E 32°27.355'
+Rakım: 3406 fit]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "Yeni saldırı görevi: Konya'ya derin taarruz",
+	SYRIA_MISSION_STRIKE_KONYA_END = "Saldırı görevi sona erdi: Konya'ya derin taarruz",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "Taftanaz ikmal deposuna saldırı",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[Taftanaz ikmal deposu bulundu,
 oradan çıkan ikmali durdurmak için yok et.
@@ -12533,6 +13096,8 @@ Rakım: 1251 fit
 	STATS_MENU_RANK_HELP               = "Rütbe Yardımı",
 	STATS_MENU_BUDGET_OVERVIEW         = "Bütçe özeti",
 	STATS_MENU_AI_LOGISTICS            = "Yapay zekâ lojistiği (Şu anda %s)",
+	STATS_MENU_AI_LOGISTICS_ON         = "açık",
+	STATS_MENU_AI_LOGISTICS_OFF        = "kapalı",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "Yapay zekâ lojistiğini etkinleştir",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "Yapay zekâ lojistiğini devre dışı bırak",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "MAVİ yapay zekâ lojistiği artık etkin.",
@@ -12551,6 +13116,8 @@ Rakım: 1251 fit
 	STATS_LABEL_SHIP                   = "Gemi",
 	STATS_LABEL_SAM                    = "SAM",
 	STATS_LABEL_STRUCTURE              = "Yapı",
+	STATS_LABEL_DEMOLITION_KILL        = "İmha görevi hedefi",
+	CAREER_STAT_DEMOLITION_KILLS       = "İmha görevi hedefleri",
 	STATS_LABEL_DEATHS                 = "Ölümler",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "Düşman tarafından ele geçirildi",
 	STATS_LABEL_ZONE_CAPTURE           = "Bölge ele geçirme",
@@ -12582,6 +13149,7 @@ Rakım: 1251 fit
 	MISSION_CAS_DESCRIPTION_EMPTY      = "%s bölgesindeki kara harekâtını destekle.\nKoalisyon ilerlemesi: %d/%d kara hedefi imha edildi.",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "%s bölgesindeki kara harekâtını destekle.\nKoalisyon ilerlemesi: %d/%d kara hedefi imha edildi.\n\n%s",
 	MISSION_CAS_START                  = "%s bölgesinde yeni CAS görevi: %d düşman kara hedefini imha et.",
+	MISSION_CAS_END                    = "Görev sona erdi: CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] CAS görevini tamamladı!\nBekleyen ödül: %d kredi (almak için iniş yap).",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] ve [%s] CAS görevini tamamladı!\nBekleyen ödül: kişi başı %d kredi (almak için iniş yap).",
 	MISSION_CAS_COMPLETED_GROUP        = "CAS görevi tamamlandı!\nBekleyen ödüller:\n%s\nAlmak için iniş yapın.",
@@ -13010,6 +13578,7 @@ Rakım %d fit]],
 	JOINT_MENU_JOIN_ANOTHER            = "Başka oyuncuya katıl",
 	JOINT_MENU_CODE                    = "kod %s",
 	JOINT_MENU_REQUEST_PLAYER          = "Ortak görev iste",
+	JOINT_MENU_JOIN_PARTY              = "%s adlı oyuncunun grubuna katıl (%d/%d)",
 	JOINT_MENU_PENDING_REQUESTS        = "Bekleyen ortak görev istekleri",
 	JOINT_MENU_NO_PLAYERS              = "Uygun oyuncu yok",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "Bekleyen istek yok",
@@ -13028,10 +13597,10 @@ Rakım %d fit]],
 	JOINT_REQUEST_DENIED_BY            = "%s ortak görev isteğini reddetti",
 	JOINT_REQUEST_EXPIRED              = "Ortak görev isteği süresi doldu",
 	JOINT_REQUEST_TARGET_BUSY          = "%s zaten ortak görevde",
-	JOINT_REQUEST_REQUESTER_BUSY       = "Zaten ortak görevdesin",
+	JOINT_REQUEST_REQUESTER_BUSY       = "Ortak görev grubun dolu",
 	JOINT_REQUEST_NOT_AVAILABLE        = "Bu oyuncu artık uygun değil",
 	JOINT_STAT_SUFFIX                  = " (ortak görev)",
-	JOINT_HELP_REQUESTS                = "Ortak görevler iki oyuncunun görev kredisi ödüllerini iki katına kadar almasını sağlar.\n\nNasıl çalışır:\n- \"Ortak görev iste\" menüsünü aç ve bir oyuncu seç.\n- Seçilen oyuncu bekleyen bir istek alır ve kabul etmek ya da reddetmek için 120 saniyesi vardır.\n- Krediler görevler için ikisine de verilir. Normal kill'ler için verilmez.\n- CAS, CAP, Bomb runway ve taarruz görevleri için geçerlidir.\n- Partnerin ölü/despawn olmuşsa, kazancını ve ekstra ödülü yine korursun.",
+	JOINT_HELP_REQUESTS                = "Ortak görevler, iki ila dört oyuncudan oluşan grupların görev kredilerini paylaşmasını sağlar.\n\nNasıl çalışır:\n- \"Ortak görev iste\" menüsünü aç ve tek bir oyuncu ya da açık bir grup seç.\n- Seçilen oyuncu bekleyen bir istek alır ve kabul etmek ya da reddetmek için 120 saniyesi vardır.\n- Uygun grup üyeleri görev kredilerini alır. Normal öldürmeler paylaşılmaz.\n- CAS, CAP, Bomb runway ve taarruz görevleri için geçerlidir.\n- Ortak görev ödüllerini yalnızca aktif ve hayatta kalan grup üyeleri alır.",
 	JOINT_HELP                         = "Ortak görevler iki oyuncunun görev kredisi ödüllerini iki katına kadar almasını sağlar.\n\nNasıl çalışır:\n• Host, 4 haneli kod almak için \"Ortak göreve davet et\" seçer.\n• Takım arkadaşı \"Başka oyuncuya katıl\" menüsünü açar ve kodu girer.\n• Krediler görevler için ikisine de verilir. Normal kill'ler için verilmez.\n• CAS, CAP, Bomb runway ve taarruz görevleri için geçerlidir.\n• Partnerin ölü/despawn olmuşsa, kazancını ve ekstra ödülü yine korursun.\n• Sadece aynı koalisyon.",
 
 	-- ============================================================
@@ -13130,24 +13699,31 @@ Rakım %d fit]],
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Keşif Humvee",
 	CTLD_MENU_10_EVERYTHING            = "Her şeyden 10",
+	CTLD_MENU_15_EVERYTHING            = "Her şeyden 15",
 	CTLD_MENU_25_EVERYTHING            = "Her şeyden 25",
 	CTLD_MENU_50_EVERYTHING            = "Her şeyden 50",
 	CTLD_MENU_10_AA_MISSILES           = "10 A/A füzesi",
+	CTLD_MENU_15_AA_MISSILES           = "15 A/A füzesi",
 	CTLD_MENU_25_AA_MISSILES           = "25 A/A füzesi",
 	CTLD_MENU_50_AA_MISSILES           = "50 A/A füzesi",
 	CTLD_MENU_10_AG_MISSILES           = "10 A/G füzesi",
+	CTLD_MENU_15_AG_MISSILES           = "15 A/G füzesi",
 	CTLD_MENU_25_AG_MISSILES           = "25 A/G füzesi",
 	CTLD_MENU_50_AG_MISSILES           = "50 A/G füzesi",
 	CTLD_MENU_10_AG_ROCKETS            = "10 A/G roketi",
+	CTLD_MENU_15_AG_ROCKETS            = "15 A/G roketi",
 	CTLD_MENU_25_AG_ROCKETS            = "25 A/G roketi",
 	CTLD_MENU_50_AG_ROCKETS            = "50 A/G roketi",
 	CTLD_MENU_10_AG_BOMBS              = "10 A/G bombası",
+	CTLD_MENU_15_AG_BOMBS              = "15 A/G bombası",
 	CTLD_MENU_25_AG_BOMBS              = "25 A/G bombası",
 	CTLD_MENU_50_AG_BOMBS              = "50 A/G bombası",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 uçak yakıt tankı ve pylon",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 uçak yakıt tankı ve pylon",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 uçak yakıt tankı ve pylon",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 uçak yakıt tankı ve pylon",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 mod silahı",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 mod silahı",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 mod silahı",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 mod silahı",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s, %s bölgesine geri döndü.",
@@ -13161,9 +13737,18 @@ Rakım %d fit]],
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD kaydetmeye/yüklemeyecek. Lütfen DCS missionscripting.lua dosyasını De-Sanitize yapın.\n\nişlev devre dışı.",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "Mühendisler üsse döndü!",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "Birlikler üsse döndü!",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "%d metre içinde düşman bölgesi tespit edilmedi. Tahliye için hazır.",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "Yakındaki düşman bölgesinde yapı hedefi yok. Tahliye için hazır.",
+	CTLD_DEMO_PLANTING                 = "İmha Timi %s bölgesindeki bir yapıya patlayıcı yerleştiriyor. Patlamaya 120 saniye.",
+	CTLD_DEMO_KILLED                   = "İmha Timi %s bölgesinde etkisiz hale getirildi.",
+	CTLD_DEMO_ENTERED_ZONE             = "İmha Timi %s bölgesine girdi.",
+	CTLD_SPY_INTEL_ACTIVE              = "Bölge Casusu %s bölgesinde bilgi almak için yerel bağlantılara ödeme yaptı. İstihbarat 60 dakika boyunca etkin. Tahliye için bırakılma noktasına geri dönüyor.",
+	CTLD_SPY_READY_EXTRACTION          = "Bölge Casusu %s yakınında tahliyeye hazır. MGRS: %s.",
+	CTLD_DEMO_READY_EXTRACTION         = "İmha Timi %s yakınında tahliyeye hazır. MGRS: %s.",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "Birlik grubu bölgeye girdi: %s",
 	CTLD_TROOP_ZONE_CAPTURED           = "ele geçirildi",
 	CTLD_TROOP_ZONE_UPGRADED           = "yükseltildi",
+	CTLD_TROOP_ZONE_STOCKED            = "depoladı",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "ele geçirildi ve yükseltildi",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d kredi.",
@@ -14162,6 +14747,7 @@ Ricompensa 500
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "Il bombardiere strategico %s è in rotta verso %s.\nScorta il bombardiere lungo la rotta. Il nemico probabilmente tenterà l'intercettazione.",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "La scorta è in posizione con %s.\nIl bombardiere si prepara ad avanzare tra %s.",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "La scorta è in posizione con %s.\nCredito scorta tra %s.",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "Scorta con %s confermata. Elimina ogni minaccia.",
 	STRATEGIC_BOMBER_RTB_TO           = "%s RTB verso %s.",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s ha scortato %s a casa in sicurezza\ncredito %d ciascuno - atterra per riscuotere",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s ha scortato %s a casa in sicurezza\ncredito %d - atterra per riscuotere",
@@ -14215,6 +14801,54 @@ Lat long Decimal Minutes: N 36°12.050' E 37°09.695'
 Altitude 1287 PIEDI]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "Nuova missione d'assalto: Assalto al deposito nemico",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "Missione d'attacco completata: attacco al deposito nemico.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "Attacco alla torre di comunicazione nemica",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[Abbiamo intercettato comunicazioni nemiche trasmesse da questa posizione.
+Distruggi la torre di comunicazione.
+
+Ricompensa: 1000
+
+MGRS: 36 S WF 81960 24650
+Latitudine/longitudine: N 36°21'48" E 33°54'48"
+Coordinate precise: N 36°21'48.47" E 33°54'48.89"
+Minuti decimali: N 36°21.807' E 33°54.814'
+Altitudine: 361 piedi]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "Nuova missione d'attacco: Torre di comunicazione nemica",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "Missione d'attacco completata: Torre di comunicazione nemica",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "Attacco al ripetitore di comunicazioni nemico",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[Le comunicazioni nemiche sono state tracciate fino a una seconda torre ripetitrice.
+Distruggila per interrompere la loro rete.
+
+Ricompensa: 1000
+
+MGRS: 37 S CB 09839 49242
+Latitudine/longitudine: N 37°28'13" E 36°50'58"
+Coordinate precise: N 37°28'13.88" E 36°50'58.56"
+Minuti decimali: N 37°28.231' E 36°50.976'
+Altitudine: 2887 piedi]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "Attenzione: la torre è protetta da una postazione missilistica terra-aria SA-2.",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "Nuova missione d'attacco: Ripetitore di comunicazioni nemico",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "Missione d'attacco completata: Ripetitore di comunicazioni nemico",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "Attacco in profondità a Konya",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[Effettua un attacco in profondità a Konya e distruggi entrambi gli obiettivi strategici.
+L'area bersaglio è pesantemente difesa da un sistema missilistico terra-aria %s.
+
+Ricompensa: 2000
+
+Obiettivo 1
+MGRS: 36 S VG 52091 90581
+Latitudine/longitudine: N 37°51'41" E 32°27'19"
+Coordinate precise: N 37°51'41.17" E 32°27'19.27"
+Minuti decimali: N 37°51.686' E 32°27.321'
+Altitudine: 3406 piedi
+
+Obiettivo 2
+MGRS: 36 S VG 52142 90600
+Latitudine/longitudine: N 37°51'41" E 32°27'21"
+Coordinate precise: N 37°51'41.82" E 32°27'21.35"
+Minuti decimali: N 37°51.697' E 32°27.355'
+Altitudine: 3406 piedi]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "Nuova missione d'attacco: Attacco in profondità a Konya",
+	SYRIA_MISSION_STRIKE_KONYA_END = "Missione d'attacco completata: Attacco in profondità a Konya",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "aTTACCO  al magazzino di approvvigionamento di Taftanaz",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[Il deposito di rifornimenti di Taftanaz è stato trovato,
 Distruggilo per interrompere i rifornimenti provenienti da lì.
@@ -14460,6 +15094,8 @@ Ricompensa : 1000]],
 	STATS_MENU_RANK_HELP               = "Aiuto per la classifica",
 	STATS_MENU_BUDGET_OVERVIEW         = "Panoramica del budget",
 	STATS_MENU_AI_LOGISTICS            = "Logistica IA (Attualmente %s)",
+	STATS_MENU_AI_LOGISTICS_ON         = "attiva",
+	STATS_MENU_AI_LOGISTICS_OFF        = "disattivata",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "Attiva la logistica IA",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "Disattiva la logistica IA",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "La logistica IA BLU è ora attiva.",
@@ -14478,6 +15114,8 @@ Ricompensa : 1000]],
 	STATS_LABEL_SHIP                   = "Nave",
 	STATS_LABEL_SAM                    = "SAM",
 	STATS_LABEL_STRUCTURE              = "strutture",
+	STATS_LABEL_DEMOLITION_KILL        = "Distruzione con demolizione",
+	CAREER_STAT_DEMOLITION_KILLS       = "Distruzioni con demolizione",
 	STATS_LABEL_DEATHS                 = "Morti",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "Catturato dal nemico",
 	STATS_LABEL_ZONE_CAPTURE           = "Acquisizione dell'area",
@@ -14509,6 +15147,7 @@ Ricompensa : 1000]],
 	MISSION_CAS_DESCRIPTION_EMPTY      = "Supporta le operazioni di terra a %s.\nProgresso della coalizione: %d/%d bersagli terrestri distrutti.",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "Supporta le operazioni di terra a %s.\nProgresso della coalizione: %d/%d bersagli terrestri distrutti.\n\n%s",
 	MISSION_CAS_START                  = "Nuova missione CAS a %s: distruggi %d bersagli terrestri nemici.",
+	MISSION_CAS_END                    = "Missione compiuta : CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] missione CAS completata!\nRicompensa in sospeso: %d crediti (terreno da riscuotere).",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] e [%s] hanno completato la missione CAS!\nRicompensa in sospeso: %d crediti ciascuno (terreno da collezionare).",
 	MISSION_CAS_COMPLETED_GROUP        = "Missione CAS completata!\nRicompense in sospeso:\n%s\nAtterrate per riscuoterle.",
@@ -14937,6 +15576,7 @@ Quota %d piedi]],
 	JOINT_MENU_JOIN_ANOTHER            = "Unisciti a un altro giocatore",
 	JOINT_MENU_CODE                    = "codice %s",
 	JOINT_MENU_REQUEST_PLAYER          = "Richiedi una missione congiunta",
+	JOINT_MENU_JOIN_PARTY              = "Unisciti al gruppo di %s (%d/%d)",
 	JOINT_MENU_PENDING_REQUESTS        = "Richieste congiunte in corso di valutazione",
 	JOINT_MENU_NO_PLAYERS              = "Nessun giocatore disponibile",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "Nessuna richiesta in sospeso",
@@ -14955,10 +15595,10 @@ Quota %d piedi]],
 	JOINT_REQUEST_DENIED_BY            = "%s abbiamo rifiutato la tua richiesta di missione congiunta",
 	JOINT_REQUEST_EXPIRED              = "La richiesta di missione congiunta è scaduta",
 	JOINT_REQUEST_TARGET_BUSY          = "%s è già in missione congiunta",
-	JOINT_REQUEST_REQUESTER_BUSY       = "Siete già impegnati in una missione comune",
+	JOINT_REQUEST_REQUESTER_BUSY       = "La tua missione congiunta è al completo",
 	JOINT_REQUEST_NOT_AVAILABLE        = "Questo giocatore non è più disponibile",
 	JOINT_STAT_SUFFIX                  = " (missione congiunta)",
-	JOINT_HELP_REQUESTS                = "Le missioni congiunte consentono a due giocatori di guadagnare fino al doppio dei crediti missione.\n\nFunzionamento :\n- Aprire \"Richiedi una missione congiunta\" e seleziona un giocatore.\n- Il giocatore selezionato riceve una richiesta in sospeso e ha 120 secondi per accettarla o rifiutarla. I crediti verranno assegnati a entrambi i giocatori per le missioni, non per le normali eliminazioni. Valido per le missioni CAS, CAP, Bomb Runway e Strike.\n- Se il tuo partner è morto/scomparso, mantieni i tuoi guadagni più la ricompensa aggiuntiva.",
+	JOINT_HELP_REQUESTS                = "Le missioni congiunte consentono a gruppi da due a quattro giocatori di condividere i crediti missione.\n\nFunzionamento:\n- Apri \"Richiedi una missione congiunta\" e seleziona un giocatore singolo o un gruppo aperto.\n- Il giocatore selezionato riceve una richiesta in sospeso e ha 120 secondi per accettarla o rifiutarla.\n- I membri idonei del gruppo ricevono i crediti missione. Le eliminazioni normali non vengono condivise.\n- Valido per CAS, CAP, Bomb Runway e missioni Strike.\n- Solo i membri attivi e sopravvissuti ricevono le ricompense della missione congiunta.",
 	JOINT_HELP                         = "Le missioni congiunte consentono a due giocatori di guadagnare fino al doppio dei crediti missione.\n\nFunzionamento :\n• L'ospite sceglie \"Invito alla missione congiunta\" per ricevere un codice di 4 cifre.\n• Il compagno di squadra apre \"Unisciti a un altro giocatore\" e inserisce il codice.\n• I crediti verranno assegnati a entrambi i giocatori per le missioni completate, non per le normali eliminazioni.\n• Valido per missioni CAS, CAP, bombardamento di piste e attacchi.\n• Se il tuo partner è morto/scomparso, mantieni i tuoi guadagni più la ricompensa aggiuntiva.\n• Solo la stessa coalizione.",
 
 	-- ============================================================
@@ -15057,24 +15697,31 @@ Quota %d piedi]],
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Humvee da ricognizione",
 	CTLD_MENU_10_EVERYTHING            = "10 di qualsiasi cosa",
+	CTLD_MENU_15_EVERYTHING            = "15 di qualsiasi cosa",
 	CTLD_MENU_25_EVERYTHING            = "25 di qualsiasi cosa",
 	CTLD_MENU_50_EVERYTHING            = "50 di qualsiasi cosa",
 	CTLD_MENU_10_AA_MISSILES           = "10 missili A/A",
+	CTLD_MENU_15_AA_MISSILES           = "15 missili A/A",
 	CTLD_MENU_25_AA_MISSILES           = "25 missili A/A",
 	CTLD_MENU_50_AA_MISSILES           = "50 missili A/A",
 	CTLD_MENU_10_AG_MISSILES           = "10 missili A/G",
+	CTLD_MENU_15_AG_MISSILES           = "15 missili A/G",
 	CTLD_MENU_25_AG_MISSILES           = "25 missili A/G",
 	CTLD_MENU_50_AG_MISSILES           = "50 missili A/G",
 	CTLD_MENU_10_AG_ROCKETS            = "10 razzi A/G",
+	CTLD_MENU_15_AG_ROCKETS            = "15 razzi A/G",
 	CTLD_MENU_25_AG_ROCKETS            = "25 razzi A/G",
 	CTLD_MENU_50_AG_ROCKETS            = "50 razzi A/G",
 	CTLD_MENU_10_AG_BOMBS              = "10 bombe A/G",
+	CTLD_MENU_15_AG_BOMBS              = "15 bombe A/G",
 	CTLD_MENU_25_AG_BOMBS              = "25 bombeA/G",
 	CTLD_MENU_50_AG_BOMBS              = "50 bombe A/G",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 serbatoi esterni e piloni",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 serbatoi esterni e piloni",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 serbatoi esterni e piloni",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 serbatoi esterni e piloni",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 mod armi",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 mod armi",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 mod armi",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 mod armi",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s tornato a %s.",
@@ -15088,9 +15735,18 @@ Quota %d piedi]],
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD Non sarà possibile salvare/caricare. Si prega di desanificare il file DCS missionscripting.lua.\n\nfunzione disabilitata.",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "Gli ingegneri sono tornati alla base!",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "Le truppe sono tornate alla base!",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "Nessuna zona nemica rilevata entro %d metri. Pronti per l'estrazione.",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "Nessun obiettivo strutturale in una zona nemica vicina. Pronti per l'estrazione.",
+	CTLD_DEMO_PLANTING                 = "La squadra demolizioni sta piazzando cariche su una struttura a %s. Detonazione tra 120 secondi.",
+	CTLD_DEMO_KILLED                   = "La squadra demolizioni è stata eliminata a %s.",
+	CTLD_DEMO_ENTERED_ZONE             = "La squadra demolizioni è entrata a %s.",
+	CTLD_SPY_INTEL_ACTIVE              = "La spia di zona ha pagato dei contatti locali per ottenere informazioni a %s. Le informazioni resteranno attive per 60 minuti. Sta tornando al punto di sbarco per l'estrazione.",
+	CTLD_SPY_READY_EXTRACTION          = "La spia di zona è pronta per l'estrazione vicino a %s. MGRS: %s.",
+	CTLD_DEMO_READY_EXTRACTION         = "La squadra demolizioni è pronta per l'estrazione vicino a %s. MGRS: %s.",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "Un gruppo di truppe è entrato nella zona : %s",
 	CTLD_TROOP_ZONE_CAPTURED           = "catturare",
 	CTLD_TROOP_ZONE_UPGRADED           = "migliorato",
+	CTLD_TROOP_ZONE_STOCKED            = "rifornito",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "catturato e migliorato",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d crediti.",
@@ -16089,6 +16745,7 @@ MGRS: 38 T MP 68815 48119
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "%s 戰略轟炸機正前往 %s。\n沿航線護航轟炸機。敵軍很可能會攔截。",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "護航已在 %s 附近就位。\n轟炸機準備在 %s 後推進。",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "護航已在 %s 附近就位。\n將在 %s 後取得護航獎勵資格。",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "已確認護航 %s。清除所有威脅。",
 	STRATEGIC_BOMBER_RTB_TO           = "%s RTB 至 %s。",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s 已護送 %s 安全返航\n各獲得 %d 點數（降落後領取）",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s 已護送 %s 安全返航\n獲得 %d 點數（降落後領取）",
@@ -16142,6 +16799,54 @@ MGRS: 37 S CA 34720 07791
 海拔 1287 英尺]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "新打擊任務：打擊敵方藏匿據點",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "打擊任務結束：打擊敵方藏匿據點",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "打擊敵方通訊塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[我們攔截到從此位置發出的敵方通訊。
+摧毀該通訊塔。
+
+獎勵：1000
+
+MGRS：36 S WF 81960 24650
+經緯度：N 36°21'48" E 33°54'48"
+精確經緯度：N 36°21'48.47" E 33°54'48.89"
+十進位分：N 36°21.807' E 33°54.814'
+海拔 361 英尺]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "新打擊任務：打擊敵方通訊塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "打擊任務結束：打擊敵方通訊塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "打擊敵方通訊中繼塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[敵方通訊已追蹤至第二座中繼塔。
+摧毀它以干擾敵方網路。
+
+獎勵：1000
+
+MGRS：37 S CB 09839 49242
+經緯度：N 37°28'13" E 36°50'58"
+精確經緯度：N 37°28'13.88" E 36°50'58.56"
+十進位分：N 37°28.231' E 36°50.976'
+海拔 2887 英尺]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "警告：該塔由一處 SA-2 地對空飛彈陣地防守。",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "新打擊任務：打擊敵方通訊中繼塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "打擊任務結束：打擊敵方通訊中繼塔",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "深入打擊 Konya",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[對 Konya 發動深入打擊，摧毀兩個戰略目標。
+目標區域由 %s 地對空飛彈系統嚴密防守。
+
+獎勵：2000
+
+目標 1
+MGRS：36 S VG 52091 90581
+經緯度：N 37°51'41" E 32°27'19"
+精確經緯度：N 37°51'41.17" E 32°27'19.27"
+十進位分：N 37°51.686' E 32°27.321'
+海拔 3406 英尺
+
+目標 2
+MGRS：36 S VG 52142 90600
+經緯度：N 37°51'41" E 32°27'21"
+精確經緯度：N 37°51'41.82" E 32°27'21.35"
+十進位分：N 37°51.697' E 32°27.355'
+海拔 3406 英尺]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "新打擊任務：深入打擊 Konya",
+	SYRIA_MISSION_STRIKE_KONYA_END = "打擊任務結束：深入打擊 Konya",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "打擊 Taftanaz 補給倉庫",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[已發現 Taftanaz 補給倉庫，
 摧毀它以切斷該區域的補給來源。
@@ -16387,6 +17092,8 @@ MGRS: 37 S EU 31088 22294
 	STATS_MENU_RANK_HELP               = "階級說明",
 	STATS_MENU_BUDGET_OVERVIEW         = "預算總覽",
 	STATS_MENU_AI_LOGISTICS            = "AI 後勤（目前%s）",
+	STATS_MENU_AI_LOGISTICS_ON         = "開啟",
+	STATS_MENU_AI_LOGISTICS_OFF        = "關閉",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "啟用 AI 後勤",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "停用 AI 後勤",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "藍方 AI 後勤現已啟用。",
@@ -16405,6 +17112,8 @@ MGRS: 37 S EU 31088 22294
 	STATS_LABEL_SHIP                   = "艦艇",
 	STATS_LABEL_SAM                    = "防空系統",
 	STATS_LABEL_STRUCTURE              = "建築",
+	STATS_LABEL_DEMOLITION_KILL        = "爆破摧毀",
+	CAREER_STAT_DEMOLITION_KILLS       = "爆破摧毀數",
 	STATS_LABEL_DEATHS                 = "死亡",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "被敵方俘獲",
 	STATS_LABEL_ZONE_CAPTURE           = "區域佔領",
@@ -16436,6 +17145,7 @@ MGRS: 37 S EU 31088 22294
 	MISSION_CAS_DESCRIPTION_EMPTY      = "支援 %s 的地面作戰。\n聯軍進度：已摧毀 %d/%d 個地面目標。",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "支援 %s 的地面作戰。\n聯軍進度：已摧毀 %d/%d 個地面目標。\n\n%s",
 	MISSION_CAS_START                  = "於 %s 展開新的 CAS 任務：摧毀 %d 個敵方地面目標。",
+	MISSION_CAS_END                    = "任務結束：CAS",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] 已完成 CAS 任務！\n獎勵待領：%d 點數（降落後領取）。",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] 與 [%s] 已完成 CAS 任務！\n獎勵待領：各 %d 點數（降落後領取）。",
 	MISSION_CAS_COMPLETED_GROUP        = "CAS 任務完成！\n待領獎勵：\n%s\n請降落領取。",
@@ -16864,6 +17574,7 @@ JOINT_NO_PLAYER_FOR_GROUP          = "此群組沒有玩家",
 	JOINT_MENU_JOIN_ANOTHER            = "加入其他玩家",
 	JOINT_MENU_CODE                    = "代碼 %s",
 	JOINT_MENU_REQUEST_PLAYER          = "請求聯合任務",
+	JOINT_MENU_JOIN_PARTY              = "加入 %s 的隊伍（%d/%d）",
 	JOINT_MENU_PENDING_REQUESTS        = "待處理聯合請求",
 	JOINT_MENU_NO_PLAYERS              = "沒有可用玩家",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "沒有待處理請求",
@@ -16882,10 +17593,10 @@ JOINT_NO_PLAYER_FOR_GROUP          = "此群組沒有玩家",
 	JOINT_REQUEST_DENIED_BY            = "%s 拒絕了你的聯合任務請求",
 	JOINT_REQUEST_EXPIRED              = "聯合任務請求已過期",
 	JOINT_REQUEST_TARGET_BUSY          = "%s 已在聯合任務中",
-	JOINT_REQUEST_REQUESTER_BUSY       = "你已在聯合任務中",
+	JOINT_REQUEST_REQUESTER_BUSY       = "你的聯合任務隊伍已滿",
 	JOINT_REQUEST_NOT_AVAILABLE        = "該玩家已不可用",
 	JOINT_STAT_SUFFIX                  = "（聯合任務）",
-	JOINT_HELP_REQUESTS                = "聯合任務可讓兩名玩家獲得最高雙倍的任務點數獎勵。\n\n運作方式：\n- 開啟「請求聯合任務」並選擇一名玩家。\n- 被選擇的玩家會收到待處理請求，並有 120 秒可接受或拒絕。\n- 任務完成後雙方皆可獲得點數，一般擊殺不適用。\n- 適用於 CAS、CAP、轟炸跑道與打擊任務。\n- 若隊友陣亡或離線，你仍可保留自身收益與額外獎勵.",
+	JOINT_HELP_REQUESTS                = "聯合任務可讓二至四名玩家組隊共享任務點數獎勵。\n\n運作方式：\n- 開啟「請求聯合任務」，並選擇單獨玩家或開放隊伍。\n- 被選擇的玩家會收到待處理請求，並有 120 秒可接受或拒絕。\n- 符合資格的隊伍成員可獲得任務點數；一般擊殺不會共享。\n- 適用於 CAS、CAP、轟炸跑道與打擊任務。\n- 只有仍在線且存活的隊伍成員可獲得聯合任務獎勵。",
 	JOINT_HELP                         = "聯合任務可讓兩名玩家獲得最高雙倍的任務點數獎勵。\n\n運作方式：\n• 主機選擇「邀請加入聯合任務」取得 4 位數代碼。\n• 隊友選擇「加入其他玩家」並輸入代碼。\n• 任務完成後雙方皆可獲得點數，一般擊殺不適用。\n• 適用於 CAS、CAP、轟炸跑道與打擊任務。\n• 若隊友陣亡或離線，你仍可保留自身收益與額外獎勵。\n• 僅限同一陣營。",
 
 	-- ============================================================
@@ -16984,24 +17695,31 @@ JOINT_NO_PLAYER_FOR_GROUP          = "此群組沒有玩家",
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "Humvee 偵察車",
 	CTLD_MENU_10_EVERYTHING            = "各 10",
+	CTLD_MENU_15_EVERYTHING            = "各 15",
 	CTLD_MENU_25_EVERYTHING            = "各 25",
 	CTLD_MENU_50_EVERYTHING            = "各 50",
 	CTLD_MENU_10_AA_MISSILES           = "10 枚空對空飛彈",
+	CTLD_MENU_15_AA_MISSILES           = "15 枚空對空飛彈",
 	CTLD_MENU_25_AA_MISSILES           = "25 枚空對空飛彈",
 	CTLD_MENU_50_AA_MISSILES           = "50 枚空對空飛彈",
 	CTLD_MENU_10_AG_MISSILES           = "10 枚空對地飛彈",
+	CTLD_MENU_15_AG_MISSILES           = "15 枚空對地飛彈",
 	CTLD_MENU_25_AG_MISSILES           = "25 枚空對地飛彈",
 	CTLD_MENU_50_AG_MISSILES           = "50 枚空對地飛彈",
 	CTLD_MENU_10_AG_ROCKETS            = "10 枚空對地火箭",
+	CTLD_MENU_15_AG_ROCKETS            = "15 枚空對地火箭",
 	CTLD_MENU_25_AG_ROCKETS            = "25 枚空對地火箭",
 	CTLD_MENU_50_AG_ROCKETS            = "50 枚空對地火箭",
 	CTLD_MENU_10_AG_BOMBS              = "10 枚空對地炸彈",
+	CTLD_MENU_15_AG_BOMBS              = "15 枚空對地炸彈",
 	CTLD_MENU_25_AG_BOMBS              = "25 枚空對地炸彈",
 	CTLD_MENU_50_AG_BOMBS              = "50 枚空對地炸彈",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 個（飛機副油箱）與掛架",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 個（飛機副油箱）與掛架",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 個飛機副油箱與掛架",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 個飛機副油箱與掛架",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 個模組武器",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 個模組武器",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 個模組武器",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 個模組武器",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s 已返回至 %s。",
@@ -17015,9 +17733,18 @@ JOINT_NO_PLAYER_FOR_GROUP          = "此群組沒有玩家",
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD 無法存檔/讀取。請解除 DCS missionscripting.lua 限制。\n\n功能已停用。",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "工兵已返回基地！",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "部隊已返回基地！",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "%d 公尺內未偵測到敵方區域。準備撤離。",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "附近敵方區域內沒有建築目標。準備撤離。",
+	CTLD_DEMO_PLANTING                 = "爆破小組正在 %s 的建築上安裝炸藥。120 秒後引爆。",
+	CTLD_DEMO_KILLED                   = "爆破小組在 %s 遭到殲滅。",
+	CTLD_DEMO_ENTERED_ZONE             = "爆破小組已進入 %s。",
+	CTLD_SPY_INTEL_ACTIVE              = "區域間諜已在 %s 向當地線人付費取得情報。情報將啟用 60 分鐘。正在返回投放點等待撤離。",
+	CTLD_SPY_READY_EXTRACTION          = "區域間諜已在 %s 附近準備好撤離。MGRS：%s。",
+	CTLD_DEMO_READY_EXTRACTION         = "爆破小組已在 %s 附近準備好撤離。MGRS：%s。",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "部隊進入區域：%s",
 	CTLD_TROOP_ZONE_CAPTURED           = "已佔領",
 	CTLD_TROOP_ZONE_UPGRADED           = "已升級",
+	CTLD_TROOP_ZONE_STOCKED            = "已補給",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "已佔領並升級",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d 點數。",
@@ -18011,6 +18738,7 @@ MGRS: 38 T MP 68815 48119
 	STRATEGIC_BOMBER_ON_ROUTE_PLAYER_ESCORT = "%s 战略轰炸机正前往 %s。\n沿航线护航轰炸机。敌军很可能会拦截。",
 	STRATEGIC_BOMBER_ESCORT_LINK_PUSH = "护航已在 %s 附近就位。\n轰炸机准备在 %s 后推进。",
 	STRATEGIC_BOMBER_ESCORT_LINK_QUALIFY = "护航已在 %s 附近就位。\n将在 %s 后取得护航奖励资格。",
+	STRATEGIC_BOMBER_ESCORT_QUALIFIED = "已确认护航 %s。清除所有威胁。",
 	STRATEGIC_BOMBER_RTB_TO           = "%s RTB 至 %s。",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_MULTI = "%s 已护送 %s 安全返航\n每人 %d 积分，着陆后领取",
 	STRATEGIC_BOMBER_ESCORT_COMPLETED_SOLO = "%s 已护送 %s 安全返航\n%d 积分，着陆后领取",
@@ -18064,6 +18792,54 @@ MGRS: 37 S CA 34720 07791
 海拔 1287 英尺]],
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_START = "新打击任务：打击敌军藏身处",
 	SYRIA_MISSION_STRIKE_ENEMY_HIDEOUT_END = "打击任务结束：打击敌军藏身处",
+	SYRIA_MISSION_STRIKE_COM_TOWER_TITLE = "打击敌方通信塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_DESC = [[我们截获了从该位置发出的敌方通信。
+摧毁该通信塔。
+
+奖励：1000
+
+MGRS：36 S WF 81960 24650
+经纬度：N 36°21'48" E 33°54'48"
+精确经纬度：N 36°21'48.47" E 33°54'48.89"
+十进制分：N 36°21.807' E 33°54.814'
+海拔 361 英尺]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_START = "新打击任务：打击敌方通信塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_END = "打击任务结束：打击敌方通信塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_TITLE = "打击敌方通信中继塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_DESC = [[敌方通信已追踪至第二座中继塔。
+摧毁它以干扰敌方网络。
+
+奖励：1000
+
+MGRS：37 S CB 09839 49242
+经纬度：N 37°28'13" E 36°50'58"
+精确经纬度：N 37°28'13.88" E 36°50'58.56"
+十进制分：N 37°28.231' E 36°50.976'
+海拔 2887 英尺]],
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_SAM_WARNING = "警告：该塔由一处 SA-2 地对空导弹阵地防守。",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_START = "新打击任务：打击敌方通信中继塔",
+	SYRIA_MISSION_STRIKE_COM_TOWER_2_END = "打击任务结束：打击敌方通信中继塔",
+	SYRIA_MISSION_STRIKE_KONYA_TITLE = "深入打击 Konya",
+	SYRIA_MISSION_STRIKE_KONYA_DESC = [[对 Konya 发动深入打击，摧毁两个战略目标。
+目标区域由 %s 地对空导弹系统严密防守。
+
+奖励：2000
+
+目标 1
+MGRS：36 S VG 52091 90581
+经纬度：N 37°51'41" E 32°27'19"
+精确经纬度：N 37°51'41.17" E 32°27'19.27"
+十进制分：N 37°51.686' E 32°27.321'
+海拔 3406 英尺
+
+目标 2
+MGRS：36 S VG 52142 90600
+经纬度：N 37°51'41" E 32°27'21"
+精确经纬度：N 37°51'41.82" E 32°27'21.35"
+十进制分：N 37°51.697' E 32°27.355'
+海拔 3406 英尺]],
+	SYRIA_MISSION_STRIKE_KONYA_START = "新打击任务：深入打击 Konya",
+	SYRIA_MISSION_STRIKE_KONYA_END = "打击任务结束：深入打击 Konya",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_TITLE = "打击 Taftanaz 补给仓库",
 	SYRIA_MISSION_STRIKE_TAFTANAZ_WAREHOUSE_DESC = [[已发现 Taftanaz 补给仓库，
 摧毁它以切断该区域的补给来源。
@@ -18308,6 +19084,8 @@ MGRS: 37 S EU 31088 22294
 	STATS_MENU_RANK_HELP               = "军衔说明",
 	STATS_MENU_BUDGET_OVERVIEW         = "预算概览",
 	STATS_MENU_AI_LOGISTICS            = "AI 后勤（当前%s）",
+	STATS_MENU_AI_LOGISTICS_ON         = "开启",
+	STATS_MENU_AI_LOGISTICS_OFF        = "关闭",
 	STATS_MENU_AI_LOGISTICS_ENABLE     = "启用 AI 后勤",
 	STATS_MENU_AI_LOGISTICS_DISABLE    = "禁用 AI 后勤",
 	STATS_BLUE_AI_LOGISTICS_ENABLED    = "蓝方 AI 后勤现已启用。",
@@ -18326,6 +19104,8 @@ MGRS: 37 S EU 31088 22294
 	STATS_LABEL_SHIP                   = "舰船",
 	STATS_LABEL_SAM                    = "防空导弹",
 	STATS_LABEL_STRUCTURE              = "建筑",
+	STATS_LABEL_DEMOLITION_KILL        = "爆破摧毁",
+	CAREER_STAT_DEMOLITION_KILLS       = "爆破摧毁数",
 	STATS_LABEL_DEATHS                 = "阵亡",
 	STATS_LABEL_CAPTURED_BY_ENEMY      = "被敌军俘获",
 	STATS_LABEL_ZONE_CAPTURE           = "区域占领",
@@ -18356,6 +19136,7 @@ MGRS: 37 S EU 31088 22294
 	MISSION_CAS_DESCRIPTION_EMPTY      = "支援 %s 的地面作战。\n联军进度：已摧毁 %d/%d 个地面目标。",
 	MISSION_CAS_DESCRIPTION_WITH_SCORE = "支援 %s 的地面作战。\n联军进度：已摧毁 %d/%d 个地面目标。\n\n%s",
 	MISSION_CAS_START                  = "在 %s 开始新的近距离空中支援任务：摧毁 %d 个敌方地面目标。",
+	MISSION_CAS_END                    = "任务结束：近距离空中支援",
 	MISSION_CAS_COMPLETED_SOLO         = "[%s] 已完成近距离空中支援任务！\n奖励待领取：%d 积分（着陆后领取）。",
 	MISSION_CAS_COMPLETED_JOINT        = "[%s] 与 [%s] 已完成近距离空中支援任务！\n奖励待领取：每人 %d 积分（着陆后领取）。",
 	MISSION_CAS_COMPLETED_GROUP        = "近距离空中支援任务完成！\n待领取奖励：\n%s\n请着陆领取。",
@@ -18776,6 +19557,7 @@ JOINT_NO_PLAYER_FOR_GROUP          = "未找到该编队对应的玩家",
 	JOINT_MENU_JOIN_ANOTHER            = "加入其他玩家",
 	JOINT_MENU_CODE                    = "代码 %s",
 	JOINT_MENU_REQUEST_PLAYER          = "请求联合任务",
+	JOINT_MENU_JOIN_PARTY              = "加入 %s 的队伍（%d/%d）",
 	JOINT_MENU_PENDING_REQUESTS        = "待处理联合请求",
 	JOINT_MENU_NO_PLAYERS              = "没有可用玩家",
 	JOINT_MENU_NO_PENDING_REQUESTS     = "没有待处理请求",
@@ -18794,10 +19576,10 @@ JOINT_NO_PLAYER_FOR_GROUP          = "未找到该编队对应的玩家",
 	JOINT_REQUEST_DENIED_BY            = "%s 拒绝了你的联合任务请求",
 	JOINT_REQUEST_EXPIRED              = "联合任务请求已过期",
 	JOINT_REQUEST_TARGET_BUSY          = "%s 已在联合任务中",
-	JOINT_REQUEST_REQUESTER_BUSY       = "你已在联合任务中",
+	JOINT_REQUEST_REQUESTER_BUSY       = "你的联合任务队伍已满",
 	JOINT_REQUEST_NOT_AVAILABLE        = "该玩家已不可用",
 	JOINT_STAT_SUFFIX                  = "（联合任务）",
-	JOINT_HELP_REQUESTS                = "联合任务可让两名玩家获得最高双倍的任务点数奖励。\n\n运作方式：\n- 打开“请求联合任务”并选择一名玩家。\n- 被选择的玩家会收到待处理请求，并有 120 秒可接受或拒绝。\n- 任务完成后双方皆可获得点数，一般击杀不适用。\n- 适用于 CAS、CAP、轰炸跑道与打击任务。\n- 若队友阵亡或离线，你仍可保留自身收益与额外奖励.",
+	JOINT_HELP_REQUESTS                = "联合任务可让二至四名玩家组队共享任务点数奖励。\n\n运作方式：\n- 打开“请求联合任务”，并选择单独玩家或开放队伍。\n- 被选择的玩家会收到待处理请求，并有 120 秒可接受或拒绝。\n- 符合资格的队伍成员可获得任务点数；一般击杀不会共享。\n- 适用于 CAS、CAP、轰炸跑道与打击任务。\n- 只有仍在线且存活的队伍成员可获得联合任务奖励。",
 	JOINT_HELP                         = "联合任务可让两名玩家获得最高双倍的任务积分奖励。\n\n使用方法：\n• 房主选择“邀请加入联合任务”，获得一个 4 位代码。\n• 队友打开“加入其他玩家”，输入该代码。\n• 任务积分会同时奖励给双方，不包括普通击杀奖励。\n• 适用于 CAS、CAP、轰炸跑道、打击任务。\n• 如果你的搭档阵亡或消失，你仍会保留自己的收益和额外奖励。\n• 仅限同一阵营。",
 	-- ============================================================
 	-- Logistics / Supplies
@@ -18894,24 +19676,31 @@ JOINT_NO_PLAYER_FOR_GROUP          = "未找到该编队对应的玩家",
 	CTLD_MENU_FARP                     = "FARP",
 	CTLD_MENU_HUMVEE_SCOUT             = "悍马侦察车",
 	CTLD_MENU_10_EVERYTHING            = "各类 10 件",
+	CTLD_MENU_15_EVERYTHING            = "各类 15 件",
 	CTLD_MENU_25_EVERYTHING            = "各类 25 件",
 	CTLD_MENU_50_EVERYTHING            = "各类 50 件",
 	CTLD_MENU_10_AA_MISSILES           = "10 枚空对空导弹",
+	CTLD_MENU_15_AA_MISSILES           = "15 枚空对空导弹",
 	CTLD_MENU_25_AA_MISSILES           = "25 枚空对空导弹",
 	CTLD_MENU_50_AA_MISSILES           = "50 枚空对空导弹",
 	CTLD_MENU_10_AG_MISSILES           = "10 枚空对地导弹",
+	CTLD_MENU_15_AG_MISSILES           = "15 枚空对地导弹",
 	CTLD_MENU_25_AG_MISSILES           = "25 枚空对地导弹",
 	CTLD_MENU_50_AG_MISSILES           = "50 枚空对地导弹",
 	CTLD_MENU_10_AG_ROCKETS            = "10 组空对地火箭弹",
+	CTLD_MENU_15_AG_ROCKETS            = "15 组空对地火箭弹",
 	CTLD_MENU_25_AG_ROCKETS            = "25 组空对地火箭弹",
 	CTLD_MENU_50_AG_ROCKETS            = "50 组空对地火箭弹",
 	CTLD_MENU_10_AG_BOMBS              = "10 枚空对地炸弹",
+	CTLD_MENU_15_AG_BOMBS              = "15 枚空对地炸弹",
 	CTLD_MENU_25_AG_BOMBS              = "25 枚空对地炸弹",
 	CTLD_MENU_50_AG_BOMBS              = "50 枚空对地炸弹",
 	CTLD_MENU_10_FUEL_TANKS_PYLONS     = "10 个副油箱与挂架",
+	CTLD_MENU_15_FUEL_TANKS_PYLONS     = "15 个副油箱与挂架",
 	CTLD_MENU_25_FUEL_TANKS_PYLONS     = "25 个副油箱与挂架",
 	CTLD_MENU_50_FUEL_TANKS_PYLONS     = "50 个副油箱与挂架",
 	CTLD_MENU_10_MODDED_WEAPONS        = "10 件模组武器",
+	CTLD_MENU_15_MODDED_WEAPONS        = "15 件模组武器",
 	CTLD_MENU_25_MODDED_WEAPONS        = "25 件模组武器",
 	CTLD_MENU_50_MODDED_WEAPONS        = "50 件模组武器",
 	CTLD_SUPPLIES_RETURNED_TO_ZONE     = "%s 已返还至 %s。",
@@ -18925,9 +19714,18 @@ JOINT_NO_PLAYER_FOR_GROUP          = "未找到该编队对应的玩家",
 	CTLD_SAVE_LOAD_DISABLED_DESANITIZE = "CTLD 无法保存/读取。请对 DCS missionscripting.lua 进行 De-Sanitize。\n\n功能已禁用。",
 	CTLD_ENGINEERS_RETURNED_TO_BASE    = "工兵已返回基地！",
 	CTLD_TROOPS_RETURNED_TO_BASE       = "部队已返回基地！",
+	CTLD_DEMO_NO_ENEMY_ZONE            = "%d 米内未探测到敌方区域。准备撤离。",
+	CTLD_DEMO_NO_STRUCTURE_TARGETS     = "附近敌方区域内没有建筑目标。准备撤离。",
+	CTLD_DEMO_PLANTING                 = "爆破小组正在 %s 的建筑上安装炸药。120 秒后引爆。",
+	CTLD_DEMO_KILLED                   = "爆破小组在 %s 被消灭。",
+	CTLD_DEMO_ENTERED_ZONE             = "爆破小组已进入 %s。",
+	CTLD_SPY_INTEL_ACTIVE              = "区域间谍已在 %s 向当地线人付费获取情报。情报将启用 60 分钟。正在返回投放点等待撤离。",
+	CTLD_SPY_READY_EXTRACTION          = "区域间谍已在 %s 附近准备好撤离。MGRS：%s。",
+	CTLD_DEMO_READY_EXTRACTION         = "爆破小组已在 %s 附近准备好撤离。MGRS：%s。",
 	CTLD_TROOP_GROUP_ENTERED_ZONE      = "部队已进入区域：%s",
 	CTLD_TROOP_ZONE_CAPTURED           = "已占领",
 	CTLD_TROOP_ZONE_UPGRADED           = "已升级",
+	CTLD_TROOP_ZONE_STOCKED            = "已补给",
 	CTLD_TROOP_ZONE_CAPTURED_AND_UPGRADED = "已占领并升级",
 	CTLD_TROOP_ZONE_EVENT_LINE         = "[%s] %s %s",
 	CTLD_TROOP_ZONE_EVENT_TOTAL        = "%d 积分。",
@@ -19586,8 +20384,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "enemy ship!",
 		AIEN_THREAT_STRUCTURE          = "enemy structure!",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2, %s is under attack by %s %s",
+		AIEN_ZONE_BREACHED_BY          = "C2, %s has been breached by %s %s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2, %s is under attack! %s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2, intercepted enemy communications: %s has requested air support.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2, %s dispatched an assault team against the enemy artillery.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2, %s dispatched an assault team against the enemy MLRS.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2, %s dispatched an assault team against the enemy ground forces.",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2, %s, report under attack by %s Coordinates: %s, %s. %s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2, %s, report under attack. Coordinates: %s, %s. %s",
 		AIEN_TEST_UNDER_ATTACK         = "C2, %s, report under attack. Coordinates: %s.%s",
@@ -19634,8 +20436,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "feindliches Schiff!",
 		AIEN_THREAT_STRUCTURE          = "feindliche Struktur!",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2, %s wird von %s angegriffen %s",
+		AIEN_ZONE_BREACHED_BY          = "C2, die Verteidigung von %s wurde durchbrochen: %s %s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2, %s wird angegriffen! %s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2, feindliche Kommunikation abgefangen: %s hat Luftunterstützung angefordert.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2, %s hat einen Angriffstrupp gegen die feindliche Artillerie entsandt.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2, %s hat einen Angriffstrupp gegen die feindlichen MLRS entsandt.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2, %s hat einen Angriffstrupp gegen die feindlichen Bodentruppen entsandt.",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2, %s meldet Angriff durch %s Koordinaten: %s, %s. %s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2, %s meldet Angriff. Koordinaten: %s, %s. %s",
 		AIEN_TEST_UNDER_ATTACK         = "C2, %s meldet Angriff. Koordinaten: %s.%s",
@@ -19682,8 +20488,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "navire ennemi !",
 		AIEN_THREAT_STRUCTURE          = "structure ennemie !",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2, %s est attaquée par %s %s",
+		AIEN_ZONE_BREACHED_BY          = "C2, les défenses de %s ont été percées : %s %s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2, %s est attaquée ! %s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2, communications ennemies interceptées : %s a demandé un soutien aérien.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2, %s a dépêché une équipe d'assaut contre l'artillerie ennemie.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2, %s a dépêché une équipe d'assaut contre les MLRS ennemis.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2, %s a dépêché une équipe d'assaut contre les forces terrestres ennemies.",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2, %s signale une attaque par %s Coordonnées : %s, %s. %s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2, %s signale une attaque. Coordonnées : %s, %s. %s",
 		AIEN_TEST_UNDER_ATTACK         = "C2, %s signale une attaque. Coordonnées : %s.%s",
@@ -19730,8 +20540,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "buque enemigo!",
 		AIEN_THREAT_STRUCTURE          = "estructura enemiga!",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2, %s está bajo ataque de %s %s",
+		AIEN_ZONE_BREACHED_BY          = "C2, las defensas de %s han sido penetradas: %s %s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2, %s está bajo ataque! %s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2, comunicaciones enemigas interceptadas: %s ha solicitado apoyo aéreo.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2, %s ha enviado un equipo de asalto contra la artillería enemiga.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2, %s ha enviado un equipo de asalto contra los MLRS enemigos.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2, %s ha enviado un equipo de asalto contra las fuerzas terrestres enemigas.",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2, %s informa ataque de %s Coordenadas: %s, %s. %s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2, %s informa ataque. Coordenadas: %s, %s. %s",
 		AIEN_TEST_UNDER_ATTACK         = "C2, %s informa ataque. Coordenadas: %s.%s",
@@ -19778,8 +20592,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "nave nemica!",
 		AIEN_THREAT_STRUCTURE          = "struttura nemica!",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2, %s è sotto attacco da %s %s",
+		AIEN_ZONE_BREACHED_BY          = "C2, le difese di %s sono state violate: %s %s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2, %s è sotto attacco! %s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2, comunicazioni nemiche intercettate: %s ha richiesto supporto aereo.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2, %s ha inviato una squadra d'assalto contro l'artiglieria nemica.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2, %s ha inviato una squadra d'assalto contro gli MLRS nemici.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2, %s ha inviato una squadra d'assalto contro le forze terrestri nemiche.",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2, %s segnala attacco da %s Coordinate: %s, %s. %s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2, %s segnala attacco. Coordinate: %s, %s. %s",
 		AIEN_TEST_UNDER_ATTACK         = "C2, %s segnala attacco. Coordinate: %s.%s",
@@ -19826,8 +20644,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "вражеский корабль!",
 		AIEN_THREAT_STRUCTURE          = "вражеский объект!",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2, %s под атакой: %s %s",
+		AIEN_ZONE_BREACHED_BY          = "C2, оборона района %s прорвана: %s %s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2, %s под атакой! %s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2, перехвачена связь противника: из зоны %s запрошена авиационная поддержка.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2, из района %s направлена штурмовая группа против вражеской артиллерии.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2, из района %s направлена штурмовая группа против вражеских РСЗО.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2, из района %s направлена штурмовая группа против вражеских наземных сил.",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2, %s докладывает об атаке: %s Координаты: %s, %s. %s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2, %s докладывает об атаке. Координаты: %s, %s. %s",
 		AIEN_TEST_UNDER_ATTACK         = "C2, %s докладывает об атаке. Координаты: %s.%s",
@@ -19874,8 +20696,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "navio inimigo!",
 		AIEN_THREAT_STRUCTURE          = "estrutura inimiga!",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2, %s está sob ataque de %s %s",
+		AIEN_ZONE_BREACHED_BY          = "C2, as defesas de %s foram rompidas: %s %s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2, %s está sob ataque! %s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2, comunicações inimigas interceptadas: %s solicitou apoio aéreo.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2, %s enviou uma equipe de assalto contra a artilharia inimiga.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2, %s enviou uma equipe de assalto contra os MLRS inimigos.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2, %s enviou uma equipe de assalto contra as forças terrestres inimigas.",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2, %s informa ataque por %s Coordenadas: %s, %s. %s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2, %s informa ataque. Coordenadas: %s, %s. %s",
 		AIEN_TEST_UNDER_ATTACK         = "C2, %s informa ataque. Coordenadas: %s.%s",
@@ -19922,8 +20748,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "düşman gemisi!",
 		AIEN_THREAT_STRUCTURE          = "düşman yapısı!",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2, %s saldırı altında: %s %s",
+		AIEN_ZONE_BREACHED_BY          = "C2, %s savunması yarıldı: %s %s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2, %s saldırı altında! %s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2, düşman iletişimi ele geçirildi: %s hava desteği talep etti.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2, %s düşman topçusuna karşı bir taarruz timi gönderdi.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2, %s düşman ÇNRA'sına karşı bir taarruz timi gönderdi.",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2, %s düşman kara kuvvetlerine karşı bir taarruz timi gönderdi.",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2, %s saldırı bildiriyor: %s Koordinatlar: %s, %s. %s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2, %s saldırı bildiriyor. Koordinatlar: %s, %s. %s",
 		AIEN_TEST_UNDER_ATTACK         = "C2, %s saldırı bildiriyor. Koordinatlar: %s.%s",
@@ -19970,8 +20800,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "敵艦！",
 		AIEN_THREAT_STRUCTURE          = "敵方設施！",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2，%s 正遭 %s 攻擊 %s",
+		AIEN_ZONE_BREACHED_BY          = "C2，%s 防線已被突破：%s%s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2，%s 正遭攻擊！%s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2，截獲敵方通訊：%s 已請求空中支援。",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2，%s 已派出突擊小隊攻擊敵方砲兵。",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2，%s 已派出突擊小隊攻擊敵方多管火箭。",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2，%s 已派出突擊小隊攻擊敵方地面部隊。",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2，%s 回報遭 %s 攻擊 座標：%s，%s。%s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2，%s 回報遭攻擊。座標：%s，%s。%s",
 		AIEN_TEST_UNDER_ATTACK         = "C2，%s 回報遭攻擊。座標：%s。%s",
@@ -20018,8 +20852,12 @@ local AIENLabels = {
 		AIEN_THREAT_SHIP               = "敌舰！",
 		AIEN_THREAT_STRUCTURE          = "敌方设施！",
 		AIEN_ZONE_UNDER_ATTACK_BY      = "C2，%s 正遭 %s 攻击 %s",
+		AIEN_ZONE_BREACHED_BY          = "C2，%s 防线已被突破：%s%s",
 		AIEN_ZONE_UNDER_ATTACK         = "C2，%s 正遭攻击！%s",
 		AIEN_AIR_SUPPORT_REQUEST_INTERCEPTED = "C2，截获敌方通信：%s 已请求空中支援。",
+		AIEN_BLUE_ASSAULT_DISPATCHED_ARTY = "C2，%s 已派出突击小队攻击敌方炮兵。",
+		AIEN_BLUE_ASSAULT_DISPATCHED_MLRS = "C2，%s 已派出突击小队攻击敌方多管火箭。",
+		AIEN_BLUE_ASSAULT_DISPATCHED_GROUND = "C2，%s 已派出突击小队攻击敌方地面部队。",
 		AIEN_GROUP_UNDER_ATTACK_BY     = "C2，%s 报告遭 %s 攻击 坐标：%s，%s。%s",
 		AIEN_GROUP_UNDER_ATTACK        = "C2，%s 报告遭攻击。坐标：%s，%s。%s",
 		AIEN_TEST_UNDER_ATTACK         = "C2，%s 报告遭攻击。坐标：%s。%s",
@@ -20071,7 +20909,8 @@ Elevation: 12 feet]],
 		PG_MISSION_HELO_HUNT_DESC          = "Large number of KA-50 taking off from LAR heading to our closest friendly bases\nDestroy them before they get in range.",
 		PG_MISSION_HELO_HUNT_START         = "New mission: Helo hunt\nLarge number of KA-50 takingoff from LAR heading to our closest friendly bases\n\nDestroy them before they get in range.",
 		PG_MISSION_HELO_HUNT_END           = "Mission ended: Helo hunt",
-		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Enemy aircraft conducting an airstrike from the west to south east\nDestroy them before they get in range.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Enemy aircraft are conducting an airstrike.\nDestroy them before they reach their target.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "Enemy strike group spotted near %s\nProbable target: %s",
 		PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "Find and destroy the cargo plane headed to LAR\nCurrently spotted east of BandarAbbas.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "Find and destroy the cargo plane headed to LAR\nCurrently spotted east of Khasab.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "Find and destroy the cargo plane headed to LAR\nCurrently spotted east of Al Ain.",
@@ -20367,7 +21206,8 @@ Höhe: 12 Fuß]],
 		PG_MISSION_HELO_HUNT_DESC          = "Viele KA-50 starten von LAR zu unseren nächsten freundlichen Basen\nZerstören Sie sie, bevor sie in Reichweite kommen.",
 		PG_MISSION_HELO_HUNT_START         = "Neue Mission: Helikopterjagd\nViele KA-50 starten von LAR zu unseren nächsten freundlichen Basen\n\nZerstören Sie sie, bevor sie in Reichweite kommen.",
 		PG_MISSION_HELO_HUNT_END           = "Mission beendet: Helikopterjagd",
-		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Feindliche Flugzeuge führen einen Luftangriff von Westen nach Südosten durch\nZerstören Sie sie, bevor sie in Reichweite kommen.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Feindliche Flugzeuge führen einen Luftangriff durch.\nZerstören Sie sie, bevor sie ihr Ziel erreichen.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "Feindlicher Angriffsverband nahe %s gesichtet\nVermutliches Ziel: %s",
 		PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "Finden und zerstören Sie das Frachtflugzeug auf dem Weg nach LAR\nDerzeit östlich von BandarAbbas gesichtet.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "Finden und zerstören Sie das Frachtflugzeug auf dem Weg nach LAR\nDerzeit östlich von Khasab gesichtet.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "Finden und zerstören Sie das Frachtflugzeug auf dem Weg nach LAR\nDerzeit östlich von Al Ain gesichtet.",
@@ -20663,7 +21503,8 @@ Lat/long minutes décimales : N 27°05.448' E 56°02.319'
 		PG_MISSION_HELO_HUNT_DESC          = "Un grand nombre de KA-50 décollent de LAR vers nos bases amies les plus proches\nDétruisez-les avant qu'ils soient à portée.",
 		PG_MISSION_HELO_HUNT_START         = "Nouvelle mission : chasse aux hélicos\nUn grand nombre de KA-50 décollent de LAR vers nos bases amies les plus proches\n\nDétruisez-les avant qu'ils soient à portée.",
 		PG_MISSION_HELO_HUNT_END           = "Mission terminée : chasse aux hélicos",
-		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Des avions ennemis mènent une frappe aérienne d'ouest vers le sud-est\nDétruisez-les avant qu'ils soient à portée.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Des avions ennemis mènent une frappe aérienne.\nDétruisez-les avant qu'ils n'atteignent leur cible.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "Groupe d'attaque ennemi repéré près de %s\nCible probable : %s",
 		PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "Trouvez et détruisez l'avion cargo en route vers LAR\nActuellement repéré à l'est de BandarAbbas.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "Trouvez et détruisez l'avion cargo en route vers LAR\nActuellement repéré à l'est de Khasab.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "Trouvez et détruisez l'avion cargo en route vers LAR\nActuellement repéré à l'est de Al Ain.",
@@ -20959,7 +21800,8 @@ Elevación: 12 pies]],
 		PG_MISSION_HELO_HUNT_DESC          = "Gran número de KA-50 despegando de LAR hacia nuestras bases amigas más cercanas\nDestrúyelos antes de que entren en alcance.",
 		PG_MISSION_HELO_HUNT_START         = "Nueva misión: caza de helicópteros\nGran número de KA-50 despegando de LAR hacia nuestras bases amigas más cercanas\n\nDestrúyelos antes de que entren en alcance.",
 		PG_MISSION_HELO_HUNT_END           = "Misión terminada: caza de helicópteros",
-		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Aeronaves enemigas realizan un ataque aéreo de oeste a sureste\nDestrúyelas antes de que entren en alcance.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Aeronaves enemigas realizan un ataque aéreo.\nDestrúyelas antes de que alcancen su objetivo.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "Grupo de ataque enemigo detectado cerca de %s\nObjetivo probable: %s",
 		PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "Encuentra y destruye el avión de carga rumbo a LAR\nActualmente detectado al este de BandarAbbas.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "Encuentra y destruye el avión de carga rumbo a LAR\nActualmente detectado al este de Khasab.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "Encuentra y destruye el avión de carga rumbo a LAR\nActualmente detectado al este de Al Ain.",
@@ -21255,7 +22097,8 @@ MGRS: 40 R DQ 04694 96858
 		PG_MISSION_HELO_HUNT_DESC          = "Большое количество KA-50 взлетает из LAR к нашим ближайшим дружественным базам\nУничтожьте их до выхода на дальность атаки.",
 		PG_MISSION_HELO_HUNT_START         = "Новая миссия: охота на вертолеты\nБольшое количество KA-50 взлетает из LAR к нашим ближайшим дружественным базам\n\nУничтожьте их до выхода на дальность атаки.",
 		PG_MISSION_HELO_HUNT_END           = "Миссия завершена: охота на вертолеты",
-		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Вражеская авиация наносит удар с запада на юго-восток\nУничтожьте ее до выхода на дальность атаки.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Вражеская авиация наносит воздушный удар.\nУничтожьте её до выхода к цели.",
+		PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "Ударная группа противника обнаружена в районе %s\nВероятная цель: %s",
 		PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "Найдите и уничтожьте грузовой самолет, следующий в LAR\nСейчас он замечен восточнее BandarAbbas.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "Найдите и уничтожьте грузовой самолет, следующий в LAR\nСейчас он замечен восточнее Khasab.",
 		PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "Найдите и уничтожьте грузовой самолет, следующий в LAR\nСейчас он замечен восточнее Al Ain.",
@@ -21553,7 +22396,8 @@ Elevação: 12 pés]],
 	PG_MISSION_HELO_HUNT_DESC          = "Grande número de KA-50 decolando de LAR rumo às nossas bases aliadas mais próximas\nDestrua-os antes que entrem em alcance.",
 	PG_MISSION_HELO_HUNT_START         = "Nova missão: Caça a helicópteros\nGrande número de KA-50 decolando de LAR rumo às nossas bases aliadas mais próximas\n\nDestrua-os antes que entrem em alcance.",
 	PG_MISSION_HELO_HUNT_END           = "Missão encerrada: Caça a helicópteros",
-	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Aeronaves inimigas conduzindo um ataque aéreo do oeste para sudeste\nDestrua-as antes que entrem em alcance.",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Aeronaves inimigas estão realizando um ataque aéreo.\nDestrua-as antes que alcancem o alvo.",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "Grupo de ataque inimigo avistado perto de %s\nAlvo provável: %s",
 	PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "Encontre e destrua o avião de carga indo para LAR\nAtualmente avistado a leste de BandarAbbas.",
 	PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "Encontre e destrua o avião de carga indo para LAR\nAtualmente avistado a leste de Khasab.",
 	PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "Encontre e destrua o avião de carga indo para LAR\nAtualmente avistado a leste de Al Ain.",
@@ -21850,7 +22694,8 @@ Rakım: 12 feet]],
 	PG_MISSION_HELO_HUNT_DESC          = "Çok sayıda KA-50, LAR'dan en yakın dost üslerimize doğru kalkıyor\nMenzile girmeden önce onları yok edin.",
 	PG_MISSION_HELO_HUNT_START         = "Yeni görev: Helo avı\nÇok sayıda KA-50, LAR'dan en yakın dost üslerimize doğru kalkıyor\n\nMenzile girmeden önce onları yok edin.",
 	PG_MISSION_HELO_HUNT_END           = "Görev sona erdi: Helo avı",
-	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Düşman uçakları batıdan güneydoğuya airstrike yapıyor\nMenzile girmeden önce yok edin.",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Düşman uçakları hava saldırısı düzenliyor.\nHedeflerine ulaşmadan önce onları yok edin.",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "Düşman taarruz grubu %s yakınında tespit edildi\nMuhtemel hedef: %s",
 	PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "LAR'a giden kargo uçağını bul ve yok et\nŞu anda BandarAbbas doğusunda görüldü.",
 	PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "LAR'a giden kargo uçağını bul ve yok et\nŞu anda Khasab doğusunda görüldü.",
 	PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "LAR'a giden kargo uçağını bul ve yok et\nŞu anda Al Ain doğusunda görüldü.",
@@ -22146,7 +22991,8 @@ Lat long Decimal Minutes: N 27°05.448' E 56°02.319'
 	PG_MISSION_HELO_HUNT_DESC          = "大量 KA-50 正从 LAR 起飞，前往我们最近的友军基地\n在它们进入射程前摧毁它们。",
 	PG_MISSION_HELO_HUNT_START         = "新任务：直升机猎杀\n大量 KA-50 正从 LAR 起飞，前往我们最近的友军基地\n\n在它们进入射程前摧毁它们。",
 	PG_MISSION_HELO_HUNT_END           = "任务结束：直升机猎杀",
-	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "敌机正从西方向东南方向执行空袭\n在它们进入射程前摧毁它们。",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "敌机正在执行空袭。\n在它们抵达目标前将其摧毁。",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "敌方攻击机群在 %s 附近被发现\n可能目标：%s",
 	PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "找到并摧毁前往 LAR 的货机\n目前在 BandarAbbas 以东被发现。",
 	PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "找到并摧毁前往 LAR 的货机\n目前在 Khasab 以东被发现。",
 	PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "找到并摧毁前往 LAR 的货机\n目前在 Al Ain 以东被发现。",
@@ -22443,7 +23289,8 @@ Lat long Decimal Minutes: N 27°05.448' E 56°02.319'
 	PG_MISSION_HELO_HUNT_DESC          = "大量 KA-50 正從 LAR 起飛，前往我們最近的友軍基地\n在它們進入射程前摧毀它們。",
 	PG_MISSION_HELO_HUNT_START         = "新任務：直升機獵殺\n大量 KA-50 正從 LAR 起飛，前往我們最近的友軍基地\n\n在它們進入射程前摧毀它們。",
 	PG_MISSION_HELO_HUNT_END           = "任務結束：直升機獵殺",
-	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "敵機正從西方向東南方向執行空襲\n在它們進入射程前摧毀它們。",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "敵機正在執行空襲。\n在它們抵達目標前將其摧毀。",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "敵方攻擊機群在 %s 附近被發現\n可能目標：%s",
 	PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "找到並摧毀前往 LAR 的貨機\n目前在 BandarAbbas 以東被發現。",
 	PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "找到並摧毀前往 LAR 的貨機\n目前在 Khasab 以東被發現。",
 	PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "找到並摧毀前往 LAR 的貨機\n目前在 Al Ain 以東被發現。",
@@ -22740,7 +23587,8 @@ Altitudine: 12 piedi]],
 	PG_MISSION_HELO_HUNT_DESC          = "Un gran numero di KA-50 sta decollando da LAR verso le nostre basi alleate più vicine\nDistruggili prima che arrivino a tiro.",
 	PG_MISSION_HELO_HUNT_START         = "Nuova missione: caccia agli elicotteri\nUn gran numero di KA-50 sta decollando da LAR verso le nostre basi alleate più vicine\n\nDistruggili prima che arrivino a tiro.",
 	PG_MISSION_HELO_HUNT_END           = "Missione terminata: caccia agli elicotteri",
-	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Aerei nemici stanno conducendo un attacco aereo da ovest verso sud-est\nDistruggili prima che arrivino a tiro.",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_WEST_SE_DESC = "Aerei nemici stanno conducendo un attacco aereo.\nDistruggili prima che raggiungano il bersaglio.",
+	PG_MISSION_INTERCEPT_AIRSTRIKE_DETAIL = "Gruppo d'attacco nemico avvistato vicino a %s\nProbabile bersaglio: %s",
 	PG_MISSION_INTERCEPT_CARGO_DESC_BANDAR = "Trova e distruggi l'aereo cargo diretto a LAR\nAttualmente avvistato a est di BandarAbbas.",
 	PG_MISSION_INTERCEPT_CARGO_DESC_KHASAB = "Trova e distruggi l'aereo cargo diretto a LAR\nAttualmente avvistato a est di Khasab.",
 	PG_MISSION_INTERCEPT_CARGO_DESC_AL_AIN = "Trova e distruggi l'aereo cargo diretto a LAR\nAttualmente avvistato a est di Al Ain.",
@@ -24583,6 +25431,60 @@ Elevation: 539 feet
 reward = 500]],
 		KOLA_MISSION_HIGH_VALUE_START      = "New mission: Strike High value target",
 		KOLA_MISSION_HIGH_VALUE_END        = "Mission ended: Strike High value target",
+		KOLA_TARGET_LOUKHI_STORAGE         = "Enemy Storage facility",
+		KOLA_MARK_LOUKHI_STORAGE           = "Strike enemy Storage facility",
+		KOLA_MISSION_LOUKHI_STORAGE_TITLE  = "Strike enemy Storage facility",
+		KOLA_MISSION_LOUKHI_STORAGE_DESC   = [[Destroy the enemy Storage facility at these coordinates:
+
+MGRS: 36 W WU 02337 28413
+Lat long: N 66°04'34" E 33°03'05"
+Lat long Precise: N 66°04'34.61" E 33°03'05.92"
+Lat long Decimal Minutes: N 66°04.576' E 33°03.098'
+Elevation: 326 feet
+
+Reward: 500]],
+		KOLA_MISSION_LOUKHI_STORAGE_START  = "New strike mission: Strike enemy Storage facility",
+		KOLA_MISSION_LOUKHI_STORAGE_END    = "Strike mission ended: Strike enemy Storage facility",
+		KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Kandalaksha Aluminium Plant",
+		KOLA_MARK_KANDALAKSHA_ALUMINIUM = "Strike Kandalaksha Aluminium Plant",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "Strike Kandalaksha Aluminium Plant",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[Destroy the enemy aluminium plant at these coordinates:
+
+MGRS: 36 W VV 75215 53198
+Lat long: N 67°11'40" E 32°25'37"
+Lat long Precise: N 67°11'40.90" E 32°25'37.18"
+Lat long Decimal Minutes: N 67°11.681' E 32°25.619'
+Elevation: 293 feet
+
+Reward: 500]],
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "New strike mission: Strike Kandalaksha Aluminium Plant",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "Strike mission ended: Strike Kandalaksha Aluminium Plant",
+		KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Beloye More Pumping Station",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "Strike Beloye More Pumping Station",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[Destroy the enemy pumping station at these coordinates:
+
+MGRS: 36 W VV 69490 40687
+Lat long: N 67°04'54" E 32°17'52"
+Lat long Precise: N 67°04'54.99" E 32°17'52.43"
+Lat long Decimal Minutes: N 67°04.916' E 32°17.873'
+Elevation: 43 feet
+
+Reward: 500]],
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "New strike mission: Strike Beloye More Pumping Station",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "Strike mission ended: Strike Beloye More Pumping Station",
+		KOLA_TARGET_BELOYE_MORE_BRIDGE = "Destroy enemy Bridge",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "Destroy enemy Bridge",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[Destroy the enemy bridge at these coordinates:
+
+MGRS: 36 W VV 67717 45082
+Lat long: N 67°07'16" E 32°15'21"
+Lat long Precise: N 67°07'16.24" E 32°15'21.20"
+Lat long Decimal Minutes: N 67°07.270' E 32°15.353'
+Elevation: 0 feet
+
+Reward: 500]],
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "New strike mission: Destroy enemy Bridge",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "Strike mission ended: Destroy enemy Bridge",
 		KOLA_TARGET_RIGHT_HAND_MAN         = "Right hand man",
 		KOLA_MISSION_RIGHT_HAND_MAN_TITLE  = "Kill the generals right hand man",
 		KOLA_MISSION_RIGHT_HAND_MAN_DESC   = [[
@@ -24654,6 +25556,48 @@ Lat long Decimal Minutes: N 65°46.127' E 31°07.500'
 Elevation 480 feet]],
 		KOLA_MISSION_PYAOZERSKY_STORAGE_START = "New strike mission: Strike on PyaozerskyStorage warehouses",
 		KOLA_MISSION_PYAOZERSKY_STORAGE_END = "Strike mission ended: Strike on PyaozerskyStorage warehouses",
+		KOLA_TARGET_KOASHVA_STORAGE = "Koashva storage complex",
+		KOLA_MISSION_KOASHVA_STORAGE_TITLE = "Strike Koashva storage complex",
+		KOLA_MISSION_KOASHVA_STORAGE_DESC = [[Destroy the enemy storage complex at these coordinates:
+
+MGRS: 36 W WA 49426 04226
+Lat long: N 67°38'57" E 34°09'53"
+Lat long Precise: N 67°38'57.37" E 34°09'53.19"
+Lat long Decimal Minutes: N 67°38.956' E 34°09.886'
+Elevation: 756 feet
+
+Reward: 1250]],
+		KOLA_MISSION_KOASHVA_STORAGE_START = "New strike mission: Strike Koashva storage complex",
+		KOLA_MISSION_KOASHVA_STORAGE_END = "Strike mission ended: Strike Koashva storage complex",
+		KOLA_TARGET_KILP_YAVR_STORAGE = "Kilp Yavr ammunition depot",
+		KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "Strike Kilp Yavr ammunition depot",
+		KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[Destroy the enemy ammunition depot at these coordinates:
+
+MGRS: 36 W VB 79046 64104
+Lat long: N 69°05'11" E 32°28'26"
+Lat long Precise: N 69°05'11.65" E 32°28'26.46"
+Lat long Decimal Minutes: N 69°05.194' E 32°28.441'
+Elevation: 689 feet
+
+Reward: 500]],
+		KOLA_MISSION_KILP_YAVR_STORAGE_START = "New strike mission: Strike Kilp Yavr ammunition depot",
+		KOLA_MISSION_KILP_YAVR_STORAGE_END = "Strike mission ended: Strike Kilp Yavr ammunition depot",
+		KOLA_TARGET_AFRIKANDA_STORAGE       = "Afrikanda ammunition depots",
+		KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "Strike the Afrikanda ammunition depots",
+		KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[Two enemy ammunition depots near Afrikanda have been identified.
+Destroy both depots.
+
+Location coordinates:
+
+MGRS: 36 W VV 91065 80713
+Lat long: N 67°26'32" E 32°47'28"
+Lat long Precise: N 67°26'32.62" E 32°47'28.68"
+Lat long Decimal Minutes: N 67°26.543' E 32°47.478'
+Elevation: 456 feet
+
+Reward: 1000]],
+		KOLA_MISSION_AFRIKANDA_STORAGE_START = "New strike mission: Strike the Afrikanda ammunition depots",
+		KOLA_MISSION_AFRIKANDA_STORAGE_END = "Strike mission ended: Strike the Afrikanda ammunition depots",
 		KOLA_TARGET_LOVOZERO_CCC           = "lovozeroCCC Command Center",
 		KOLA_MISSION_LOVOZERO_CCC_TITLE    = "Strike on LovozeroCCC Command Center",
 		KOLA_MISSION_LOVOZERO_CCC_DESC     = [[Enemy command center have been identified.
@@ -24768,6 +25712,60 @@ Altitudine: 539 piedi
 Ricompensa = 500]],
 		KOLA_MISSION_HIGH_VALUE_START      = "Nuova missione: colpisci bersaglio di alto valore",
 		KOLA_MISSION_HIGH_VALUE_END        = "Missione terminata: colpisci bersaglio di alto valore",
+		KOLA_TARGET_LOUKHI_STORAGE         = "Deposito nemico",
+		KOLA_MARK_LOUKHI_STORAGE           = "Colpisci il deposito nemico",
+		KOLA_MISSION_LOUKHI_STORAGE_TITLE  = "Colpisci il deposito nemico",
+		KOLA_MISSION_LOUKHI_STORAGE_DESC   = [[Distruggi il deposito nemico a queste coordinate:
+
+MGRS: 36 W WU 02337 28413
+Lat long: N 66°04'34" E 33°03'05"
+Lat long Precise: N 66°04'34.61" E 33°03'05.92"
+Lat long Decimal Minutes: N 66°04.576' E 33°03.098'
+Altitudine: 326 piedi
+
+Ricompensa: 500]],
+		KOLA_MISSION_LOUKHI_STORAGE_START  = "Nuova missione d'attacco: colpisci il deposito nemico",
+		KOLA_MISSION_LOUKHI_STORAGE_END    = "Missione d'attacco terminata: colpisci il deposito nemico",
+		KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Impianto di alluminio di Kandalaksha",
+		KOLA_MARK_KANDALAKSHA_ALUMINIUM = "Colpisci l'impianto di alluminio di Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "Colpisci l'impianto di alluminio di Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[Distruggi l'impianto di alluminio nemico a queste coordinate:
+
+MGRS: 36 W VV 75215 53198
+Lat long: N 67°11'40" E 32°25'37"
+Lat long Precise: N 67°11'40.90" E 32°25'37.18"
+Lat long Decimal Minutes: N 67°11.681' E 32°25.619'
+Altitudine: 293 piedi
+
+Ricompensa: 500]],
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "Nuova missione d'attacco: colpisci l'impianto di alluminio di Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "Missione d'attacco terminata: colpisci l'impianto di alluminio di Kandalaksha",
+		KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Stazione di pompaggio di Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "Colpisci la stazione di pompaggio di Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[Distruggi la stazione di pompaggio nemica a queste coordinate:
+
+MGRS: 36 W VV 69490 40687
+Lat long: N 67°04'54" E 32°17'52"
+Lat long Precise: N 67°04'54.99" E 32°17'52.43"
+Lat long Decimal Minutes: N 67°04.916' E 32°17.873'
+Altitudine: 43 piedi
+
+Ricompensa: 500]],
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "Nuova missione d'attacco: colpisci la stazione di pompaggio di Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "Missione d'attacco terminata: colpisci la stazione di pompaggio di Beloye More",
+		KOLA_TARGET_BELOYE_MORE_BRIDGE = "Distruggi il ponte nemico",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "Distruggi il ponte nemico",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[Distruggi il ponte nemico a queste coordinate:
+
+MGRS: 36 W VV 67717 45082
+Lat long: N 67°07'16" E 32°15'21"
+Lat long Precise: N 67°07'16.24" E 32°15'21.20"
+Lat long Decimal Minutes: N 67°07.270' E 32°15.353'
+Altitudine: 0 piedi
+
+Ricompensa: 500]],
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "Nuova missione d'attacco: distruggi il ponte nemico",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "Missione d'attacco terminata: distruggi il ponte nemico",
 		KOLA_TARGET_RIGHT_HAND_MAN         = "Braccio destro",
 		KOLA_MISSION_RIGHT_HAND_MAN_TITLE  = "Uccidi il braccio destro del generale",
 		KOLA_MISSION_RIGHT_HAND_MAN_DESC   = [[
@@ -24839,6 +25837,48 @@ Lat long Decimal Minutes: N 65°46.127' E 31°07.500'
 Altitudine 480 piedi]],
 		KOLA_MISSION_PYAOZERSKY_STORAGE_START = "Nuova missione d'attacco: colpisci i magazzini di Pyaozersky",
 		KOLA_MISSION_PYAOZERSKY_STORAGE_END = "Missione d'attacco terminata: colpisci i magazzini di Pyaozersky",
+		KOLA_TARGET_KOASHVA_STORAGE = "Complesso di stoccaggio di Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_TITLE = "Colpisci il complesso di stoccaggio di Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_DESC = [[Distruggi il complesso di stoccaggio nemico a queste coordinate:
+
+MGRS: 36 W WA 49426 04226
+Lat long: N 67°38'57" E 34°09'53"
+Lat long Precise: N 67°38'57.37" E 34°09'53.19"
+Lat long Decimal Minutes: N 67°38.956' E 34°09.886'
+Altitudine: 756 piedi
+
+Ricompensa: 1250]],
+		KOLA_MISSION_KOASHVA_STORAGE_START = "Nuova missione d'attacco: colpisci il complesso di stoccaggio di Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_END = "Missione d'attacco terminata: colpisci il complesso di stoccaggio di Koashva",
+		KOLA_TARGET_KILP_YAVR_STORAGE = "Deposito di munizioni di Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "Colpisci il deposito di munizioni di Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[Distruggi il deposito di munizioni nemico a queste coordinate:
+
+MGRS: 36 W VB 79046 64104
+Lat long: N 69°05'11" E 32°28'26"
+Lat long Precise: N 69°05'11.65" E 32°28'26.46"
+Lat long Decimal Minutes: N 69°05.194' E 32°28.441'
+Altitudine: 689 piedi
+
+Ricompensa: 500]],
+		KOLA_MISSION_KILP_YAVR_STORAGE_START = "Nuova missione d'attacco: colpisci il deposito di munizioni di Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_END = "Missione d'attacco terminata: colpisci il deposito di munizioni di Kilp Yavr",
+		KOLA_TARGET_AFRIKANDA_STORAGE       = "Depositi di munizioni di Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "Colpisci i depositi di munizioni di Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[Sono stati identificati due depositi di munizioni nemici vicino ad Afrikanda.
+Distruggi entrambi i depositi.
+
+Coordinate della posizione:
+
+MGRS: 36 W VV 91065 80713
+Lat long: N 67°26'32" E 32°47'28"
+Lat long Precise: N 67°26'32.62" E 32°47'28.68"
+Lat long Decimal Minutes: N 67°26.543' E 32°47.478'
+Altitudine: 456 piedi
+
+Ricompensa: 1000]],
+		KOLA_MISSION_AFRIKANDA_STORAGE_START = "Nuova missione d'attacco: colpisci i depositi di munizioni di Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_END = "Missione d'attacco terminata: colpisci i depositi di munizioni di Afrikanda",
 		KOLA_TARGET_LOVOZERO_CCC           = "Centro di comando LovozeroCCC",
 		KOLA_MISSION_LOVOZERO_CCC_TITLE    = "Colpisci il centro di comando LovozeroCCC",
 		KOLA_MISSION_LOVOZERO_CCC_DESC     = [[È stato identificato un centro di comando nemico.
@@ -24953,6 +25993,60 @@ Höhe: 539 Fuß
 Belohnung = 500]],
 		KOLA_MISSION_HIGH_VALUE_START      = "Neue Mission: Hochwertiges Ziel angreifen",
 		KOLA_MISSION_HIGH_VALUE_END        = "Mission beendet: Hochwertiges Ziel",
+		KOLA_TARGET_LOUKHI_STORAGE         = "Feindliche Lagereinrichtung",
+		KOLA_MARK_LOUKHI_STORAGE           = "Feindliche Lagereinrichtung angreifen",
+		KOLA_MISSION_LOUKHI_STORAGE_TITLE  = "Feindliche Lagereinrichtung angreifen",
+		KOLA_MISSION_LOUKHI_STORAGE_DESC   = [[Zerstöre die feindliche Lagereinrichtung an diesen Koordinaten:
+
+MGRS: 36 W WU 02337 28413
+Breite/Länge: N 66°04'34" E 33°03'05"
+Breite/Länge präzise: N 66°04'34.61" E 33°03'05.92"
+Breite/Länge Dezimalminuten: N 66°04.576' E 33°03.098'
+Höhe: 326 Fuß
+
+Belohnung: 500]],
+		KOLA_MISSION_LOUKHI_STORAGE_START  = "Neue Angriffsmission: Feindliche Lagereinrichtung angreifen",
+		KOLA_MISSION_LOUKHI_STORAGE_END    = "Angriffsmission beendet: Feindliche Lagereinrichtung",
+		KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Aluminiumwerk Kandalaksha",
+		KOLA_MARK_KANDALAKSHA_ALUMINIUM = "Aluminiumwerk Kandalaksha angreifen",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "Aluminiumwerk Kandalaksha angreifen",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[Zerstöre das feindliche Aluminiumwerk an diesen Koordinaten:
+
+MGRS: 36 W VV 75215 53198
+Breite/Länge: N 67°11'40" E 32°25'37"
+Breite/Länge präzise: N 67°11'40.90" E 32°25'37.18"
+Breite/Länge Dezimalminuten: N 67°11.681' E 32°25.619'
+Höhe: 293 Fuß
+
+Belohnung: 500]],
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "Neue Angriffsmission: Aluminiumwerk Kandalaksha angreifen",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "Angriffsmission beendet: Aluminiumwerk Kandalaksha",
+		KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Pumpstation Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "Pumpstation Beloye More angreifen",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[Zerstöre die feindliche Pumpstation an diesen Koordinaten:
+
+MGRS: 36 W VV 69490 40687
+Breite/Länge: N 67°04'54" E 32°17'52"
+Breite/Länge präzise: N 67°04'54.99" E 32°17'52.43"
+Breite/Länge Dezimalminuten: N 67°04.916' E 32°17.873'
+Höhe: 43 Fuß
+
+Belohnung: 500]],
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "Neue Angriffsmission: Pumpstation Beloye More angreifen",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "Angriffsmission beendet: Pumpstation Beloye More",
+		KOLA_TARGET_BELOYE_MORE_BRIDGE = "Feindliche Brücke zerstören",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "Feindliche Brücke zerstören",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[Zerstöre die feindliche Brücke an diesen Koordinaten:
+
+MGRS: 36 W VV 67717 45082
+Breite/Länge: N 67°07'16" E 32°15'21"
+Breite/Länge präzise: N 67°07'16.24" E 32°15'21.20"
+Breite/Länge Dezimalminuten: N 67°07.270' E 32°15.353'
+Höhe: 0 Fuß
+
+Belohnung: 500]],
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "Neue Angriffsmission: Feindliche Brücke zerstören",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "Angriffsmission beendet: Feindliche Brücke zerstören",
 		KOLA_TARGET_RIGHT_HAND_MAN         = "Rechte Hand",
 		KOLA_MISSION_RIGHT_HAND_MAN_TITLE  = "Die rechte Hand des Generals ausschalten",
 		KOLA_MISSION_RIGHT_HAND_MAN_DESC   = [[
@@ -25024,6 +26118,48 @@ Breite/Länge Dezimalminuten: N 65°46.127' E 31°07.500'
 Höhe 480 Fuß]],
 		KOLA_MISSION_PYAOZERSKY_STORAGE_START = "Neue Angriffsmission: PyaozerskyStorage-Lagerhäuser angreifen",
 		KOLA_MISSION_PYAOZERSKY_STORAGE_END = "Angriffsmission beendet: PyaozerskyStorage-Lagerhäuser",
+		KOLA_TARGET_KOASHVA_STORAGE = "Lagerkomplex Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_TITLE = "Lagerkomplex Koashva angreifen",
+		KOLA_MISSION_KOASHVA_STORAGE_DESC = [[Zerstöre den feindlichen Lagerkomplex an diesen Koordinaten:
+
+MGRS: 36 W WA 49426 04226
+Breite/Länge: N 67°38'57" E 34°09'53"
+Breite/Länge präzise: N 67°38'57.37" E 34°09'53.19"
+Breite/Länge Dezimalminuten: N 67°38.956' E 34°09.886'
+Höhe: 756 Fuß
+
+Belohnung: 1250]],
+		KOLA_MISSION_KOASHVA_STORAGE_START = "Neue Angriffsmission: Lagerkomplex Koashva angreifen",
+		KOLA_MISSION_KOASHVA_STORAGE_END = "Angriffsmission beendet: Lagerkomplex Koashva",
+		KOLA_TARGET_KILP_YAVR_STORAGE = "Munitionsdepot Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "Munitionsdepot Kilp Yavr angreifen",
+		KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[Zerstöre das feindliche Munitionsdepot an diesen Koordinaten:
+
+MGRS: 36 W VB 79046 64104
+Breite/Länge: N 69°05'11" E 32°28'26"
+Breite/Länge präzise: N 69°05'11.65" E 32°28'26.46"
+Breite/Länge Dezimalminuten: N 69°05.194' E 32°28.441'
+Höhe: 689 Fuß
+
+Belohnung: 500]],
+		KOLA_MISSION_KILP_YAVR_STORAGE_START = "Neue Angriffsmission: Munitionsdepot Kilp Yavr angreifen",
+		KOLA_MISSION_KILP_YAVR_STORAGE_END = "Angriffsmission beendet: Munitionsdepot Kilp Yavr",
+		KOLA_TARGET_AFRIKANDA_STORAGE       = "Munitionsdepots Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "Angriff auf die Munitionsdepots Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[Zwei feindliche Munitionsdepots nahe Afrikanda wurden identifiziert.
+Zerstöre beide Depots.
+
+Koordinaten:
+
+MGRS: 36 W VV 91065 80713
+Breite/Länge: N 67°26'32" E 32°47'28"
+Breite/Länge präzise: N 67°26'32.62" E 32°47'28.68"
+Breite/Länge Dezimalminuten: N 67°26.543' E 32°47.478'
+Höhe: 456 Fuß
+
+Belohnung: 1000]],
+		KOLA_MISSION_AFRIKANDA_STORAGE_START = "Neue Angriffsmission: Munitionsdepots Afrikanda angreifen",
+		KOLA_MISSION_AFRIKANDA_STORAGE_END = "Angriffsmission beendet: Munitionsdepots Afrikanda",
 		KOLA_TARGET_LOVOZERO_CCC           = "lovozeroCCC-Kommandozentrum",
 		KOLA_MISSION_LOVOZERO_CCC_TITLE    = "Angriff auf LovozeroCCC-Kommandozentrum",
 		KOLA_MISSION_LOVOZERO_CCC_DESC     = [[Feindliches Kommandozentrum identifiziert.
@@ -25138,6 +26274,60 @@ Altitude : 539 pieds
 Récompense = 500]],
 		KOLA_MISSION_HIGH_VALUE_START      = "Nouvelle mission : Frappe sur cible de haute valeur",
 		KOLA_MISSION_HIGH_VALUE_END        = "Mission terminée : Cible de haute valeur",
+		KOLA_TARGET_LOUKHI_STORAGE         = "Installation de stockage ennemie",
+		KOLA_MARK_LOUKHI_STORAGE           = "Frapper l'installation de stockage ennemie",
+		KOLA_MISSION_LOUKHI_STORAGE_TITLE  = "Frapper l'installation de stockage ennemie",
+		KOLA_MISSION_LOUKHI_STORAGE_DESC   = [[Détruisez l'installation de stockage ennemie aux coordonnées suivantes :
+
+MGRS: 36 W WU 02337 28413
+Lat/long : N 66°04'34" E 33°03'05"
+Lat/long précise : N 66°04'34.61" E 33°03'05.92"
+Lat/long minutes décimales : N 66°04.576' E 33°03.098'
+Altitude : 326 pieds
+
+Récompense : 500]],
+		KOLA_MISSION_LOUKHI_STORAGE_START  = "Nouvelle mission de frappe : Installation de stockage ennemie",
+		KOLA_MISSION_LOUKHI_STORAGE_END    = "Mission de frappe terminée : Installation de stockage ennemie",
+		KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Usine d'aluminium de Kandalaksha",
+		KOLA_MARK_KANDALAKSHA_ALUMINIUM = "Frapper l'usine d'aluminium de Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "Frapper l'usine d'aluminium de Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[Détruisez l'usine d'aluminium ennemie aux coordonnées suivantes :
+
+MGRS: 36 W VV 75215 53198
+Lat/long : N 67°11'40" E 32°25'37"
+Lat/long précise : N 67°11'40.90" E 32°25'37.18"
+Lat/long minutes décimales : N 67°11.681' E 32°25.619'
+Altitude : 293 pieds
+
+Récompense : 500]],
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "Nouvelle mission de frappe : Usine d'aluminium de Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "Mission de frappe terminée : Usine d'aluminium de Kandalaksha",
+		KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Station de pompage de Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "Frapper la station de pompage de Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[Détruisez la station de pompage ennemie aux coordonnées suivantes :
+
+MGRS: 36 W VV 69490 40687
+Lat/long : N 67°04'54" E 32°17'52"
+Lat/long précise : N 67°04'54.99" E 32°17'52.43"
+Lat/long minutes décimales : N 67°04.916' E 32°17.873'
+Altitude : 43 pieds
+
+Récompense : 500]],
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "Nouvelle mission de frappe : Station de pompage de Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "Mission de frappe terminée : Station de pompage de Beloye More",
+		KOLA_TARGET_BELOYE_MORE_BRIDGE = "Détruire le pont ennemi",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "Détruire le pont ennemi",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[Détruisez le pont ennemi aux coordonnées suivantes :
+
+MGRS: 36 W VV 67717 45082
+Lat/long : N 67°07'16" E 32°15'21"
+Lat/long précise : N 67°07'16.24" E 32°15'21.20"
+Lat/long minutes décimales : N 67°07.270' E 32°15.353'
+Altitude : 0 pied
+
+Récompense : 500]],
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "Nouvelle mission de frappe : Détruire le pont ennemi",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "Mission de frappe terminée : Détruire le pont ennemi",
 		KOLA_TARGET_RIGHT_HAND_MAN         = "Bras droit",
 		KOLA_MISSION_RIGHT_HAND_MAN_TITLE  = "Tuer le bras droit du général",
 		KOLA_MISSION_RIGHT_HAND_MAN_DESC   = [[
@@ -25209,6 +26399,48 @@ Lat/long minutes décimales : N 65°46.127' E 31°07.500'
 Altitude 480 pieds]],
 		KOLA_MISSION_PYAOZERSKY_STORAGE_START = "Nouvelle mission de frappe : Entrepôts PyaozerskyStorage",
 		KOLA_MISSION_PYAOZERSKY_STORAGE_END = "Mission de frappe terminée : Entrepôts PyaozerskyStorage",
+		KOLA_TARGET_KOASHVA_STORAGE = "Complexe de stockage de Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_TITLE = "Frapper le complexe de stockage de Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_DESC = [[Détruisez le complexe de stockage ennemi aux coordonnées suivantes :
+
+MGRS: 36 W WA 49426 04226
+Lat/long : N 67°38'57" E 34°09'53"
+Lat/long précise : N 67°38'57.37" E 34°09'53.19"
+Lat/long minutes décimales : N 67°38.956' E 34°09.886'
+Altitude : 756 pieds
+
+Récompense : 1250]],
+		KOLA_MISSION_KOASHVA_STORAGE_START = "Nouvelle mission de frappe : Complexe de stockage de Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_END = "Mission de frappe terminée : Complexe de stockage de Koashva",
+		KOLA_TARGET_KILP_YAVR_STORAGE = "Dépôt de munitions de Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "Frapper le dépôt de munitions de Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[Détruisez le dépôt de munitions ennemi aux coordonnées suivantes :
+
+MGRS: 36 W VB 79046 64104
+Lat/long : N 69°05'11" E 32°28'26"
+Lat/long précise : N 69°05'11.65" E 32°28'26.46"
+Lat/long minutes décimales : N 69°05.194' E 32°28.441'
+Altitude : 689 pieds
+
+Récompense : 500]],
+		KOLA_MISSION_KILP_YAVR_STORAGE_START = "Nouvelle mission de frappe : Dépôt de munitions de Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_END = "Mission de frappe terminée : Dépôt de munitions de Kilp Yavr",
+		KOLA_TARGET_AFRIKANDA_STORAGE       = "Dépôts de munitions d'Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "Frappe sur les dépôts de munitions d'Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[Deux dépôts de munitions ennemis ont été identifiés près d'Afrikanda.
+Détruisez les deux dépôts.
+
+Coordonnées :
+
+MGRS: 36 W VV 91065 80713
+Lat/long : N 67°26'32" E 32°47'28"
+Lat/long précise : N 67°26'32.62" E 32°47'28.68"
+Lat/long minutes décimales : N 67°26.543' E 32°47.478'
+Altitude : 456 pieds
+
+Récompense : 1000]],
+		KOLA_MISSION_AFRIKANDA_STORAGE_START = "Nouvelle mission de frappe : Dépôts de munitions d'Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_END = "Mission de frappe terminée : Dépôts de munitions d'Afrikanda",
 		KOLA_TARGET_LOVOZERO_CCC           = "Centre de commandement lovozeroCCC",
 		KOLA_MISSION_LOVOZERO_CCC_TITLE    = "Frappe sur le centre de commandement LovozeroCCC",
 		KOLA_MISSION_LOVOZERO_CCC_DESC     = [[Centre de commandement ennemi identifié.
@@ -25323,6 +26555,60 @@ Elevación: 539 pies
 recompensa = 500]],
 		KOLA_MISSION_HIGH_VALUE_START      = "Nueva misión: Atacar objetivo de alto valor",
 		KOLA_MISSION_HIGH_VALUE_END        = "Misión terminada: Objetivo de alto valor",
+		KOLA_TARGET_LOUKHI_STORAGE         = "Instalación de almacenamiento enemiga",
+		KOLA_MARK_LOUKHI_STORAGE           = "Ataca la instalación de almacenamiento enemiga",
+		KOLA_MISSION_LOUKHI_STORAGE_TITLE  = "Ataca la instalación de almacenamiento enemiga",
+		KOLA_MISSION_LOUKHI_STORAGE_DESC   = [[Destruye la instalación de almacenamiento enemiga en estas coordenadas:
+
+MGRS: 36 W WU 02337 28413
+Lat long: N 66°04'34" E 33°03'05"
+Lat long precisa: N 66°04'34.61" E 33°03'05.92"
+Lat long minutos decimales: N 66°04.576' E 33°03.098'
+Elevación: 326 pies
+
+Recompensa: 500]],
+		KOLA_MISSION_LOUKHI_STORAGE_START  = "Nueva misión de ataque: Instalación de almacenamiento enemiga",
+		KOLA_MISSION_LOUKHI_STORAGE_END    = "Misión de ataque terminada: Instalación de almacenamiento enemiga",
+		KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Planta de aluminio de Kandalaksha",
+		KOLA_MARK_KANDALAKSHA_ALUMINIUM = "Ataca la planta de aluminio de Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "Ataca la planta de aluminio de Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[Destruye la planta de aluminio enemiga en estas coordenadas:
+
+MGRS: 36 W VV 75215 53198
+Lat long: N 67°11'40" E 32°25'37"
+Lat long precisa: N 67°11'40.90" E 32°25'37.18"
+Lat long minutos decimales: N 67°11.681' E 32°25.619'
+Elevación: 293 pies
+
+Recompensa: 500]],
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "Nueva misión de ataque: Planta de aluminio de Kandalaksha",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "Misión de ataque terminada: Planta de aluminio de Kandalaksha",
+		KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Estación de bombeo de Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "Ataca la estación de bombeo de Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[Destruye la estación de bombeo enemiga en estas coordenadas:
+
+MGRS: 36 W VV 69490 40687
+Lat long: N 67°04'54" E 32°17'52"
+Lat long precisa: N 67°04'54.99" E 32°17'52.43"
+Lat long minutos decimales: N 67°04.916' E 32°17.873'
+Elevación: 43 pies
+
+Recompensa: 500]],
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "Nueva misión de ataque: Estación de bombeo de Beloye More",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "Misión de ataque terminada: Estación de bombeo de Beloye More",
+		KOLA_TARGET_BELOYE_MORE_BRIDGE = "Destruye el puente enemigo",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "Destruye el puente enemigo",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[Destruye el puente enemigo en estas coordenadas:
+
+MGRS: 36 W VV 67717 45082
+Lat long: N 67°07'16" E 32°15'21"
+Lat long precisa: N 67°07'16.24" E 32°15'21.20"
+Lat long minutos decimales: N 67°07.270' E 32°15.353'
+Elevación: 0 pies
+
+Recompensa: 500]],
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "Nueva misión de ataque: Destruye el puente enemigo",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "Misión de ataque terminada: Destruye el puente enemigo",
 		KOLA_TARGET_RIGHT_HAND_MAN         = "Mano derecha",
 		KOLA_MISSION_RIGHT_HAND_MAN_TITLE  = "Eliminar la mano derecha del general",
 		KOLA_MISSION_RIGHT_HAND_MAN_DESC   = [[
@@ -25394,6 +26680,48 @@ Lat long minutos decimales: N 65°46.127' E 31°07.500'
 Elevación 480 pies]],
 		KOLA_MISSION_PYAOZERSKY_STORAGE_START = "Nueva misión de ataque: Almacenes PyaozerskyStorage",
 		KOLA_MISSION_PYAOZERSKY_STORAGE_END = "Misión de ataque terminada: Almacenes PyaozerskyStorage",
+		KOLA_TARGET_KOASHVA_STORAGE = "Complejo de almacenamiento de Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_TITLE = "Ataca el complejo de almacenamiento de Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_DESC = [[Destruye el complejo de almacenamiento enemigo en estas coordenadas:
+
+MGRS: 36 W WA 49426 04226
+Lat long: N 67°38'57" E 34°09'53"
+Lat long precisa: N 67°38'57.37" E 34°09'53.19"
+Lat long minutos decimales: N 67°38.956' E 34°09.886'
+Elevación: 756 pies
+
+Recompensa: 1250]],
+		KOLA_MISSION_KOASHVA_STORAGE_START = "Nueva misión de ataque: Complejo de almacenamiento de Koashva",
+		KOLA_MISSION_KOASHVA_STORAGE_END = "Misión de ataque terminada: Complejo de almacenamiento de Koashva",
+		KOLA_TARGET_KILP_YAVR_STORAGE = "Depósito de munición de Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "Ataca el depósito de munición de Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[Destruye el depósito de munición enemigo en estas coordenadas:
+
+MGRS: 36 W VB 79046 64104
+Lat long: N 69°05'11" E 32°28'26"
+Lat long precisa: N 69°05'11.65" E 32°28'26.46"
+Lat long minutos decimales: N 69°05.194' E 32°28.441'
+Elevación: 689 pies
+
+Recompensa: 500]],
+		KOLA_MISSION_KILP_YAVR_STORAGE_START = "Nueva misión de ataque: Depósito de munición de Kilp Yavr",
+		KOLA_MISSION_KILP_YAVR_STORAGE_END = "Misión de ataque terminada: Depósito de munición de Kilp Yavr",
+		KOLA_TARGET_AFRIKANDA_STORAGE       = "Depósitos de munición de Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "Ataca los depósitos de munición de Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[Se han identificado dos depósitos de munición enemigos cerca de Afrikanda.
+Destruye ambos depósitos.
+
+Coordenadas:
+
+MGRS: 36 W VV 91065 80713
+Lat long: N 67°26'32" E 32°47'28"
+Lat long precisa: N 67°26'32.62" E 32°47'28.68"
+Lat long minutos decimales: N 67°26.543' E 32°47.478'
+Elevación: 456 pies
+
+Recompensa: 1000]],
+		KOLA_MISSION_AFRIKANDA_STORAGE_START = "Nueva misión de ataque: Depósitos de munición de Afrikanda",
+		KOLA_MISSION_AFRIKANDA_STORAGE_END = "Misión de ataque terminada: Depósitos de munición de Afrikanda",
 		KOLA_TARGET_LOVOZERO_CCC           = "Centro de mando lovozeroCCC",
 		KOLA_MISSION_LOVOZERO_CCC_TITLE    = "Ataque al centro de mando LovozeroCCC",
 		KOLA_MISSION_LOVOZERO_CCC_DESC     = [[Se ha identificado un centro de mando enemigo.
@@ -25508,6 +26836,60 @@ MGRS: 36 W VV 21510 97955
 Награда = 500]],
 		KOLA_MISSION_HIGH_VALUE_START      = "Новая миссия: удар по важной цели",
 		KOLA_MISSION_HIGH_VALUE_END        = "Миссия завершена: важная цель",
+		KOLA_TARGET_LOUKHI_STORAGE         = "Вражеский склад",
+		KOLA_MARK_LOUKHI_STORAGE           = "Удар по вражескому складу",
+		KOLA_MISSION_LOUKHI_STORAGE_TITLE  = "Удар по вражескому складу",
+		KOLA_MISSION_LOUKHI_STORAGE_DESC   = [[Уничтожьте вражеский склад по следующим координатам:
+
+MGRS: 36 W WU 02337 28413
+Широта/долгота: N 66°04'34" E 33°03'05"
+Широта/долгота точная: N 66°04'34.61" E 33°03'05.92"
+Широта/долгота в десятичных минутах: N 66°04.576' E 33°03.098'
+Высота: 326 футов
+
+Награда: 500]],
+		KOLA_MISSION_LOUKHI_STORAGE_START  = "Новая ударная миссия: Вражеский склад",
+		KOLA_MISSION_LOUKHI_STORAGE_END    = "Ударная миссия завершена: Вражеский склад",
+		KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Кандалакшский алюминиевый завод",
+		KOLA_MARK_KANDALAKSHA_ALUMINIUM = "Удар по Кандалакшскому алюминиевому заводу",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "Удар по Кандалакшскому алюминиевому заводу",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[Уничтожьте вражеский алюминиевый завод по следующим координатам:
+
+MGRS: 36 W VV 75215 53198
+Широта/долгота: N 67°11'40" E 32°25'37"
+Широта/долгота точная: N 67°11'40.90" E 32°25'37.18"
+Широта/долгота в десятичных минутах: N 67°11.681' E 32°25.619'
+Высота: 293 фута
+
+Награда: 500]],
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "Новая ударная миссия: Кандалакшский алюминиевый завод",
+		KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "Ударная миссия завершена: Кандалакшский алюминиевый завод",
+		KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Насосная станция Белое Море",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "Удар по насосной станции Белое Море",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[Уничтожьте вражескую насосную станцию по следующим координатам:
+
+MGRS: 36 W VV 69490 40687
+Широта/долгота: N 67°04'54" E 32°17'52"
+Широта/долгота точная: N 67°04'54.99" E 32°17'52.43"
+Широта/долгота в десятичных минутах: N 67°04.916' E 32°17.873'
+Высота: 43 фута
+
+Награда: 500]],
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "Новая ударная миссия: Насосная станция Белое Море",
+		KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "Ударная миссия завершена: Насосная станция Белое Море",
+		KOLA_TARGET_BELOYE_MORE_BRIDGE = "Уничтожить вражеский мост",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "Уничтожить вражеский мост",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[Уничтожьте вражеский мост по следующим координатам:
+
+MGRS: 36 W VV 67717 45082
+Широта/долгота: N 67°07'16" E 32°15'21"
+Широта/долгота точная: N 67°07'16.24" E 32°15'21.20"
+Широта/долгота в десятичных минутах: N 67°07.270' E 32°15.353'
+Высота: 0 футов
+
+Награда: 500]],
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "Новая ударная миссия: Уничтожить вражеский мост",
+		KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "Ударная миссия завершена: Уничтожить вражеский мост",
 		KOLA_TARGET_RIGHT_HAND_MAN         = "Правая рука",
 		KOLA_MISSION_RIGHT_HAND_MAN_TITLE  = "Уничтожить правую руку генерала",
 		KOLA_MISSION_RIGHT_HAND_MAN_DESC   = [[
@@ -25579,6 +26961,48 @@ MGRS: 36 W VT 14140 95420
 Высота 480 футов]],
 		KOLA_MISSION_PYAOZERSKY_STORAGE_START = "Новая ударная миссия: склады PyaozerskyStorage",
 		KOLA_MISSION_PYAOZERSKY_STORAGE_END = "Ударная миссия завершена: склады PyaozerskyStorage",
+		KOLA_TARGET_KOASHVA_STORAGE = "Складской комплекс Коашвы",
+		KOLA_MISSION_KOASHVA_STORAGE_TITLE = "Удар по складскому комплексу Коашвы",
+		KOLA_MISSION_KOASHVA_STORAGE_DESC = [[Уничтожьте вражеский складской комплекс по следующим координатам:
+
+MGRS: 36 W WA 49426 04226
+Широта/долгота: N 67°38'57" E 34°09'53"
+Широта/долгота точная: N 67°38'57.37" E 34°09'53.19"
+Широта/долгота в десятичных минутах: N 67°38.956' E 34°09.886'
+Высота: 756 футов
+
+Награда: 1250]],
+		KOLA_MISSION_KOASHVA_STORAGE_START = "Новая ударная миссия: Складской комплекс Коашвы",
+		KOLA_MISSION_KOASHVA_STORAGE_END = "Ударная миссия завершена: Складской комплекс Коашвы",
+		KOLA_TARGET_KILP_YAVR_STORAGE = "Склад боеприпасов Килп-Явр",
+		KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "Удар по складу боеприпасов Килп-Явр",
+		KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[Уничтожьте вражеский склад боеприпасов по следующим координатам:
+
+MGRS: 36 W VB 79046 64104
+Широта/долгота: N 69°05'11" E 32°28'26"
+Широта/долгота точная: N 69°05'11.65" E 32°28'26.46"
+Широта/долгота в десятичных минутах: N 69°05.194' E 32°28.441'
+Высота: 689 футов
+
+Награда: 500]],
+		KOLA_MISSION_KILP_YAVR_STORAGE_START = "Новая ударная миссия: Склад боеприпасов Килп-Явр",
+		KOLA_MISSION_KILP_YAVR_STORAGE_END = "Ударная миссия завершена: Склад боеприпасов Килп-Явр",
+		KOLA_TARGET_AFRIKANDA_STORAGE       = "Склады боеприпасов Африканды",
+		KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "Удар по складам боеприпасов Африканды",
+		KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[Рядом с Африкандой обнаружены два вражеских склада боеприпасов.
+Уничтожьте оба склада.
+
+Координаты:
+
+MGRS: 36 W VV 91065 80713
+Широта/долгота: N 67°26'32" E 32°47'28"
+Широта/долгота точная: N 67°26'32.62" E 32°47'28.68"
+Широта/долгота в десятичных минутах: N 67°26.543' E 32°47.478'
+Высота: 456 футов
+
+Награда: 1000]],
+		KOLA_MISSION_AFRIKANDA_STORAGE_START = "Новая ударная миссия: склады боеприпасов Африканды",
+		KOLA_MISSION_AFRIKANDA_STORAGE_END = "Ударная миссия завершена: склады боеприпасов Африканды",
 		KOLA_TARGET_LOVOZERO_CCC           = "Командный центр lovozeroCCC",
 		KOLA_MISSION_LOVOZERO_CCC_TITLE    = "Удар по командному центру LovozeroCCC",
 		KOLA_MISSION_LOVOZERO_CCC_DESC     = [[Обнаружен командный центр противника.
@@ -25694,6 +27118,60 @@ Elevação: 539 pés
 Recompensa = 500]],
 	KOLA_MISSION_HIGH_VALUE_START = "Nova missão: Atacar alvo de alto valor",
 	KOLA_MISSION_HIGH_VALUE_END = "Missão encerrada: Alvo de alto valor",
+	KOLA_TARGET_LOUKHI_STORAGE = "Instalação de armazenamento inimiga",
+	KOLA_MARK_LOUKHI_STORAGE = "Atacar instalação de armazenamento inimiga",
+	KOLA_MISSION_LOUKHI_STORAGE_TITLE = "Atacar instalação de armazenamento inimiga",
+	KOLA_MISSION_LOUKHI_STORAGE_DESC = [[Destrua a instalação de armazenamento inimiga nestas coordenadas:
+
+MGRS: 36 W WU 02337 28413
+Lat long: N 66°04'34" E 33°03'05"
+Lat long Precise: N 66°04'34.61" E 33°03'05.92"
+Lat long Decimal Minutes: N 66°04.576' E 33°03.098'
+Elevação: 326 pés
+
+Recompensa: 500]],
+	KOLA_MISSION_LOUKHI_STORAGE_START = "Nova missão Strike: Atacar instalação de armazenamento inimiga",
+	KOLA_MISSION_LOUKHI_STORAGE_END = "Missão Strike encerrada: Instalação de armazenamento inimiga",
+	KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Fábrica de alumínio de Kandalaksha",
+	KOLA_MARK_KANDALAKSHA_ALUMINIUM = "Atacar a fábrica de alumínio de Kandalaksha",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "Atacar a fábrica de alumínio de Kandalaksha",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[Destrua a fábrica de alumínio inimiga nestas coordenadas:
+
+MGRS: 36 W VV 75215 53198
+Lat long: N 67°11'40" E 32°25'37"
+Lat long Precise: N 67°11'40.90" E 32°25'37.18"
+Lat long Decimal Minutes: N 67°11.681' E 32°25.619'
+Elevação: 293 pés
+
+Recompensa: 500]],
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "Nova missão Strike: Atacar a fábrica de alumínio de Kandalaksha",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "Missão Strike encerrada: Fábrica de alumínio de Kandalaksha",
+	KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Estação de bombeamento de Beloye More",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "Atacar a estação de bombeamento de Beloye More",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[Destrua a estação de bombeamento inimiga nestas coordenadas:
+
+MGRS: 36 W VV 69490 40687
+Lat long: N 67°04'54" E 32°17'52"
+Lat long Precise: N 67°04'54.99" E 32°17'52.43"
+Lat long Decimal Minutes: N 67°04.916' E 32°17.873'
+Elevação: 43 pés
+
+Recompensa: 500]],
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "Nova missão Strike: Atacar a estação de bombeamento de Beloye More",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "Missão Strike encerrada: Estação de bombeamento de Beloye More",
+	KOLA_TARGET_BELOYE_MORE_BRIDGE = "Destruir a ponte inimiga",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "Destruir a ponte inimiga",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[Destrua a ponte inimiga nestas coordenadas:
+
+MGRS: 36 W VV 67717 45082
+Lat long: N 67°07'16" E 32°15'21"
+Lat long Precise: N 67°07'16.24" E 32°15'21.20"
+Lat long Decimal Minutes: N 67°07.270' E 32°15.353'
+Elevação: 0 pés
+
+Recompensa: 500]],
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "Nova missão Strike: Destruir a ponte inimiga",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "Missão Strike encerrada: Destruir a ponte inimiga",
 	KOLA_TARGET_RIGHT_HAND_MAN = "Braço direito",
 	KOLA_MISSION_RIGHT_HAND_MAN_TITLE = "Eliminar o braço direito do general",
 	KOLA_MISSION_RIGHT_HAND_MAN_DESC = [[
@@ -25765,6 +27243,48 @@ Lat long Decimal Minutes: N 65°46.127' E 31°07.500'
 Elevação 480 pés]],
 	KOLA_MISSION_PYAOZERSKY_STORAGE_START = "Nova missão Strike: Atacar armazéns de Pyaozersky Storage",
 	KOLA_MISSION_PYAOZERSKY_STORAGE_END = "Missão Strike encerrada: armazéns de Pyaozersky Storage",
+	KOLA_TARGET_KOASHVA_STORAGE = "Complexo de armazenamento de Koashva",
+	KOLA_MISSION_KOASHVA_STORAGE_TITLE = "Atacar o complexo de armazenamento de Koashva",
+	KOLA_MISSION_KOASHVA_STORAGE_DESC = [[Destrua o complexo de armazenamento inimigo nestas coordenadas:
+
+MGRS: 36 W WA 49426 04226
+Lat long: N 67°38'57" E 34°09'53"
+Lat long Precise: N 67°38'57.37" E 34°09'53.19"
+Lat long Decimal Minutes: N 67°38.956' E 34°09.886'
+Elevação: 756 pés
+
+Recompensa: 1250]],
+	KOLA_MISSION_KOASHVA_STORAGE_START = "Nova missão Strike: Atacar o complexo de armazenamento de Koashva",
+	KOLA_MISSION_KOASHVA_STORAGE_END = "Missão Strike encerrada: Complexo de armazenamento de Koashva",
+	KOLA_TARGET_KILP_YAVR_STORAGE = "Depósito de munição de Kilp Yavr",
+	KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "Atacar o depósito de munição de Kilp Yavr",
+	KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[Destrua o depósito de munição inimigo nestas coordenadas:
+
+MGRS: 36 W VB 79046 64104
+Lat long: N 69°05'11" E 32°28'26"
+Lat long Precise: N 69°05'11.65" E 32°28'26.46"
+Lat long Decimal Minutes: N 69°05.194' E 32°28.441'
+Elevação: 689 pés
+
+Recompensa: 500]],
+	KOLA_MISSION_KILP_YAVR_STORAGE_START = "Nova missão Strike: Atacar o depósito de munição de Kilp Yavr",
+	KOLA_MISSION_KILP_YAVR_STORAGE_END = "Missão Strike encerrada: Depósito de munição de Kilp Yavr",
+	KOLA_TARGET_AFRIKANDA_STORAGE = "Depósitos de munição de Afrikanda",
+	KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "Ataque os depósitos de munição de Afrikanda",
+	KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[Foram identificados dois depósitos de munição inimigos perto de Afrikanda.
+Destrua ambos os depósitos.
+
+Coordenadas da localização:
+
+MGRS: 36 W VV 91065 80713
+Lat long: N 67°26'32" E 32°47'28"
+Lat long Precise: N 67°26'32.62" E 32°47'28.68"
+Lat long Decimal Minutes: N 67°26.543' E 32°47.478'
+Elevação: 456 pés
+
+Recompensa: 1000]],
+	KOLA_MISSION_AFRIKANDA_STORAGE_START = "Nova missão Strike: Atacar os depósitos de munição de Afrikanda",
+	KOLA_MISSION_AFRIKANDA_STORAGE_END = "Missão Strike encerrada: depósitos de munição de Afrikanda",
 	KOLA_TARGET_LOVOZERO_CCC = "Centro de comando lovozeroCCC",
 	KOLA_MISSION_LOVOZERO_CCC_TITLE = "Ataque ao LovozeroCCC Command Center",
 	KOLA_MISSION_LOVOZERO_CCC_DESC = [[Centro de comando inimigo identificado.
@@ -25880,6 +27400,60 @@ Rakım: 539 feet
 Ödül = 500]],
 	KOLA_MISSION_HIGH_VALUE_START = "Yeni görev: Yüksek değerli hedefe strike",
 	KOLA_MISSION_HIGH_VALUE_END = "Görev sona erdi: Yüksek değerli hedef",
+	KOLA_TARGET_LOUKHI_STORAGE = "Düşman depolama tesisi",
+	KOLA_MARK_LOUKHI_STORAGE = "Düşman depolama tesisine strike",
+	KOLA_MISSION_LOUKHI_STORAGE_TITLE = "Düşman depolama tesisine strike",
+	KOLA_MISSION_LOUKHI_STORAGE_DESC = [[Düşman depolama tesisine şu koordinatlarda strike yapın:
+
+MGRS: 36 W WU 02337 28413
+Lat long: N 66°04'34" E 33°03'05"
+Lat long Precise: N 66°04'34.61" E 33°03'05.92"
+Lat long Decimal Minutes: N 66°04.576' E 33°03.098'
+Rakım: 326 feet
+
+Ödül: 500]],
+	KOLA_MISSION_LOUKHI_STORAGE_START = "Yeni Strike görevi: Düşman depolama tesisine strike",
+	KOLA_MISSION_LOUKHI_STORAGE_END = "Strike görevi sona erdi: Düşman depolama tesisi",
+	KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Kandalaksha alüminyum tesisi",
+	KOLA_MARK_KANDALAKSHA_ALUMINIUM = "Kandalaksha alüminyum tesisine strike",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "Kandalaksha alüminyum tesisine strike",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[Düşman alüminyum tesisine şu koordinatlarda strike yapın:
+
+MGRS: 36 W VV 75215 53198
+Lat long: N 67°11'40" E 32°25'37"
+Lat long Precise: N 67°11'40.90" E 32°25'37.18"
+Lat long Decimal Minutes: N 67°11.681' E 32°25.619'
+Rakım: 293 feet
+
+Ödül: 500]],
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "Yeni Strike görevi: Kandalaksha alüminyum tesisine strike",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "Strike görevi sona erdi: Kandalaksha alüminyum tesisi",
+	KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Beloye More pompa istasyonu",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "Beloye More pompa istasyonuna strike",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[Düşman pompa istasyonuna şu koordinatlarda strike yapın:
+
+MGRS: 36 W VV 69490 40687
+Lat long: N 67°04'54" E 32°17'52"
+Lat long Precise: N 67°04'54.99" E 32°17'52.43"
+Lat long Decimal Minutes: N 67°04.916' E 32°17.873'
+Rakım: 43 feet
+
+Ödül: 500]],
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "Yeni Strike görevi: Beloye More pompa istasyonuna strike",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "Strike görevi sona erdi: Beloye More pompa istasyonu",
+	KOLA_TARGET_BELOYE_MORE_BRIDGE = "Düşman köprüsünü yok et",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "Düşman köprüsünü yok et",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[Düşman köprüsünü şu koordinatlarda yok edin:
+
+MGRS: 36 W VV 67717 45082
+Lat long: N 67°07'16" E 32°15'21"
+Lat long Precise: N 67°07'16.24" E 32°15'21.20"
+Lat long Decimal Minutes: N 67°07.270' E 32°15.353'
+Rakım: 0 feet
+
+Ödül: 500]],
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "Yeni Strike görevi: Düşman köprüsünü yok et",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "Strike görevi sona erdi: Düşman köprüsünü yok et",
 	KOLA_TARGET_RIGHT_HAND_MAN = "Sağ kol",
 	KOLA_MISSION_RIGHT_HAND_MAN_TITLE = "Generalin sağ kolunu öldür",
 	KOLA_MISSION_RIGHT_HAND_MAN_DESC = [[
@@ -25951,6 +27525,48 @@ Lat long Decimal Minutes: N 65°46.127' E 31°07.500'
 Rakım 480 feet]],
 	KOLA_MISSION_PYAOZERSKY_STORAGE_START = "Yeni Strike görevi: Pyaozersky Storage depolarına strike",
 	KOLA_MISSION_PYAOZERSKY_STORAGE_END = "Strike görevi sona erdi: Pyaozersky Storage depoları",
+	KOLA_TARGET_KOASHVA_STORAGE = "Koashva depolama kompleksi",
+	KOLA_MISSION_KOASHVA_STORAGE_TITLE = "Koashva depolama kompleksine strike",
+	KOLA_MISSION_KOASHVA_STORAGE_DESC = [[Düşman depolama kompleksine şu koordinatlarda strike yapın:
+
+MGRS: 36 W WA 49426 04226
+Lat long: N 67°38'57" E 34°09'53"
+Lat long Precise: N 67°38'57.37" E 34°09'53.19"
+Lat long Decimal Minutes: N 67°38.956' E 34°09.886'
+Rakım: 756 feet
+
+Ödül: 1250]],
+	KOLA_MISSION_KOASHVA_STORAGE_START = "Yeni Strike görevi: Koashva depolama kompleksine strike",
+	KOLA_MISSION_KOASHVA_STORAGE_END = "Strike görevi sona erdi: Koashva depolama kompleksi",
+	KOLA_TARGET_KILP_YAVR_STORAGE = "Kilp Yavr mühimmat deposu",
+	KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "Kilp Yavr mühimmat deposuna strike",
+	KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[Düşman mühimmat deposuna şu koordinatlarda strike yapın:
+
+MGRS: 36 W VB 79046 64104
+Lat long: N 69°05'11" E 32°28'26"
+Lat long Precise: N 69°05'11.65" E 32°28'26.46"
+Lat long Decimal Minutes: N 69°05.194' E 32°28.441'
+Rakım: 689 feet
+
+Ödül: 500]],
+	KOLA_MISSION_KILP_YAVR_STORAGE_START = "Yeni Strike görevi: Kilp Yavr mühimmat deposuna strike",
+	KOLA_MISSION_KILP_YAVR_STORAGE_END = "Strike görevi sona erdi: Kilp Yavr mühimmat deposu",
+	KOLA_TARGET_AFRIKANDA_STORAGE = "Afrikanda mühimmat depoları",
+	KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "Afrikanda mühimmat depolarına strike",
+	KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[Afrikanda yakınlarında iki düşman mühimmat deposu tespit edildi.
+Her iki depoyu da yok edin.
+
+Konum koordinatları:
+
+MGRS: 36 W VV 91065 80713
+Lat long: N 67°26'32" E 32°47'28"
+Lat long Precise: N 67°26'32.62" E 32°47'28.68"
+Lat long Decimal Minutes: N 67°26.543' E 32°47.478'
+Rakım: 456 feet
+
+Ödül: 1000]],
+	KOLA_MISSION_AFRIKANDA_STORAGE_START = "Yeni Strike görevi: Afrikanda mühimmat depolarına strike",
+	KOLA_MISSION_AFRIKANDA_STORAGE_END = "Strike görevi sona erdi: Afrikanda mühimmat depoları",
 	KOLA_TARGET_LOVOZERO_CCC = "lovozeroCCC Komuta Merkezi",
 	KOLA_MISSION_LOVOZERO_CCC_TITLE = "LovozeroCCC Komuta Merkezine strike",
 	KOLA_MISSION_LOVOZERO_CCC_DESC = [[Düşman komuta merkezi tespit edildi.
@@ -26066,6 +27682,60 @@ MGRS: 36 W VV 21510 97955
 奖励 = 500]],
 	KOLA_MISSION_HIGH_VALUE_START      = "新任务：打击高价值目标",
 	KOLA_MISSION_HIGH_VALUE_END        = "任务结束：打击高价值目标",
+	KOLA_TARGET_LOUKHI_STORAGE         = "敌方仓储设施",
+	KOLA_MARK_LOUKHI_STORAGE           = "打击敌方仓储设施",
+	KOLA_MISSION_LOUKHI_STORAGE_TITLE  = "打击敌方仓储设施",
+	KOLA_MISSION_LOUKHI_STORAGE_DESC   = [[在以下坐标摧毁敌方仓储设施：
+
+MGRS: 36 W WU 02337 28413
+经纬度：N 66°04'34" E 33°03'05"
+精确经纬度：N 66°04'34.61" E 33°03'05.92"
+经纬度（十进制度分）：N 66°04.576' E 33°03.098'
+海拔：326 英尺
+
+奖励：500]],
+	KOLA_MISSION_LOUKHI_STORAGE_START  = "新打击任务：打击敌方仓储设施",
+	KOLA_MISSION_LOUKHI_STORAGE_END    = "打击任务结束：打击敌方仓储设施",
+	KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Kandalaksha 铝厂",
+	KOLA_MARK_KANDALAKSHA_ALUMINIUM = "打击 Kandalaksha 铝厂",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "打击 Kandalaksha 铝厂",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[在以下坐标摧毁敌方铝厂：
+
+MGRS: 36 W VV 75215 53198
+经纬度：N 67°11'40" E 32°25'37"
+精确经纬度：N 67°11'40.90" E 32°25'37.18"
+经纬度（十进制度分）：N 67°11.681' E 32°25.619'
+海拔：293 英尺
+
+奖励：500]],
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "新打击任务：打击 Kandalaksha 铝厂",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "打击任务结束：打击 Kandalaksha 铝厂",
+	KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Beloye More 泵站",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "打击 Beloye More 泵站",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[在以下坐标摧毁敌方泵站：
+
+MGRS: 36 W VV 69490 40687
+经纬度：N 67°04'54" E 32°17'52"
+精确经纬度：N 67°04'54.99" E 32°17'52.43"
+经纬度（十进制度分）：N 67°04.916' E 32°17.873'
+海拔：43 英尺
+
+奖励：500]],
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "新打击任务：打击 Beloye More 泵站",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "打击任务结束：打击 Beloye More 泵站",
+	KOLA_TARGET_BELOYE_MORE_BRIDGE = "摧毁敌方桥梁",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "摧毁敌方桥梁",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[在以下坐标摧毁敌方桥梁：
+
+MGRS: 36 W VV 67717 45082
+经纬度：N 67°07'16" E 32°15'21"
+精确经纬度：N 67°07'16.24" E 32°15'21.20"
+经纬度（十进制度分）：N 67°07.270' E 32°15.353'
+海拔：0 英尺
+
+奖励：500]],
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "新打击任务：摧毁敌方桥梁",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "打击任务结束：摧毁敌方桥梁",
 	KOLA_TARGET_RIGHT_HAND_MAN         = "副手",
 	KOLA_MISSION_RIGHT_HAND_MAN_TITLE  = "击杀将军的副手",
 	KOLA_MISSION_RIGHT_HAND_MAN_DESC   = [[
@@ -26137,6 +27807,48 @@ MGRS: 36 W VT 14140 95420
 海拔 480 英尺]],
 	KOLA_MISSION_PYAOZERSKY_STORAGE_START = "新打击任务：打击 PyaozerskyStorage 仓库",
 	KOLA_MISSION_PYAOZERSKY_STORAGE_END = "打击任务结束：打击 PyaozerskyStorage 仓库",
+	KOLA_TARGET_KOASHVA_STORAGE = "Koashva 仓储区",
+	KOLA_MISSION_KOASHVA_STORAGE_TITLE = "打击 Koashva 仓储区",
+	KOLA_MISSION_KOASHVA_STORAGE_DESC = [[在以下坐标摧毁敌方仓储区：
+
+MGRS: 36 W WA 49426 04226
+经纬度：N 67°38'57" E 34°09'53"
+精确经纬度：N 67°38'57.37" E 34°09'53.19"
+经纬度（十进制度分）：N 67°38.956' E 34°09.886'
+海拔：756 英尺
+
+奖励：1250]],
+	KOLA_MISSION_KOASHVA_STORAGE_START = "新打击任务：打击 Koashva 仓储区",
+	KOLA_MISSION_KOASHVA_STORAGE_END = "打击任务结束：打击 Koashva 仓储区",
+	KOLA_TARGET_KILP_YAVR_STORAGE = "Kilp Yavr 弹药库",
+	KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "打击 Kilp Yavr 弹药库",
+	KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[在以下坐标摧毁敌方弹药库：
+
+MGRS: 36 W VB 79046 64104
+经纬度：N 69°05'11" E 32°28'26"
+精确经纬度：N 69°05'11.65" E 32°28'26.46"
+经纬度（十进制度分）：N 69°05.194' E 32°28.441'
+海拔：689 英尺
+
+奖励：500]],
+	KOLA_MISSION_KILP_YAVR_STORAGE_START = "新打击任务：打击 Kilp Yavr 弹药库",
+	KOLA_MISSION_KILP_YAVR_STORAGE_END = "打击任务结束：打击 Kilp Yavr 弹药库",
+	KOLA_TARGET_AFRIKANDA_STORAGE       = "Afrikanda 弹药库",
+	KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "打击 Afrikanda 弹药库",
+	KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[在 Afrikanda 附近发现了两座敌方弹药库。
+摧毁两座弹药库。
+
+位置坐标：
+
+MGRS: 36 W VV 91065 80713
+经纬度：N 67°26'32" E 32°47'28"
+精确经纬度：N 67°26'32.62" E 32°47'28.68"
+经纬度（十进制度分）：N 67°26.543' E 32°47.478'
+海拔：456 英尺
+
+奖励：1000]],
+	KOLA_MISSION_AFRIKANDA_STORAGE_START = "新打击任务：打击 Afrikanda 弹药库",
+	KOLA_MISSION_AFRIKANDA_STORAGE_END = "打击任务结束：打击 Afrikanda 弹药库",
 	KOLA_TARGET_LOVOZERO_CCC           = "lovozeroCCC 指挥中心",
 	KOLA_MISSION_LOVOZERO_CCC_TITLE    = "打击 LovozeroCCC 指挥中心",
 	KOLA_MISSION_LOVOZERO_CCC_DESC     = [[已确认敌方指挥中心。
@@ -26252,6 +27964,60 @@ MGRS: 36 W VV 21510 97955
 獎勵 = 500]],
 	KOLA_MISSION_HIGH_VALUE_START      = "新任務：打擊高價值目標",
 	KOLA_MISSION_HIGH_VALUE_END        = "任務結束：打擊高價值目標",
+	KOLA_TARGET_LOUKHI_STORAGE         = "敵方倉儲設施",
+	KOLA_MARK_LOUKHI_STORAGE           = "打擊敵方倉儲設施",
+	KOLA_MISSION_LOUKHI_STORAGE_TITLE  = "打擊敵方倉儲設施",
+	KOLA_MISSION_LOUKHI_STORAGE_DESC   = [[在以下座標摧毀敵方倉儲設施：
+
+MGRS: 36 W WU 02337 28413
+經緯度：N 66°04'34" E 33°03'05"
+精確經緯度：N 66°04'34.61" E 33°03'05.92"
+經緯度（十進制度分）：N 66°04.576' E 33°03.098'
+海拔：326 英尺
+
+獎勵：500]],
+	KOLA_MISSION_LOUKHI_STORAGE_START  = "新打擊任務：打擊敵方倉儲設施",
+	KOLA_MISSION_LOUKHI_STORAGE_END    = "打擊任務結束：打擊敵方倉儲設施",
+	KOLA_TARGET_KANDALAKSHA_ALUMINIUM = "Kandalaksha 鋁廠",
+	KOLA_MARK_KANDALAKSHA_ALUMINIUM = "打擊 Kandalaksha 鋁廠",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_TITLE = "打擊 Kandalaksha 鋁廠",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_DESC = [[在以下座標摧毀敵方鋁廠：
+
+MGRS: 36 W VV 75215 53198
+經緯度：N 67°11'40" E 32°25'37"
+精確經緯度：N 67°11'40.90" E 32°25'37.18"
+經緯度（十進制度分）：N 67°11.681' E 32°25.619'
+海拔：293 英尺
+
+獎勵：500]],
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_START = "新打擊任務：打擊 Kandalaksha 鋁廠",
+	KOLA_MISSION_KANDALAKSHA_ALUMINIUM_END = "打擊任務結束：打擊 Kandalaksha 鋁廠",
+	KOLA_TARGET_BELOYE_MORE_PUMPING_STATION = "Beloye More 泵站",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_TITLE = "打擊 Beloye More 泵站",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_DESC = [[在以下座標摧毀敵方泵站：
+
+MGRS: 36 W VV 69490 40687
+經緯度：N 67°04'54" E 32°17'52"
+精確經緯度：N 67°04'54.99" E 32°17'52.43"
+經緯度（十進制度分）：N 67°04.916' E 32°17.873'
+海拔：43 英尺
+
+獎勵：500]],
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_START = "新打擊任務：打擊 Beloye More 泵站",
+	KOLA_MISSION_BELOYE_MORE_PUMPING_STATION_END = "打擊任務結束：打擊 Beloye More 泵站",
+	KOLA_TARGET_BELOYE_MORE_BRIDGE = "摧毀敵方橋樑",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_TITLE = "摧毀敵方橋樑",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_DESC = [[在以下座標摧毀敵方橋樑：
+
+MGRS: 36 W VV 67717 45082
+經緯度：N 67°07'16" E 32°15'21"
+精確經緯度：N 67°07'16.24" E 32°15'21.20"
+經緯度（十進制度分）：N 67°07.270' E 32°15.353'
+海拔：0 英尺
+
+獎勵：500]],
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_START = "新打擊任務：摧毀敵方橋樑",
+	KOLA_MISSION_BELOYE_MORE_BRIDGE_END = "打擊任務結束：摧毀敵方橋樑",
 	KOLA_TARGET_RIGHT_HAND_MAN         = "副手",
 	KOLA_MISSION_RIGHT_HAND_MAN_TITLE  = "擊殺將軍的副手",
 	KOLA_MISSION_RIGHT_HAND_MAN_DESC   = [[
@@ -26323,6 +28089,48 @@ MGRS: 36 W VT 14140 95420
 海拔 480 英尺]],
 	KOLA_MISSION_PYAOZERSKY_STORAGE_START = "新打擊任務：打擊 PyaozerskyStorage 倉庫",
 	KOLA_MISSION_PYAOZERSKY_STORAGE_END = "打擊任務結束：打擊 PyaozerskyStorage 倉庫",
+	KOLA_TARGET_KOASHVA_STORAGE = "Koashva 倉儲區",
+	KOLA_MISSION_KOASHVA_STORAGE_TITLE = "打擊 Koashva 倉儲區",
+	KOLA_MISSION_KOASHVA_STORAGE_DESC = [[在以下座標摧毀敵方倉儲區：
+
+MGRS: 36 W WA 49426 04226
+經緯度：N 67°38'57" E 34°09'53"
+精確經緯度：N 67°38'57.37" E 34°09'53.19"
+經緯度（十進制度分）：N 67°38.956' E 34°09.886'
+海拔：756 英尺
+
+獎勵：1250]],
+	KOLA_MISSION_KOASHVA_STORAGE_START = "新打擊任務：打擊 Koashva 倉儲區",
+	KOLA_MISSION_KOASHVA_STORAGE_END = "打擊任務結束：打擊 Koashva 倉儲區",
+	KOLA_TARGET_KILP_YAVR_STORAGE = "Kilp Yavr 彈藥庫",
+	KOLA_MISSION_KILP_YAVR_STORAGE_TITLE = "打擊 Kilp Yavr 彈藥庫",
+	KOLA_MISSION_KILP_YAVR_STORAGE_DESC = [[在以下座標摧毀敵方彈藥庫：
+
+MGRS: 36 W VB 79046 64104
+經緯度：N 69°05'11" E 32°28'26"
+精確經緯度：N 69°05'11.65" E 32°28'26.46"
+經緯度（十進制度分）：N 69°05.194' E 32°28.441'
+海拔：689 英尺
+
+獎勵：500]],
+	KOLA_MISSION_KILP_YAVR_STORAGE_START = "新打擊任務：打擊 Kilp Yavr 彈藥庫",
+	KOLA_MISSION_KILP_YAVR_STORAGE_END = "打擊任務結束：打擊 Kilp Yavr 彈藥庫",
+	KOLA_TARGET_AFRIKANDA_STORAGE       = "Afrikanda 彈藥庫",
+	KOLA_MISSION_AFRIKANDA_STORAGE_TITLE = "打擊 Afrikanda 彈藥庫",
+	KOLA_MISSION_AFRIKANDA_STORAGE_DESC = [[在 Afrikanda 附近發現了兩座敵方彈藥庫。
+摧毀兩座彈藥庫。
+
+位置座標：
+
+MGRS: 36 W VV 91065 80713
+經緯度：N 67°26'32" E 32°47'28"
+精確經緯度：N 67°26'32.62" E 32°47'28.68"
+經緯度（十進制度分）：N 67°26.543' E 32°47.478'
+海拔：456 英尺
+
+獎勵：1000]],
+	KOLA_MISSION_AFRIKANDA_STORAGE_START = "新打擊任務：打擊 Afrikanda 彈藥庫",
+	KOLA_MISSION_AFRIKANDA_STORAGE_END = "打擊任務結束：打擊 Afrikanda 彈藥庫",
 	KOLA_TARGET_LOVOZERO_CCC           = "lovozeroCCC 指揮中心",
 	KOLA_MISSION_LOVOZERO_CCC_TITLE    = "打擊 LovozeroCCC 指揮中心",
 	KOLA_MISSION_LOVOZERO_CCC_DESC     = [[已確認敵方指揮中心。
@@ -33140,6 +34948,253 @@ local SASetupLabels = {
 
 for _, locale in ipairs({ "EN", "DE", "FR", "ES", "RU", "PT-BR", "TR", "IT", "zh-TW", "zh-CN" }) do
 	FL:Register(locale, SASetupLabels)
+end
+
+local RedSamRecoveryMessages = {
+	EN = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • Repair %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • Install %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "Defences • Repair %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "Defences • Install %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "Enemy forces have begun repairs on the %s site at %s. Destroy the remaining site to stop the repair.",
+		RED_SAM_REPAIR_STARTED_2 = "The enemy is repairing its %s site at %s. Destroy the surviving units before repairs are completed.",
+		RED_SAM_REPAIR_STARTED_3 = "Repairs are underway at the enemy %s site in %s. Eliminate the remaining site to halt them.",
+		RED_SAM_REPAIR_HALFWAY_1 = "Enemy %s at %s is half repaired. Destroy it now.",
+		RED_SAM_REPAIR_HALFWAY_2 = "Enemy %s repairs at %s: 50%%. Destroy the site.",
+		RED_SAM_REPAIR_HALFWAY_3 = "Enemy %s at %s is halfway repaired. Finish it now.",
+		RED_SAM_REPAIR_STOPPED_1 = "We have obliterated the enemy %s site at %s. Repairs have been stopped.",
+		RED_SAM_REPAIR_STOPPED_2 = "The enemy %s site at %s has been wiped out. Repairs are cancelled.",
+		RED_SAM_REPAIR_STOPPED_3 = "Enemy %s defenses at %s have been completely destroyed. The repair effort has failed.",
+		RED_SAM_REPAIR_COMPLETED_1 = "The enemy %s site at %s is operational again.",
+		RED_SAM_REPAIR_COMPLETED_2 = "Repairs are complete at the enemy %s site in %s. It has returned to service.",
+		RED_SAM_REPAIR_COMPLETED_3 = "The enemy has restored its %s site at %s.",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "Construction of a new enemy %s site has begun at %s. Estimated completion: %d minutes.",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "The enemy has started building a new %s site at %s. Estimated completion: %d minutes.",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "A new enemy %s site is being constructed at %s. Expected completion: %d minutes.",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "A new enemy %s site is now operational at %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "The enemy has completed a new %s site at %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "Construction of the enemy %s site at %s is complete. It is now operational.",
+	},
+	DE = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • Reparatur %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • Installation %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "Verteidigung • Reparatur %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "Verteidigung • Installation %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "Feindliche Kräfte haben mit der Reparatur der %s-Stellung bei %s begonnen. Zerstört die verbliebenen Einheiten, um die Reparatur zu stoppen.",
+		RED_SAM_REPAIR_STARTED_2 = "Der Feind repariert seine %s-Stellung bei %s. Zerstört die überlebenden Einheiten, bevor die Reparatur abgeschlossen ist.",
+		RED_SAM_REPAIR_STARTED_3 = "An der feindlichen %s-Stellung bei %s laufen Reparaturen. Vernichtet die verbliebene Stellung, um sie zu stoppen.",
+		RED_SAM_REPAIR_HALFWAY_1 = "Die feindliche %s-Stellung bei %s ist zur Hälfte repariert. Zerstört sie jetzt.",
+		RED_SAM_REPAIR_HALFWAY_2 = "Reparatur der feindlichen %s-Stellung bei %s: 50%%. Zerstört die Stellung.",
+		RED_SAM_REPAIR_HALFWAY_3 = "Die feindliche %s-Stellung bei %s ist halb repariert. Vernichtet sie jetzt.",
+		RED_SAM_REPAIR_STOPPED_1 = "Wir haben die feindliche %s-Stellung bei %s vollständig vernichtet. Die Reparatur wurde gestoppt.",
+		RED_SAM_REPAIR_STOPPED_2 = "Die feindliche %s-Stellung bei %s wurde ausgelöscht. Die Reparatur ist abgebrochen.",
+		RED_SAM_REPAIR_STOPPED_3 = "Die feindliche %s-Luftabwehr bei %s wurde vollständig zerstört. Der Reparaturversuch ist gescheitert.",
+		RED_SAM_REPAIR_COMPLETED_1 = "Die feindliche %s-Stellung bei %s ist wieder einsatzbereit.",
+		RED_SAM_REPAIR_COMPLETED_2 = "Die Reparatur der feindlichen %s-Stellung bei %s ist abgeschlossen. Sie ist wieder im Einsatz.",
+		RED_SAM_REPAIR_COMPLETED_3 = "Der Feind hat seine %s-Stellung bei %s wiederhergestellt.",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "Der Bau einer neuen feindlichen %s-Stellung bei %s hat begonnen. Voraussichtliche Fertigstellung: %d Minuten.",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "Der Feind hat mit dem Bau einer neuen %s-Stellung bei %s begonnen. Voraussichtliche Fertigstellung: %d Minuten.",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "Eine neue feindliche %s-Stellung wird bei %s errichtet. Erwartete Fertigstellung: %d Minuten.",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "Eine neue feindliche %s-Stellung bei %s ist jetzt einsatzbereit.",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "Der Feind hat eine neue %s-Stellung bei %s fertiggestellt.",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "Der Bau der feindlichen %s-Stellung bei %s ist abgeschlossen. Sie ist jetzt einsatzbereit.",
+	},
+	FR = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • Réparation %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • Installation %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "Défenses • Réparation %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "Défenses • Installation %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "Les forces ennemies ont commencé à réparer le site %s à %s. Détruisez les unités restantes pour arrêter les réparations.",
+		RED_SAM_REPAIR_STARTED_2 = "L'ennemi répare son site %s à %s. Détruisez les unités survivantes avant la fin des réparations.",
+		RED_SAM_REPAIR_STARTED_3 = "Des réparations sont en cours sur le site ennemi %s à %s. Éliminez ce qu'il en reste pour les interrompre.",
+		RED_SAM_REPAIR_HALFWAY_1 = "Le site ennemi %s à %s est réparé à moitié. Détruisez-le maintenant.",
+		RED_SAM_REPAIR_HALFWAY_2 = "Réparation du site ennemi %s à %s : 50%%. Détruisez le site.",
+		RED_SAM_REPAIR_HALFWAY_3 = "Les réparations du site ennemi %s à %s sont à mi-parcours. Achevez-le maintenant.",
+		RED_SAM_REPAIR_STOPPED_1 = "Nous avons anéanti le site ennemi %s à %s. Les réparations sont arrêtées.",
+		RED_SAM_REPAIR_STOPPED_2 = "Le site ennemi %s à %s a été éliminé. Les réparations sont annulées.",
+		RED_SAM_REPAIR_STOPPED_3 = "Les défenses ennemies %s à %s ont été entièrement détruites. La tentative de réparation a échoué.",
+		RED_SAM_REPAIR_COMPLETED_1 = "Le site ennemi %s à %s est de nouveau opérationnel.",
+		RED_SAM_REPAIR_COMPLETED_2 = "Les réparations du site ennemi %s à %s sont terminées. Il est de nouveau en service.",
+		RED_SAM_REPAIR_COMPLETED_3 = "L'ennemi a remis en état son site %s à %s.",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "La construction d'un nouveau site ennemi %s a commencé à %s. Fin estimée : %d minutes.",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "L'ennemi a commencé à construire un nouveau site %s à %s. Fin estimée : %d minutes.",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "Un nouveau site ennemi %s est en construction à %s. Fin prévue : %d minutes.",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "Un nouveau site ennemi %s est maintenant opérationnel à %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "L'ennemi a achevé un nouveau site %s à %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "La construction du site ennemi %s à %s est terminée. Il est maintenant opérationnel.",
+	},
+	ES = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • Reparación %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • Instalación %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "Defensas • Reparación %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "Defensas • Instalación %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "Las fuerzas enemigas han comenzado a reparar el emplazamiento %s en %s. Destruye las unidades restantes para detener la reparación.",
+		RED_SAM_REPAIR_STARTED_2 = "El enemigo está reparando su emplazamiento %s en %s. Destruye las unidades supervivientes antes de que terminen.",
+		RED_SAM_REPAIR_STARTED_3 = "Hay reparaciones en curso en el emplazamiento enemigo %s de %s. Elimina lo que queda para detenerlas.",
+		RED_SAM_REPAIR_HALFWAY_1 = "El emplazamiento enemigo %s en %s está reparado a medias. Destrúyelo ahora.",
+		RED_SAM_REPAIR_HALFWAY_2 = "Reparación del emplazamiento enemigo %s en %s: 50%%. Destruye el emplazamiento.",
+		RED_SAM_REPAIR_HALFWAY_3 = "Las reparaciones del emplazamiento enemigo %s en %s van por la mitad. Acaba con él ahora.",
+		RED_SAM_REPAIR_STOPPED_1 = "Hemos aniquilado el emplazamiento enemigo %s en %s. Las reparaciones se han detenido.",
+		RED_SAM_REPAIR_STOPPED_2 = "El emplazamiento enemigo %s en %s ha sido eliminado. Las reparaciones quedan canceladas.",
+		RED_SAM_REPAIR_STOPPED_3 = "Las defensas enemigas %s en %s han sido destruidas por completo. El intento de reparación ha fracasado.",
+		RED_SAM_REPAIR_COMPLETED_1 = "El emplazamiento enemigo %s en %s vuelve a estar operativo.",
+		RED_SAM_REPAIR_COMPLETED_2 = "Las reparaciones del emplazamiento enemigo %s en %s han terminado. Ha vuelto al servicio.",
+		RED_SAM_REPAIR_COMPLETED_3 = "El enemigo ha restaurado su emplazamiento %s en %s.",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "Ha comenzado la construcción de un nuevo emplazamiento enemigo %s en %s. Finalización estimada: %d minutos.",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "El enemigo ha empezado a construir un nuevo emplazamiento %s en %s. Finalización estimada: %d minutos.",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "Se está construyendo un nuevo emplazamiento enemigo %s en %s. Finalización prevista: %d minutos.",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "Un nuevo emplazamiento enemigo %s ya está operativo en %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "El enemigo ha terminado un nuevo emplazamiento %s en %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "La construcción del emplazamiento enemigo %s en %s ha terminado. Ya está operativo.",
+	},
+	RU = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • Ремонт %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • Установка %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "Оборона • Ремонт %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "Оборона • Установка %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "Противник начал ремонт позиции %s в районе %s. Уничтожьте оставшиеся подразделения, чтобы остановить ремонт.",
+		RED_SAM_REPAIR_STARTED_2 = "Противник ремонтирует позицию %s в районе %s. Уничтожьте уцелевшие подразделения до завершения ремонта.",
+		RED_SAM_REPAIR_STARTED_3 = "На вражеской позиции %s в районе %s идут ремонтные работы. Уничтожьте остатки позиции, чтобы их остановить.",
+		RED_SAM_REPAIR_HALFWAY_1 = "Вражеская позиция %s в районе %s отремонтирована наполовину. Уничтожьте её сейчас.",
+		RED_SAM_REPAIR_HALFWAY_2 = "Ремонт вражеской позиции %s в районе %s: 50%%. Уничтожьте позицию.",
+		RED_SAM_REPAIR_HALFWAY_3 = "Ремонт вражеской позиции %s в районе %s дошёл до половины. Добейте её сейчас.",
+		RED_SAM_REPAIR_STOPPED_1 = "Мы полностью уничтожили вражескую позицию %s в районе %s. Ремонт остановлен.",
+		RED_SAM_REPAIR_STOPPED_2 = "Вражеская позиция %s в районе %s ликвидирована. Ремонт отменён.",
+		RED_SAM_REPAIR_STOPPED_3 = "Вражеская система %s в районе %s полностью уничтожена. Попытка ремонта провалилась.",
+		RED_SAM_REPAIR_COMPLETED_1 = "Вражеская позиция %s в районе %s снова боеготова.",
+		RED_SAM_REPAIR_COMPLETED_2 = "Ремонт вражеской позиции %s в районе %s завершён. Она снова в строю.",
+		RED_SAM_REPAIR_COMPLETED_3 = "Противник восстановил позицию %s в районе %s.",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "Началось строительство новой вражеской позиции %s в районе %s. Ожидаемое завершение: %d мин.",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "Противник начал строить новую позицию %s в районе %s. Ожидаемое завершение: %d мин.",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "Новая вражеская позиция %s строится в районе %s. Ожидаемое завершение: %d мин.",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "Новая вражеская позиция %s в районе %s теперь боеготова.",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "Противник завершил строительство новой позиции %s в районе %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "Строительство вражеской позиции %s в районе %s завершено. Она введена в строй.",
+	},
+	["PT-BR"] = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • Reparo %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • Instalação %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "Defesas • Reparo %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "Defesas • Instalação %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "As forças inimigas começaram a reparar o local %s em %s. Destrua as unidades restantes para interromper o reparo.",
+		RED_SAM_REPAIR_STARTED_2 = "O inimigo está reparando seu local %s em %s. Destrua as unidades sobreviventes antes da conclusão.",
+		RED_SAM_REPAIR_STARTED_3 = "Há reparos em andamento no local inimigo %s em %s. Elimine o que restou para interrompê-los.",
+		RED_SAM_REPAIR_HALFWAY_1 = "O local inimigo %s em %s está com metade do reparo concluída. Destrua-o agora.",
+		RED_SAM_REPAIR_HALFWAY_2 = "Reparo do local inimigo %s em %s: 50%%. Destrua o local.",
+		RED_SAM_REPAIR_HALFWAY_3 = "O reparo do local inimigo %s em %s chegou à metade. Acabe com ele agora.",
+		RED_SAM_REPAIR_STOPPED_1 = "Aniquilamos o local inimigo %s em %s. Os reparos foram interrompidos.",
+		RED_SAM_REPAIR_STOPPED_2 = "O local inimigo %s em %s foi eliminado. Os reparos foram cancelados.",
+		RED_SAM_REPAIR_STOPPED_3 = "As defesas inimigas %s em %s foram completamente destruídas. A tentativa de reparo fracassou.",
+		RED_SAM_REPAIR_COMPLETED_1 = "O local inimigo %s em %s está operacional novamente.",
+		RED_SAM_REPAIR_COMPLETED_2 = "Os reparos do local inimigo %s em %s foram concluídos. Ele voltou ao serviço.",
+		RED_SAM_REPAIR_COMPLETED_3 = "O inimigo restaurou seu local %s em %s.",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "A construção de um novo local inimigo %s começou em %s. Conclusão estimada: %d minutos.",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "O inimigo começou a construir um novo local %s em %s. Conclusão estimada: %d minutos.",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "Um novo local inimigo %s está sendo construído em %s. Conclusão prevista: %d minutos.",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "Um novo local inimigo %s está operacional em %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "O inimigo concluiu um novo local %s em %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "A construção do local inimigo %s em %s foi concluída. Ele está operacional.",
+	},
+	TR = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • Onarım %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • Kurulum %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "Savunma • Onarım %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "Savunma • Kurulum %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "Düşman kuvvetleri %s mevzisinde, %s bölgesinde onarıma başladı. Onarımı durdurmak için kalan birlikleri yok edin.",
+		RED_SAM_REPAIR_STARTED_2 = "Düşman, %s mevzisini %s bölgesinde onarıyor. Onarım tamamlanmadan hayatta kalan birlikleri yok edin.",
+		RED_SAM_REPAIR_STARTED_3 = "Düşman %s mevzisinde, %s bölgesinde onarım sürüyor. Durdurmak için kalan mevziyi imha edin.",
+		RED_SAM_REPAIR_HALFWAY_1 = "Düşman %s mevzisi %s bölgesinde yarı yarıya onarıldı. Şimdi yok edin.",
+		RED_SAM_REPAIR_HALFWAY_2 = "Düşman %s mevzisinin %s bölgesindeki onarımı: 50%%. Mevziyi yok edin.",
+		RED_SAM_REPAIR_HALFWAY_3 = "Düşman %s mevzisi %s bölgesinde yarı onarıldı. Şimdi işini bitirin.",
+		RED_SAM_REPAIR_STOPPED_1 = "Düşman %s mevzisini %s bölgesinde tamamen imha ettik. Onarım durduruldu.",
+		RED_SAM_REPAIR_STOPPED_2 = "Düşman %s mevzisi %s bölgesinde yok edildi. Onarım iptal edildi.",
+		RED_SAM_REPAIR_STOPPED_3 = "Düşman %s savunması %s bölgesinde tamamen yok edildi. Onarım girişimi başarısız oldu.",
+		RED_SAM_REPAIR_COMPLETED_1 = "Düşman %s mevzisi %s bölgesinde yeniden faal.",
+		RED_SAM_REPAIR_COMPLETED_2 = "Düşman %s mevzisinin %s bölgesindeki onarımı tamamlandı. Yeniden hizmette.",
+		RED_SAM_REPAIR_COMPLETED_3 = "Düşman, %s mevzisini %s bölgesinde yeniden kurdu.",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "Yeni bir düşman %s mevzisinin %s bölgesindeki inşası başladı. Tahmini tamamlanma: %d dakika.",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "Düşman, yeni bir %s mevzisini %s bölgesinde kurmaya başladı. Tahmini tamamlanma: %d dakika.",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "Yeni bir düşman %s mevzisi %s bölgesinde inşa ediliyor. Beklenen tamamlanma: %d dakika.",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "Yeni düşman %s mevzisi %s bölgesinde artık faal.",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "Düşman, yeni bir %s mevzisini %s bölgesinde tamamladı.",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "Düşman %s mevzisinin %s bölgesindeki inşası tamamlandı. Artık faal.",
+	},
+	IT = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • Riparazione %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • Installazione %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "Difese • Riparazione %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "Difese • Installazione %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "Le forze nemiche hanno iniziato a riparare il sito %s a %s. Distruggi le unità rimaste per fermare le riparazioni.",
+		RED_SAM_REPAIR_STARTED_2 = "Il nemico sta riparando il proprio sito %s a %s. Distruggi le unità superstiti prima che finisca.",
+		RED_SAM_REPAIR_STARTED_3 = "Sono in corso riparazioni nel sito nemico %s a %s. Elimina ciò che resta per interromperle.",
+		RED_SAM_REPAIR_HALFWAY_1 = "Il sito nemico %s a %s è riparato a metà. Distruggilo ora.",
+		RED_SAM_REPAIR_HALFWAY_2 = "Riparazione del sito nemico %s a %s: 50%%. Distruggi il sito.",
+		RED_SAM_REPAIR_HALFWAY_3 = "Le riparazioni del sito nemico %s a %s sono a metà. Finiscilo ora.",
+		RED_SAM_REPAIR_STOPPED_1 = "Abbiamo annientato il sito nemico %s a %s. Le riparazioni sono state fermate.",
+		RED_SAM_REPAIR_STOPPED_2 = "Il sito nemico %s a %s è stato eliminato. Le riparazioni sono annullate.",
+		RED_SAM_REPAIR_STOPPED_3 = "Le difese nemiche %s a %s sono state completamente distrutte. Il tentativo di riparazione è fallito.",
+		RED_SAM_REPAIR_COMPLETED_1 = "Il sito nemico %s a %s è di nuovo operativo.",
+		RED_SAM_REPAIR_COMPLETED_2 = "Le riparazioni del sito nemico %s a %s sono complete. È tornato in servizio.",
+		RED_SAM_REPAIR_COMPLETED_3 = "Il nemico ha ripristinato il proprio sito %s a %s.",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "È iniziata la costruzione di un nuovo sito nemico %s a %s. Completamento stimato: %d minuti.",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "Il nemico ha iniziato a costruire un nuovo sito %s a %s. Completamento stimato: %d minuti.",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "Un nuovo sito nemico %s è in costruzione a %s. Completamento previsto: %d minuti.",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "Un nuovo sito nemico %s è ora operativo a %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "Il nemico ha completato un nuovo sito %s a %s.",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "La costruzione del sito nemico %s a %s è completa. Ora è operativo.",
+	},
+	["zh-TW"] = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • 修復 %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • 部署 %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "防禦 • 修復 %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "防禦 • 部署 %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "敵軍已開始修復 %s 陣地（%s）。摧毀剩餘單位以中止修復。",
+		RED_SAM_REPAIR_STARTED_2 = "敵軍正在修復 %s 陣地（%s）。請在修復完成前摧毀倖存單位。",
+		RED_SAM_REPAIR_STARTED_3 = "敵方 %s 陣地（%s）正在進行修復。消滅殘存單位以阻止修復。",
+		RED_SAM_REPAIR_HALFWAY_1 = "敵方 %s 陣地（%s）已修復一半。立即摧毀它。",
+		RED_SAM_REPAIR_HALFWAY_2 = "敵方 %s 陣地修復進度（%s）：50%%。摧毀該陣地。",
+		RED_SAM_REPAIR_HALFWAY_3 = "敵方 %s 陣地（%s）修復過半。立即徹底摧毀。",
+		RED_SAM_REPAIR_STOPPED_1 = "我們已徹底摧毀敵方 %s 陣地（%s）。修復已停止。",
+		RED_SAM_REPAIR_STOPPED_2 = "敵方 %s 陣地（%s）已被消滅。修復已取消。",
+		RED_SAM_REPAIR_STOPPED_3 = "敵方 %s 防禦系統（%s）已被完全摧毀。修復行動失敗。",
+		RED_SAM_REPAIR_COMPLETED_1 = "敵方 %s 陣地（%s）已恢復運作。",
+		RED_SAM_REPAIR_COMPLETED_2 = "敵方 %s 陣地（%s）已完成修復並重新投入使用。",
+		RED_SAM_REPAIR_COMPLETED_3 = "敵軍已恢復 %s 陣地（%s）。",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "敵軍已開始建造新的 %s 陣地（%s）。預計完成時間：%d 分鐘。",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "敵軍正在建造新的 %s 陣地（%s）。預計完成時間：%d 分鐘。",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "新的敵方 %s 陣地正在 %s 施工。預計 %d 分鐘後完成。",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "新的敵方 %s 陣地已在 %s 投入運作。",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "敵軍已完成新的 %s 陣地（%s）。",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "敵方 %s 陣地（%s）已完工並投入運作。",
+	},
+	["zh-CN"] = {
+		ZONE_LABEL_INTEL_SAM_REPAIRING_PERCENT = "%s • 修复 %d%%",
+		ZONE_LABEL_INTEL_SAM_INSTALLING_PERCENT = "%s • 部署 %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_REPAIRING_PERCENT = "防御 • 修复 %d%%",
+		ZONE_LABEL_INTEL_DEFENCES_INSTALLING_PERCENT = "防御 • 部署 %d%%",
+		RED_SAM_REPAIR_STARTED_1 = "敌军已开始修复 %s 阵地（%s）。摧毁剩余单位以中止修复。",
+		RED_SAM_REPAIR_STARTED_2 = "敌军正在修复 %s 阵地（%s）。请在修复完成前摧毁幸存单位。",
+		RED_SAM_REPAIR_STARTED_3 = "敌方 %s 阵地（%s）正在进行修复。消灭残存单位以阻止修复。",
+		RED_SAM_REPAIR_HALFWAY_1 = "敌方 %s 阵地（%s）已修复一半。立即摧毁它。",
+		RED_SAM_REPAIR_HALFWAY_2 = "敌方 %s 阵地修复进度（%s）：50%%。摧毁该阵地。",
+		RED_SAM_REPAIR_HALFWAY_3 = "敌方 %s 阵地（%s）修复过半。立即彻底摧毁。",
+		RED_SAM_REPAIR_STOPPED_1 = "我们已彻底摧毁敌方 %s 阵地（%s）。修复已停止。",
+		RED_SAM_REPAIR_STOPPED_2 = "敌方 %s 阵地（%s）已被消灭。修复已取消。",
+		RED_SAM_REPAIR_STOPPED_3 = "敌方 %s 防御系统（%s）已被完全摧毁。修复行动失败。",
+		RED_SAM_REPAIR_COMPLETED_1 = "敌方 %s 阵地（%s）已恢复运行。",
+		RED_SAM_REPAIR_COMPLETED_2 = "敌方 %s 阵地（%s）已完成修复并重新投入使用。",
+		RED_SAM_REPAIR_COMPLETED_3 = "敌军已恢复 %s 阵地（%s）。",
+		RED_SAM_CONSTRUCTION_STARTED_1 = "敌军已开始建造新的 %s 阵地（%s）。预计完成时间：%d 分钟。",
+		RED_SAM_CONSTRUCTION_STARTED_2 = "敌军正在建造新的 %s 阵地（%s）。预计完成时间：%d 分钟。",
+		RED_SAM_CONSTRUCTION_STARTED_3 = "新的敌方 %s 阵地正在 %s 施工。预计 %d 分钟后完成。",
+		RED_SAM_CONSTRUCTION_COMPLETED_1 = "新的敌方 %s 阵地已在 %s 投入运行。",
+		RED_SAM_CONSTRUCTION_COMPLETED_2 = "敌军已完成新的 %s 阵地（%s）。",
+		RED_SAM_CONSTRUCTION_COMPLETED_3 = "敌方 %s 阵地（%s）已完工并投入运行。",
+	},
+}
+
+for locale, messages in pairs(RedSamRecoveryMessages) do
+	FL:Register(locale, messages)
 end
 
 FH_L10N = FootholdLocalization
