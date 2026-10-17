@@ -1,0 +1,18 @@
+# Written by veaf-tools convert-other. Commit it with the mission.
+#
+# What the upstream release loads, so the next --update can tell a script the release
+# dropped (deleted, since the build would otherwise embed the previous version) from a
+# script you added yourself (left strictly alone).
+upstream_scripts:
+  - AIEN.lua
+  - COLDWAR_SETUP.lua
+  - EWRS.lua
+  - "Foothold CTLD.lua"
+  - "Foothold Config.lua"
+  - Foothold_CTLD_Red.lua
+  - Foothold_Localization.lua
+  - Moose.lua
+  - Splash_Damage.lua
+  - WelcomeMessage.lua
+  - Zeus.lua
+  - zoneCommanderv2.lua
