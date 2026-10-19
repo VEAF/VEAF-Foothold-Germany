@@ -47,6 +47,7 @@ mapResource =
   ResKey_Action_279 = "COLDWAR_SETUP.lua",
   ResKey_Action_281 = "zoneCommanderv2.lua",
   ResKey_Action_282 = "AIEN.lua",
+  ResKey_Action_283 = "Enemy supply Convoy Detected Data on your map.ogg",
   ResKey_Action_29 = "admin.wav",
   ResKey_Action_30 = "troops_load_ready.ogg",
   ResKey_Action_31 = "troops_load_ao.ogg",
